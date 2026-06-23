@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://www.morphllm.com/comparisons/cloudflare-workers-vs-vercel",
+    "name": "Cloudflare Workers vs Vercel (2026): $0.30/M Requests vs $20/Seat",
+    "snippet": "Cloudflare Workers Paid: $5/mo with 10M requests included, then $0.30/M, zero egress. Vercel Pro: $20/seat plus $2/M edge requests, $0.",
+    "host_name": "www.morphllm.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/nextjs/comments/1ad0mzb/cloudflare_workers_vs_vercel_funcs_for_dynamic_api",
+    "name": "Cloudflare workers vs Vercel funcs for dynamic api : r/nextjs - Reddit",
+    "snippet": "Similar to Cloudflare, Vercel offers the ability to run a more limited runtime (Edge) which doesn't contain all of the Node.js APIs. This is ...",
+    "host_name": "www.reddit.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://dev.to/dataformathub/cloudflare-vs-vercel-vs-netlify-the-truth-about-edge-performance-2026-50h0",
+    "name": "Cloudflare vs Vercel vs Netlify: The Truth about Edge Performance",
+    "snippet": "Cloudflare Workers offer a generous free tier: 100,000 requests per day, 10ms average CPU time per request, and 10MB of egress data per day.",
+    "host_name": "dev.to",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=LYoxtHT4NoU",
+    "name": "Edge Functions - Netlify Vs Cloudflare Worker Vs Vercel - YouTube",
+    "snippet": "Related Tutorial: https://bit.ly/3ZjvHas ▻ SUBSCRIBE YouTube: https://bit.ly/3lSyKEK My FREE Sunday Newsletter: https://bit.ly/3HKOzaJ ...",
+    "host_name": "www.youtube.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://wppoland.com/en/compare/cloudflare-vs-vercel/?srsltid=AfmBOopy_JCtB1nIssxaZxoLKqqzg_Chmm7JKU9P8EHzD2knW28I6brO",
+    "name": "Cloudflare vs Vercel for headless WordPress in 2026 - WPPoland",
+    "snippet": "So Cloudflare Workers and Vercel Edge Functions feel similar. Vercel Serverless Functions, on Lambda, are slower at cold start. For an edge-first ...",
+    "host_name": "wppoland.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.pkgpulse.com/guides/cloudflare-workers-vs-vercel-edge-vs-aws-lambda-2026",
+    "name": "Cloudflare Workers vs Vercel Edge vs Lambda 2026 - PkgPulse",
+    "snippet": "Cloudflare Workers runs V8 isolates in 300+ locations with zero cold starts. Vercel Edge Functions run the same isolate model but are tightly ...",
+    "host_name": "www.pkgpulse.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://northflank.com/blog/railway-vs-cloudflare-vs-vercel",
+    "name": "Railway vs Cloudflare vs Vercel: which platform fits your stack in",
+    "snippet": "Railway, Cloudflare, and Vercel solve different problems. Compare their deployment models, compute, databases, pricing, and limitations to ...",
+    "host_name": "northflank.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.birjob.com/blog/edge-platforms-compared-2026",
+    "name": "Edge Compute 2026: Cloudflare Workers vs Vercel Edge vs Deno",
+    "snippet": "Cloudflare Workers' free tier covers 100K req/day. Vercel's Hobby tier covers small projects. Deno Deploy's free tier covers 1M req/month ...",
+    "host_name": "www.birjob.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://danubedata.ro/blog/cloudflare-pages-vs-netlify-vs-vercel-static-hosting-2026",
+    "name": "Cloudflare Pages vs Netlify vs Vercel: Static Site Hosting Compared",
+    "snippet": "Detailed comparison of Cloudflare Pages, Netlify, and Vercel for static site hosting. Compare pricing, features, performance, and developer ...",
+    "host_name": "danubedata.ro",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/webdev/comments/1ntfake/vercel_edge_vs_cloudflare_workers_my_benchmarks",
+    "name": "Vercel Edge vs Cloudflare Workers: My Benchmarks Show Theo (T3",
+    "snippet": "Vercel's strength really is the DX and ecosystem tie-ins, but if you care about squeezing latency and handling bursts, Cloudflare just feels way ...",
+    "host_name": "www.reddit.com",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

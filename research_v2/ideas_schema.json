@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://www.digitalapplied.com/blog/schema-markup-types-complete-structured-data-reference",
+    "name": "Schema Markup Types 2026: Complete Reference Guide",
+    "snippet": "Complete 2026 reference for schema.org structured data: Article, Organization, Product, BreadcrumbList, WebSite, FAQ, Event, and JSON-LD syntax.",
+    "host_name": "www.digitalapplied.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://schema.org/Review",
+    "name": "Review - Schema.org Type",
+    "snippet": "A review of an item - for example, of a restaurant, movie, or store. Instances of Review may appear as a value for the following properties.",
+    "host_name": "schema.org",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://schema.org/Offer",
+    "name": "Offer - Schema.org Type",
+    "snippet": "Has six preset cooking categories and convenience features like; Add-A-Minute and Child Lock.</span>; Customer reviews: <div property=\"review\" typeof=\"Review\">",
+    "host_name": "schema.org",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data",
+    "name": "Intro to How Structured Data Markup Works | Google Search Central",
+    "snippet": "Google uses structured data markup to understand content. Explore this guide to discover how structured data works, review formats, and learn where to place ...",
+    "host_name": "developers.google.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.malou.io/en-us/blog/structured-data-for-restaurants",
+    "name": "Structured Data for restaurants: The 2026 guide - Malou",
+    "snippet": "This guide explains what structured data does for your business — not how to write code, but why it moves revenue, how it feeds AI discovery, ...",
+    "host_name": "www.malou.io",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=eiLYXDhL22o",
+    "name": "What is schema.org structured data in SEO? - YouTube",
+    "snippet": "Structured data, schema.org & rich results... All those terms, but what do they really mean? In this video you'll learn about how to ...",
+    "host_name": "www.youtube.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.grupainsight.com/articles/structured-data-in-the-era-of-ai-search-how-schema-org-strengthens-e-e-a-t-and-dominates-ai-overviews-sge-and-zero-click-results",
+    "name": "Structured Data in 2026: Schema.org, AI Search and E-E-A-T",
+    "snippet": "Learn how schema.org structured data supports AI Search visibility, E-E-A-T signals and SEO performance in 2026 — with practical examples ...",
+    "host_name": "www.grupainsight.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.wearetg.com/blog/schema-markup",
+    "name": "Schema Markup: The Complete Guide 2026",
+    "snippet": "Boost your SEO performance with our essential guide to schema markup. Learn practical strategies to enhance visibility and drive traffic.",
+    "host_name": "www.wearetg.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.kreativagroup.com/post/schema-markup-what-it-is-and-why-it-matters-in-2026",
+    "name": "Schema Markup: What It Is and Why It Matters in 2026 | Kreativa Group",
+    "snippet": "Schema markup helps search engines understand your content, not just read it. Learn how structured data drives richer results and stronger ...",
+    "host_name": "www.kreativagroup.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://comms.thisisdefinition.com/insights/ultimate-guide-to-structured-data-for-seo",
+    "name": "Using structured data for SEO in 2026: benefits, types & examples",
+    "snippet": "Learn how structured data in SEO helps search engines understand your content, generate rich results, and improve visibility in AI-powered ...",
+    "host_name": "comms.thisisdefinition.com",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

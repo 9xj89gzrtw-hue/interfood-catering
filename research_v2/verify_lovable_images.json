@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://www.reddit.com/r/lovable/comments/1jbqutp/constant_issues_with_photos_uploading_and_supabase",
+    "name": "Constant issues with photos uploading and Supabase : r/lovable",
+    "snippet": "Create a simple app in lovable just to handle photos with supabase. Use that app to upload them and it will produce links to then use in your main app.",
+    "host_name": "www.reddit.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.facebook.com/groups/vibecodinglife/posts/1900282127226982",
+    "name": "How to upload pictures to Lovable project? - Facebook",
+    "snippet": "To upload images to your project, you can follow the steps outlined by users in various Facebook Groups discussions.\nFor general image uploading, users recommend downloading or syncing your files to your local drive before uploading them to your project.",
+    "host_name": "www.facebook.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=pa-zbHzW6Co",
+    "name": "How to upload Images to Supabase - YouTube",
+    "snippet": "Comments · Build An Image Gallery With Supabase Storage and React (Upload Images with Supabase) · I tried 5 Firebase alternatives · Astro + Vue ...",
+    "host_name": "www.youtube.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://blog.kirillinoz.com/build-an-image-cms-with-supabase-and-lovable",
+    "name": "Build An Image CMS with Supabase and Lovable - Kirill Inoz's Articles",
+    "snippet": "A comprehensive CMS for uploading, storing and generating AI-powered images. It includes features like user authentication, secure storage, real-time updates, ...\nIt allows users to upload, store, create and share these images with a user-friendly interface. upload it to the Supabase Storage. a ...",
+    "host_name": "blog.kirillinoz.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=9z54zkmK-to",
+    "name": "Building a SaaS with Lovable, Supabase, and Stripe - YouTube",
+    "snippet": "Lovable is an AI coding agent that allows you to create web apps without writing any code. It integrates well with Supabase and Stripe, ...",
+    "host_name": "www.youtube.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=A129o7GQduY",
+    "name": "How To Store Images In Supabase Storage [Beginner Tutorial 2026]",
+    "snippet": "... Storage so your app can securely manage uploads like avatars, product photos, and media assets ... Supabase (Auth, Database, File Uploads).\n... Supabase Storage so your app can securely manage uploads like avatars, product photos, and media assets. Supabase provides scalable cloud ...",
+    "host_name": "www.youtube.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://docs.lovable.dev/tips-tricks/using-images",
+    "name": "Using images in Lovable",
+    "snippet": "Drag and drop the image into the public folder, or; Click on the “choose your files” link to browse and select the image file. Selecting files for upload.",
+    "host_name": "docs.lovable.dev",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://till-freitag.com/en/blog/lovable-cloud-vs-supabase-en",
+    "name": "Lovable Cloud vs. Supabase – Why We - Till Freitag",
+    "snippet": "It offers the same features as Lovable Cloud – database, auth, storage, Edge Functions – but as a standalone platform with full access to: Supabase Dashboard – ...",
+    "host_name": "till-freitag.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://community.weweb.io/t/displaying-an-image-from-supabase/5630",
+    "name": "Displaying an image from Supabase - How do I? - WeWeb Community",
+    "snippet": "I have figured out how to upload files to Supabase storage from the Weweb app I'm building. I am dealing with images in this particular case.",
+    "host_name": "community.weweb.io",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://supabase.com/blog/react-native-storage",
+    "name": "React Native file upload with Supabase Storage",
+    "snippet": "This means you can quickly build your own image-sharing app, a file-sharing app, or any other app that needs to upload files to a backend!",
+    "host_name": "supabase.com",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://docs.lovable.dev/integrations/supabase",
+    "name": "Connect to Supabase - Lovable Documentation",
+    "snippet": "Supabase Edge Functions are serverless functions (similar to AWS Lambda) that let you run code on the backend triggered by events or requests. Lovable's ...",
+    "host_name": "docs.lovable.dev",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/lovable/comments/1jp248d/downloading_modifying_moving_supabase_edge",
+    "name": "Downloading / Modifying / Moving supabase Edge Functions - Reddit",
+    "snippet": "You can use this to edit an existing function outside of Lovable. You can also use this to copy functions to other projects as well.",
+    "host_name": "www.reddit.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://till-freitag.com/en/blog/lovable-cloud-vs-supabase-en",
+    "name": "Lovable Cloud vs. Supabase – Why We - Till Freitag",
+    "snippet": "The Supabase Dashboard provides: Real-time logs for Edge Functions, auth, and database; Query performance monitoring; API usage statistics; Webhook logs for ...",
+    "host_name": "till-freitag.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://docs.lovable.dev/integrations/cloud",
+    "name": "Lovable Cloud",
+    "snippet": "Lovable Cloud is a full-stack hosting platform with built-in database, authentication, storage, edge functions, and AI, no infrastructure setup required.",
+    "host_name": "docs.lovable.dev",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=Tkk1UXXR3xw",
+    "name": "Supabase Edge Functions Just Got Way Easier - YouTube",
+    "snippet": "You can now start using Supabase Edge Functions directly from the dashboard! It's the easiest way to get up and running with Edge Functions; ...",
+    "host_name": "www.youtube.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://training.blackbadger.biz/articles/how-is-lovable-cloud-different-than-supabase",
+    "name": "Lovable Cloud vs. Supabase: Choosing Your Backend",
+    "snippet": "Lovable Cloud is built upon Supabase, offering a simplified, pre-packaged backend experience managed by Lovable, which contrasts with ...",
+    "host_name": "training.blackbadger.biz",
+    "rank": 5,
+    "date": "Jun 20, 2026",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.facebook.com/groups/vibecodinglife/posts/1935220717066456",
+    "name": "By default, Supabase exposes your database over the **Data API",
+    "snippet": "Your options are basically fully commit to RLS + schema separation, route all access through Edge Functions, or ditch the abstraction and talk ...",
+    "host_name": "www.facebook.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://supabase.com/edge-functions",
+    "name": "Supabase Edge Functions - Deploy JavaScript globally in seconds",
+    "snippet": "Easily author, deploy and monitor serverless functions distributed globally at the edge, close to your users.",
+    "host_name": "supabase.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/orgs/supabase/discussions/32648",
+    "name": "How to host backend on supabase? Edge functions? #32648 - GitHub",
+    "snippet": "I need to eventually get all API-related calls calling from server-side on supabase ie through like edge functions or whatnot, so I was wondering how I would ...",
+    "host_name": "github.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://dev.to/krish_kakadiya_5f0eaf6342/inside-supabase-edge-functions-how-serverless-magic-actually-works-2m1p",
+    "name": "Inside Supabase Edge Functions: How Serverless Magic Actually",
+    "snippet": "Supabase Edge Functions are a game-changer for handling things like webhooks, API integrations, or even generating dynamic content right at the ...",
+    "host_name": "dev.to",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]
