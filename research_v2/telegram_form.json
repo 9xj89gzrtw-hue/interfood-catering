@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://www.youtube.com/watch?v=aRREKXloWe8&vl=en-US",
+    "name": "Submit Website Form Data to Telegram - Full Serverless Tutorial",
+    "snippet": "... Telegram API in the Worker, and deploying frontend to Cloudflare Pages. ▶️ What you will learn: Send text and images to Telegram from a website ...\n... Telegram API in the Worker, and deploying frontend to Cloudflare Pages. ▶️ What you will learn: Send text and images to Telegram from a ...",
+    "host_name": "www.youtube.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://yojahny.dev/blog/cloudflare-functions-telegram-contact-form",
+    "name": "Secure Contact Form with Cloudflare Functions & Telegram API",
+    "snippet": "Learn how to implement a secure, serverless contact form using Cloudflare Functions and Telegram Bot API for static sites. No email server ...",
+    "host_name": "yojahny.dev",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/saeedkohansal/send-form-to-telegram",
+    "name": "saeedkohansal/send-form-to-telegram: A complete  - GitHub",
+    "snippet": "A complete, production-ready solution for sending website form submissions directly to Telegram using JavaScript and the Telegram Bot API.",
+    "host_name": "github.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://stackoverflow.com/questions/73084236/send-message-to-telegram-through-html-form-using-javascript",
+    "name": "Send message to Telegram through html form using Javascript",
+    "snippet": "Yes you can program your telegram bot and send any message using javascript (using AJAX since the telegram bot api is a web request based api).",
+    "host_name": "stackoverflow.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.staticforms.dev",
+    "name": "HTML Form Backend - Contact Forms for Static Sites",
+    "snippet": "Simple HTML form backend for static websites. Add contact forms without server code. Built-in reCAPTCHA, Cloudflare Turnstile, Altcha, email delivery, ...",
+    "host_name": "www.staticforms.dev",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/webdev/comments/y3n7l5/what_is_the_absolute_simplest_contact_email_form",
+    "name": "What is the absolute simplest contact (email) form one can create?",
+    "snippet": "I created telegram bot and on form submit it just sends you a direct message thru bot. It really needs almost no skills to setup and it's free.",
+    "host_name": "www.reddit.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://graygrids.com/blog/form-for-static-sites",
+    "name": "Contact Form for Static HTML Sites with Form API and Backend",
+    "snippet": "Talking about forms for static sites, we first have FormBold, a robust form API and serverless form backend solution. It operates with all ...",
+    "host_name": "graygrids.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=k21vB2JCh1A",
+    "name": "Client Side Form Submission with Telegram - YouTube",
+    "snippet": "telegram #form #html #backend Mainly we use php for form submission. But that requires dynamic site hosting which is not free.",
+    "host_name": "www.youtube.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://medium.com/@wk0/send-and-receive-messages-with-the-telegram-api-17de9102ab78",
+    "name": "Send and Receive Messages with the Telegram API | by Will Kelly",
+    "snippet": "Follow the link to your bot by clicking the link that looks like t.me/{yourBotUsername}. This is where you will receive messages.",
+    "host_name": "medium.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://formgrid.dev/blog/how-to-handle-html-form-submissions-without-a-backend-2025-guide",
+    "name": "How to Handle HTML Contact Form Submissions Without a Backend",
+    "snippet": "A newer privacy-first alternative that works with any HTML or JavaScript form. Features include: ✓ Open-source. ✓ Works on any website. ✓ Email ...",
+    "host_name": "formgrid.dev",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]
