@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://www.reddit.com/r/lovable/comments/1r7z57c/anyone_transferred_their_project_of_loveable_on",
+    "name": "Anyone transferred their project of loveable on to self hosting? - Reddit",
+    "snippet": "In general step 1 is too enable GitHub syncing, now every time you make a change or update in lovable the code is living in your github repo.",
+    "host_name": "www.reddit.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://docs.lovable.dev/tips-tricks/deployment-hosting-ownership",
+    "name": "Deployment, hosting, and ownership options with Lovable Cloud",
+    "snippet": "An overview of deployment and hosting options for Lovable Cloud applications, including code ownership, data portability, and paths to self-hosting or ...",
+    "host_name": "docs.lovable.dev",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/NirDiamant/lovable-to-claude-code",
+    "name": "Self-Host Your Lovable Project for Free - GitHub",
+    "snippet": "Self-host your Lovable project for free on Vercel. Step-by-step guide + automated migration script. - NirDiamant/lovable-to-claude-code.",
+    "host_name": "github.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=Mu94doI0FqA&vl=en-US",
+    "name": "How To Export Source Code Files From Lovable.dev  - YouTube",
+    "snippet": "Today, you'll learn: How To Export Source Code Files From Lovable.dev (Lovable AI Quick Guide) In this video, we will learn how to download ...",
+    "host_name": "www.youtube.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://webtwizz.com/lovable-alternative-with-code-ownership",
+    "name": "Lovable Alternative with Code Ownership (Full Source, 2026)",
+    "snippet": "Lovable alternative for founders who want full code ownership: standard Next.js source, GitHub export, self-hostable. Compared against 6 builders.",
+    "host_name": "webtwizz.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=H0DKQwciKAg",
+    "name": "How to Export Code from Lovable to GitHub | [2026 Guide] - YouTube",
+    "snippet": "In this tutorial, learn how to export code from Lovable to GitHub for better version control and collaboration.",
+    "host_name": "www.youtube.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://nometria.com/blog/lovable-to-self-hosted-migration-guide",
+    "name": "Migrating from Lovable to Self-Hosted: The Complete Playbook for",
+    "snippet": "Step 1: Export Code from Lovable. # In Lovable: Settings → GitHub → Connect to GitHub # This syncs your entire project to a GitHub repo ...",
+    "host_name": "nometria.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://vibefactory.ai/export-lovable-project",
+    "name": "Export Your Lovable Project — Free Migration Guide (2026)",
+    "snippet": "This guide covers the complete process of exporting Lovable to GitHub in 2025: connecting your account, linking projects, setting up bi- ...",
+    "host_name": "vibefactory.ai",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://dev.to/coderatul/host-lovabledev-project-on-github-pages-1c61",
+    "name": "Host Lovable.dev Project on github pages - DEV Community",
+    "snippet": "Step 1: Connect lovable.dev with GitHub · Step 2: Create a New Repo for GitHub Pages and Update Config · Step 3: Push Code to GitHub and Set Up ...",
+    "host_name": "dev.to",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://lovable.dev/guides/best-vibe-coding-tools-2026-build-apps-chatting",
+    "name": "Best Vibe Coding Tools in 2026: Build Apps by Chatting - Lovable",
+    "snippet": "Deployment options give you full flexibility: publish to custom domains directly through Lovable, export via GitHub to deploy on Vercel or ...",
+    "host_name": "lovable.dev",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]
