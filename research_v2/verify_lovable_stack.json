@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://thetshaped.dev/p/my-frontend-stack-in-2026-react-nextjs-pnpm-vite-ts-tailwind-storybook-tanstack-zustand-zod-oxlint-oxfmt-msw-vitest-playright-sentry",
+    "name": "My Frontend Stack In 2026 - The T-Shaped Dev",
+    "snippet": "My Frontend Stack In 2026 · 1. Foundations: Next.js, Vite, TypeScript, pnpm · 2. Tailwind CSS + shadcn/ui · 3. Storybook · 4. TanStack Query + ...",
+    "host_name": "thetshaped.dev",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/reactjs/comments/1tfm5xw/i_built_a_cli_that_scaffolds_react_vite",
+    "name": "I built a CLI that scaffolds React + Vite + TypeScript + Tailwind v4 +",
+    "snippet": "Scaffolds a React + Vite + TypeScript + Tailwind CSS v4 + shadcn/ui project in one command. Interactive TUI lets you pick optional packages ( ...",
+    "host_name": "www.reddit.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.linkedin.com/pulse/top-5-vibe-coding-tools-i-used-2026-tech-stack-behind-nitin-gupta-55ace",
+    "name": "Top 5 Vibe Coding Tools I Used in 2026 — And the Tech Stack",
+    "snippet": "The stack was Next.js 15, TypeScript, Tailwind, shadcn/ui, Supabase, and the Figma REST API. The part I expected to take two days — setting ...",
+    "host_name": "www.linkedin.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://mintlify.com/explore/R0N7w7/vite-ts-react-tailwind-shadcn-router-template",
+    "name": "Vite + React + TypeScript + Tailwind + shadcn/ui Template - Mintlify",
+    "snippet": "A minimal, production-oriented React starter template with Vite, TypeScript, Tailwind CSS, shadcn/ui, and React Router DOM.",
+    "host_name": "mintlify.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://stackoverflow.com/questions/76689520/can-shadcn-ui-be-installed-for-vite-react-with-javascript-and-not-typescript",
+    "name": "Can Shadcn ui be installed for Vite + React with javascript and not",
+    "snippet": "I am having trouble installing and using shadcn components on mt vite + react + tailwind project. i tried following the guide in their documentation here.",
+    "host_name": "stackoverflow.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.facebook.com/groups/ReactJsDevelopersGroup/posts/2628765877297631",
+    "name": "How to set up shadcn/ui in React + Vite + ts with tailwind styles?",
+    "snippet": "Hello NextJS Developers, I've created a project with tailwind and shadcn ... React To-Do App with Tailwind CSS and Typescript. If you've been ...",
+    "host_name": "www.facebook.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=92gLzYIhmYQ",
+    "name": "Install Shadcn UI in React 19 with Vite & Tailwind CSS v4  - YouTube",
+    "snippet": "8:10 - Final Tips & Conclusion Tech Stack: React 19 Vite Tailwind CSS v4 Shadcn UI JavaScript (No TypeScript) Useful Links: https://ui ...",
+    "host_name": "www.youtube.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://forum.devtalk.com/t/create-modern-react-production-ready-react-19-typescript-tailwind-shadcn-in-15-seconds/244651",
+    "name": "production-ready React 19 + TypeScript + Tailwind + shadcn in 15",
+    "snippet": "React 19 + TypeScript 5.9 strict; Vite with SWC (noticeably faster than Babel for larger codebases); Tailwind CSS 4; shadcn/ui for components ( ...",
+    "host_name": "forum.devtalk.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://saschb2b.com/blog/llm-default-react-stack",
+    "name": "Six Models, One React Stack: Why Every LLM Builds the Same App",
+    "snippet": "No alternatives. Lovable: Tech Stack and Next.js Support. Lovable's documented default stack: React + Vite + Tailwind + shadcn + Supabase.",
+    "host_name": "saschb2b.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.builder.io/blog/react-ai-stack-2026",
+    "name": "The React + AI Stack for 2026 - Builder.io",
+    "snippet": "Discover the ultimate React stack for 2026: Next.js, TypeScript, Tailwind, shadcn/ui, TanStack tools, and more. The AI-friendly stack that ...",
+    "host_name": "www.builder.io",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

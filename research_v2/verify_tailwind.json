@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://tailwindcss.com/docs",
+    "name": "Installing Tailwind CSS with Vite",
+    "snippet": "Installing Tailwind CSS as a Vite plugin is the most seamless way to integrate it with frameworks like Laravel, SvelteKit, React Router, Nuxt, and SolidJS.",
+    "host_name": "tailwindcss.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=sHnG8tIYMB4",
+    "name": "Tailwind CSS 4.0 is finally here - The NEW way to install with Vite +",
+    "snippet": "... Tailwind CSS v4 ▻ https://www.youtube.com/watch?v=bupetqS1SMU Tailwind CSS Version 4.0 was just released! In this video I will show you the ...",
+    "host_name": "www.youtube.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/tailwindlabs/tailwindcss/discussions/16201",
+    "name": "Fix Conflict in Tailwind CSS 4 with React 19 and PostCSS #16201",
+    "snippet": "I am experiencing a build failure when using Tailwind CSS 4 with React 19 and PostCSS. The error message indicates that tailwindcss should not be used directly ...",
+    "host_name": "github.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://tailwindcss.com/blog/tailwindcss-v4",
+    "name": "Tailwind CSS v4.0",
+    "snippet": "Tailwind CSS v4.0 is an all-new version of the framework optimized for performance and flexibility, with a reimagined configuration and customization ...",
+    "host_name": "tailwindcss.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://stackoverflow.com/questions/79500268/how-to-use-create-react-app-with-tailwindcss-v4",
+    "name": "How to use create React app with TailwindCSS v4 - Stack Overflow",
+    "snippet": "Short answer: Don't use create-react-app , as it is outdated. Use Vite for React Project ・ easily integrate TailwindCSS ・ released from v4 ...",
+    "host_name": "stackoverflow.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://medium.com/@oxm/setting-up-react-19-with-tailwind-css-v4-using-vite-in-just-two-steps-3748f55b06fd",
+    "name": "Install React 19 with Tailwind CSS v4 Using Vite In Just Two Steps",
+    "snippet": "In this guide, we will walk through the process of setting up a React 19 project with Tailwind CSS v4 using Vite, a fast build tool optimized ...",
+    "host_name": "medium.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=NIzAS7fbRh8",
+    "name": "How to install Tailwind CSS v4 in React JS with Typescript using Vite",
+    "snippet": "... Tailwind CSS Version 4.0 was released on January 22, 2025, with some new features. With the release of Tailwind CSS Version 4.0, the ...",
+    "host_name": "www.youtube.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://dev.to/molly_1024/the-ultimate-react-19-vite-tailwind-css-v4-shadcn-ui-react-router-v7-starter-template-113p",
+    "name": "The Ultimate React 19 + Vite + Tailwind CSS v4 + ShadCN UI +",
+    "snippet": "What's Inside? ✓ React 19 — The latest version for modern front-end development. ✓ Vite — Lightning-fast build tool for an optimized workflow.",
+    "host_name": "dev.to",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=qkbijl5EoHc",
+    "name": "How to Install Tailwind CSS in vite React JS 2025 - YouTube",
+    "snippet": "In this video, I have explained How to install latest version of Tailwind CSS which is version 4, in React Vite Application.",
+    "host_name": "www.youtube.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://tailkit.com/blog/how-to-install-tailwind-css-v4-to-your-react-project",
+    "name": "How to install Tailwind CSS v4 to your React project - Tailkit",
+    "snippet": "In this tutorial, we will go over how to install Tailwind 4 and its official plugins to your existing React 19 project.",
+    "host_name": "tailkit.com",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

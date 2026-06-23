@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://github.com/advisories/GHSA-chf7-jq6g-qrwv",
+    "name": "OpenClaw: Telegram bot token exposure via logs · CVE-2026-27003",
+    "snippet": "Impact. Disclosure of a Telegram bot token allows an attacker to impersonate the bot and take over Bot API access. Affected Packages / Versions.",
+    "host_name": "github.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://netlas.io/blog/abuse_of_telegram_bot_api",
+    "name": "Telegram Bot API Abuse - Netlas Blog",
+    "snippet": "How threat actors abuse Telegram Bot API for phishing, telemetry, and malware delivery. Hunting techniques and case studies.",
+    "host_name": "netlas.io",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-27003",
+    "name": "CVE-2026-27003 Detail - NVD",
+    "snippet": "Disclosure of a Telegram bot token allows an attacker to impersonate the bot and take over Bot API access. Users should upgrade to version 2026.2.15 to obtain a ...",
+    "host_name": "nvd.nist.gov",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://medium.com/@cameronbardin/hardcoded-secrets-strike-again-how-a-telegram-bot-token-exposed-customer-support-and-pii-cb412551239b",
+    "name": "Hardcoded Secrets Strike Again: How a Telegram Bot Token",
+    "snippet": "This is the story of a hardcoded API token that looked like a minor configuration mistake but exposed: ... Telegram Bot API Security Best ...",
+    "host_name": "medium.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://community.latenode.com/t/how-safe-is-a-telegram-bot-token-when-used-in-api-calls/14390",
+    "name": "How safe is a Telegram bot token when used in API calls?",
+    "snippet": "The bot token in the URL is indeed encrypted during transmission when using HTTPS. The entire URL, including query parameters, is protected.",
+    "host_name": "community.latenode.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.vulncheck.com/advisories/openclaw-telegram-bot-token-exposure-in-media-fetch-error-logs",
+    "name": "Telegram Bot Token Exposure in Media Fetch Error Logs - VulnCheck",
+    "snippet": "OpenClaw before 2026.3.13 contains an information disclosure vulnerability in the fetchRemoteMedia function that exposes Telegram bot tokens in ...",
+    "host_name": "www.vulncheck.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://stackoverflow.com/questions/61868770/tegram-bot-api-token-format",
+    "name": "Tegram bot API token format - telegram - Stack Overflow",
+    "snippet": "I want to figure out the format of telegram bot tokens to implement some validity checks, but there seems not official format description. from ...",
+    "host_name": "stackoverflow.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.linkedin.com/posts/luis-oria-seidel-%F0%9F%87%BB%F0%9F%87%AA-301a758a_cybersecurity-ethicalhacking-telegrambots-activity-7436048312350326784-oA4z",
+    "name": "Telegram Bot Security Flaws Exposed: API Token Exposure and More",
+    "snippet": "Telegram Bot Security Flaws Exposed: API Token Exposure and More · More Relevant Posts · More from this author · Explore content categories.",
+    "host_name": "www.linkedin.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://docs.redhuntlabs.com/docs/exposure-risks/credentials/telegram_bot_token",
+    "name": "Telegram Bot Token | RedHunt Labs Documentation",
+    "snippet": "Exposure of this token is a significant security concern because it grants full control over the bot, enabling unauthorized users to send messages, access chat ...",
+    "host_name": "docs.redhuntlabs.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://cofense.com/blog/weaponizing-telegram-bots-how-threat-actors-exfiltrate-credentials",
+    "name": "Weaponizing Telegram Bots: How Threat Actors Exfiltrate Credentials",
+    "snippet": "This report will provide an overview of how threat actors use the Telegram Bot API, examples of data exfiltration via Telegram bots within both ...",
+    "host_name": "cofense.com",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

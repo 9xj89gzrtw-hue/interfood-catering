@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://schema.org/FoodEstablishment",
+    "name": "FoodEstablishment - Schema.org Type",
+    "snippet": "A food-related business. Instances of FoodEstablishment may appear as a value for the following properties.",
+    "host_name": "schema.org",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://schema.org/Menu",
+    "name": "Menu - Schema.org Type",
+    "snippet": "A structured representation of food or drink items available from a FoodEstablishment. Instances of Menu may appear as a value for the following properties.",
+    "host_name": "schema.org",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://schema.org/FoodService",
+    "name": "FoodService - Schema.org Type",
+    "snippet": "Schema.org Type: FoodService - A food service, like breakfast, lunch, or dinner.",
+    "host_name": "schema.org",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://unhead.unjs.io/docs/schema-org/api/schema/food-establishment",
+    "name": "Food Establishment Schema - Unhead",
+    "snippet": "Use defineFoodEstablishment() to add 2026 by Harlan Wilton. Describes a food-related business. The type of cuisine the restaurant serves.",
+    "host_name": "unhead.unjs.io",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://dataclean.to/use-cases/catering-to-restaurant-schema",
+    "name": "Convert Catering Data to Restaurant Schema Markup | dataclean.to",
+    "snippet": "This tool converts your restaurant data from spreadsheets into valid JSON-LD with hours, menus, cuisine types, and reservation details.",
+    "host_name": "dataclean.to",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://mapatlas.eu/solutions/guides/restaurants-food",
+    "name": "Restaurant AI SEO: Schema, Reviews & Checklist | MapAtlas",
+    "snippet": "Schema Menus are where restaurant GEO gets powerful. AI searches your menu markup.",
+    "host_name": "mapatlas.eu",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.facebook.com/groups/DumbSEOQuestions/posts/2105982592769381",
+    "name": "Catering service schema for multiple venues? - Facebook",
+    "snippet": "I'm wondering if there is any FoodEstablishment or Service schema that would be good to add to their catering services page? What website host ...",
+    "host_name": "www.facebook.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://localrestaurantseo.com/restaurant-menu-schema-markup-generator",
+    "name": "Free Restaurant Menu Schema Generator",
+    "snippet": "Need menu schema for your restaurant website? Use our free menu schema generator to create Google and AI-friendly markup. Fast and easy.",
+    "host_name": "localrestaurantseo.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://schema.org/MenuItem",
+    "name": "MenuItem - Schema.org Type",
+    "snippet": "A food or drink item listed in a menu or menu section. Instances of MenuItem may appear as a value for the following properties.",
+    "host_name": "schema.org",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/bigseo/comments/6vrn94/schema_markup_for_catering_company",
+    "name": "Schema Markup for Catering Company : r/bigseo - Reddit",
+    "snippet": "Hi all, I'm working in implementing structured data markup for a local catering company. I'd like to include the \"hasMenu\" attribute, ...",
+    "host_name": "www.reddit.com",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]
