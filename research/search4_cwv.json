@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://developers.google.com/search/docs/appearance/core-web-vitals",
+    "name": "Understanding Core Web Vitals and Google search results",
+    "snippet": "Cumulative Layout Shift (CLS): Measures visual stability. To provide a good user experience, strive to have a CLS score of less than 0.1. Optimizing your Core ...\n(INP): Measures responsiveness. To provide a good user experience, strive to have an INP of less than 200 milliseconds. Cumulative Layout Shift (CLS): Measures ...",
+    "host_name": "developers.google.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://support.google.com/webmasters/answer/9205520?hl=en",
+    "name": "Core Web Vitals report - Search Console Help",
+    "snippet": "The report is based on three metrics as measured by actual user data: LCP, INP, and CLS. Once a URL group has a threshold amount of data for both LCP and CLS, ...\nOnce a URL group has a threshold amount of data for both LCP and CLS, Group INP: 75% of page requests",
+    "host_name": "support.google.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://web.dev/articles/vitals",
+    "name": "Web Vitals | Articles - web.dev",
+    "snippet": "Web Vitals is an initiative by Google to provide unified guidance for quality signals that are essential to delivering a great user experience on the web.\nTo provide a good user experience, pages should have a INP of 200 milliseconds or less. Cumulative Layout Shift (CLS): measures visual stability. To provide a ...",
+    "host_name": "web.dev",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.digitalapplied.com/blog/core-web-vitals-2026-inp-lcp-cls-optimization-guide",
+    "name": "Core Web Vitals 2026: INP, LCP & CLS Optimization - Digital Applied",
+    "snippet": "LCP target, < 2.0s, Buffer below 2.5s Google threshold. INP target, < 150ms, Buffer below 200ms Google threshold. CLS target, < 0.05, Buffer ...\nTwo years later, the data tells a sobering story: 43% of websites still fail the INP threshold of 200 milliseconds, making it the most commonly ...",
+    "host_name": "www.digitalapplied.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://nitropack.io/blog/most-important-core-web-vitals-metrics",
+    "name": "The Most Important Core Web Vitals Metrics in 2026 - NitroPack",
+    "snippet": "As of 2025, the most important Core Web Vitals are Largest Contentful Paint (LCP), Interaction to Next Paint (INP), and Cumulative Layout Shift ...",
+    "host_name": "nitropack.io",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.seo-copilot.co.uk/improve-your-core-web-vitals",
+    "name": "Core Web Vitals 2025: A Complete Guide to Boosting SEO and User",
+    "snippet": "Master Core Web Vitals in 2025. Learn how LCP, INP and CLS shape SEO, rankings and user experience. Improve yours today.\nLargest Contentful Paint (LCP) – how quickly the main content loads. Aim for under 2.5 seconds. Interaction to Next Paint (INP) – how fast the ...",
+    "host_name": "www.seo-copilot.co.uk",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.ateamsoftsolutions.com/core-web-vitals-optimization-guide-2025-showing-lcp-inp-cls-metrics-and-performance-improvement-strategies-for-web-applications",
+    "name": "Core Web Vitals optimization guide 2025 showing LCP, INP, CLS",
+    "snippet": "Core Web Vitals performance in 2025 is non-negotiable – a mere 47% of sites meet Google's thresholds today, leading to losses of 8-35% in ...\nThis​‍​‌‍​‍‌​‍​‌‍​‍‌ detailed 2025 playbook is loaded with Google-validated thresholds, 24 optimization techniques complete with cost breakdowns ...",
+    "host_name": "www.ateamsoftsolutions.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://medium.com/@tamzidulhaque/core-web-vitals-optimization-2026-easy-fixes-to-boost-rankings-speed-save-your-site-30da60a6d587",
+    "name": "Core Web Vitals 2026 Optimization: Fix INP, LCP, and CLS Fast",
+    "snippet": "Google doubled down after the December 2025 core update — tighter thresholds, more weight on real-user experience. Sites passing all vitals ...",
+    "host_name": "medium.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=m_yWVuf8ZkE",
+    "name": "INP, LCP, CLS & How to Boost Your Site Speed! - YouTube",
+    "snippet": "Web performance isn't just about loading fast anymore — it's about loading *well*. Google's **Core Web Vitals** have become the essential ...",
+    "host_name": "www.youtube.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://web.dev/articles/defining-core-web-vitals-thresholds",
+    "name": "How the Core Web Vitals metrics thresholds were defined | Articles",
+    "snippet": "The Core Web Vitals are three metrics: Largest Contentful Paint (LCP), Interaction to Next Paint (INP), and Cumulative Layout Shift (CLS).",
+    "host_name": "web.dev",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

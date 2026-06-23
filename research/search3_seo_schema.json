@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://schema.org/Restaurant",
+    "name": "Restaurant - Schema.org Type",
+    "snippet": "Indicates whether a FoodEstablishment accepts reservations. Values can be Boolean, an URL at which reservations can be made or (for backwards compatibility) the ...",
+    "host_name": "schema.org",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/bigseo/comments/6vrn94/schema_markup_for_catering_company",
+    "name": "Schema Markup for Catering Company : r/bigseo - Reddit",
+    "snippet": "Hi all, I'm working in implementing structured data markup for a local catering company. I'd like to include the \"hasMenu\" attribute, ...",
+    "host_name": "www.reddit.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://localrestaurantseo.com/restaurant-marketing-ideas-for-2026-ai-and-seo",
+    "name": "2026 Restaurant Marketing Ideas: AI & SEO Increasing Customers",
+    "snippet": "Learn how restaurants win in 2026 with AI, SEO, Google Maps, and local marketing that drives more reservations, online orders and revenue.",
+    "host_name": "localrestaurantseo.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.malou.io/en-us/blog/structured-data-for-restaurants",
+    "name": "Structured Data for restaurants: The 2026 guide - Malou",
+    "snippet": "... Schema.org markup as a core trust signal when building restaurant recommendations. This last point matters as AI-driven discovery grows ...",
+    "host_name": "www.malou.io",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=a3hijhlozio",
+    "name": "The Best Restaurant Catering Strategy in 2026 - YouTube",
+    "snippet": "Go to https://www.owner.com/catering for a best-in-inclass commission-free catering system. In this video, you'll learn data-backed ...",
+    "host_name": "www.youtube.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://befoundonline.com/blog/why-schema-markup-is-crucial-for-restaurant-seo-in-2025",
+    "name": "Why Schema Markup Is Crucial for Restaurant SEO in 2025",
+    "snippet": "Schema markup adds extra details to your website's code that help search engines understand (and highlight) your restaurant in search results.",
+    "host_name": "befoundonline.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://moz.com/blog/schema-new-restaurant-menu-markup",
+    "name": "Schema.org Just Released New Restaurant Menu Markup - Moz",
+    "snippet": "With their latest release, Schema.org has added several new properties and types that will allow marked-up menus to truly be structured data.",
+    "host_name": "moz.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://mapatlas.eu/solutions/guides/restaurants-food",
+    "name": "Restaurant AI SEO: Schema, Reviews & Checklist | MapAtlas",
+    "snippet": "Restaurant AI SEO guide for Google reviews and chatbots. JSON-LD schema examples and a checklist to get venues cited in ChatGPT and Perplexity.",
+    "host_name": "mapatlas.eu",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://getmenami.com/blog/seo-guide-local-restaurants",
+    "name": "Restaurant SEO Guide: Rank Higher in Local Search (2026) - Menami",
+    "snippet": "Complete restaurant SEO guide covering Google Business Profile optimization, local keywords, schema markup, review management, and citation ...",
+    "host_name": "getmenami.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.wearebrew.com/digital-marketing-hospitality-blog/using-schema-markup-on-your-website",
+    "name": "Using Schema Markup for Hospitality Websites - Brew",
+    "snippet": "Learn how to use schema markup for hospitality websites. With our guide, understand how to win rich results and get found in Gen-AI search ...",
+    "host_name": "www.wearebrew.com",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

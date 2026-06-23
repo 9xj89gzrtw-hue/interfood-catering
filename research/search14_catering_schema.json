@@ -1,0 +1,74 @@
+[
+  {
+    "url": "https://schema.org/Service",
+    "name": "Service - Schema.org Type",
+    "snippet": "No Markup JSON-LD Structure. Example notes or example HTML without markup. An example of an online repository that hosts scientific research data (JSON-LD only) ...",
+    "host_name": "schema.org",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://schema.org/Event",
+    "name": "Event - Schema.org Type",
+    "snippet": "An event happening at a certain time and location, such as a concert, lecture, or festival. Ticketing information may be added via the offers property.",
+    "host_name": "schema.org",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.digitalapplied.com/blog/schema-markup-types-complete-structured-data-reference",
+    "name": "Schema Markup Types 2026: Complete Reference Guide",
+    "snippet": "JSON-LD basics. JSON-LD (JavaScript Object Notation for Linked Data) is the format Google explicitly recommends for structured data. It lets you declare Schema.",
+    "host_name": "www.digitalapplied.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://whitespark.ca/blog/the-json-ld-markup-guide-to-local-business-schema",
+    "name": "The JSON-LD Markup Guide To Local Business Schema - Whitespark",
+    "snippet": "How to Implement schema.org Markup Using JSON-LD for a Local Business · Step 1: Determine Your Schema Type · Step 2: Customize and Add Your Code ...",
+    "host_name": "whitespark.ca",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://dashjoin.medium.com/json-schema-schema-org-json-ld-whats-the-difference-e30d7315686a",
+    "name": "JSON Schema, Schema.org, JSON-LD: What's the Difference?",
+    "snippet": "Both Schema.org schemas and JSON schemas describe document structures using classes and properties / types and fields.",
+    "host_name": "dashjoin.medium.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://webmasters.stackexchange.com/questions/127664/json-ld-for-schema-org-markup-what-to-include-and-where",
+    "name": "JSON-LD for schema.org markup - what to include and where",
+    "snippet": "I'm trying to take advantage of using JSON-LD for Schema.org markup over Microdata because it seems way easier to implement and to maintain.",
+    "host_name": "webmasters.stackexchange.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.ionos.com/digitalguide/websites/website-creation/tutorial-json-ld-with-schemaorg",
+    "name": "Tutorial: JSON-LD with Schema.org - IONOS",
+    "snippet": "With JSON-LD, the assignment of schemas and properties takes place by analogy to other formats for the semantic marking of web page contents.",
+    "host_name": "www.ionos.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://schema.org/FoodEstablishment",
+    "name": "FoodEstablishment - Schema.org Type",
+    "snippet": "No Markup Microdata RDFa JSON-LD Structure. Example notes or example HTML ... Structured representation of the JSON-LD example. { \"@context\": \"https ...",
+    "host_name": "schema.org",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  }
+]

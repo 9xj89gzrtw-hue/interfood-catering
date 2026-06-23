@@ -1,0 +1,74 @@
+[
+  {
+    "url": "https://developers.google.com/search/docs/crawling-indexing/mobile/mobile-sites-mobile-first-indexing",
+    "name": "Mobile-first Indexing Best Practices | Google Search Central",
+    "snippet": "Google uses the mobile version of a site's content, crawled with the smartphone agent, for indexing and ranking. This is called mobile-first indexing.",
+    "host_name": "developers.google.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://zaphyrpro.com/googles-mobile-first-indexing-seo-impact",
+    "name": "Is Your Website Ready for Google's Mobile-First Indexing? - Zaphyre",
+    "snippet": "Google's Mobile-First Indexing directly influences search rankings and organic traffic, as the mobile version of a website is the primary basis ...",
+    "host_name": "zaphyrpro.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.namesilo.com/blog/en/websites-hosting/how-googles-mobile-first-indexing-impacts-website-performance-adapting-to-mobile-search-trends-in-2025",
+    "name": "Mobile-First Indexing: Optimize Your Site for 2025 - NameSilo",
+    "snippet": "With smartphones and tablets generating over 60% of web visits, Google now looks primarily at the mobile version of your site when deciding ...",
+    "host_name": "www.namesilo.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.upskillist.com/blog/mobile-seo-best-practices-for-2025-the-complete-guide",
+    "name": "Mobile SEO Best Practices for 2026: The Complete Guide - Upskillist",
+    "snippet": "Mobile-first indexing: Google ranks your site based on its mobile version. A slow, poorly designed mobile site can hurt your visibility.",
+    "host_name": "www.upskillist.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://eminence.ch/en/google-mobile-first",
+    "name": "Google Mobile-First Indexing: Understanding and Adaptation",
+    "snippet": "Mobile-first indexing indicates that Google prioritizes the mobile version of your website as the main resource for crawling, indexing, and ranking in search ...",
+    "host_name": "eminence.ch",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.amraandelma.com/mobile-first-indexing-statistics",
+    "name": "TOP 10 MOBILE-FIRST INDEXING STATISTICS 2026 REVEAL",
+    "snippet": "Mobile devices accounted for 64% of global web traffic in 2025, underlining the shift toward mobile browsing as the dominant method of online ...",
+    "host_name": "www.amraandelma.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.woorank.com/en/blog/google-mobile-first-index",
+    "name": "What Does Google's Mobile First Index Mean for You? - WooRank",
+    "snippet": "It means Google is looking at mobile pages first and using that content to decide relevance and how to rank search results, regardless of the user's device.",
+    "host_name": "www.woorank.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.nostra.ai/blogs-collection/everything-you-need-to-know-about-googles-mobile-first-indexing",
+    "name": "Google's Mobile-First Indexing Update - Nostra AI",
+    "snippet": "According to recent data, 64.17% of worldwide internet traffic now comes from mobile (versus 35.83% from desktops. US adults prefer making ...",
+    "host_name": "www.nostra.ai",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  }
+]

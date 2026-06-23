@@ -1,0 +1,74 @@
+[
+  {
+    "url": "https://developers.google.com/search/docs/appearance/google-images",
+    "name": "Image SEO Best Practices | Google Search Central | Documentation",
+    "snippet": "When writing alt text, focus on creating useful, information-rich content that uses keywords appropriately and is in context of the content of the page. Avoid ...",
+    "host_name": "developers.google.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.americaneagle.com/insights/blog/post/optimizing-images-for-seo",
+    "name": "Optimizing Images for SEO: Alt Text, Attributes, and Best Practices",
+    "snippet": "Boost your website's SEO with smart image optimization. Learn how to write alt text, use image attributes, and improve search visibility.",
+    "host_name": "www.americaneagle.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/Wordpress/comments/1auelqy/is_adding_alt_text_still_a_best_practice_even_for",
+    "name": "Is adding \"alt text\" still a best practice even for content-rich sites that",
+    "snippet": "Alt text is not for what an image contains, it's for what an image communicates. The alternative text for the same image could vary wildly based ...",
+    "host_name": "www.reddit.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://help.siteimprove.com/support/solutions/articles/80000863904-accessibility-image-alt-text-best-practices",
+    "name": "Accessibility: Image Alt text best practices - Siteimprove Help Center",
+    "snippet": "As a rule of thumb: avoid writing text alternatives longer than 100 characters. Having long alt text will result in a poor user experience for ...",
+    "host_name": "help.siteimprove.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.section508.gov/create/alternative-text",
+    "name": "Authoring Meaningful Alternative Text | Section508.gov",
+    "snippet": "Alt text should be short and to the point. Alt text should communicate the same information as the visual content. Alt text should refer to relevant content ...",
+    "host_name": "www.section508.gov",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=-jn9aaNn8_I",
+    "name": "How To Write Great Image Alt Text And Get More SEO Traffic",
+    "snippet": "... website and social media through Google Image Search ... Image Optimization for SEO - Best Practices for Naming, Alt Text, and File Size.",
+    "host_name": "www.youtube.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.acquia.com/blog/how-to-write-good-alt-text",
+    "name": "How To Write Good Alt Text and Why It Matters - Acquia",
+    "snippet": "Good alternative text on images and other visuals is key for an accessible website and improved SEO. Here are the dos and don'ts to get ...",
+    "host_name": "www.acquia.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.levelaccess.com/blog/alt-text-for-accessibility",
+    "name": "Alt text for Accessibility Examples, Tips & Best Practices - Level Access",
+    "snippet": "Learn how effective alt text supports accessibility and explore tips, examples, and best practices to improve your content for all users.",
+    "host_name": "www.levelaccess.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  }
+]
