@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://www.simplefrontend.dev/guides/how-to-secure-api-key-with-vercel-edge-functions",
+    "name": "How to secure a private API key with Vercel Edge Functions",
+    "snippet": "Vercel Functions enable you to run compute on-demand, among many other things, for example to run a proxy server call to keep your API key ...",
+    "host_name": "www.simplefrontend.dev",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://vercel.com/docs/functions/runtimes/edge/edge-functions.rsc",
+    "name": "Edge Functions (Deprecated) - Vercel",
+    "snippet": "Edge Functions are deprecated. Use Vercel Functions with the Node.js runtime instead for improved performance and full API support.",
+    "host_name": "vercel.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://dev.to/jj/create-a-serverless-telegram-bot-using-go-and-vercel-4fdb",
+    "name": "Create a serverless Telegram bot using Go and Vercel",
+    "snippet": "A step by step guide to creating a single function that can act as a Telegram bot, and deploy it to Vercel. Tagged with serverless, faas, ...",
+    "host_name": "dev.to",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/yagop/node-telegram-bot-api/discussions/1204",
+    "name": "Deploying bot to Netlify/Vercel · yagop node-telegram-bot-api - GitHub",
+    "snippet": "I was creating a bot locally, so it was starting with { polling: true } . Then when it was time to deploy I understood that it's not a usual deployment.",
+    "host_name": "github.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=zFXscjUoDDA",
+    "name": "Vercel Product Walkthrough (2026) - YouTube",
+    "snippet": "Speed run a web app into modern infrastructure with AI features, agent-driven development, and collaboration between designers and ...\n... security. Try Vercel today: https://vercel.com Chapters: 00:00 Self-driving infrastructure 00:41 Speed run 01:17 Importing into Vercel 02:49 ...",
+    "host_name": "www.youtube.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://docs.developers.optimizely.com/feature-experimentation/docs/vercel-functions",
+    "name": "Vercel Functions - Optimizely",
+    "snippet": "This example uses the JavaScript (Node) SDK inside Vercel Functions for you to start experimenting with your experiences at the Edge.",
+    "host_name": "docs.developers.optimizely.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://ahmadawais.com/vercel-edge-functions-next-js",
+    "name": "Vercel Edge Functions with Next.js - Ahmad Awais",
+    "snippet": "The Web Fetch API can be used from the runtime, enabling you to use Middleware as a proxy, or connect to external storage APIs - 2026.",
+    "host_name": "ahmadawais.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://stackoverflow.com/questions/77188097/telegram-bots-host-on-the-vercel-without-templates",
+    "name": "Telegram bot's host on the Vercel without templates - Stack Overflow",
+    "snippet": "I want to host my project without templates of with node-telegram-bot-api on js. It can be any other free host. I just need to host a small bot.",
+    "host_name": "stackoverflow.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.marclittlemore.com/serverless-telegram-chatbot-vercel",
+    "name": "Create a serverless chatbot for Telegram using Vercel",
+    "snippet": "Let's look at using Telegram's API and Vercel serverless functions to create a basic bot and deploy it to their cloud hosting.",
+    "host_name": "www.marclittlemore.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://medium.com/@paulcodiny/telegram-web-app-with-remix-on-vercel-lets-go-4db65e812e09",
+    "name": "Telegram Web App with Remix on Vercel? Let's go! - Medium",
+    "snippet": "A story about a project on an unfamiliar (but hyped) stack: Remix, Prisma, Base Web components, and Vercel. Strengths and weaknesses, opportunities and threats.",
+    "host_name": "medium.com",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

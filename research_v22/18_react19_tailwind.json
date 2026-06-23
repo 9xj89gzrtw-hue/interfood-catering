@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://www.youtube.com/watch?v=6biMWgD6_JY&vl=en",
+    "name": "Tailwind CSS v4 Full Course 2026 | Master Tailwind in One Hour",
+    "snippet": "Build stunning, responsive UIs with Tailwind CSS v4. Learn best practices, master utility classes, and deploy your project effortlessly.",
+    "host_name": "www.youtube.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://tailwindcss.com/blog/tailwindcss-v4",
+    "name": "Tailwind CSS v4.0",
+    "snippet": "We've streamlined the setup process a ton in v4.0, reducing the number of steps and removing a lot of boilerplate. 1. Install Tailwind CSS.",
+    "host_name": "tailwindcss.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://tech-insider.org/tailwind-css-tutorial-dashboard-v4-2026",
+    "name": "How to Build a Dashboard with Tailwind CSS v4 in 14 Steps [2026]",
+    "snippet": "Learn Tailwind CSS v4 by building a responsive dashboard. 14 steps covering the Oxide engine, dark mode, container queries, and production ...",
+    "host_name": "tech-insider.org",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/tailwindcss/comments/1t70baf/tailwind_css_v4_in_production_honest_experience",
+    "name": "Tailwind CSS v4 in production - honest experience after 2 years of",
+    "snippet": "Just finished a full rebuild of my personal site using Tailwind v4 and Next.js 16. Been using Tailwind almost every day for over two years ...",
+    "host_name": "www.reddit.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/shadcn-ui/ui/discussions/6714",
+    "name": "Tailwind v4 and React 19 · shadcn-ui ui · Discussion #6714 - GitHub",
+    "snippet": "If you're starting a new project with Tailwind v4 and React 19, use the canary version of the command-line: npx shadcn@canary init",
+    "host_name": "github.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://tailgrids.com/blog/tailwind-css-best-practices",
+    "name": "Tailwind CSS Best Practices and Performance Optimization",
+    "snippet": "Master Tailwind CSS v4 best practices for clean code, performance optimization, and scalable component architecture.",
+    "host_name": "tailgrids.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://forum.cursor.com/t/best-practices-for-using-new-libraries-like-react-19-and-tailwind-v4/45042",
+    "name": "Best practices for using new libraries like React 19 and Tailwind v4",
+    "snippet": "I am using React 19 and Tailwind v4, however this is past the cutoff date of the LLM models. What is the best way for me to use Cursor so that ...",
+    "host_name": "forum.cursor.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sitepoint.com/tailwind-css-in-react-and-nextjs",
+    "name": "Tailwind CSS in React and Next.js: A Complete Setup Guide",
+    "snippet": "This comprehensive guide walks you through setting up Tailwind CSS versions 3 and 4 in both React and Next.js projects, ...",
+    "host_name": "www.sitepoint.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=FwTup2v7t3k",
+    "name": "Learn ReactJS & Tailwind CSS v4 by Building 6 Full Projects",
+    "snippet": "Learn ReactJS & Tailwind CSS v4 by Building 6 Full Projects | React 19 and Tailwind CSS 4 Tutorial. 13K views · 1 year ago. #tailwindcss ...",
+    "host_name": "www.youtube.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://medium.com/@mernstackdevbykevin/frontend-development-is-changing-fast-are-you-ready-for-2026-a898f911075b",
+    "name": "Frontend Development is Changing Fast — Are You Ready for 2026?",
+    "snippet": "Discover the biggest frontend development shifts of 2026 — from React 19's compiler to Tailwind CSS v4 and Next.js 15 innovations.",
+    "host_name": "medium.com",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

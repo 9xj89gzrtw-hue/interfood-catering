@@ -1,0 +1,600 @@
+     1→==========================================
+     2→FILE: 01_catering_awwwards.json
+     3→==========================================
+     4→1. Business / Corporate Websites | Best Web Design - Awwwards
+     5→   URL: https://www.awwwards.com/websites/business-corporate
+     6→   Examples Of Well Designed Business/Corporate Websites. Here is a selection of Awwwards winning Business/Corporate websites.
+     7→
+     8→2. Awwwards - Website Awards - Best Web Design Trends
+     9→   URL: https://www.awwwards.com
+    10→   Awwwards are the Website Awards that recognize and promote the talent and effort of the best developers, designers and web agencies in the world.
+    11→
+    12→3. Food & Drink Websites - Awwwards
+    13→   URL: https://www.awwwards.com/websites/food-drink
+    14→   Find de the best Food and Drink websites selection, if you are a professional of web design, this is the most popular Food and Drink websites.
+    15→
+    16→4. Winning websites. Web Design Inspiration - Awwwards
+    17→   URL: https://www.awwwards.com/websites
+    18→   Discover the best website designs of the world. Awwwards recognizes the talent and effort of the best designers, web developers and digital agencies.
+    19→
+    20→5. Best of Website Design: 18 Designs of the Year From Awwwards
+    21→   URL: https://blog.depositphotos.com/best-of-website-design-18-designs-of-the-year-from-awwwards.html
+    22→   We'll be looking at the top 18 website designs of 2017 as voted on by the Awwwards community. Dive into the stand-out website designs this year.
+    23→
+    24→6. Hotel & Restaurant Design websites - Awwwards
+    25→   URL: https://www.awwwards.com/websites/hotel-restaurant
+    26→   Beautiful Restaurant & Hotel design websites selection, the best gallery of Restaurant Websites design and Hotel Website Design examples.
+    27→
+    28→7. Awwward Winning Designs vs Practical Websites - YouTube
+    29→   URL: https://www.youtube.com/watch?v=lxVVWKfLZz0
+    30→   Simple, clean, and easy-to-navigate websites usually work better—especially when the goal is to grow a business. This video explains that ...
+    31→
+    32→8. Sites Of The Year - Awwwards
+    33→   URL: https://www.awwwards.com/websites/sites_of_the_year
+    34→   Sites Of The Year on Awwwards, the awards that recognize the talent and effort of the best web designers, developers and agencies in the world.
+    35→
+    36→==========================================
+    37→FILE: 04_cro_catering.json
+    38→==========================================
+    39→1. Top 10 Conversion Rate Optimization Case Studies - VWO
+    40→   URL: https://vwo.com/conversion-rate-optimization/conversion-rate-optimization-case-studies
+    41→   In this blog, we dive into the top 10 CRO case studies. We'll unravel the strategies employed by leading brands and analyze their outcomes.
+    42→
+    43→2. Food & Travel CRO Case Studies - ConversionTeam CRO Agency
+    44→   URL: https://www.conversionteam.com/case_studies/food-travel-cro-case-studies
+    45→   Conversion optimization case studies for food service, delivery, catering, travel booking, and hospitality websites. header increased conversion rates by 4.9% ...
+    46→
+    47→3. 6 Of My All-Time Favorite Conversion Rate Optimization Case Studies
+    48→   URL: https://www.crazyegg.com/blog/conversion-rate-optimization-case-studies
+    49→   Want to start conversion testing your website, but don't know where to start? Here 6 conversion rate optimization case studies + actionable ...
+    50→
+    51→4. Conversion Rate Optimization: The Complete Guide (2026)
+    52→   URL: https://www.luckyorange.com/blog/posts/conversion-rate-optimization-guide
+    53→   Case Study: Interplay Learning Boosts Demo Conversions by 183%. Interplay Learning Case Study. Interplay Learning needed to understand why ...
+    54→
+    55→5. 6 Conversion Rate Optimization Case Studies With Surprising Results
+    56→   URL: https://cxl.com/blog/surprising-conversion-rate-optimization-case-studies
+    57→   Think you know what's going to convert? These conversion rate optimization case studies will remind you of just how important it is to test.
+    58→
+    59→6. Conversion Optimization Case Studies - Marquiz.io
+    60→   URL: https://www.marquiz.io/blog/conversion-optimization-case-studies
+    61→   Conversion optimization case studies: real examples of how quizzes improve sales and marketing results.
+    62→
+    63→7. 12 real CRO case studies & examples for 2025 (with results)
+    64→   URL: https://unbounce.com/conversion-rate-optimization/cro-case-studies
+    65→   We've rounded up 12 CRO case studies to help you understand what's worked for other businesses and adapt their strategies to fit your unique needs.
+    66→
+    67→8. CRO Case Studies: 7 Proven Success - SiteTuners
+    68→   URL: https://sitetuners.com/blog/cro-case-studies
+    69→   CRO case studies provide real-world proof that conversion rate optimization worksand show you exactly how to apply proven strategies to your own website.
+    70→
+    71→==========================================
+    72→FILE: 05_psychology_premium.json
+    73→==========================================
+    74→1. Luxury brands don't shout. They signal. Color psychology is why
+    75→   URL: https://www.instagram.com/reel/DTMvTAOjcvC
+    76→   Favourite colour might be sabotaging your brand. Have you ever wondered why some brands feel premium before you even find out anything else ...
+    77→
+    78→2. Color and Typography Trends in Packaging Design
+    79→   URL: https://www.packagingworldinsights.com/trends/color-and-typography-trends-in-packaging-design
+    80→   Discover how color and typography in packaging design influence consumer perception, boost brand recognition and drive purchasing decisions effectively.
+    81→
+    82→3. Ever wonder why fast food chains use red and yellow as branding
+    83→   URL: https://www.instagram.com/p/DW3tni8mPP4
+    84→   2️⃣ Use color psychology as a guide. Different colors create different feelings: - Blue → trust, reliability, professionalism - Red → energy, ...
+    85→
+    86→4. How Color Choices Affect Brand Perception in Food Packaging
+    87→   URL: https://www.customizable.com/blogs/labels/how_color_choices_affect_brand_perception_in_food_packagin
+    88→   The colors you choose for your food packaging can significantly influence consumer perception, buying decisions, and ultimately, your brand's success.
+    89→
+    90→5. The Psychology Of Luxury Food Branding In 2025 - Tastewise
+    91→   URL: https://tastewise.io/blog/luxury-food-branding
+    92→   Colors are key in luxury food branding, with rich tones like black, gold, deep blue, and muted neutrals. These shades signal sophistication ...
+    93→
+    94→6. The Psychology of Colors in Branding - Your Brand Cafe
+    95→   URL: https://www.yourbrandcafe.com/blog/psychology-of-colors-in-branding/?srsltid=AfmBOordlBhqZAa5vZ38Jbq
+    96→   Color psychology explores how different colors evoke specific emotional responses in people, shaping their behavior, mood, and decisions.
+    97→
+    98→7. TOP 20 VISUAL BRANDING PSYCHOLOGY STATISTICS 2026
+    99→   URL: https://www.amraandelma.com/visual-branding-psychology-statistics
+   100→   Color psychology governs premium perception, affordability signals, and desirability — especially in saturated markets. Color Psychology. Wrong ...
+   101→
+   102→8. Typography and Color Psychology: How Design Impacts Your Brand
+   103→   URL: https://bbdirector.com/brand-id-and-development/typography-and-color-psychology-in-branding
+   104→   The psychology of color in branding dives into how different hues trigger emotions, influence behavior, and shape perceptions.
+   105→
+   106→==========================================
+   107→FILE: 06_motion_trends.json
+   108→==========================================
+   109→1. I randomly discovered a website today and the scroll effect literally
+   110→   URL: https://www.instagram.com/reel/DVyO47tiFa-
+   111→   3D web design. Interactive UI. Framer developer. Webflow motion design. High-end landing page. GSAP animation. Modern web design 2026.
+   112→
+   113→2. Animation On Scroll Showcases Web Design Innovation and Trends
+   114→   URL: https://orpetron.com/blog/animation-on-scroll-showcases-web-design-innovation-and-trends
+   115→   The site explores key visual trends such as surrealism in 3D, AI-generated art, holographic elements, and the balance between minimalism and ...
+   116→
+   117→3. Web interaction animation trends - Scouts by Yutori
+   118→   URL: https://scouts.yutori.com/8ddb0ec5-9167-4e5b-98d5-431384502da5
+   119→   AI-powered motion design analysis. An industry report highlights AI-driven micro-animations and adaptive interactions as 2026 trends, surveying tools like Figma ...
+   120→
+   121→4. 5 Huge Web Design Trends in 2026 - YouTube
+   122→   URL: https://www.youtube.com/watch?v=bfpzPSwE4_A
+   123→   In this video, we break down the top 5 Web Design Trends in 2026 that are shaping how we build websites. From the rise of "Dark Mode by ...
+   124→
+   125→5. 10 Websites with Great Animation in 2026 - School of Motion
+   126→   URL: https://www.schoolofmotion.com/blog/10-websites-with-great-animation-in-2026
+   127→   Great web animation guides users, tells stories, and creates memorable experiences. Here are 10 websites crushing it with motion design right now.
+   128→
+   129→6. Motion UI & Interactive Web Design 2026 | Webnixon
+   130→   URL: https://www.webnixon.com/blog/motion-ui-interactive-web-design-2026
+   131→   Scroll-driven animation — revealing content as users scroll — has become a standard technique on service pages, landing pages, and case studies.
+   132→
+   133→7. 8 Motion UI Trends for Interactive Websites: Essential Guide
+   134→   URL: https://socialbaddie.com/lab-notes/web-dev/motion-ui-trends
+   135→   Subtle micro-interactions and scroll-driven animations are the foundation of today's motion UI trends . Purposeful transitions (like skeleton ...
+   136→
+   137→8. GSAP: Homepage
+   138→   URL: https://gsap.com
+   139→   GSAP allows you to effortlessly animate anything JS can touch. Delivering silky-smooth performance and unmatched support so you can focus on the fun stuff.
+   140→
+   141→==========================================
+   142→FILE: 07_marketing_research.json
+   143→==========================================
+   144→1. State of the Restaurant Industry 2026
+   145→   URL: https://restaurant.org/research-and-media/research/research-reports/state-of-the-industry
+   146→   Fueled by an increase in sales and strong pent-up demand to dine out, the restaurant industry is cautiously optimistic about 2026. Consumer ...
+   147→
+   148→2. Customers' behavioral intentions when visiting upscale restaurants
+   149→   URL: https://www.sciencedirect.com/science/article/abs/pii/S1878450X23001828
+   150→   Consumer motivation to visit upscale restaurants is driven by the enjoyment and status provided in the dining experience.
+   151→
+   152→3. What US consumers want from restaurants in 2026 - McKinsey
+   153→   URL: https://www.mckinsey.com/industries/retail/our-insights/what-us-consumers-want-from-restaurants-in-2
+   154→   A new detailed McKinsey analysis looks at the latest restaurant industry trends that are poised to reshape the consumer landscape in 2026 ...
+   155→
+   156→4. How Influencers, AI Will Help Promote Chains - YouTube
+   157→   URL: https://www.youtube.com/watch?v=07mAqc9TpEs
+   158→   ... consumer insights. NRN has partnered all year with ... 2026 Restaurant Marketing Trends | How Influencers, AI Will Help Promote Chains.
+   159→
+   160→5. Global Luxury Food Market Size, Trends, Share, Forecast 2033
+   161→   URL: https://www.custommarketinsights.com/report/luxury-food-market
+   162→   The CMI Team's most recent market research predicts that from 2024 to 2033, the global market for luxury foods will grow at a CAGR of 17.45%.
+   163→
+   164→6. 26 Restaurant Marketing Ideas for 2026 (That Actually Drive Revenue)
+   165→   URL: https://www.barmetrix.com/blog/restaurant-marketing
+   166→   Discover 26 practical restaurant marketing strategies for 2026. From operations to local SEO, learn tactics that drive traffic without burning your budget.
+   167→
+   168→7. Key Consumer Trends Impacting Fine Dining Restaurants - LinkedIn
+   169→   URL: https://www.linkedin.com/top-content/marketing/consumer-behavior-trends/key-consumer-trends-impactin
+   170→   Key consumer trends impacting fine dining restaurants refer to the shifts in what diners expect and value, including changes in menu preferences, ...
+   171→
+   172→8. May 2026 Restaurant Industry Trends | Sales & Traffic
+   173→   URL: https://blackboxintelligence.com/blog/restaurant-industry-in-review-trends-from-may-2026
+   174→   May 2026 restaurant industry review covering restaurant sales growth, traffic trends, consumer spending, inflation pressures, Family Dining ...
+   175→
+   176→==========================================
+   177→FILE: 08_food_photography.json
+   178→==========================================
+   179→1. Food Photography in 2026: How Styling and Lighting Shape the
+   180→   URL: https://monicastevenson.com/food-photography-in-2026-how-styling-and-lighting-shape-the-perfect-shot
+   181→   Over-styled plates, artificial shine, and exaggerated perfection are giving way to imagery rooted in texture, mood, and authenticity.
+   182→
+   183→2. Still taking boring food photos in 2026? Next time, level  - Instagram
+   184→   URL: https://www.instagram.com/reel/DTJ2nTIiU-R/?hl=en
+   185→   Want deep food photography lessons? Comment COURSE and I will send you my link. OCR. Not using the correct photo angle is costing you sales ...
+   186→
+   187→3. Creative Food Photography Trends Every Restaurant Should Try in
+   188→   URL: https://commercialphotography.in/blog/creative-food-photography-trends-every-restaurant-should-try-i
+   189→   Main image of a hero dish on delivery apps. Some of the key trends include: Natural, slightly imperfect plating Hands and human moments in the ...
+   190→
+   191→4. Food & Beverage Photography Trends 2025/2026 - ALXEATS
+   192→   URL: https://www.alxeats.com/post/food-beverage-photography-trends-2025-2026
+   193→   Major Visual Trends in 2025/2026 · 1. Authenticity & Imperfect Moments · 2. Natural Light & Textural Depth · 3. Dark & Moody Aesthetics for Premium ...
+   194→
+   195→5. Food Photography: Complete Guide to Stunning Results [2026]
+   196→   URL: https://marszalstudio.pl/en/food-photography
+   197→   Food Photography Trends 2026 · Authenticity Over Perfection · Dark and Moody Aesthetics · Storytelling and Cultural Fusion · Video and Motion Content.
+   198→
+   199→6. Trendy Food Photography Ideas You Should Try This 2026
+   200→   URL: https://cherrydeck.com/blog/food-photography-trends
+   201→   The food photography trends you should keep an eye on this 2026 are: Still Life Isometric Pattern Styled Tables Hand in Shot Color Blocking ...
+   202→
+   203→7. Food Photography Trends 2026: What's Driving Instagram
+   204→   URL: https://www.spinthirasmedia.com/post/food-photography-trends-2026-what-s-driving-instagram-engagemen
+   205→   Professional food photography is more important than ever for hero content, delivery platform imagery, and the brand-defining photography that ...
+   206→
+   207→8. Food Photography Guides for Restaurants (2026) | FoodPhoto.ai
+   208→   URL: https://foodphoto.ai/blog
+   209→   2026 Restaurants should refresh hero dishes monthly, seasonal specials immediately, and full menu visuals quarterly. The goal is not constant redesign; read ...
+   210→
+   211→==========================================
+   212→FILE: 09_ux_trust.json
+   213→==========================================
+   214→1. 11 Website Trust Signals That Help Build Your Credibility - Pixxen
+   215→   URL: https://pixxen.com/blog/website-trust-signals
+   216→   Your visitors decide if they can trust your business in seconds. How do you earn that? We shared 11 website trust signals that help build ...
+   217→1. An Inspiring Visual Design. This trust signal works at a subconscious level. If your website looks premium, loads instantly, and features ...
+   218→
+   219→2. Website Trust Signals Checklist 2026: 25 Elements That Increase
+   220→   URL: https://emporionsoft.com/website-trust-signals-checklist
+   221→   Trust indicators like SSL certificates, verified payment icons, clean design, professional branding, and authentic testimonials give instant ...
+   222→
+   223→3. The Ultimate Guide To The 12 Best Practices For Web Design In 2026
+   224→   URL: https://www.sugarpixels.com/best-practices-for-web-design
+   225→   Trust Signals and Social Proof Implementation. Trust signals are crucial design elements that build credibility and reduce user anxiety about ...
+   226→To effectively integrate trust signals into your website, follow these actionable steps: Display Star Ratings: Prominently feature star ...
+   227→
+   228→4. 10 Best Website Design Practices for Exceptional Results in 2026
+   229→   URL: https://www.superhub.biz/10-best-website-design-practices-for-exceptional-results-in-2025
+   230→   Integrating trust signals and social proof into your website design is a powerful practice that reassures visitors of your legitimacy ...
+   231→
+   232→5. Trust Signals vs. Social Proof: Key Differences - Reform.app
+   233→   URL: https://www.reform.app/blog/trust-signals-vs-social-proof-key-differences
+   234→   Explore the differences between trust signals and social proof, and learn how they build credibility and encourage customer trust online.
+   235→
+   236→6. How to Add Social Proof to Websites: 7 Examples People are
+   237→   URL: https://www.orbitmedia.com/blog/social-proof-web-design
+   238→   Social proof is evidence that supports marketing claims. Social proof uses the words or actions of an audience to add credibility to a brand's value ...
+   239→
+   240→7. Building Website Trust in 2026: 10 Strategies to Strengthen
+   241→   URL: https://www.linkedin.com/pulse/building-website-trust-2026-10-strategies-strengthen-win-saita-%E6%96
+   242→   Measuring the impact of social proof on consumer trust. Analytics tools help you track how social proof affects your website's performance.
+   243→
+   244→8. 50 Best Website Design Examples and What Makes Them Great
+   245→   URL: https://www.saasfactor.co/blogs/website-design-examples
+   246→   Find 50 real website design examples, broken down by what works, why it works, and how you can apply the same logic to your own site.
+   247→
+   248→==========================================
+   249→FILE: 10_lovable_advanced.json
+   250→==========================================
+   251→1. Lovable AI Website Builder Full Tutorial for Beginners - YouTube
+   252→   URL: https://www.youtube.com/watch?v=UtVMsvu4JfU
+   253→   Claim your FREE $499 Masterclass: Build & Sell Apps, AI Agents & Websites with AI https://mikeyno-code.com/Skool-base44 ✓ (UPDATE) Lovable ...
+   254→
+   255→2. Best AI Website Builders to Build Apps Fast - Lovable
+   256→   URL: https://lovable.dev/guides/best-ai-website-builder
+   257→   Compare 5 AI website builders: Lovable, Wix, Hostinger, Shopify & Squarespace. Find the right AI tool to build your site in hours, ...
+   258→
+   259→3. Best Website Builder 2026 (My #1 Recommendation) - YouTube
+   260→   URL: https://www.youtube.com/watch?v=rjiA5-INy-4
+   261→   What's the best website builder in 2026? I compare the top tools by category – Wix, Squarespace, Hostinger, WordPress, Framer, ...
+   262→
+   263→4. How to create a portfolio website using Lovable AI - Codecademy
+   264→   URL: https://www.codecademy.com/article/lovable-ai-website-builder
+   265→   Learn how to use Lovable AI to create professional portfolio websites with simple prompts, no coding required.
+   266→
+   267→5. Small Business Website Builder for Fast Growth - Lovable
+   268→   URL: https://lovable.dev/solutions/use-case/small-business-website
+   269→   Build Small Business Websites in minutes. Use Lovable AI to create sleek, high-converting websites that establish your online presence. Ask ...
+   270→
+   271→6. This AI Builds Websites From Your Ideas | Lovable Tutorial - YouTube
+   272→   URL: https://www.youtube.com/watch?v=aSxEp9w6zTg&vl=en
+   273→   Get started for free: https://ferdy.com/lovable Want to build a professional website in minutes—without coding or dragging and dropping for ...
+   274→
+   275→7. Guide to build with Lovable (from someone who's in the trenches).
+   276→   URL: https://www.reddit.com/r/lovable/comments/1mhqfhw/guide_to_build_with_lovable_from_someone_whos_in
+   277→   2. Read the Prompt Bible: Go to Lovable's official site and read the Prompt Bible. It teaches you how to actually talk to the AI properly. If ...
+   278→
+   279→8. AI Website Builder: Best Choice for 2026? - TikTok
+   280→   URL: https://www.tiktok.com/@iamkylebalmer/video/7608974600088882454
+   281→   The question on many minds is: what's the optimal approach to building a website in 2026 using artificial intelligence? While Lovable is ...
+   282→
+   283→==========================================
+   284→FILE: 11_lead_gen.json
+   285→==========================================
+   286→1. Catering Company Lead Generation: B2B and Event Strategies for
+   287→   URL: https://leadsuitenow.com/blog/catering-company-lead-generation-usa-2026
+   288→   Grow your catering business with proven B2B and event lead generation strategies for 2026. Attract corporate clients, wedding planners, and large-scale ...
+   289→
+   290→2. Catering Leads, Lead Generation & Marketing Services
+   291→   URL: https://leadgen.click-vision.com/catering-leads
+   292→   Get exclusive catering leads with targeted lead generation for weddings, corporate events, private parties, and large-scale catering services.
+   293→
+   294→3. 10 Ways to Generate Leads for Catering Businesses - Podium
+   295→   URL: https://www.podium.com/article/generate-leads-for-catering-businesses
+   296→   Explore how Podium's comprehensive online tools can enhance lead generation for your local catering business.
+   297→
+   298→4. How To Get More Clients for your Event Planning Business - YouTube
+   299→   URL: https://www.youtube.com/watch?v=BY5oV1-0OM8
+   300→   ... wedding-leads/ ** FREE Venue Tour Checklist for Event ... How To Get More Clients for your Event Planning Business | Lead Generation Strategies.
+   301→
+   302→5. How do I get more lead and customers for my new catering business?
+   303→   URL: https://www.reddit.com/r/smallbusiness/comments/12yx0zs/how_do_i_get_more_lead_and_customers_for_my_
+   304→   Reach out to event planners, ask to meet for coffee, bring some food for them to try, and ask them about setting up a referral partnership. Can ...
+   305→
+   306→6. 7 Event Lead Generation Strategies to Build a Stronger Venue
+   307→   URL: https://tripleseat.com/blog/5-ways-to-generate-event-leads
+   308→   Unlock the secrets of event lead generation to secure consistent bookings and meet your revenue goals in 2026.
+   309→
+   310→7. How to Manage Venue & Catering Leads to Drive Sales
+   311→   URL: https://planningpod.com/blog/how-to-manage-venue-and-catering-leads-for-better-business-results
+   312→   A good way to begin generating corporate catering leads is to leverage high-profile events such as conferences and fundraisers. Food festivals, ...
+   313→
+   314→8. Catering Leads: Complete Guide to Lead Generation and Qualification
+   315→   URL: https://cateringgrowthengine.com/catering-leads-617015
+   316→   This article provides a comprehensive, 8-step guide for catering businesses aiming to secure consistent and high-quality Catering Leads.
+   317→
+   318→==========================================
+   319→FILE: 12_accessibility.json
+   320→==========================================
+   321→1. WCAG 2.2 Checklist: Complete 2026 Compliance Guide
+   322→   URL: https://www.levelaccess.com/blog/wcag-2-2-aa-summary-and-checklist-for-website-owners
+   323→   Meet WCAG 2.2 AA with our actionable checklist covering all nine new success criteria. Ensure your website stays compliant and accessible.
+   324→
+   325→2. Web Content Accessibility Guidelines (WCAG) 2.2 - W3C
+   326→   URL: https://www.w3.org/TR/WCAG22
+   327→   Web Content Accessibility Guidelines (WCAG) 2.2 covers a wide range of recommendations for making web content more accessible.
+   328→
+   329→3. WCAG 2.2 AA Guide + Checklist for 2026 Web Accessibility
+   330→   URL: https://adabook.medium.com/wcag-2-2-aa-guide-checklist-for-2021-web-accessibility-66c6fdaea034
+   331→   This new version of WCAG addresses accessibility considerations for people with motor disabilities, cognitive and learning disabilities, and low vision.
+   332→
+   333→4. W3C Adds Nine New Requirements In WCAG 2.2 - ADA Title III
+   334→   URL: https://www.adatitleiii.com/2023/12/w3c-adds-nine-new-requirements-in-wcag-2-2
+   335→   Thus far most experts agree that covered entities should focus on the success criteria designated as Levels A and AA, but that only reduces the ...
+   336→
+   337→5. Fact Sheet: New Rule on the Accessibility of Web Content  - ADA.gov
+   338→   URL: https://www.ada.gov/resources/2024-03-08-web-rule
+   339→   The final rule has specific requirements about how to ensure that web content and mobile applications (apps) are accessible to people with disabilities.
+   340→
+   341→6. WCAG 2.2 AA Highlights - Accessibility - The University of Arizona
+   342→   URL: https://accessibility.arizona.edu/policies-governance/wcag-22-highlights
+   343→   They define how to make web content accessible to people with disabilities, including blindness, low vision, deafness, hearing loss, limited movement, speech ...
+   344→
+   345→7. Accessible documents in 2026: WCAG 2.2, EAA enforcement, and
+   346→   URL: https://www.nutrient.io/blog/wcag2-accessibility-requirements-documents
+   347→   WCAG 2.2, EAA, and ADA Title II explained: which standards apply to documents, which deadlines are active, and how to build a compliant ...
+   348→
+   349→8. WCAG Levels A, AA, AAA Web Accessibility Standards - UserWay
+   350→   URL: https://userway.org/blog/what-are-wcag-2-0-a-aa-and-aaa
+   351→   This version incorporates nine additional criteria to the existing guidelines among levels A, AA, and AAA. WCAG 2.2 further enhances digital accessibility ...
+   352→
+   353→==========================================
+   354→FILE: 13_mobile_first.json
+   355→==========================================
+   356→1. Responsive Website Design Tutorial 2026 - YouTube
+   357→   URL: https://www.youtube.com/watch?v=ITwD8Iq_ahs
+   358→   ... mobile. We will cover everything from mobile first design, fluid design, breakpoints, best practices, view width and max width, etc! ⛌ Try ...
+   359→
+   360→2. Mobile First Design: Why It Still Wins in 2026 | CorsoUX
+   361→   URL: https://courseux.com/mobile-first-design
+   362→   Mobile First Design: 5 Key Considerations for 2026 · 1. Forced priorities · 2. Performance by default · 3. Accessibility by default · Step 1: ...
+   363→
+   364→3. Responsive Web Design Best Practices: A 2026 Guide
+   365→   URL: https://www.alfdesigngroup.com/post/best-practices-for-mobile-first-websites
+   366→   A mobile-first design strategy is not about breakpoints or frameworks. It is about how decisions are made, what gets prioritised, and what is deliberately left ...
+   367→
+   368→4. Responsive Web Design 2026: Essential for Business Growth
+   369→   URL: https://futurepeakdigital.com/blog/responsive-web-design-guide-2026
+   370→   Master responsive web design in 2026 with mobile-first strategies ... Responsive web design breakpoints: 320px to 1200px+ across five device types ...
+   371→
+   372→5. A Hands-On Guide to Mobile-First Design by UXPin
+   373→   URL: https://www.uxpin.com/studio/blog/a-hands-on-guide-to-mobile-first-design
+   374→   Learn how to design mobile-first with a step-by-step process, real-world examples from Google, Airbnb, and Spotify, CSS techniques, ...
+   375→
+   376→6. Web Breakpoints Explained | Responsive Design Guide for 2026
+   377→   URL: https://www.instagram.com/p/DUDEb85AR7E
+   378→   Web Breakpoints Explained | Responsive Design Guide for 2026. Responsive design isn't optional anymore — it's a core skill in 2026.
+   379→
+   380→7. Best 9 Mobile First Responsive Web Design 2026 - Internetzone I
+   381→   URL: https://www.internetzonei.com/mobile-first-responsive-web-design-2
+   382→   Explore practical guidance for Best 9 Mobile First Responsive Web Design 2026 packed with data-backed advice curated by Internetzone I.
+   383→
+   384→8. Responsive Web Design: A Complete Guide [2026] - Scrimba
+   385→   URL: https://scrimba.com/articles/responsive-web-design-a-complete-guide-2026-2
+   386→   Common breakpoints target phones (480px), tablets (768px), laptops (1024px), and desktops (1280px). The mobile-first approach starts with base ...
+   387→
+   388→==========================================
+   389→FILE: 14_core_web_vitals.json
+   390→==========================================
+   391→1. Understanding Core Web Vitals and Google search results
+   392→   URL: https://developers.google.com/search/docs/appearance/core-web-vitals
+   393→   Core Web Vitals is a set of metrics that measure real-world user experience for loading performance, interactivity, and visual stability of the page.
+   394→
+   395→2. What Are the Core Web Vitals? LCP, INP & CLS Explained (2026)
+   396→   URL: https://www.corewebvitals.io/core-web-vitals
+   397→   Core Web Vitals are three Google metrics that measure real user experience: Largest Contentful Paint (LCP) measures loading speed (good: ...
+   398→
+   399→3. Why Core Web Vitals Still Matter More Than You Think in 2026
+   400→   URL: https://www.interactmarketing.com/why-core-web-vitals-still-matter-more-than-you-think-in-2026
+   401→   Run your homepage and your top five landing pages through PageSpeed Insights. Record the LCP, INP, and CLS scores for each on both mobile and ...
+   402→Record the LCP, INP, and CLS scores for each on both mobile and desktop. That gives you a baseline to improve against. Attack images first ...
+   403→
+   404→4. Core Web Vitals in 2026: What's Changed and How to Pass
+   405→   URL: https://www.rivuletiq.com/core-web-vitals-2026-whats-changed-and-how-to-pass
+   406→   The 2026 metrics and Good thresholds · LCP (Largest Contentful Paint): Good is 2.5s (developers.google.com) · INP (Interaction to Next Paint): Good is 200ms ( ...
+   407→
+   408→5. LCP, INP & CLS Explained: The 2026 Core Web Vitals Metrics Guide
+   409→   URL: https://weblogic.ie/blog/website-speed-core-web-vitals
+   410→   LCP, INP & CLS Explained: The 2026 Core Web Vitals Metrics Guide. Discover how website speed and Core Web Vitals impact user experience and SEO.
+   411→
+   412→6. Web Vitals | Articles - web.dev
+   413→   URL: https://web.dev/articles/vitals
+   414→   Largest Contentful Paint (LCP): measures loading performance. To provide a good user experience, LCP should occur within 2.5 seconds of when the page first ...
+   415→
+   416→7. Core Web Vitals Explained: Improve Website Performance in 2026
+   417→   URL: https://www.pansofic.com/blog/core-web-vitals-guide-2026
+   418→   LCP measures how fast your main content loads. Ideal time: Under 2.5 seconds. If your website takes longer, users may leave before it loads. 2.
+   419→
+   420→8. 8 Best Tools for Core Web Vitals Testing and Performance
+   421→   URL: https://wp-rocket.me/blog/core-web-vitals-testing-performance-monitoring-tools
+   422→   Compare 8 top Core Web Vitals testing tools in 2026. Learn how to measure, monitor, and optimize your site's performance to boost SEO ...
+   423→
+   424→==========================================
+   425→FILE: 15_spb_market.json
+   426→==========================================
+   427→1. 7 Corporate Catering Trends in 2026 That Will Impress Guests
+   428→   URL: https://pleasantdale.com/blog/corporate-catering-trends-2026
+   429→   Transform your next company event with 2026's top corporate catering trends: experiential dining, sustainable menus, and global flavors that ...
+   430→
+   431→2. Top 5 Trends in Wedding Catering for 2026 - WithUS
+   432→   URL: https://withus.com/top-5-trends-in-wedding-catering-for-2026
+   433→   Interactive Food Stations ... Gone are the days of traditional buffet lines. In 2026, wedding catering is all about engaging and customisable food stations.
+   434→
+   435→3. Maison & Co - Premium Catering & Events on Instagram: "   2026
+   436→   URL: https://www.instagram.com/p/DZpr8trlVIU
+   437→   From elegant weddings and refined corporate gatherings to intimate private chef experiences and social celebrations, we create tailored ...
+   438→
+   439→4. Even MORE Event Trends from Cater+Event 2026
+   440→   URL: https://www.cater-event.com/our-events/even-more-event-trends-from-cater-event-2026
+   441→   We're recapping the latest trends from Cater+Event 2026, which was an inspiring showcase of innovation and creativity. 3D-printed lollipops
+   442→
+   443→5. Catering trends 2026: a new approach to food at events - Glicine
+   444→   URL: https://glicine.it/en/glicine-bites/tips/catering-trends-2026
+   445→   In this article, we will explore the catering trends for 2026, focusing on how these innovations are already transforming event catering, particularly in ...
+   446→
+   447→6. Catering Trends For Events In 2026
+   448→   URL: https://www.artigotcatering.com/en/trends-in-event-catering
+   449→   Discover the event catering trends for 2026: sustainability, themed stations, creative cocktails and personalized experiences.
+   450→
+   451→7. Top Catering Trends for Modern Corporate Events
+   452→   URL: https://www.tovaeventcatering.com/blog/top-catering-trends-for-modern-corporate-events
+   453→   Top Catering Trends for Modern Corporate Events · 1. Interactive Food Stations · 2. Sustainable and Eco-Friendly Menus · 3. Health-Conscious ...
+   454→
+   455→8. Catering Trends for 2026: What Event Hosts Need to Know
+   456→   URL: https://happyplate.co.uk/blog/catering-trends-in-2026
+   457→   Today's hosts want menus that feel personal, service that runs seamlessly, and food that looks as impressive as it tastes. From corporate ...
+   458→
+   459→==========================================
+   460→FILE: 16_152fz.json
+   461→==========================================
+   462→1. Статья 12. Трансграничная передача персональных данных
+   463→   URL: https://www.consultant.ru/document/cons_doc_LAW_61801/e4ebbe1780de623c7cf32a59ca82a7bb523a25dd
+   464→   1. Трансграничная передача персональных данных осуществляется в соответствии с настоящим Федеральным законом и международными договорами Российской ...
+   465→
+   466→2. Документы - Правительство России
+   467→   URL: http://government.ru/docs/all/98196/?page=3
+   468→   12. Решение о запрещении или об ограничении трансграничной передачи персональных данных принимается уполномоченным органом по защите прав субъектов персональных ...
+   469→
+   470→3. Трансграничная передача персональных данных - Б-152
+   471→   URL: https://b-152.ru/transgranichnaya-peredacha-personalnyh-dannyh
+   472→   В ст. 3 ФЗ-152 указано, что является трансграничной передачей персональных данных ― это пересылка личных сведений гражданина на территорию другого государства, ...
+   473→
+   474→4. Трансграничная передача персональных данных в 2026 году
+   475→   URL: https://data-sec.ru/personal-data/cross-border-countries
+   476→   В 2026 году действуют правила осуществления трансграничной передачи персональных данных на территорию иностранных государств вступившие в силу 1 марта 2023 ...
+   477→
+   478→5. Соглашение о передаче персональных данных - Юрист компании
+   479→   URL: https://www.law.ru/question/74379-soglashenie-o-peredache-personalnyh-dannyh
+   480→   Чтобы оператор смог передать данные в страну с адекватным уровнем защиты, нужно не только получить согласие субъекта, но и уведомить ...
+   481→
+   482→6. Трансграничная передача персональных данных
+   483→   URL: https://roskom.online/articles/transgranichnaya-peredacha-personalnyh-dannyh
+   484→   Направьте в РКН извещение о планах совершать обработку персданных. · Проверьте наличие правового основания для трансграничной передачи сведений.
+   485→
+   486→7. Трансграничная передача персональных данных: правовой
+   487→   URL: https://brace-lf.com/informaciya/cifrovoe/transgranichnaya-peredacha-personal-nykh-dannykh
+   488→   Отметим, что до 1 марта 2023 года Закон № 152-ФЗ требовал получения отдельного согласия на трансграничную передачу, если персональные данные ...
+   489→
+   490→8. Согласие на трансграничную передачу персональных данных
+   491→   URL: https://www.migranto.ru/soglasie-na-transgranichnuy-peredachu-personalnih-dannih
+   492→   12 152-ФЗ «О персональных данных». Оператор обязуется контролировать соблюдение указанных мер защиты получателями данных. Права субъекта персональных данных:.
+   493→
+   494→==========================================
+   495→FILE: 17_telegram_vercel.json
+   496→==========================================
+   497→1. How to secure a private API key with Vercel Edge Functions
+   498→   URL: https://www.simplefrontend.dev/guides/how-to-secure-api-key-with-vercel-edge-functions
+   499→   Vercel Functions enable you to run compute on-demand, among many other things, for example to run a proxy server call to keep your API key ...
+   500→
+   501→2. Edge Functions (Deprecated) - Vercel
+   502→   URL: https://vercel.com/docs/functions/runtimes/edge/edge-functions.rsc
+   503→   Edge Functions are deprecated. Use Vercel Functions with the Node.js runtime instead for improved performance and full API support.
+   504→
+   505→3. Create a serverless Telegram bot using Go and Vercel
+   506→   URL: https://dev.to/jj/create-a-serverless-telegram-bot-using-go-and-vercel-4fdb
+   507→   A step by step guide to creating a single function that can act as a Telegram bot, and deploy it to Vercel. Tagged with serverless, faas, ...
+   508→
+   509→4. Deploying bot to Netlify/Vercel · yagop node-telegram-bot-api - GitHub
+   510→   URL: https://github.com/yagop/node-telegram-bot-api/discussions/1204
+   511→   I was creating a bot locally, so it was starting with { polling: true } . Then when it was time to deploy I understood that it's not a usual deployment.
+   512→
+   513→5. Vercel Product Walkthrough (2026) - YouTube
+   514→   URL: https://www.youtube.com/watch?v=zFXscjUoDDA
+   515→   Speed run a web app into modern infrastructure with AI features, agent-driven development, and collaboration between designers and ...
+   516→... security. Try Vercel today: https://vercel.com Chapters: 00:00 Self-driving infrastructure 00:41 Speed run 01:17 Importing into Vercel 02:49 ...
+   517→
+   518→6. Vercel Functions - Optimizely
+   519→   URL: https://docs.developers.optimizely.com/feature-experimentation/docs/vercel-functions
+   520→   This example uses the JavaScript (Node) SDK inside Vercel Functions for you to start experimenting with your experiences at the Edge.
+   521→
+   522→7. Vercel Edge Functions with Next.js - Ahmad Awais
+   523→   URL: https://ahmadawais.com/vercel-edge-functions-next-js
+   524→   The Web Fetch API can be used from the runtime, enabling you to use Middleware as a proxy, or connect to external storage APIs - 2026.
+   525→
+   526→8. Telegram bot's host on the Vercel without templates - Stack Overflow
+   527→   URL: https://stackoverflow.com/questions/77188097/telegram-bots-host-on-the-vercel-without-templates
+   528→   I want to host my project without templates of with node-telegram-bot-api on js. It can be any other free host. I just need to host a small bot.
+   529→
+   530→==========================================
+   531→FILE: 18_react19_tailwind.json
+   532→==========================================
+   533→1. Tailwind CSS v4 Full Course 2026 | Master Tailwind in One Hour
+   534→   URL: https://www.youtube.com/watch?v=6biMWgD6_JY&vl=en
+   535→   Build stunning, responsive UIs with Tailwind CSS v4. Learn best practices, master utility classes, and deploy your project effortlessly.
+   536→
+   537→2. Tailwind CSS v4.0
+   538→   URL: https://tailwindcss.com/blog/tailwindcss-v4
+   539→   We've streamlined the setup process a ton in v4.0, reducing the number of steps and removing a lot of boilerplate. 1. Install Tailwind CSS.
+   540→
+   541→3. How to Build a Dashboard with Tailwind CSS v4 in 14 Steps [2026]
+   542→   URL: https://tech-insider.org/tailwind-css-tutorial-dashboard-v4-2026
+   543→   Learn Tailwind CSS v4 by building a responsive dashboard. 14 steps covering the Oxide engine, dark mode, container queries, and production ...
+   544→
+   545→4. Tailwind CSS v4 in production - honest experience after 2 years of
+   546→   URL: https://www.reddit.com/r/tailwindcss/comments/1t70baf/tailwind_css_v4_in_production_honest_experienc
+   547→   Just finished a full rebuild of my personal site using Tailwind v4 and Next.js 16. Been using Tailwind almost every day for over two years ...
+   548→
+   549→5. Tailwind v4 and React 19 · shadcn-ui ui · Discussion #6714 - GitHub
+   550→   URL: https://github.com/shadcn-ui/ui/discussions/6714
+   551→   If you're starting a new project with Tailwind v4 and React 19, use the canary version of the command-line: npx shadcn@canary init
+   552→
+   553→6. Tailwind CSS Best Practices and Performance Optimization
+   554→   URL: https://tailgrids.com/blog/tailwind-css-best-practices
+   555→   Master Tailwind CSS v4 best practices for clean code, performance optimization, and scalable component architecture.
+   556→
+   557→7. Best practices for using new libraries like React 19 and Tailwind v4
+   558→   URL: https://forum.cursor.com/t/best-practices-for-using-new-libraries-like-react-19-and-tailwind-v4/4504
+   559→   I am using React 19 and Tailwind v4, however this is past the cutoff date of the LLM models. What is the best way for me to use Cursor so that ...
+   560→
+   561→8. Tailwind CSS in React and Next.js: A Complete Setup Guide
+   562→   URL: https://www.sitepoint.com/tailwind-css-in-react-and-nextjs
+   563→   This comprehensive guide walks you through setting up Tailwind CSS versions 3 and 4 in both React and Next.js projects, ...
+   564→
+   565→==========================================
+   566→FILE: 19_schema_food.json
+   567→==========================================
+   568→1. Menu - Schema.org Type
+   569→   URL: https://schema.org/Menu
+   570→   A structured representation of food or drink items available from a FoodEstablishment. Indicates the date on which the current structured data was generated / ...
+   571→
+   572→2. Structured Data Markup that Google Search Supports
+   573→   URL: https://developers.google.com/search/docs/appearance/structured-data/search-gallery
+   574→   Google uses structured data to understand the content on the page and show that content in a richer appearance in search results, which is called a rich result.
+   575→
+   576→3. Schema.org Structured Data: How to Teach Search Engines to
+   577→   URL: https://dev.family/blog/article/schemaorg-structured-data-how-to-teach-search-engines-to-understand-
+   578→   Rich Snippets — enhanced results in search rich snippets increase CTR by 20–30% compared to regular results. Structured data helps these models ...
+   579→
+   580→4. Review - Schema.org Type
+   581→   URL: https://schema.org/Review
+   582→   A review of an item - for example, of a restaurant, movie, or store. Indicates the date on which the current structured data was generated / published. for ...
+   583→
+   584→5. Structured Data SEO 2026: Rich Results Guide - Digital Applied
+   585→   URL: https://www.digitalapplied.com/blog/structured-data-seo-2026-rich-results-guide
+   586→   Pages with structured data earn 35% higher CTR from rich results. Implementation guide for Article, Product, LocalBusiness, and BreadcrumbList schemas.
+   587→
+   588→6. How to Use Schema.org to Create and Add Structured Data to Your
+   589→   URL: https://www.youtube.com/watch?v=xQeRA-Ojq5c
+   590→   Structured Data and Rich snippets - A complete (but simplified) guide ... Why I'm Deleting My Google Account in 2026 (And What I Use Instead).
+   591→
+   592→7. Service - Schema.org Type
+   593→   URL: https://schema.org/Service
+   594→   A service provided by an organization, eg delivery service, print services, etc. Instances of Service may appear as a value for the following properties.
+   595→
+   596→8. Schema Markup and Rich Snippets in 2026 - Tonic Worldwide
+   597→   URL: https://www.tonicworldwide.com/rich-snippets-structured-data-schema-markup-guide
+   598→   Master schema markup in 2026 with proven strategies for rich snippets, AI search citations, and structured data SEO.
+   599→
+   600→==========================================

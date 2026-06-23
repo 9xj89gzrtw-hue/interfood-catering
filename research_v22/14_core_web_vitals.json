@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://developers.google.com/search/docs/appearance/core-web-vitals",
+    "name": "Understanding Core Web Vitals and Google search results",
+    "snippet": "Core Web Vitals is a set of metrics that measure real-world user experience for loading performance, interactivity, and visual stability of the page.",
+    "host_name": "developers.google.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.corewebvitals.io/core-web-vitals",
+    "name": "What Are the Core Web Vitals? LCP, INP & CLS Explained (2026)",
+    "snippet": "Core Web Vitals are three Google metrics that measure real user experience: Largest Contentful Paint (LCP) measures loading speed (good: ...",
+    "host_name": "www.corewebvitals.io",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.interactmarketing.com/why-core-web-vitals-still-matter-more-than-you-think-in-2026",
+    "name": "Why Core Web Vitals Still Matter More Than You Think in 2026",
+    "snippet": "Run your homepage and your top five landing pages through PageSpeed Insights. Record the LCP, INP, and CLS scores for each on both mobile and ...\nRecord the LCP, INP, and CLS scores for each on both mobile and desktop. That gives you a baseline to improve against. Attack images first ...",
+    "host_name": "www.interactmarketing.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.rivuletiq.com/core-web-vitals-2026-whats-changed-and-how-to-pass",
+    "name": "Core Web Vitals in 2026: What's Changed and How to Pass",
+    "snippet": "The 2026 metrics and Good thresholds · LCP (Largest Contentful Paint): Good is 2.5s (developers.google.com) · INP (Interaction to Next Paint): Good is 200ms ( ...",
+    "host_name": "www.rivuletiq.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://weblogic.ie/blog/website-speed-core-web-vitals",
+    "name": "LCP, INP & CLS Explained: The 2026 Core Web Vitals Metrics Guide",
+    "snippet": "LCP, INP & CLS Explained: The 2026 Core Web Vitals Metrics Guide. Discover how website speed and Core Web Vitals impact user experience and SEO.",
+    "host_name": "weblogic.ie",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://web.dev/articles/vitals",
+    "name": "Web Vitals | Articles - web.dev",
+    "snippet": "Largest Contentful Paint (LCP): measures loading performance. To provide a good user experience, LCP should occur within 2.5 seconds of when the page first ...",
+    "host_name": "web.dev",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.pansofic.com/blog/core-web-vitals-guide-2026",
+    "name": "Core Web Vitals Explained: Improve Website Performance in 2026",
+    "snippet": "LCP measures how fast your main content loads. Ideal time: Under 2.5 seconds. If your website takes longer, users may leave before it loads. 2.",
+    "host_name": "www.pansofic.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://wp-rocket.me/blog/core-web-vitals-testing-performance-monitoring-tools",
+    "name": "8 Best Tools for Core Web Vitals Testing and Performance",
+    "snippet": "Compare 8 top Core Web Vitals testing tools in 2026. Learn how to measure, monitor, and optimize your site's performance to boost SEO ...",
+    "host_name": "wp-rocket.me",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=DQ-8x6JCYwY",
+    "name": "[Webinar] Core Web Vitals Tactics for Boosting Your  - YouTube",
+    "snippet": "... LCP, INP and CLS + their impact on SEO -Optimisation ... [Webinar] Core Web Vitals Tactics for Boosting Your Website's Performance.",
+    "host_name": "www.youtube.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.digitalapplied.com/blog/core-web-vitals-2026-inp-lcp-cls-optimization-guide",
+    "name": "Core Web Vitals 2026: INP, LCP & CLS Optimization - Digital Applied",
+    "snippet": "Master Core Web Vitals in 2026 with actionable fixes for INP, LCP, and CLS. Performance benchmarks, debugging tools, and optimization strategies ...",
+    "host_name": "www.digitalapplied.com",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

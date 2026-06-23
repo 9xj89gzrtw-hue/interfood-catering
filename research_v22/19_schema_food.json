@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://schema.org/Menu",
+    "name": "Menu - Schema.org Type",
+    "snippet": "A structured representation of food or drink items available from a FoodEstablishment. Indicates the date on which the current structured data was generated / ...",
+    "host_name": "schema.org",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://developers.google.com/search/docs/appearance/structured-data/search-gallery",
+    "name": "Structured Data Markup that Google Search Supports",
+    "snippet": "Google uses structured data to understand the content on the page and show that content in a richer appearance in search results, which is called a rich result.",
+    "host_name": "developers.google.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://dev.family/blog/article/schemaorg-structured-data-how-to-teach-search-engines-to-understand-your-website",
+    "name": "Schema.org Structured Data: How to Teach Search Engines to",
+    "snippet": "Rich Snippets — enhanced results in search rich snippets increase CTR by 20–30% compared to regular results. Structured data helps these models ...",
+    "host_name": "dev.family",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://schema.org/Review",
+    "name": "Review - Schema.org Type",
+    "snippet": "A review of an item - for example, of a restaurant, movie, or store. Indicates the date on which the current structured data was generated / published. for ...",
+    "host_name": "schema.org",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.digitalapplied.com/blog/structured-data-seo-2026-rich-results-guide",
+    "name": "Structured Data SEO 2026: Rich Results Guide - Digital Applied",
+    "snippet": "Pages with structured data earn 35% higher CTR from rich results. Implementation guide for Article, Product, LocalBusiness, and BreadcrumbList schemas.",
+    "host_name": "www.digitalapplied.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=xQeRA-Ojq5c",
+    "name": "How to Use Schema.org to Create and Add Structured Data to Your",
+    "snippet": "Structured Data and Rich snippets - A complete (but simplified) guide ... Why I'm Deleting My Google Account in 2026 (And What I Use Instead).",
+    "host_name": "www.youtube.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://schema.org/Service",
+    "name": "Service - Schema.org Type",
+    "snippet": "A service provided by an organization, eg delivery service, print services, etc. Instances of Service may appear as a value for the following properties.",
+    "host_name": "schema.org",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.tonicworldwide.com/rich-snippets-structured-data-schema-markup-guide",
+    "name": "Schema Markup and Rich Snippets in 2026 - Tonic Worldwide",
+    "snippet": "Master schema markup in 2026 with proven strategies for rich snippets, AI search citations, and structured data SEO.",
+    "host_name": "www.tonicworldwide.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://webmasters.stackexchange.com/questions/90095/can-i-use-schema-for-page-with-a-list-of-restaurants-on-it",
+    "name": "Can I use schema for page with a list of restaurants on it?",
+    "snippet": "You can use schema.org/FoodEstablishment, of which there are a few specific types including Restaurant, which the example below uses. Copy.",
+    "host_name": "webmasters.stackexchange.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://schema.org/Restaurant",
+    "name": "Restaurant - Schema.org Type",
+    "snippet": "An official rating for a lodging business or food establishment, e.g. from national associations or standards bodies. Use the author property to indicate the ...",
+    "host_name": "schema.org",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

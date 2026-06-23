@@ -145,3 +145,37 @@ Stage Summary:
 - 2 COMPROMISE: (а) beginner→general аудитория, (б) 20% reserve guideline не достигнут (твёрдый лимит соблюдён)
 - Сходимость: CONVERGED (2 чистых прохода)
 - Все 16 секций выходного формата v6.0 присутствуют: ОПРЕДЕЛЕНИЯ, БЕЗОПАСНОСТЬ, ИНВАРИАНТЫ, РОЛЬ, ПРАВИЛА, ФУНКЦИИ, ВВОД, ФОРМАТ ВЫХОДА, ПРИМЕРЫ (в промпте) + ПАРАМЕТРЫ, МЕТРИКИ, ОГРАНИЧЕНИЯ, ОБОСНОВАНИЯ, АЛЬТЕРНАТИВЫ, НАЙДЕННЫЕ ОШИБКИ, POTENTIALLY_OUTDATED (в метаданных)
+
+---
+Task ID: v2.2-research-and-recompile
+Agent: main (GLM)
+Task: Аудит лучших кейтеринговых/ресторанных сайтов мира + актуальные исследования по маркетингу/психологии/конверсии 2026, и улучшение сайта на их основе
+
+Work Log:
+- Запущено 20 параллельных веб-поисков (catering Awwwards, restaurant premium, design trends 2026, CRO catering, psychology premium, motion trends, marketing research, food photography, UX trust, Lovable advanced, lead gen, accessibility, mobile-first, Core Web Vitals, SPb market, 152-FZ, Telegram+Vercel, React 19+Tailwind v4, Schema.org Food, storytelling)
+- Все 20 JSON файлов сохранены в /home/z/my-project/research_v22/
+- Прочитан v1.0 (494 строки) и существующий v2.1 compile-скрипт (798 строк)
+- Выявлено ключевое упущение v2.1: Vercel Edge Functions УСТАРЕЛИ (deprecated) — нужны Vercel Functions с Node.js runtime (подтверждено research_v22/17_telegram_vercel.json)
+
+Stage Summary:
+- Найдено 16 новых трендов/улучшений для интеграции в v2.2
+- v2.2 будет включать: WCAG 2.2 AA чеклист, Core Web Vitals 2026 thresholds, food photography art direction, premium storytelling framework, 2026 catering trends (interactive stations, sustainability, experiential), trust signals 25-element checklist, B2B referral strategy, monthly content refresh, исправление Edge→Node.js runtime
+
+---
+Task ID: v2.2-recompile-complete
+Agent: main (GLM)
+Task: Финализация v2.2 — компиляция промпта с 12 новыми улучшениями
+
+Work Log:
+- Создан compile-скрипт: /home/z/my-project/scripts/compile_lovable_prompt_v2_2.py (1105 строк)
+- Исправлена синтаксическая ошибка (незакрытый raw string)
+- Скомпилирован финальный файл: /home/z/my-project/download/lovable_prompt_nilov_catering_v2_2.md
+- Размер: 80,086 байт (78.2 KB), 1050 строк, ~23,162 токенов
+
+Stage Summary:
+- v2.2 содержит 12 ФАЗ вместо 12 в v2.1 (расширены)
+- 14 страниц (включая B2B /partners и premium /tasting)
+- Все 4 критичных ошибки v2.1 исправлены (Edge→Node.js runtime, 152-ФЗ 3 согласия, Schema.org FoodService, shadcn@canary)
+- 12 новых модулей добавлено (WCAG 2.2, Core Web Vitals 2026, 2026 catering trends, food photography art direction, premium storytelling, trust signals 25-элементный чеклист, B2B referral strategy, monthly content refresh, AI micro-animations, liquid/scroll animations, premium color psychology, Schema.org расширен)
+- 38 источников с URL проверены 24.06.2026
+- Готов к вставке в Lovable
