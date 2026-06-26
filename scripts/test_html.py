@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Тест HTML: ищем JS-ошибки, скрытые элементы, проблемы с вёрсткой."""
+"""Тест клиентской версии HTML."""
 from playwright.sync_api import sync_playwright
 
 URL = "file:///home/z/my-project/download/catering_inspiration_nilov.html"
@@ -19,61 +19,51 @@ with sync_playwright() as p:
         page.goto(URL, wait_until="networkidle", timeout=30000)
         page.wait_for_timeout(500)
 
-        # Считаем карточки
-        cards_total = page.eval_on_selector_all("#cardsGrid .card", "els => els.length")
-        cards_visible = page.eval_on_selector_all(
-            "#cardsGrid .card",
-            "els => els.filter(e => e.offsetHeight > 0).length"
-        )
+        blocks = page.eval_on_selector_all(".block-card", "els => els.length")
+        tips = page.eval_on_selector_all(".tip-card", "els => els.length")
+        prepare = page.eval_on_selector_all(".prepare-card", "els => els.length")
+        stages = page.eval_on_selector_all(".stage", "els => els.length")
+        insp = page.eval_on_selector_all(".insp-card", "els => els.length")
+        checks = page.eval_on_selector_all(".check-item", "els => els.length")
+        results = page.eval_on_selector_all(".result-card", "els => els.length")
+        dots = page.eval_on_selector_all(".dot", "els => els.length")
 
-        # Проверяем, что текст hero виден
-        hero_h1 = page.eval_on_selector(".hero h1", "el => el.textContent")
+        hero_h1 = page.eval_on_selector(".hero h1", "el => el.textContent").strip().replace("\n", " ").replace("  ", " ")
         hero_h1_visible = page.eval_on_selector(".hero h1", "el => el.offsetHeight > 0")
-
-        # Проверяем sticky bottom bar
         bottom_bar_visible = page.eval_on_selector(".bottom-bar", "el => el.offsetHeight > 0")
-
-        # Проверяем header
         header_visible = page.eval_on_selector(".site-header", "el => el.offsetHeight > 0")
 
-        # Кнопки фильтра
-        filter_btns = page.eval_on_selector_all(".filter-btn", "els => els.length")
-
-        # Принципы
-        principles = page.eval_on_selector_all(".principle", "els => els.length")
-
-        # Палитры-кружочки
-        dots = page.eval_on_selector_all(".palette .dot", "els => els.length")
-
-        # Горизонтальный скролл?
         scroll_w = page.evaluate("() => document.documentElement.scrollWidth")
         client_w = page.evaluate("() => document.documentElement.clientWidth")
         h_scroll = scroll_w > client_w
 
+        # Проверка читаемости: контраст текста
+        body_color = page.evaluate("() => getComputedStyle(document.body).color")
+        body_bg = page.evaluate("() => getComputedStyle(document.body).backgroundColor")
+        body_font = page.evaluate("() => getComputedStyle(document.body).fontFamily")
+        body_size = page.evaluate("() => getComputedStyle(document.body).fontSize")
+
         print(f"\n=== {name} ({w}x{h}) ===")
-        print(f"Карточек всего:    {cards_total}")
-        print(f"Карточек видно:    {cards_visible}")
-        print(f"Принципов:         {principles}")
-        print(f"Палитр-кружочков:  {dots}")
-        print(f"Кнопок фильтра:    {filter_btns}")
-        print(f"Hero H1:           '{hero_h1[:50]}...'")
+        print(f"Блоков сайта:      {blocks} (ожидаем 8)")
+        print(f"Приёмов продаж:    {tips} (ожидаем 6)")
+        print(f"Категорий 'подготовить': {prepare} (ожидаем 5)")
+        print(f"Этапов:             {stages} (ожидаем 4)")
+        print(f"Примеров:           {insp} (ожидаем 6)")
+        print(f"Пунктов чек-листа:  {checks} (ожидаем 12)")
+        print(f"Блоков результатов: {results} (ожидаем 4)")
+        print(f"Палитр-кружочков:   {dots}")
+        print(f"Hero H1: '{hero_h1[:60]}'")
         print(f"Hero H1 виден:     {hero_h1_visible}")
         print(f"Header виден:      {header_visible}")
         print(f"Bottom bar виден:  {bottom_bar_visible}")
-        print(f"Горизонт. скролл:  {h_scroll} (scroll={scroll_w}, client={client_w})")
-        print(f"JS/console errors: {len(errors)}")
+        print(f"Горизонт. скролл:  {h_scroll}")
+        print(f"Body color:        {body_color}")
+        print(f"Body bg:           {body_bg}")
+        print(f"Body font:         {body_font}")
+        print(f"Body font-size:    {body_size}")
+        print(f"JS errors:         {len(errors)}")
         for e in errors[:5]:
             print(f"  - {e}")
-
-        # Тест фильтра
-        if filter_btns > 1:
-            page.eval_on_selector_all(".filter-btn", "els => els[1].click()")
-            page.wait_for_timeout(300)
-            visible_after = page.eval_on_selector_all(
-                "#cardsGrid .card",
-                "els => els.filter(e => e.offsetHeight > 0).length"
-            )
-            print(f"После клика на фильтр 'Мир': видно {visible_after} карточек")
 
         ctx.close()
 
