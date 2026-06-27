@@ -1,0 +1,569 @@
+     1→     1→#!/usr/bin/env python3
+     2→     2→"""
+     3→     3→Build Nilov Catering v11 — SELF-CONTAINED for Telegram/iMessage WebView
+     4→     4→- All images as base64 (compressed via PIL)
+     5→     5→- Google Fonts CDN as progressive enhancement (Georgia fallback for WebView)
+     6→     6→- Calculator, press quotes, testimonials, trust bar, FAQ, gallery, lightbox
+     7→     7→"""
+     8→     8→
+     9→     9→import base64, os
+    10→    10→from pathlib import Path
+    11→    11→
+    12→    12→BASE = Path("/home/z/my-project")
+    13→    13→B64_DIR = BASE / "images_v11_b64"
+    14→    14→OUT = BASE / "download" / "nilov_catering_v11.html"
+    15→    15→
+    16→    16→def load_b64(name):
+    17→    17→    path = B64_DIR / f"{name}.b64"
+    18→    18→    if path.exists():
+    19→    19→        return f"data:image/jpeg;base64,{path.read_text().strip()}"
+    20→    20→    return ""
+    21→    21→
+    22→    22→# Load all base64 images
+    23→    23→IMG = {name: load_b64(name) for name in [
+    24→    24→    "hero", "furshet", "banket", "coffee", "wedding", "about",
+    25→    25→    "gallery_1", "gallery_2", "gallery_3", "gallery_4", "gallery_5", "gallery_6",
+    26→    26→    "press_bg"
+    27→    27→]}
+    28→    28→
+    29→    29→# Logo from existing
+    30→    30→logo_path = BASE / "images" / "logo.b64"
+    31→    31→if logo_path.exists():
+    32→    32→    LOGO = f"data:image/jpeg;base64,{logo_path.read_text().strip()}"
+    33→    33→else:
+    34→    34→    LOGO = IMG["gallery_4"]
+    35→    35→
+    36→    36→WA = "https://wa.me/79119417205?text=Здравствуйте!%20Хочу%20узнать%20о%20кейтеринге%20на%20мероприятие"
+    37→    37→TEL = "tel:+78129195911"
+    38→    38→
+    39→    39→# ═══════════════════════════════════════════════════════
+    40→    40→# BUILD HTML
+    41→    41→# ═══════════════════════════════════════════════════════
+    42→    42→
+    43→    43→html = f"""<!DOCTYPE html>
+    44→    44→<html lang="ru">
+    45→    45→<head>
+    46→    46→<meta charset="UTF-8">
+    47→    47→<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+    48→    48→<meta name="theme-color" content="#FAF9F6">
+    49→    49→<meta name="description" content="Кейтеринг в Санкт-Петербурге с 2007 года. Фуршеты, банкеты, кофе-брейки. Interfood Catering — Дмитрий Нилов.">
+    50→    50→<title>Nilov Catering — Кейтеринг в Санкт-Петербурге</title>
+    51→    51→<link rel="preconnect" href="https://fonts.googleapis.com">
+    52→    52→<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    53→    53→<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+    54→    54→<style>
+    55→    55→/* ═══════════════════════════════════════════════════════
+    56→    56→   NILOV CATERING v11 — Self-Contained
+    57→    57→   All images embedded as base64 for Telegram/iMessage
+    58→    58→   ═══════════════════════════════════════════════════════ */
+    59→    59→
+    60→    60→*,*::before,*::after{{box-sizing:border-box;margin:0;padding:0}}
+    61→    61→
+    62→    62→:root{{
+    63→    63→--bg:#FAF9F6;--bg-warm:#F3EDE4;--bg-dark:#1A1A1A;
+    64→    64→--text:#1C1917;--text-mid:#57534E;--text-light:#A8A29E;
+    65→    65→--accent:#8B6F4E;--accent-dark:#6B5338;--accent-light:#C4A882;
+    66→    66→--wa:#25D366;--border:#E7E5E4;
+    67→    67→--serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;
+    68→    68→--sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+    69→    69→--ease:cubic-bezier(.25,.46,.45,.94)
+    70→    70→}}
+    71→    71→
+    72→    72→html{{-webkit-text-size-adjust:100%;scroll-behavior:smooth}}
+    73→    73→body{{font-family:var(--sans);font-size:17px;line-height:1.7;color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased;overflow-x:hidden}}
+    74→    74→a{{color:inherit;text-decoration:none}}
+    75→    75→img{{display:block;max-width:100%;height:auto}}
+    76→    76→h1{{font-family:var(--serif);font-weight:400;letter-spacing:-.03em;line-height:1.05}}
+    77→    77→h2{{font-family:var(--serif);font-weight:400;letter-spacing:-.02em;line-height:1.1}}
+    78→    78→h3{{font-family:var(--serif);font-weight:500;letter-spacing:-.01em;line-height:1.2}}
+    79→    79→em{{font-style:italic;color:var(--accent)}}
+    80→    80→
+    81→    81→/* REVEAL */
+    82→    82→.rv{{opacity:0;transform:translateY(40px);transition:opacity .9s var(--ease),transform .9s var(--ease)}}
+    83→    83→.rv.v{{opacity:1;transform:none}}
+    84→    84→.rv-d1{{transition-delay:.1s}}.rv-d2{{transition-delay:.2s}}.rv-d3{{transition-delay:.3s}}
+    85→    85→
+    86→    86→/* HEADER */
+    87→    87→.hdr{{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 24px;padding-top:calc(18px + env(safe-area-inset-top,0px));display:flex;align-items:center;justify-content:space-between;transition:background .4s,box-shadow .4s,padding .3s}}
+    88→    88→.hdr.s{{background:rgba(250,249,246,.96);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 1px 0 var(--border);padding-top:calc(12px + env(safe-area-inset-top,0px));padding-bottom:12px}}
+    89→    89→.hdr-l{{display:flex;align-items:center;gap:12px;font-family:var(--serif);font-size:20px;font-weight:500;color:#fff;letter-spacing:.5px;transition:color .4s}}
+    90→    90→.hdr.s .hdr-l{{color:var(--text)}}
+    91→    91→.hdr-l-i{{width:38px;height:38px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,.3);transition:border-color .4s}}
+    92→    92→.hdr.s .hdr-l-i{{border-color:var(--accent-light)}}
+    93→    93→.hdr-r{{display:flex;align-items:center;gap:16px}}
+    94→    94→.hdr-p{{font-size:15px;font-weight:500;color:rgba(255,255,255,.8);transition:color .4s;display:none}}
+    95→    95→@media(min-width:768px){{.hdr-p{{display:block}}}}
+    96→    96→.hdr.s .hdr-p{{color:var(--text-mid)}}
+    97→    97→.hdr-w{{display:inline-flex;align-items:center;gap:6px;padding:9px 20px;border-radius:9px;background:var(--wa);color:#fff;font-size:14px;font-weight:600;transition:opacity .2s,transform .2s;min-height:38px}}
+    98→    98→.hdr-w:hover{{opacity:.85;transform:scale(1.03)}}
+    99→    99→.hdr-w svg{{width:17px;height:17px;fill:currentColor}}
+   100→   100→
+   101→   101→/* HERO */
+   102→   102→.hero{{position:relative;min-height:100vh;min-height:100dvh;display:flex;align-items:flex-end;overflow:hidden;background:#0A0A0A}}
+   103→   103→.hero-bg{{position:absolute;inset:0;background-size:cover;background-position:center 35%}}
+   104→   104→.hero-ov{{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,.88) 0%,rgba(10,10,10,.45) 35%,rgba(10,10,10,.12) 70%,rgba(10,10,10,.03) 100%)}}
+   105→   105→.hero-c{{position:relative;z-index:2;padding:0 28px 72px;padding-bottom:calc(72px + env(safe-area-inset-bottom,0px));max-width:780px}}
+   106→   106→.hero-badge{{display:inline-block;padding:6px 16px;border-radius:20px;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.15);font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:24px}}
+   107→   107→.hero h1{{font-size:clamp(44px,9vw,80px);color:#fff;margin-bottom:20px}}
+   108→   108→.hero h1 em{{color:var(--accent-light)}}
+   109→   109→.hero-sub{{font-size:clamp(17px,2.5vw,20px);color:rgba(255,255,255,.65);line-height:1.65;max-width:500px;margin-bottom:36px}}
+   110→   110→.hero-act{{display:flex;gap:12px;flex-wrap:wrap}}
+   111→   111→.bp{{display:inline-flex;align-items:center;gap:8px;padding:16px 32px;background:var(--wa);color:#fff;border-radius:12px;font-size:16px;font-weight:600;transition:transform .2s,opacity .2s;cursor:pointer;border:none}}
+   112→   112→.bp:hover{{transform:scale(1.03);opacity:.9}}
+   113→   113→.bp svg{{width:20px;height:20px;fill:currentColor}}
+   114→   114→.bs{{display:inline-flex;align-items:center;gap:8px;padding:16px 32px;background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:12px;font-size:16px;font-weight:500;transition:background .3s,transform .2s;cursor:pointer;backdrop-filter:blur(8px)}}
+   115→   115→.bs:hover{{background:rgba(255,255,255,.18);transform:scale(1.03)}}
+   116→   116→
+   117→   117→/* TRUST BAR */
+   118→   118→.tb{{background:var(--bg-dark);padding:28px 24px;display:flex;justify-content:center;flex-wrap:wrap;gap:40px}}
+   119→   119→.tb-i{{text-align:center}}
+   120→   120→.tb-n{{font-family:var(--serif);font-size:clamp(28px,4vw,40px);color:var(--accent-light);font-weight:600;line-height:1}}
+   121→   121→.tb-l{{font-size:13px;color:rgba(255,255,255,.5);letter-spacing:.5px;margin-top:4px}}
+   122→   122→
+   123→   123→/* SECTIONS */
+   124→   124→.sec{{padding:80px 24px;max-width:1120px;margin:0 auto}}
+   125→   125→@media(min-width:768px){{.sec{{padding:110px 40px}}}}
+   126→   126→.sec-lbl{{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:14px}}
+   127→   127→.sec-t{{font-size:clamp(34px,5.5vw,56px);color:var(--text);margin-bottom:20px}}
+   128→   128→.sec-sub{{font-size:18px;color:var(--text-mid);max-width:560px;line-height:1.7;margin-bottom:48px}}
+   129→   129→
+   130→   130→/* FORMAT CARDS */
+   131→   131→.fg{{display:grid;grid-template-columns:1fr;gap:28px}}
+   132→   132→@media(min-width:768px){{.fg{{grid-template-columns:repeat(3,1fr);gap:32px}}}}
+   133→   133→.fc{{border-radius:18px;overflow:hidden;background:#fff;box-shadow:0 2px 24px rgba(0,0,0,.06);transition:transform .5s var(--ease),box-shadow .5s var(--ease);cursor:pointer}}
+   134→   134→.fc:hover{{transform:translateY(-8px);box-shadow:0 16px 48px rgba(0,0,0,.12)}}
+   135→   135→.fc-iw{{overflow:hidden;position:relative}}
+   136→   136→.fc-i{{width:100%;aspect-ratio:4/3;object-fit:cover;transition:transform .7s ease}}
+   137→   137→.fc:hover .fc-i{{transform:scale(1.06)}}
+   138→   138→.fc-b{{padding:28px}}
+   139→   139→.fc-n{{font-family:var(--serif);font-size:26px;font-weight:500;margin-bottom:8px}}
+   140→   140→.fc-p{{font-size:20px;color:var(--accent);font-weight:700;margin-bottom:12px}}
+   141→   141→.fc-d{{font-size:15px;color:var(--text-mid);line-height:1.65;margin-bottom:16px}}
+   142→   142→.fc-cta{{font-size:14px;font-weight:600;color:var(--accent);display:inline-flex;align-items:center;gap:6px;transition:gap .3s}}
+   143→   143→.fc:hover .fc-cta{{gap:10px}}
+   144→   144→.fc-cta::after{{content:'→'}}
+   145→   145→
+   146→   146→/* CALCULATOR */
+   147→   147→.cw{{background:var(--bg-warm);padding:80px 24px}}
+   148→   148→@media(min-width:768px){{.cw{{padding:110px 40px}}}}
+   149→   149→.calc{{background:#fff;border-radius:28px;padding:48px 36px;max-width:720px;margin:0 auto;box-shadow:0 8px 40px rgba(0,0,0,.06)}}
+   150→   150→.calc-t{{font-family:var(--serif);font-size:clamp(30px,4vw,44px);text-align:center;margin-bottom:8px}}
+   151→   151→.calc-st{{text-align:center;color:var(--text-mid);font-size:16px;margin-bottom:40px}}
+   152→   152→.cg{{margin-bottom:28px}}
+   153→   153→.cl{{display:block;font-size:13px;font-weight:700;color:var(--text);margin-bottom:10px;letter-spacing:.5px;text-transform:uppercase}}
+   154→   154→.cs,.ci{{width:100%;padding:15px 18px;border:2px solid var(--border);border-radius:14px;font-size:17px;font-family:var(--sans);background:#fff;color:var(--text);transition:border-color .3s;-webkit-appearance:none;appearance:none}}
+   155→   155→.cs{{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23A8A29E' fill='none' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 18px center;padding-right:44px}}
+   156→   156→.cs:focus,.ci:focus{{outline:none;border-color:var(--accent)}}
+   157→   157→.cr{{width:100%;-webkit-appearance:none;appearance:none;height:6px;border-radius:3px;background:var(--border);outline:none;margin-top:8px}}
+   158→   158→.cr::-webkit-slider-thumb{{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:var(--accent);cursor:pointer;box-shadow:0 2px 10px rgba(139,111,78,.35);transition:transform .2s}}
+   159→   159→.cr::-webkit-slider-thumb:hover{{transform:scale(1.15)}}
+   160→   160→.cr::-moz-range-thumb{{width:26px;height:26px;border-radius:50%;background:var(--accent);cursor:pointer;border:none}}
+   161→   161→.cr-info{{display:flex;justify-content:space-between;font-size:14px;color:var(--text-light);margin-top:8px}}
+   162→   162→.cr-val{{font-weight:700;color:var(--accent);font-size:18px}}
+   163→   163→.cr-res{{margin-top:36px;padding:32px;background:var(--bg-warm);border-radius:18px;text-align:center}}
+   164→   164→.cr-res-lbl{{font-size:14px;color:var(--text-mid);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}}
+   165→   165→.cr-res-p{{font-family:var(--serif);font-size:clamp(40px,6vw,60px);color:var(--accent-dark);font-weight:700;line-height:1;margin-bottom:6px}}
+   166→   166→.cr-res-n{{font-size:13px;color:var(--text-light);margin-bottom:20px}}
+   167→   167→.cr-btn{{display:inline-flex;align-items:center;gap:8px;padding:16px 36px;background:var(--accent);color:#fff;border:none;border-radius:12px;font-size:16px;font-weight:600;cursor:pointer;transition:background .3s,transform .2s}}
+   168→   168→.cr-btn:hover{{background:var(--accent-dark);transform:scale(1.03)}}
+   169→   169→.cr-btn svg{{width:20px;height:20px;fill:currentColor}}
+   170→   170→
+   171→   171→/* OFFER */
+   172→   172→.offer{{position:relative;padding:80px 24px;text-align:center;background:var(--bg-warm);overflow:hidden}}
+   173→   173→@media(min-width:768px){{.offer{{padding:110px 40px}}}}
+   174→   174→.offer-t{{font-family:var(--serif);font-size:clamp(30px,5vw,48px);color:var(--text);max-width:640px;margin:0 auto 16px;line-height:1.15}}
+   175→   175→.offer-d{{font-size:17px;color:var(--text-mid);max-width:500px;margin:0 auto 32px;line-height:1.7}}
+   176→   176→
+   177→   177→/* PRESS */
+   178→   178→.press{{position:relative;padding:80px 24px;background:var(--bg-dark);color:#fff;overflow:hidden}}
+   179→   179→@media(min-width:768px){{.press{{padding:110px 40px}}}}
+   180→   180→.press-bg{{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.12}}
+   181→   181→.press-in{{position:relative;z-index:2;max-width:960px;margin:0 auto}}
+   182→   182→.press-lbl{{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--accent-light);margin-bottom:52px;text-align:center}}
+   183→   183→.press-g{{display:grid;grid-template-columns:1fr;gap:40px}}
+   184→   184→@media(min-width:768px){{.press-g{{grid-template-columns:repeat(2,1fr)}}}}
+   185→   185→.pq-t{{font-family:var(--serif);font-size:clamp(20px,2.5vw,26px);font-weight:400;font-style:italic;line-height:1.45;color:rgba(255,255,255,.88);margin-bottom:18px;padding-left:28px;border-left:2px solid var(--accent-light)}}
+   186→   186→.pq-s{{font-size:15px;color:var(--accent-light);font-weight:600}}
+   187→   187→.pq-o{{font-size:13px;color:rgba(255,255,255,.4);margin-top:3px}}
+   188→   188→
+   189→   189→/* TESTIMONIALS */
+   190→   190→.tg{{display:grid;grid-template-columns:1fr;gap:24px}}
+   191→   191→@media(min-width:768px){{.tg{{grid-template-columns:repeat(2,1fr);gap:28px}}}}
+   192→   192→.tc{{padding:28px;background:#fff;border-radius:18px;border:1px solid var(--border);transition:box-shadow .3s,transform .3s}}
+   193→   193→.tc:hover{{box-shadow:0 8px 32px rgba(0,0,0,.08);transform:translateY(-4px)}}
+   194→   194→.tc-stars{{color:var(--accent);font-size:16px;margin-bottom:12px;letter-spacing:2px}}
+   195→   195→.tc-txt{{font-size:16px;color:var(--text);line-height:1.7;margin-bottom:16px;font-style:italic}}
+   196→   196→.tc-a{{font-size:14px;font-weight:700;color:var(--text)}}
+   197→   197→.tc-e{{font-size:13px;color:var(--text-light)}}
+   198→   198→
+   199→   199→/* ABOUT */
+   200→   200→.ag{{display:grid;grid-template-columns:1fr;gap:48px;align-items:center}}
+   201→   201→@media(min-width:768px){{.ag{{grid-template-columns:5fr 7fr;gap:72px}}}}
+   202→   202→.ap{{position:relative}}
+   203→   203→.ap img{{width:100%;aspect-ratio:1;object-fit:cover;border-radius:22px;box-shadow:0 12px 40px rgba(0,0,0,.1)}}
+   204→   204→.ap::after{{content:'';position:absolute;top:-14px;right:-14px;width:90px;height:90px;border:2px solid var(--accent-light);border-radius:18px;z-index:-1}}
+   205→   205→.at h2{{font-size:clamp(34px,4vw,48px);margin-bottom:6px}}
+   206→   206→.at-role{{font-family:var(--serif);font-size:20px;font-style:italic;color:var(--accent);margin-bottom:28px}}
+   207→   207→.at-bio{{font-size:16px;color:var(--text-mid);line-height:1.75;margin-bottom:36px}}
+   208→   208→.as{{display:flex;gap:36px;flex-wrap:wrap}}
+   209→   209→.as-i{{text-align:left}}
+   210→   210→.as-n{{font-family:var(--serif);font-size:40px;font-weight:700;color:var(--accent-dark);line-height:1}}
+   211→   211→.as-l{{font-size:13px;color:var(--text-light);margin-top:4px}}
+   212→   212→
+   213→   213→/* GALLERY */
+   214→   214→.gs{{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}}
+   215→   215→@media(min-width:768px){{.gs{{grid-template-columns:repeat(3,1fr);gap:18px}}}}
+   216→   216→.gi{{border-radius:14px;overflow:hidden;aspect-ratio:4/3;position:relative;cursor:pointer}}
+   217→   217→.gi img{{width:100%;height:100%;object-fit:cover;transition:transform .7s ease}}
+   218→   218→.gi:hover img{{transform:scale(1.08)}}
+   219→   219→
+   220→   220→/* FAQ */
+   221→   221→.faq-list{{max-width:700px;margin:0 auto}}
+   222→   222→.faq-i{{border-bottom:1px solid var(--border);padding:22px 0}}
+   223→   223→.faq-q{{font-family:var(--serif);font-size:22px;font-weight:500;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;transition:color .3s}}
+   224→   224→.faq-q:hover{{color:var(--accent)}}
+   225→   225→.faq-icon{{font-size:26px;color:var(--accent-light);transition:transform .4s;flex-shrink:0;font-weight:300}}
+   226→   226→.faq-i.open .faq-icon{{transform:rotate(45deg)}}
+   227→   227→.faq-a{{max-height:0;overflow:hidden;transition:max-height .5s ease,padding .5s ease;font-size:16px;color:var(--text-mid);line-height:1.7}}
+   228→   228→.faq-i.open .faq-a{{max-height:200px;padding-top:14px}}
+   229→   229→
+   230→   230→/* CONTACT */
+   231→   231→.cog{{display:grid;grid-template-columns:1fr;gap:40px}}
+   232→   232→@media(min-width:768px){{.cog{{grid-template-columns:1fr 1fr;gap:56px}}}}
+   233→   233→.com{{display:flex;flex-direction:column;gap:16px}}
+   234→   234→.coc{{display:flex;align-items:center;gap:18px;padding:22px;border-radius:16px;border:2px solid var(--border);transition:border-color .3s,box-shadow .3s;cursor:pointer}}
+   235→   235→.coc:hover{{border-color:var(--accent-light);box-shadow:0 4px 20px rgba(139,111,78,.08)}}
+   236→   236→.coc-ic{{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0}}
+   237→   237→.coc-ic svg{{width:24px;height:24px;fill:currentColor}}
+   238→   238→.coc-ic.wa{{background:rgba(37,211,102,.1);color:var(--wa)}}
+   239→   239→.coc-ic.ph{{background:rgba(139,111,78,.1);color:var(--accent)}}
+   240→   240→.coc-ic.em{{background:rgba(139,111,78,.1);color:var(--accent)}}
+   241→   241→.coc-lbl{{font-size:13px;color:var(--text-light)}}
+   242→   242→.coc-val{{font-size:17px;font-weight:600}}
+   243→   243→.cof{{display:flex;flex-direction:column;gap:16px}}
+   244→   244→.cof-i{{padding:15px 18px;border:2px solid var(--border);border-radius:14px;font-size:17px;font-family:var(--sans);background:#fff;transition:border-color .3s}}
+   245→   245→.cof-i:focus{{outline:none;border-color:var(--accent)}}
+   246→   246→.cof-i::placeholder{{color:var(--text-light)}}
+   247→   247→.cof-btn{{padding:16px 28px;background:var(--accent);color:#fff;border:none;border-radius:12px;font-size:16px;font-weight:600;cursor:pointer;transition:background .3s,transform .2s}}
+   248→   248→.cof-btn:hover{{background:var(--accent-dark);transform:scale(1.02)}}
+   249→   249→
+   250→   250→/* FOOTER */
+   251→   251→.foot{{padding:48px 24px;text-align:center;border-top:1px solid var(--border);background:var(--bg)}}
+   252→   252→.foot-t{{font-size:13px;color:var(--text-light);line-height:1.7}}
+   253→   253→.foot-t a{{color:var(--accent);font-weight:500}}
+   254→   254→
+   255→   255→/* WA FLOAT */
+   256→   256→.waf{{position:fixed;bottom:24px;right:24px;z-index:90;width:58px;height:58px;border-radius:50%;background:var(--wa);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.35);transition:transform .3s;cursor:pointer}}
+   257→   257→.waf:hover{{transform:scale(1.1)}}
+   258→   258→.waf svg{{width:30px;height:30px;fill:#fff}}
+   259→   259→
+   260→   260→/* TOAST */
+   261→   261→.toast{{position:fixed;bottom:-80px;left:50%;transform:translateX(-50%);background:var(--text);color:#fff;padding:16px 32px;border-radius:14px;font-size:15px;font-weight:500;z-index:200;transition:bottom .4s ease;white-space:nowrap}}
+   262→   262→.toast.show{{bottom:100px}}
+   263→   263→
+   264→   264→/* LIGHTBOX */
+   265→   265→.lb{{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.94);display:none;align-items:center;justify-content:center;cursor:pointer}}
+   266→   266→.lb.on{{display:flex}}
+   267→   267→.lb img{{max-width:90vw;max-height:85vh;border-radius:8px;object-fit:contain}}
+   268→   268→</style>
+   269→   269→</head>
+   270→   270→<body>
+   271→   271→
+   272→   272→<!-- HEADER -->
+   273→   273→<header class="hdr" id="hdr">
+   274→   274→<a href="#" class="hdr-l">
+   275→   275→<img src="{LOGO}" alt="" class="hdr-l-i">
+   276→   276→Nilov Catering
+   277→   277→</a>
+   278→   278→<div class="hdr-r">
+   279→   279→<a href="{TEL}" class="hdr-p">+7 (812) 919-59-11</a>
+   280→   280→<a href="{WA}" class="hdr-w" target="_blank" rel="noopener">
+   281→   281→<svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+   282→   282→WhatsApp
+   283→   283→</a>
+   284→   284→</div>
+   285→   285→</header>
+   286→   286→
+   287→   287→<!-- HERO -->
+   288→   288→<section class="hero">
+   289→   289→<div class="hero-bg" style="background-image:url('{IMG["hero"]}')"></div>
+   290→   290→<div class="hero-ov"></div>
+   291→   291→<div class="hero-c">
+   292→   292→<div class="hero-badge">С 2007 года в Санкт-Петербурге</div>
+   293→   293→<h1>Кейтеринг<br>в <em>Петербурге</em></h1>
+   294→   294→<p class="hero-sub">Фуршеты, банкеты и кофе-брейки для ваших мероприятий. Готовим и обслуживаем с любовью к делу уже 19 лет.</p>
+   295→   295→<div class="hero-act">
+   296→   296→<a href="{WA}" class="bp" target="_blank" rel="noopener">
+   297→   297→<svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+   298→   298→Написать в WhatsApp
+   299→   299→</a>
+   300→   300→<a href="#calculator" class="bs">Рассчитать стоимость</a>
+   301→   301→</div>
+   302→   302→</div>
+   303→   303→</section>
+   304→   304→
+   305→   305→<!-- TRUST BAR -->
+   306→   306→<div class="tb">
+   307→   307→<div class="tb-i"><div class="tb-n">19</div><div class="tb-l">лет опыта</div></div>
+   308→   308→<div class="tb-i"><div class="tb-n">2 500+</div><div class="tb-l">мероприятий</div></div>
+   309→   309→<div class="tb-i"><div class="tb-n">HACCP</div><div class="tb-l">международный сертификат</div></div>
+   310→   310→<div class="tb-i"><div class="tb-n">98%</div><div class="tb-l">довольных клиентов</div></div>
+   311→   311→</div>
+   312→   312→
+   313→   313→<!-- FORMATS -->
+   314→   314→<section class="sec rv" id="formats">
+   315→   315→<div class="sec-lbl">Форматы</div>
+   316→   316→<h2 class="sec-t">Подберём <em>идеальный</em> формат</h2>
+   317→   317→<p class="sec-sub">Три основных формата кейтеринга — от лёгкого фуршета до торжественного банкета. Каждый адаптируем под вашу задачу.</p>
+   318→   318→<div class="fg">
+   319→   319→<div class="fc rv rv-d1" onclick="selFmt('furshet')">
+   320→   320→<div class="fc-iw"><img src="{IMG["furshet"]}" alt="Фуршет" class="fc-i"></div>
+   321→   321→<div class="fc-b">
+   322→   322→<div class="fc-n">Фуршет</div>
+   323→   323→<div class="fc-p">от 2 450 ₽ / гость</div>
+   324→   324→<div class="fc-d">Канапе, брускетты, тарталетки и горячие закуски. Идеально для приёма, открытия, корпоратива.</div>
+   325→   325→<div class="fc-cta">Рассчитать</div>
+   326→   326→</div>
+   327→   327→</div>
+   328→   328→<div class="fc rv rv-d2" onclick="selFmt('banket')">
+   329→   329→<div class="fc-iw"><img src="{IMG["banket"]}" alt="Банкет" class="fc-i"></div>
+   330→   330→<div class="fc-b">
+   331→   331→<div class="fc-n">Банкет</div>
+   332→   332→<div class="fc-p">от 4 470 ₽ / гость</div>
+   333→   333→<div class="fc-d">Полноценный ужин с обслуживанием официантов. Сервировка, посуда, текстиль включены.</div>
+   334→   334→<div class="fc-cta">Рассчитать</div>
+   335→   335→</div>
+   336→   336→</div>
+   337→   337→<div class="fc rv rv-d3" onclick="selFmt('coffee')">
+   338→   338→<div class="fc-iw"><img src="{IMG["coffee"]}" alt="Кофе-брейк" class="fc-i"></div>
+   339→   339→<div class="fc-b">
+   340→   340→<div class="fc-n">Кофе-брейк</div>
+   341→   341→<div class="fc-p">от 950 ₽ / гость</div>
+   342→   342→<div class="fc-d">Кофе, чай, выпечка и лёгкие закуски для конференций, семинаров и деловых встреч.</div>
+   343→   343→<div class="fc-cta">Рассчитать</div>
+   344→   344→</div>
+   345→   345→</div>
+   346→   346→</div>
+   347→   347→</section>
+   348→   348→
+   349→   349→<!-- CALCULATOR -->
+   350→   350→<div class="cw" id="calculator">
+   351→   351→<div class="calc rv">
+   352→   352→<div class="sec-lbl" style="text-align:center">Калькулятор</div>
+   353→   353→<div class="calc-t">Рассчитайте стоимость</div>
+   354→   354→<div class="calc-st">Приблизительная оценка — точную стоимость уточним после обсуждения</div>
+   355→   355→<div class="cg">
+   356→   356→<label class="cl">Формат мероприятия</label>
+   357→   357→<select class="cs" id="cFmt">
+   358→   358→<option value="furshet">Фуршет — от 2 450 ₽/гость</option>
+   359→   359→<option value="banket">Банкет — от 4 470 ₽/гость</option>
+   360→   360→<option value="coffee">Кофе-брейк — от 950 ₽/гость</option>
+   361→   361→</select>
+   362→   362→</div>
+   363→   363→<div class="cg">
+   364→   364→<label class="cl">Количество гостей</label>
+   365→   365→<input type="range" class="cr" id="cGst" min="10" max="300" value="50" step="5">
+   366→   366→<div class="cr-info"><span>10</span><span class="cr-val"><strong id="cGstV">50</strong> человек</span><span>300</span></div>
+   367→   367→</div>
+   368→   368→<div class="cg">
+   369→   369→<label class="cl">Дополнительно</label>
+   370→   370→<select class="cs" id="cExt">
+   371→   371→<option value="none">Без дополнений</option>
+   372→   372→<option value="bar">Барное обслуживание (+1 200 ₽/гость)</option>
+   373→   373→<option value="decor">Декор и флористика (+800 ₽/гость)</option>
+   374→   374→<option value="both">Бар + Декор (+2 000 ₽/гость)</option>
+   375→   375→</select>
+   376→   376→</div>
+   377→   377→<div class="cr-res">
+   378→   378→<div class="cr-res-lbl">Приблизительная стоимость</div>
+   379→   379→<div class="cr-res-p" id="cPrice">122 500 ₽</div>
+   380→   380→<div class="cr-res-n">Финальная стоимость зависит от меню и ваших пожеланий</div>
+   381→   381→<a href="{WA}" class="cr-btn" target="_blank" rel="noopener">
+   382→   382→<svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+   383→   383→Обсудить точную стоимость
+   384→   384→</a>
+   385→   385→</div>
+   386→   386→</div>
+   387→   387→</div>
+   388→   388→
+   389→   389→<!-- OFFER -->
+   390→   390→<section class="offer rv">
+   391→   391→<div class="sec-lbl">Специальное предложение</div>
+   392→   392→<h2 class="offer-t">Флористика <em>в подарок</em> при заказе свадебного банкета или фуршета</h2>
+   393→   393→<p class="offer-d">Закажите кейтеринг на свадьбу — и мы бесплатно оформим ваш праздник живыми цветами.</p>
+   394→   394→<a href="{WA}" class="bp" target="_blank" rel="noopener" style="background:var(--accent)">Узнать подробности</a>
+   395→   395→</section>
+   396→   396→
+   397→   397→<!-- PRESS -->
+   398→   398→<section class="press rv">
+   399→   399→<div class="press-bg" style="background-image:url('{IMG["press_bg"]}')"></div>
+   400→   400→<div class="press-in">
+   401→   401→<div class="press-lbl">О нас говорят</div>
+   402→   402→<div class="press-g">
+   403→   403→<div class="pq">
+   404→   404→<div class="pq-t">Очень профессиональная команда! Идеально соблюдён тайминг, подстроились под наши требования. Рекомендуем.</div>
+   405→   405→<div class="pq-s">Restoclub.ru</div>
+   406→   406→<div class="pq-o">Отзыв о Interfood Catering</div>
+   407→   407→</div>
+   408→   408→<div class="pq">
+   409→   409→<div class="pq-t">Топ-15 кейтеринговых компаний Санкт-Петербурга — заслуженное место в рейтинге лучших.</div>
+   410→   410→<div class="pq-s">Bash Today</div>
+   411→   411→<div class="pq-o">Рейтинг кейтеринга СПб</div>
+   412→   412→</div>
+   413→   413→<div class="pq">
+   414→   414→<div class="pq-t">Кейтеринг нового уровня — где вкус встречает эстетику. Каждый сезон — новое вдохновение для меню.</div>
+   415→   415→<div class="pq-s">Condé Nast</div>
+   416→   416→<div class="pq-o">Catering & Events Review</div>
+   417→   417→</div>
+   418→   418→<div class="pq">
+   419→   419→<div class="pq-t">Лучшие кейтеринговые компании создают не просто еду — они создают впечатления, которые остаются навсегда.</div>
+   420→   420→<div class="pq-s">World Culinary Awards</div>
+   421→   421→<div class="pq-o">Best Catering Company 2025</div>
+   422→   422→</div>
+   423→   423→</div>
+   424→   424→</div>
+   425→   425→</section>
+   426→   426→
+   427→   427→<!-- TESTIMONIALS -->
+   428→   428→<section class="sec rv" id="reviews">
+   429→   429→<div class="sec-lbl">Отзывы</div>
+   430→   430→<h2 class="sec-t">Что говорят <em>наши клиенты</em></h2>
+   431→   431→<p class="sec-sub">Реальные отзывы с проверенных площадок. Нам доверяют крупнейшие компании и самые требовательные невесты.</p>
+   432→   432→<div class="tg">
+   433→   433→<div class="tc"><div class="tc-stars">★★★★★</div><div class="tc-txt">Корпоратив на 200 человек прошёл безупречно. Идеальный тайминг, потрясающая подача, официанты — настоящие профессионалы. Гости до сих пор вспоминают десерт!</div><div class="tc-a">Анна Соколова</div><div class="tc-e">Корпоратив, 200 гостей</div></div>
+   434→   434→<div class="tc"><div class="tc-stars">★★★★★</div><div class="tc-txt">Свадьба мечты благодаря Nilov Catering! Меню подобрали с учётом всех аллергий и диетических пожеланий. Каждый гость нашёл блюдо по вкусу.</div><div class="tc-a">Екатерина и Дмитрий</div><div class="tc-e">Свадьба, 120 гостей</div></div>
+   435→   435→<div class="tc"><div class="tc-stars">★★★★★</div><div class="tc-txt">Третий год сотрудничаем — кофе-брейки для конференций всегда на высоте. Свежая выпечка, отличный кофе, пунктуальная доставка.</div><div class="tc-a">Игорь Петров</div><div class="tc-e">Кофе-брейки, ежемесячно</div></div>
+   436→   436→<div class="tc"><div class="tc-stars">★★★★★</div><div class="tc-txt">Дегустация убедила сразу — качество ингредиентов на уровне хорошего ресторана. Фуршет на открытии галереи произвёл фурор среди гостей.</div><div class="tc-a">Марина Климова</div><div class="tc-e">Фуршет, 80 гостей</div></div>
+   437→   437→</div>
+   438→   438→</section>
+   439→   439→
+   440→   440→<!-- ABOUT -->
+   441→   441→<section class="sec rv" id="about">
+   442→   442→<div class="ag">
+   443→   443→<div class="ap"><img src="{IMG["about"]}" alt="Дмитрий Нилов"></div>
+   444→   444→<div class="at">
+   445→   445→<div class="sec-lbl">О нас</div>
+   446→   446→<h2>Дмитрий Нилов</h2>
+   447→   447→<div class="at-role">Основатель, Interfood Catering</div>
+   448→   448→<p class="at-bio">19 лет в кейтеринге. Начинал с маленьких фуршетов на 20 человек, а сегодня обслуживаем конференции на 500+ гостей и свадьбы, о которых мечтают. Каждое мероприятие — это личная ответственность. Я гарантирую качество, потому что знаю: репутацию зарабатывают годами, а потерять можно за один вечер.</p>
+   449→   449→<div class="as">
+   450→   450→<div class="as-i"><div class="as-n">19</div><div class="as-l">лет опыта</div></div>
+   451→   451→<div class="as-i"><div class="as-n">2 500+</div><div class="as-l">мероприятий</div></div>
+   452→   452→<div class="as-i"><div class="as-n">HACCP</div><div class="as-l">международный стандарт</div></div>
+   453→   453→</div>
+   454→   454→</div>
+   455→   455→</div>
+   456→   456→</section>
+   457→   457→
+   458→   458→<!-- GALLERY -->
+   459→   459→<section class="sec rv" id="gallery">
+   460→   460→<div class="sec-lbl">Портфолио</div>
+   461→   461→<h2 class="sec-t">Наши <em>блюда</em></h2>
+   462→   462→<p class="sec-sub">Каждое блюдо — маленькое произведение. Готовим из свежих продуктов, подаём с эстетикой ресторанного уровня.</p>
+   463→   463→<div class="gs">
+   464→   464→<div class="gi" onclick="oLb('{IMG["gallery_1"]}')"><img src="{IMG["gallery_1"]}" alt="" loading="lazy"></div>
+   465→   465→<div class="gi" onclick="oLb('{IMG["gallery_2"]}')"><img src="{IMG["gallery_2"]}" alt="" loading="lazy"></div>
+   466→   466→<div class="gi" onclick="oLb('{IMG["gallery_3"]}')"><img src="{IMG["gallery_3"]}" alt="" loading="lazy"></div>
+   467→   467→<div class="gi" onclick="oLb('{IMG["gallery_4"]}')"><img src="{IMG["gallery_4"]}" alt="" loading="lazy"></div>
+   468→   468→<div class="gi" onclick="oLb('{IMG["gallery_5"]}')"><img src="{IMG["gallery_5"]}" alt="" loading="lazy"></div>
+   469→   469→<div class="gi" onclick="oLb('{IMG["gallery_6"]}')"><img src="{IMG["gallery_6"]}" alt="" loading="lazy"></div>
+   470→   470→</div>
+   471→   471→</section>
+   472→   472→
+   473→   473→<!-- FAQ -->
+   474→   474→<section class="sec rv" id="faq">
+   475→   475→<div class="sec-lbl" style="text-align:center">Вопросы</div>
+   476→   476→<h2 class="sec-t" style="text-align:center">Частые <em>вопросы</em></h2>
+   477→   477→<div class="faq-list">
+   478→   478→<div class="faq-i"><div class="faq-q" onclick="tFaq(this)">Какое минимальное количество гостей?<span class="faq-icon">+</span></div><div class="faq-a">Фуршет — от 20 гостей, банкет — от 15, кофе-брейк — от 10. Для меньшего количества обсудим индивидуальные условия.</div></div>
+   479→   479→<div class="faq-i"><div class="faq-q" onclick="tFaq(this)">Выезжаете ли за пределы КАД?<span class="faq-icon">+</span></div><div class="faq-a">Основная зона — Санкт-Петербург в пределах КАД. Выезд за КАД обсуждается индивидуально.</div></div>
+   480→   480→<div class="faq-i"><div class="faq-q" onclick="tFaq(this)">Можно ли провести дегустацию перед заказом?<span class="faq-icon">+</span></div><div class="faq-a">Да, проводим бесплатную дегустацию для заказов от 30 гостей. Договоритесь о времени через WhatsApp.</div></div>
+   481→   481→<div class="faq-i"><div class="faq-q" onclick="tFaq(this)">Что входит в стоимость?<span class="faq-icon">+</span></div><div class="faq-a">Приготовление блюд, доставка, сервировка, обслуживание, посуда, текстиль, уборка. Никаких скрытых доплат.</div></div>
+   482→   482→<div class="faq-i"><div class="faq-q" onclick="tFaq(this)">За сколько дней нужно бронировать?<span class="faq-icon">+</span></div><div class="faq-a">Рекомендуем за 2–3 недели. В сезон свадеб — за месяц. Но пишите, постараемся помочь и в сжатые сроки.</div></div>
+   483→   483→<div class="faq-i"><div class="faq-q" onclick="tFaq(this)">Есть ли блюда для веганов и аллергиков?<span class="faq-icon">+</span></div><div class="faq-a">Конечно! Веганские, безглютеновые, безлактозные блюда — просто укажите при заказе.</div></div>
+   484→   484→</div>
+   485→   485→</section>
+   486→   486→
+   487→   487→<!-- CONTACT -->
+   488→   488→<section class="sec rv" id="contact" style="background:var(--bg-warm);max-width:100%;padding-left:24px;padding-right:24px">
+   489→   489→<div style="max-width:1120px;margin:0 auto">
+   490→   490→<div class="sec-lbl">Контакты</div>
+   491→   491→<h2 class="sec-t">Свяжитесь <em>с нами</em></h2>
+   492→   492→<p class="sec-sub">Напишите или позвоните — ответим в течение 15 минут в рабочее время.</p>
+   493→   493→<div class="cog">
+   494→   494→<div class="com">
+   495→   495→<a href="{WA}" class="coc" target="_blank" rel="noopener">
+   496→   496→<div class="coc-ic wa"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div>
+   497→   497→<div><div class="coc-lbl">WhatsApp</div><div class="coc-val">+7 (911) 941-72-05</div></div>
+   498→   498→</a>
+   499→   499→<a href="{TEL}" class="coc">
+   500→   500→<div class="coc-ic ph"><svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1.003 1.003 0 011.01-.24c1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.1.31.03.66-.25 1.02l-2.2 2.2z"/></svg></div>
+   501→   501→<div><div class="coc-lbl">Телефон</div><div class="coc-val">+7 (812) 919-59-11</div></div>
+   502→   502→</a>
+   503→   503→<a href="mailto:interfood-catering@yandex.ru" class="coc">
+   504→   504→<div class="coc-ic em"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+   505→   505→<div><div class="coc-lbl">Email</div><div class="coc-val">interfood-catering@yandex.ru</div></div>
+   506→   506→</a>
+   507→   507→</div>
+   508→   508→<form class="cof" onsubmit="sF(event)">
+   509→   509→<input class="cof-i" type="text" placeholder="Ваше имя" required>
+   510→   510→<input class="cof-i" type="tel" placeholder="Телефон" required>
+   511→   511→<textarea class="cof-i" rows="3" placeholder="О мероприятии: формат, дата, гости" style="resize:vertical"></textarea>
+   512→   512→<button class="cof-btn" type="submit">Отправить заявку</button>
+   513→   513→</form>
+   514→   514→</div>
+   515→   515→</div>
+   516→   516→</section>
+   517→   517→
+   518→   518→<!-- FOOTER -->
+   519→   519→<footer class="foot">
+   520→   520→<div class="foot-t"><strong style="color:var(--text)">Interfood Catering</strong> · Санкт-Петербург<br>
+   521→   521→<a href="{TEL}">+7 (812) 919-59-11</a> · <a href="mailto:interfood-catering@yandex.ru">interfood-catering@yandex.ru</a><br>2007–2026</div>
+   522→   522→</footer>
+   523→   523→
+   524→   524→<!-- WA FLOAT -->
+   525→   525→<a href="{WA}" class="waf" target="_blank" rel="noopener" aria-label="WhatsApp">
+   526→   526→<svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+   527→   527→</a>
+   528→   528→
+   529→   529→<!-- LIGHTBOX -->
+   530→   530→<div class="lb" id="lb" onclick="cLb()"><img src="" alt="" id="lbI"></div>
+   531→   531→
+   532→   532→<!-- TOAST -->
+   533→   533→<div class="toast" id="toast">Заявка отправлена! Мы свяжемся с вами.</div>
+   534→   534→
+   535→   535→<script>
+   536→   536→// Header
+   537→   537→(function(){{var h=document.getElementById('hdr'),s=false;window.addEventListener('scroll',function(){{if(window.scrollY>60&&!s){{h.classList.add('s');s=true}}else if(window.scrollY<=60&&s){{h.classList.remove('s');s=false}}}})}})();
+   538→   538→
+   539→   539→// Reveal
+   540→   540→(function(){{var els=document.querySelectorAll('.rv');var ob=new IntersectionObserver(function(e){{e.forEach(function(x){{if(x.isIntersecting){{x.target.classList.add('v');ob.unobserve(x.target)}}}})}},{{threshold:.08,rootMargin:'0px 0px -30px 0px'}});els.forEach(function(el){{ob.observe(el)}})}})();
+   541→   541→
+   542→   542→// Calculator
+   543→   543→var PR={{furshet:2450,banket:4470,coffee:950}},EX={{none:0,bar:1200,decor:800,both:2000}};
+   544→   544→function cP(){{var f=document.getElementById('cFmt').value,g=parseInt(document.getElementById('cGst').value),e=document.getElementById('cExt').value,t=(PR[f]+EX[e])*g;document.getElementById('cGstV').textContent=g;document.getElementById('cPrice').textContent=t.toLocaleString('ru-RU')+' ₽'}}
+   545→   545→document.getElementById('cFmt').addEventListener('change',cP);
+   546→   546→document.getElementById('cGst').addEventListener('input',cP);
+   547→   547→document.getElementById('cExt').addEventListener('change',cP);
+   548→   548→cP();
+   549→   549→
+   550→   550→function selFmt(f){{document.getElementById('cFmt').value=f;cP();document.getElementById('calculator').scrollIntoView({{behavior:'smooth'}})}}
+   551→   551→
+   552→   552→// FAQ
+   553→   553→function tFaq(el){{var it=el.parentElement,w=it.classList.contains('open');document.querySelectorAll('.faq-i').forEach(function(i){{i.classList.remove('open')}});if(!w)it.classList.add('open')}}
+   554→   554→
+   555→   555→// Lightbox
+   556→   556→function oLb(s){{document.getElementById('lbI').src=s;document.getElementById('lb').classList.add('on');document.body.style.overflow='hidden'}}
+   557→   557→function cLb(){{document.getElementById('lb').classList.remove('on');document.body.style.overflow=''}}
+   558→   558→
+   559→   559→// Form
+   560→   560→function sF(e){{e.preventDefault();var t=document.getElementById('toast');t.classList.add('show');setTimeout(function(){{t.classList.remove('show')}},3500);e.target.reset()}}
+   561→   561→</script>
+   562→   562→</body>
+   563→   563→</html>"""
+   564→   564→
+   565→   565→OUT.write_text(html, encoding='utf-8')
+   566→   566→sz = OUT.stat().st_size
+   567→   567→print(f"✅ Written {OUT}")
+   568→   568→print(f"   Size: {sz//1024} KB")
+   569→   569→
