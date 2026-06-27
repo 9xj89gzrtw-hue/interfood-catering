@@ -1,4 +1,16 @@
-<!DOCTYPE html>
+#!/usr/bin/env python3
+"""
+Nilov Catering v4 — World-class redesign
+Inspired by: Peter Callahan, Olivier Cheng, Great Performances,
+             24 Carrots, Ridgewells, Pinch Food Design
+Self-contained · Telegram/iMessage compatible · June 2026
+"""
+import os
+
+OUT = "/home/z/my-project/download/catering_inspiration_nilov.html"
+
+def build():
+    html = r"""<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
@@ -1085,4 +1097,12 @@ p{margin:0 0 0.5em}
 })();
 </script>
 </body>
-</html>
+</html>"""
+
+    with open(OUT, "w", encoding="utf-8") as fh:
+        fh.write(html)
+    print(f"✅ Written {len(html):,} chars → {OUT}")
+
+
+if __name__ == "__main__":
+    build()
