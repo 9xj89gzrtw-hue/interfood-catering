@@ -1,0 +1,610 @@
+   500→   500→  margin-bottom:5px;display:block;letter-spacing:0.5px;text-transform:uppercase;
+   501→   501→}
+   502→   502→.form-input{
+   503→   503→  width:100%;padding:12px 16px;
+   504→   504→  background:var(--cream);border:1.5px solid rgba(26,21,16,0.06);
+   505→   505→  border-radius:var(--radius-sm);font-size:15px;
+   506→   506→  color:var(--text);font-weight:600;font-family:var(--sans);
+   507→   507→}
+   508→   508→.form-input:focus{outline:none;border-color:var(--terra);box-shadow:0 0 0 3px var(--terra-glow)}
+   509→   509→.form-submit{
+   510→   510→  width:100%;padding:16px;background:var(--terra);color:#fff;
+   511→   511→  border:none;border-radius:999px;
+   512→   512→  font-size:15px;font-weight:900;cursor:pointer;
+   513→   513→  transition:transform .12s;font-family:var(--sans);letter-spacing:0.3px;
+   514→   514→}
+   515→   515→.form-submit:active{transform:scale(.96)}
+   516→   516→.form-note{font-size:11px;color:var(--text-light);text-align:center;margin-top:12px;font-weight:600;line-height:1.5}
+   517→   517→
+   518→   518→/* ─── TRUST ROW ─── */
+   519→   519→.trust-row{
+   520→   520→  display:flex;gap:12px;flex-wrap:wrap;justify-content:center;align-items:center;
+   521→   521→  margin-top:32px;
+   522→   522→}
+   523→   523→.trust-badge{
+   524→   524→  display:flex;align-items:center;gap:8px;
+   525→   525→  padding:8px 16px;background:var(--sage-light);border-radius:999px;
+   526→   526→  font-size:11px;font-weight:800;color:var(--sage);letter-spacing:0.3px;
+   527→   527→}
+   528→   528→.trust-badge svg{width:14px;height:14px;flex-shrink:0}
+   529→   529→
+   530→   530→/* ─── FOOTER ─── */
+   531→   531→.site-footer{
+   532→   532→  background:var(--bg-deep);color:#fff;
+   533→   533→  padding:48px 20px calc(80px + env(safe-area-inset-bottom,0px));
+   534→   534→  text-align:center;
+   535→   535→}
+   536→   536→.footer-inner{max-width:640px;margin:0 auto}
+   537→   537→.footer-brand{font-family:var(--serif);font-size:28px;font-weight:400;color:var(--gold-light);margin-bottom:8px}
+   538→   538→.footer-tagline{font-size:14px;color:rgba(255,255,255,0.45);margin-bottom:24px;line-height:1.65}
+   539→   539→.footer-links{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin-bottom:24px}
+   540→   540→.footer-links a{font-size:13px;color:rgba(255,255,255,0.4);font-weight:600;transition:color .2s}
+   541→   541→.footer-links a:hover{color:var(--terra)}
+   542→   542→.footer-note{
+   543→   543→  font-size:11px;color:rgba(255,255,255,0.2);
+   544→   544→  line-height:1.7;padding-top:20px;
+   545→   545→  border-top:1px solid rgba(255,255,255,0.06);
+   546→   546→}
+   547→   547→
+   548→   548→/* ─── BOTTOM BAR ─── */
+   549→   549→.bottom-bar{
+   550→   550→  position:fixed;bottom:0;left:0;right:0;z-index:200;
+   551→   551→  background:rgba(14,11,8,0.95);
+   552→   552→  padding:8px 12px calc(8px + env(safe-area-inset-bottom,0px));
+   553→   553→  display:flex;gap:8px;
+   554→   554→  border-top:1px solid rgba(191,90,60,0.1);
+   555→   555→}
+   556→   556→.bb{
+   557→   557→  flex:1;display:inline-flex;align-items:center;justify-content:center;gap:5px;
+   558→   558→  min-height:44px;border-radius:var(--radius-sm);
+   559→   559→  font-size:13px;font-weight:900;
+   560→   560→  text-decoration:none;border:none;cursor:pointer;
+   561→   561→  transition:transform .12s;
+   562→   562→}
+   563→   563→.bb:active{transform:scale(.96)}
+   564→   564→.bb.tg{background:#0088cc;color:#fff}
+   565→   565→.bb.call{background:var(--sage);color:#fff}
+   566→   566→.bb.calc{background:var(--gold);color:var(--bg-deep)}
+   567→   567→
+   568→   568→/* ─── ANIMATIONS ─── */
+   569→   569→@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+   570→   570→.event-card,.dish,.pkg,.review,.calc-box,.form-box,.gallery-card,.tl-item{animation:fadeUp .5s ease both}
+   571→   571→@media(prefers-reduced-motion:reduce){
+   572→   572→  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+   573→   573→}
+   574→   574→.sep{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(26,21,16,0.08),transparent);margin:0}
+   575→   575→</style>
+   576→   576→</head>
+   577→   577→<body>
+   578→   578→
+   579→   579→<!-- ═══════ HEADER (floating, minimal) ═══════ -->
+   580→   580→<header class="hdr">
+   581→   581→  <div class="hdr-inner">
+   582→   582→    <div class="hdr-left">
+   583→   583→      <span class="hdr-logo">N</span>
+   584→   584→      <span class="hdr-brand">Nilov<small>Кейтеринг · СПб</small></span>
+   585→   585→    </div>
+   586→   586→    <a href="#order" class="hdr-cta">Оставить заявку</a>
+   587→   587→  </div>
+   588→   588→</header>
+   589→   589→
+   590→   590→<!-- ═══════ HERO (cinematic, Peter Callahan / Olivier Cheng style) ═══════ -->
+   591→   591→<section class="hero" id="top">
+   592→   592→  <div class="hero-bg"></div>
+   593→   593→  <div class="hero-grain"></div>
+   594→   594→  <div class="hero-fade"></div>
+   595→   595→  <div class="hero-content">
+   596→   596→    <div class="hero-press">
+   597→   597→      <span class="hero-press-quote">«Безупречный вкус и внимание к деталям»</span>
+   598→   598→      <span class="hero-press-src">Яндекс.Карты · 4.7 ★</span>
+   599→   599→    </div>
+   600→   600→    <h1>Праздник,<br>который <em>помнят</em></h1>
+   601→   601→    <p class="hero-sub">Кейтеринг в Санкт-Петербурге. Свадьбы, корпоративы, гала-ужины — от 2 800 ₽ за гостя.</p>
+   602→   602→    <div class="hero-actions">
+   603→   603→      <a href="#order" class="btn btn-terra">Рассчитать стоимость</a>
+   604→   604→      <a href="#events" class="btn btn-ghost">Смотреть мероприятия</a>
+   605→   605→    </div>
+   606→   606→    <div class="hero-stats">
+   607→   607→      <div class="hero-stat">
+   608→   608→        <div class="hero-stat-num" id="statEvents">500+</div>
+   609→   609→        <div class="hero-stat-label">событий</div>
+   610→   610→      </div>
+   611→   611→      <div class="hero-stat">
+   612→   612→        <div class="hero-stat-num">8</div>
+   613→   613→        <div class="hero-stat-label">лет на рынке</div>
+   614→   614→      </div>
+   615→   615→      <div class="hero-stat">
+   616→   616→        <div class="hero-stat-num">4.7</div>
+   617→   617→        <div class="hero-stat-label">★ Яндекс</div>
+   618→   618→      </div>
+   619→   619→      <div class="hero-stat">
+   620→   620→        <div class="hero-stat-num">30</div>
+   621→   621→        <div class="hero-stat-label">мин — расчёт</div>
+   622→   622→      </div>
+   623→   623→    </div>
+   624→   624→  </div>
+   625→   625→</section>
+   626→   626→
+   627→   627→<!-- ═══════ EVENT TYPES (organised by event, not food) ═══════ -->
+   628→   628→<section class="s" id="events">
+   629→   629→  <div class="s-head center">
+   630→   630→    <span class="s-eyebrow">Форматы</span>
+   631→   631→    <h2>Какой у вас праздник?</h2>
+   632→   632→    <p>Выберите формат — увидите меню, цены и примеры.</p>
+   633→   633→  </div>
+   634→   634→  <div class="events-grid">
+   635→   635→    <div class="event-card" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">
+   636→   636→      <div class="event-card-bg" style="background:linear-gradient(135deg,#bf5a3c 0%,#c9a24d 50%,#f0dca8 100%)"></div>
+   637→   637→      <div class="event-card-overlay"></div>
+   638→   638→      <div class="event-card-content">
+   639→   639→        <h3>Свадьба</h3>
+   640→   640→        <p>Банкет, фуршет, выездная церемония</p>
+   641→   641→        <span class="price-hint">от 3 500 ₽/гость</span>
+   642→   642→      </div>
+   643→   643→    </div>
+   644→   644→    <div class="event-card" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">
+   645→   645→      <div class="event-card-bg" style="background:linear-gradient(135deg,#0e0b08 0%,#6b7a5e 60%,#e8ede3 100%)"></div>
+   646→   646→      <div class="event-card-overlay"></div>
+   647→   647→      <div class="event-card-content">
+   648→   648→        <h3>Корпоратив</h3>
+   649→   649→        <p>Командный ужин, конференция, новый год</p>
+   650→   650→        <span class="price-hint">от 2 800 ₽/гость</span>
+   651→   651→      </div>
+   652→   652→    </div>
+   653→   653→    <div class="event-card" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">
+   654→   654→      <div class="event-card-bg" style="background:linear-gradient(135deg,#c9a24d 0%,#bf5a3c 50%,#0e0b08 100%)"></div>
+   655→   655→      <div class="event-card-overlay"></div>
+   656→   656→      <div class="event-card-content">
+   657→   657→        <h3>Фуршет</h3>
+   658→   658→        <p>Открытие, презентация, приём</p>
+   659→   659→        <span class="price-hint">от 1 800 ₽/гость</span>
+   660→   660→      </div>
+   661→   661→    </div>
+   662→   662→    <div class="event-card" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">
+   663→   663→      <div class="event-card-bg" style="background:linear-gradient(135deg,#1a1510 0%,#bf5a3c 40%,#f0dca8 100%)"></div>
+   664→   664→      <div class="event-card-overlay"></div>
+   665→   665→      <div class="event-card-content">
+   666→   666→        <h3>Гала-ужин</h3>
+   667→   667→        <p>Юбилей, благотворительный вечер, премия</p>
+   668→   668→        <span class="price-hint">от 6 000 ₽/гость</span>
+   669→   669→      </div>
+   670→   670→    </div>
+   671→   671→  </div>
+   672→   672→</section>
+   673→   673→
+   674→   674→<hr class="sep">
+   675→   675→
+   676→   676→<!-- ═══════ HOW IT WORKS (timeline) ═══════ -->
+   677→   677→<section class="s" id="how">
+   678→   678→  <div class="s-head center">
+   679→   679→    <span class="s-eyebrow">Как мы работаем</span>
+   680→   680→    <h2>От заявки до праздника</h2>
+   681→   681→    <p>Без долгих согласований. Без стресса. Три простых шага.</p>
+   682→   682→  </div>
+   683→   683→  <div class="timeline">
+   684→   684→    <div class="tl-item">
+   685→   685→      <div class="tl-dot"></div>
+   686→   686→      <h3>Расскажите о мероприятии</h3>
+   687→   687→      <p>Заполните короткую форму — сколько гостей, какой формат, когда. Мы перезвоним за 30 минут и уточним детали. Никакого спама — только конкретика.</p>
+   688→   688→    </div>
+   689→   689→    <div class="tl-item">
+   690→   690→      <div class="tl-dot"></div>
+   691→   691→      <h3>Попробуйте на дегустации</h3>
+   692→   692→      <p>Приезжаете к нам или привозим образцы. Выбираете блюда, согласовываем сервировку и декор. Без спешки и давления — ваше меню, ваш выбор.</p>
+   693→   693→    </div>
+   694→   694→    <div class="tl-item">
+   695→   695→      <div class="tl-dot"></div>
+   696→   696→      <h3>Праздник без забот</h3>
+   697→   697→      <p>В день мероприятия приезжает команда: повара, официанты, координатор. Вы наслаждаетесь — мы работаем. Уборка включена, беспорядок — исключён.</p>
+   698→   698→    </div>
+   699→   699→  </div>
+   700→   700→</section>
+   701→   701→
+   702→   702→<!-- ═══════ MENU ═══════ -->
+   703→   703→<section class="s bg-w" id="menu">
+   704→   704→  <div class="s-head center">
+   705→   705→    <span class="s-eyebrow">Наше меню</span>
+   706→   706→    <h2>Блюда, которые запомнят</h2>
+   707→   707→    <p>С фото, составом и ценой. Фильтруйте по диете. Никаких PDF.</p>
+   708→   708→  </div>
+   709→   709→  <div class="filters" id="menuFilters">
+   710→   710→    <button class="filter-btn active" data-filter="all">Все</button>
+   711→   711→    <button class="filter-btn" data-filter="chef">Шеф рекомендует</button>
+   712→   712→    <button class="filter-btn" data-filter="vegan">Веган</button>
+   713→   713→    <button class="filter-btn" data-filter="gluten">Без глютена</button>
+   714→   714→    <button class="filter-btn" data-filter="halal">Халяль</button>
+   715→   715→  </div>
+   716→   716→  <div class="dishes" id="dishGrid">
+   717→   717→
+   718→   718→    <div class="dish" data-cats="chef">
+   719→   719→      <div class="dish-img" style="background:linear-gradient(135deg,#bf5a3c 0%,#c9a24d 50%,#f0dca8 100%)">
+   720→   720→        <svg viewBox="0 0 24 24" fill="currentColor" style="width:32px;height:32px;color:rgba(255,255,255,0.2);position:relative;z-index:1"><path d="M12 15.2a3.2 3.2 0 100-6.4 3.2 3.2 0 000 6.4zM9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9z"/></svg>
+   721→   721→      </div>
+   722→   722→      <div class="dish-body">
+   723→   723→        <div class="dish-name">Тартар из лосося</div>
+   724→   724→        <div class="dish-desc">Свежий лосось, каперсы, лимон, масло трюфеля</div>
+   725→   725→        <div class="dish-price">680 ₽<small>/ порция</small></div>
+   726→   726→        <div class="dish-tags"><span class="dish-tag tag-chef">Шеф рекомендует</span></div>
+   727→   727→      </div>
+   728→   728→    </div>
+   729→   729→
+   730→   730→    <div class="dish" data-cats="vegan chef">
+   731→   731→      <div class="dish-img" style="background:linear-gradient(135deg,#6b7a5e 0%,#c9a24d 100%)">
+   732→   732→        <svg viewBox="0 0 24 24" fill="currentColor" style="width:32px;height:32px;color:rgba(255,255,255,0.2);position:relative;z-index:1"><path d="M12 15.2a3.2 3.2 0 100-6.4 3.2 3.2 0 000 6.4zM9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9z"/></svg>
+   733→   733→      </div>
+   734→   734→      <div class="dish-body">
+   735→   735→        <div class="dish-name">Ризотто с белым трюфелем</div>
+   736→   736→        <div class="dish-desc">Арборио, пармезан, белый трюфель, сливочное масло</div>
+   737→   737→        <div class="dish-price">590 ₽<small>/ порция</small></div>
+   738→   738→        <div class="dish-tags"><span class="dish-tag tag-vegan">Веган</span><span class="dish-tag tag-chef">Шеф рекомендует</span></div>
+   739→   739→      </div>
+   740→   740→    </div>
+   741→   741→
+   742→   742→    <div class="dish" data-cats="gluten">
+   743→   743→      <div class="dish-img" style="background:linear-gradient(135deg,#c9a24d 0%,#1a1510 100%)">
+   744→   744→        <svg viewBox="0 0 24 24" fill="currentColor" style="width:32px;height:32px;color:rgba(255,255,255,0.2);position:relative;z-index:1"><path d="M12 15.2a3.2 3.2 0 100-6.4 3.2 3.2 0 000 6.4zM9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9z"/></svg>
+   745→   745→      </div>
+   746→   746→      <div class="dish-body">
+   747→   747→        <div class="dish-name">Мини-паста четыре сыра</div>
+   748→   748→        <div class="dish-desc">Пармезан, горгонзола, моцарелла, рикотта</div>
+   749→   749→        <div class="dish-price">470 ₽<small>/ порция</small></div>
+   750→   750→        <div class="dish-tags"><span class="dish-tag tag-gluten">Без глютена</span></div>
+   751→   751→      </div>
+   752→   752→    </div>
+   753→   753→
+   754→   754→    <div class="dish" data-cats="halal chef">
+   755→   755→      <div class="dish-img" style="background:linear-gradient(135deg,#0e0b08 0%,#bf5a3c 60%,#f0dca8 100%)">
+   756→   756→        <svg viewBox="0 0 24 24" fill="currentColor" style="width:32px;height:32px;color:rgba(255,255,255,0.2);position:relative;z-index:1"><path d="M12 15.2a3.2 3.2 0 100-6.4 3.2 3.2 0 000 6.4zM9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9z"/></svg>
+   757→   757→      </div>
+   758→   758→      <div class="dish-body">
+   759→   759→        <div class="dish-name">Стейк рибай с овощами гриль</div>
+   760→   760→        <div class="dish-desc">Рибай 300 г, спаржа, болгарский перец, чимичурри</div>
+   761→   761→        <div class="dish-price">1 200 ₽<small>/ порция</small></div>
+   762→   762→        <div class="dish-tags"><span class="dish-tag tag-halal">Халяль</span><span class="dish-tag tag-chef">Шеф рекомендует</span></div>
+   763→   763→      </div>
+   764→   764→    </div>
+   765→   765→
+   766→   766→    <div class="dish" data-cats="vegan">
+   767→   767→      <div class="dish-img" style="background:linear-gradient(135deg,#6b7a5e 0%,#e8ede3 100%)">
+   768→   768→        <svg viewBox="0 0 24 24" fill="currentColor" style="width:32px;height:32px;color:rgba(255,255,255,0.2);position:relative;z-index:1"><path d="M12 15.2a3.2 3.2 0 100-6.4 3.2 3.2 0 000 6.4zM9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9z"/></svg>
+   769→   769→      </div>
+   770→   770→      <div class="dish-body">
+   771→   771→        <div class="dish-name">Хумус с питой</div>
+   772→   772→        <div class="dish-desc">Нут, тахини, лимон, чеснок, оливковое масло</div>
+   773→   773→        <div class="dish-price">320 ₽<small>/ порция</small></div>
+   774→   774→        <div class="dish-tags"><span class="dish-tag tag-vegan">Веган</span></div>
+   775→   775→      </div>
+   776→   776→    </div>
+   777→   777→
+   778→   778→    <div class="dish" data-cats="gluten halal">
+   779→   779→      <div class="dish-img" style="background:linear-gradient(135deg,#f0dca8 0%,#bf5a3c 100%)">
+   780→   780→        <svg viewBox="0 0 24 24" fill="currentColor" style="width:32px;height:32px;color:rgba(255,255,255,0.2);position:relative;z-index:1"><path d="M12 15.2a3.2 3.2 0 100-6.4 3.2 3.2 0 000 6.4zM9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9z"/></svg>
+   781→   781→      </div>
+   782→   782→      <div class="dish-body">
+   783→   783→        <div class="dish-name">Баранья корейка с розмарином</div>
+   784→   784→        <div class="dish-desc">Корейка 250 г, розмарин, чеснок, картофель дуфинуа</div>
+   785→   785→        <div class="dish-price">980 ₽<small>/ порция</small></div>
+   786→   786→        <div class="dish-tags"><span class="dish-tag tag-gluten">Без глютена</span><span class="dish-tag tag-halal">Халяль</span></div>
+   787→   787→      </div>
+   788→   788→    </div>
+   789→   789→
+   790→   790→  </div>
+   791→   791→</section>
+   792→   792→
+   793→   793→<!-- ═══════ CALCULATOR ═══════ -->
+   794→   794→<section class="s" id="order">
+   795→   795→  <div class="s-head center">
+   796→   796→    <span class="s-eyebrow">Калькулятор</span>
+   797→   797→    <h2>Давайте посчитаем</h2>
+   798→   798→    <p>3 поля — и вы знаете порядок цен. Точную сумму скажет менеджер за 30 минут.</p>
+   799→   799→  </div>
+   800→   800→  <div class="calc-box">
+   801→   801→    <div class="calc-header">
+   802→   802→      <h3>Ваше мероприятие</h3>
+   803→   803→      <p>Укажите параметры — увидите оценку</p>
+   804→   804→    </div>
+   805→   805→    <div class="calc-body">
+   806→   806→      <div class="calc-row">
+   807→   807→        <div class="calc-field">
+   808→   808→          <label class="calc-label">Количество гостей</label>
+   809→   809→          <input class="calc-input" type="number" value="80" min="10" max="2000" id="calcGuests">
+   810→   810→        </div>
+   811→   811→        <div class="calc-field">
+   812→   812→          <label class="calc-label">Формат</label>
+   813→   813→          <select class="calc-input" id="calcFormat">
+   814→   814→            <option value="2800">Банкет</option>
+   815→   815→            <option value="1800">Фуршет</option>
+   816→   816→            <option value="600">Кофе-брейк</option>
+   817→   817→            <option value="6000">Гала-ужин</option>
+   818→   818→          </select>
+   819→   819→        </div>
+   820→   820→      </div>
+   821→   821→      <div class="calc-row">
+   822→   822→        <div class="calc-field">
+   823→   823→          <label class="calc-label">Дата</label>
+   824→   824→          <input class="calc-input" type="date" id="calcDate">
+   825→   825→        </div>
+   826→   826→        <div class="calc-field">
+   827→   827→          <label class="calc-label">Доп. опции</label>
+   828→   828→          <select class="calc-input" id="calcExtra">
+   829→   829→            <option value="0">Без допов</option>
+   830→   830→            <option value="15000">Бар (+15 000 ₽)</option>
+   831→   831→            <option value="8000">Диджей (+8 000 ₽)</option>
+   832→   832→            <option value="23000">Бар + Диджей</option>
+   833→   833→          </select>
+   834→   834→        </div>
+   835→   835→      </div>
+   836→   836→    </div>
+   837→   837→    <div class="calc-result">
+   838→   838→      <div>
+   839→   839→        <div class="calc-total-label">Итого от</div>
+   840→   840→        <strong id="calcTotal">224 000 ₽</strong>
+   841→   841→        <small id="calcPerGuest">2 800 ₽/гость</small>
+   842→   842→      </div>
+   843→   843→      <button class="calc-cta" onclick="document.getElementById('form-section').scrollIntoView({behavior:'smooth'})">Получить точный расчёт</button>
+   844→   844→    </div>
+   845→   845→  </div>
+   846→   846→</section>
+   847→   847→
+   848→   848→<hr class="sep">
+   849→   849→
+   850→   850→<!-- ═══════ PACKAGES ═══════ -->
+   851→   851→<section class="s bg-c" id="packages">
+   852→   852→  <div class="s-head center">
+   853→   853→    <span class="s-eyebrow">Пакеты</span>
+   854→   854→    <h2>Три варианта — выберите свой</h2>
+   855→   855→    <p>От классики до премиума. Большинство выбирает Signature.</p>
+   856→   856→  </div>
+   857→   857→  <div class="pkgs">
+   858→   858→    <div class="pkg">
+   859→   859→      <div class="pkg-name">Classic</div>
+   860→   860→      <div class="pkg-price">2 800 ₽<small>/гость</small></div>
+   861→   861→      <ul class="pkg-list">
+   862→   862→        <li>6 блюд</li>
+   863→   863→        <li>2 официанта</li>
+   864→   864→        <li>Доставка</li>
+   865→   865→        <li>Сервировка</li>
+   866→   866→        <li>Одноразовая посуда</li>
+   867→   867→      </ul>
+   868→   868→      <button class="pkg-btn outline">Выбрать Classic</button>
+   869→   869→    </div>
+   870→   870→    <div class="pkg hit">
+   871→   871→      <div class="pkg-name">Signature</div>
+   872→   872→      <div class="pkg-price">4 000 ₽<small>/гость</small></div>
+   873→   873→      <ul class="pkg-list">
+   874→   874→        <li>8 блюд</li>
+   875→   875→        <li>3 официанта</li>
+   876→   876→        <li>Бар</li>
+   877→   877→        <li>Декор стола</li>
+   878→   878→        <li>Дегустация</li>
+   879→   879→        <li>Фарфоровая посуда</li>
+   880→   880→      </ul>
+   881→   881→      <button class="pkg-btn primary">Выбрать Signature</button>
+   882→   882→    </div>
+   883→   883→    <div class="pkg premium">
+   884→   884→      <div class="pkg-name">Premium</div>
+   885→   885→      <div class="pkg-price">6 600 ₽<small>/гость</small></div>
+   886→   886→      <ul class="pkg-list">
+   887→   887→        <li>12 блюд</li>
+   888→   888→        <li>Шеф на месте</li>
+   889→   889→        <li>Винная карта</li>
+   890→   890→        <li>Фотосъёмка</li>
+   891→   891→        <li>Трансфер</li>
+   892→   892→        <li>Координатор</li>
+   893→   893→      </ul>
+   894→   894→      <button class="pkg-btn">Выбрать Premium</button>
+   895→   895→    </div>
+   896→   896→  </div>
+   897→   897→</section>
+   898→   898→
+   899→   899→<!-- ═══════ GALLERY ═══════ -->
+   900→   900→<section class="s" id="gallery">
+   901→   901→  <div class="s-head">
+   902→   902→    <span class="s-eyebrow">Наши мероприятия</span>
+   903→   903→    <h2>Кейсы с реальных событий</h2>
+   904→   904→    <p>Не стоковые фото — настоящие праздники. Свайпайте →</p>
+   905→   905→  </div>
+   906→   906→  <div class="gallery-scroll">
+   907→   907→    <div class="gallery-card">
+   908→   908→      <div class="gallery-img" style="background:linear-gradient(135deg,#bf5a3c 0%,#c9a24d 40%,#f0dca8 100%)"></div>
+   909→   909→      <div class="gallery-caption"><strong>Свадьба Анны и Игоря</strong><span>120 гостей · Июнь 2026 · Ресторан Cascade</span></div>
+   910→   910→    </div>
+   911→   911→    <div class="gallery-card">
+   912→   912→      <div class="gallery-img" style="background:linear-gradient(135deg,#0e0b08 0%,#6b7a5e 50%,#e8ede3 100%)"></div>
+   913→   913→      <div class="gallery-caption"><strong>Корпоратив IT-компании</strong><span>200 гостей · Май 2026 · Лофт Foundry</span></div>
+   914→   914→    </div>
+   915→   915→    <div class="gallery-card">
+   916→   916→      <div class="gallery-img" style="background:linear-gradient(135deg,#c9a24d 0%,#bf5a3c 50%,#0e0b08 100%)"></div>
+   917→   917→      <div class="gallery-caption"><strong>Гала-ужин фонда</strong><span>80 гостей · Апр 2026 · Петровский клуб</span></div>
+   918→   918→    </div>
+   919→   919→    <div class="gallery-card">
+   920→   920→      <div class="gallery-img" style="background:linear-gradient(135deg,#6b7a5e 0%,#0e0b08 50%,#bf5a3c 100%)"></div>
+   921→   921→      <div class="gallery-caption"><strong>Фуршет на открытии</strong><span>150 гостей · Март 2026 · ARTSPACE</span></div>
+   922→   922→    </div>
+   923→   923→    <div class="gallery-card">
+   924→   924→      <div class="gallery-img" style="background:linear-gradient(135deg,#f0dca8 0%,#c9a24d 50%,#6b7a5e 100%)"></div>
+   925→   925→      <div class="gallery-caption"><strong>День рождения</strong><span>40 гостей · Фев 2026 · Загородный дом</span></div>
+   926→   926→    </div>
+   927→   927→    <div class="gallery-card">
+   928→   928→      <div class="gallery-img" style="background:linear-gradient(135deg,#0e0b08 0%,#bf5a3c 40%,#f0dca8 100%)"></div>
+   929→   929→      <div class="gallery-caption"><strong>Кофе-брейк конференции</strong><span>300 гостей · Янв 2026 · Экспофорум</span></div>
+   930→   930→    </div>
+   931→   931→  </div>
+   932→   932→</section>
+   933→   933→
+   934→   934→<!-- ═══════ REVIEWS ═══════ -->
+   935→   935→<section class="s bg-w" id="reviews">
+   936→   936→  <div class="s-head center">
+   937→   937→    <span class="s-eyebrow">Отзывы</span>
+   938→   938→    <h2>Что говорят клиенты</h2>
+   939→   939→    <p>Реальные люди, реальные события. Проверьте на Яндекс.Картах.</p>
+   940→   940→  </div>
+   941→   941→  <div class="reviews-grid">
+   942→   942→    <div class="review">
+   943→   943→      <div class="review-stars">★★★★★</div>
+   944→   944→      <div class="review-text">«Заказывали банкет на 120 человек — свадьба. Всё идеально: от дегустации до уборки. Гости до сих пор вспоминают тартар и рибай.»</div>
+   945→   945→      <div class="review-author">
+   946→   946→        <div class="review-avatar" style="background:linear-gradient(135deg,#bf5a3c,#c9a24d)">А</div>
+   947→   947→        <div class="review-author-text"><strong>Анна К.</strong><span>Свадьба · Июнь 2026</span></div>
+   948→   948→      </div>
+   949→   949→    </div>
+   950→   950→    <div class="review">
+   951→   951→      <div class="review-stars">★★★★★</div>
+   952→   952→      <div class="review-text">«Корпоратив на 200 человек — всегда стресс. Nilov сняли все вопросы. Меню под бюджет, официанты — профессионалы. Берём на Новый год.»</div>
+   953→   953→      <div class="review-author">
+   954→   954→        <div class="review-avatar" style="background:linear-gradient(135deg,#6b7a5e,#c9a24d)">Д</div>
+   955→   955→        <div class="review-author-text"><strong>Дмитрий С.</strong><span>Корпоратив · Май 2026</span></div>
+   956→   956→      </div>
+   957→   957→    </div>
+   958→   958→    <div class="review">
+   959→   959→      <div class="review-stars">★★★★★</div>
+   960→   960→      <div class="review-text">«Фуршет на открытии магазина — 80 гостей за 3 часа. Всё вовремя, красиво и вкусно. Хумус разлетелся первым!»</div>
+   961→   961→      <div class="review-author">
+   962→   962→        <div class="review-avatar" style="background:linear-gradient(135deg,#c9a24d,#bf5a3c)">М</div>
+   963→   963→        <div class="review-author-text"><strong>Мария В.</strong><span>Фуршет · Апр 2026</span></div>
+   964→   964→      </div>
+   965→   965→    </div>
+   966→   966→    <div class="review">
+   967→   967→      <div class="review-stars">★★★★☆</div>
+   968→   968→      <div class="review-text">«Гала-ужин на 60 человек. Шеф готовил при гостях — вау-эффект! Хотелось бы больше веганских опций, но подобрали альтернативу.»</div>
+   969→   969→      <div class="review-author">
+   970→   970→        <div class="review-avatar" style="background:linear-gradient(135deg,#1a1510,#6b7a5e)">Е</div>
+   971→   971→        <div class="review-author-text"><strong>Елена П.</strong><span>Гала-ужин · Март 2026</span></div>
+   972→   972→      </div>
+   973→   973→    </div>
+   974→   974→  </div>
+   975→   975→  <div class="trust-row">
+   976→   976→    <div class="trust-badge">
+   977→   977→      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+   978→   978→      HACCP (ТР ТС 021/2011)
+   979→   979→    </div>
+   980→   980→    <div class="trust-badge">
+   981→   981→      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+   982→   982→      ФЗ-152 · Данные на серверах РФ
+   983→   983→    </div>
+   984→   984→    <div class="trust-badge">
+   985→   985→      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+   986→   986→      СБП / ЮKassa
+   987→   987→    </div>
+   988→   988→  </div>
+   989→   989→</section>
+   990→   990→
+   991→   991→<!-- ═══════ CONTACT ═══════ -->
+   992→   992→<section class="s" id="form-section">
+   993→   993→  <div class="s-head center">
+   994→   994→    <span class="s-eyebrow">Заявка</span>
+   995→   995→    <h2>Оставьте заявку</h2>
+   996→   996→    <p>Перезвоним за 30 минут. Без спама.</p>
+   997→   997→  </div>
+   998→   998→  <div class="form-box">
+   999→   999→    <div class="form-header">
+  1000→  1000→      <h3>Быстрая заявка</h3>
+  1001→  1001→      <p>5 полей — и мы свяжемся в рабочее время</p>
+  1002→  1002→    </div>
+  1003→  1003→    <div class="form-body">
+  1004→  1004→      <div class="form-row">
+  1005→  1005→        <label class="form-label">Имя</label>
+  1006→  1006→        <input class="form-input" type="text" placeholder="Как к вам обращаться">
+  1007→  1007→      </div>
+  1008→  1008→      <div class="form-row">
+  1009→  1009→        <label class="form-label">Телефон</label>
+  1010→  1010→        <input class="form-input" type="tel" placeholder="+7 (___) ___-__-__">
+  1011→  1011→      </div>
+  1012→  1012→      <div class="form-row">
+  1013→  1013→        <label class="form-label">Тип мероприятия</label>
+  1014→  1014→        <select class="form-input">
+  1015→  1015→          <option>Свадьба</option>
+  1016→  1016→          <option>Корпоратив</option>
+  1017→  1017→          <option>Фуршет</option>
+  1018→  1018→          <option>Кофе-брейк</option>
+  1019→  1019→          <option>Гала-ужин</option>
+  1020→  1020→          <option>Другое</option>
+  1021→  1021→        </select>
+  1022→  1022→      </div>
+  1023→  1023→      <div class="form-row">
+  1024→  1024→        <label class="form-label">Количество гостей</label>
+  1025→  1025→        <input class="form-input" type="number" placeholder="Ориентировочно" value="80">
+  1026→  1026→      </div>
+  1027→  1027→      <div class="form-row">
+  1028→  1028→        <label class="form-label">Дата</label>
+  1029→  1029→        <input class="form-input" type="date">
+  1030→  1030→      </div>
+  1031→  1031→      <button class="form-submit" type="button">Отправить заявку</button>
+  1032→  1032→      <p class="form-note">Нажимая кнопку, вы соглашаетесь с политикой обработки персональных данных (ФЗ-152). Данные хранятся на серверах в РФ.</p>
+  1033→  1033→    </div>
+  1034→  1034→  </div>
+  1035→  1035→</section>
+  1036→  1036→
+  1037→  1037→<!-- ═══════ FOOTER ═══════ -->
+  1038→  1038→<footer class="site-footer">
+  1039→  1039→  <div class="footer-inner">
+  1040→  1040→    <div class="footer-brand">Nilov Catering</div>
+  1041→  1041→    <p class="footer-tagline">Кейтеринг в Санкт-Петербурге с 2018 года.<br>Свадьбы, корпоративы, фуршеты, гала-ужины.</p>
+  1042→  1042→    <div class="footer-links">
+  1043→  1043→      <a href="#events">Форматы</a>
+  1044→  1044→      <a href="#menu">Меню</a>
+  1045→  1045→      <a href="#order">Калькулятор</a>
+  1046→  1046→      <a href="#gallery">Мероприятия</a>
+  1047→  1047→      <a href="#reviews">Отзывы</a>
+  1048→  1048→      <a href="#form-section">Заявка</a>
+  1049→  1049→    </div>
+  1050→  1050→    <p class="footer-note">
+  1051→  1051→      HACCP по ТР ТС 021/2011 · ПДн по ФЗ-152 (ст.18 п.5, серверы в РФ) · Оплата СБП/ЮKassa · ИНН 7816123456<br>
+  1052→  1052→      Штрафы ФЗ-152: от 150 тыс. до 18 млн ₽ (ФЗ-23 от 28.02.2025) · Рынок общепита РФ: 4.29 трлн ₽ (+8.7% к 2025)
+  1053→  1053→    </p>
+  1054→  1054→  </div>
+  1055→  1055→</footer>
+  1056→  1056→
+  1057→  1057→<!-- ═══════ BOTTOM BAR ═══════ -->
+  1058→  1058→<div class="bottom-bar">
+  1059→  1059→  <a href="#" class="bb tg">Telegram</a>
+  1060→  1060→  <a href="tel:+78121234567" class="bb call">Позвонить</a>
+  1061→  1061→  <a href="#order" class="bb calc">Расчёт</a>
+  1062→  1062→</div>
+  1063→  1063→
+  1064→  1064→<!-- ═══════ JS ═══════ -->
+  1065→  1065→<script>
+  1066→  1066→(function(){
+  1067→  1067→  var g=document.getElementById('calcGuests');
+  1068→  1068→  var f=document.getElementById('calcFormat');
+  1069→  1069→  var e=document.getElementById('calcExtra');
+  1070→  1070→  var t=document.getElementById('calcTotal');
+  1071→  1071→  var p=document.getElementById('calcPerGuest');
+  1072→  1072→  function fmt(n){return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,' ')+' ₽'}
+  1073→  1073→  function calc(){
+  1074→  1074→    var guests=parseInt(g.value)||80;
+  1075→  1075→    var price=parseInt(f.value)||2800;
+  1076→  1076→    var extra=parseInt(e.value)||0;
+  1077→  1077→    t.textContent=fmt(guests*price+extra);
+  1078→  1078→    p.textContent=fmt(price)+'/гость';
+  1079→  1079→  }
+  1080→  1080→  g.addEventListener('input',calc);f.addEventListener('change',calc);e.addEventListener('change',calc);calc();
+  1081→  1081→})();
+  1082→  1082→
+  1083→  1083→(function(){
+  1084→  1084→  var btns=document.querySelectorAll('.filter-btn');
+  1085→  1085→  var dishes=document.querySelectorAll('.dish');
+  1086→  1086→  btns.forEach(function(btn){
+  1087→  1087→    btn.addEventListener('click',function(){
+  1088→  1088→      btns.forEach(function(b){b.classList.remove('active')});
+  1089→  1089→      btn.classList.add('active');
+  1090→  1090→      var filter=btn.getAttribute('data-filter');
+  1091→  1091→      dishes.forEach(function(dish){
+  1092→  1092→        var cats=dish.getAttribute('data-cats')||'';
+  1093→  1093→        dish.classList.toggle('hidden',filter!=='all'&&cats.indexOf(filter)===-1);
+  1094→  1094→      });
+  1095→  1095→    });
+  1096→  1096→  });
+  1097→  1097→})();
+  1098→  1098→</script>
+  1099→  1099→</body>
+  1100→  1100→</html>"""
+  1101→  1101→
+  1102→  1102→    with open(OUT, "w", encoding="utf-8") as fh:
+  1103→  1103→        fh.write(html)
+  1104→  1104→    print(f"✅ Written {len(html):,} chars → {OUT}")
+  1105→  1105→
+  1106→  1106→
+  1107→  1107→if __name__ == "__main__":
+  1108→  1108→    build()
+  1109→  1109→
