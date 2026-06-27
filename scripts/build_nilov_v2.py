@@ -1,12 +1,68 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#0d0d0d">
-<meta name="description" content="Демо-сайт кейтеринга Nilov: какие элементы нужны, как они влияют на конверсию, с реальными данными и визуальными примерами.">
-<title>Nilov Catering — Демо вашего сайта 2026</title>
-<style>
+#!/usr/bin/env python3
+"""
+Генератор HTML-файла для Nilov Catering v2
+Файл = демо сайта + пояснения влияния на конверсию (только реальные данные)
+Self-contained: без внешних шрифтов, JS, CSS, изображений
+Совместим с Telegram/iMessage WebView на iPhone
+"""
+
+import html
+import os
+
+OUT = "/home/z/my-project/download/catering_inspiration_nilov.html"
+
+# ──────────────────────────────────────────────
+#  REAL DATA  (источники: веб-исследование 2026)
+# ──────────────────────────────────────────────
+CONV = {
+    "landing_avg":     ("9.8%",   "Unbounce, 57M+ конверсий, 2024"),
+    "landing_top":     ("18.2%",  "Unbounce, топ-25% лендингов, 2024"),
+    "speed_01s":       ("+8.4%",  "Google/Deloitte «Milliseconds Make Millions», 2020"),
+    "speed_5sec":      ("×0.5",   "Portent, 27K+ лендингов, конверсия падает вдвое при 5+ сек"),
+    "sticky_cta":      ("+8–27%", "Conversion Rate Experts + HubSpot, 2025"),
+    "form_5fields":    ("17.3%",  "Digital Applied, форм-конверсия медиана, 2026"),
+    "form_reduce":     ("+35%",   "Baymard Institute, при сокращении полей на 20–60%"),
+    "reviews_5plus":   ("+270%",  "Spiegel Research Center, Northwestern University, 2017"),
+    "trust_abandon":   ("19%",    "Baymard Institute, уходят из-за недоверия к сайту"),
+    "social_proof":    ("+67%",   "Spiegel Research Center, даже негативные отзывы"),
+    "haccp_required":  ("Обязательно по ТР ТС 021/2011", "ЕАЭС, сертификация HACCP в РФ"),
+    "fz152_fines":     ("150K–18M ₽", "ФЗ-23 от 28.02.2025, штрафы с 30.05.2025"),
+    "fz152_localize":  ("С 01.07.2025", "Ст.18 п.5 ФЗ-152, данные граждан РФ — на серверах в РФ"),
+    "market_turnover": ("4.29 трлн ₽", "BusinesStat / Rosstat, оборот общепита РФ, 2025"),
+    "market_growth":   ("+8.7% YoY", "TASS / Rosstat, янв–ноя 2025"),
+    "dev_timeline":    ("6–10 недель", "Elementor, SolveIt, Splash Creative, 2025–26"),
+}
+
+# ──────────────────────────────────────────────
+#  INLINE SVG ICONS
+# ──────────────────────────────────────────────
+def ico(name, size=20):
+    icons = {
+        "phone": '<svg viewBox="0 0 24 24" fill="currentColor" width="{s}" height="{s}"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.26.36-.65.25-1C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/></svg>',
+        "clock": '<svg viewBox="0 0 24 24" fill="currentColor" width="{s}" height="{s}"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"/></svg>',
+        "star": '<svg viewBox="0 0 24 24" fill="currentColor" width="{s}" height="{s}"><path d="M12 1l3 5 6 .9-4.5 4.4 1 6L12 17l-5.5 3 1-6L3 7l6-.9z"/></svg>',
+        "rub": '<svg viewBox="0 0 24 24" fill="currentColor" width="{s}" height="{s}"><path d="M13 3h-3v10H7v3h3v2H7v3h3v3h3v-3h3v-3h-3v-2h3c2.8 0 5-2.2 5-5s-2.2-5-5-5zm0 8h-3V6h3c2.8 0 5 1.5 5 2.5S15.8 11 13 11z"/></svg>',
+        "check": '<svg viewBox="0 0 24 24" fill="currentColor" width="{s}" height="{s}"><path d="M9 16.2l-3.5-3.5L4.1 14.1 9 19 20 8l-1.4-1.4z"/></svg>',
+        "arrow": '<svg viewBox="0 0 24 24" fill="currentColor" width="{s}" height="{s}"><path d="M12 4l-1.4 1.4L16.2 11H4v2h12.2l-5.6 5.6L12 20l8-8z"/></svg>',
+        "shield": '<svg viewBox="0 0 24 24" fill="currentColor" width="{s}" height="{s}"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>',
+        "chart": '<svg viewBox="0 0 24 24" fill="currentColor" width="{s}" height="{s}"><path d="M3 13h2v8H3zm4-4h2v12H7zm4-4h2v16h-2zm4 6h2v10h-2zm4-8h2v18h-2z"/></svg>',
+        "eye": '<svg viewBox="0 0 24 24" fill="currentColor" width="{s}" height="{s}"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>',
+        "menu": '<svg viewBox="0 0 24 24" fill="currentColor" width="{s}" height="{s}"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg>',
+        "people": '<svg viewBox="0 0 24 24" fill="currentColor" width="{s}" height="{s}"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>',
+        "bolt": '<svg viewBox="0 0 24 24" fill="currentColor" width="{s}" height="{s}"><path d="M11 21h-1l1-7H7.5c-.58 0-.57-.32-.38-.66.19-.34.05-.08.07-.12C8.48 10.94 10.42 7.54 13 3h1l-1 7h3.5c.49 0 .56.33.47.51l-.07.15C12.96 17.55 11 21 11 21z"/></svg>',
+        "lock": '<svg viewBox="0 0 24 24" fill="currentColor" width="{s}" height="{s}"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>',
+        "tag": '<svg viewBox="0 0 24 24" fill="currentColor" width="{s}" height="{s}"><path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58.55 0 1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.55-.23-1.06-.59-1.42zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z"/></svg>',
+        "map": '<svg viewBox="0 0 24 24" fill="currentColor" width="{s}" height="{s}"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/></svg>',
+        "camera": '<svg viewBox="0 0 24 24" fill="currentColor" width="{s}" height="{s}"><path d="M12 15.2a3.2 3.2 0 100-6.4 3.2 3.2 0 000 6.4zM9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9z"/></svg>',
+    }
+    return icons.get(name, "").replace("{s}", str(size))
+
+# ──────────────────────────────────────────────
+#  HTML CONSTRUCTION
+# ──────────────────────────────────────────────
+
+def css():
+    return """
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
 body {
@@ -275,16 +331,34 @@ a:hover, a:active { color: #6b4e03; }
 
 /* ─── SEPARATOR ─── */
 .sep { border: none; height: 1px; background: rgba(0,0,0,0.06); margin: 0; }
-</style>
+"""
+
+def build_html():
+    parts = []
+
+    # ─── HEAD ───
+    parts.append(f"""<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0d0d0d">
+<meta name="description" content="Демо-сайт кейтеринга Nilov: какие элементы нужны, как они влияют на конверсию, с реальными данными и визуальными примерами.">
+<title>Nilov Catering — Демо вашего сайта 2026</title>
+<style>{css()}</style>
 </head>
 <body>
+""")
 
-
+    # ─── DEMO BANNER ───
+    parts.append("""
 <div class="demo-banner">
   Это демонстрация вашего будущего сайта. Каждый элемент — с данными о влиянии на конверсию.
 </div>
+""")
 
-
+    # ─── HEADER ───
+    parts.append("""
 <header class="site-header">
   <div class="header-inner">
     <a href="#top" class="brand">
@@ -294,8 +368,10 @@ a:hover, a:active { color: #6b4e03; }
     <a href="#contact-demo" class="header-cta">Оставить заявку</a>
   </div>
 </header>
+""")
 
-
+    # ─── HERO (Section 1) ───
+    parts.append(f"""
 <section class="hero" id="top">
   <div class="hero-inner">
     <span class="hero-eyebrow">Ваш будущий сайт · июнь 2026</span>
@@ -310,8 +386,12 @@ a:hover, a:active { color: #6b4e03; }
     </div>
   </div>
 </section>
+""")
 
-
+    # ═══════════════════════════════════════════
+    # SECTION 1: ГЛАВНАЯ — ПЕРВЫЙ ЭКРАН
+    # ═══════════════════════════════════════════
+    parts.append(f"""
 <section class="section" id="hero-demo">
   <div class="section-head">
     <span class="section-eyebrow">Блок 1</span>
@@ -342,14 +422,18 @@ a:hover, a:active { color: #6b4e03; }
         <p>Главный экран — самая дорогая часть сайта. Если гость за 5 секунд не понял «что это, для меня ли, сколько примерно» — он уходит навсегда.</p>
         <p><strong>Заголовок с городом и форматом</strong> — сразу понятно, что это кейтеринг именно в СПб, а не доставка еды. Кнопка «Рассчитать стоимость» — главный призыв к действию, контрастная и крупная.</p>
         <p><strong>Счётчик доверия</strong> (годы, события, рейтинг) — социальное доказательство без единого слова推销а.</p>
-        <div class="conv-badge"><svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M3 13h2v8H3zm4-4h2v12H7zm4-4h2v16h-2zm4 6h2v10h-2zm4-8h2v18h-2z"/></svg> Конверсия лендинга: 9.8% в среднем, 18.2% у лучших</div>
-        <span class="conv-source">Unbounce, 57M+ конверсий, 2024</span>
+        <div class="conv-badge">{ico("chart", 13)} Конверсия лендинга: {CONV["landing_avg"][0]} в среднем, {CONV["landing_top"][0]} у лучших</div>
+        <span class="conv-source">{CONV["landing_avg"][1]}</span>
       </div>
     </div>
   </div>
 </section>
+""")
 
-
+    # ═══════════════════════════════════════════
+    # SECTION 2: МЕНЮ В HTML
+    # ═══════════════════════════════════════════
+    parts.append(f"""
 <section class="section bg-white" id="menu-demo">
   <div class="section-head">
     <span class="section-eyebrow">Блок 2</span>
@@ -363,7 +447,7 @@ a:hover, a:active { color: #6b4e03; }
         <p>PDF-меню — это файл, который нужно скачивать. На мобильном он открывается в отдельном приложении, тормозит, не индексируется в Яндексе. HTML-меню — это часть сайта: мгновенная загрузка, фильтры, поиск, адаптация под экран.</p>
         <p><strong>Фильтры по диетам</strong> — веган, без глютена, халяль — сразу показывают заботу о гостях. Метка «Шеф рекомендует» на 5-7 позициях помогает выбрать.</p>
         <p><strong>Кнопка «Добавить в избранное»</strong> — гость отмечает блюда и отправляет список в Telegram, потом обсуждает с менеджером.</p>
-        <div class="conv-badge"><svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg> PDF теряет до 40% мобильных клиентов</div>
+        <div class="conv-badge">{ico("eye", 13)} PDF теряет до 40% мобильных клиентов</div>
         <span class="conv-source">Restaurant Business, 2025</span>
       </div>
     </div>
@@ -379,25 +463,25 @@ a:hover, a:active { color: #6b4e03; }
           </div>
           <div class="mock-menu-grid">
             <div class="mock-dish">
-              <div class="mock-dish-img"><svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M12 15.2a3.2 3.2 0 100-6.4 3.2 3.2 0 000 6.4zM9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9z"/></svg></div>
+              <div class="mock-dish-img">{ico("camera", 28)}</div>
               <div class="mock-dish-name">Тартар из лосося</div>
               <div class="mock-dish-price">от 680 ₽/порция</div>
               <span class="mock-dish-tag">Шеф рекомендует</span>
             </div>
             <div class="mock-dish">
-              <div class="mock-dish-img" style="background: linear-gradient(135deg, #10b981 0%, #c9a86a 100%)"><svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M12 15.2a3.2 3.2 0 100-6.4 3.2 3.2 0 000 6.4zM9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9z"/></svg></div>
+              <div class="mock-dish-img" style="background: linear-gradient(135deg, #10b981 0%, #c9a86a 100%)">{ico("camera", 28)}</div>
               <div class="mock-dish-name">Ризотто с трюфелем</div>
               <div class="mock-dish-price">от 590 ₽/порция</div>
               <span class="mock-dish-tag">Веган</span>
             </div>
             <div class="mock-dish">
-              <div class="mock-dish-img" style="background: linear-gradient(135deg, #1f3a5f 0%, #e8d9b8 100%)"><svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M12 15.2a3.2 3.2 0 100-6.4 3.2 3.2 0 000 6.4zM9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9z"/></svg></div>
+              <div class="mock-dish-img" style="background: linear-gradient(135deg, #1f3a5f 0%, #e8d9b8 100%)">{ico("camera", 28)}</div>
               <div class="mock-dish-name">Мини-паста 4 сыра</div>
               <div class="mock-dish-price">от 470 ₽/порция</div>
               <span class="mock-dish-tag">Без глютена</span>
             </div>
             <div class="mock-dish">
-              <div class="mock-dish-img" style="background: linear-gradient(135deg, #7a1f1f 0%, #f5d76e 100%)"><svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M12 15.2a3.2 3.2 0 100-6.4 3.2 3.2 0 000 6.4zM9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9z"/></svg></div>
+              <div class="mock-dish-img" style="background: linear-gradient(135deg, #7a1f1f 0%, #f5d76e 100%)">{ico("camera", 28)}</div>
               <div class="mock-dish-name">Стейк рибай</div>
               <div class="mock-dish-price">от 1 200 ₽/порция</div>
               <span class="mock-dish-tag">Халяль</span>
@@ -408,8 +492,12 @@ a:hover, a:active { color: #6b4e03; }
     </div>
   </div>
 </section>
+""")
 
-
+    # ═══════════════════════════════════════════
+    # SECTION 3: КАЛЬКУЛЯТОР
+    # ═══════════════════════════════════════════
+    parts.append(f"""
 <section class="section" id="calculator-demo">
   <div class="section-head">
     <span class="section-eyebrow">Блок 3</span>
@@ -456,14 +544,18 @@ a:hover, a:active { color: #6b4e03; }
         <p>Главный страх клиента кейтеринга — «не знаю, сколько это стоит, боюсь, что дорого». Калькулятор снимает этот страх: гость видит примерную сумму и понимает, вписывается ли она в бюджет.</p>
         <p><strong>Только 3-4 поля</strong> — гости, формат, дата, доп. опции. Никаких телефонов и email на этом этапе. Кнопка «Получить точный расчёт» ведёт на короткую форму с 5 полями.</p>
         <p><strong>Не показываем точную цену</strong> — пишем «от X ₽/гость». Это приглашает обсудить детали с менеджером, а не отпугивает завышенной цифрой.</p>
-        <div class="conv-badge"><svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M3 13h2v8H3zm4-4h2v12H7zm4-4h2v16h-2zm4 6h2v10h-2zm4-8h2v18h-2z"/></svg> Сокращение полей формы даёт до +35% роста заявок</div>
-        <span class="conv-source">Baymard Institute, при сокращении полей на 20–60%</span>
+        <div class="conv-badge">{ico("chart", 13)} Сокращение полей формы даёт до {CONV["form_reduce"][0]} роста заявок</div>
+        <span class="conv-source">{CONV["form_reduce"][1]}</span>
       </div>
     </div>
   </div>
 </section>
+""")
 
-
+    # ═══════════════════════════════════════════
+    # SECTION 4: 3 ПАКЕТА
+    # ═══════════════════════════════════════════
+    parts.append(f"""
 <section class="section bg-white" id="packages-demo">
   <div class="section-head">
     <span class="section-eyebrow">Блок 4</span>
@@ -503,12 +595,16 @@ a:hover, a:active { color: #6b4e03; }
     <h4>Эффект якоря</h4>
     <p>Когда гость видит Premium за 6 600 ₽, Signature за 4 000 ₽ кажется разумным выбором. Это не манипуляция — это помощь в решении. Большинство клиентов выбирают средний пакет, и он действительно оптимальный по соотношению цена/качество.</p>
     <p><strong>Метка «ХИТ» на Signature</strong> — социальное доказательство: «большинство выбирает этот». Кнопка под каждым пакетом — «Выбрать» или «Хочу как в Signature» с предзаполненной формой.</p>
-    <div class="conv-badge"><svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58.55 0 1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.55-.23-1.06-.59-1.42zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z"/></svg> Эффект якоря: средний пакет кажется выгодным на фоне премиума</div>
+    <div class="conv-badge">{ico("tag", 13)} Эффект якоря: средний пакет кажется выгодным на фоне премиума</div>
     <span class="conv-source">Когнитивное искажение, подтверждённое Kahneman & Tversky</span>
   </div>
 </section>
+""")
 
-
+    # ═══════════════════════════════════════════
+    # SECTION 5: КЕЙСЫ / ГАЛЕРЕЯ
+    # ═══════════════════════════════════════════
+    parts.append(f"""
 <section class="section" id="cases-demo">
   <div class="section-head">
     <span class="section-eyebrow">Блок 5</span>
@@ -522,8 +618,8 @@ a:hover, a:active { color: #6b4e03; }
         <p>Абстрактное «мы лучшие» никто не верит. Конкретное «Свадьба Анны и Игоря, 120 гостей, 14 июня 2026, ресторан Cascade» — верят. Потому что это можно проверить: фото, дата, локация, имя.</p>
         <p><strong>8-12 кейсов</strong> — каждый на своей странице (для SEO). Формат: большое фото + эмоциональный рассказ + цифры (гостей, дата, локация, бюджет). Фото до/во время/после — не стоковые, а реальные.</p>
         <p><strong>Отзыв клиента</strong> под каждым кейсом — если получено согласие. Это удваивает доверие: и мероприятие реальное, и клиент доволен.</p>
-        <div class="conv-badge"><svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M12 1l3 5 6 .9-4.5 4.4 1 6L12 17l-5.5 3 1-6L3 7l6-.9z"/></svg> 5+ отзывов = до +270% роста конверсии</div>
-        <span class="conv-source">Spiegel Research Center, Northwestern University, 2017</span>
+        <div class="conv-badge">{ico("star", 13)} 5+ отзывов = до {CONV["reviews_5plus"][0]} роста конверсии</div>
+        <span class="conv-source">{CONV["reviews_5plus"][1]}</span>
       </div>
     </div>
     <div class="col-demo">
@@ -532,19 +628,19 @@ a:hover, a:active { color: #6b4e03; }
         <div class="demo-content">
           <div class="mock-gallery">
             <div class="mock-gallery-item">
-              <div class="mock-gallery-img g1"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M12 15.2a3.2 3.2 0 100-6.4 3.2 3.2 0 000 6.4zM9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9z"/></svg></div>
+              <div class="mock-gallery-img g1">{ico("camera", 22)}</div>
               <div class="mock-gallery-caption">Свадьба · 120 гостей · Июнь 2026</div>
             </div>
             <div class="mock-gallery-item">
-              <div class="mock-gallery-img g2"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M12 15.2a3.2 3.2 0 100-6.4 3.2 3.2 0 000 6.4zM9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9z"/></svg></div>
+              <div class="mock-gallery-img g2">{ico("camera", 22)}</div>
               <div class="mock-gallery-caption">Корпоратив · 200 гостей · Май 2026</div>
             </div>
             <div class="mock-gallery-item">
-              <div class="mock-gallery-img g3"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M12 15.2a3.2 3.2 0 100-6.4 3.2 3.2 0 000 6.4zM9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9z"/></svg></div>
+              <div class="mock-gallery-img g3">{ico("camera", 22)}</div>
               <div class="mock-gallery-caption">Фуршет · 80 гостей · Апр 2026</div>
             </div>
             <div class="mock-gallery-item">
-              <div class="mock-gallery-img g4"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M12 15.2a3.2 3.2 0 100-6.4 3.2 3.2 0 000 6.4zM9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9z"/></svg></div>
+              <div class="mock-gallery-img g4">{ico("camera", 22)}</div>
               <div class="mock-gallery-caption">Гала-ужин · 150 гостей · Март 2026</div>
             </div>
           </div>
@@ -553,8 +649,12 @@ a:hover, a:active { color: #6b4e03; }
     </div>
   </div>
 </section>
+""")
 
-
+    # ═══════════════════════════════════════════
+    # SECTION 6: ОТЗЫВЫ И ДОВЕРИЕ
+    # ═══════════════════════════════════════════
+    parts.append(f"""
 <section class="section bg-white" id="reviews-demo">
   <div class="section-head">
     <span class="section-eyebrow">Блок 6</span>
@@ -587,16 +687,20 @@ a:hover, a:active { color: #6b4e03; }
         <p><strong>10-15 отзывов с фото клиентов</strong> — не стоковые! Конкретные имена (с разрешения), дата, формат, количество гостей. Виджет Яндекс.Карт с реальными оценками.</p>
         <p><strong>Виджет 2ГИС</strong> — в СПб им пользуется значительная часть бизнеса. Покажите оба: и Яндекс.Карты, и 2ГИС.</p>
         <p><strong>Даже негативные отзывы работают</strong> — исследование Северо-Западного университета показало, что гости проводят на сайте в 4 раза больше времени, когда видят и негативные отзывы, и конверсия растёт.</p>
-        <div class="conv-badge"><svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M12 1l3 5 6 .9-4.5 4.4 1 6L12 17l-5.5 3 1-6L3 7l6-.9z"/></svg> Отзывы = до +270% роста конверсии</div>
-        <span class="conv-source">Spiegel Research Center, Northwestern University, 2017</span>
-        <div class="conv-badge" style="margin-top:6px;"><svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg> Негативные отзывы = ++67% конверсии</div>
-        <span class="conv-source">Spiegel Research Center, даже негативные отзывы</span>
+        <div class="conv-badge">{ico("star", 13)} Отзывы = до {CONV["reviews_5plus"][0]} роста конверсии</div>
+        <span class="conv-source">{CONV["reviews_5plus"][1]}</span>
+        <div class="conv-badge" style="margin-top:6px;">{ico("eye", 13)} Негативные отзывы = +{CONV["social_proof"][0]} конверсии</div>
+        <span class="conv-source">{CONV["social_proof"][1]}</span>
       </div>
     </div>
   </div>
 </section>
+""")
 
-
+    # ═══════════════════════════════════════════
+    # SECTION 7: СЕРТИФИКАТЫ / TRUST BADGES
+    # ═══════════════════════════════════════════
+    parts.append(f"""
 <section class="section" id="trust-demo">
   <div class="section-head">
     <span class="section-eyebrow">Блок 7</span>
@@ -607,10 +711,10 @@ a:hover, a:active { color: #6b4e03; }
     <div class="demo-label">Так будут выглядеть знаки доверия</div>
     <div class="demo-content">
       <div class="mock-trust">
-        <div class="mock-badge"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg> HACCP</div>
-        <div class="mock-badge"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg> SSL</div>
-        <div class="mock-badge"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg> ТР ТС 021/2011</div>
-        <div class="mock-badge"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 1l3 5 6 .9-4.5 4.4 1 6L12 17l-5.5 3 1-6L3 7l6-.9z"/></svg> Яндекс.Карты 4.7 ★</div>
+        <div class="mock-badge">{ico("shield", 18)} HACCP</div>
+        <div class="mock-badge">{ico("lock", 18)} SSL</div>
+        <div class="mock-badge">{ico("shield", 18)} ТР ТС 021/2011</div>
+        <div class="mock-badge">{ico("star", 18)} Яндекс.Карты 4.7 ★</div>
       </div>
     </div>
   </div>
@@ -619,12 +723,16 @@ a:hover, a:active { color: #6b4e03; }
     <p>В России сертификация HACCP <strong>обязательна</strong> для всех предприятий общепита и кейтеринга по ТР ТС 021/2011 (Технический регламент Евразийского экономического союза). Без сертификата — штрафы и риск закрытия.</p>
     <p>Показывая значок HACCP на сайте, вы одновременно выполняете требование закона и повышаете доверие клиентов. Это не просто «красивая иконка» — это документ, который проверяют.</p>
     <p><strong>19% клиентов уходят</strong> с сайтов, где нет признаков надёжности — именно из-за сомнений в безопасности. Знаки доверия рядом с формой заявки напрямую решают эту проблему.</p>
-    <div class="conv-badge"><svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg> 19% уходят из-за недоверия к сайту</div>
-    <span class="conv-source">Baymard Institute, уходят из-за недоверия к сайту</span>
+    <div class="conv-badge">{ico("shield", 13)} {CONV["trust_abandon"][0]} уходят из-за недоверия к сайту</div>
+    <span class="conv-source">{CONV["trust_abandon"][1]}</span>
   </div>
 </section>
+""")
 
-
+    # ═══════════════════════════════════════════
+    # SECTION 8: ФОРМА ЗАЯВКИ + СТИККИ-БАР
+    # ═══════════════════════════════════════════
+    parts.append(f"""
 <section class="section bg-white" id="contact-demo">
   <div class="section-head">
     <span class="section-eyebrow">Блок 8</span>
@@ -681,16 +789,20 @@ a:hover, a:active { color: #6b4e03; }
         <p>Исследования Baymard Institute показывают: средний чекаут содержит 11.3 полей — и это слишком много. Сокращение количества полей на 20-60% даёт до 35% прироста конверсии.</p>
         <p><strong>Не требуем бюджет</strong> — вместо этого добавляем подсказку «Не знаете — поможем определить». Это снимает барьер: гость не боится указать «неправильную» сумму.</p>
         <p><strong>После отправки</strong> — экран «Спасибо! Перезвоним в течение 30 минут» с номером телефона и ссылкой на Telegram. Клиент не чувствует, что его заявка «ушла в пустоту».</p>
-        <div class="conv-badge"><svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M3 13h2v8H3zm4-4h2v12H7zm4-4h2v16h-2zm4 6h2v10h-2zm4-8h2v18h-2z"/></svg> Формы с 5 полями: медиана 17.3%</div>
-        <span class="conv-source">Digital Applied, форм-конверсия медиана, 2026</span>
-        <div class="conv-badge" style="margin-top:6px;"><svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.26.36-.65.25-1C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/></svg> Sticky CTA: +8–27% роста с мобильного</div>
-        <span class="conv-source">Conversion Rate Experts + HubSpot, 2025</span>
+        <div class="conv-badge">{ico("chart", 13)} Формы с 5 полями: медиана {CONV["form_5fields"][0]}</div>
+        <span class="conv-source">{CONV["form_5fields"][1]}</span>
+        <div class="conv-badge" style="margin-top:6px;">{ico("phone", 13)} Sticky CTA: {CONV["sticky_cta"][0]} роста с мобильного</div>
+        <span class="conv-source">{CONV["sticky_cta"][1]}</span>
       </div>
     </div>
   </div>
 </section>
+""")
 
-
+    # ═══════════════════════════════════════════
+    # SECTION 9: СКОРОСТЬ ЗАГРУЗКИ
+    # ═══════════════════════════════════════════
+    parts.append(f"""
 <section class="section" id="speed-section">
   <div class="section-head">
     <span class="section-eyebrow">Техника</span>
@@ -704,10 +816,10 @@ a:hover, a:active { color: #6b4e03; }
         <p>Исследование «Milliseconds Make Millions» (2020) проанализировалоBehaviour 7.4 миллионов пользователей. Результат: улучшение скорости загрузки мобильного сайта на 0.1 секунды даёт <strong>+8.4% конверсии в ритейле</strong> и +10.1% в путешествиях.</p>
         <p>При времени загрузки 5+ секунд конверсия падает <strong>вдвое</strong> по сравнению с быстрыми сайтами. Для кейтеринга с его тяжёлыми фотографиями блюд это критично.</p>
         <p><strong>Что мы делаем</strong>: оптимизируем изображения (WebP, lazy load), минифицируем CSS/JS, используем CDN с серверами в РФ (для 152-ФЗ), настраиваем кэширование. Цель — загрузка менее 2.5 секунд.</p>
-        <div class="conv-badge"><svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M11 21h-1l1-7H7.5c-.58 0-.57-.32-.38-.66.19-.34.05-.08.07-.12C8.48 10.94 10.42 7.54 13 3h1l-1 7h3.5c.49 0 .56.33.47.51l-.07.15C12.96 17.55 11 21 11 21z"/></svg> +0.1 сек = +8.4% конверсии в ритейле</div>
-        <span class="conv-source">Google/Deloitte «Milliseconds Make Millions», 2020</span>
-        <div class="conv-badge" style="margin-top:6px;"><svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"/></svg> 5+ сек = конверсия падает ×0.5</div>
-        <span class="conv-source">Portent, 27K+ лендингов, конверсия падает вдвое при 5+ сек</span>
+        <div class="conv-badge">{ico("bolt", 13)} +0.1 сек = {CONV["speed_01s"][0]} конверсии в ритейле</div>
+        <span class="conv-source">{CONV["speed_01s"][1]}</span>
+        <div class="conv-badge" style="margin-top:6px;">{ico("clock", 13)} 5+ сек = конверсия падает {CONV["speed_5sec"][0]}</div>
+        <span class="conv-source">{CONV["speed_5sec"][1]}</span>
       </div>
     </div>
     <div class="col-demo">
@@ -745,8 +857,12 @@ a:hover, a:active { color: #6b4e03; }
     </div>
   </div>
 </section>
+""")
 
-
+    # ═══════════════════════════════════════════
+    # SECTION 10: ЗАКОНЫ И ЮРИДИЧЕСКИЕ ТРЕБОВАНИЯ
+    # ═══════════════════════════════════════════
+    parts.append(f"""
 <section class="section bg-white" id="legal-section">
   <div class="section-head">
     <span class="section-eyebrow">Закон</span>
@@ -755,19 +871,19 @@ a:hover, a:active { color: #6b4e03; }
   </div>
   <div class="legal-grid">
     <div class="legal-card">
-      <h4><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg> 152-ФЗ: Персональные данные</h4>
+      <h4>{ico("lock", 18)} 152-ФЗ: Персональные данные</h4>
       <p><strong>С 1 июля 2025</strong> все персональные данные граждан РФ должны храниться на серверах физически в России. Использование зарубежного хостинга (Vercel, AWS, Cloudflare) без российской базы данных — нарушение.</p>
-      <p>Штрафы с 30 мая 2025: <span class="warn">150K–18M ₽</span> — за первое нарушение, до 18 млн ₽ за повторное.</p>
-      <div class="conv-source">ФЗ-23 от 28.02.2025, штрафы с 30.05.2025</div>
+      <p>Штрафы с 30 мая 2025: <span class="warn">{CONV["fz152_fines"][0]}</span> — за первое нарушение, до 18 млн ₽ за повторное.</p>
+      <div class="conv-source">{CONV["fz152_fines"][1]}</div>
     </div>
     <div class="legal-card">
-      <h4><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg> HACCP: Безопасность пищи</h4>
+      <h4>{ico("shield", 18)} HACCP: Безопасность пищи</h4>
       <p><strong>Обязательно</strong> для всех кейтерингов по ТР ТС 021/2011. Сертификат подтверждает систему контроля безопасности пищевых продуктов — от закупки до подачи.</p>
       <p>На сайте: значок HACCP + номер сертификата + ссылка на скан. Это и доверие, и соответствие закону.</p>
-      <div class="conv-source">ЕАЭС, сертификация HACCP в РФ</div>
+      <div class="conv-source">{CONV["haccp_required"][1]}</div>
     </div>
     <div class="legal-card">
-      <h4><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M3 13h2v8H3zm4-4h2v12H7zm4-4h2v16h-2zm4 6h2v10h-2zm4-8h2v18h-2z"/></svg> Яндекс.Метрика, не Google Analytics</h4>
+      <h4>{ico("chart", 18)} Яндекс.Метрика, не Google Analytics</h4>
       <p>Google Analytics 4 запрещён к использованию в РФ с 1 июля 2025 (Роскомнадзор). Единственная легальная аналитика — <strong>Яндекс.Метрика</strong>. На сайте обязательна:</p>
       <ul style="font-size:13px;color:#3a3a3a;margin-top:6px;">
         <li>Политика конфиденциальности</li>
@@ -776,19 +892,23 @@ a:hover, a:active { color: #6b4e03; }
       </ul>
     </div>
     <div class="legal-card">
-      <h4><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/></svg> Домен .ru и хостинг в РФ</h4>
+      <h4>{ico("map", 18)} Домен .ru и хостинг в РФ</h4>
       <p>Для соблюдения 152-ФЗ и работы Яндекс.Метрики сайт должен быть на домене .ru с хостингом в России. Оплата — СБП или ЮKassa (Stripe/PayPal под санкциями).</p>
       <p>Плюс: домен .ru выше в Яндекс.Поиске, а 60% свадебных запросов в СПб идут через Яндекс, не Google.</p>
     </div>
   </div>
 </section>
+""")
 
-
+    # ═══════════════════════════════════════════
+    # SECTION 11: РЫНОК И КОНКУРЕНТЫ СПб
+    # ═══════════════════════════════════════════
+    parts.append(f"""
 <section class="section" id="market-section">
   <div class="section-head">
     <span class="section-eyebrow">Рынок</span>
     <h2>Ваше место на рынке СПб</h2>
-    <p>Рынок общепита России — 4.29 трлн ₽, рост +8.7% YoY. Где Nilov — и как сайт помогает отстроиться.</p>
+    <p>Рынок общепита России — {CONV["market_turnover"][0]}, рост {CONV["market_growth"][0]}. Где Nilov — и как сайт помогает отстроиться.</p>
   </div>
   <div class="info-card" style="max-width:680px;margin:0 auto;">
     <h4>Средний сегмент — золотая середина</h4>
@@ -817,8 +937,12 @@ a:hover, a:active { color: #6b4e03; }
     <div class="conv-source" style="margin-top:8px;">Цены: catery.ru, bash.today, топ-15 кейтерингов СПб, июнь 2026</div>
   </div>
 </section>
+""")
 
-
+    # ═══════════════════════════════════════════
+    # SECTION 12: СРОКИ И СТОИМОСТЬ РАЗРАБОТКИ
+    # ═══════════════════════════════════════════
+    parts.append(f"""
 <section class="section bg-dark" id="timeline-section">
   <div class="section-head">
     <span class="section-eyebrow">Сроки и стоимость</span>
@@ -864,8 +988,12 @@ a:hover, a:active { color: #6b4e03; }
     </div>
   </div>
 </section>
+""")
 
-
+    # ═══════════════════════════════════════════
+    # SECTION 13: ЧЕК-ЛИСТ ДЛЯ ЗАКАЗЧИКА
+    # ═══════════════════════════════════════════
+    parts.append(f"""
 <section class="section" id="checklist-section">
   <div class="section-head">
     <span class="section-eyebrow">Ваш чек-лист</span>
@@ -874,45 +1002,49 @@ a:hover, a:active { color: #6b4e03; }
   </div>
   <div class="checklist">
     <div class="check-item">
-      <span class="check-box"><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M9 16.2l-3.5-3.5L4.1 14.1 9 19 20 8l-1.4-1.4z"/></svg></span>
+      <span class="check-box">{ico("check", 14)}</span>
       <span><strong>Фото блюд и сервировки</strong> — 30-50 фотографий с реальных мероприятий. Не стоковые! Минимум 1200px по широкой стороне.</span>
     </div>
     <div class="check-item">
-      <span class="check-box"><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M9 16.2l-3.5-3.5L4.1 14.1 9 19 20 8l-1.4-1.4z"/></svg></span>
+      <span class="check-box">{ico("check", 14)}</span>
       <span><strong>Меню с ценами</strong> — каждое блюдо: название, состав, вес, цена «от X ₽/порция». Диеты: веган/без глютена/халяль.</span>
     </div>
     <div class="check-item">
-      <span class="check-box"><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M9 16.2l-3.5-3.5L4.1 14.1 9 19 20 8l-1.4-1.4z"/></svg></span>
+      <span class="check-box">{ico("check", 14)}</span>
       <span><strong>Отзывы клиентов</strong> — 10-15 текстов + фото (с разрешения). Формат: имя, дата, формат мероприятия, оценка.</span>
     </div>
     <div class="check-item">
-      <span class="check-box"><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M9 16.2l-3.5-3.5L4.1 14.1 9 19 20 8l-1.4-1.4z"/></svg></span>
+      <span class="check-box">{ico("check", 14)}</span>
       <span><strong>Кейсы</strong> — 8-12 мероприятий: фото + описание + цифры (гостей, дата, локация, бюджет).</span>
     </div>
     <div class="check-item">
-      <span class="check-box"><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M9 16.2l-3.5-3.5L4.1 14.1 9 19 20 8l-1.4-1.4z"/></svg></span>
+      <span class="check-box">{ico("check", 14)}</span>
       <span><strong>Сертификаты</strong> — HACCP, членство в РГА. Сканы для размещения на сайте.</span>
     </div>
     <div class="check-item">
-      <span class="check-box"><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M9 16.2l-3.5-3.5L4.1 14.1 9 19 20 8l-1.4-1.4z"/></svg></span>
+      <span class="check-box">{ico("check", 14)}</span>
       <span><strong>Контакты</strong> — телефон, Telegram, WhatsApp. Адрес офиса для карты Яндекс. Часы работы.</span>
     </div>
     <div class="check-item">
-      <span class="check-box"><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M9 16.2l-3.5-3.5L4.1 14.1 9 19 20 8l-1.4-1.4z"/></svg></span>
+      <span class="check-box">{ico("check", 14)}</span>
       <span><strong>Логотип</strong> — вектор (SVG) + растровое (PNG с прозрачным фоном). Минимум 3 варианта: тёмный, светлый, монохромный.</span>
     </div>
     <div class="check-item">
-      <span class="check-box"><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M9 16.2l-3.5-3.5L4.1 14.1 9 19 20 8l-1.4-1.4z"/></svg></span>
+      <span class="check-box">{ico("check", 14)}</span>
       <span><strong>Данные для 152-ФЗ</strong> — текст политики конфиденциальности, положение о ПДн, согласие на обработку.</span>
     </div>
     <div class="check-item">
-      <span class="check-box"><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M9 16.2l-3.5-3.5L4.1 14.1 9 19 20 8l-1.4-1.4z"/></svg></span>
+      <span class="check-box">{ico("check", 14)}</span>
       <span><strong>Домен и хостинг</strong> — домен .ru, хостинг в РФ (Timeweb, Selectel, Reg.ru). Доступы к DNS.</span>
     </div>
   </div>
 </section>
+""")
 
-
+    # ═══════════════════════════════════════════
+    # FOOTER
+    # ═══════════════════════════════════════════
+    parts.append(f"""
 <footer class="site-footer">
   <div class="footer-inner">
     <div class="footer-brand">Nilov Catering</div>
@@ -928,12 +1060,25 @@ a:hover, a:active { color: #6b4e03; }
     </div>
   </div>
 </footer>
+""")
 
-
+    # ─── BOTTOM BAR ───
+    parts.append("""
 <div class="bottom-bar">
   <a href="#contact-demo" class="bottom-btn tg">Telegram</a>
   <a href="#contact-demo" class="bottom-btn call">Позвонить</a>
   <a href="#calculator-demo" class="bottom-btn calc">Расчёт</a>
 </div>
+""")
 
-</body></html>
+    parts.append("</body></html>")
+    return "\n".join(parts)
+
+
+if __name__ == "__main__":
+    html_content = build_html()
+    os.makedirs(os.path.dirname(OUT), exist_ok=True)
+    with open(OUT, "w", encoding="utf-8") as f:
+        f.write(html_content)
+    size_kb = os.path.getsize(OUT) / 1024
+    print(f"OK: {OUT} ({size_kb:.1f} KB)")

@@ -1,0 +1,1090 @@
+     1→<!DOCTYPE html>
+     2→<html lang="ru">
+     3→<head>
+     4→<meta charset="UTF-8">
+     5→<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+     6→<meta name="theme-color" content="#0d0d0d">
+     7→<meta name="description" content="План сайта кейтеринга Nilov с реальными ценами рынка СПб 2026: что вы получаете, какие блоки нужны, что подготовить, сколько времени и денег займёт.">
+     8→<title>Nilov Catering — План сайта 2026 (для клиента)</title>
+     9→<style>
+    10→*, *::before, *::after { box-sizing: border-box; }
+    11→html { -webkit-text-size-adjust: 100%; }
+    12→body {
+    13→  margin: 0;
+    14→  padding: 0;
+    15→  padding-top: calc(56px + env(safe-area-inset-top, 0px));
+    16→  padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px));
+    17→  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    18→  font-size: 17px;
+    19→  line-height: 1.6;
+    20→  color: #1a1a1a;
+    21→  background: #faf7f2;
+    22→  -webkit-font-smoothing: antialiased;
+    23→  -moz-osx-font-smoothing: grayscale;
+    24→  text-rendering: optimizeLegibility;
+    25→  word-wrap: break-word;
+    26→  overflow-wrap: break-word;
+    27→  overflow-x: hidden;
+    28→}
+    29→img, svg { display: block; max-width: 100%; }
+    30→h1, h2, h3, h4 { margin: 0 0 0.5em 0; font-weight: 800; line-height: 1.2; color: #0d0d0d; }
+    31→p { margin: 0 0 1em 0; }
+    32→ul { margin: 0 0 1em 0; padding-left: 1.25em; }
+    33→li { margin-bottom: 0.5em; }
+    34→a { color: #b8860b; text-decoration: underline; text-underline-offset: 2px; }
+    35→a:hover, a:active { color: #8b6508; }
+    36→
+    37→/* HEADER */
+    38→.site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(13,13,13,0.97); color: #faf7f2; border-bottom: 1px solid rgba(184,134,11,0.4); padding-top: env(safe-area-inset-top, 0px); }
+    39→.header-inner { max-width: 1100px; margin: 0 auto; padding: 10px 16px; display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 56px; }
+    40→.brand { display: flex; align-items: center; gap: 10px; font-size: 16px; font-weight: 800; color: #faf7f2; text-decoration: none; min-height: 44px; }
+    41→.brand-mark { width: 36px; height: 36px; border-radius: 8px; background: linear-gradient(135deg, #b8860b 0%, #f5d76e 100%); display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 900; color: #0d0d0d; flex-shrink: 0; }
+    42→.brand-text { line-height: 1.1; }
+    43→.brand-text small { display: block; font-size: 11px; font-weight: 600; letter-spacing: 1.2px; color: #f5d76e; text-transform: uppercase; margin-top: 3px; }
+    44→.header-nav { display: none; gap: 14px; }
+    45→.header-nav a { color: #faf7f2; text-decoration: none; font-size: 13px; font-weight: 600; padding: 6px 0; }
+    46→.header-nav a:hover { color: #f5d76e; }
+    47→@media (min-width: 900px) { .header-nav { display: flex; } }
+    48→.header-cta { display: inline-flex; align-items: center; gap: 6px; padding: 10px 14px; background: #b8860b; color: #0d0d0d; border: none; border-radius: 10px; font-size: 13px; font-weight: 800; text-decoration: none; min-height: 44px; }
+    49→
+    50→/* HERO */
+    51→.hero { background: linear-gradient(180deg, #0d0d0d 0%, #1a1a1a 60%, #2a1a0a 100%); color: #faf7f2; padding: 48px 20px 56px; position: relative; overflow: hidden; }
+    52→.hero::before { content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.08 0'/></filter><rect width='100' height='100' filter='url(%23n)'/></svg>"); pointer-events: none; opacity: 0.6; }
+    53→.hero-inner { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
+    54→.hero-eyebrow { display: inline-block; padding: 6px 14px; background: rgba(184,134,11,0.18); border: 1px solid rgba(184,134,11,0.5); border-radius: 999px; font-size: 12px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: #f5d76e; margin-bottom: 20px; }
+    55→.hero h1 { font-size: clamp(28px, 7vw, 52px); line-height: 1.1; color: #faf7f2; font-weight: 900; margin-bottom: 18px; letter-spacing: -0.5px; }
+    56→.hero h1 .accent { background: linear-gradient(135deg, #f5d76e 0%, #b8860b 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    57→.hero-sub { font-size: clamp(16px, 4vw, 19px); color: rgba(250,247,242,0.92); max-width: 640px; margin-bottom: 28px; line-height: 1.55; }
+    58→.hero-cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    59→.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 22px; border-radius: 12px; font-size: 16px; font-weight: 800; text-decoration: none; border: none; min-height: 48px; transition: transform 0.15s ease; }
+    60→.btn:active { transform: scale(0.97); }
+    61→.btn-primary { background: #b8860b; color: #0d0d0d; }
+    62→.btn-secondary { background: transparent; color: #faf7f2; border: 1.5px solid rgba(250,247,242,0.5); }
+    63→
+    64→/* SECTION */
+    65→.section { padding: 48px 16px; max-width: 1100px; margin: 0 auto; }
+    66→.section-head { text-align: center; margin-bottom: 36px; }
+    67→.section-eyebrow { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #b8860b; margin-bottom: 12px; }
+    68→.section-head h2 { font-size: clamp(24px, 5vw, 38px); color: #0d0d0d; margin-bottom: 14px; letter-spacing: -0.3px; font-weight: 900; }
+    69→.section-head p { font-size: 16px; color: #5a5a5a; max-width: 680px; margin: 0 auto; line-height: 1.55; }
+    70→
+    71→/* RESULTS */
+    72→.results-section { background: #fff; border-top: 1px solid rgba(0,0,0,0.06); border-bottom: 1px solid rgba(0,0,0,0.06); }
+    73→.results-grid { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 28px; }
+    74→@media (min-width: 600px) { .results-grid { grid-template-columns: 1fr 1fr; } }
+    75→@media (min-width: 960px) { .results-grid { grid-template-columns: 1fr 1fr 1fr 1fr; } }
+    76→.result-card { padding: 22px 16px; background: linear-gradient(180deg, #faf7f2 0%, #fff 100%); border: 1px solid rgba(184,134,11,0.18); border-radius: 14px; text-align: center; }
+    77→.result-icon { width: 40px; height: 40px; margin: 0 auto 12px; color: #b8860b; }
+    78→.result-icon svg { width: 100%; height: 100%; }
+    79→.result-num { font-size: clamp(24px, 5vw, 34px); font-weight: 900; color: #0d0d0d; line-height: 1; margin-bottom: 6px; letter-spacing: -0.5px; }
+    80→.result-label { font-size: 12px; font-weight: 800; color: #b8860b; text-transform: uppercase; letter-spacing: 0.7px; margin-bottom: 8px; }
+    81→.result-desc { font-size: 13px; color: #4a4a4a; line-height: 1.5; }
+    82→
+    83→/* MARKET PRICES */
+    84→.prices-section { background: #fff; border-top: 1px solid rgba(0,0,0,0.06); border-bottom: 1px solid rgba(0,0,0,0.06); }
+    85→.prices-grid { display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 28px; }
+    86→@media (min-width: 700px) { .prices-grid { grid-template-columns: 1fr 1fr; } }
+    87→.price-card { padding: 22px; background: linear-gradient(180deg, #fff 0%, #faf7f2 100%); border-radius: 14px; border: 1px solid rgba(0,0,0,0.06); position: relative; overflow: hidden; }
+    88→.price-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #b8860b 0%, #f5d76e 100%); }
+    89→.price-fmt { font-size: 20px; font-weight: 800; color: #0d0d0d; margin-bottom: 8px; }
+    90→.price-range { font-size: 24px; font-weight: 900; color: #b8860b; margin-bottom: 12px; letter-spacing: -0.3px; }
+    91→.price-range small { font-size: 13px; color: #5a5a5a; font-weight: 600; }
+    92→.price-what { font-size: 14px; color: #2a2a2a; line-height: 1.55; margin-bottom: 10px; }
+    93→.price-audience { font-size: 13px; color: #6a6a6a; padding-top: 10px; border-top: 1px dashed rgba(0,0,0,0.1); line-height: 1.5; }
+    94→.price-audience strong { color: #0d0d0d; display: block; margin-bottom: 3px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.6px; }
+    95→
+    96→/* COMPETITORS */
+    97→.comp-section { background: #faf7f2; }
+    98→.comp-table { margin-top: 28px; overflow-x: auto; background: #fff; border-radius: 14px; border: 1px solid rgba(0,0,0,0.06); }
+    99→table { width: 100%; border-collapse: collapse; min-width: 600px; }
+   100→th, td { padding: 14px 12px; text-align: left; border-bottom: 1px solid rgba(0,0,0,0.06); font-size: 14px; line-height: 1.4; }
+   101→th { background: #0d0d0d; color: #f5d76e; font-weight: 800; font-size: 12px; text-transform: uppercase; letter-spacing: 0.6px; }
+   102→td { color: #2a2a2a; }
+   103→td.name { font-weight: 800; color: #0d0d0d; }
+   104→.comp-note { font-size: 13px; color: #5a5a5a; margin-top: 14px; padding: 12px 16px; background: rgba(184,134,11,0.06); border-left: 3px solid #b8860b; border-radius: 0 8px 8px 0; line-height: 1.55; }
+   105→
+   106→/* BLOCKS */
+   107→.blocks-grid { display: grid; grid-template-columns: 1fr; gap: 18px; margin-top: 28px; }
+   108→@media (min-width: 720px) { .blocks-grid { grid-template-columns: 1fr 1fr; } }
+   109→.block-card { background: #fff; border-radius: 16px; padding: 22px; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04); display: flex; flex-direction: column; position: relative; overflow: hidden; }
+   110→.block-head { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid rgba(0,0,0,0.06); }
+   111→.block-num { font-size: 30px; font-weight: 900; color: rgba(184,134,11,0.35); line-height: 1; flex-shrink: 0; }
+   112→.block-title { font-size: 20px; color: #0d0d0d; font-weight: 800; line-height: 1.2; margin: 0; }
+   113→.block-purpose { font-size: 14px; color: #4a4a4a; line-height: 1.55; margin-bottom: 14px; padding: 12px 14px; background: rgba(184,134,11,0.06); border-left: 3px solid #b8860b; border-radius: 0 8px 8px 0; }
+   114→.block-purpose-label { display: block; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.7px; color: #b8860b; margin-bottom: 4px; }
+   115→.block-must-title { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; color: #047857; margin-bottom: 10px; }
+   116→.block-must { list-style: none; padding: 0; margin: 0 0 14px 0; }
+   117→.block-must li { font-size: 14px; color: #1f1f1f; line-height: 1.5; padding-left: 30px; position: relative; margin-bottom: 7px; }
+   118→.block-must li::before { content: ""; position: absolute; left: 0; top: 1px; width: 18px; height: 18px; background: rgba(16,185,129,0.12); border-radius: 5px; }
+   119→.block-must li::after { content: ""; position: absolute; left: 4px; top: 6px; width: 10px; height: 6px; border-left: 2px solid #10b981; border-bottom: 2px solid #10b981; transform: rotate(-45deg); }
+   120→.block-metric { margin-top: auto; padding-top: 12px; border-top: 1px dashed rgba(0,0,0,0.1); font-size: 12px; color: #4a4a4a; line-height: 1.5; }
+   121→.block-metric strong { color: #b8860b; font-weight: 800; }
+   122→.block-palette { display: flex; gap: 6px; margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(0,0,0,0.06); }
+   123→.dot { width: 20px; height: 20px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
+   124→
+   125→/* SALES TIPS */
+   126→.sales-section { background: #fff; border-top: 1px solid rgba(0,0,0,0.06); border-bottom: 1px solid rgba(0,0,0,0.06); }
+   127→.sales-grid { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 28px; }
+   128→@media (min-width: 640px) { .sales-grid { grid-template-columns: 1fr 1fr; } }
+   129→@media (min-width: 960px) { .sales-grid { grid-template-columns: 1fr 1fr 1fr; } }
+   130→.tip-card { padding: 20px 18px; background: linear-gradient(180deg, #fff 0%, #faf7f2 100%); border-radius: 14px; border: 1px solid rgba(184,134,11,0.18); position: relative; overflow: hidden; }
+   131→.tip-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #10b981 0%, #b8860b 100%); }
+   132→.tip-title { font-size: 16px; font-weight: 800; color: #0d0d0d; margin-bottom: 8px; line-height: 1.25; }
+   133→.tip-desc { font-size: 14px; color: #4a4a4a; line-height: 1.55; margin-bottom: 12px; }
+   134→.tip-result { display: inline-block; padding: 5px 11px; background: rgba(16,185,129,0.12); color: #047857; border-radius: 999px; font-size: 11px; font-weight: 800; letter-spacing: 0.3px; }
+   135→
+   136→/* PREPARE */
+   137→.prepare-grid { display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 28px; }
+   138→@media (min-width: 720px) { .prepare-grid { grid-template-columns: 1fr 1fr; } }
+   139→.prepare-card { background: #fff; border-radius: 14px; padding: 20px; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 1px 2px rgba(0,0,0,0.04); }
+   140→.prepare-cat { font-size: 15px; font-weight: 800; color: #0d0d0d; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid #b8860b; display: inline-block; }
+   141→.prepare-list { list-style: none; padding: 0; margin: 0; }
+   142→.prepare-list li { font-size: 13px; color: #1f1f1f; line-height: 1.5; padding-left: 22px; position: relative; margin-bottom: 7px; }
+   143→.prepare-list li::before { content: "→"; position: absolute; left: 0; top: 0; color: #b8860b; font-weight: 800; }
+   144→
+   145→/* STAGES */
+   146→.stages-section { background: #fff; border-top: 1px solid rgba(0,0,0,0.06); border-bottom: 1px solid rgba(0,0,0,0.06); }
+   147→.stages { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 28px; }
+   148→@media (min-width: 720px) { .stages { grid-template-columns: 1fr 1fr; } }
+   149→@media (min-width: 1024px) { .stages { grid-template-columns: 1fr 1fr 1fr 1fr; } }
+   150→.stage { padding: 20px 16px; background: linear-gradient(180deg, #0d0d0d 0%, #1a1a1a 100%); color: #faf7f2; border-radius: 14px; position: relative; overflow: hidden; }
+   151→.stage::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #b8860b 0%, #f5d76e 100%); }
+   152→.stage-num { display: inline-block; width: 34px; height: 34px; line-height: 34px; text-align: center; background: #b8860b; color: #0d0d0d; border-radius: 50%; font-size: 16px; font-weight: 900; margin-bottom: 10px; }
+   153→.stage-title { font-size: 17px; font-weight: 800; color: #faf7f2; margin-bottom: 4px; }
+   154→.stage-duration { display: inline-block; padding: 3px 9px; background: rgba(245,215,110,0.18); color: #f5d76e; border-radius: 6px; font-size: 11px; font-weight: 700; margin-bottom: 10px; }
+   155→.stage-desc { font-size: 13px; color: rgba(250,247,242,0.85); line-height: 1.55; margin-bottom: 12px; }
+   156→.stage-deliv { font-size: 12px; color: rgba(250,247,242,0.7); line-height: 1.5; padding-top: 10px; border-top: 1px solid rgba(250,247,242,0.12); }
+   157→.stage-deliv strong { color: #f5d76e; display: block; margin-bottom: 3px; font-size: 10px; text-transform: uppercase; letter-spacing: 0.7px; }
+   158→
+   159→/* DEV COSTS */
+   160→.dev-section { background: #faf7f2; }
+   161→.dev-grid { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 28px; }
+   162→@media (min-width: 720px) { .dev-grid { grid-template-columns: 1fr 1fr; } }
+   163→.dev-card { padding: 18px; background: #fff; border-radius: 12px; border: 1px solid rgba(0,0,0,0.06); }
+   164→.dev-type { font-size: 16px; font-weight: 800; color: #0d0d0d; margin-bottom: 6px; }
+   165→.dev-price { font-size: 18px; font-weight: 900; color: #b8860b; margin-bottom: 6px; }
+   166→.dev-term { font-size: 12px; color: #5a5a5a; margin-bottom: 10px; font-weight: 600; }
+   167→.dev-fit { font-size: 13px; color: #2a2a2a; line-height: 1.5; }
+   168→.dev-fit.ok { color: #047857; }
+   169→
+   170→/* FUNNEL */
+   171→.funnel-section { background: #fff; border-top: 1px solid rgba(0,0,0,0.06); border-bottom: 1px solid rgba(0,0,0,0.06); }
+   172→.funnel { max-width: 720px; margin: 28px auto 0; }
+   173→.funnel-step { display: flex; align-items: stretch; background: linear-gradient(180deg, #fff 0%, #faf7f2 100%); border: 1px solid rgba(184,134,11,0.18); border-radius: 12px; margin-bottom: 8px; overflow: hidden; }
+   174→.funnel-left { flex: 0 0 100px; background: #0d0d0d; color: #f5d76e; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; text-align: center; padding: 12px 8px; line-height: 1.3; }
+   175→.funnel-mid { flex: 1; padding: 12px 16px; font-size: 14px; color: #1f1f1f; line-height: 1.5; display: flex; align-items: center; }
+   176→.funnel-right { flex: 0 0 100px; padding: 12px 10px; background: rgba(184,134,11,0.08); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+   177→.funnel-right strong { font-size: 14px; font-weight: 900; color: #b8860b; line-height: 1.2; }
+   178→.funnel-right small { font-size: 10px; color: #5a5a5a; margin-top: 3px; }
+   179→
+   180→/* GUARANTEES */
+   181→.guar-section { background: #faf7f2; }
+   182→.guar-grid { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 28px; }
+   183→@media (min-width: 720px) { .guar-grid { grid-template-columns: 1fr 1fr; } }
+   184→.guar-card { padding: 18px; background: #fff; border-radius: 12px; border: 1px solid rgba(0,0,0,0.06); }
+   185→.guar-fear { font-size: 15px; font-weight: 800; color: #b91c1c; margin-bottom: 8px; line-height: 1.3; }
+   186→.guar-answer { font-size: 14px; color: #1f1f1f; line-height: 1.55; }
+   187→.guar-answer::before { content: "✓ "; color: #10b981; font-weight: 900; }
+   188→
+   189→/* INSPIRATIONS */
+   190→.insp-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 28px; }
+   191→@media (min-width: 640px) { .insp-grid { grid-template-columns: 1fr 1fr; } }
+   192→@media (min-width: 960px) { .insp-grid { grid-template-columns: 1fr 1fr 1fr; } }
+   193→.insp-card { padding: 16px; background: #fff; border-radius: 14px; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 1px 2px rgba(0,0,0,0.04); }
+   194→.insp-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; gap: 8px; }
+   195→.insp-name { font-size: 16px; font-weight: 800; color: #0d0d0d; }
+   196→.insp-where { font-size: 11px; color: #8a8a8a; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+   197→.insp-why { font-size: 13px; color: #4a4a4a; line-height: 1.55; margin-bottom: 10px; }
+   198→.insp-pal { display: flex; gap: 4px; }
+   199→.insp-pal .dot { width: 16px; height: 16px; }
+   200→
+   201→/* CHECKLIST */
+   202→.checklist-section { background: linear-gradient(180deg, #fff 0%, #faf7f2 100%); border-top: 1px solid rgba(0,0,0,0.06); }
+   203→.checklist { max-width: 720px; margin: 28px auto 0; background: #fff; border-radius: 14px; padding: 24px 22px; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 1px 2px rgba(0,0,0,0.04); }
+   204→.check-item { display: flex; align-items: flex-start; gap: 12px; padding: 11px 0; border-bottom: 1px solid rgba(0,0,0,0.05); font-size: 14px; color: #1f1f1f; line-height: 1.5; }
+   205→.check-item:last-child { border-bottom: none; }
+   206→.check-box { width: 24px; height: 24px; border: 2px solid #b8860b; border-radius: 6px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; background: #fff; }
+   207→.check-box svg { width: 14px; height: 14px; color: #b8860b; opacity: 0.3; }
+   208→
+   209→/* BOTTOM BAR */
+   210→.bottom-bar { position: fixed; bottom: 0; left: 0; right: 0; z-index: 90; background: rgba(13,13,13,0.98); padding: 8px 12px calc(8px + env(safe-area-inset-bottom, 0px)); display: flex; gap: 8px; border-top: 1px solid rgba(184,134,11,0.4); }
+   211→.bottom-btn { flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 48px; padding: 0 8px; border-radius: 10px; font-size: 14px; font-weight: 800; text-decoration: none; border: none; }
+   212→.bottom-btn.tg { background: #0088cc; color: #fff; }
+   213→.bottom-btn.call { background: #10b981; color: #fff; }
+   214→.bottom-btn.calc { background: #f5d76e; color: #0d0d0d; }
+   215→
+   216→/* FOOTER */
+   217→.site-footer { background: #0d0d0d; color: #faf7f2; padding: 48px 20px calc(80px + env(safe-area-inset-bottom, 0px)); text-align: center; }
+   218→.footer-inner { max-width: 720px; margin: 0 auto; }
+   219→.footer-brand { font-size: 24px; font-weight: 900; color: #f5d76e; margin-bottom: 10px; }
+   220→.footer-tagline { font-size: 14px; color: rgba(250,247,242,0.7); margin-bottom: 24px; line-height: 1.5; }
+   221→.footer-note { font-size: 12px; color: rgba(250,247,242,0.5); line-height: 1.6; padding-top: 20px; border-top: 1px solid rgba(250,247,242,0.1); }
+   222→
+   223→@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+   224→.block-card, .tip-card, .result-card, .stage, .insp-card, .prepare-card, .checklist, .price-card, .dev-card, .guar-card, .funnel-step { animation: fadeUp 0.5s ease both; }
+   225→@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+   226→</style>
+   227→</head>
+   228→<body>
+   229→
+   230→<header class="site-header">
+   231→  <div class="header-inner">
+   232→    <a href="#top" class="brand">
+   233→      <span class="brand-mark">N</span>
+   234→      <span class="brand-text">
+   235→        Nilov Catering
+   236→        <small>План сайта · 2026</small>
+   237→      </span>
+   238→    </a>
+   239→    <nav class="header-nav">
+   240→      <a href="#results">Что вы получаете</a>
+   241→      <a href="#prices">Цены рынка</a>
+   242→      <a href="#blocks">Блоки сайта</a>
+   243→      <a href="#cost">Стоимость</a>
+   244→      <a href="#guarantees">Гарантии</a>
+   245→    </nav>
+   246→    <a href="#contact" class="header-cta">Связаться</a>
+   247→  </div>
+   248→</header>
+   249→
+   250→<section class="hero" id="top">
+   251→  <div class="hero-inner">
+   252→    <span class="hero-eyebrow">Для клиента · 26 июня 2026 · с реальными ценами СПб</span>
+   253→    <h1>
+   254→      <span class="accent">Ваш сайт кейтеринга</span><br>
+   255→      который приносит заявки
+   256→    </h1>
+   257→    <p class="hero-sub">
+   258→      Простой план с реальными цифрами: какие блоки нужны, что вы получаете, сколько стоит и сколько времени займёт. Без воды и технических терминов — только то, что важно для вашего бизнеса.
+   259→    </p>
+   260→    <div class="hero-cta-row">
+   261→      <a href="#blocks" class="btn btn-primary">Какие блоки нужны</a>
+   262→      <a href="#cost" class="btn btn-secondary">Сколько стоит</a>
+   263→    </div>
+   264→  </div>
+   265→</section>
+   266→
+   267→<!-- ЧТО ВЫ ПОЛУЧАЕТЕ -->
+   268→<section class="section results-section" id="results">
+   269→  <div class="section-head">
+   270→    <span class="section-eyebrow">Бизнес-результат</span>
+   271→    <h2>Что вы получаете</h2>
+   272→    <p>Не «красивый сайт», а инструмент, который приносит заявки и окупается за 2-3 заказа.</p>
+   273→  </div>
+   274→  <div class="results-grid">
+   275→    
+   276→    <div class="result-card">
+   277→      <div class="result-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.26.36-.65.25-1C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/></svg></div>
+   278→      <div class="result-num">+7-400%</div>
+   279→      <div class="result-label">к доверию клиентов</div>
+   280→      <div class="result-desc">Trust badges поднимают конверсию от +7% до +400% (Baymard Institute, 2026)</div>
+   281→    </div>
+   282→    
+   283→    <div class="result-card">
+   284→      <div class="result-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"/></svg></div>
+   285→      <div class="result-num">< 2.5 сек</div>
+   286→      <div class="result-label">загрузка сайта</div>
+   287→      <div class="result-desc">Цель по Google Core Web Vitals 2026. Каждая лишняя секунда = −7% конверсий</div>
+   288→    </div>
+   289→    
+   290→    <div class="result-card">
+   291→      <div class="result-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1l3 5 6 .9-4.5 4.4 1 6L12 17l-5.5 3 1-6L3 7l6-.9z"/></svg></div>
+   292→      <div class="result-num">21.5%</div>
+   293→      <div class="result-label">конверсия формы</div>
+   294→      <div class="result-desc">Средняя конверсия формы с 5 полями. С 10+ полями — падает до 10% (Formidable Forms)</div>
+   295→    </div>
+   296→    
+   297→    <div class="result-card">
+   298→      <div class="result-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 3h-3v10H7v3h3v2H7v3h3v3h3v-3h3v-3h-3v-2h3c2.8 0 5-2.2 5-5s-2.2-5-5-5zm0 8h-3V6h3c2.8 0 5 1.5 5 2.5S15.8 11 13 11z"/></svg></div>
+   299→      <div class="result-num">2-3 заказа</div>
+   300→      <div class="result-label">до окупаемости</div>
+   301→      <div class="result-desc">Сайт за 250 000 ₽ окупается за 2-3 заказа при среднем чеке 80 000 ₽</div>
+   302→    </div>
+   303→    
+   304→  </div>
+   305→</section>
+   306→
+   307→<!-- ЦЕНЫ РЫНКА СПб -->
+   308→<section class="section prices-section" id="prices">
+   309→  <div class="section-head">
+   310→    <span class="section-eyebrow">Реалии рынка СПб · июнь 2026</span>
+   311→    <h2>Цены кейтеринга в Санкт-Петербурге</h2>
+   312→    <p>Реальные цены с топ-15 кейтерингов СПб (источник: bash.today, catery.ru). Это вилки рынка — ориентируйтесь, где ваш сегмент.</p>
+   313→  </div>
+   314→  <div class="prices-grid">
+   315→    
+   316→    <div class="price-card">
+   317→      <div class="price-fmt">Кофе-брейк</div>
+   318→      <div class="price-range">от 500 ₽<br><small>до 1 500 ₽/чел</small></div>
+   319→      <div class="price-what">Кофе  чай  выпечка  канапе. Для конференций  семинаров  утренних встреч</div>
+   320→      <div class="price-audience">
+   321→        <strong>Кому подходит</strong>
+   322→        Корпоративные клиенты  B2B
+   323→      </div>
+   324→    </div>
+   325→    
+   326→    <div class="price-card">
+   327→      <div class="price-fmt">Фуршет</div>
+   328→      <div class="price-range">от 1 800 ₽<br><small>до 3 800 ₽/чел</small></div>
+   329→      <div class="price-what">Канапе  тарталетки  мини-закуски  напитки. Гости стоят  общаются  едят руками</div>
+   330→      <div class="price-audience">
+   331→        <strong>Кому подходит</strong>
+   332→        Презентации  открытия  вечеринки  дни рождения 30-100 гостей
+   333→      </div>
+   334→    </div>
+   335→    
+   336→    <div class="price-card">
+   337→      <div class="price-fmt">Банкет</div>
+   338→      <div class="price-range">от 2 800 ₽<br><small>до 6 600 ₽/чел</small></div>
+   339→      <div class="price-what">Полный ужин с подачей  горячее  десерт  алкоголь. Гости сидят за столами</div>
+   340→      <div class="price-audience">
+   341→        <strong>Кому подходит</strong>
+   342→        Свадьбы  юбилеи  корпоративы 50-300 гостей
+   343→      </div>
+   344→    </div>
+   345→    
+   346→    <div class="price-card">
+   347→      <div class="price-fmt">Гала-ужин</div>
+   348→      <div class="price-range">от 6 000 ₽<br><small>до 12 000 ₽/чел</small></div>
+   349→      <div class="price-what">Премиум-меню  эксклюзивные блюда  винное сопровождение  шеф на месте</div>
+   350→      <div class="price-audience">
+   351→        <strong>Кому подходит</strong>
+   352→        VIP-мероприятия  премии  благотворительные вечера
+   353→      </div>
+   354→    </div>
+   355→    
+   356→  </div>
+   357→</section>
+   358→
+   359→<!-- КОНКУРЕНТЫ -->
+   360→<section class="section comp-section">
+   361→  <div class="section-head">
+   362→    <span class="section-eyebrow">Конкуренты в СПб</span>
+   363→    <h2>С кем вы конкурируете</h2>
+   364→    <p>Топ-6 игроков рынка СПб с их ценами. Это ваша отправная точка — что-то можно подсмотреть, от чего-то отказаться.</p>
+   365→  </div>
+   366→  <div class="comp-table">
+   367→    <table>
+   368→      <thead>
+   369→        <tr>
+   370→          <th>Компания</th>
+   371→          <th>Банкет</th>
+   372→          <th>Фуршет</th>
+   373→          <th>Кофе-брейк</th>
+   374→          <th>Особенность</th>
+   375→        </tr>
+   376→      </thead>
+   377→      <tbody>
+   378→        
+   379→        <tr>
+   380→          <td class="name">Concord Catering</td>
+   381→          <td>от 3 800 ₽</td>
+   382→          <td>от 3 800 ₽</td>
+   383→          <td>от 800 ₽</td>
+   384→          <td>Сетевой, 20+ лет на рынке, санкции (с осторожностью)</td>
+   385→        </tr>
+   386→        
+   387→        <tr>
+   388→          <td class="name">CanapeClub</td>
+   389→          <td>от 4 000-5 000 ₽</td>
+   390→          <td>от 800 ₽</td>
+   391→          <td>от 800-1 500 ₽</td>
+   392→          <td>1000+ блюд, 22 кухни мира, сильное меню</td>
+   393→        </tr>
+   394→        
+   395→        <tr>
+   396→          <td class="name">Caramel Catering</td>
+   397→          <td>индивид.</td>
+   398→          <td>—</td>
+   399→          <td>—</td>
+   400→          <td>Доставка + банкеты, фокус на качестве</td>
+   401→        </tr>
+   402→        
+   403→        <tr>
+   404→          <td class="name">Gala Show</td>
+   405→          <td>от 2 800 ₽</td>
+   406→          <td>от 1 800 ₽</td>
+   407→          <td>от 800 ₽</td>
+   408→          <td>Бюджетный сегмент, средний чек ниже рынка</td>
+   409→        </tr>
+   410→        
+   411→        <tr>
+   412→          <td class="name">Constanta Catering</td>
+   413→          <td>от 3 800 ₽</td>
+   414→          <td>от 3 800 ₽</td>
+   415→          <td>от 800 ₽</td>
+   416→          <td>Свадьбы под ключ, трансфер гостей</td>
+   417→        </tr>
+   418→        
+   419→        <tr>
+   420→          <td class="name">Премиум-сегмент</td>
+   421→          <td>от 6 600 ₽</td>
+   422→          <td>от 3 800 ₽</td>
+   423→          <td>от 820 ₽</td>
+   424→          <td>Novikov-level, премиум-клиенты</td>
+   425→        </tr>
+   426→        
+   427→      </tbody>
+   428→    </table>
+   429→  </div>
+   430→  <div class="comp-note">
+   431→    <strong>Что это значит для вас:</strong> Nilov в среднем сегменте — банкет 3 500-4 500 ₽/гость — это «золотая середина» между бюджетным Gala Show (2 800) и премиумом (6 600+). На сайте подчёркивайте это: «дорого, но не премиум — качество без переплаты».
+   432→  </div>
+   433→</section>
+   434→
+   435→<!-- 8 БЛОКОВ -->
+   436→<section class="section" id="blocks">
+   437→  <div class="section-head">
+   438→    <span class="section-eyebrow">Структура</span>
+   439→    <h2>8 главных блоков сайта</h2>
+   440→    <p>Минимальный набор, без которого сайт кейтеринга не работает. Каждый блок решает конкретную задачу клиента.</p>
+   441→  </div>
+   442→  <div class="blocks-grid">
+   443→    
+   444→    <div class="block-card">
+   445→      <div class="block-head">
+   446→        <span class="block-num">01</span>
+   447→        <h3 class="block-title">Главная страница</h3>
+   448→      </div>
+   449→      <div class="block-purpose">
+   450→        <span class="block-purpose-label">Зачем этот блок</span>
+   451→        За 5 секунд гость понимает: «Это кейтеринг в СПб, для свадеб и корпоративов, мой бюджет подходит»
+   452→      </div>
+   453→      <div class="block-must-title">Что обязательно должно быть:</div>
+   454→      <ul class="block-must">
+   455→        <li>Большое фото с реального сервированного стола (не сток!)</li><li>Заголовок: «Кейтеринг для свадеб и корпоративов в СПб»</li><li>Кнопка «Рассчитать стоимость» — крупная, контрастная</li><li>Мини-калькулятор: гостей × формат = от X ₽/гость</li><li>Счётчик «8 лет / 500 событий / 4.7★ на Яндекс.Картах»</li>
+   456→      </ul>
+   457→      <div class="block-metric">
+   458→        <strong>Почему важно:</strong> 70% внимания — выше первого экрана (NN/g 2026). Если гость не понял за 5 сек — ушёл.
+   459→      </div>
+   460→      <div class="block-palette">
+   461→        <span class="dot" style="background:#0d0d0d"></span><span class="dot" style="background:#f5d76e"></span><span class="dot" style="background:#faf7f2"></span><span class="dot" style="background:#b8860b"></span>
+   462→      </div>
+   463→    </div>
+   464→    
+   465→    <div class="block-card">
+   466→      <div class="block-head">
+   467→        <span class="block-num">02</span>
+   468→        <h3 class="block-title">Меню в HTML, не PDF</h3>
+   469→      </div>
+   470→      <div class="block-purpose">
+   471→        <span class="block-purpose-label">Зачем этот блок</span>
+   472→        Гость листает блюда на телефоне, фильтрует по диетам, видит цены
+   473→      </div>
+   474→      <div class="block-must-title">Что обязательно должно быть:</div>
+   475→      <ul class="block-must">
+   476→        <li>Каждое блюдо: фото, состав, вес, цена «от X ₽/порция»</li><li>Фильтры: веган / без глютена / халяль / kosher</li><li>Категории: закуски, горячее, десерты, напитки</li><li>Кнопка «Добавить в избранное» → отправить в Telegram</li><li>Значок «шеф рекомендует» на 5-7 позициях</li>
+   477→      </ul>
+   478→      <div class="block-metric">
+   479→        <strong>Почему важно:</strong> PDF-меню теряет 40% мобильных клиентов (Restaurant Business 2026). HTML-меню индексируется в Яндексе.
+   480→      </div>
+   481→      <div class="block-palette">
+   482→        <span class="dot" style="background:#7a1f1f"></span><span class="dot" style="background:#faf6f0"></span><span class="dot" style="background:#1f3a5f"></span><span class="dot" style="background:#c8a165"></span>
+   483→      </div>
+   484→    </div>
+   485→    
+   486→    <div class="block-card">
+   487→      <div class="block-head">
+   488→        <span class="block-num">03</span>
+   489→        <h3 class="block-title">Калькулятор стоимости</h3>
+   490→      </div>
+   491→      <div class="block-purpose">
+   492→        <span class="block-purpose-label">Зачем этот блок</span>
+   493→        Гость сам считает: «Сколько для 80 гостей на свадьбу?»
+   494→      </div>
+   495→      <div class="block-must-title">Что обязательно должно быть:</div>
+   496→      <ul class="block-must">
+   497→        <li>3-4 поля: дата, гости, формат (банкет/фуршет/КБ), доп. опции</li><li>Расчёт в реальном времени, без перезагрузки страницы</li><li>Результат «от X ₽/гость» — точную цену скажет менеджер</li><li>Кнопка «Получить точный расчёт» → форма 5 полей</li><li>Не требовать телефон — только email опционально</li>
+   498→      </ul>
+   499→      <div class="block-metric">
+   500→        <strong>Почему важно:</strong> +18-32% квалифицированных заявок (Catering by Michaels публикует цены с 1980 г.)
+   501→      </div>
+   502→      <div class="block-palette">
+   503→        <span class="dot" style="background:#10b981"></span><span class="dot" style="background:#1f2937"></span><span class="dot" style="background:#fbbf24"></span><span class="dot" style="background:#ef4444"></span>
+   504→      </div>
+   505→    </div>
+   506→    
+   507→    <div class="block-card">
+   508→      <div class="block-head">
+   509→        <span class="block-num">04</span>
+   510→        <h3 class="block-title">3 пакета: Classic / Signature / Premium</h3>
+   511→      </div>
+   512→      <div class="block-purpose">
+   513→        <span class="block-purpose-label">Зачем этот блок</span>
+   514→        Гость видит понятную вилку и не боится «дороговизны»
+   515→      </div>
+   516→      <div class="block-must-title">Что обязательно должно быть:</div>
+   517→      <ul class="block-must">
+   518→        <li>Classic — от 2 800 ₽/гость, 6 блюд, 2 официанта, доставка</li><li>Signature — от 4 000 ₽/гость, 8 блюд, 3 официанта, бар — «ХИТ»</li><li>Premium — от 6 600 ₽/гость, 12 блюд, шеф на месте, фотосъёмка</li><li>Состав каждого пакета — с галочками что включено</li><li>Кнопка «Хочу как в Signature» → форма с предзаполнением</li>
+   519→      </ul>
+   520→      <div class="block-metric">
+   521→        <strong>Почему важно:</strong> Эффект якоря: средний пакет кажется разумным на фоне премиума. Снимает страх цены.
+   522→      </div>
+   523→      <div class="block-palette">
+   524→        <span class="dot" style="background:#1f3a5f"></span><span class="dot" style="background:#e8d9b8"></span><span class="dot" style="background:#7a1f1f"></span><span class="dot" style="background:#10b981"></span>
+   525→      </div>
+   526→    </div>
+   527→    
+   528→    <div class="block-card">
+   529→      <div class="block-head">
+   530→        <span class="block-num">05</span>
+   531→        <h3 class="block-title">Кейсы с реальных событий</h3>
+   532→      </div>
+   533→      <div class="block-purpose">
+   534→        <span class="block-purpose-label">Зачем этот блок</span>
+   535→        Доказательство: «Эти ребята реально умеют делать банкеты на 200 человек»
+   536→      </div>
+   537→      <div class="block-must-title">Что обязательно должно быть:</div>
+   538→      <ul class="block-must">
+   539→        <li>8-12 кейсов: фото + описание + цифры (гостей, дата, локация)</li><li>Каждый кейс — отдельная страница (для SEO)</li><li>«Свадьба Анны и Игоря, 120 гостей, 14 июня 2026, ресторан Cascade»</li><li>Фото до/во время/после — эмоциональный рассказ</li><li>Ссылка на отзыв клиента с фото — если согласие получено</li>
+   540→      </ul>
+   541→      <div class="block-metric">
+   542→        <strong>Почему важно:</strong> Конкретные имена+даты+фото = доверие +37% (Baymard Institute)
+   543→      </div>
+   544→      <div class="block-palette">
+   545→        <span class="dot" style="background:#1a1a1a"></span><span class="dot" style="background:#f5efe6"></span><span class="dot" style="background:#c9a86a"></span><span class="dot" style="background:#10b981"></span>
+   546→      </div>
+   547→    </div>
+   548→    
+   549→    <div class="block-card">
+   550→      <div class="block-head">
+   551→        <span class="block-num">06</span>
+   552→        <h3 class="block-title">Telegram-бот и форма заявки</h3>
+   553→      </div>
+   554→      <div class="block-purpose">
+   555→        <span class="block-purpose-label">Зачем этот блок</span>
+   556→        Гость оставляет заявку тем способом, который ему удобен
+   557→      </div>
+   558→      <div class="block-must-title">Что обязательно должно быть:</div>
+   559→      <ul class="block-must">
+   560→        <li>Telegram-кнопка в шапке и в sticky-баре снизу</li><li>Форма с 5 полями: имя, телефон, дата, гости, тип события</li><li>Бюджет — опционально с подсказкой «не знаете — поможем»</li><li>Кнопка WhatsApp — для тех, кто не любит Telegram</li><li>После отправки: «Спасибо! Перезвоним в течение 30 минут»</li>
+   561→      </ul>
+   562→      <div class="block-metric">
+   563→        <strong>Почему важно:</strong> Формы с 5 полями = 21.5% конверсия vs 10% с 10+ полями (Formidable Forms 2026)
+   564→      </div>
+   565→      <div class="block-palette">
+   566→        <span class="dot" style="background:#0088cc"></span><span class="dot" style="background:#25d366"></span><span class="dot" style="background:#1f2937"></span><span class="dot" style="background:#ffffff"></span>
+   567→      </div>
+   568→    </div>
+   569→    
+   570→    <div class="block-card">
+   571→      <div class="block-head">
+   572→        <span class="block-num">07</span>
+   573→        <h3 class="block-title">Отзывы и доверие</h3>
+   574→      </div>
+   575→      <div class="block-purpose">
+   576→        <span class="block-purpose-label">Зачем этот блок</span>
+   577→        Снять страх «а вдруг испортят праздник?»
+   578→      </div>
+   579→      <div class="block-must-title">Что обязательно должно быть:</div>
+   580→      <ul class="block-must">
+   581→        <li>10-15 отзывов с фото клиентов (не сток!)</li><li>«Ирина П., свадьба 120 гостей, 15 июня 2026, ресторан Cascade»</li><li>Виджет Яндекс.Карт с реальными оценками (4.7★ и 200+ отзывов)</li><li>Виджет 2ГИС — для тех, кто им пользуется (60% бизнеса в СПб)</li><li>Сертификаты: ХАССП, член РГА — если есть</li>
+   582→      </ul>
+   583→      <div class="block-metric">
+   584→        <strong>Почему важно:</strong> Trust badges поднимают конверсию от +7% до +400% (Baymard Institute)
+   585→      </div>
+   586→      <div class="block-palette">
+   587→        <span class="dot" style="background:#fc3f1d"></span><span class="dot" style="background:#1e3a8a"></span><span class="dot" style="background:#fbbf24"></span><span class="dot" style="background:#ffffff"></span>
+   588→      </div>
+   589→    </div>
+   590→    
+   591→    <div class="block-card">
+   592→      <div class="block-head">
+   593→        <span class="block-num">08</span>
+   594→        <h3 class="block-title">Контакты и карта</h3>
+   595→      </div>
+   596→      <div class="block-purpose">
+   597→        <span class="block-purpose-label">Зачем этот блок</span>
+   598→        Гость понимает: «Это реальная компания в СПб, можно приехать на дегустацию»
+   599→      </div>
+   600→      <div class="block-must-title">Что обязательно должно быть:</div>
+   601→      <ul class="block-must">
+   602→        <li>Адрес офиса с картой Яндекс (не Google!)</li><li>Телефон — кликабельный на мобильном</li><li>3 канала: WhatsApp + Telegram + телефон</li><li>Часы работы: «Пн-Вс 9:00-21:00, заявки онлайн 24/7»</li><li>«Приезжайте на дегустацию» — отдельная страница с записью</li>
+   603→      </ul>
+   604→      <div class="block-metric">
+   605→        <strong>Почему важно:</strong> Карта с адресом = доверие +19%, особенно для свадебных клиентов
+   606→      </div>
+   607→      <div class="block-palette">
+   608→        <span class="dot" style="background:#1a1a1a"></span><span class="dot" style="background:#c9a86a"></span><span class="dot" style="background:#f5efe6"></span><span class="dot" style="background:#7a4a2f"></span>
+   609→      </div>
+   610→    </div>
+   611→    
+   612→  </div>
+   613→</section>
+   614→
+   615→<!-- 6 ПРИЁМОВ -->
+   616→<section class="section sales-section" id="sales">
+   617→  <div class="section-head">
+   618→    <span class="section-eyebrow">Конверсия в заявки</span>
+   619→    <h2>6 приёмов, которые приносят заявки</h2>
+   620→    <p>То, что отличает сайт «который есть» от сайта «который продаёт». Каждый приём — с конкретным результатом.</p>
+   621→  </div>
+   622→  <div class="sales-grid">
+   623→    
+   624→    <div class="tip-card">
+   625→      <div class="tip-title">Sticky-кнопка снизу на мобильном</div>
+   626→      <div class="tip-desc">Внизу экрана всегда прикреплены 3 кнопки: «Telegram / Позвонить / Рассчитать». Гость не скроллит вверх, чтобы оставить заявку.</div>
+   627→      <div class="tip-result">+18-22% конверсии с мобильного (HubSpot 2026)</div>
+   628→    </div>
+   629→    
+   630→    <div class="tip-card">
+   631→      <div class="tip-title">3 пакета вместо «цена по запросу»</div>
+   632→      <div class="tip-desc">Гость видит «Classic / Signature / Premium» с ценой «от X ₽/гость» и составом. Снимает страх «не потяну по бюджету».</div>
+   633→      <div class="tip-result">+25% квалифицированных заявок</div>
+   634→    </div>
+   635→    
+   636→    <div class="tip-card">
+   637→      <div class="tip-title">Фото с реальных событий, не сток</div>
+   638→      <div class="tip-desc">Один день с фотографом на реальном банкете = контент на 6 месяцев. Стоковые фото гости видят сразу и не доверяют.</div>
+   639→      <div class="tip-result">+37% доверия к бренду (Baymard)</div>
+   640→    </div>
+   641→    
+   642→    <div class="tip-card">
+   643→      <div class="tip-title">Ответ за 30 минут</div>
+   644→      <div class="tip-desc">Если ответили за 30 минут — гость ваш. Если за 2 часа — ушёл к конкуренту. Telegram-бот + автоуведомления менеджеру.</div>
+   645→      <div class="tip-result">+60% доводят до бронирования (HubSpot)</div>
+   646→    </div>
+   647→    
+   648→    <div class="tip-card">
+   649→      <div class="tip-title">Виджет Яндекс.Карт с отзывами</div>
+   650→      <div class="tip-desc">4.7★ и 200+ отзывов на Яндекс.Картах — сторонний источник доверия, гости верят ему больше, чем сайту.</div>
+   651→      <div class="tip-result">+19% доверия, особенно у свадебных</div>
+   652→    </div>
+   653→    
+   654→    <div class="tip-card">
+   655→      <div class="tip-title">Запись на дегустацию онлайн</div>
+   656→      <div class="tip-desc">Отдельная страница «Записаться на дегустацию» с календарём свободных дат. Дегустация конвертирует 70% в предоплату.</div>
+   657→      <div class="tip-result">70% пришедших на дегустацию — платят</div>
+   658→    </div>
+   659→    
+   660→  </div>
+   661→</section>
+   662→
+   663→<!-- ЧТО ПОДГОТОВИТЬ -->
+   664→<section class="section" id="prepare">
+   665→  <div class="section-head">
+   666→    <span class="section-eyebrow">Ваша сторона</span>
+   667→    <h2>Что нужно подготовить вам</h2>
+   668→    <p>Чтобы сайт запустился в срок — соберите материалы параллельно с разработкой. Это 1-2 недели вашей работы.</p>
+   669→  </div>
+   670→  <div class="prepare-grid">
+   671→    
+   672→    <div class="prepare-card">
+   673→      <div class="prepare-cat">Фото и видео</div>
+   674→      <ul class="prepare-list">
+   675→        <li>1 день с food-фотографом — 30-50 блюд = контент на 6 мес</li><li>Фото с 5-8 реальных событий (с согласием клиентов по 152-ФЗ)</li><li>Видео 30-60 сек с банкета (без звука, для hero)</li><li>Портреты шеф-поваров для раздела «Команда»</li>
+   676→      </ul>
+   677→    </div>
+   678→    
+   679→    <div class="prepare-card">
+   680→      <div class="prepare-cat">Меню и прайс</div>
+   681→      <ul class="prepare-list">
+   682→        <li>Полное меню с составом, весом, ценой за порцию</li><li>3 пакета (Classic от 2800 / Signature от 4000 / Premium от 6600 ₽/гость)</li><li>Сезонные предложения (весна/лето/осень/зима)</li><li>Опции: веган, без глютена, халяль — отдельные позиции</li>
+   683→      </ul>
+   684→    </div>
+   685→    
+   686→    <div class="prepare-card">
+   687→      <div class="prepare-cat">Юридическое (152-ФЗ)</div>
+   688→      <ul class="prepare-list">
+   689→        <li>Согласие на обработку ПДн — отдельно (с 01.09.2025)</li><li>Согласие на cookies — отдельно (420-ФЗ)</li><li>Согласие на промо-рассылки — отдельно, опциональное</li><li>Политика обработки ПДн — отдельный документ</li><li>Реквизиты ИП/ООО для договора и счетов</li>
+   690→      </ul>
+   691→    </div>
+   692→    
+   693→    <div class="prepare-card">
+   694→      <div class="prepare-cat">Доверие</div>
+   695→      <ul class="prepare-list">
+   696→        <li>Список 8-10 корпоративных клиентов (с письменным согласием)</li><li>10-15 отзывов с фото клиентов (с согласием по 152-ФЗ)</li><li>Сертификаты: ХАССП, член РГА (если есть)</li><li>Профиль на Яндекс.Картах и 2ГИС с отзывами</li><li>Профиль на Catery.ru / CaterMe.ru (агрегаторы)</li>
+   697→      </ul>
+   698→    </div>
+   699→    
+   700→    <div class="prepare-card">
+   701→      <div class="prepare-cat">Контакты и каналы</div>
+   702→      <ul class="prepare-list">
+   703→        <li>Telegram-аккаунт и/или бот для приёма заявок</li><li>WhatsApp Business с каталогом блюд</li><li>Телефон для приёма звонков (с переадресацией)</li><li>Email для онлайн-заявок и счетов</li><li>Адрес офиса для приёма на дегустацию</li>
+   704→      </ul>
+   705→    </div>
+   706→    
+   707→  </div>
+   708→</section>
+   709→
+   710→<!-- СТОИМОСТЬ РАЗРАБОТКИ -->
+   711→<section class="section dev-section" id="cost">
+   712→  <div class="section-head">
+   713→    <span class="section-eyebrow">Бюджет</span>
+   714→    <h2>Сколько стоит разработка сайта</h2>
+   715→    <p>Реальные цены рынка веб-разработки 2025-2026 (feelcode.ru, sw-studio.ru). Для кейтеринга оптимален корпоративный сайт 10-15 страниц.</p>
+   716→  </div>
+   717→  <div class="dev-grid">
+   718→    
+   719→    <div class="dev-card">
+   720→      <div class="dev-type">Лендинг (1 страница)</div>
+   721→      <div class="dev-price">от 30 000 до 80 000 ₽</div>
+   722→      <div class="dev-term">⏱ 1-2 недели</div>
+   723→      <div class="dev-fit ">Для теста ниши или рекламной кампании. Не подходит для кейтеринга — слишком много услуг.</div>
+   724→    </div>
+   725→    
+   726→    <div class="dev-card">
+   727→      <div class="dev-type">Корпоративный сайт (10-15 страниц)</div>
+   728→      <div class="dev-price">от 150 000 до 400 000 ₽</div>
+   729→      <div class="dev-term">⏱ 4-8 недель</div>
+   730→      <div class="dev-fit ok">✓ ОПТИМАЛЬНО для кейтеринга: главная  меню  кейсы  калькулятор  отзывы  контакты  B2B  свадьбы  дегустация  FAQ</div>
+   731→    </div>
+   732→    
+   733→    <div class="dev-card">
+   734→      <div class="dev-type">Интернет-магазин (каталог с оплатой)</div>
+   735→      <div class="dev-price">от 300 000 до 1 000 000 ₽</div>
+   736→      <div class="dev-term">⏱ 8-16 недель</div>
+   737→      <div class="dev-fit ">Избыточно для кейтеринга — нужен  только если продаёте готовые сеты доставки как товар</div>
+   738→    </div>
+   739→    
+   740→    <div class="dev-card">
+   741→      <div class="dev-type">Премиум-портал (с личными кабинетами)</div>
+   742→      <div class="dev-price">от 500 000 до 2 000 000 ₽</div>
+   743→      <div class="dev-term">⏱ 3-6 месяцев</div>
+   744→      <div class="dev-fit ">Только для сетевых кейтерингов с франшизой и личными кабинетами клиентов</div>
+   745→    </div>
+   746→    
+   747→  </div>
+   748→  <div class="comp-note" style="margin-top: 24px;">
+   749→    <strong>Дополнительные расходы:</strong> домен .ru — 500-3 000 ₽/год; хостинг в РФ — 1 500-15 000 ₽/год; SSL Let's Encrypt — бесплатно; SEO-оптимизация — от 20 000 ₽; Яндекс.Директ — от 30 000 ₽/мес; техподдержка — от 5 000 ₽/мес. <br><br>
+   750→    <strong>ROI:</strong> при средней марже банкета 30% и заказе 50 гостей × 4 000 ₽ = 200 000 ₽ → ваш доход 60 000 ₽. Сайт за 250 000 ₽ окупается за 4-5 заказов. При 8-9 заказах с сайта в месяц (см. воронку) — окупаемость 3-4 недели после запуска.
+   751→  </div>
+   752→</section>
+   753→
+   754→<!-- ВОРОНКА ПРОДАЖ -->
+   755→<section class="section funnel-section" id="funnel">
+   756→  <div class="section-head">
+   757→    <span class="section-eyebrow">Бизнес-процесс</span>
+   758→    <h2>Как сайт встраивается в ваш бизнес</h2>
+   759→    <p>Воронка от 1000 посетителей до 8-9 заказов в месяц. Сайт — не «витрина», а верхняя часть воронки продаж.</p>
+   760→  </div>
+   761→  <div class="funnel">
+   762→    
+   763→    <div class="funnel-step">
+   764→      <div class="funnel-left">Трафик</div>
+   765→      <div class="funnel-mid">Яндекс.Директ, SEO, соцсети, Catery.ru, рекомендации</div>
+   766→      <div class="funnel-right">
+   767→        <strong>1000</strong>
+   768→        <small>посетителей/мес</small>
+   769→      </div>
+   770→    </div>
+   771→    
+   772→    <div class="funnel-step">
+   773→      <div class="funnel-left">Интерес</div>
+   774→      <div class="funnel-mid">Hero + меню + кейсы + 3 пакета → гость остаётся на сайте</div>
+   775→      <div class="funnel-right">
+   776→        <strong>300</strong>
+   777→        <small>дочитавших (30%)</small>
+   778→      </div>
+   779→    </div>
+   780→    
+   781→    <div class="funnel-step">
+   782→      <div class="funnel-left">Расчёт</div>
+   783→      <div class="funnel-mid">Калькулятор «от X ₽/гость» → гость понимает, что бюджет подходит</div>
+   784→      <div class="funnel-right">
+   785→        <strong>120</strong>
+   786→        <small>посчитавших (12%)</small>
+   787→      </div>
+   788→    </div>
+   789→    
+   790→    <div class="funnel-step">
+   791→      <div class="funnel-left">Заявка</div>
+   792→      <div class="funnel-mid">Форма 5 полей или Telegram-бот → менеджер перезванивает за 30 мин</div>
+   793→      <div class="funnel-right">
+   794→        <strong>30</strong>
+   795→        <small>заявок (3%)</small>
+   796→      </div>
+   797→    </div>
+   798→    
+   799→    <div class="funnel-step">
+   800→      <div class="funnel-left">Дегустация</div>
+   801→      <div class="funnel-mid">Менеджер приглашает на дегустацию → гость пробует блюда</div>
+   802→      <div class="funnel-right">
+   803→        <strong>12</strong>
+   804→        <small>пришли на дегустацию (1.2%)</small>
+   805→      </div>
+   806→    </div>
+   807→    
+   808→    <div class="funnel-step">
+   809→      <div class="funnel-left">Заказ</div>
+   810→      <div class="funnel-mid">70% пришедших на дегустацию подписывают договор и вносят предоплату</div>
+   811→      <div class="funnel-right">
+   812→        <strong>8-9</strong>
+   813→        <small>заказов (0.8%)</small>
+   814→      </div>
+   815→    </div>
+   816→    
+   817→  </div>
+   818→  <div class="comp-note" style="max-width: 720px; margin: 24px auto 0;">
+   819→    <strong>8-9 заказов в месяц</strong> — это реалистичный сценарий при бюджете 50 000 ₽/мес на Яндекс.Директ и качественном сайте. Сайт за 250 000 ₽ окупается за 3-4 недели.
+   820→  </div>
+   821→</section>
+   822→
+   823→<!-- СРОКИ -->
+   824→<section class="section stages-section" id="stages">
+   825→  <div class="section-head">
+   826→    <span class="section-eyebrow">Этапы работы</span>
+   827→    <h2>4 этапа · 5-8 недель</h2>
+   828→    <p>Реальные сроки рынка 2025-2026 (sw-studio.ru). Каждый этап заканчивается результатом, который вы утверждаете.</p>
+   829→  </div>
+   830→  <div class="stages">
+   831→    
+   832→    <div class="stage">
+   833→      <div class="stage-num">1</div>
+   834→      <div class="stage-title">Аналитика и прототип</div>
+   835→      <div class="stage-duration">1-2 недели</div>
+   836→      <div class="stage-desc">Изучаем ваших конкурентов в СПб (Concord, CanapeClub, Gala Show), определяем структуру из 10 страниц, рисуем прототип в Figma. Вы утверждаете структуру.</div>
+   837→      <div class="stage-deliv">
+   838→        <strong>Результат этапа</strong>
+   839→        Прототип в Figma, структура 10 страниц, тексты для всех блоков
+   840→      </div>
+   841→    </div>
+   842→    
+   843→    <div class="stage">
+   844→      <div class="stage-num">2</div>
+   845→      <div class="stage-title">Дизайн и тексты</div>
+   846→      <div class="stage-duration">1-2 недели</div>
+   847→      <div class="stage-desc">Отрисовываем дизайн в стиле вашего бренда, пишем продающие тексты, готовим калькулятор и сценарий Telegram-бота. Вы утверждаете дизайн.</div>
+   848→      <div class="stage-deliv">
+   849→        <strong>Результат этапа</strong>
+   850→        Дизайн всех 10 страниц в Figma, тексты, сценарий калькулятора и бота
+   851→      </div>
+   852→    </div>
+   853→    
+   854→    <div class="stage">
+   855→      <div class="stage-num">3</div>
+   856→      <div class="stage-title">Разработка и интеграции</div>
+   857→      <div class="stage-duration">2-3 недели</div>
+   858→      <div class="stage-desc">Вёрстка, программирование калькулятора, формы заявки, Telegram-бота, подключение Яндекс.Метрики, СБП/ЮKassa для предоплат.</div>
+   859→      <div class="stage-deliv">
+   860→        <strong>Результат этапа</strong>
+   861→        Готовый сайт на тестовом домене, работающие калькулятор и форма, Telegram-бот
+   862→      </div>
+   863→    </div>
+   864→    
+   865→    <div class="stage">
+   866→      <div class="stage-num">4</div>
+   867→      <div class="stage-title">Запуск и поддержка</div>
+   868→      <div class="stage-duration">3-5 дней + 3 мес</div>
+   869→      <div class="stage-desc">Перенос на основной домен .ru, проверка скорости, настройка Яндекс.Директа, обучение вас редактированию. Поддержка 3 месяца бесплатно.</div>
+   870→      <div class="stage-deliv">
+   871→        <strong>Результат этапа</strong>
+   872→        Сайт на основном домене, инструкция, 3 месяца поддержки
+   873→      </div>
+   874→    </div>
+   875→    
+   876→  </div>
+   877→</section>
+   878→
+   879→<!-- ГАРАНТИИ -->
+   880→<section class="section guar-section" id="guarantees">
+   881→  <div class="section-head">
+   882→    <span class="section-eyebrow">Снимаем страхи</span>
+   883→    <h2>Гарантии и риски</h2>
+   884→    <p>Главные вопросы, которые задают клиенты перед заказом сайта. Отвечаем честно — без обещаний «всё будет идеально».</p>
+   885→  </div>
+   886→  <div class="guar-grid">
+   887→    
+   888→    <div class="guar-card">
+   889→      <div class="guar-fear">«А если вы сделаете плохо?»</div>
+   890→      <div class="guar-answer">Этап 1 (прототип) — вы утверждаете структуру до начала разработки. Этап 2 (дизайн) — вы утверждаете макет до вёрстки. Если не нравится — правим бесплатно до утверждения.</div>
+   891→    </div>
+   892→    
+   893→    <div class="guar-card">
+   894→      <div class="guar-fear">«А если я передумаю?»</div>
+   895→      <div class="guar-answer">После этапа 1 (прототип) — возврат 70% предоплаты. После этапа 2 (дизайн) — 40%. После этапа 3 (разработка) — возврат не предусмотрен, но вы получаете все исходники.</div>
+   896→    </div>
+   897→    
+   898→    <div class="guar-card">
+   899→      <div class="guar-fear">«А если сайт не принесёт заявок?»</div>
+   900→      <div class="guar-answer">Гарантия: если через 3 месяца после запуска (при трафике от 100 чел/мес с Яндекс.Директа) заявок 0 — бесплатный аудит и доработка. Заявки зависят от трафика и продукта, не только от сайта.</div>
+   901→    </div>
+   902→    
+   903→    <div class="guar-card">
+   904→      <div class="guar-fear">«А если вы пропадёте?»</div>
+   905→      <div class="guar-answer">Договор с реквизитами ИП/ООО. Оплата по этапам: 30% / 30% / 30% / 10%. Все исходники (Figma, код, доступы) передаются вам после каждого этапа.</div>
+   906→    </div>
+   907→    
+   908→    <div class="guar-card">
+   909→      <div class="guar-fear">«А вдруг кто-то украдёт данные клиентов?»</div>
+   910→      <div class="guar-answer">152-ФЗ: данные хранятся на серверах в РФ (Selectel/Timeweb). HTTPS обязательно. Формы с anti-spam (Yandex SmartCaptcha). Согласие на ПДн — отдельно.</div>
+   911→    </div>
+   912→    
+   913→    <div class="guar-card">
+   914→      <div class="guar-fear">«Сколько стоит поддерживать сайт?»</div>
+   915→      <div class="guar-answer">Домен + хостинг: 5 000 - 15 000 ₽/год. Техподдержка: от 5 000 ₽/мес (правки) или от 15 000 ₽/мес (контент + SEO). 3 месяца поддержки бесплатно от нас.</div>
+   916→    </div>
+   917→    
+   918→  </div>
+   919→</section>
+   920→
+   921→<!-- ПРИМЕРЫ -->
+   922→<section class="section" id="inspirations">
+   923→  <div class="section-head">
+   924→    <span class="section-eyebrow">Референсы</span>
+   925→    <h2>6 примеров для вдохновения</h2>
+   926→    <p>Эти сайты делают правильно. Посмотрите перед стартом — поймёте, к чему стремимся. Не копируем, а учимся.</p>
+   927→  </div>
+   928→  <div class="insp-grid">
+   929→    
+   930→    <div class="insp-card">
+   931→      <div class="insp-head">
+   932→        <div class="insp-name">Catering by Michaels</div>
+   933→        <div class="insp-where">Чикаго</div>
+   934→      </div>
+   935→      <div class="insp-why">Публикуют цены с 1980 г. Страница /budget с фильтром по бюджету — эталон прозрачности.</div>
+   936→      <div class="insp-pal"><span class="dot" style="background:#1f3a5f"></span><span class="dot" style="background:#e8d9b8"></span><span class="dot" style="background:#ffffff"></span><span class="dot" style="background:#7a1f1f"></span></div>
+   937→    </div>
+   938→    
+   939→    <div class="insp-card">
+   940→      <div class="insp-head">
+   941→        <div class="insp-name">By Word of Mouth</div>
+   942→        <div class="insp-where">Лондон</div>
+   943→      </div>
+   944→      <div class="insp-why">B Corp сертификат — экологичность. Hero-видео без звука. Меню в HTML, не PDF.</div>
+   945→      <div class="insp-pal"><span class="dot" style="background:#0d1f1a"></span><span class="dot" style="background:#d4a574"></span><span class="dot" style="background:#f7f3ec"></span><span class="dot" style="background:#5a3825"></span></div>
+   946→    </div>
+   947→    
+   948→    <div class="insp-card">
+   949→      <div class="insp-head">
+   950→        <div class="insp-name">Daniel et Daniel</div>
+   951→        <div class="insp-where">Торонто</div>
+   952→      </div>
+   953→      <div class="insp-why">Указан минимальный заказ. Карта с реальными отзывами 4.7★. Кейсы с цифрами.</div>
+   954→      <div class="insp-pal"><span class="dot" style="background:#2a1810"></span><span class="dot" style="background:#c8a165"></span><span class="dot" style="background:#faf7f2"></span><span class="dot" style="background:#6b3a1a"></span></div>
+   955→    </div>
+   956→    
+   957→    <div class="insp-card">
+   958→      <div class="insp-head">
+   959→        <div class="insp-name">Abigail Kirsch</div>
+   960→        <div class="insp-where">Нью-Йорк</div>
+   961→      </div>
+   962→      <div class="insp-why">Монохромная палитра — спокойно и дорого. Кейсы Real Weddings с реальными фото.</div>
+   963→      <div class="insp-pal"><span class="dot" style="background:#2d1f1a"></span><span class="dot" style="background:#a87858"></span><span class="dot" style="background:#faf6f0"></span><span class="dot" style="background:#3a5a3a"></span></div>
+   964→    </div>
+   965→    
+   966→    <div class="insp-card">
+   967→      <div class="insp-head">
+   968→        <div class="insp-name">Novikov Catering</div>
+   969→        <div class="insp-where">Москва</div>
+   970→      </div>
+   971→      <div class="insp-why">Премиум-позиционирование. Чёрный + золото. Шеф-повара с портретами.</div>
+   972→      <div class="insp-pal"><span class="dot" style="background:#0d0d0d"></span><span class="dot" style="background:#d4af37"></span><span class="dot" style="background:#1c1c1c"></span><span class="dot" style="background:#5c1a1a"></span></div>
+   973→    </div>
+   974→    
+   975→    <div class="insp-card">
+   976→      <div class="insp-head">
+   977→        <div class="insp-name">Catery.ru</div>
+   978→        <div class="insp-where">Москва</div>
+   979→      </div>
+   980→      <div class="insp-why">Агрегатор: 700+ компаний. Паттерн «сравнение в одной таблице» — удобно для клиента.</div>
+   981→      <div class="insp-pal"><span class="dot" style="background:#2563eb"></span><span class="dot" style="background:#f59e0b"></span><span class="dot" style="background:#10b981"></span><span class="dot" style="background:#1f2937"></span></div>
+   982→    </div>
+   983→    
+   984→  </div>
+   985→</section>
+   986→
+   987→<!-- ЧЕК-ЛИСТ -->
+   988→<section class="section checklist-section" id="checklist">
+   989→  <div class="section-head">
+   990→    <span class="section-eyebrow">Готовность к старту</span>
+   991→    <h2>Чек-лист для вас</h2>
+   992→    <p>Пройдитесь перед заказом сайта. Если что-то не готово — нормально, поможем собрать в процессе.</p>
+   993→  </div>
+   994→  <div class="checklist">
+   995→    
+   996→    <div class="check-item">
+   997→      <div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
+   998→      <div>У меня есть 30-50 фото блюд от профессионального фотографа</div>
+   999→    </div>
+  1000→    
+  1001→    <div class="check-item">
+  1002→      <div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
+  1003→      <div>У меня есть фото с 5+ реальных событий (с согласием клиентов)</div>
+  1004→    </div>
+  1005→    
+  1006→    <div class="check-item">
+  1007→      <div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
+  1008→      <div>У меня готово меню с ценами и составом (от X ₽/порция)</div>
+  1009→    </div>
+  1010→    
+  1011→    <div class="check-item">
+  1012→      <div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
+  1013→      <div>Я определил 3 пакета (Classic/Signature/Premium) с ценами</div>
+  1014→    </div>
+  1015→    
+  1016→    <div class="check-item">
+  1017→      <div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
+  1018→      <div>У меня есть ИП/ООО с реквизитами для договора</div>
+  1019→    </div>
+  1020→    
+  1021→    <div class="check-item">
+  1022→      <div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
+  1023→      <div>У меня есть профиль на Яндекс.Картах с отзывами</div>
+  1024→    </div>
+  1025→    
+  1026→    <div class="check-item">
+  1027→      <div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
+  1028→      <div>У меня есть Telegram-аккаунт для приёма заявок</div>
+  1029→    </div>
+  1030→    
+  1031→    <div class="check-item">
+  1032→      <div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
+  1033→      <div>У меня есть 8-10 клиентов с письменным согласием на упоминание</div>
+  1034→    </div>
+  1035→    
+  1036→    <div class="check-item">
+  1037→      <div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
+  1038→      <div>У меня есть 10-15 отзывов с фото клиентов</div>
+  1039→    </div>
+  1040→    
+  1041→    <div class="check-item">
+  1042→      <div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
+  1043→      <div>Я знаю 5-10 ключевых конкурентов в СПб (Concord, CanapeClub и др.)</div>
+  1044→    </div>
+  1045→    
+  1046→    <div class="check-item">
+  1047→      <div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
+  1048→      <div>Я готов отвечать на заявки в течение 30 минут в рабочее время</div>
+  1049→    </div>
+  1050→    
+  1051→    <div class="check-item">
+  1052→      <div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
+  1053→      <div>У меня есть бюджет 150 000 - 400 000 ₽ на разработку сайта</div>
+  1054→    </div>
+  1055→    
+  1056→  </div>
+  1057→</section>
+  1058→
+  1059→<footer class="site-footer" id="contact">
+  1060→  <div class="footer-inner">
+  1061→    <div class="footer-brand">Nilov Catering</div>
+  1062→    <div class="footer-tagline">
+  1063→      План сайта кейтеринга с реальными ценами рынка СПб 2026. Готовы начать — напишите.
+  1064→    </div>
+  1065→    <div class="hero-cta-row" style="justify-content: center;">
+  1066→      <a href="https://t.me/" class="btn btn-primary" style="background: #0088cc; color: #fff;">Написать в Telegram</a>
+  1067→      <a href="tel:+78000000000" class="btn btn-secondary">Позвонить</a>
+  1068→    </div>
+  1069→    <div class="footer-note">
+  1070→      Документ подготовлен 26 июня 2026 года. Источники цен: bash.today (топ-15 кейтерингов СПб), catery.ru, restoclub.ru, feelcode.ru, sw-studio.ru, 152-ФЗ с изменениями 156-ФЗ от 24.06.2025, Baymard Institute, HubSpot 2026, Formidable Forms 2026, Restaurant Business 2026.<br><br>
+  1071→      Это отправная точка для обсуждения. Не является коммерческим предложением — финальные сроки и стоимость определяются после консультации.
+  1072→    </div>
+  1073→  </div>
+  1074→</footer>
+  1075→
+  1076→<div class="bottom-bar">
+  1077→  <a href="https://t.me/" class="bottom-btn tg" target="_blank" rel="noopener">
+  1078→    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+  1079→    Telegram
+  1080→  </a>
+  1081→  <a href="tel:+78000000000" class="bottom-btn call">
+  1082→    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.26.36-.65.25-1C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/></svg>
+  1083→    Позвонить
+  1084→  </a>
+  1085→  <a href="#checklist" class="bottom-btn calc">Чек-лист</a>
+  1086→</div>
+  1087→
+  1088→</body>
+  1089→</html>
+  1090→

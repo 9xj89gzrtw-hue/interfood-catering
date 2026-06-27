@@ -1,0 +1,491 @@
+     1→   600→   600→      <div class="block-must-title">Что обязательно должно быть:</div>
+     2→   601→   601→      <ul class="block-must">
+     3→   602→   602→        <li>Адрес офиса с картой Яндекс (не Google!)</li><li>Телефон — кликабельный на мобильном</li><li>3 канала: WhatsApp + Telegram + телефон</li><li>Часы работы: «Пн-Вс 9:00-21:00, заявки онлайн 24/7»</li><li>«Приезжайте на дегустацию» — отдельная страница с записью</li>
+     4→   603→   603→      </ul>
+     5→   604→   604→      <div class="block-metric">
+     6→   605→   605→        <strong>Почему важно:</strong> Карта с адресом = доверие +19%, особенно для свадебных клиентов
+     7→   606→   606→      </div>
+     8→   607→   607→      <div class="block-palette">
+     9→   608→   608→        <span class="dot" style="background:#1a1a1a"></span><span class="dot" style="background:#c9a86a"></span><span class="dot" style="background:#f5efe6"></span><span class="dot" style="background:#7a4a2f"></span>
+    10→   609→   609→      </div>
+    11→   610→   610→    </div>
+    12→   611→   611→    
+    13→   612→   612→  </div>
+    14→   613→   613→</section>
+    15→   614→   614→
+    16→   615→   615→<!-- 6 ПРИЁМОВ -->
+    17→   616→   616→<section class="section sales-section" id="sales">
+    18→   617→   617→  <div class="section-head">
+    19→   618→   618→    <span class="section-eyebrow">Конверсия в заявки</span>
+    20→   619→   619→    <h2>6 приёмов, которые приносят заявки</h2>
+    21→   620→   620→    <p>То, что отличает сайт «который есть» от сайта «который продаёт». Каждый приём — с конкретным результатом.</p>
+    22→   621→   621→  </div>
+    23→   622→   622→  <div class="sales-grid">
+    24→   623→   623→    
+    25→   624→   624→    <div class="tip-card">
+    26→   625→   625→      <div class="tip-title">Sticky-кнопка снизу на мобильном</div>
+    27→   626→   626→      <div class="tip-desc">Внизу экрана всегда прикреплены 3 кнопки: «Telegram / Позвонить / Рассчитать». Гость не скроллит вверх, чтобы оставить заявку.</div>
+    28→   627→   627→      <div class="tip-result">+18-22% конверсии с мобильного (HubSpot 2026)</div>
+    29→   628→   628→    </div>
+    30→   629→   629→    
+    31→   630→   630→    <div class="tip-card">
+    32→   631→   631→      <div class="tip-title">3 пакета вместо «цена по запросу»</div>
+    33→   632→   632→      <div class="tip-desc">Гость видит «Classic / Signature / Premium» с ценой «от X ₽/гость» и составом. Снимает страх «не потяну по бюджету».</div>
+    34→   633→   633→      <div class="tip-result">+25% квалифицированных заявок</div>
+    35→   634→   634→    </div>
+    36→   635→   635→    
+    37→   636→   636→    <div class="tip-card">
+    38→   637→   637→      <div class="tip-title">Фото с реальных событий, не сток</div>
+    39→   638→   638→      <div class="tip-desc">Один день с фотографом на реальном банкете = контент на 6 месяцев. Стоковые фото гости видят сразу и не доверяют.</div>
+    40→   639→   639→      <div class="tip-result">+37% доверия к бренду (Baymard)</div>
+    41→   640→   640→    </div>
+    42→   641→   641→    
+    43→   642→   642→    <div class="tip-card">
+    44→   643→   643→      <div class="tip-title">Ответ за 30 минут</div>
+    45→   644→   644→      <div class="tip-desc">Если ответили за 30 минут — гость ваш. Если за 2 часа — ушёл к конкуренту. Telegram-бот + автоуведомления менеджеру.</div>
+    46→   645→   645→      <div class="tip-result">+60% доводят до бронирования (HubSpot)</div>
+    47→   646→   646→    </div>
+    48→   647→   647→    
+    49→   648→   648→    <div class="tip-card">
+    50→   649→   649→      <div class="tip-title">Виджет Яндекс.Карт с отзывами</div>
+    51→   650→   650→      <div class="tip-desc">4.7★ и 200+ отзывов на Яндекс.Картах — сторонний источник доверия, гости верят ему больше, чем сайту.</div>
+    52→   651→   651→      <div class="tip-result">+19% доверия, особенно у свадебных</div>
+    53→   652→   652→    </div>
+    54→   653→   653→    
+    55→   654→   654→    <div class="tip-card">
+    56→   655→   655→      <div class="tip-title">Запись на дегустацию онлайн</div>
+    57→   656→   656→      <div class="tip-desc">Отдельная страница «Записаться на дегустацию» с календарём свободных дат. Дегустация конвертирует 70% в предоплату.</div>
+    58→   657→   657→      <div class="tip-result">70% пришедших на дегустацию — платят</div>
+    59→   658→   658→    </div>
+    60→   659→   659→    
+    61→   660→   660→  </div>
+    62→   661→   661→</section>
+    63→   662→   662→
+    64→   663→   663→<!-- ЧТО ПОДГОТОВИТЬ -->
+    65→   664→   664→<section class="section" id="prepare">
+    66→   665→   665→  <div class="section-head">
+    67→   666→   666→    <span class="section-eyebrow">Ваша сторона</span>
+    68→   667→   667→    <h2>Что нужно подготовить вам</h2>
+    69→   668→   668→    <p>Чтобы сайт запустился в срок — соберите материалы параллельно с разработкой. Это 1-2 недели вашей работы.</p>
+    70→   669→   669→  </div>
+    71→   670→   670→  <div class="prepare-grid">
+    72→   671→   671→    
+    73→   672→   672→    <div class="prepare-card">
+    74→   673→   673→      <div class="prepare-cat">Фото и видео</div>
+    75→   674→   674→      <ul class="prepare-list">
+    76→   675→   675→        <li>1 день с food-фотографом — 30-50 блюд = контент на 6 мес</li><li>Фото с 5-8 реальных событий (с согласием клиентов по 152-ФЗ)</li><li>Видео 30-60 сек с банкета (без звука, для hero)</li><li>Портреты шеф-поваров для раздела «Команда»</li>
+    77→   676→   676→      </ul>
+    78→   677→   677→    </div>
+    79→   678→   678→    
+    80→   679→   679→    <div class="prepare-card">
+    81→   680→   680→      <div class="prepare-cat">Меню и прайс</div>
+    82→   681→   681→      <ul class="prepare-list">
+    83→   682→   682→        <li>Полное меню с составом, весом, ценой за порцию</li><li>3 пакета (Classic от 2800 / Signature от 4000 / Premium от 6600 ₽/гость)</li><li>Сезонные предложения (весна/лето/осень/зима)</li><li>Опции: веган, без глютена, халяль — отдельные позиции</li>
+    84→   683→   683→      </ul>
+    85→   684→   684→    </div>
+    86→   685→   685→    
+    87→   686→   686→    <div class="prepare-card">
+    88→   687→   687→      <div class="prepare-cat">Юридическое (152-ФЗ)</div>
+    89→   688→   688→      <ul class="prepare-list">
+    90→   689→   689→        <li>Согласие на обработку ПДн — отдельно (с 01.09.2025)</li><li>Согласие на cookies — отдельно (420-ФЗ)</li><li>Согласие на промо-рассылки — отдельно, опциональное</li><li>Политика обработки ПДн — отдельный документ</li><li>Реквизиты ИП/ООО для договора и счетов</li>
+    91→   690→   690→      </ul>
+    92→   691→   691→    </div>
+    93→   692→   692→    
+    94→   693→   693→    <div class="prepare-card">
+    95→   694→   694→      <div class="prepare-cat">Доверие</div>
+    96→   695→   695→      <ul class="prepare-list">
+    97→   696→   696→        <li>Список 8-10 корпоративных клиентов (с письменным согласием)</li><li>10-15 отзывов с фото клиентов (с согласием по 152-ФЗ)</li><li>Сертификаты: ХАССП, член РГА (если есть)</li><li>Профиль на Яндекс.Картах и 2ГИС с отзывами</li><li>Профиль на Catery.ru / CaterMe.ru (агрегаторы)</li>
+    98→   697→   697→      </ul>
+    99→   698→   698→    </div>
+   100→   699→   699→    
+   101→   700→   700→    <div class="prepare-card">
+   102→   701→   701→      <div class="prepare-cat">Контакты и каналы</div>
+   103→   702→   702→      <ul class="prepare-list">
+   104→   703→   703→        <li>Telegram-аккаунт и/или бот для приёма заявок</li><li>WhatsApp Business с каталогом блюд</li><li>Телефон для приёма звонков (с переадресацией)</li><li>Email для онлайн-заявок и счетов</li><li>Адрес офиса для приёма на дегустацию</li>
+   105→   704→   704→      </ul>
+   106→   705→   705→    </div>
+   107→   706→   706→    
+   108→   707→   707→  </div>
+   109→   708→   708→</section>
+   110→   709→   709→
+   111→   710→   710→<!-- СТОИМОСТЬ РАЗРАБОТКИ -->
+   112→   711→   711→<section class="section dev-section" id="cost">
+   113→   712→   712→  <div class="section-head">
+   114→   713→   713→    <span class="section-eyebrow">Бюджет</span>
+   115→   714→   714→    <h2>Сколько стоит разработка сайта</h2>
+   116→   715→   715→    <p>Реальные цены рынка веб-разработки 2025-2026 (feelcode.ru, sw-studio.ru). Для кейтеринга оптимален корпоративный сайт 10-15 страниц.</p>
+   117→   716→   716→  </div>
+   118→   717→   717→  <div class="dev-grid">
+   119→   718→   718→    
+   120→   719→   719→    <div class="dev-card">
+   121→   720→   720→      <div class="dev-type">Лендинг (1 страница)</div>
+   122→   721→   721→      <div class="dev-price">от 30 000 до 80 000 ₽</div>
+   123→   722→   722→      <div class="dev-term">⏱ 1-2 недели</div>
+   124→   723→   723→      <div class="dev-fit ">Для теста ниши или рекламной кампании. Не подходит для кейтеринга — слишком много услуг.</div>
+   125→   724→   724→    </div>
+   126→   725→   725→    
+   127→   726→   726→    <div class="dev-card">
+   128→   727→   727→      <div class="dev-type">Корпоративный сайт (10-15 страниц)</div>
+   129→   728→   728→      <div class="dev-price">от 150 000 до 400 000 ₽</div>
+   130→   729→   729→      <div class="dev-term">⏱ 4-8 недель</div>
+   131→   730→   730→      <div class="dev-fit ok">✓ ОПТИМАЛЬНО для кейтеринга: главная  меню  кейсы  калькулятор  отзывы  контакты  B2B  свадьбы  дегустация  FAQ</div>
+   132→   731→   731→    </div>
+   133→   732→   732→    
+   134→   733→   733→    <div class="dev-card">
+   135→   734→   734→      <div class="dev-type">Интернет-магазин (каталог с оплатой)</div>
+   136→   735→   735→      <div class="dev-price">от 300 000 до 1 000 000 ₽</div>
+   137→   736→   736→      <div class="dev-term">⏱ 8-16 недель</div>
+   138→   737→   737→      <div class="dev-fit ">Избыточно для кейтеринга — нужен  только если продаёте готовые сеты доставки как товар</div>
+   139→   738→   738→    </div>
+   140→   739→   739→    
+   141→   740→   740→    <div class="dev-card">
+   142→   741→   741→      <div class="dev-type">Премиум-портал (с личными кабинетами)</div>
+   143→   742→   742→      <div class="dev-price">от 500 000 до 2 000 000 ₽</div>
+   144→   743→   743→      <div class="dev-term">⏱ 3-6 месяцев</div>
+   145→   744→   744→      <div class="dev-fit ">Только для сетевых кейтерингов с франшизой и личными кабинетами клиентов</div>
+   146→   745→   745→    </div>
+   147→   746→   746→    
+   148→   747→   747→  </div>
+   149→   748→   748→  <div class="comp-note" style="margin-top: 24px;">
+   150→   749→   749→    <strong>Дополнительные расходы:</strong> домен .ru — 500-3 000 ₽/год; хостинг в РФ — 1 500-15 000 ₽/год; SSL Let's Encrypt — бесплатно; SEO-оптимизация — от 20 000 ₽; Яндекс.Директ — от 30 000 ₽/мес; техподдержка — от 5 000 ₽/мес. <br><br>
+   151→   750→   750→    <strong>ROI:</strong> при средней марже банкета 30% и заказе 50 гостей × 4 000 ₽ = 200 000 ₽ → ваш доход 60 000 ₽. Сайт за 250 000 ₽ окупается за 4-5 заказов. При 8-9 заказах с сайта в месяц (см. воронку) — окупаемость 3-4 недели после запуска.
+   152→   751→   751→  </div>
+   153→   752→   752→</section>
+   154→   753→   753→
+   155→   754→   754→<!-- ВОРОНКА ПРОДАЖ -->
+   156→   755→   755→<section class="section funnel-section" id="funnel">
+   157→   756→   756→  <div class="section-head">
+   158→   757→   757→    <span class="section-eyebrow">Бизнес-процесс</span>
+   159→   758→   758→    <h2>Как сайт встраивается в ваш бизнес</h2>
+   160→   759→   759→    <p>Воронка от 1000 посетителей до 8-9 заказов в месяц. Сайт — не «витрина», а верхняя часть воронки продаж.</p>
+   161→   760→   760→  </div>
+   162→   761→   761→  <div class="funnel">
+   163→   762→   762→    
+   164→   763→   763→    <div class="funnel-step">
+   165→   764→   764→      <div class="funnel-left">Трафик</div>
+   166→   765→   765→      <div class="funnel-mid">Яндекс.Директ, SEO, соцсети, Catery.ru, рекомендации</div>
+   167→   766→   766→      <div class="funnel-right">
+   168→   767→   767→        <strong>1000</strong>
+   169→   768→   768→        <small>посетителей/мес</small>
+   170→   769→   769→      </div>
+   171→   770→   770→    </div>
+   172→   771→   771→    
+   173→   772→   772→    <div class="funnel-step">
+   174→   773→   773→      <div class="funnel-left">Интерес</div>
+   175→   774→   774→      <div class="funnel-mid">Hero + меню + кейсы + 3 пакета → гость остаётся на сайте</div>
+   176→   775→   775→      <div class="funnel-right">
+   177→   776→   776→        <strong>300</strong>
+   178→   777→   777→        <small>дочитавших (30%)</small>
+   179→   778→   778→      </div>
+   180→   779→   779→    </div>
+   181→   780→   780→    
+   182→   781→   781→    <div class="funnel-step">
+   183→   782→   782→      <div class="funnel-left">Расчёт</div>
+   184→   783→   783→      <div class="funnel-mid">Калькулятор «от X ₽/гость» → гость понимает, что бюджет подходит</div>
+   185→   784→   784→      <div class="funnel-right">
+   186→   785→   785→        <strong>120</strong>
+   187→   786→   786→        <small>посчитавших (12%)</small>
+   188→   787→   787→      </div>
+   189→   788→   788→    </div>
+   190→   789→   789→    
+   191→   790→   790→    <div class="funnel-step">
+   192→   791→   791→      <div class="funnel-left">Заявка</div>
+   193→   792→   792→      <div class="funnel-mid">Форма 5 полей или Telegram-бот → менеджер перезванивает за 30 мин</div>
+   194→   793→   793→      <div class="funnel-right">
+   195→   794→   794→        <strong>30</strong>
+   196→   795→   795→        <small>заявок (3%)</small>
+   197→   796→   796→      </div>
+   198→   797→   797→    </div>
+   199→   798→   798→    
+   200→   799→   799→    <div class="funnel-step">
+   201→   800→   800→      <div class="funnel-left">Дегустация</div>
+   202→   801→   801→      <div class="funnel-mid">Менеджер приглашает на дегустацию → гость пробует блюда</div>
+   203→   802→   802→      <div class="funnel-right">
+   204→   803→   803→        <strong>12</strong>
+   205→   804→   804→        <small>пришли на дегустацию (1.2%)</small>
+   206→   805→   805→      </div>
+   207→   806→   806→    </div>
+   208→   807→   807→    
+   209→   808→   808→    <div class="funnel-step">
+   210→   809→   809→      <div class="funnel-left">Заказ</div>
+   211→   810→   810→      <div class="funnel-mid">70% пришедших на дегустацию подписывают договор и вносят предоплату</div>
+   212→   811→   811→      <div class="funnel-right">
+   213→   812→   812→        <strong>8-9</strong>
+   214→   813→   813→        <small>заказов (0.8%)</small>
+   215→   814→   814→      </div>
+   216→   815→   815→    </div>
+   217→   816→   816→    
+   218→   817→   817→  </div>
+   219→   818→   818→  <div class="comp-note" style="max-width: 720px; margin: 24px auto 0;">
+   220→   819→   819→    <strong>8-9 заказов в месяц</strong> — это реалистичный сценарий при бюджете 50 000 ₽/мес на Яндекс.Директ и качественном сайте. Сайт за 250 000 ₽ окупается за 3-4 недели.
+   221→   820→   820→  </div>
+   222→   821→   821→</section>
+   223→   822→   822→
+   224→   823→   823→<!-- СРОКИ -->
+   225→   824→   824→<section class="section stages-section" id="stages">
+   226→   825→   825→  <div class="section-head">
+   227→   826→   826→    <span class="section-eyebrow">Этапы работы</span>
+   228→   827→   827→    <h2>4 этапа · 5-8 недель</h2>
+   229→   828→   828→    <p>Реальные сроки рынка 2025-2026 (sw-studio.ru). Каждый этап заканчивается результатом, который вы утверждаете.</p>
+   230→   829→   829→  </div>
+   231→   830→   830→  <div class="stages">
+   232→   831→   831→    
+   233→   832→   832→    <div class="stage">
+   234→   833→   833→      <div class="stage-num">1</div>
+   235→   834→   834→      <div class="stage-title">Аналитика и прототип</div>
+   236→   835→   835→      <div class="stage-duration">1-2 недели</div>
+   237→   836→   836→      <div class="stage-desc">Изучаем ваших конкурентов в СПб (Concord, CanapeClub, Gala Show), определяем структуру из 10 страниц, рисуем прототип в Figma. Вы утверждаете структуру.</div>
+   238→   837→   837→      <div class="stage-deliv">
+   239→   838→   838→        <strong>Результат этапа</strong>
+   240→   839→   839→        Прототип в Figma, структура 10 страниц, тексты для всех блоков
+   241→   840→   840→      </div>
+   242→   841→   841→    </div>
+   243→   842→   842→    
+   244→   843→   843→    <div class="stage">
+   245→   844→   844→      <div class="stage-num">2</div>
+   246→   845→   845→      <div class="stage-title">Дизайн и тексты</div>
+   247→   846→   846→      <div class="stage-duration">1-2 недели</div>
+   248→   847→   847→      <div class="stage-desc">Отрисовываем дизайн в стиле вашего бренда, пишем продающие тексты, готовим калькулятор и сценарий Telegram-бота. Вы утверждаете дизайн.</div>
+   249→   848→   848→      <div class="stage-deliv">
+   250→   849→   849→        <strong>Результат этапа</strong>
+   251→   850→   850→        Дизайн всех 10 страниц в Figma, тексты, сценарий калькулятора и бота
+   252→   851→   851→      </div>
+   253→   852→   852→    </div>
+   254→   853→   853→    
+   255→   854→   854→    <div class="stage">
+   256→   855→   855→      <div class="stage-num">3</div>
+   257→   856→   856→      <div class="stage-title">Разработка и интеграции</div>
+   258→   857→   857→      <div class="stage-duration">2-3 недели</div>
+   259→   858→   858→      <div class="stage-desc">Вёрстка, программирование калькулятора, формы заявки, Telegram-бота, подключение Яндекс.Метрики, СБП/ЮKassa для предоплат.</div>
+   260→   859→   859→      <div class="stage-deliv">
+   261→   860→   860→        <strong>Результат этапа</strong>
+   262→   861→   861→        Готовый сайт на тестовом домене, работающие калькулятор и форма, Telegram-бот
+   263→   862→   862→      </div>
+   264→   863→   863→    </div>
+   265→   864→   864→    
+   266→   865→   865→    <div class="stage">
+   267→   866→   866→      <div class="stage-num">4</div>
+   268→   867→   867→      <div class="stage-title">Запуск и поддержка</div>
+   269→   868→   868→      <div class="stage-duration">3-5 дней + 3 мес</div>
+   270→   869→   869→      <div class="stage-desc">Перенос на основной домен .ru, проверка скорости, настройка Яндекс.Директа, обучение вас редактированию. Поддержка 3 месяца бесплатно.</div>
+   271→   870→   870→      <div class="stage-deliv">
+   272→   871→   871→        <strong>Результат этапа</strong>
+   273→   872→   872→        Сайт на основном домене, инструкция, 3 месяца поддержки
+   274→   873→   873→      </div>
+   275→   874→   874→    </div>
+   276→   875→   875→    
+   277→   876→   876→  </div>
+   278→   877→   877→</section>
+   279→   878→   878→
+   280→   879→   879→<!-- ГАРАНТИИ -->
+   281→   880→   880→<section class="section guar-section" id="guarantees">
+   282→   881→   881→  <div class="section-head">
+   283→   882→   882→    <span class="section-eyebrow">Снимаем страхи</span>
+   284→   883→   883→    <h2>Гарантии и риски</h2>
+   285→   884→   884→    <p>Главные вопросы, которые задают клиенты перед заказом сайта. Отвечаем честно — без обещаний «всё будет идеально».</p>
+   286→   885→   885→  </div>
+   287→   886→   886→  <div class="guar-grid">
+   288→   887→   887→    
+   289→   888→   888→    <div class="guar-card">
+   290→   889→   889→      <div class="guar-fear">«А если вы сделаете плохо?»</div>
+   291→   890→   890→      <div class="guar-answer">Этап 1 (прототип) — вы утверждаете структуру до начала разработки. Этап 2 (дизайн) — вы утверждаете макет до вёрстки. Если не нравится — правим бесплатно до утверждения.</div>
+   292→   891→   891→    </div>
+   293→   892→   892→    
+   294→   893→   893→    <div class="guar-card">
+   295→   894→   894→      <div class="guar-fear">«А если я передумаю?»</div>
+   296→   895→   895→      <div class="guar-answer">После этапа 1 (прототип) — возврат 70% предоплаты. После этапа 2 (дизайн) — 40%. После этапа 3 (разработка) — возврат не предусмотрен, но вы получаете все исходники.</div>
+   297→   896→   896→    </div>
+   298→   897→   897→    
+   299→   898→   898→    <div class="guar-card">
+   300→   899→   899→      <div class="guar-fear">«А если сайт не принесёт заявок?»</div>
+   301→   900→   900→      <div class="guar-answer">Гарантия: если через 3 месяца после запуска (при трафике от 100 чел/мес с Яндекс.Директа) заявок 0 — бесплатный аудит и доработка. Заявки зависят от трафика и продукта, не только от сайта.</div>
+   302→   901→   901→    </div>
+   303→   902→   902→    
+   304→   903→   903→    <div class="guar-card">
+   305→   904→   904→      <div class="guar-fear">«А если вы пропадёте?»</div>
+   306→   905→   905→      <div class="guar-answer">Договор с реквизитами ИП/ООО. Оплата по этапам: 30% / 30% / 30% / 10%. Все исходники (Figma, код, доступы) передаются вам после каждого этапа.</div>
+   307→   906→   906→    </div>
+   308→   907→   907→    
+   309→   908→   908→    <div class="guar-card">
+   310→   909→   909→      <div class="guar-fear">«А вдруг кто-то украдёт данные клиентов?»</div>
+   311→   910→   910→      <div class="guar-answer">152-ФЗ: данные хранятся на серверах в РФ (Selectel/Timeweb). HTTPS обязательно. Формы с anti-spam (Yandex SmartCaptcha). Согласие на ПДн — отдельно.</div>
+   312→   911→   911→    </div>
+   313→   912→   912→    
+   314→   913→   913→    <div class="guar-card">
+   315→   914→   914→      <div class="guar-fear">«Сколько стоит поддерживать сайт?»</div>
+   316→   915→   915→      <div class="guar-answer">Домен + хостинг: 5 000 - 15 000 ₽/год. Техподдержка: от 5 000 ₽/мес (правки) или от 15 000 ₽/мес (контент + SEO). 3 месяца поддержки бесплатно от нас.</div>
+   317→   916→   916→    </div>
+   318→   917→   917→    
+   319→   918→   918→  </div>
+   320→   919→   919→</section>
+   321→   920→   920→
+   322→   921→   921→<!-- ПРИМЕРЫ -->
+   323→   922→   922→<section class="section" id="inspirations">
+   324→   923→   923→  <div class="section-head">
+   325→   924→   924→    <span class="section-eyebrow">Референсы</span>
+   326→   925→   925→    <h2>6 примеров для вдохновения</h2>
+   327→   926→   926→    <p>Эти сайты делают правильно. Посмотрите перед стартом — поймёте, к чему стремимся. Не копируем, а учимся.</p>
+   328→   927→   927→  </div>
+   329→   928→   928→  <div class="insp-grid">
+   330→   929→   929→    
+   331→   930→   930→    <div class="insp-card">
+   332→   931→   931→      <div class="insp-head">
+   333→   932→   932→        <div class="insp-name">Catering by Michaels</div>
+   334→   933→   933→        <div class="insp-where">Чикаго</div>
+   335→   934→   934→      </div>
+   336→   935→   935→      <div class="insp-why">Публикуют цены с 1980 г. Страница /budget с фильтром по бюджету — эталон прозрачности.</div>
+   337→   936→   936→      <div class="insp-pal"><span class="dot" style="background:#1f3a5f"></span><span class="dot" style="background:#e8d9b8"></span><span class="dot" style="background:#ffffff"></span><span class="dot" style="background:#7a1f1f"></span></div>
+   338→   937→   937→    </div>
+   339→   938→   938→    
+   340→   939→   939→    <div class="insp-card">
+   341→   940→   940→      <div class="insp-head">
+   342→   941→   941→        <div class="insp-name">By Word of Mouth</div>
+   343→   942→   942→        <div class="insp-where">Лондон</div>
+   344→   943→   943→      </div>
+   345→   944→   944→      <div class="insp-why">B Corp сертификат — экологичность. Hero-видео без звука. Меню в HTML, не PDF.</div>
+   346→   945→   945→      <div class="insp-pal"><span class="dot" style="background:#0d1f1a"></span><span class="dot" style="background:#d4a574"></span><span class="dot" style="background:#f7f3ec"></span><span class="dot" style="background:#5a3825"></span></div>
+   347→   946→   946→    </div>
+   348→   947→   947→    
+   349→   948→   948→    <div class="insp-card">
+   350→   949→   949→      <div class="insp-head">
+   351→   950→   950→        <div class="insp-name">Daniel et Daniel</div>
+   352→   951→   951→        <div class="insp-where">Торонто</div>
+   353→   952→   952→      </div>
+   354→   953→   953→      <div class="insp-why">Указан минимальный заказ. Карта с реальными отзывами 4.7★. Кейсы с цифрами.</div>
+   355→   954→   954→      <div class="insp-pal"><span class="dot" style="background:#2a1810"></span><span class="dot" style="background:#c8a165"></span><span class="dot" style="background:#faf7f2"></span><span class="dot" style="background:#6b3a1a"></span></div>
+   356→   955→   955→    </div>
+   357→   956→   956→    
+   358→   957→   957→    <div class="insp-card">
+   359→   958→   958→      <div class="insp-head">
+   360→   959→   959→        <div class="insp-name">Abigail Kirsch</div>
+   361→   960→   960→        <div class="insp-where">Нью-Йорк</div>
+   362→   961→   961→      </div>
+   363→   962→   962→      <div class="insp-why">Монохромная палитра — спокойно и дорого. Кейсы Real Weddings с реальными фото.</div>
+   364→   963→   963→      <div class="insp-pal"><span class="dot" style="background:#2d1f1a"></span><span class="dot" style="background:#a87858"></span><span class="dot" style="background:#faf6f0"></span><span class="dot" style="background:#3a5a3a"></span></div>
+   365→   964→   964→    </div>
+   366→   965→   965→    
+   367→   966→   966→    <div class="insp-card">
+   368→   967→   967→      <div class="insp-head">
+   369→   968→   968→        <div class="insp-name">Novikov Catering</div>
+   370→   969→   969→        <div class="insp-where">Москва</div>
+   371→   970→   970→      </div>
+   372→   971→   971→      <div class="insp-why">Премиум-позиционирование. Чёрный + золото. Шеф-повара с портретами.</div>
+   373→   972→   972→      <div class="insp-pal"><span class="dot" style="background:#0d0d0d"></span><span class="dot" style="background:#d4af37"></span><span class="dot" style="background:#1c1c1c"></span><span class="dot" style="background:#5c1a1a"></span></div>
+   374→   973→   973→    </div>
+   375→   974→   974→    
+   376→   975→   975→    <div class="insp-card">
+   377→   976→   976→      <div class="insp-head">
+   378→   977→   977→        <div class="insp-name">Catery.ru</div>
+   379→   978→   978→        <div class="insp-where">Москва</div>
+   380→   979→   979→      </div>
+   381→   980→   980→      <div class="insp-why">Агрегатор: 700+ компаний. Паттерн «сравнение в одной таблице» — удобно для клиента.</div>
+   382→   981→   981→      <div class="insp-pal"><span class="dot" style="background:#2563eb"></span><span class="dot" style="background:#f59e0b"></span><span class="dot" style="background:#10b981"></span><span class="dot" style="background:#1f2937"></span></div>
+   383→   982→   982→    </div>
+   384→   983→   983→    
+   385→   984→   984→  </div>
+   386→   985→   985→</section>
+   387→   986→   986→
+   388→   987→   987→<!-- ЧЕК-ЛИСТ -->
+   389→   988→   988→<section class="section checklist-section" id="checklist">
+   390→   989→   989→  <div class="section-head">
+   391→   990→   990→    <span class="section-eyebrow">Готовность к старту</span>
+   392→   991→   991→    <h2>Чек-лист для вас</h2>
+   393→   992→   992→    <p>Пройдитесь перед заказом сайта. Если что-то не готово — нормально, поможем собрать в процессе.</p>
+   394→   993→   993→  </div>
+   395→   994→   994→  <div class="checklist">
+   396→   995→   995→    
+   397→   996→   996→    <div class="check-item">
+   398→   997→   997→      <div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
+   399→   998→   998→      <div>У меня есть 30-50 фото блюд от профессионального фотографа</div>
+   400→   999→   999→    </div>
+   401→  1000→  1000→    
+   402→  1001→  1001→    <div class="check-item">
+   403→  1002→  1002→      <div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
+   404→  1003→  1003→      <div>У меня есть фото с 5+ реальных событий (с согласием клиентов)</div>
+   405→  1004→  1004→    </div>
+   406→  1005→  1005→    
+   407→  1006→  1006→    <div class="check-item">
+   408→  1007→  1007→      <div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
+   409→  1008→  1008→      <div>У меня готово меню с ценами и составом (от X ₽/порция)</div>
+   410→  1009→  1009→    </div>
+   411→  1010→  1010→    
+   412→  1011→  1011→    <div class="check-item">
+   413→  1012→  1012→      <div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
+   414→  1013→  1013→      <div>Я определил 3 пакета (Classic/Signature/Premium) с ценами</div>
+   415→  1014→  1014→    </div>
+   416→  1015→  1015→    
+   417→  1016→  1016→    <div class="check-item">
+   418→  1017→  1017→      <div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
+   419→  1018→  1018→      <div>У меня есть ИП/ООО с реквизитами для договора</div>
+   420→  1019→  1019→    </div>
+   421→  1020→  1020→    
+   422→  1021→  1021→    <div class="check-item">
+   423→  1022→  1022→      <div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
+   424→  1023→  1023→      <div>У меня есть профиль на Яндекс.Картах с отзывами</div>
+   425→  1024→  1024→    </div>
+   426→  1025→  1025→    
+   427→  1026→  1026→    <div class="check-item">
+   428→  1027→  1027→      <div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
+   429→  1028→  1028→      <div>У меня есть Telegram-аккаунт для приёма заявок</div>
+   430→  1029→  1029→    </div>
+   431→  1030→  1030→    
+   432→  1031→  1031→    <div class="check-item">
+   433→  1032→  1032→      <div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
+   434→  1033→  1033→      <div>У меня есть 8-10 клиентов с письменным согласием на упоминание</div>
+   435→  1034→  1034→    </div>
+   436→  1035→  1035→    
+   437→  1036→  1036→    <div class="check-item">
+   438→  1037→  1037→      <div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
+   439→  1038→  1038→      <div>У меня есть 10-15 отзывов с фото клиентов</div>
+   440→  1039→  1039→    </div>
+   441→  1040→  1040→    
+   442→  1041→  1041→    <div class="check-item">
+   443→  1042→  1042→      <div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
+   444→  1043→  1043→      <div>Я знаю 5-10 ключевых конкурентов в СПб (Concord, CanapeClub и др.)</div>
+   445→  1044→  1044→    </div>
+   446→  1045→  1045→    
+   447→  1046→  1046→    <div class="check-item">
+   448→  1047→  1047→      <div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
+   449→  1048→  1048→      <div>Я готов отвечать на заявки в течение 30 минут в рабочее время</div>
+   450→  1049→  1049→    </div>
+   451→  1050→  1050→    
+   452→  1051→  1051→    <div class="check-item">
+   453→  1052→  1052→      <div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
+   454→  1053→  1053→      <div>У меня есть бюджет 150 000 - 400 000 ₽ на разработку сайта</div>
+   455→  1054→  1054→    </div>
+   456→  1055→  1055→    
+   457→  1056→  1056→  </div>
+   458→  1057→  1057→</section>
+   459→  1058→  1058→
+   460→  1059→  1059→<footer class="site-footer" id="contact">
+   461→  1060→  1060→  <div class="footer-inner">
+   462→  1061→  1061→    <div class="footer-brand">Nilov Catering</div>
+   463→  1062→  1062→    <div class="footer-tagline">
+   464→  1063→  1063→      План сайта кейтеринга с реальными ценами рынка СПб 2026. Готовы начать — напишите.
+   465→  1064→  1064→    </div>
+   466→  1065→  1065→    <div class="hero-cta-row" style="justify-content: center;">
+   467→  1066→  1066→      <a href="https://t.me/" class="btn btn-primary" style="background: #0088cc; color: #fff;">Написать в Telegram</a>
+   468→  1067→  1067→      <a href="tel:+78000000000" class="btn btn-secondary">Позвонить</a>
+   469→  1068→  1068→    </div>
+   470→  1069→  1069→    <div class="footer-note">
+   471→  1070→  1070→      Документ подготовлен 26 июня 2026 года. Источники цен: bash.today (топ-15 кейтерингов СПб), catery.ru, restoclub.ru, feelcode.ru, sw-studio.ru, 152-ФЗ с изменениями 156-ФЗ от 24.06.2025, Baymard Institute, HubSpot 2026, Formidable Forms 2026, Restaurant Business 2026.<br><br>
+   472→  1071→  1071→      Это отправная точка для обсуждения. Не является коммерческим предложением — финальные сроки и стоимость определяются после консультации.
+   473→  1072→  1072→    </div>
+   474→  1073→  1073→  </div>
+   475→  1074→  1074→</footer>
+   476→  1075→  1075→
+   477→  1076→  1076→<div class="bottom-bar">
+   478→  1077→  1077→  <a href="https://t.me/" class="bottom-btn tg" target="_blank" rel="noopener">
+   479→  1078→  1078→    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+   480→  1079→  1079→    Telegram
+   481→  1080→  1080→  </a>
+   482→  1081→  1081→  <a href="tel:+78000000000" class="bottom-btn call">
+   483→  1082→  1082→    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.26.36-.65.25-1C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/></svg>
+   484→  1083→  1083→    Позвонить
+   485→  1084→  1084→  </a>
+   486→  1085→  1085→  <a href="#checklist" class="bottom-btn calc">Чек-лист</a>
+   487→  1086→  1086→</div>
+   488→  1087→  1087→
+   489→  1088→  1088→</body>
+   490→  1089→  1089→</html>
+   491→  1090→  1090→
