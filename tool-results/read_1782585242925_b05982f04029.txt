@@ -1,0 +1,443 @@
+   701→   701→        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 15.2a3.2 3.2 0 100-6.4 3.2 3.2 0 000 6.4zM9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9z"/></svg>
+   702→   702→      </div>
+   703→   703→      <div class="gallery-caption"><strong>Свадьба Анны и Игоря</strong><span>120 гостей · Июнь 2026 · Ресторан Cascade</span></div>
+   704→   704→    </div>
+   705→   705→    <div class="gallery-item">
+   706→   706→      <div class="gallery-img" style="background:linear-gradient(135deg,#1f3a5f,#5a8f9f)">
+   707→   707→        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 15.2a3.2 3.2 0 100-6.4 3.2 3.2 0 000 6.4zM9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9z"/></svg>
+   708→   708→      </div>
+   709→   709→      <div class="gallery-caption"><strong>Корпоратив IT-компании</strong><span>200 гостей · Май 2026</span></div>
+   710→   710→    </div>
+   711→   711→    <div class="gallery-item">
+   712→   712→      <div class="gallery-img" style="background:linear-gradient(135deg,#10b981,#065f46)">
+   713→   713→        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 15.2a3.2 3.2 0 100-6.4 3.2 3.2 0 000 6.4zM9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9z"/></svg>
+   714→   714→      </div>
+   715→   715→      <div class="gallery-caption"><strong>Фуршет на открытии</strong><span>80 гостей · Апр 2026</span></div>
+   716→   716→    </div>
+   717→   717→    <div class="gallery-item">
+   718→   718→      <div class="gallery-img" style="background:linear-gradient(135deg,#b8860b,#1c1917)">
+   719→   719→        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 15.2a3.2 3.2 0 100-6.4 3.2 3.2 0 000 6.4zM9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9z"/></svg>
+   720→   720→      </div>
+   721→   721→      <div class="gallery-caption"><strong>Гала-ужин</strong><span>150 гостей · Март 2026</span></div>
+   722→   722→    </div>
+   723→   723→    <div class="gallery-item">
+   724→   724→      <div class="gallery-img" style="background:linear-gradient(135deg,#92400e,#f5d76e)">
+   725→   725→        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 15.2a3.2 3.2 0 100-6.4 3.2 3.2 0 000 6.4zM9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9z"/></svg>
+   726→   726→      </div>
+   727→   727→      <div class="gallery-caption"><strong>Юбилей</strong><span>60 гостей · Фев 2026</span></div>
+   728→   728→    </div>
+   729→   729→  </div>
+   730→   730→  <div style="margin-top:20px">
+   731→   731→    <div class="anno">
+   732→   732→      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1l3 5 6 .9-4.5 4.4 1 6L12 17l-5.5 3 1-6L3 7l6-.9z"/></svg>
+   733→   733→      5+ отзывов = до +270% конверсии
+   734→   734→    </div>
+   735→   735→    <div class="anno-src">Spiegel Research Center, Northwestern University</div>
+   736→   736→  </div>
+   737→   737→</section>
+   738→   738→
+   739→   739→<!-- ═══════ REVIEWS ═══════ -->
+   740→   740→<section class="s">
+   741→   741→  <div class="s-head">
+   742→   742→    <span class="s-eyebrow">Отзывы</span>
+   743→   743→    <h2>Что говорят наши клиенты</h2>
+   744→   744→    <p>Реальные люди, реальные мероприятия. С фото и деталями.</p>
+   745→   745→  </div>
+   746→   746→  <div class="reviews">
+   747→   747→    <div class="review">
+   748→   748→      <div class="review-stars">★★★★★</div>
+   749→   749→      <div class="review-text">«Всё идеально — от меню до подачи. 120 гостей, ни одной жалобы. Свадьба мечты благодаря Nilov!»</div>
+   750→   750→      <div class="review-author">
+   751→   751→        <div class="review-avatar" style="background:linear-gradient(135deg,#b8860b,#f5d76e)">ИП</div>
+   752→   752→        <div class="review-author-text">
+   753→   753→          <strong>Ирина П.</strong>
+   754→   754→          <span>Свадьба · 120 гостей · Июнь 2026</span>
+   755→   755→        </div>
+   756→   756→      </div>
+   757→   757→    </div>
+   758→   758→    <div class="review">
+   759→   759→      <div class="review-stars">★★★★★</div>
+   760→   760→      <div class="review-text">«Корпоратив на 200 человек — всё вовремя, красиво, вкусно. Второй год заказываем и не собираемся менять.»</div>
+   761→   761→      <div class="review-author">
+   762→   762→        <div class="review-avatar" style="background:linear-gradient(135deg,#10b981,#059669)">ДС</div>
+   763→   763→        <div class="review-author-text">
+   764→   764→          <strong>Дмитрий С.</strong>
+   765→   765→          <span>Корпоратив · 200 гостей · Май 2026</span>
+   766→   766→        </div>
+   767→   767→      </div>
+   768→   768→    </div>
+   769→   769→    <div class="review">
+   770→   770→      <div class="review-stars">★★★★★</div>
+   771→   771→      <div class="review-text">«Фуршет на открытии офиса — быстро, стильно, гости в восторге. Отдельное спасибо за веганские позиции!»</div>
+   772→   772→      <div class="review-author">
+   773→   773→        <div class="review-avatar" style="background:linear-gradient(135deg,#1f3a5f,#5a8f9f)">ЕК</div>
+   774→   774→        <div class="review-author-text">
+   775→   775→          <strong>Елена К.</strong>
+   776→   776→          <span>Фуршет · 80 гостей · Апр 2026</span>
+   777→   777→        </div>
+   778→   778→      </div>
+   779→   779→    </div>
+   780→   780→    <div class="review">
+   781→   781→      <div class="review-stars">★★★★★</div>
+   782→   782→      <div class="review-text">«Гала-ужин для партнёров — шеф стоял у плиты на глазах у гостей. Эффект — потрясающий. Рекомендую!»</div>
+   783→   783→      <div class="review-author">
+   784→   784→        <div class="review-avatar" style="background:linear-gradient(135deg,#7a1f1f,#c9a86a)">АМ</div>
+   785→   785→        <div class="review-author-text">
+   786→   786→          <strong>Алексей М.</strong>
+   787→   787→          <span>Гала-ужин · 150 гостей · Март 2026</span>
+   788→   788→        </div>
+   789→   789→      </div>
+   790→   790→    </div>
+   791→   791→  </div>
+   792→   792→  <div style="margin-top:16px">
+   793→   793→    <div class="anno">
+   794→   794→      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1l3 5 6 .9-4.5 4.4 1 6L12 17l-5.5 3 1-6L3 7l6-.9z"/></svg>
+   795→   795→      Даже негативные отзывы повышают конверсию на +67%
+   796→   796→    </div>
+   797→   797→    <div class="anno-src">Spiegel Research Center</div>
+   798→   798→  </div>
+   799→   799→</section>
+   800→   800→
+   801→   801→<!-- ═══════ TRUST BADGES ═══════ -->
+   802→   802→<section class="s bg-w" style="padding:40px 20px">
+   803→   803→  <div class="trust-row">
+   804→   804→    <div class="trust-badge">
+   805→   805→      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+   806→   806→      HACCP — ТР ТС 021/2011
+   807→   807→    </div>
+   808→   808→    <div class="trust-badge">
+   809→   809→      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+   810→   810→      SSL-шифрование
+   811→   811→    </div>
+   812→   812→    <div class="trust-badge">
+   813→   813→      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1l3 5 6 .9-4.5 4.4 1 6L12 17l-5.5 3 1-6L3 7l6-.9z"/></svg>
+   814→   814→      Яндекс.Карты 4.7 ★
+   815→   815→    </div>
+   816→   816→    <div class="trust-badge">
+   817→   817→      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5z"/></svg>
+   818→   818→      2ГИС
+   819→   819→    </div>
+   820→   820→  </div>
+   821→   821→  <div style="text-align:center;margin-top:12px">
+   822→   822→    <div class="anno">
+   823→   823→      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+   824→   824→      19% клиентов уходят из-за недоверия к сайту
+   825→   825→    </div>
+   826→   826→    <div class="anno-src">Baymard Institute</div>
+   827→   827→  </div>
+   828→   828→</section>
+   829→   829→
+   830→   830→<!-- ═══════ FORM ═══════ -->
+   831→   831→<section class="s bg-c" id="form-section">
+   832→   832→  <div class="s-head center">
+   833→   833→    <span class="s-eyebrow">Заявка</span>
+   834→   834→    <h2>Оставьте заявку — перезвоним за 30 минут</h2>
+   835→   835→    <p>5 полей — и мы уже готовим для вас расчёт.</p>
+   836→   836→  </div>
+   837→   837→  <div class="form-box">
+   838→   838→    <div class="form-header">
+   839→   839→      <h3>Ваше мероприятие</h3>
+   840→   840→      <p>Заполните — и мы подготовим персональный расчёт</p>
+   841→   841→    </div>
+   842→   842→    <div class="form-body">
+   843→   843→      <div class="form-row">
+   844→   844→        <label class="form-label">Ваше имя</label>
+   845→   845→        <input class="form-input" type="text" placeholder="Анна">
+   846→   846→      </div>
+   847→   847→      <div class="form-row">
+   848→   848→        <label class="form-label">Телефон</label>
+   849→   849→        <input class="form-input" type="tel" placeholder="+7 (___) ___-__-__">
+   850→   850→      </div>
+   851→   851→      <div class="form-row">
+   852→   852→        <label class="form-label">Дата мероприятия</label>
+   853→   853→        <input class="form-input" type="date">
+   854→   854→      </div>
+   855→   855→      <div class="form-row">
+   856→   856→        <label class="form-label">Количество гостей</label>
+   857→   857→        <input class="form-input" type="number" value="80" min="10">
+   858→   858→      </div>
+   859→   859→      <div class="form-row">
+   860→   860→        <label class="form-label">Тип события</label>
+   861→   861→        <select class="form-input">
+   862→   862→          <option>Свадьба</option>
+   863→   863→          <option>Корпоратив</option>
+   864→   864→          <option>День рождения</option>
+   865→   865→          <option>Фуршет</option>
+   866→   866→          <option>Другое</option>
+   867→   867→        </select>
+   868→   868→      </div>
+   869→   869→      <button class="form-submit">Отправить заявку</button>
+   870→   870→      <div class="form-note">Только 5 полей · Без спама · Перезвоним за 30 минут</div>
+   871→   871→    </div>
+   872→   872→  </div>
+   873→   873→  <div style="text-align:center;margin-top:16px">
+   874→   874→    <div class="anno">
+   875→   875→      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 13h2v8H3zm4-4h2v12H7zm4-4h2v16h-2zm4 6h2v10h-2zm4-8h2v18h-2z"/></svg>
+   876→   876→      Медиана конверсии форм: 17.3% · Sticky CTA: +8–27% с мобильного
+   877→   877→    </div>
+   878→   878→    <div class="anno-src">Digital Applied 2026 · Conversion Rate Experts · HubSpot</div>
+   879→   879→  </div>
+   880→   880→</section>
+   881→   881→
+   882→   882→<!-- ═══════ SPEED ═══════ -->
+   883→   883→<section class="s bg-d">
+   884→   884→  <div class="s-head center">
+   885→   885→    <span class="s-eyebrow">Скорость</span>
+   886→   886→    <h2>Каждая секунда на вес золота</h2>
+   887→   887→    <p>Медленный сайт = потерянные клиенты. Мы настроим всё так, чтобы загрузка была менее 2.5 секунд.</p>
+   888→   888→  </div>
+   889→   889→  <div class="speed-chart">
+   890→   890→    <svg viewBox="0 0 500 200" style="width:100%;height:auto">
+   891→   891→      <!-- Background -->
+   892→   892→      <rect x="50" y="20" width="430" height="140" rx="8" fill="rgba(250,248,245,0.04)"/>
+   893→   893→      <!-- Grid lines -->
+   894→   894→      <line x1="70" y1="40" x2="460" y2="40" stroke="rgba(250,248,245,0.08)" stroke-width="0.5"/>
+   895→   895→      <line x1="70" y1="70" x2="460" y2="70" stroke="rgba(250,248,245,0.08)" stroke-width="0.5"/>
+   896→   896→      <line x1="70" y1="100" x2="460" y2="100" stroke="rgba(250,248,245,0.08)" stroke-width="0.5"/>
+   897→   897→      <line x1="70" y1="130" x2="460" y2="130" stroke="rgba(250,248,245,0.08)" stroke-width="0.5"/>
+   898→   898→      <!-- Y labels -->
+   899→   899→      <text x="45" y="43" font-size="9" fill="rgba(250,248,245,0.4)" text-anchor="end" font-weight="600">12%</text>
+   900→   900→      <text x="45" y="73" font-size="9" fill="rgba(250,248,245,0.4)" text-anchor="end" font-weight="600">8%</text>
+   901→   901→      <text x="45" y="103" font-size="9" fill="rgba(250,248,245,0.4)" text-anchor="end" font-weight="600">4%</text>
+   902→   902→      <text x="45" y="133" font-size="9" fill="rgba(250,248,245,0.4)" text-anchor="end" font-weight="600">0%</text>
+   903→   903→      <!-- X labels -->
+   904→   904→      <text x="90" y="155" font-size="9" fill="rgba(250,248,245,0.4)" text-anchor="middle" font-weight="600">1с</text>
+   905→   905→      <text x="170" y="155" font-size="9" fill="rgba(250,248,245,0.4)" text-anchor="middle" font-weight="600">2с</text>
+   906→   906→      <text x="260" y="155" font-size="9" fill="rgba(250,248,245,0.4)" text-anchor="middle" font-weight="600">3с</text>
+   907→   907→      <text x="350" y="155" font-size="9" fill="rgba(250,248,245,0.4)" text-anchor="middle" font-weight="600">4с</text>
+   908→   908→      <text x="430" y="155" font-size="9" fill="rgba(250,248,245,0.4)" text-anchor="middle" font-weight="600">5с+</text>
+   909→   909→      <!-- Target zone -->
+   910→   910→      <rect x="70" y="30" width="160" height="30" fill="rgba(5,150,105,0.12)" rx="4"/>
+   911→   911→      <text x="150" y="49" font-size="10" fill="#059669" text-anchor="middle" font-weight="800">ЦЕЛЬ &lt; 2.5с</text>
+   912→   912→      <!-- Curve -->
+   913→   913→      <path d="M90,42 C130,44 150,52 190,65 C240,82 300,105 350,120 C380,128 420,135 450,138" fill="none" stroke="#f5d76e" stroke-width="3" stroke-linecap="round"/>
+   914→   914→      <!-- Gradient fill under curve -->
+   915→   915→      <path d="M90,42 C130,44 150,52 190,65 C240,82 300,105 350,120 C380,128 420,135 450,138 L450,140 L90,140 Z" fill="url(#goldFade)"/>
+   916→   916→      <defs><linearGradient id="goldFade" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(245,215,110,0.2)"/><stop offset="100%" stop-color="rgba(245,215,110,0)"/></linearGradient></defs>
+   917→   917→      <!-- Data points -->
+   918→   918→      <circle cx="90" cy="42" r="6" fill="#10b981" stroke="#0a0806" stroke-width="2"/>
+   919→   919→      <circle cx="170" cy="55" r="5" fill="#10b981" stroke="#0a0806" stroke-width="2"/>
+   920→   920→      <circle cx="260" cy="88" r="5" fill="#f5d76e" stroke="#0a0806" stroke-width="2"/>
+   921→   921→      <circle cx="350" cy="120" r="5" fill="#ef4444" stroke="#0a0806" stroke-width="2"/>
+   922→   922→      <circle cx="430" cy="136" r="6" fill="#dc2626" stroke="#0a0806" stroke-width="2"/>
+   923→   923→      <!-- Labels on points -->
+   924→   924→      <text x="90" y="34" font-size="9" fill="#10b981" text-anchor="middle" font-weight="800">11.2%</text>
+   925→   925→      <text x="170" y="47" font-size="9" fill="#10b981" text-anchor="middle" font-weight="800">9.8%</text>
+   926→   926→      <text x="260" y="80" font-size="9" fill="#f5d76e" text-anchor="middle" font-weight="800">6.1%</text>
+   927→   927→      <text x="350" y="112" font-size="9" fill="#ef4444" text-anchor="middle" font-weight="800">3.2%</text>
+   928→   928→      <text x="430" y="128" font-size="9" fill="#dc2626" text-anchor="middle" font-weight="800">1.5%</text>
+   929→   929→      <!-- Title -->
+   930→   930→      <text x="265" y="185" font-size="11" fill="rgba(250,248,245,0.5)" text-anchor="middle" font-weight="700">Время загрузки → Конверсия</text>
+   931→   931→    </svg>
+   932→   932→  </div>
+   933→   933→  <div style="text-align:center;margin-top:16px">
+   934→   934→    <div class="anno">
+   935→   935→      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11 21h-1l1-7H7.5c-.58 0-.57-.32-.38-.66.19-.34.05-.08.07-.12C8.48 10.94 10.42 7.54 13 3h1l-1 7h3.5c.49 0 .56.33.47.51l-.07.15C12.96 17.55 11 21 11 21z"/></svg>
+   936→   936→      +0.1 сек скорости = +8.4% конверсии · 5+ сек = конверсия × 0.5
+   937→   937→    </div>
+   938→   938→    <div class="anno-src">Google/Deloitte «Milliseconds Make Millions» · Portent 27K+ лендингов</div>
+   939→   939→  </div>
+   940→   940→</section>
+   941→   941→
+   942→   942→<!-- ═══════ ЗАКОН ═══════ -->
+   943→   943→<section class="s bg-w">
+   944→   944→  <div class="s-head">
+   945→   945→    <span class="s-eyebrow">Закон</span>
+   946→   946→    <h2>Что требует законодательство РФ</h2>
+   947→   947→    <p>Без этих пунктов — штрафы. Мы всё учтём при разработке.</p>
+   948→   948→  </div>
+   949→   949→  <div class="legal-grid">
+   950→   950→    <div class="legal-card">
+   951→   951→      <h4>
+   952→   952→        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" style="display:inline;vertical-align:middle;color:var(--red)"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+   953→   953→        152-ФЗ: Персональные данные
+   954→   954→      </h4>
+   955→   955→      <p>С 1 июля 2025 — все данные граждан РФ хранятся на серверах в России. Штрафы: <span class="warn">150K–18M ₽</span></p>
+   956→   956→    </div>
+   957→   957→    <div class="legal-card">
+   958→   958→      <h4>
+   959→   959→        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" style="display:inline;vertical-align:middle;color:var(--green)"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+   960→   960→        HACCP: Обязательно для кейтеринга
+   961→   961→      </h4>
+   962→   962→      <p>ТР ТС 021/2011 — сертификат HACCP обязателен. Без него — штраф и риск закрытия.</p>
+   963→   963→    </div>
+   964→   964→    <div class="legal-card">
+   965→   965→      <h4>
+   966→   966→        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" style="display:inline;vertical-align:middle;color:var(--gold)"><path d="M3 13h2v8H3zm4-4h2v12H7zm4-4h2v16h-2zm4 6h2v10h-2zm4-8h2v18h-2z"/></svg>
+   967→   967→        Яндекс.Метрика, не GA4
+   968→   968→      </h4>
+   969→   969→      <p>Google Analytics запрещён в РФ с 01.07.2025. Политика конфиденциальности, согласие на ПДн, cookies — обязательно.</p>
+   970→   970→    </div>
+   971→   971→    <div class="legal-card">
+   972→   972→      <h4>
+   973→   973→        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" style="display:inline;vertical-align:middle;color:#1f3a5f"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5z"/></svg>
+   974→   974→        Домен .ru + хостинг в РФ
+   975→   975→      </h4>
+   976→   976→      <p>Для 152-ФЗ и Яндекса. Оплата — СБП/ЮKassa (Stripe/PayPal под санкциями).</p>
+   977→   977→    </div>
+   978→   978→  </div>
+   979→   979→</section>
+   980→   980→
+   981→   981→<!-- ═══════ РЫНОК ═══════ -->
+   982→   982→<section class="s bg-c">
+   983→   983→  <div class="s-head">
+   984→   984→    <span class="s-eyebrow">Ваше место</span>
+   985→   985→    <h2>Средний сегмент — золотая середина</h2>
+   986→   986→    <p>Рынок общепита РФ — 4.29 трлн ₽, рост +8.7% год к году. Nilov — между бюджетом и премиумом.</p>
+   987→   987→  </div>
+   988→   988→  <div style="max-width:640px;margin:0 auto">
+   989→   989→    <svg viewBox="0 0 600 100" style="width:100%;height:auto">
+   990→   990→      <rect x="20" y="20" width="560" height="36" rx="18" fill="#e8e2d8"/>
+   991→   991→      <rect x="20" y="20" width="150" height="36" rx="18" fill="rgba(16,185,129,0.2)"/>
+   992→   992→      <rect x="170" y="20" width="210" height="36" fill="rgba(184,134,11,0.25)"/>
+   993→   993→      <rect x="380" y="20" width="200" height="36" rx="18" fill="rgba(185,28,28,0.1)"/>
+   994→   994→      <text x="95" y="43" font-size="12" fill="#065f46" font-weight="800" text-anchor="middle">Бюджет 2 800–3 500</text>
+   995→   995→      <text x="275" y="43" font-size="12" fill="#92400e" font-weight="900" text-anchor="middle">ВЫ ЗДЕСЬ 3 500–4 500</text>
+   996→   996→      <text x="480" y="43" font-size="12" fill="#991b1b" font-weight="800" text-anchor="middle">Премиум 6 600+</text>
+   997→   997→      <path d="M275,60 L275,82" stroke="#b8860b" stroke-width="2.5"/>
+   998→   998→      <circle cx="275" cy="88" r="5" fill="#b8860b"/>
+   999→   999→      <text x="275" y="98" font-size="11" fill="#b8860b" font-weight="900" text-anchor="middle">NILOV</text>
+  1000→  1000→    </svg>
+  1001→  1001→  </div>
+  1002→  1002→  <div style="margin-top:12px">
+  1003→  1003→    <div class="anno">
+  1004→  1004→      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 13h2v8H3zm4-4h2v12H7zm4-4h2v16h-2zm4 6h2v10h-2zm4-8h2v18h-2z"/></svg>
+  1005→  1005→      Рынок общепита РФ: 4.29 трлн ₽, рост +8.7% YoY
+  1006→  1006→    </div>
+  1007→  1007→    <div class="anno-src">BusinesStat / Rosstat / TASS, 2025</div>
+  1008→  1008→  </div>
+  1009→  1009→</section>
+  1010→  1010→
+  1011→  1011→<!-- ═══════ СРОКИ ═══════ -->
+  1012→  1012→<section class="s bg-d">
+  1013→  1013→  <div class="s-head center">
+  1014→  1014→    <span class="s-eyebrow">Сроки и стоимость</span>
+  1015→  1015→    <h2>6–10 недель — и сайт работает</h2>
+  1016→  1016→    <p>Окупаемость за 3-4 заказа при среднем чеке 80 000 ₽.</p>
+  1017→  1017→  </div>
+  1018→  1018→  <div style="display:grid;grid-template-columns:1fr;gap:16px;max-width:680px;margin:0 auto">
+  1019→  1019→    <div style="background:rgba(250,248,245,0.06);border:1px solid rgba(250,248,245,0.08);border-radius:16px;padding:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+  1020→  1020→      <div>
+  1021→  1021→        <div style="font-size:18px;font-weight:900;color:#faf8f5;margin-bottom:4px">Разработка сайта</div>
+  1022→  1022→        <div style="font-size:14px;color:rgba(250,248,245,0.6);line-height:1.5">Дизайн + вёрстка + программирование + контент + тесты + 152-ФЗ + HACCP</div>
+  1023→  1023→      </div>
+  1024→  1024→      <div style="text-align:right">
+  1025→  1025→        <div style="font-size:28px;font-weight:900;color:var(--gold-light);letter-spacing:-0.03em">6–10 нед.</div>
+  1026→  1026→      </div>
+  1027→  1027→    </div>
+  1028→  1028→    <div style="background:rgba(250,248,245,0.06);border:1px solid rgba(250,248,245,0.08);border-radius:16px;padding:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+  1029→  1029→      <div>
+  1030→  1030→        <div style="font-size:18px;font-weight:900;color:#faf8f5;margin-bottom:4px">Окупаемость</div>
+  1031→  1031→        <div style="font-size:14px;color:rgba(250,248,245,0.6);line-height:1.5">При сайте за 250 000 ₽ и среднем чеке 80 000 ₽</div>
+  1032→  1032→      </div>
+  1033→  1033→      <div style="text-align:right">
+  1034→  1034→        <div style="font-size:28px;font-weight:900;color:var(--gold-light);letter-spacing:-0.03em">3-4 заказа</div>
+  1035→  1035→      </div>
+  1036→  1036→    </div>
+  1037→  1037→    <div style="background:rgba(250,248,245,0.06);border:1px solid rgba(250,248,245,0.08);border-radius:16px;padding:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+  1038→  1038→      <div>
+  1039→  1039→        <div style="font-size:18px;font-weight:900;color:#faf8f5;margin-bottom:4px">Рост конверсии</div>
+  1040→  1040→        <div style="font-size:14px;color:rgba(250,248,245,0.6);line-height:1.5">Sticky CTA + короткая форма + скорость + отзывы + trust badges</div>
+  1041→  1041→      </div>
+  1042→  1042→      <div style="text-align:right">
+  1043→  1043→        <div style="font-size:28px;font-weight:900;color:var(--gold-light);letter-spacing:-0.03em">до +270%</div>
+  1044→  1044→      </div>
+  1045→  1045→    </div>
+  1046→  1046→  </div>
+  1047→  1047→  <div style="text-align:center;margin-top:12px">
+  1048→  1048→    <div class="anno-src">SolveIt, Elementor, Splash Creative — сроки · Spiegel Research Center — конверсия</div>
+  1049→  1049→  </div>
+  1050→  1050→</section>
+  1051→  1051→
+  1052→  1052→<!-- ═══════ ЧЕК-ЛИСТ ═══════ -->
+  1053→  1053→<section class="s">
+  1054→  1054→  <div class="s-head">
+  1055→  1055→    <span class="s-eyebrow">Чек-лист</span>
+  1056→  1056→    <h2>Что подготовить для сайта</h2>
+  1057→  1057→    <p>Чем лучше материалы — тем быстрее и качественнее результат.</p>
+  1058→  1058→  </div>
+  1059→  1059→  <div class="checklist">
+  1060→  1060→    <div class="check-item">
+  1061→  1061→      <span class="check-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2l-3.5-3.5L4.1 14.1 9 19 20 8l-1.4-1.4z"/></svg></span>
+  1062→  1062→      <span><strong>Фото блюд и сервировки</strong> — 30-50 фото с реальных мероприятий, не сток</span>
+  1063→  1063→    </div>
+  1064→  1064→    <div class="check-item">
+  1065→  1065→      <span class="check-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2l-3.5-3.5L4.1 14.1 9 19 20 8l-1.4-1.4z"/></svg></span>
+  1066→  1066→      <span><strong>Меню с ценами</strong> — название, состав, вес, цена «от X ₽/порция», диеты</span>
+  1067→  1067→    </div>
+  1068→  1068→    <div class="check-item">
+  1069→  1069→      <span class="check-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2l-3.5-3.5L4.1 14.1 9 19 20 8l-1.4-1.4z"/></svg></span>
+  1070→  1070→      <span><strong>Отзывы клиентов</strong> — 10-15 текстов + фото, с разрешения</span>
+  1071→  1071→    </div>
+  1072→  1072→    <div class="check-item">
+  1073→  1073→      <span class="check-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2l-3.5-3.5L4.1 14.1 9 19 20 8l-1.4-1.4z"/></svg></span>
+  1074→  1074→      <span><strong>Кейсы</strong> — 8-12 мероприятий: фото + цифры + локация</span>
+  1075→  1075→    </div>
+  1076→  1076→    <div class="check-item">
+  1077→  1077→      <span class="check-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2l-3.5-3.5L4.1 14.1 9 19 20 8l-1.4-1.4z"/></svg></span>
+  1078→  1078→      <span><strong>Сертификаты</strong> — HACCP, РГА, сканы для сайта</span>
+  1079→  1079→    </div>
+  1080→  1080→    <div class="check-item">
+  1081→  1081→      <span class="check-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2l-3.5-3.5L4.1 14.1 9 19 20 8l-1.4-1.4z"/></svg></span>
+  1082→  1082→      <span><strong>Контакты</strong> — телефон, Telegram, WhatsApp, адрес офиса, часы работы</span>
+  1083→  1083→    </div>
+  1084→  1084→    <div class="check-item">
+  1085→  1085→      <span class="check-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2l-3.5-3.5L4.1 14.1 9 19 20 8l-1.4-1.4z"/></svg></span>
+  1086→  1086→      <span><strong>Логотип</strong> — SVG + PNG, тёмный + светлый + монохромный варианты</span>
+  1087→  1087→    </div>
+  1088→  1088→    <div class="check-item">
+  1089→  1089→      <span class="check-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2l-3.5-3.5L4.1 14.1 9 19 20 8l-1.4-1.4z"/></svg></span>
+  1090→  1090→      <span><strong>Данные для 152-ФЗ</strong> — политика конфиденциальности, согласие на ПДн</span>
+  1091→  1091→    </div>
+  1092→  1092→    <div class="check-item">
+  1093→  1093→      <span class="check-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2l-3.5-3.5L4.1 14.1 9 19 20 8l-1.4-1.4z"/></svg></span>
+  1094→  1094→      <span><strong>Домен .ru + хостинг в РФ</strong> — Timeweb, Selectel, Reg.ru</span>
+  1095→  1095→    </div>
+  1096→  1096→  </div>
+  1097→  1097→</section>
+  1098→  1098→
+  1099→  1099→<!-- ═══════ FOOTER ═══════ -->
+  1100→  1100→<footer class="site-footer">
+  1101→  1101→  <div class="footer-inner">
+  1102→  1102→    <div class="footer-brand">Nilov Catering</div>
+  1103→  1103→    <div class="footer-tagline">Кейтеринг в Санкт-Петербурге<br>Свадьбы · Корпоративы · Фуршеты · Гала-ужины</div>
+  1104→  1104→    <div class="footer-note">
+  1105→  1105→      Источники данных: Unbounce (57M+ конверсий), Baymard Institute, Google/Deloitte,
+  1106→  1106→      Spiegel Research Center (Northwestern University), Conversion Rate Experts, HubSpot,
+  1107→  1107→      Digital Applied, BusinesStat/Rosstat, ТР ТС 021/2011, ФЗ-152/23.<br>
+  1108→  1108→      Июнь 2026 · Санкт-Петербург
+  1109→  1109→    </div>
+  1110→  1110→  </div>
+  1111→  1111→</footer>
+  1112→  1112→
+  1113→  1113→<!-- ═══════ BOTTOM BAR ═══════ -->
+  1114→  1114→<div class="bottom-bar">
+  1115→  1115→  <a href="#form-section" class="bb tg">Telegram</a>
+  1116→  1116→  <a href="#form-section" class="bb call">Позвонить</a>
+  1117→  1117→  <a href="#order" class="bb calc">Расчёт</a>
+  1118→  1118→</div>
+  1119→  1119→
+  1120→  1120→<!-- ═══════ CALCULATOR JS ═══════ -->
+  1121→  1121→<script>
+  1122→  1122→(function(){
+  1123→  1123→  var g=document.getElementById('calcGuests');
+  1124→  1124→  var f=document.getElementById('calcFormat');
+  1125→  1125→  var e=document.getElementById('calcExtra');
+  1126→  1126→  var t=document.getElementById('calcTotal');
+  1127→  1127→  var p=document.getElementById('calcPerGuest');
+  1128→  1128→  function upd(){
+  1129→  1129→    var guests=parseInt(g.value)||1;
+  1130→  1130→    var price=parseInt(f.value)||2800;
+  1131→  1131→    var extra=parseInt(e.value)||0;
+  1132→  1132→    var total=guests*price+extra;
+  1133→  1133→    t.textContent=total.toLocaleString('ru-RU')+' ₽';
+  1134→  1134→    p.textContent=price.toLocaleString('ru-RU')+' ₽/гость';
+  1135→  1135→  }
+  1136→  1136→  g.addEventListener('input',upd);
+  1137→  1137→  f.addEventListener('change',upd);
+  1138→  1138→  e.addEventListener('change',upd);
+  1139→  1139→  upd();
+  1140→  1140→})();
+  1141→  1141→</script>
+  1142→  1142→</body>
+  1143→  1143→</html>

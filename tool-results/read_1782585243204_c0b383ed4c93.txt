@@ -1,0 +1,485 @@
+   601→   601→</section>
+   602→   602→""")
+   603→   603→
+   604→   604→    # ═══════════════════════════════════════════
+   605→   605→    # SECTION 5: КЕЙСЫ / ГАЛЕРЕЯ
+   606→   606→    # ═══════════════════════════════════════════
+   607→   607→    parts.append(f"""
+   608→   608→<section class="section" id="cases-demo">
+   609→   609→  <div class="section-head">
+   610→   610→    <span class="section-eyebrow">Блок 5</span>
+   611→   611→    <h2>Кейсы с реальных событий</h2>
+   612→   612→    <p>«Эти ребята реально умеют» — доказательство, а не обещание. Фото + цифры + имена.</p>
+   613→   613→  </div>
+   614→   614→  <div class="two-col">
+   615→   615→    <div class="col-info">
+   616→   616→      <div class="info-card">
+   617→   617→        <h4>Почему кейсы — самое сильное доказательство</h4>
+   618→   618→        <p>Абстрактное «мы лучшие» никто не верит. Конкретное «Свадьба Анны и Игоря, 120 гостей, 14 июня 2026, ресторан Cascade» — верят. Потому что это можно проверить: фото, дата, локация, имя.</p>
+   619→   619→        <p><strong>8-12 кейсов</strong> — каждый на своей странице (для SEO). Формат: большое фото + эмоциональный рассказ + цифры (гостей, дата, локация, бюджет). Фото до/во время/после — не стоковые, а реальные.</p>
+   620→   620→        <p><strong>Отзыв клиента</strong> под каждым кейсом — если получено согласие. Это удваивает доверие: и мероприятие реальное, и клиент доволен.</p>
+   621→   621→        <div class="conv-badge">{ico("star", 13)} 5+ отзывов = до {CONV["reviews_5plus"][0]} роста конверсии</div>
+   622→   622→        <span class="conv-source">{CONV["reviews_5plus"][1]}</span>
+   623→   623→      </div>
+   624→   624→    </div>
+   625→   625→    <div class="col-demo">
+   626→   626→      <div class="demo-frame">
+   627→   627→        <div class="demo-label">Так будет выглядеть галерея кейсов</div>
+   628→   628→        <div class="demo-content">
+   629→   629→          <div class="mock-gallery">
+   630→   630→            <div class="mock-gallery-item">
+   631→   631→              <div class="mock-gallery-img g1">{ico("camera", 22)}</div>
+   632→   632→              <div class="mock-gallery-caption">Свадьба · 120 гостей · Июнь 2026</div>
+   633→   633→            </div>
+   634→   634→            <div class="mock-gallery-item">
+   635→   635→              <div class="mock-gallery-img g2">{ico("camera", 22)}</div>
+   636→   636→              <div class="mock-gallery-caption">Корпоратив · 200 гостей · Май 2026</div>
+   637→   637→            </div>
+   638→   638→            <div class="mock-gallery-item">
+   639→   639→              <div class="mock-gallery-img g3">{ico("camera", 22)}</div>
+   640→   640→              <div class="mock-gallery-caption">Фуршет · 80 гостей · Апр 2026</div>
+   641→   641→            </div>
+   642→   642→            <div class="mock-gallery-item">
+   643→   643→              <div class="mock-gallery-img g4">{ico("camera", 22)}</div>
+   644→   644→              <div class="mock-gallery-caption">Гала-ужин · 150 гостей · Март 2026</div>
+   645→   645→            </div>
+   646→   646→          </div>
+   647→   647→        </div>
+   648→   648→      </div>
+   649→   649→    </div>
+   650→   650→  </div>
+   651→   651→</section>
+   652→   652→""")
+   653→   653→
+   654→   654→    # ═══════════════════════════════════════════
+   655→   655→    # SECTION 6: ОТЗЫВЫ И ДОВЕРИЕ
+   656→   656→    # ═══════════════════════════════════════════
+   657→   657→    parts.append(f"""
+   658→   658→<section class="section bg-white" id="reviews-demo">
+   659→   659→  <div class="section-head">
+   660→   660→    <span class="section-eyebrow">Блок 6</span>
+   661→   661→    <h2>Отзывы и доверие</h2>
+   662→   662→    <p>Снять страх: «А вдруг испортят праздник?» — реальные люди, реальные оценки.</p>
+   663→   663→  </div>
+   664→   664→  <div class="two-col">
+   665→   665→    <div class="col-demo">
+   666→   666→      <div class="demo-frame">
+   667→   667→        <div class="demo-label">Так будут выглядеть отзывы</div>
+   668→   668→        <div class="demo-content">
+   669→   669→          <div class="mock-reviews">
+   670→   670→            <div class="mock-review">
+   671→   671→              <div class="mock-review-stars">★★★★★</div>
+   672→   672→              <div class="mock-review-text">«Всё идеально — от меню до подачи. 120 гостей, ни одной жалобы. Рекомендую!»</div>
+   673→   673→              <div class="mock-review-author">Ирина П. · Свадьба · Июнь 2026</div>
+   674→   674→            </div>
+   675→   675→            <div class="mock-review">
+   676→   676→              <div class="mock-review-stars">★★★★★</div>
+   677→   677→              <div class="mock-review-text">«Корпоратив на 200 человек — всё вовремя, красиво, вкусно. Второй год заказываем.»</div>
+   678→   678→              <div class="mock-review-author">Дмитрий С. · Корпоратив · Май 2026</div>
+   679→   679→            </div>
+   680→   680→          </div>
+   681→   681→        </div>
+   682→   682→      </div>
+   683→   683→    </div>
+   684→   684→    <div class="col-info">
+   685→   685→      <div class="info-card">
+   686→   686→        <h4>Что именно включить</h4>
+   687→   687→        <p><strong>10-15 отзывов с фото клиентов</strong> — не стоковые! Конкретные имена (с разрешения), дата, формат, количество гостей. Виджет Яндекс.Карт с реальными оценками.</p>
+   688→   688→        <p><strong>Виджет 2ГИС</strong> — в СПб им пользуется значительная часть бизнеса. Покажите оба: и Яндекс.Карты, и 2ГИС.</p>
+   689→   689→        <p><strong>Даже негативные отзывы работают</strong> — исследование Северо-Западного университета показало, что гости проводят на сайте в 4 раза больше времени, когда видят и негативные отзывы, и конверсия растёт.</p>
+   690→   690→        <div class="conv-badge">{ico("star", 13)} Отзывы = до {CONV["reviews_5plus"][0]} роста конверсии</div>
+   691→   691→        <span class="conv-source">{CONV["reviews_5plus"][1]}</span>
+   692→   692→        <div class="conv-badge" style="margin-top:6px;">{ico("eye", 13)} Негативные отзывы = +{CONV["social_proof"][0]} конверсии</div>
+   693→   693→        <span class="conv-source">{CONV["social_proof"][1]}</span>
+   694→   694→      </div>
+   695→   695→    </div>
+   696→   696→  </div>
+   697→   697→</section>
+   698→   698→""")
+   699→   699→
+   700→   700→    # ═══════════════════════════════════════════
+   701→   701→    # SECTION 7: СЕРТИФИКАТЫ / TRUST BADGES
+   702→   702→    # ═══════════════════════════════════════════
+   703→   703→    parts.append(f"""
+   704→   704→<section class="section" id="trust-demo">
+   705→   705→  <div class="section-head">
+   706→   706→    <span class="section-eyebrow">Блок 7</span>
+   707→   707→    <h2>Сертификаты и знаки доверия</h2>
+   708→   708→    <p>HACCP, РГА, SSL — каждый значок снимает сомнение и повышает конверсию.</p>
+   709→   709→  </div>
+   710→   710→  <div class="demo-frame" style="max-width:640px;margin:0 auto;">
+   711→   711→    <div class="demo-label">Так будут выглядеть знаки доверия</div>
+   712→   712→    <div class="demo-content">
+   713→   713→      <div class="mock-trust">
+   714→   714→        <div class="mock-badge">{ico("shield", 18)} HACCP</div>
+   715→   715→        <div class="mock-badge">{ico("lock", 18)} SSL</div>
+   716→   716→        <div class="mock-badge">{ico("shield", 18)} ТР ТС 021/2011</div>
+   717→   717→        <div class="mock-badge">{ico("star", 18)} Яндекс.Карты 4.7 ★</div>
+   718→   718→      </div>
+   719→   719→    </div>
+   720→   720→  </div>
+   721→   721→  <div class="info-card" style="max-width:640px;margin:20px auto 0;">
+   722→   722→    <h4>HACCP — не опция, а закон</h4>
+   723→   723→    <p>В России сертификация HACCP <strong>обязательна</strong> для всех предприятий общепита и кейтеринга по ТР ТС 021/2011 (Технический регламент Евразийского экономического союза). Без сертификата — штрафы и риск закрытия.</p>
+   724→   724→    <p>Показывая значок HACCP на сайте, вы одновременно выполняете требование закона и повышаете доверие клиентов. Это не просто «красивая иконка» — это документ, который проверяют.</p>
+   725→   725→    <p><strong>19% клиентов уходят</strong> с сайтов, где нет признаков надёжности — именно из-за сомнений в безопасности. Знаки доверия рядом с формой заявки напрямую решают эту проблему.</p>
+   726→   726→    <div class="conv-badge">{ico("shield", 13)} {CONV["trust_abandon"][0]} уходят из-за недоверия к сайту</div>
+   727→   727→    <span class="conv-source">{CONV["trust_abandon"][1]}</span>
+   728→   728→  </div>
+   729→   729→</section>
+   730→   730→""")
+   731→   731→
+   732→   732→    # ═══════════════════════════════════════════
+   733→   733→    # SECTION 8: ФОРМА ЗАЯВКИ + СТИККИ-БАР
+   734→   734→    # ═══════════════════════════════════════════
+   735→   735→    parts.append(f"""
+   736→   736→<section class="section bg-white" id="contact-demo">
+   737→   737→  <div class="section-head">
+   738→   738→    <span class="section-eyebrow">Блок 8</span>
+   739→   739→    <h2>Форма заявки и sticky-панель</h2>
+   740→   740→    <p>Гость оставляет заявку тем способом, который ему удобен — и не скроллит вверх.</p>
+   741→   741→  </div>
+   742→   742→  <div class="two-col">
+   743→   743→    <div class="col-demo">
+   744→   744→      <div class="demo-frame">
+   745→   745→        <div class="demo-label">Так будет выглядеть форма заявки (5 полей)</div>
+   746→   746→        <div class="demo-content">
+   747→   747→          <div class="mock-form">
+   748→   748→            <div class="mock-form-row">
+   749→   749→              <div class="mock-form-label">Ваше имя</div>
+   750→   750→              <div class="mock-form-input" style="color:#8a8a8a;">Анна</div>
+   751→   751→            </div>
+   752→   752→            <div class="mock-form-row">
+   753→   753→              <div class="mock-form-label">Телефон</div>
+   754→   754→              <div class="mock-form-input" style="color:#8a8a8a;">+7 (___) ___-__-__</div>
+   755→   755→            </div>
+   756→   756→            <div class="mock-form-row">
+   757→   757→              <div class="mock-form-label">Дата мероприятия</div>
+   758→   758→              <div class="mock-form-input" style="color:#8a8a8a;">14 августа 2026</div>
+   759→   759→            </div>
+   760→   760→            <div class="mock-form-row">
+   761→   761→              <div class="mock-form-label">Количество гостей</div>
+   762→   762→              <div class="mock-form-input" style="color:#0d0d0d;">80</div>
+   763→   763→            </div>
+   764→   764→            <div class="mock-form-row">
+   765→   765→              <div class="mock-form-label">Тип события</div>
+   766→   766→              <div class="mock-form-input" style="color:#0d0d0d;">Свадьба</div>
+   767→   767→            </div>
+   768→   768→            <button class="mock-form-submit">Отправить заявку</button>
+   769→   769→            <div class="mock-form-fields-count">Только 5 полей · Перезвоним за 30 минут</div>
+   770→   770→          </div>
+   771→   771→        </div>
+   772→   772→      </div>
+   773→   773→      <div style="margin-top:16px;">
+   774→   774→        <div class="demo-frame">
+   775→   775→          <div class="demo-label">Sticky-панель снизу (всегда на экране)</div>
+   776→   776→          <div class="demo-content" style="padding:12px;">
+   777→   777→            <div class="mock-sticky">
+   778→   778→              <div class="mock-sticky-btn tg">Telegram</div>
+   779→   779→              <div class="mock-sticky-btn call">Позвонить</div>
+   780→   780→              <div class="mock-sticky-btn calc">Расчёт</div>
+   781→   781→            </div>
+   782→   782→          </div>
+   783→   783→        </div>
+   784→   784→      </div>
+   785→   785→    </div>
+   786→   786→    <div class="col-info">
+   787→   787→      <div class="info-card">
+   788→   788→        <h4>5 полей — золотой стандарт</h4>
+   789→   789→        <p>Исследования Baymard Institute показывают: средний чекаут содержит 11.3 полей — и это слишком много. Сокращение количества полей на 20-60% даёт до 35% прироста конверсии.</p>
+   790→   790→        <p><strong>Не требуем бюджет</strong> — вместо этого добавляем подсказку «Не знаете — поможем определить». Это снимает барьер: гость не боится указать «неправильную» сумму.</p>
+   791→   791→        <p><strong>После отправки</strong> — экран «Спасибо! Перезвоним в течение 30 минут» с номером телефона и ссылкой на Telegram. Клиент не чувствует, что его заявка «ушла в пустоту».</p>
+   792→   792→        <div class="conv-badge">{ico("chart", 13)} Формы с 5 полями: медиана {CONV["form_5fields"][0]}</div>
+   793→   793→        <span class="conv-source">{CONV["form_5fields"][1]}</span>
+   794→   794→        <div class="conv-badge" style="margin-top:6px;">{ico("phone", 13)} Sticky CTA: {CONV["sticky_cta"][0]} роста с мобильного</div>
+   795→   795→        <span class="conv-source">{CONV["sticky_cta"][1]}</span>
+   796→   796→      </div>
+   797→   797→    </div>
+   798→   798→  </div>
+   799→   799→</section>
+   800→   800→""")
+   801→   801→
+   802→   802→    # ═══════════════════════════════════════════
+   803→   803→    # SECTION 9: СКОРОСТЬ ЗАГРУЗКИ
+   804→   804→    # ═══════════════════════════════════════════
+   805→   805→    parts.append(f"""
+   806→   806→<section class="section" id="speed-section">
+   807→   807→  <div class="section-head">
+   808→   808→    <span class="section-eyebrow">Техника</span>
+   809→   809→    <h2>Скорость загрузки — молчаливый убийца конверсии</h2>
+   810→   810→    <p>Гость не скажет «ваш сайт медленный» — он просто уйдёт. И вы никогда не узнаете.</p>
+   811→   811→  </div>
+   812→   812→  <div class="two-col">
+   813→   813→    <div class="col-info">
+   814→   814→      <div class="info-card">
+   815→   815→        <h4>Что говорит исследование Google/Deloitte</h4>
+   816→   816→        <p>Исследование «Milliseconds Make Millions» (2020) проанализировалоBehaviour 7.4 миллионов пользователей. Результат: улучшение скорости загрузки мобильного сайта на 0.1 секунды даёт <strong>+8.4% конверсии в ритейле</strong> и +10.1% в путешествиях.</p>
+   817→   817→        <p>При времени загрузки 5+ секунд конверсия падает <strong>вдвое</strong> по сравнению с быстрыми сайтами. Для кейтеринга с его тяжёлыми фотографиями блюд это критично.</p>
+   818→   818→        <p><strong>Что мы делаем</strong>: оптимизируем изображения (WebP, lazy load), минифицируем CSS/JS, используем CDN с серверами в РФ (для 152-ФЗ), настраиваем кэширование. Цель — загрузка менее 2.5 секунд.</p>
+   819→   819→        <div class="conv-badge">{ico("bolt", 13)} +0.1 сек = {CONV["speed_01s"][0]} конверсии в ритейле</div>
+   820→   820→        <span class="conv-source">{CONV["speed_01s"][1]}</span>
+   821→   821→        <div class="conv-badge" style="margin-top:6px;">{ico("clock", 13)} 5+ сек = конверсия падает {CONV["speed_5sec"][0]}</div>
+   822→   822→        <span class="conv-source">{CONV["speed_5sec"][1]}</span>
+   823→   823→      </div>
+   824→   824→    </div>
+   825→   825→    <div class="col-demo">
+   826→   826→      <div class="demo-frame">
+   827→   827→        <div class="demo-label">Визуализация: скорость vs конверсия</div>
+   828→   828→        <div class="demo-content">
+   829→   829→          <svg viewBox="0 0 300 180" style="width:100%;height:auto;">
+   830→   830→            <text x="20" y="30" font-size="10" fill="#5a5a5a" font-weight="700">Конверсия</text>
+   831→   831→            <text x="240" y="175" font-size="10" fill="#5a5a5a" font-weight="700">Секунды</text>
+   832→   832→            <!-- Axis -->
+   833→   833→            <line x1="40" y1="150" x2="280" y2="150" stroke="#e0e0e0" stroke-width="1"/>
+   834→   834→            <line x1="40" y1="30" x2="40" y2="150" stroke="#e0e0e0" stroke-width="1"/>
+   835→   835→            <!-- Curve -->
+   836→   836→            <path d="M50,45 Q100,50 140,65 Q180,90 220,120 Q250,140 270,145" fill="none" stroke="#b8860b" stroke-width="2.5"/>
+   837→   837→            <!-- Points -->
+   838→   838→            <circle cx="50" cy="45" r="5" fill="#10b981"/>
+   839→   839→            <circle cx="100" cy="52" r="4" fill="#10b981"/>
+   840→   840→            <circle cx="140" cy="65" r="4" fill="#b8860b"/>
+   841→   841→            <circle cx="180" cy="90" r="4" fill="#f59e0b"/>
+   842→   842→            <circle cx="220" cy="120" r="4" fill="#ef4444"/>
+   843→   843→            <circle cx="270" cy="145" r="5" fill="#b91c1c"/>
+   844→   844→            <!-- Labels -->
+   845→   845→            <text x="46" y="38" font-size="8" fill="#10b981" font-weight="800">1.0с</text>
+   846→   846→            <text x="96" y="45" font-size="8" fill="#10b981" font-weight="800">1.5с</text>
+   847→   847→            <text x="136" y="58" font-size="8" fill="#b8860b" font-weight="800">2.0с</text>
+   848→   848→            <text x="176" y="83" font-size="8" fill="#f59e0b" font-weight="800">3.0с</text>
+   849→   849→            <text x="216" y="113" font-size="8" fill="#ef4444" font-weight="800">4.0с</text>
+   850→   850→            <text x="256" y="138" font-size="8" fill="#b91c1c" font-weight="800">5.0с</text>
+   851→   851→            <!-- Target zone -->
+   852→   852→            <rect x="40" y="30" width="110" height="40" fill="rgba(16,185,129,0.08)" rx="4"/>
+   853→   853→            <text x="55" y="42" font-size="8" fill="#047857" font-weight="700">ЦЕЛЬ &lt; 2.5с</text>
+   854→   854→          </svg>
+   855→   855→        </div>
+   856→   856→      </div>
+   857→   857→    </div>
+   858→   858→  </div>
+   859→   859→</section>
+   860→   860→""")
+   861→   861→
+   862→   862→    # ═══════════════════════════════════════════
+   863→   863→    # SECTION 10: ЗАКОНЫ И ЮРИДИЧЕСКИЕ ТРЕБОВАНИЯ
+   864→   864→    # ═══════════════════════════════════════════
+   865→   865→    parts.append(f"""
+   866→   866→<section class="section bg-white" id="legal-section">
+   867→   867→  <div class="section-head">
+   868→   868→    <span class="section-eyebrow">Закон</span>
+   869→   869→    <h2>Что требует российское законодательство</h2>
+   870→   870→    <p>Три обязательных требования для сайта кейтеринга в РФ в 2026 году. Без них — штрафы.</p>
+   871→   871→  </div>
+   872→   872→  <div class="legal-grid">
+   873→   873→    <div class="legal-card">
+   874→   874→      <h4>{ico("lock", 18)} 152-ФЗ: Персональные данные</h4>
+   875→   875→      <p><strong>С 1 июля 2025</strong> все персональные данные граждан РФ должны храниться на серверах физически в России. Использование зарубежного хостинга (Vercel, AWS, Cloudflare) без российской базы данных — нарушение.</p>
+   876→   876→      <p>Штрафы с 30 мая 2025: <span class="warn">{CONV["fz152_fines"][0]}</span> — за первое нарушение, до 18 млн ₽ за повторное.</p>
+   877→   877→      <div class="conv-source">{CONV["fz152_fines"][1]}</div>
+   878→   878→    </div>
+   879→   879→    <div class="legal-card">
+   880→   880→      <h4>{ico("shield", 18)} HACCP: Безопасность пищи</h4>
+   881→   881→      <p><strong>Обязательно</strong> для всех кейтерингов по ТР ТС 021/2011. Сертификат подтверждает систему контроля безопасности пищевых продуктов — от закупки до подачи.</p>
+   882→   882→      <p>На сайте: значок HACCP + номер сертификата + ссылка на скан. Это и доверие, и соответствие закону.</p>
+   883→   883→      <div class="conv-source">{CONV["haccp_required"][1]}</div>
+   884→   884→    </div>
+   885→   885→    <div class="legal-card">
+   886→   886→      <h4>{ico("chart", 18)} Яндекс.Метрика, не Google Analytics</h4>
+   887→   887→      <p>Google Analytics 4 запрещён к использованию в РФ с 1 июля 2025 (Роскомнадзор). Единственная легальная аналитика — <strong>Яндекс.Метрика</strong>. На сайте обязательна:</p>
+   888→   888→      <ul style="font-size:13px;color:#3a3a3a;margin-top:6px;">
+   889→   889→        <li>Политика конфиденциальности</li>
+   890→   890→        <li>Согласие на обработку ПДн (чекбокс в форме)</li>
+   891→   891→        <li>Уведомление о cookies</li>
+   892→   892→      </ul>
+   893→   893→    </div>
+   894→   894→    <div class="legal-card">
+   895→   895→      <h4>{ico("map", 18)} Домен .ru и хостинг в РФ</h4>
+   896→   896→      <p>Для соблюдения 152-ФЗ и работы Яндекс.Метрики сайт должен быть на домене .ru с хостингом в России. Оплата — СБП или ЮKassa (Stripe/PayPal под санкциями).</p>
+   897→   897→      <p>Плюс: домен .ru выше в Яндекс.Поиске, а 60% свадебных запросов в СПб идут через Яндекс, не Google.</p>
+   898→   898→    </div>
+   899→   899→  </div>
+   900→   900→</section>
+   901→   901→""")
+   902→   902→
+   903→   903→    # ═══════════════════════════════════════════
+   904→   904→    # SECTION 11: РЫНОК И КОНКУРЕНТЫ СПб
+   905→   905→    # ═══════════════════════════════════════════
+   906→   906→    parts.append(f"""
+   907→   907→<section class="section" id="market-section">
+   908→   908→  <div class="section-head">
+   909→   909→    <span class="section-eyebrow">Рынок</span>
+   910→   910→    <h2>Ваше место на рынке СПб</h2>
+   911→   911→    <p>Рынок общепита России — {CONV["market_turnover"][0]}, рост {CONV["market_growth"][0]}. Где Nilov — и как сайт помогает отстроиться.</p>
+   912→   912→  </div>
+   913→   913→  <div class="info-card" style="max-width:680px;margin:0 auto;">
+   914→   914→    <h4>Средний сегмент — золотая середина</h4>
+   915→   915→    <p>Nilov в среднем сегменте: банкет 3 500–4 500 ₽/гость. Это между бюджетным Gala Show (от 2 800) и премиумом (от 6 600+). На сайте подчёркивайте: «качество без переплаты — не бюджет, не премиум, а лучшее соотношение цены и качества».</p>
+   916→   916→    <p>Средний сегмент — самый конкурентный, но и самый объёмный. Ваш сайт должен чётко показать: «Вот что вы получаете за эти деньги» — через пакеты, кейсы, калькулятор.</p>
+   917→   917→    <div style="overflow-x:auto;margin-top:16px;">
+   918→   918→      <div style="background:#fff;border-radius:10px;border:1px solid rgba(0,0,0,0.06);overflow:hidden;">
+   919→   919→        <svg viewBox="0 0 600 120" style="width:100%;min-width:460px;height:auto;">
+   920→   920→          <rect x="20" y="20" width="560" height="30" rx="8" fill="#faf7f2"/>
+   921→   921→          <rect x="20" y="20" width="140" height="30" rx="8" fill="rgba(16,185,129,0.15)"/>
+   922→   922→          <rect x="170" y="20" width="200" height="30" rx="0" fill="rgba(184,134,11,0.2)"/>
+   923→   923→          <rect x="380" y="20" width="200" height="30" rx="8" fill="rgba(185,28,28,0.1)"/>
+   924→   924→          <text x="90" y="40" font-size="11" fill="#047857" font-weight="800" text-anchor="middle">Бюджет 2 800–3 500</text>
+   925→   925→          <text x="270" y="40" font-size="11" fill="#b8860b" font-weight="800" text-anchor="middle">СРЕДНИЙ 3 500–4 500</text>
+   926→   926→          <text x="480" y="40" font-size="11" fill="#b91c1c" font-weight="800" text-anchor="middle">Премиум 6 600+</text>
+   927→   927→          <text x="90" y="72" font-size="10" fill="#5a5a5a" text-anchor="middle">Gala Show</text>
+   928→   928→          <text x="270" y="72" font-size="10" fill="#b8860b" font-weight="800" text-anchor="middle">ВЫ ЗДЕСЬ</text>
+   929→   929→          <text x="480" y="72" font-size="10" fill="#5a5a5a" text-anchor="middle">Премиум-сегмент</text>
+   930→   930→          <text x="270" y="90" font-size="10" fill="#b8860b" font-weight="800" text-anchor="middle">Nilov</text>
+   931→   931→          <!-- Arrow -->
+   932→   932→          <path d="M270,78 L270,100" stroke="#b8860b" stroke-width="2" marker-end="url(#arrowhead)"/>
+   933→   933→          <defs><marker id="arrowhead" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#b8860b"/></marker></defs>
+   934→   934→        </svg>
+   935→   935→      </div>
+   936→   936→    </div>
+   937→   937→    <div class="conv-source" style="margin-top:8px;">Цены: catery.ru, bash.today, топ-15 кейтерингов СПб, июнь 2026</div>
+   938→   938→  </div>
+   939→   939→</section>
+   940→   940→""")
+   941→   941→
+   942→   942→    # ═══════════════════════════════════════════
+   943→   943→    # SECTION 12: СРОКИ И СТОИМОСТЬ РАЗРАБОТКИ
+   944→   944→    # ═══════════════════════════════════════════
+   945→   945→    parts.append(f"""
+   946→   946→<section class="section bg-dark" id="timeline-section">
+   947→   947→  <div class="section-head">
+   948→   948→    <span class="section-eyebrow">Сроки и стоимость</span>
+   949→   949→    <h2>Сколько времени и денег</h2>
+   950→   950→    <p>Реалистичные сроки на основе данных рынка разработки 2025-2026.</p>
+   951→   951→  </div>
+   952→   952→  <div style="display:grid;grid-template-columns:1fr;gap:14px;max-width:720px;margin:0 auto;">
+   953→   953→    <div style="background:rgba(250,247,242,0.06);border:1px solid rgba(250,247,242,0.1);border-radius:12px;padding:18px;">
+   954→   954→      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+   955→   955→        <div>
+   956→   956→          <div style="font-size:17px;font-weight:800;color:#faf7f2;margin-bottom:4px;">Разработка сайта</div>
+   957→   957→          <div style="font-size:13px;color:rgba(250,247,242,0.7);line-height:1.5;">Дизайн + вёрстка + программирование + наполнение контентом + тестирование. С учётом 152-ФЗ и HACCP.</div>
+   958→   958→        </div>
+   959→   959→        <div style="text-align:right;">
+   960→   960→          <div style="font-size:22px;font-weight:900;color:#f5d76e;">6–10 недель</div>
+   961→   961→          <div style="font-size:11px;color:rgba(250,247,242,0.5);">SolveIt, Elementor, 2025–26</div>
+   962→   962→        </div>
+   963→   963→      </div>
+   964→   964→    </div>
+   965→   965→    <div style="background:rgba(250,247,242,0.06);border:1px solid rgba(250,247,242,0.1);border-radius:12px;padding:18px;">
+   966→   966→      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+   967→   967→        <div>
+   968→   968→          <div style="font-size:17px;font-weight:800;color:#faf7f2;margin-bottom:4px;">Окупаемость</div>
+   969→   969→          <div style="font-size:13px;color:rgba(250,247,242,0.7);line-height:1.5;">При среднем чеке 80 000 ₽ и стоимости сайта 250 000 ₽ — окупаемость за 3-4 заказа.</div>
+   970→   970→        </div>
+   971→   971→        <div style="text-align:right;">
+   972→   972→          <div style="font-size:22px;font-weight:900;color:#f5d76e;">3-4 заказа</div>
+   973→   973→          <div style="font-size:11px;color:rgba(250,247,242,0.5);">Расчёт: 250K / 80K</div>
+   974→   974→        </div>
+   975→   975→      </div>
+   976→   976→    </div>
+   977→   977→    <div style="background:rgba(250,247,242,0.06);border:1px solid rgba(250,247,242,0.1);border-radius:12px;padding:18px;">
+   978→   978→      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+   979→   979→        <div>
+   980→   980→          <div style="font-size:17px;font-weight:800;color:#faf7f2;margin-bottom:4px;">Рост конверсии</div>
+   981→   981→          <div style="font-size:13px;color:rgba(250,247,242,0.7);line-height:1.5;">Совокупный эффект: sticky CTA + сокращение полей + скорость + отзывы + trust badges.</div>
+   982→   982→        </div>
+   983→   983→        <div style="text-align:right;">
+   984→   984→          <div style="font-size:22px;font-weight:900;color:#f5d76e;">до +270%</div>
+   985→   985→          <div style="font-size:11px;color:rgba(250,247,242,0.5);">Spiegel Research Center</div>
+   986→   986→        </div>
+   987→   987→      </div>
+   988→   988→    </div>
+   989→   989→  </div>
+   990→   990→</section>
+   991→   991→""")
+   992→   992→
+   993→   993→    # ═══════════════════════════════════════════
+   994→   994→    # SECTION 13: ЧЕК-ЛИСТ ДЛЯ ЗАКАЗЧИКА
+   995→   995→    # ═══════════════════════════════════════════
+   996→   996→    parts.append(f"""
+   997→   997→<section class="section" id="checklist-section">
+   998→   998→  <div class="section-head">
+   999→   999→    <span class="section-eyebrow">Ваш чек-лист</span>
+  1000→  1000→    <h2>Что подготовить для сайта</h2>
+  1001→  1001→    <p>Чем лучше вы подготовите материалы, тем быстрее и качественнее будет результат.</p>
+  1002→  1002→  </div>
+  1003→  1003→  <div class="checklist">
+  1004→  1004→    <div class="check-item">
+  1005→  1005→      <span class="check-box">{ico("check", 14)}</span>
+  1006→  1006→      <span><strong>Фото блюд и сервировки</strong> — 30-50 фотографий с реальных мероприятий. Не стоковые! Минимум 1200px по широкой стороне.</span>
+  1007→  1007→    </div>
+  1008→  1008→    <div class="check-item">
+  1009→  1009→      <span class="check-box">{ico("check", 14)}</span>
+  1010→  1010→      <span><strong>Меню с ценами</strong> — каждое блюдо: название, состав, вес, цена «от X ₽/порция». Диеты: веган/без глютена/халяль.</span>
+  1011→  1011→    </div>
+  1012→  1012→    <div class="check-item">
+  1013→  1013→      <span class="check-box">{ico("check", 14)}</span>
+  1014→  1014→      <span><strong>Отзывы клиентов</strong> — 10-15 текстов + фото (с разрешения). Формат: имя, дата, формат мероприятия, оценка.</span>
+  1015→  1015→    </div>
+  1016→  1016→    <div class="check-item">
+  1017→  1017→      <span class="check-box">{ico("check", 14)}</span>
+  1018→  1018→      <span><strong>Кейсы</strong> — 8-12 мероприятий: фото + описание + цифры (гостей, дата, локация, бюджет).</span>
+  1019→  1019→    </div>
+  1020→  1020→    <div class="check-item">
+  1021→  1021→      <span class="check-box">{ico("check", 14)}</span>
+  1022→  1022→      <span><strong>Сертификаты</strong> — HACCP, членство в РГА. Сканы для размещения на сайте.</span>
+  1023→  1023→    </div>
+  1024→  1024→    <div class="check-item">
+  1025→  1025→      <span class="check-box">{ico("check", 14)}</span>
+  1026→  1026→      <span><strong>Контакты</strong> — телефон, Telegram, WhatsApp. Адрес офиса для карты Яндекс. Часы работы.</span>
+  1027→  1027→    </div>
+  1028→  1028→    <div class="check-item">
+  1029→  1029→      <span class="check-box">{ico("check", 14)}</span>
+  1030→  1030→      <span><strong>Логотип</strong> — вектор (SVG) + растровое (PNG с прозрачным фоном). Минимум 3 варианта: тёмный, светлый, монохромный.</span>
+  1031→  1031→    </div>
+  1032→  1032→    <div class="check-item">
+  1033→  1033→      <span class="check-box">{ico("check", 14)}</span>
+  1034→  1034→      <span><strong>Данные для 152-ФЗ</strong> — текст политики конфиденциальности, положение о ПДн, согласие на обработку.</span>
+  1035→  1035→    </div>
+  1036→  1036→    <div class="check-item">
+  1037→  1037→      <span class="check-box">{ico("check", 14)}</span>
+  1038→  1038→      <span><strong>Домен и хостинг</strong> — домен .ru, хостинг в РФ (Timeweb, Selectel, Reg.ru). Доступы к DNS.</span>
+  1039→  1039→    </div>
+  1040→  1040→  </div>
+  1041→  1041→</section>
+  1042→  1042→""")
+  1043→  1043→
+  1044→  1044→    # ═══════════════════════════════════════════
+  1045→  1045→    # FOOTER
+  1046→  1046→    # ═══════════════════════════════════════════
+  1047→  1047→    parts.append(f"""
+  1048→  1048→<footer class="site-footer">
+  1049→  1049→  <div class="footer-inner">
+  1050→  1050→    <div class="footer-brand">Nilov Catering</div>
+  1051→  1051→    <div class="footer-tagline">
+  1052→  1052→      Демонстрация будущего сайта.<br>
+  1053→  1053→      Все элементы выше — с реальными данными о влиянии на конверсию.
+  1054→  1054→    </div>
+  1055→  1055→    <div class="footer-note">
+  1056→  1056→      Источники: Unbounce (57M+ конверсий), Baymard Institute, Google/Deloitte «Milliseconds Make Millions»,
+  1057→  1057→      Spiegel Research Center (Northwestern University), Conversion Rate Experts, HubSpot,
+  1058→  1058→      Digital Applied, BusinesStat/Rosstat, ТР ТС 021/2011, ФЗ-152/ФЗ-23.<br>
+  1059→  1059→      Июнь 2026 · Санкт-Петербург
+  1060→  1060→    </div>
+  1061→  1061→  </div>
+  1062→  1062→</footer>
+  1063→  1063→""")
+  1064→  1064→
+  1065→  1065→    # ─── BOTTOM BAR ───
+  1066→  1066→    parts.append("""
+  1067→  1067→<div class="bottom-bar">
+  1068→  1068→  <a href="#contact-demo" class="bottom-btn tg">Telegram</a>
+  1069→  1069→  <a href="#contact-demo" class="bottom-btn call">Позвонить</a>
+  1070→  1070→  <a href="#calculator-demo" class="bottom-btn calc">Расчёт</a>
+  1071→  1071→</div>
+  1072→  1072→""")
+  1073→  1073→
+  1074→  1074→    parts.append("</body></html>")
+  1075→  1075→    return "\n".join(parts)
+  1076→  1076→
+  1077→  1077→
+  1078→  1078→if __name__ == "__main__":
+  1079→  1079→    html_content = build_html()
+  1080→  1080→    os.makedirs(os.path.dirname(OUT), exist_ok=True)
+  1081→  1081→    with open(OUT, "w", encoding="utf-8") as f:
+  1082→  1082→        f.write(html_content)
+  1083→  1083→    size_kb = os.path.getsize(OUT) / 1024
+  1084→  1084→    print(f"OK: {OUT} ({size_kb:.1f} KB)")
+  1085→  1085→
