@@ -412,3 +412,38 @@ Stage Summary:
 - 10 аннотаций конверсии с реальными источниками
 - 0 JS ошибок, нет h-scroll на всех размерах
 - 59.3 KB, self-contained
+
+---
+Task ID: v8-world-class-rebuild
+Agent: super-z (main)
+Task: Rebuild Nilov Catering as the world's best catering site with real client data
+
+Work Log:
+- Scraped interfood-catering.ru: 21 HTML pages, extracted all text, contacts, services, menus, prices, 163 image URLs
+- Downloaded 59 best images and converted to base64 (20MB total)
+- Built v7 with real content from client site
+- Ran Playwright tests: 39/39 passed
+- Ran harsh critic review — identified 18 issues including: IO opacity:0 making sections invisible, no navigation, contrast failures, generic layout, cheap offer banner
+- Rebuilt as v8 addressing ALL critic issues:
+  * Removed IntersectionObserver opacity:0 (content always visible)
+  * Added desktop navigation links (О нас, Форматы, Меню, Портфолио, Контакты)
+  * Improved text contrast (WCAG AA compliant)
+  * Better hero (single dramatic wedding photo)
+  * Elegant offer section (no cheap gradient)
+  * Brand monogram "N" in gold circle
+  * Consistent 8px spacing grid
+  * Full-width mobile CTAs
+  * Real menu items from interfood-catering.ru
+  * Real prices (furshet 2450-5350, banket 4470-6970, coffee 950-2450)
+  * Real contacts (+7 812 919-59-11, WhatsApp +7 911 941-72-05)
+  * Fixed Chinese text that slipped in
+- Playwright tests: 43/43 passed
+- Screenshots taken: iPhone 15 + Desktop (full + fold)
+
+Stage Summary:
+- File: /home/z/my-project/download/nilov_catering_v7.html (6.8 MB)
+- Name changed to "Nilov Catering" as requested
+- Real content from interfood-catering.ru
+- Self-contained, Telegram/iMessage compatible
+- 43/43 Playwright tests passing
+- No 100,000 ruble or 2024 mentions
