@@ -5,6 +5,7 @@ import { motion, AnimatePresence, useInView, useScroll, useTransform } from "fra
 import Link from "next/link";
 import SiteNav from "@/components/SiteNav";
 import VideoCarousel from "@/components/VideoCarousel";
+import ParallaxImage from "@/components/ParallaxImage";
 
 /* ═══════════════════════════════════════════════════════════════
    ИНТЕРФУД КЕЙТЕРИНГ — Корпоративный кейтеринг / Corporate Page
@@ -184,6 +185,9 @@ export default function CorporatePage() {
         </div>
       </section>
 
+      {/* Parallax Divider */}
+      <ParallaxImage src={IMG.banquet} alt="Банкетная подача" speed={0.2} style={{ height: "40vh", minHeight: 250 }} overlay />
+
       {/* Formats */}
       <section className="section section-dark" id="formats" aria-label="Форматы">
         <div className="container">
@@ -322,6 +326,8 @@ export default function CorporatePage() {
               <Link href="/menu" style={{ color: "rgba(255,255,255,0.45)", textDecoration: "none", fontSize: "0.85rem" }}>Меню</Link>
               <Link href="/wedding" style={{ color: "rgba(255,255,255,0.45)", textDecoration: "none", fontSize: "0.85rem" }}>Свадьбы</Link>
               <Link href="/corporate" style={{ color: "rgba(255,255,255,0.45)", textDecoration: "none", fontSize: "0.85rem" }}>Корпоратив</Link>
+              <Link href="/about" style={{ color: "rgba(255,255,255,0.45)", textDecoration: "none", fontSize: "0.85rem" }}>О нас</Link>
+              <Link href="/reviews" style={{ color: "rgba(255,255,255,0.45)", textDecoration: "none", fontSize: "0.85rem" }}>Отзывы</Link>
               <Link href="/" style={{ color: "rgba(255,255,255,0.45)", textDecoration: "none", fontSize: "0.85rem" }}>Главная</Link>
             </div>
             <div className="footer-copy">&copy; 2007–2026 Интерфуд Кейтеринг</div>

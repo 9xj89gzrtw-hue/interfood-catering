@@ -12,7 +12,8 @@ const NAV_LINKS = [
   { label: "Меню", href: "/menu" },
   { label: "Свадьбы", href: "/wedding" },
   { label: "Корпоратив", href: "/corporate" },
-  { label: "О нас", href: "/#about" },
+  { label: "О нас", href: "/about" },
+  { label: "Отзывы", href: "/reviews" },
   { label: "Галерея", href: "/#gallery" },
 ];
 

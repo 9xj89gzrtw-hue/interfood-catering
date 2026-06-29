@@ -998,15 +998,24 @@ img { max-width: 100%; height: auto; }
   .reviews-grid, [style*="grid-template-columns: repeat(3"] {
     grid-template-columns: repeat(2, 1fr) !important;
   }
+  [style*="grid-template-columns: repeat(4"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
 }
 @media (max-width: 640px) {
   .reviews-grid, [style*="grid-template-columns: repeat(3"] {
+    grid-template-columns: 1fr !important;
+  }
+  [style*="grid-template-columns: repeat(4"] {
     grid-template-columns: 1fr !important;
   }
   [style*="grid-template-columns: 1fr 2fr"] {
     grid-template-columns: 1fr !important;
   }
   [style*="grid-template-columns: 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+  [style*="grid-template-columns: repeat(2, 1fr"] {
     grid-template-columns: 1fr !important;
   }
 }

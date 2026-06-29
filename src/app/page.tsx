@@ -956,11 +956,11 @@ export default function HomePage() {
             <div>
               <div className="footer-title">Компания</div>
               <ul className="footer-links">
-                <li><a href="#about">О нас</a></li>
-                <li><a href="#menu">Меню</a></li>
+                <li><Link href="/about">О нас</Link></li>
+                <li><Link href="/reviews">Отзывы</Link></li>
                 <li><a href="#gallery">Галерея</a></li>
-                <li><a href="#reviews">Отзывы</a></li>
                 <li><a href="#faq">FAQ</a></li>
+                <li><a href="#contact">Контакты</a></li>
               </ul>
             </div>
             <div>
