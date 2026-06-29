@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
+import Link from "next/link";
 import {
   motion, AnimatePresence,
   useScroll, useTransform, useInView,
@@ -45,11 +46,11 @@ const IMG = {
 
 const NAV_ITEMS = [
   { label: "Услуги", href: "#services" },
-  { label: "Меню", href: "#menu" },
+  { label: "Меню", href: "/menu" },
+  { label: "Свадьбы", href: "/wedding" },
+  { label: "Корпоратив", href: "/corporate" },
   { label: "О нас", href: "#about" },
   { label: "Галерея", href: "#gallery" },
-  { label: "Отзывы", href: "#reviews" },
-  { label: "FAQ", href: "#faq" },
   { label: "Контакты", href: "#contact" },
 ];
 
@@ -201,6 +202,14 @@ const GALLERY = [
   { img: IMG.buffet, alt: "Шведский стол с закусками" },
   { img: IMG.colorful, alt: "Яркие канапе на золотой тарелке" },
   { img: IMG.festive, alt: "Праздничный фуршет с цветами" },
+  // Real event photos
+  { img: "https://sfile.chatglm.cn/images-ppt/e021233c1716.png", alt: "Кейтеринг на свежем воздухе — садовая вечеринка" },
+  { img: "https://sfile.chatglm.cn/images-ppt/fc52c4714dca.jpg", alt: "Гриль-станция на корпоративном мероприятии" },
+  { img: "https://sfile.chatglm.cn/images-ppt/71e11ac9acf4.jpg", alt: "Официант подаёт шампанское гостям" },
+  { img: "https://sfile.chatglm.cn/images-ppt/7ea6541905c4.jpg", alt: "Кофе-брейк на конференции" },
+  { img: "https://sfile.chatglm.cn/images-ppt/7ebe0b28fb1a.jpg", alt: "Морской кейс-станция с устрицами" },
+  { img: "https://sfile.chatglm.cn/images-ppt/b1ad84ef87b6.jpg", alt: "Сырная и мясная нарезка премиум" },
+  { img: "https://sfile.chatglm.cn/images-ppt/cf51627b91de.jpg", alt: "Разрезание свадебного торта" },
 ];
 
 const MARQUEE_CARDS = [
@@ -386,10 +395,10 @@ export default function HomePage() {
           <a href="#" className="nav-logo">ИНТЕРФУД</a>
           <ul className="nav-links">
             {NAV_ITEMS.map((item) => (
-              <li key={item.href}><a href={item.href}>{item.label}</a></li>
+              <li key={item.href}>{item.href.startsWith("/") ? <Link href={item.href}>{item.label}</Link> : <a href={item.href}>{item.label}</a>}</li>
             ))}
             <li><a href="tel:+78129195911" className="nav-phone">+7 (812) 919-59-11</a></li>
-            <li><a href="#contact" className="nav-cta">Заказать</a></li>
+            <li><Link href="/#contact" className="nav-cta">Заказать</Link></li>
           </ul>
           <button className={`burger ${menuOpen ? "open" : ""}`} onClick={() => setMenuOpen(!menuOpen)} aria-label="Меню" aria-expanded={menuOpen}>
             <span /><span /><span />
@@ -402,10 +411,10 @@ export default function HomePage() {
         {menuOpen && (
           <motion.div className="mobile-menu open" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }}>
             {NAV_ITEMS.map((item) => (
-              <a key={item.href} href={item.href} onClick={() => setMenuOpen(false)}>{item.label}</a>
+              item.href.startsWith("/") ? <Link key={item.href} href={item.href} onClick={() => setMenuOpen(false)}>{item.label}</Link> : <a key={item.href} href={item.href} onClick={() => setMenuOpen(false)}>{item.label}</a>
             ))}
             <a href="tel:+78129195911" style={{ color: "var(--color-brand-light)", fontSize: "1.2rem" }}>+7 (812) 919-59-11</a>
-            <a href="#contact" className="btn-gold" onClick={() => setMenuOpen(false)} style={{ marginTop: "1rem" }}>Заказать</a>
+            <Link href="/#contact" className="btn-gold" onClick={() => setMenuOpen(false)} style={{ marginTop: "1rem" }}>Заказать</Link>
           </motion.div>
         )}
       </AnimatePresence>
@@ -415,7 +424,20 @@ export default function HomePage() {
       <main id="main">
       {/* ─── Hero ─── */}
       <section className="hero" ref={heroRef} aria-label="Главная">
-        <motion.div className="hero-bg" style={{ y: heroY, backgroundImage: `url(${IMG.hero})` }} />
+        <motion.div className="hero-bg" style={{ y: heroY }}>
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster={IMG.hero}
+            className="hero-video"
+          >
+            <source src="https://videos.pexels.com/video-files/3209765/3209765-hd_1920_1080_25fps.mp4" type="video/mp4" />
+            <source src="https://videos.pexels.com/video-files/3768985/3768985-hd_1920_1080_25fps.mp4" type="video/mp4" />
+          </video>
+          <div className="hero-bg-fallback" style={{ backgroundImage: `url(${IMG.hero})` }} />
+        </motion.div>
         <motion.div className="hero-overlay" style={{ opacity: heroOpacity }} />
         <div className="hero-grain" />
         <motion.div className="hero-content" initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, delay: 0.5, ease: [0.4, 0, 0.2, 1] }}>
@@ -820,6 +842,18 @@ export default function HomePage() {
                     <div className="contact-info-value">Пн–Вс: 09:00 — 22:00</div>
                   </div>
                 </div>
+                {/* Yandex Map */}
+                <div className="contact-map">
+                  <iframe
+                    src="https://yandex.ru/map-widget/v1/?ll=30.335099%2C59.934280&z=15&text=Интерфуд%20Кейтеринг%20Невский%20проспект&utm_source=share"
+                    width="100%"
+                    height="260"
+                    frameBorder="0"
+                    allowFullScreen
+                    style={{ borderRadius: "12px", border: "1px solid rgba(184,149,90,0.2)" }}
+                    title="Карта — Интерфуд Кейтеринг"
+                  />
+                </div>
               </div>
             </Reveal>
             <Reveal delay={0.2}>
@@ -874,11 +908,12 @@ export default function HomePage() {
             <div>
               <div className="footer-title">Услуги</div>
               <ul className="footer-links">
+                <li><Link href="/menu">Меню</Link></li>
+                <li><Link href="/wedding">Свадебный кейтеринг</Link></li>
+                <li><Link href="/corporate">Корпоративный кейтеринг</Link></li>
                 <li><a href="#services">Фуршет</a></li>
                 <li><a href="#services">Банкет</a></li>
                 <li><a href="#services">Кофе-брейк</a></li>
-                <li><a href="#services">Свадьба</a></li>
-                <li><a href="#services">Корпоратив</a></li>
               </ul>
             </div>
             <div>
