@@ -3,6 +3,8 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useInView, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
+import SiteNav from "@/components/SiteNav";
+import VideoCarousel from "@/components/VideoCarousel";
 
 /* ═══════════════════════════════════════════════════════════════
    ИНТЕРФУД КЕЙТЕРИНГ — Корпоративный кейтеринг / Corporate Page
@@ -120,35 +122,15 @@ function Reveal({ children, className = "", delay = 0 }: { children: React.React
 }
 
 export default function CorporatePage() {
-  const [scrolled, setScrolled] = useState(false);
   const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
 
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   return (
     <>
-      {/* Nav */}
-      <nav className={`nav ${scrolled ? "scrolled" : ""}`} role="navigation">
-        <div className="nav-inner">
-          <Link href="/" className="nav-logo">ИНТЕРФУД</Link>
-          <ul className="nav-links">
-            <li><Link href="/menu">Меню</Link></li>
-            <li><Link href="/wedding">Свадьбы</Link></li>
-            <li><Link href="/corporate">Корпоратив</Link></li>
-            <li><Link href="/#about">О нас</Link></li>
-            <li><Link href="/#gallery">Галерея</Link></li>
-            <li><Link href="/#contact" className="nav-cta">Заказать</Link></li>
-          </ul>
-        </div>
-      </nav>
+      <SiteNav />
 
       {/* Hero */}
       <section className="hero" ref={heroRef} aria-label="Корпоративный кейтеринг">
@@ -184,6 +166,23 @@ export default function CorporatePage() {
           ))}
         </div>
       </div>
+
+      {/* Video Carousel */}
+      <section className="section section-dark" style={{ paddingBottom: "2rem" }}>
+        <div className="container">
+          <Reveal>
+            <span className="section-label">Видео</span>
+            <h2 className="section-title" style={{ fontSize: "1.5rem", marginBottom: "1.5rem" }}>Корпоративный <em>сервис</em> в действии</h2>
+          </Reveal>
+          <VideoCarousel
+            slides={[
+              { src: "https://videos.pexels.com/video-files/3768941/3768941-hd_1920_1080_25fps.mp4", title: "Организация корпоративного питания", subtitle: "Профессиональная команда для вашего бизнеса" },
+              { src: "https://videos.pexels.com/video-files/3209765/3209765-hd_1920_1080_25fps.mp4", title: "Сервировка для конференций", subtitle: "Быстрая подача, безупречный вид" },
+              { src: "https://videos.pexels.com/video-files/3768985/3768985-hd_1920_1080_25fps.mp4", title: "Шеф-повар за работой", subtitle: "Контроль качества на каждом этапе" },
+            ]}
+          />
+        </div>
+      </section>
 
       {/* Formats */}
       <section className="section section-dark" id="formats" aria-label="Форматы">

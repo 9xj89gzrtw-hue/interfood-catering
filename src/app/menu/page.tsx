@@ -3,6 +3,8 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import Link from "next/link";
+import SiteNav from "@/components/SiteNav";
+import VideoCarousel from "@/components/VideoCarousel";
 
 /* ═══════════════════════════════════════════════════════════════
    ИНТЕРФУД КЕЙТЕРИНГ — Меню / Menu Page
@@ -146,33 +148,13 @@ function Reveal({ children, className = "", delay = 0 }: { children: React.React
 
 export default function MenuPage() {
   const [activeCat, setActiveCat] = useState("furshet");
-  const [scrolled, setScrolled] = useState(false);
   const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   const currentCategory = CATEGORIES.find((c) => c.key === activeCat) || CATEGORIES[0];
 
   return (
     <>
-      {/* Nav */}
-      <nav className={`nav ${scrolled ? "scrolled" : ""}`} role="navigation" aria-label="Навигация">
-        <div className="nav-inner">
-          <Link href="/" className="nav-logo">ИНТЕРФУД</Link>
-          <ul className="nav-links">
-            <li><Link href="/menu">Меню</Link></li>
-            <li><Link href="/wedding">Свадьбы</Link></li>
-            <li><Link href="/corporate">Корпоратив</Link></li>
-            <li><Link href="/#about">О нас</Link></li>
-            <li><Link href="/#gallery">Галерея</Link></li>
-            <li><Link href="/#contact" className="nav-cta">Заказать</Link></li>
-          </ul>
-        </div>
-      </nav>
+      <SiteNav />
 
       {/* Hero */}
       <section className="hero" style={{ minHeight: "55vh" }} aria-label="Меню">
@@ -185,6 +167,23 @@ export default function MenuPage() {
           </motion.div>
           <h1 className="hero-title" style={{ fontSize: "clamp(2.2rem, 6vw, 4.5rem)" }}>Наше <em>меню</em></h1>
           <p className="hero-sub">Авторские блюда от шеф-повара Дмитрия Нилова. Каждое меню составляется индивидуально под ваше мероприятие.</p>
+        </div>
+      </section>
+
+      {/* Video Carousel */}
+      <section className="section section-dark" style={{ paddingBottom: "2rem" }}>
+        <div className="container">
+          <Reveal>
+            <span className="section-label">Видео</span>
+            <h2 className="section-title" style={{ fontSize: "1.5rem", marginBottom: "1.5rem" }}>Наша <em>кухня</em> в движении</h2>
+          </Reveal>
+          <VideoCarousel
+            slides={[
+              { src: "https://videos.pexels.com/video-files/3209765/3209765-hd_1920_1080_25fps.mp4", title: "Сервировка авторских блюд", subtitle: "Каждое блюдо — произведение искусства" },
+              { src: "https://videos.pexels.com/video-files/3768941/3768941-hd_1920_1080_25fps.mp4", title: "Работа шеф-повара", subtitle: "Команда профессионалов на вашей кухне" },
+              { src: "https://videos.pexels.com/video-files/3768985/3768985-hd_1920_1080_25fps.mp4", title: "Приготовление в slow motion", subtitle: "Кинематографичная подача" },
+            ]}
+          />
         </div>
       </section>
 

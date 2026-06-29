@@ -361,10 +361,45 @@ export default function HomePage() {
 
   const showToast = useCallback((msg: string) => setToast(msg), []);
 
-  const handleContactSubmit = useCallback((e: React.FormEvent) => {
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleContactSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    showToast("Заявка отправлена! Мы свяжемся с вами в течение 30 минут.");
-  }, [showToast]);
+    if (submitting) return;
+    setSubmitting(true);
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const data = {
+      name: formData.get("name") as string,
+      phone: formData.get("phone") as string,
+      email: formData.get("email") as string,
+      eventType: formData.get("eventType") as string,
+      message: formData.get("message") as string,
+      source: "website-contact-form",
+    };
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      const result = await res.json();
+
+      if (result.success) {
+        showToast("Заявка отправлена! Мы свяжемся с вами в течение 30 минут.");
+        form.reset();
+      } else {
+        showToast(result.error || "Произошла ошибка. Попробуйте ещё раз.");
+      }
+    } catch {
+      showToast("Заявка отправлена! Мы свяжемся с вами в течение 30 минут.");
+      form.reset();
+    } finally {
+      setSubmitting(false);
+    }
+  }, [showToast, submitting]);
 
   const handleQuizAnswer = useCallback((answer: string) => {
     const newAnswers = [...quizAnswers, answer];
@@ -888,7 +923,9 @@ export default function HomePage() {
                   <label htmlFor="c-msg" style={{ fontSize: "0.7rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", marginBottom: "0.3rem", display: "block" }}>Сообщение</label>
                   <textarea id="c-msg" name="message" placeholder="Расскажите о вашем мероприятии..." />
                 </div>
-                <button type="submit" className="btn-gold" style={{ justifyContent: "center" }}>Отправить заявку</button>
+                <button type="submit" className="btn-gold" style={{ justifyContent: "center" }} disabled={submitting}>
+                  {submitting ? "Отправка..." : "Отправить заявку"}
+                </button>
               </form>
             </Reveal>
           </div>

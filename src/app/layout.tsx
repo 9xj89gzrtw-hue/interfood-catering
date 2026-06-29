@@ -17,7 +17,10 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://interfood-catering.ru"),
-  title: "Интерфуд Кейтеринг — Премиальный кейтеринг в Санкт-Петербурге",
+  title: {
+    default: "Интерфуд Кейтеринг — Премиальный кейтеринг в Санкт-Петербурге",
+    template: "%s — Интерфуд Кейтеринг",
+  },
   description:
     "Ресторан выездного обслуживания. Премиальный кейтеринг для свадеб, корпоративов, фуршетов и кофе-брейков. Авторская кухня Дмитрия Нилова с 2007 года.",
   keywords: [
@@ -30,10 +33,18 @@ export const metadata: Metadata = {
     "кофе-брейк",
     "Интерфуд",
     "Нилов кейтеринг",
+    "кейтеринг СПб",
+    "ресторан выездного обслуживания",
+    "свадебный кейтеринг",
   ],
   authors: [{ name: "Интерфуд Кейтеринг" }],
+  creator: "Интерфуд Кейтеринг",
+  publisher: "Интерфуд Кейтеринг",
   icons: { icon: "/logo.svg" },
   robots: { index: true, follow: true },
+  alternates: {
+    canonical: "https://interfood-catering.ru",
+  },
   other: {
     "theme-color": "#0c0b0b",
   },
@@ -44,7 +55,8 @@ export const metadata: Metadata = {
     url: "https://interfood-catering.ru",
     siteName: "Интерфуд Кейтеринг",
     type: "website",
-    images: [{ url: "/images/hero.jpg", width: 1200, height: 630 }],
+    locale: "ru_RU",
+    images: [{ url: "/images/hero.jpg", width: 1200, height: 630, alt: "Интерфуд Кейтеринг — премиальный кейтеринг в Санкт-Петербурге" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -52,6 +64,9 @@ export const metadata: Metadata = {
     description:
       "Премиальный кейтеринг для свадеб, корпоративов и закрытых мероприятий.",
     images: ["/images/hero.jpg"],
+  },
+  verification: {
+    yandex: "interfood-catering",
   },
 };
 
@@ -141,6 +156,31 @@ export default function RootLayout({
     ],
   };
 
+  const schemaService = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "Премиальный кейтеринг в Санкт-Петербурге",
+    provider: {
+      "@type": "LocalBusiness",
+      name: "Интерфуд Кейтеринг",
+    },
+    areaServed: {
+      "@type": "City",
+      name: "Санкт-Петербург",
+    },
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Услуги кейтеринга",
+      itemListElement: [
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Фуршет", description: "от 2 450 ₽/чел" } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Банкет", description: "от 4 470 ₽/чел" } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Кофе-брейк", description: "от 950 ₽/чел" } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Свадебный кейтеринг", description: "от 6 500 ₽/чел" } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Корпоративный кейтеринг", description: "от 3 500 ₽/чел" } },
+      ],
+    },
+  };
+
   return (
     <html lang="ru" suppressHydrationWarning>
       <head>
@@ -155,6 +195,10 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaFAQ) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaService) }}
         />
       </head>
       <body className={`${cormorant.variable} ${inter.variable} antialiased`}>

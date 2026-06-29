@@ -117,3 +117,58 @@ Stage Summary:
 - Gallery: 27 photos confirmed on main page
 - No console errors on any page
 - All subpages have consistent design with main page (dark-first, gold accents, Cormorant Garamond + Inter)
+
+---
+Task ID: 4
+Agent: Main Agent
+Task: Add mobile burger menu, API contact form, video carousels, and SEO optimization
+
+Work Log:
+- Created shared SiteNav component (/src/components/SiteNav.tsx) with:
+  - Full desktop nav (МЕНЮ, СВАДЬБЫ, КОРПОРАТИВ, О НАС, ГАЛЕРЕЯ)
+  - Burger menu for mobile with AnimatePresence transitions
+  - Scroll-aware background blur effect
+  - Phone link and CTA button
+- Replaced inline nav on all 3 subpages (/menu, /wedding, /corporate) with SiteNav component
+- Created Contact Form API (/api/contact/route.ts) with:
+  - POST handler: validates name, phone (Russian format), email
+  - Rate limiting awareness, in-memory submission store
+  - Proper error responses with Russian messages
+  - GET handler for checking submissions
+- Connected main page contact form to API:
+  - Async fetch POST to /api/contact on submit
+  - Form data extraction via FormData API
+  - Loading state with "Отправка..." text
+  - Error handling with graceful fallback
+- Created VideoCarousel component (/src/components/VideoCarousel.tsx) with:
+  - Auto-playing video slides with overlay titles
+  - Navigation arrows (prev/next) and dot indicators
+  - Play/pause toggle button
+  - Smooth AnimatePresence transitions between slides
+- Added video carousels to all 3 subpages:
+  - /menu: "Наша кухня в движении" (3 videos: plating, chef work, slow-mo)
+  - /wedding: "Свадебный сервис в деталях" (3 videos)
+  - /corporate: "Корпоративный сервис в действии" (3 videos)
+- SEO optimization:
+  - Created sitemap.ts with all 4 pages, priorities and change frequencies
+  - Created robots.ts with Allow: /, Disallow: /api/, Sitemap reference
+  - Removed conflicting public/robots.txt
+  - Updated layout.tsx metadata:
+    - title template "%s — Интерфуд Кейтеринг"
+    - Added creator, publisher, locale: ru_RU
+    - Added alternates.canonical
+    - Enhanced keywords (12 keywords)
+    - OG image alt text
+    - Yandex verification placeholder
+  - Added Service schema.org structured data (OfferCatalog with 5 services)
+  - Updated subpage layouts with canonical URLs and enhanced descriptions
+- Build successful: all routes return HTTP 200
+- Visual verification: all features confirmed working
+
+Stage Summary:
+- All 4 improvements implemented and verified
+- SiteNav with burger menu on all subpages
+- Contact form posts to /api/contact with validation
+- Video carousels on all 3 subpages (3 slides each)
+- Full SEO: sitemap.xml, robots.txt, Schema.org Service, enhanced metadata
+- Zero build errors, zero console errors
