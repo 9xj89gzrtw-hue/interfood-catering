@@ -876,3 +876,241 @@ img { max-width: 100%; height: auto; }
   .about-team-grid { grid-template-columns: 1fr; }
   .about-timeline-row { grid-template-columns: 1fr; }
 }
+
+/* ─── 3D Team Cards ─── */
+.team-grid-3d {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+@media (max-width: 1024px) {
+  .team-grid-3d { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .team-grid-3d { grid-template-columns: 1fr; }
+}
+
+.team-card-3d-wrapper {
+  cursor: pointer;
+  height: 480px;
+}
+
+.team-card-3d-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.team-card-front,
+.team-card-back {
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+}
+
+.team-card-photo {
+  position: relative;
+  height: 60%;
+  overflow: hidden;
+}
+
+.team-card-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.25,1,0.5,1);
+}
+
+.team-card-3d-wrapper:hover .team-card-photo img {
+  transform: scale(1.08);
+}
+
+.team-card-holo {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  z-index: 2;
+}
+
+.team-card-shimmer {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255,255,255,0.4) 45%,
+    rgba(255,255,255,0.6) 50%,
+    rgba(255,255,255,0.4) 55%,
+    transparent 60%
+  );
+  z-index: 3;
+  pointer-events: none;
+  transition: none;
+}
+
+.team-card-3d-wrapper:hover .team-card-shimmer {
+  animation: shimmer-slide 0.8s ease-in-out;
+}
+
+@keyframes shimmer-slide {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.team-card-info {
+  padding: 1.2rem 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.team-card-name {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--color-dark);
+  margin-bottom: 0.25rem;
+}
+
+.team-card-role {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-brand);
+}
+
+.team-card-achievements {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+}
+
+.team-card-badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: var(--color-brand-10);
+  color: var(--color-brand-dark);
+  border-radius: 100px;
+}
+
+.team-card-flip-hint {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.6rem;
+  color: #aaa;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.team-card-3d-wrapper:hover .team-card-flip-hint {
+  opacity: 1;
+}
+
+/* Back side */
+.team-card-back {
+  background: linear-gradient(135deg, var(--color-cream) 0%, #fff 100%);
+}
+
+.team-card-back-content {
+  padding: 2rem 1.5rem;
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.team-card-bio {
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: #555;
+  flex: 1;
+}
+
+.team-card-signature {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--color-brand);
+  margin: 1rem 0;
+  padding-left: 1rem;
+  border-left: 2px solid var(--color-brand-light);
+}
+
+.team-card-socials {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.team-card-social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--color-brand-10);
+  color: var(--color-brand);
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.team-card-social:hover {
+  background: var(--color-brand);
+  color: #fff;
+}
+
+/* Department cards */
+.department-card {
+  padding: 2rem;
+  text-align: center;
+}
+
+.department-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.department-title {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.department-count {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--color-brand);
+  margin-bottom: 0.75rem;
+}
+
+.department-desc {
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: #666;
+}
+
+@media (max-width: 768px) {
+  .team-card-3d-wrapper { height: 440px; }
+  .team-card-photo { height: 55%; }
+}

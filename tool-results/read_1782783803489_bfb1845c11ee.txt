@@ -1,0 +1,1117 @@
+     1→     1→@import "tailwindcss";
+     2→     2→
+     3→     3→/* ═══════════════════════════════════════════════════════════════
+     4→     4→   INTERFOOD CATERING — Light-First Premium Design v30
+     5→     5→   Warm, bright, photo/video-forward aesthetic
+     6→     6→   Target: mid-segment clients, maximum animation showcase
+     7→     7→   ═══════════════════════════════════════════════════════════════ */
+     8→     8→
+     9→     9→@theme {
+    10→    10→  --color-brand: #B8955A;
+    11→    11→  --color-brand-light: #D4B87C;
+    12→    12→  --color-brand-dark: #8B6F4E;
+    13→    13→  --color-brand-10: rgba(184,149,90,0.10);
+    14→    14→  --color-brand-20: rgba(184,149,90,0.20);
+    15→    15→  --color-navy: #1B2A4A;
+    16→    16→  --color-navy-light: #253A5E;
+    17→    17→  --color-dark: #1A1A1A;
+    18→    18→  --color-dark-light: #2D2D2D;
+    19→    19→  --color-cream: #FAFAF8;
+    20→    20→  --color-cream-dark: #F0EDE7;
+    21→    21→  --color-cream-darker: #E5E0D8;
+    22→    22→  --color-warm-white: #FEFDFB;
+    23→    23→  --color-warm-gray: #F5F3EF;
+    24→    24→  --color-sage: #9EB68F;
+    25→    25→  --color-blush: #E8C4B8;
+    26→    26→  --color-wa: #25D366;
+    27→    27→  --font-serif: "Cormorant Garamond", Georgia, serif;
+    28→    28→  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+    29→    29→}
+    30→    30→
+    31→    31→/* ─── Base ─── */
+    32→    32→* { margin: 0; padding: 0; box-sizing: border-box; }
+    33→    33→html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    34→    34→html.lenis, html.lenis body { height: auto; }
+    35→    35→.lenis.lenis-smooth { scroll-behavior: auto !important; }
+    36→    36→.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+    37→    37→.lenis.lenis-stopped { overflow: hidden; }
+    38→    38→body {
+    39→    39→  font-family: var(--font-sans);
+    40→    40→  background: var(--color-warm-white);
+    41→    41→  color: var(--color-dark);
+    42→    42→  overflow-x: hidden;
+    43→    43→}
+    44→    44→::selection { background: var(--color-brand); color: #fff; }
+    45→    45→::-webkit-scrollbar { width: 6px; }
+    46→    46→::-webkit-scrollbar-track { background: var(--color-cream); }
+    47→    47→::-webkit-scrollbar-thumb { background: var(--color-brand-dark); border-radius: 3px; }
+    48→    48→::-webkit-scrollbar-thumb:hover { background: var(--color-brand); }
+    49→    49→img { max-width: 100%; height: auto; }
+    50→    50→
+    51→    51→/* ─── Cursor ─── */
+    52→    52→.cursor-ring {
+    53→    53→  position: fixed; pointer-events: none; z-index: 99999;
+    54→    54→  width: 40px; height: 40px; border-radius: 50%;
+    55→    55→  border: 1.5px solid var(--color-brand);
+    56→    56→  transform: translate(-50%, -50%);
+    57→    57→  transition: width 0.3s cubic-bezier(0.25,1,0.5,1), height 0.3s cubic-bezier(0.25,1,0.5,1), border-color 0.3s, background 0.3s;
+    58→    58→  mix-blend-mode: difference;
+    59→    59→}
+    60→    60→.cursor-ring.hover {
+    61→    61→  width: 64px; height: 64px;
+    62→    62→  border-color: var(--color-brand-light);
+    63→    63→  background: rgba(184,149,90,0.08);
+    64→    64→}
+    65→    65→.cursor-dot {
+    66→    66→  position: fixed; pointer-events: none; z-index: 99999;
+    67→    67→  width: 8px; height: 8px; border-radius: 50%;
+    68→    68→  background: var(--color-brand);
+    69→    69→  transform: translate(-50%, -50%);
+    70→    70→  transition: width 0.2s, height 0.2s, background 0.2s;
+    71→    71→}
+    72→    72→.cursor-dot.hover {
+    73→    73→  width: 12px; height: 12px;
+    74→    74→  background: var(--color-brand-dark);
+    75→    75→}
+    76→    76→
+    77→    77→/* ─── Navigation ─── */
+    78→    78→.nav {
+    79→    79→  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    80→    80→  padding: 1.2rem 0;
+    81→    81→  transition: all 0.5s cubic-bezier(0.4,0,0.2,1);
+    82→    82→}
+    83→    83→.nav.scrolled {
+    84→    84→  padding: 0.6rem 0;
+    85→    85→  background: rgba(254,253,251,0.92);
+    86→    86→  backdrop-filter: blur(20px) saturate(1.4);
+    87→    87→  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+    88→    88→  border-bottom: 1px solid rgba(184,149,90,0.12);
+    89→    89→  box-shadow: 0 4px 30px rgba(0,0,0,0.06);
+    90→    90→}
+    91→    91→.nav-inner {
+    92→    92→  max-width: 1320px; margin: 0 auto; padding: 0 2rem;
+    93→    93→  display: flex; align-items: center; justify-content: space-between;
+    94→    94→}
+    95→    95→.nav-logo {
+    96→    96→  font-family: var(--font-serif);
+    97→    97→  font-size: 1.5rem; font-weight: 500;
+    98→    98→  color: var(--color-dark);
+    99→    99→  text-decoration: none; letter-spacing: 0.15em;
+   100→   100→  transition: color 0.3s;
+   101→   101→}
+   102→   102→.nav-logo:hover { color: var(--color-brand); }
+   103→   103→.nav-links {
+   104→   104→  display: flex; align-items: center; gap: 2rem;
+   105→   105→  list-style: none;
+   106→   106→}
+   107→   107→.nav-links a {
+   108→   108→  font-size: 0.75rem; font-weight: 500;
+   109→   109→  letter-spacing: 0.1em; text-transform: uppercase;
+   110→   110→  color: var(--color-dark);
+   111→   111→  text-decoration: none;
+   112→   112→  position: relative; padding: 0.25rem 0;
+   113→   113→  transition: color 0.3s;
+   114→   114→}
+   115→   115→.nav-links a::after {
+   116→   116→  content: ''; position: absolute; bottom: -2px; left: 0;
+   117→   117→  width: 0; height: 1.5px; background: var(--color-brand);
+   118→   118→  transition: width 0.4s cubic-bezier(0.25,1,0.5,1);
+   119→   119→}
+   120→   120→.nav-links a:hover { color: var(--color-brand); }
+   121→   121→.nav-links a:hover::after { width: 100%; }
+   122→   122→.nav-phone {
+   123→   123→  font-size: 0.8rem !important; font-weight: 600 !important;
+   124→   124→  color: var(--color-brand-dark) !important;
+   125→   125→  letter-spacing: 0.05em !important;
+   126→   126→}
+   127→   127→.nav-cta {
+   128→   128→  display: inline-block;
+   129→   129→  padding: 0.6rem 1.6rem;
+   130→   130→  background: var(--color-brand);
+   131→   131→  color: #fff !important;
+   132→   132→  font-size: 0.7rem !important;
+   133→   133→  font-weight: 600 !important;
+   134→   134→  letter-spacing: 0.1em !important;
+   135→   135→  text-transform: uppercase;
+   136→   136→  border-radius: 100px;
+   137→   137→  text-decoration: none;
+   138→   138→  transition: all 0.4s cubic-bezier(0.25,1,0.5,1);
+   139→   139→}
+   140→   140→.nav-cta:hover { background: var(--color-brand-dark); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(184,149,90,0.35); }
+   141→   141→
+   142→   142→/* Burger */
+   143→   143→.burger {
+   144→   144→  display: none; flex-direction: column; gap: 5px;
+   145→   145→  background: none; border: none; cursor: pointer; padding: 4px; z-index: 1001;
+   146→   146→}
+   147→   147→.burger span {
+   148→   148→  display: block; width: 24px; height: 1.5px; background: var(--color-dark);
+   149→   149→  transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+   150→   150→}
+   151→   151→.burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+   152→   152→.burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+   153→   153→.burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+   154→   154→
+   155→   155→/* Mobile Menu */
+   156→   156→.mobile-menu {
+   157→   157→  position: fixed; inset: 0; z-index: 999;
+   158→   158→  background: rgba(254,253,251,0.98);
+   159→   159→  backdrop-filter: blur(30px);
+   160→   160→  display: flex; flex-direction: column;
+   161→   161→  align-items: center; justify-content: center; gap: 1.5rem;
+   162→   162→}
+   163→   163→.mobile-menu a {
+   164→   164→  font-family: var(--font-serif);
+   165→   165→  font-size: 1.8rem; font-weight: 400;
+   166→   166→  color: var(--color-dark);
+   167→   167→  text-decoration: none;
+   168→   168→  transition: color 0.3s;
+   169→   169→}
+   170→   170→.mobile-menu a:hover { color: var(--color-brand); }
+   171→   171→
+   172→   172→@media (max-width: 1024px) {
+   173→   173→  .nav-links { display: none; }
+   174→   174→  .burger { display: flex; }
+   175→   175→}
+   176→   176→
+   177→   177→/* ─── Hero ─── */
+   178→   178→.hero {
+   179→   179→  position: relative;
+   180→   180→  min-height: 100vh;
+   181→   181→  display: flex; align-items: center; justify-content: center;
+   182→   182→  overflow: hidden;
+   183→   183→  background: var(--color-cream);
+   184→   184→}
+   185→   185→.hero-video {
+   186→   186→  position: absolute; inset: 0; z-index: 0;
+   187→   187→}
+   188→   188→.hero-video video {
+   189→   189→  width: 100%; height: 100%; object-fit: cover;
+   190→   190→}
+   191→   191→.hero-overlay {
+   192→   192→  position: absolute; inset: 0; z-index: 1;
+   193→   193→  background: linear-gradient(
+   194→   194→    to bottom,
+   195→   195→    rgba(254,253,251,0.2) 0%,
+   196→   196→    rgba(254,253,251,0.1) 30%,
+   197→   197→    rgba(254,253,251,0.3) 60%,
+   198→   198→    rgba(254,253,251,0.85) 100%
+   199→   199→  );
+   200→   200→}
+   201→   201→.hero-content {
+   202→   202→  position: relative; z-index: 2;
+   203→   203→  text-align: center; padding: 2rem;
+   204→   204→  max-width: 900px;
+   205→   205→}
+   206→   206→
+   207→   207→/* ─── Section Styles ─── */
+   208→   208→.section {
+   209→   209→  padding: 6rem 2rem;
+   210→   210→  max-width: 1320px; margin: 0 auto;
+   211→   211→}
+   212→   212→.section-wide {
+   213→   213→  padding: 6rem 0;
+   214→   214→}
+   215→   215→.section-light {
+   216→   216→  background: var(--color-warm-white);
+   217→   217→}
+   218→   218→.section-cream {
+   219→   219→  background: var(--color-cream);
+   220→   220→}
+   221→   221→.section-warm-gray {
+   222→   222→  background: var(--color-warm-gray);
+   223→   223→}
+   224→   224→.section-dark {
+   225→   225→  background: var(--color-dark);
+   226→   226→  color: #fff;
+   227→   227→}
+   228→   228→.section-navy {
+   229→   229→  background: var(--color-navy);
+   230→   230→  color: #fff;
+   231→   231→}
+   232→   232→.section-brand {
+   233→   233→  background: linear-gradient(135deg, var(--color-brand) 0%, var(--color-brand-dark) 100%);
+   234→   234→  color: #fff;
+   235→   235→}
+   236→   236→.bleed {
+   237→   237→  width: 100%;
+   238→   238→}
+   239→   239→.container {
+   240→   240→  max-width: 1320px; margin: 0 auto; padding: 0 2rem;
+   241→   241→}
+   242→   242→
+   243→   243→/* ─── Typography ─── */
+   244→   244→.section-label {
+   245→   245→  font-size: 0.65rem; font-weight: 600;
+   246→   246→  letter-spacing: 0.3em; text-transform: uppercase;
+   247→   247→  color: var(--color-brand);
+   248→   248→  margin-bottom: 1rem;
+   249→   249→}
+   250→   250→.section-title {
+   251→   251→  font-family: var(--font-serif);
+   252→   252→  font-size: clamp(2rem, 5vw, 3.5rem);
+   253→   253→  font-weight: 400; line-height: 1.15;
+   254→   254→  color: var(--color-dark);
+   255→   255→  margin-bottom: 1.5rem;
+   256→   256→}
+   257→   257→.section-title-light {
+   258→   258→  color: #fff;
+   259→   259→}
+   260→   260→.section-subtitle {
+   261→   261→  font-size: 1.05rem; line-height: 1.7;
+   262→   262→  color: #555; max-width: 600px;
+   263→   263→}
+   264→   264→.section-subtitle-light {
+   265→   265→  color: rgba(255,255,255,0.7);
+   266→   266→}
+   267→   267→
+   268→   268→/* ─── Cards ─── */
+   269→   269→.card {
+   270→   270→  background: #fff;
+   271→   271→  border-radius: 20px;
+   272→   272→  overflow: hidden;
+   273→   273→  box-shadow: 0 4px 30px rgba(0,0,0,0.06);
+   274→   274→  transition: all 0.5s cubic-bezier(0.25,1,0.5,1);
+   275→   275→}
+   276→   276→.card:hover {
+   277→   277→  transform: translateY(-8px);
+   278→   278→  box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+   279→   279→}
+   280→   280→.card-dark {
+   281→   281→  background: var(--color-dark-light);
+   282→   282→  box-shadow: none;
+   283→   283→  border: 1px solid rgba(255,255,255,0.06);
+   284→   284→}
+   285→   285→.card-dark:hover {
+   286→   286→  border-color: rgba(184,149,90,0.2);
+   287→   287→  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+   288→   288→}
+   289→   289→
+   290→   290→/* ─── Buttons ─── */
+   291→   291→.btn-gold {
+   292→   292→  display: inline-flex; align-items: center; justify-content: center;
+   293→   293→  padding: 1rem 2.5rem;
+   294→   294→  background: var(--color-brand);
+   295→   295→  color: #fff;
+   296→   296→  font-family: var(--font-sans);
+   297→   297→  font-size: 0.75rem; font-weight: 600;
+   298→   298→  letter-spacing: 0.15em; text-transform: uppercase;
+   299→   299→  border: none; border-radius: 100px;
+   300→   300→  cursor: pointer; text-decoration: none;
+   301→   301→  transition: all 0.4s cubic-bezier(0.25,1,0.5,1);
+   302→   302→  position: relative; overflow: hidden;
+   303→   303→}
+   304→   304→.btn-gold:hover {
+   305→   305→  background: var(--color-brand-dark);
+   306→   306→  transform: translateY(-2px);
+   307→   307→  box-shadow: 0 8px 30px rgba(184,149,90,0.4);
+   308→   308→}
+   309→   309→.btn-outline {
+   310→   310→  display: inline-flex; align-items: center; justify-content: center;
+   311→   311→  padding: 1rem 2.5rem;
+   312→   312→  background: transparent;
+   313→   313→  color: var(--color-brand);
+   314→   314→  font-family: var(--font-sans);
+   315→   315→  font-size: 0.75rem; font-weight: 600;
+   316→   316→  letter-spacing: 0.15em; text-transform: uppercase;
+   317→   317→  border: 1.5px solid var(--color-brand);
+   318→   318→  border-radius: 100px;
+   319→   319→  cursor: pointer; text-decoration: none;
+   320→   320→  transition: all 0.4s cubic-bezier(0.25,1,0.5,1);
+   321→   321→}
+   322→   322→.btn-outline:hover {
+   323→   323→  background: var(--color-brand);
+   324→   324→  color: #fff;
+   325→   325→  transform: translateY(-2px);
+   326→   326→  box-shadow: 0 8px 30px rgba(184,149,90,0.25);
+   327→   327→}
+   328→   328→.btn-outline-light {
+   329→   329→  color: #fff; border-color: rgba(255,255,255,0.4);
+   330→   330→}
+   331→   331→.btn-outline-light:hover {
+   332→   332→  background: #fff; color: var(--color-dark);
+   333→   333→  border-color: #fff;
+   334→   334→}
+   335→   335→
+   336→   336→/* ─── Gallery ─── */
+   337→   337→.gallery-masonry {
+   338→   338→  columns: 3; column-gap: 1rem;
+   339→   339→}
+   340→   340→.gallery-item {
+   341→   341→  break-inside: avoid; margin-bottom: 1rem;
+   342→   342→  border-radius: 16px; overflow: hidden;
+   343→   343→  position: relative; cursor: pointer;
+   344→   344→}
+   345→   345→.gallery-item img {
+   346→   346→  width: 100%; display: block;
+   347→   347→  transition: transform 0.7s cubic-bezier(0.25,1,0.5,1);
+   348→   348→}
+   349→   349→.gallery-item:hover img {
+   350→   350→  transform: scale(1.05);
+   351→   351→}
+   352→   352→.gallery-item::after {
+   353→   353→  content: ''; position: absolute; inset: 0;
+   354→   354→  background: linear-gradient(to top, rgba(26,26,26,0.5) 0%, transparent 50%);
+   355→   355→  opacity: 0; transition: opacity 0.4s;
+   356→   356→}
+   357→   357→.gallery-item:hover::after { opacity: 1; }
+   358→   358→.gallery-item:hover .gallery-item-overlay { opacity: 1 !important; }
+   359→   359→
+   360→   360→/* ─── Tour Grid ─── */
+   361→   361→.tour-grid {
+   362→   362→  display: grid;
+   363→   363→  grid-template-columns: 1fr 1fr;
+   364→   364→  gap: 4rem;
+   365→   365→  align-items: center;
+   366→   366→}
+   367→   367→@media (max-width: 768px) {
+   368→   368→  .tour-grid {
+   369→   369→    grid-template-columns: 1fr !important;
+   370→   370→    gap: 2rem !important;
+   371→   371→  }
+   372→   372→}
+   373→   373→
+   374→   374→/* ─── Marquee ─── */
+   375→   375→.marquee-container {
+   376→   376→  overflow: hidden;
+   377→   377→  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+   378→   378→  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+   379→   379→}
+   380→   380→
+   381→   381→/* ─── Video Carousel ─── */
+   382→   382→.video-carousel {
+   383→   383→  border-radius: 24px; overflow: hidden;
+   384→   384→  box-shadow: 0 20px 80px rgba(0,0,0,0.12);
+   385→   385→}
+   386→   386→
+   387→   387→/* ─── Stats / Trust Bar ─── */
+   388→   388→.trust-bar {
+   389→   389→  display: grid;
+   390→   390→  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+   391→   391→  gap: 2rem; text-align: center;
+   392→   392→}
+   393→   393→.stat-item h3 {
+   394→   394→  font-family: var(--font-serif);
+   395→   395→  font-size: clamp(2rem, 4vw, 3rem);
+   396→   396→  font-weight: 400;
+   397→   397→  color: var(--color-brand);
+   398→   398→}
+   399→   399→.stat-item p {
+   400→   400→  font-size: 0.7rem;
+   401→   401→  letter-spacing: 0.15em;
+   402→   402→  text-transform: uppercase;
+   403→   403→  color: #888;
+   404→   404→  margin-top: 0.25rem;
+   405→   405→}
+   406→   406→
+   407→   407→/* ─── Review Card ─── */
+   408→   408→.review-card {
+   409→   409→  background: #fff;
+   410→   410→  border-radius: 20px;
+   411→   411→  overflow: hidden;
+   412→   412→  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+   413→   413→  transition: all 0.4s;
+   414→   414→}
+   415→   415→.review-card:hover {
+   416→   416→  box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+   417→   417→  transform: translateY(-4px);
+   418→   418→}
+   419→   419→
+   420→   420→/* ─── Footer ─── */
+   421→   421→.footer {
+   422→   422→  background: var(--color-dark);
+   423→   423→  color: rgba(255,255,255,0.7);
+   424→   424→  padding: 5rem 2rem 2rem;
+   425→   425→}
+   426→   426→.footer a {
+   427→   427→  color: rgba(255,255,255,0.6);
+   428→   428→  text-decoration: none;
+   429→   429→  transition: color 0.3s;
+   430→   430→}
+   431→   431→.footer a:hover { color: var(--color-brand-light); }
+   432→   432→
+   433→   433→/* ─── WhatsApp Float ─── */
+   434→   434→.wa-float {
+   435→   435→  position: fixed; bottom: 2rem; left: 2rem;
+   436→   436→  width: 56px; height: 56px; border-radius: 50%;
+   437→   437→  background: var(--color-wa);
+   438→   438→  display: flex; align-items: center; justify-content: center;
+   439→   439→  box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+   440→   440→  z-index: 900; cursor: pointer;
+   441→   441→  transition: all 0.3s;
+   442→   442→}
+   443→   443→.wa-float:hover {
+   444→   444→  transform: scale(1.1);
+   445→   445→  box-shadow: 0 6px 30px rgba(37,211,102,0.5);
+   446→   446→}
+   447→   447→
+   448→   448→/* ─── Lightbox ─── */
+   449→   449→.lightbox {
+   450→   450→  position: fixed; inset: 0; z-index: 10000;
+   451→   451→  background: rgba(254,253,251,0.95);
+   452→   452→  backdrop-filter: blur(20px);
+   453→   453→  display: flex; align-items: center; justify-content: center;
+   454→   454→}
+   455→   455→.lightbox img {
+   456→   456→  max-width: 90vw; max-height: 85vh;
+   457→   457→  border-radius: 16px;
+   458→   458→  box-shadow: 0 30px 100px rgba(0,0,0,0.15);
+   459→   459→}
+   460→   460→
+   461→   461→/* ─── Contact Map ─── */
+   462→   462→.contact-map {
+   463→   463→  border-radius: 20px; overflow: hidden;
+   464→   464→  box-shadow: 0 4px 30px rgba(0,0,0,0.08);
+   465→   465→}
+   466→   466→
+   467→   467→/* ─── Horizontal Scroll ─── */
+   468→   468→.horizontal-scroll {
+   469→   469→  display: flex; gap: 1.5rem;
+   470→   470→  overflow-x: auto; scroll-snap-type: x mandatory;
+   471→   471→  -webkit-overflow-scrolling: touch;
+   472→   472→  padding: 1rem 2rem;
+   473→   473→  scrollbar-width: none;
+   474→   474→}
+   475→   475→.horizontal-scroll::-webkit-scrollbar { display: none; }
+   476→   476→.horizontal-scroll > * { scroll-snap-align: start; flex-shrink: 0; }
+   477→   477→
+   478→   478→/* ─── Animated Underline ─── */
+   479→   479→.animated-underline {
+   480→   480→  position: relative; display: inline-block;
+   481→   481→}
+   482→   482→.animated-underline::after {
+   483→   483→  content: ''; position: absolute;
+   484→   484→  bottom: -2px; left: 0;
+   485→   485→  width: 100%; height: 2px;
+   486→   486→  background: var(--color-brand);
+   487→   487→  transform: scaleX(0); transform-origin: right;
+   488→   488→  transition: transform 0.5s cubic-bezier(0.25,1,0.5,1);
+   489→   489→}
+   490→   490→.animated-underline:hover::after {
+   491→   491→  transform: scaleX(1); transform-origin: left;
+   492→   492→}
+   493→   493→
+   494→   494→/* ─── Grain Overlay ─── */
+   495→   495→.grain-overlay {
+   496→   496→  position: fixed; inset: 0; z-index: 9998;
+   497→   497→  pointer-events: none;
+   498→   498→  opacity: 0.03;
+   499→   499→  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+   500→   500→  background-repeat: repeat;
+   501→   501→  background-size: 256px 256px;
+   502→   502→}
+   503→   503→
+   504→   504→/* ─── Calculator ─── */
+   505→   505→.calc-slider {
+   506→   506→  -webkit-appearance: none; appearance: none;
+   507→   507→  width: 100%; height: 4px;
+   508→   508→  border-radius: 2px;
+   509→   509→  background: var(--color-cream-darker);
+   510→   510→  outline: none;
+   511→   511→}
+   512→   512→.calc-slider::-webkit-slider-thumb {
+   513→   513→  -webkit-appearance: none; appearance: none;
+   514→   514→  width: 20px; height: 20px;
+   515→   515→  border-radius: 50%;
+   516→   516→  background: var(--color-brand);
+   517→   517→  cursor: pointer;
+   518→   518→  box-shadow: 0 2px 10px rgba(184,149,90,0.4);
+   519→   519→  transition: transform 0.2s;
+   520→   520→}
+   521→   521→.calc-slider::-webkit-slider-thumb:hover {
+   522→   522→  transform: scale(1.2);
+   523→   523→}
+   524→   524→
+   525→   525→/* ─── Calculator ─── */
+   526→   526→.calc-sliders-grid {
+   527→   527→  display: grid;
+   528→   528→  grid-template-columns: 1fr 1fr;
+   529→   529→  gap: 2rem;
+   530→   530→  margin-top: 2.5rem;
+   531→   531→}
+   532→   532→.calc-price-grid {
+   533→   533→  display: grid;
+   534→   534→  grid-template-columns: 1fr auto;
+   535→   535→  gap: 3rem;
+   536→   536→  align-items: center;
+   537→   537→}
+   538→   538→
+   539→   539→/* ─── Quiz ─── */
+   540→   540→.quiz-option {
+   541→   541→  padding: 1.2rem 1.5rem;
+   542→   542→  border: 1.5px solid var(--color-cream-darker);
+   543→   543→  border-radius: 16px;
+   544→   544→  cursor: pointer;
+   545→   545→  transition: all 0.3s cubic-bezier(0.25,1,0.5,1);
+   546→   546→  background: #fff;
+   547→   547→}
+   548→   548→.quiz-option:hover {
+   549→   549→  border-color: var(--color-brand);
+   550→   550→  background: var(--color-brand-10);
+   551→   551→}
+   552→   552→.quiz-option.selected {
+   553→   553→  border-color: var(--color-brand);
+   554→   554→  background: var(--color-brand-10);
+   555→   555→  box-shadow: 0 4px 20px rgba(184,149,90,0.15);
+   556→   556→}
+   557→   557→
+   558→   558→/* ─── About Page Grids ─── */
+   559→   559→.about-stats-grid {
+   560→   560→  display: grid;
+   561→   561→  grid-template-columns: repeat(6, 1fr);
+   562→   562→  gap: 2rem;
+   563→   563→  text-align: center;
+   564→   564→}
+   565→   565→.about-story-grid {
+   566→   566→  display: grid;
+   567→   567→  grid-template-columns: 1fr 1fr;
+   568→   568→  gap: 4rem;
+   569→   569→  align-items: center;
+   570→   570→}
+   571→   571→.about-values-grid {
+   572→   572→  display: grid;
+   573→   573→  grid-template-columns: repeat(2, 1fr);
+   574→   574→  gap: 1.5rem;
+   575→   575→}
+   576→   576→.about-team-grid {
+   577→   577→  display: grid;
+   578→   578→  grid-template-columns: repeat(4, 1fr);
+   579→   579→  gap: 1.5rem;
+   580→   580→}
+   581→   581→.about-timeline-row {
+   582→   582→  display: grid;
+   583→   583→  grid-template-columns: 1fr auto 1fr;
+   584→   584→  gap: 2rem;
+   585→   585→  align-items: center;
+   586→   586→  margin-bottom: 3rem;
+   587→   587→}
+   588→   588→
+   589→   589→/* ─── Responsive ─── */
+   590→   590→@media (max-width: 1024px) {
+   591→   591→  .gallery-masonry { columns: 2; }
+   592→   592→  .section { padding: 4rem 1.5rem; }
+   593→   593→  .section-wide { padding: 4rem 0; }
+   594→   594→  .about-stats-grid { grid-template-columns: repeat(3, 1fr); }
+   595→   595→  .about-story-grid { grid-template-columns: 1fr; gap: 2rem; }
+   596→   596→  .about-team-grid { grid-template-columns: repeat(2, 1fr); }
+   597→   597→}
+   598→   598→@media (max-width: 640px) {
+   599→   599→  .gallery-masonry { columns: 1; }
+   600→   600→  .section { padding: 3rem 1rem; }
+   601→   601→  .section-wide { padding: 3rem 0; }
+   602→   602→  .trust-bar { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+   603→   603→  .hero-content h1 { font-size: 2.2rem !important; }
+   604→   604→  .calc-sliders-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+   605→   605→  .calc-price-grid { grid-template-columns: 1fr; gap: 2rem; text-align: center; }
+   606→   606→  .about-stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+   607→   607→  .about-story-grid { grid-template-columns: 1fr; gap: 2rem; }
+   608→   608→  .about-values-grid { grid-template-columns: 1fr; }
+   609→   609→  .about-team-grid { grid-template-columns: 1fr; }
+   610→   610→  .about-timeline-row { grid-template-columns: 1fr; gap: 1rem; }
+   611→   611→  .about-timeline-row > div:first-child { display: none; }
+   612→   612→  .about-timeline-dot { display: none; }
+   613→   613→  .about-timeline-row > div:last-child { text-align: left !important; }
+   614→   614→}
+   615→   615→
+   616→   616→/* ─── Keyframes ─── */
+   617→   617→@keyframes float {
+   618→   618→  0%, 100% { transform: translateY(0); }
+   619→   619→  50% { transform: translateY(-10px); }
+   620→   620→}
+   621→   621→@keyframes shimmer {
+   622→   622→  0% { background-position: -200% 0; }
+   623→   623→  100% { background-position: 200% 0; }
+   624→   624→}
+   625→   625→@keyframes pulse-ring {
+   626→   626→  0% { transform: scale(1); opacity: 1; }
+   627→   627→  100% { transform: scale(1.5); opacity: 0; }
+   628→   628→}
+   629→   629→@keyframes draw {
+   630→   630→  to { stroke-dashoffset: 0; }
+   631→   631→}
+   632→   632→@keyframes rotate-slow {
+   633→   633→  from { transform: rotate(0deg); }
+   634→   634→  to { transform: rotate(360deg); }
+   635→   635→}
+   636→   636→@keyframes gradient-shift {
+   637→   637→  0% { background-position: 0% 50%; }
+   638→   638→  50% { background-position: 100% 50%; }
+   639→   639→  100% { background-position: 0% 50%; }
+   640→   640→}
+   641→   641→
+   642→   642→/* ─── Animated gradient bg ─── */
+   643→   643→.animated-gradient {
+   644→   644→  background: linear-gradient(-45deg, var(--color-cream), var(--color-warm-gray), var(--color-brand-10), var(--color-cream));
+   645→   645→  background-size: 400% 400%;
+   646→   646→  animation: gradient-shift 15s ease infinite;
+   647→   647→}
+   648→   648→
+   649→   649→/* ─── SVG Logo Marquee ─── */
+   650→   650→.logo-marquee-item {
+   651→   651→  opacity: 0.3;
+   652→   652→  transition: opacity 0.4s, filter 0.4s;
+   653→   653→  filter: grayscale(100%);
+   654→   654→}
+   655→   655→.logo-marquee-item:hover {
+   656→   656→  opacity: 1;
+   657→   657→  filter: grayscale(0%);
+   658→   658→}
+   659→   659→
+   660→   660→/* ─── Menu Footer Grid ─── */
+   661→   661→.footer-grid {
+   662→   662→  display: grid;
+   663→   663→  grid-template-columns: 2fr 1fr 1fr 1fr;
+   664→   664→  gap: 3rem;
+   665→   665→}
+   666→   666→@media (max-width: 1024px) {
+   667→   667→  .footer-grid {
+   668→   668→    grid-template-columns: 1fr 1fr;
+   669→   669→    gap: 2rem;
+   670→   670→  }
+   671→   671→}
+   672→   672→@media (max-width: 640px) {
+   673→   673→  .footer-grid {
+   674→   674→    grid-template-columns: 1fr;
+   675→   675→    gap: 2rem;
+   676→   676→  }
+   677→   677→}
+   678→   678→
+   679→   679→/* ═══════════════════════════════════════════════════════════════
+   680→   680→   MOBILE-FIRST ENHANCEMENTS — v31
+   681→   681→   Maximum video & animation on mobile devices
+   682→   682→   ═══════════════════════════════════════════════════════════════ */
+   683→   683→
+   684→   684→/* ─── Mobile Video Optimization ─── */
+   685→   685→@media (max-width: 768px) {
+   686→   686→  .hero {
+   687→   687→    min-height: 100svh !important;
+   688→   688→    max-height: 100svh !important;
+   689→   689→  }
+   690→   690→  .hero-video video {
+   691→   691→    object-position: center 30%;
+   692→   692→  }
+   693→   693→  .hero-content {
+   694→   694→    padding: 1rem !important;
+   695→   695→  }
+   696→   696→  .hero-content h1 {
+   697→   697→    font-size: 2.2rem !important;
+   698→   698→  }
+   699→   699→  /* Make grid columns stack on mobile */
+   700→   700→  [style*="grid-template-columns: 1fr 1fr"] {
+   701→   701→    grid-template-columns: 1fr !important;
+   702→   702→    gap: 2rem !important;
+   703→   703→  }
+   704→   704→  /* Full-width video on mobile */
+   705→   705→  .video-carousel {
+   706→   706→    border-radius: 12px !important;
+   707→   707→  }
+   708→   708→  /* Touch-friendly buttons */
+   709→   709→  .btn-gold, .btn-outline, .btn-outline-light {
+   710→   710→    padding: 0.9rem 2rem !important;
+   711→   711→    font-size: 0.8rem !important;
+   712→   712→    min-height: 48px;
+   713→   713→    display: inline-flex;
+   714→   714→    align-items: center;
+   715→   715→    justify-content: center;
+   716→   716→  }
+   717→   717→  /* Touch-friendly nav links */
+   718→   718→  .nav-cta {
+   719→   719→    padding: 0.5rem 1.2rem !important;
+   720→   720→  }
+   721→   721→  /* Larger touch targets for gallery items */
+   722→   722→  .gallery-item {
+   723→   723→    border-radius: 12px !important;
+   724→   724→  }
+   725→   725→  .gallery-item img {
+   726→   726→    height: auto !important;
+   727→   727→    min-height: 200px;
+   728→   728→  }
+   729→   729→  /* Stats bar - 2 columns on very small screens */
+   730→   730→  .trust-bar {
+   731→   731→    grid-template-columns: repeat(2, 1fr) !important;
+   732→   732→    gap: 1.5rem !important;
+   733→   733→  }
+   734→   734→  /* Card adjustments */
+   735→   735→  .card {
+   736→   736→    border-radius: 16px !important;
+   737→   737→  }
+   738→   738→  /* Review cards */
+   739→   739→  .review-card {
+   740→   740→    border-radius: 16px !important;
+   741→   741→    padding: 1.5rem !important;
+   742→   742→  }
+   743→   743→  /* Lightbox close button */
+   744→   744→  .lightbox button {
+   745→   745→    top: 1rem !important;
+   746→   746→    right: 1rem !important;
+   747→   747→    width: 40px !important;
+   748→   748→    height: 40px !important;
+   749→   749→  }
+   750→   750→  /* WhatsApp float - smaller on mobile */
+   751→   751→  .wa-float {
+   752→   752→    width: 50px !important;
+   753→   753→    height: 50px !important;
+   754→   754→    bottom: 1.5rem !important;
+   755→   755→    left: 1.5rem !important;
+   756→   756→  }
+   757→   757→  /* Footer padding */
+   758→   758→  .footer {
+   759→   759→    padding: 3rem 1.5rem 2rem !important;
+   760→   760→  }
+   761→   761→  /* Parallax sections */
+   762→   762→  [style*="height: 40vh"], [style*="height:60vh"] {
+   763→   763→    height: 30vh !important;
+   764→   764→    min-height: 200px !important;
+   765→   765→  }
+   766→   766→  /* Mobile menu improvements */
+   767→   767→  .mobile-menu a {
+   768→   768→    font-size: 1.5rem !important;
+   769→   769→  }
+   770→   770→  /* Section padding */
+   771→   771→  .section, section {
+   772→   772→    padding-left: 1rem !important;
+   773→   773→    padding-right: 1rem !important;
+   774→   774→  }
+   775→   775→  /* Container padding */
+   776→   776→  .container {
+   777→   777→    padding-left: 1rem !important;
+   778→   778→    padding-right: 1rem !important;
+   779→   779→  }
+   780→   780→  /* Image compare touch improvements */
+   781→   781→  .image-compare-handle {
+   782→   782→    width: 50px !important;
+   783→   783→    height: 50px !important;
+   784→   784→  }
+   785→   785→}
+   786→   786→
+   787→   787→/* ─── Mobile Performance: Lazy load videos ─── */
+   788→   788→@media (max-width: 768px) and (prefers-reduced-motion: reduce) {
+   789→   789→  .hero-video video,
+   790→   790→  video {
+   791→   791→    display: none !important;
+   792→   792→  }
+   793→   793→  .hero-video {
+   794→   794→    background: var(--color-cream) !important;
+   795→   795→  }
+   796→   796→}
+   797→   797→
+   798→   798→/* ─── Smooth mobile scrolling ─── */
+   799→   799→@supports (-webkit-overflow-scrolling: touch) {
+   800→   800→  .gallery-masonry {
+   801→   801→    -webkit-overflow-scrolling: touch;
+   802→   802→  }
+   803→   803→}
+   804→   804→
+   805→   805→/* ─── Safe area insets for notched phones ─── */
+   806→   806→@supports (padding-bottom: env(safe-area-inset-bottom)) {
+   807→   807→  .footer {
+   808→   808→    padding-bottom: calc(2rem + env(safe-area-inset-bottom));
+   809→   809→  }
+   810→   810→  .wa-float {
+   811→   811→    bottom: calc(1.5rem + env(safe-area-inset-bottom));
+   812→   812→  }
+   813→   813→}
+   814→   814→
+   815→   815→/* ─── Blog grid responsive ─── */
+   816→   816→.blog-grid {
+   817→   817→  display: grid;
+   818→   818→  grid-template-columns: repeat(3, 1fr);
+   819→   819→  gap: 1.5rem;
+   820→   820→}
+   821→   821→@media (max-width: 1024px) {
+   822→   822→  .blog-grid { grid-template-columns: repeat(2, 1fr); }
+   823→   823→}
+   824→   824→@media (max-width: 640px) {
+   825→   825→  .blog-grid { grid-template-columns: 1fr; }
+   826→   826→}
+   827→   827→
+   828→   828→/* ─── Venue grid responsive ─── */
+   829→   829→.venue-grid {
+   830→   830→  display: grid;
+   831→   831→  grid-template-columns: repeat(2, 1fr);
+   832→   832→  gap: 1.5rem;
+   833→   833→}
+   834→   834→@media (max-width: 768px) {
+   835→   835→  .venue-grid { grid-template-columns: 1fr; }
+   836→   836→}
+   837→   837→
+   838→   838→/* ─── About page grids ─── */
+   839→   839→.about-stats-grid {
+   840→   840→  display: grid;
+   841→   841→  grid-template-columns: repeat(6, 1fr);
+   842→   842→  gap: 1.5rem;
+   843→   843→  text-align: center;
+   844→   844→}
+   845→   845→.about-story-grid {
+   846→   846→  display: grid;
+   847→   847→  grid-template-columns: 1fr 1fr;
+   848→   848→  gap: 4rem;
+   849→   849→  align-items: center;
+   850→   850→}
+   851→   851→.about-values-grid {
+   852→   852→  display: grid;
+   853→   853→  grid-template-columns: repeat(4, 1fr);
+   854→   854→  gap: 1.5rem;
+   855→   855→}
+   856→   856→.about-team-grid {
+   857→   857→  display: grid;
+   858→   858→  grid-template-columns: repeat(4, 1fr);
+   859→   859→  gap: 1.5rem;
+   860→   860→}
+   861→   861→.about-timeline-row {
+   862→   862→  display: grid;
+   863→   863→  grid-template-columns: 1fr auto 1fr;
+   864→   864→  gap: 2rem;
+   865→   865→  align-items: center;
+   866→   866→}
+   867→   867→@media (max-width: 1024px) {
+   868→   868→  .about-stats-grid { grid-template-columns: repeat(3, 1fr); }
+   869→   869→  .about-values-grid { grid-template-columns: repeat(2, 1fr); }
+   870→   870→  .about-team-grid { grid-template-columns: repeat(2, 1fr); }
+   871→   871→}
+   872→   872→@media (max-width: 640px) {
+   873→   873→  .about-stats-grid { grid-template-columns: repeat(2, 1fr); }
+   874→   874→  .about-story-grid { grid-template-columns: 1fr; }
+   875→   875→  .about-values-grid { grid-template-columns: 1fr; }
+   876→   876→  .about-team-grid { grid-template-columns: 1fr; }
+   877→   877→  .about-timeline-row { grid-template-columns: 1fr; }
+   878→   878→}
+   879→   879→
+   880→   880→/* ─── 3D Team Cards ─── */
+   881→   881→.team-grid-3d {
+   882→   882→  display: grid;
+   883→   883→  grid-template-columns: repeat(4, 1fr);
+   884→   884→  gap: 1.5rem;
+   885→   885→}
+   886→   886→@media (max-width: 1024px) {
+   887→   887→  .team-grid-3d { grid-template-columns: repeat(2, 1fr); }
+   888→   888→}
+   889→   889→@media (max-width: 640px) {
+   890→   890→  .team-grid-3d { grid-template-columns: 1fr; }
+   891→   891→}
+   892→   892→
+   893→   893→.team-card-3d-wrapper {
+   894→   894→  cursor: pointer;
+   895→   895→  height: 480px;
+   896→   896→}
+   897→   897→
+   898→   898→.team-card-3d-inner {
+   899→   899→  width: 100%;
+   900→   900→  height: 100%;
+   901→   901→  position: relative;
+   902→   902→}
+   903→   903→
+   904→   904→.team-card-front,
+   905→   905→.team-card-back {
+   906→   906→  position: absolute;
+   907→   907→  inset: 0;
+   908→   908→  border-radius: 20px;
+   909→   909→  overflow: hidden;
+   910→   910→  background: #fff;
+   911→   911→  box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+   912→   912→}
+   913→   913→
+   914→   914→.team-card-photo {
+   915→   915→  position: relative;
+   916→   916→  height: 60%;
+   917→   917→  overflow: hidden;
+   918→   918→}
+   919→   919→
+   920→   920→.team-card-photo img {
+   921→   921→  width: 100%;
+   922→   922→  height: 100%;
+   923→   923→  object-fit: cover;
+   924→   924→  transition: transform 0.7s cubic-bezier(0.25,1,0.5,1);
+   925→   925→}
+   926→   926→
+   927→   927→.team-card-3d-wrapper:hover .team-card-photo img {
+   928→   928→  transform: scale(1.08);
+   929→   929→}
+   930→   930→
+   931→   931→.team-card-holo {
+   932→   932→  position: absolute;
+   933→   933→  inset: 0;
+   934→   934→  pointer-events: none;
+   935→   935→  transition: opacity 0.3s;
+   936→   936→  z-index: 2;
+   937→   937→}
+   938→   938→
+   939→   939→.team-card-shimmer {
+   940→   940→  position: absolute;
+   941→   941→  top: 0;
+   942→   942→  left: -100%;
+   943→   943→  width: 100%;
+   944→   944→  height: 100%;
+   945→   945→  background: linear-gradient(
+   946→   946→    105deg,
+   947→   947→    transparent 40%,
+   948→   948→    rgba(255,255,255,0.4) 45%,
+   949→   949→    rgba(255,255,255,0.6) 50%,
+   950→   950→    rgba(255,255,255,0.4) 55%,
+   951→   951→    transparent 60%
+   952→   952→  );
+   953→   953→  z-index: 3;
+   954→   954→  pointer-events: none;
+   955→   955→  transition: none;
+   956→   956→}
+   957→   957→
+   958→   958→.team-card-3d-wrapper:hover .team-card-shimmer {
+   959→   959→  animation: shimmer-slide 0.8s ease-in-out;
+   960→   960→}
+   961→   961→
+   962→   962→@keyframes shimmer-slide {
+   963→   963→  0% { left: -100%; }
+   964→   964→  100% { left: 100%; }
+   965→   965→}
+   966→   966→
+   967→   967→.team-card-info {
+   968→   968→  padding: 1.2rem 1.5rem;
+   969→   969→  position: relative;
+   970→   970→  z-index: 1;
+   971→   971→}
+   972→   972→
+   973→   973→.team-card-name {
+   974→   974→  font-family: var(--font-serif);
+   975→   975→  font-size: 1.25rem;
+   976→   976→  font-weight: 500;
+   977→   977→  color: var(--color-dark);
+   978→   978→  margin-bottom: 0.25rem;
+   979→   979→}
+   980→   980→
+   981→   981→.team-card-role {
+   982→   982→  font-size: 0.75rem;
+   983→   983→  font-weight: 500;
+   984→   984→  letter-spacing: 0.1em;
+   985→   985→  text-transform: uppercase;
+   986→   986→  color: var(--color-brand);
+   987→   987→}
+   988→   988→
+   989→   989→.team-card-achievements {
+   990→   990→  display: flex;
+   991→   991→  flex-wrap: wrap;
+   992→   992→  gap: 0.4rem;
+   993→   993→  margin-top: 0.75rem;
+   994→   994→}
+   995→   995→
+   996→   996→.team-card-badge {
+   997→   997→  display: inline-block;
+   998→   998→  padding: 0.2rem 0.6rem;
+   999→   999→  font-size: 0.6rem;
+  1000→  1000→  font-weight: 600;
+  1001→  1001→  letter-spacing: 0.05em;
+  1002→  1002→  text-transform: uppercase;
+  1003→  1003→  background: var(--color-brand-10);
+  1004→  1004→  color: var(--color-brand-dark);
+  1005→  1005→  border-radius: 100px;
+  1006→  1006→}
+  1007→  1007→
+  1008→  1008→.team-card-flip-hint {
+  1009→  1009→  position: absolute;
+  1010→  1010→  bottom: 1rem;
+  1011→  1011→  right: 1rem;
+  1012→  1012→  display: flex;
+  1013→  1013→  align-items: center;
+  1014→  1014→  gap: 0.4rem;
+  1015→  1015→  font-size: 0.6rem;
+  1016→  1016→  color: #aaa;
+  1017→  1017→  opacity: 0;
+  1018→  1018→  transition: opacity 0.3s;
+  1019→  1019→}
+  1020→  1020→
+  1021→  1021→.team-card-3d-wrapper:hover .team-card-flip-hint {
+  1022→  1022→  opacity: 1;
+  1023→  1023→}
+  1024→  1024→
+  1025→  1025→/* Back side */
+  1026→  1026→.team-card-back {
+  1027→  1027→  background: linear-gradient(135deg, var(--color-cream) 0%, #fff 100%);
+  1028→  1028→}
+  1029→  1029→
+  1030→  1030→.team-card-back-content {
+  1031→  1031→  padding: 2rem 1.5rem;
+  1032→  1032→  position: relative;
+  1033→  1033→  z-index: 1;
+  1034→  1034→  height: 100%;
+  1035→  1035→  display: flex;
+  1036→  1036→  flex-direction: column;
+  1037→  1037→}
+  1038→  1038→
+  1039→  1039→.team-card-bio {
+  1040→  1040→  font-size: 0.85rem;
+  1041→  1041→  line-height: 1.7;
+  1042→  1042→  color: #555;
+  1043→  1043→  flex: 1;
+  1044→  1044→}
+  1045→  1045→
+  1046→  1046→.team-card-signature {
+  1047→  1047→  font-family: var(--font-serif);
+  1048→  1048→  font-style: italic;
+  1049→  1049→  font-size: 0.95rem;
+  1050→  1050→  color: var(--color-brand);
+  1051→  1051→  margin: 1rem 0;
+  1052→  1052→  padding-left: 1rem;
+  1053→  1053→  border-left: 2px solid var(--color-brand-light);
+  1054→  1054→}
+  1055→  1055→
+  1056→  1056→.team-card-socials {
+  1057→  1057→  display: flex;
+  1058→  1058→  gap: 0.5rem;
+  1059→  1059→}
+  1060→  1060→
+  1061→  1061→.team-card-social {
+  1062→  1062→  display: flex;
+  1063→  1063→  align-items: center;
+  1064→  1064→  justify-content: center;
+  1065→  1065→  width: 32px;
+  1066→  1066→  height: 32px;
+  1067→  1067→  border-radius: 50%;
+  1068→  1068→  background: var(--color-brand-10);
+  1069→  1069→  color: var(--color-brand);
+  1070→  1070→  font-size: 0.65rem;
+  1071→  1071→  font-weight: 700;
+  1072→  1072→  text-decoration: none;
+  1073→  1073→  transition: all 0.3s;
+  1074→  1074→}
+  1075→  1075→
+  1076→  1076→.team-card-social:hover {
+  1077→  1077→  background: var(--color-brand);
+  1078→  1078→  color: #fff;
+  1079→  1079→}
+  1080→  1080→
+  1081→  1081→/* Department cards */
+  1082→  1082→.department-card {
+  1083→  1083→  padding: 2rem;
+  1084→  1084→  text-align: center;
+  1085→  1085→}
+  1086→  1086→
+  1087→  1087→.department-icon {
+  1088→  1088→  font-size: 2.5rem;
+  1089→  1089→  margin-bottom: 1rem;
+  1090→  1090→}
+  1091→  1091→
+  1092→  1092→.department-title {
+  1093→  1093→  font-family: var(--font-serif);
+  1094→  1094→  font-size: 1.3rem;
+  1095→  1095→  font-weight: 500;
+  1096→  1096→  margin-bottom: 0.5rem;
+  1097→  1097→}
+  1098→  1098→
+  1099→  1099→.department-count {
+  1100→  1100→  font-family: var(--font-serif);
+  1101→  1101→  font-size: 2rem;
+  1102→  1102→  font-weight: 400;
+  1103→  1103→  color: var(--color-brand);
+  1104→  1104→  margin-bottom: 0.75rem;
+  1105→  1105→}
+  1106→  1106→
+  1107→  1107→.department-desc {
+  1108→  1108→  font-size: 0.85rem;
+  1109→  1109→  line-height: 1.7;
+  1110→  1110→  color: #666;
+  1111→  1111→}
+  1112→  1112→
+  1113→  1113→@media (max-width: 768px) {
+  1114→  1114→  .team-card-3d-wrapper { height: 440px; }
+  1115→  1115→  .team-card-photo { height: 55%; }
+  1116→  1116→}
+  1117→  1117→

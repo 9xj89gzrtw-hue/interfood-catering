@@ -27,11 +27,20 @@ import TextScramble from "@/components/TextScramble";
 import ImageCompare from "@/components/ImageCompare";
 import SwipeCarousel from "@/components/SwipeCarousel";
 import CircularProgress from "@/components/CircularProgress";
+import WebGLShaderBG from "@/components/WebGLShaderBG";
+import MorphingBlob from "@/components/MorphingBlob";
+import GlitchText from "@/components/GlitchText";
+import StaggerReveal from "@/components/StaggerReveal";
+import SpotlightCard from "@/components/SpotlightCard";
+import AnimatedTypewriter from "@/components/AnimatedTypewriter";
+import ScrollVideoPlayer from "@/components/ScrollVideoPlayer";
 
 /* ═══════════════════════════════════════════════════════════════
-   ИНТЕРФУД КЕЙТЕРИНГ — Ultimate Animation Showcase v31
+   ИНТЕРФУД КЕЙТЕРИНГ — Ultimate Animation Showcase v32
    LIGHT theme, MOBILE-FIRST, MAX video + animation
    Complete demo of all web capabilities as of June 2026
+   WebGL shaders • Morphing blobs • Glitch text • Spotlight cards
+   Scroll-driven video • Typewriter • 3D flip cards • Parallax
    ═══════════════════════════════════════════════════════════════ */
 
 const IMG = {
@@ -574,6 +583,134 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ═══ 20. WEBGL SHADER SECTION ═══ */}
+      <section style={{ position: "relative", padding: "6rem 2rem", overflow: "hidden", minHeight: 500, display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <WebGLShaderBG style={{ zIndex: 0 }} />
+        <div style={{ position: "relative", zIndex: 1, textAlign: "center", maxWidth: 700 }}>
+          <motion.p
+            className="section-label"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+          >
+            WebGL шейдеры
+          </motion.p>
+          <GlitchText
+            text="Движение — жизнь"
+            as="h2"
+            intensity={0.6}
+            style={{
+              fontFamily: "var(--font-serif)",
+              fontSize: "clamp(2rem, 5vw, 3.5rem)",
+              fontWeight: 400,
+              marginBottom: "1.5rem",
+              color: "var(--color-dark)",
+            }}
+          />
+          <motion.p
+            style={{ color: "#555", lineHeight: 1.8, marginBottom: "2rem" }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            Этот фон — не изображение, а живой WebGL-шейдер, вычисляемый на GPU в реальном времени. Наведите мышь — и волны реагируют на ваши движения. Так выглядит будущее веб-дизайна: каждая точка пиксель рассчитывается математически.
+          </motion.p>
+          <MagneticButton>
+            <Link href="/team" className="btn-gold" style={{ textDecoration: "none" }}>
+              Наша команда
+            </Link>
+          </MagneticButton>
+        </div>
+      </section>
+
+      {/* ═══ 21. MORPHING BLOB + TYPEWRITER ═══ */}
+      <section style={{ position: "relative", padding: "6rem 2rem", background: "var(--color-cream)", overflow: "hidden" }}>
+        <MorphingBlob
+          size={350}
+          color1="rgba(184,149,90,0.2)"
+          color2="rgba(158,182,143,0.12)"
+          style={{ position: "absolute", top: "-5%", right: "-5%", zIndex: 0 }}
+        />
+        <MorphingBlob
+          size={250}
+          color1="rgba(232,196,184,0.15)"
+          color2="rgba(184,149,90,0.08)"
+          speed={10}
+          style={{ position: "absolute", bottom: "-5%", left: "-3%", zIndex: 0 }}
+        />
+        <div style={{ maxWidth: 1320, margin: "0 auto", position: "relative", zIndex: 1 }}>
+          <TextReveal text="Анимация 2026" as="p" className="section-label" />
+          <div style={{ marginBottom: "2rem" }}>
+            <AnimatedTypewriter
+              texts={["Кейтеринг без границ", "Вкус, который запоминается", "Сервис мирового уровня", "Каждое мероприятие — шедевр"]}
+              speed={70}
+              deleteSpeed={35}
+              pauseDuration={2500}
+              style={{
+                fontFamily: "var(--font-serif)",
+                fontSize: "clamp(1.8rem, 4vw, 3rem)",
+                fontWeight: 400,
+                color: "var(--color-dark)",
+              }}
+            />
+          </div>
+          <p style={{ color: "#555", lineHeight: 1.8, maxWidth: 600, marginBottom: "2rem" }}>
+            Эффект печатной машинки, морфинг-блобы на фоне, WebGL-шейдеры — всё это работает прямо в браузере, без сторонних плагинов. Двигайте мышь по странице и наблюдайте, как элементы реагируют на ваши действия в реальном времени.
+          </p>
+        </div>
+      </section>
+
+      {/* ═══ 22. SPOTLIGHT CARDS ═══ */}
+      <section style={{ padding: "6rem 2rem" }}>
+        <div style={{ maxWidth: 1320, margin: "0 auto" }}>
+          <TextReveal text="Интерактивные карточки" as="p" className="section-label" />
+          <TextReveal
+            text="Наведите — увидите магию"
+            as="h2"
+            style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(2rem, 5vw, 3.5rem)", fontWeight: 400, marginBottom: "3rem" }}
+          />
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.5rem" }}>
+            {[
+              { title: "Фуршет", desc: "Элегантные канапе и закуски для свободного общения. Более 200 вариантов подачи.", img: IMG.furshet },
+              { title: "Банкет", desc: "Классическая посадка с полным обслуживанием и авторским меню от шефа.", img: IMG.banquet },
+              { title: "Свадьба", desc: "Незабываемый вечер в ваш особенный день. Индивидуальное меню и декор.", img: IMG.wedding },
+            ].map((item, i) => (
+              <Reveal key={i} delay={i * 0.1}>
+                <SpotlightCard>
+                  <div style={{ height: 200, overflow: "hidden" }}>
+                    <img src={item.img} alt={item.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                  </div>
+                  <div style={{ padding: "1.5rem" }}>
+                    <h3 style={{ fontFamily: "var(--font-serif)", fontSize: "1.3rem", fontWeight: 500, marginBottom: "0.5rem" }}>{item.title}</h3>
+                    <p style={{ color: "#666", fontSize: "0.9rem", lineHeight: 1.7 }}>{item.desc}</p>
+                  </div>
+                </SpotlightCard>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ 23. SCROLL-DRIVEN VIDEO ═══ */}
+      <section style={{ padding: "6rem 2rem", background: "var(--color-cream)" }}>
+        <div style={{ maxWidth: 900, margin: "0 auto" }}>
+          <TextReveal text="Управление видео прокруткой" as="p" className="section-label" />
+          <TextReveal
+            text="Прокрутите — видео играет"
+            as="h2"
+            style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(2rem, 5vw, 3rem)", fontWeight: 400, marginBottom: "2rem" }}
+          />
+          <p style={{ color: "#555", lineHeight: 1.8, marginBottom: "2rem" }}>
+            Это не обычное видео — оно управляется прокруткой страницы. Прокрутите вниз, и видео продвигается вперёд. Прокрутите вверх — отматывается. Такой формат идеально подходит для демонстрации процесса приготовления и мероприятий.
+          </p>
+          <ScrollVideoPlayer
+            src="https://videos.pexels.com/video-files/4763824/4763824-uhd_2560_1440_24fps.mp4"
+            poster={IMG.chef}
+            style={{ borderRadius: 24, boxShadow: "0 20px 80px rgba(0,0,0,0.12)" }}
+          />
+        </div>
+      </section>
+
       {/* ═══ 20. FOOTER ═══ */}
       <footer className="footer">
         <div style={{ maxWidth: 1320, margin: "0 auto" }}>
@@ -595,7 +732,7 @@ export default function Home() {
             <div>
               <div style={{ fontSize: "0.7rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--color-brand-light)", marginBottom: "1rem" }}>Компания</div>
               <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-                {[{ label: "О нас", href: "/about" }, { label: "Меню", href: "/menu" }, { label: "Площадки", href: "/venues" }, { label: "Блог", href: "/blog" }, { label: "Галерея", href: "/gallery" }, { label: "Отзывы", href: "/reviews" }, { label: "Калькулятор", href: "/calculator" }, { label: "Контакты", href: "/contacts" }].map((link) => (
+                {[{ label: "О нас", href: "/about" }, { label: "Команда", href: "/team" }, { label: "Меню", href: "/menu" }, { label: "Площадки", href: "/venues" }, { label: "Блог", href: "/blog" }, { label: "Галерея", href: "/gallery" }, { label: "Отзывы", href: "/reviews" }, { label: "FAQ", href: "/faq" }].map((link) => (
                   <Link key={link.href} href={link.href} style={{ fontSize: "0.85rem" }}>{link.label}</Link>
                 ))}
               </div>

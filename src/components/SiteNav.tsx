@@ -17,6 +17,7 @@ const NAV_LINKS = [
   { label: "Корпоратив", href: "/corporate" },
   { label: "Площадки", href: "/venues" },
   { label: "О нас", href: "/about" },
+  { label: "Команда", href: "/team" },
   { label: "Галерея", href: "/gallery" },
   { label: "Блог", href: "/blog" },
   { label: "Отзывы", href: "/reviews" },
