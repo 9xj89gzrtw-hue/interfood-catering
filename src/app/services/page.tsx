@@ -16,9 +16,16 @@ import TextReveal from "@/components/TextReveal";
 import ImageReveal from "@/components/ImageReveal";
 import CountUp from "@/components/CountUp";
 import MagneticButton from "@/components/MagneticButton";
+import FluidBackground from "@/components/FluidBackground";
+import KineticText from "@/components/KineticText";
+import TextMarquee from "@/components/TextMarquee";
+import LottiePlaceholder from "@/components/LottiePlaceholder";
+import ConfettiButton from "@/components/ConfettiButton";
+import SpotlightCard from "@/components/SpotlightCard";
+import TiltCard from "@/components/TiltCard";
 
 /* ═══════════════════════════════════════════════════════════════
-   ИНТЕРФУД КЕЙТЕРИНГ — Услуги / Services Page
+   ИНТЕРФУД КЕЙТЕРИНГ — Услуги / Services Page (Upgraded)
    ═══════════════════════════════════════════════════════════════ */
 
 // ─── IMAGE URLS ───
@@ -41,8 +48,8 @@ const IMG = {
 const VID = {
   hero: "https://videos.pexels.com/video-files/3195394/3195394-uhd_2560_1440_25fps.mp4",
   kitchen: "https://videos.pexels.com/video-files/4761433/4761433-uhd_2560_1440_25fps.mp4",
-  cooking: "https://videos.pexels.com/video-files/4763824/4763824-uhd_2560_1440_24fps.mp4",
   serving: "https://videos.pexels.com/video-files/5377703/5377703-uhd_2560_1440_25fps.mp4",
+  cooking: "https://videos.pexels.com/video-files/3195394/3195394-uhd_2560_1440_25fps.mp4",
 };
 
 // ─── SERVICE DATA ───
@@ -54,6 +61,7 @@ const SERVICES = [
     guests: "30+",
     duration: "5–6 часов",
     image: IMG.furshet,
+    icon: "utensils" as const,
     description:
       "Фуршетный формат — самый популярный выбор для корпоративных праздников, выставок и юбилеев. Гости свободно перемещаются по залу, общаются и выбирают закуски на свой вкус из множества станций. Мы предлагаем более 30 позиций канапе, тарталеток и мини-бутербродов, которые готовятся непосредственно перед подачей. Каждая станция оформлена в едином стиле и обслуживается персональным официантом.",
     descriptionExtra:
@@ -73,6 +81,7 @@ const SERVICES = [
     guests: "20+",
     duration: "Полный сервис",
     image: IMG.banquet,
+    icon: "glass" as const,
     description:
       "Банкетный формат — это классика торжественного мероприятия, где каждый гость занимает место за красиво накрытым столом. Мы создаём многокурсные ужины от 5 до 7 перемен блюд, подобранных нашим шеф-поваром с учётом ваших пожеланий и бюджета. Каждое блюдо подаётся в авторской презентации, а обслуживание ведётся по стандартам премиальных ресторанов.",
     descriptionExtra:
@@ -92,6 +101,7 @@ const SERVICES = [
     guests: "15+",
     duration: "Перерыв 20–40 мин",
     image: IMG.coffee,
+    icon: "star" as const,
     description:
       "Кофе-брейк — неотъемлемая часть любого делового мероприятия. Мы организуем уютные зоны с ароматным кофе, чаем и свежей выпечкой, которые помогут участникам перезарядиться между сессиями. Наше меню включает более 20 позиций: от классических круассанов и маффинов до авторских сэндвичей и полезных снеков для сторонников здорового питания.",
     descriptionExtra:
@@ -111,6 +121,7 @@ const SERVICES = [
     guests: "Профессиональные бармены",
     duration: "Коктейльный сервис",
     image: IMG.bar,
+    icon: "glass" as const,
     description:
       "Профессиональный бар — это душа любого праздника. Наши бармены-миксологи создают как классические коктейли, так и авторские напитки, разработанные специально для вашего мероприятия. Мы предлагаем полный цикл барного сервиса: от составления карты напитков и расчёта количества алкоголя до доставки льда, фруктов и декора для коктейлей.",
     descriptionExtra:
@@ -130,6 +141,7 @@ const SERVICES = [
     guests: "Шеф-кондитер",
     duration: "Кастомные торты",
     image: IMG.dessert,
+    icon: "heart" as const,
     description:
       "Десертный стол — это визуальный центр любого праздника и тот момент, который гости запоминают надолго. Наш шеф-кондитер создаёт десерты, которые одинаково прекрасны на вкус и внешне: от изящных макарон и профитролей до многоярусных тортов ручной работы. Каждое изделие готовится из натуральных ингредиентов без консервантов и красителей.",
     descriptionExtra:
@@ -149,6 +161,7 @@ const SERVICES = [
     guests: "Полный ресторанный опыт",
     duration: "Под ключ",
     image: IMG.chef,
+    icon: "chef" as const,
     description:
       "Выездной ресторан — это полное ресторанное обслуживание в любой точке: на природе, в лофте, в шатре или на крыше. Мы привозим всё — от мобильной кухни и посуды до текстиля и освещения. Гости получают полноценный ресторанный ужин с живой готовкой, шеф-столами и безупречным сервисом, как в лучших ресторанах города, но в уникальной атмосфере выбранной локации.",
     descriptionExtra:
@@ -165,12 +178,12 @@ const SERVICES = [
 
 // ─── PRICING TABLE DATA ───
 const PRICING = [
-  { format: "Фуршет", guests: "30–500", price: "от 2 450 ₽" },
-  { format: "Банкет", guests: "20–300", price: "от 4 470 ₽" },
-  { format: "Кофе-брейк", guests: "15–1 000", price: "от 950 ₽" },
-  { format: "Бар", guests: "30–500", price: "от 1 800 ₽" },
-  { format: "Десерт", guests: "20–500", price: "от 1 200 ₽" },
-  { format: "Выездной ресторан", guests: "30–500", price: "от 3 500 ₽" },
+  { format: "Фуршет", guests: "30–500", price: "от 2 450 ₽", highlight: false },
+  { format: "Банкет", guests: "20–300", price: "от 4 470 ₽", highlight: true },
+  { format: "Кофе-брейк", guests: "15–1 000", price: "от 950 ₽", highlight: false },
+  { format: "Бар", guests: "30–500", price: "от 1 800 ₽", highlight: false },
+  { format: "Десерт", guests: "20–500", price: "от 1 200 ₽", highlight: false },
+  { format: "Выездной ресторан", guests: "30–500", price: "от 3 500 ₽", highlight: true },
 ];
 
 // ─── FAQ DATA ───
@@ -264,7 +277,7 @@ export default function ServicesPage() {
       <SiteNav />
 
       {/* ═══════════════════════════════════════════════════
-         1. PARALLAX HERO — Video background
+         1. PARALLAX HERO — Video background + FluidBackground
          ═══════════════════════════════════════════════════ */}
       <section className="hero" ref={heroRef} aria-label="Наши услуги">
         <div className="hero-video">
@@ -278,6 +291,15 @@ export default function ServicesPage() {
             <source src={VID.hero} type="video/mp4" />
           </motion.video>
         </div>
+        {/* FluidBackground behind hero */}
+        <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
+          <FluidBackground
+            color1="rgba(184, 149, 90, 0.12)"
+            color2="rgba(158, 182, 143, 0.08)"
+            color3="rgba(232, 196, 184, 0.06)"
+            speed={6}
+          />
+        </div>
         <div
           className="hero-overlay"
           style={{
@@ -287,7 +309,7 @@ export default function ServicesPage() {
         />
         <motion.div
           className="hero-content"
-          style={{ opacity: heroOpacity }}
+          style={{ opacity: heroOpacity, position: "relative", zIndex: 2 }}
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.3 }}
@@ -300,9 +322,23 @@ export default function ServicesPage() {
           >
             Услуги
           </motion.div>
-          <h1 className="hero-title">
-            Наши <em>услуги</em>
-          </h1>
+          {/* KineticText with "scale" animation */}
+          <KineticText
+            text="Наши услуги"
+            as="h1"
+            animation="scale"
+            stagger={0.04}
+            duration={0.6}
+            className="hero-title"
+            style={{
+              fontFamily: "var(--font-serif)",
+              fontSize: "clamp(2.5rem, 7vw, 5rem)",
+              fontWeight: 400,
+              color: "#fff",
+              lineHeight: 1.1,
+              justifyContent: "center",
+            }}
+          />
           <p className="hero-sub">
             Полный спектр кейтеринговых услуг — от изящного фуршета до
             выездного ресторана под ключ. Авторская кухня, безупречный сервис и
@@ -317,9 +353,21 @@ export default function ServicesPage() {
               marginTop: "2rem",
             }}
           >
-            <MagneticButton as="a" href="/#contact" className="btn-gold">
+            <ConfettiButton
+              className="btn-gold"
+              style={{
+                padding: "1rem 2.5rem",
+                fontFamily: "var(--font-sans)",
+                fontSize: "0.75rem",
+                fontWeight: 600,
+                letterSpacing: "0.15em",
+                textTransform: "uppercase" as const,
+                border: "none",
+                cursor: "pointer",
+              }}
+            >
               Заказать кейтеринг
-            </MagneticButton>
+            </ConfettiButton>
             <MagneticButton
               as="a"
               href="#furshet"
@@ -332,246 +380,360 @@ export default function ServicesPage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════
-         2. SERVICE SECTIONS — Alternating image + text
+         TEXT MARQUEE STRIP
+         ═══════════════════════════════════════════════════ */}
+      <section
+        style={{
+          background: "var(--color-cream)",
+          padding: "1.2rem 0",
+          overflow: "hidden",
+          borderBottom: "1px solid var(--color-cream-darker)",
+        }}
+      >
+        <TextMarquee
+          texts={[
+            "Фуршет",
+            "Банкет",
+            "Кофе-брейк",
+            "Бар",
+            "Десерт",
+            "Выездной ресторан",
+            "Интерфуд Кейтеринг",
+            "18 лет опыта",
+          ]}
+          speed={25}
+          className=""
+          style={{
+            fontFamily: "var(--font-serif)",
+            fontSize: "clamp(1rem, 2vw, 1.4rem)",
+            color: "var(--color-brand)",
+            letterSpacing: "0.1em",
+          }}
+        />
+      </section>
+
+      {/* ═══════════════════════════════════════════════════
+         2. SERVICE SECTIONS — TiltCard + SpotlightCard + LottiePlaceholder
          ═══════════════════════════════════════════════════ */}
       {SERVICES.map((service, i) => {
         const isEven = i % 2 === 0;
+
+        // Insert VideoBreak after every 2 services
+        const videoBreakAfter =
+          i === 1 ? (
+            <VideoBreak
+              src="https://videos.pexels.com/video-files/4761433/4761433-uhd_2560_1440_25fps.mp4"
+              title="Искусство вкуса"
+              subtitle="Каждое блюдо — результат многолетнего опыта и безупречной техники"
+            />
+          ) : i === 3 ? (
+            <VideoBreak
+              src="https://videos.pexels.com/video-files/5377703/5377703-uhd_2560_1440_25fps.mp4"
+              title="Безупречный сервис"
+              subtitle="Профессиональная команда, внимание к каждой детали"
+            />
+          ) : i === 5 ? (
+            <VideoBreak
+              src="https://videos.pexels.com/video-files/3195394/3195394-uhd_2560_1440_25fps.mp4"
+              title="Ваш идеальный праздник"
+              subtitle="От концепции до реализации — мы берём на себя всё"
+            />
+          ) : null;
+
         return (
-          <section
-            key={service.id}
-            id={service.id}
-            className={isEven ? "section section-light" : "section section-cream"}
-            aria-label={service.title}
-            style={{ scrollMarginTop: 80 }}
-          >
-            <div className="container">
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "1fr 1fr",
-                  gap: "4rem",
-                  alignItems: "center",
-                  direction: isEven ? "ltr" : "rtl",
-                }}
-                className="service-grid"
-              >
-                {/* Image */}
-                <div style={{ direction: "ltr" }}>
-                  <ImageReveal
-                    src={service.image}
-                    alt={service.title}
-                    direction={isEven ? "left" : "right"}
-                    style={{
-                      borderRadius: 20,
-                      height: 480,
-                      width: "100%",
-                    }}
-                  />
-                </div>
+          <div key={service.id}>
+            <section
+              id={service.id}
+              className={isEven ? "section section-light" : "section section-cream"}
+              aria-label={service.title}
+              style={{ scrollMarginTop: 80 }}
+            >
+              <div className="container">
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "1fr 1fr",
+                    gap: "4rem",
+                    alignItems: "center",
+                    direction: isEven ? "ltr" : "rtl",
+                  }}
+                  className="service-grid"
+                >
+                  {/* Image — wrapped in TiltCard + SpotlightCard */}
+                  <div style={{ direction: "ltr" }}>
+                    <TiltCard glare maxTilt={8}>
+                      <SpotlightCard
+                        spotlightColor="rgba(184,149,90,0.1)"
+                        borderRadius={20}
+                        style={{ background: "transparent", boxShadow: "none" }}
+                      >
+                        <ImageReveal
+                          src={service.image}
+                          alt={service.title}
+                          direction={isEven ? "left" : "right"}
+                          style={{
+                            borderRadius: 20,
+                            height: 480,
+                            width: "100%",
+                          }}
+                        />
+                      </SpotlightCard>
+                    </TiltCard>
+                  </div>
 
-                {/* Text */}
-                <div style={{ direction: "ltr" }}>
-                  <Reveal>
-                    <span className="section-label">{service.title}</span>
-                  </Reveal>
-                  <TextReveal
-                    text={service.title}
-                    as="h2"
-                    className="section-title"
-                  />
-                  <Reveal delay={0.1}>
-                    <p
-                      style={{
-                        fontSize: "1rem",
-                        lineHeight: 1.8,
-                        color: "#555",
-                        marginBottom: "1rem",
-                      }}
-                    >
-                      {service.description}
-                    </p>
-                  </Reveal>
-                  <Reveal delay={0.2}>
-                    <p
-                      style={{
-                        fontSize: "0.95rem",
-                        lineHeight: 1.8,
-                        color: "#666",
-                        marginBottom: "1.5rem",
-                      }}
-                    >
-                      {service.descriptionExtra}
-                    </p>
-                  </Reveal>
-
-                  {/* Price badge */}
-                  <Reveal delay={0.25}>
-                    <div
-                      style={{
-                        display: "inline-flex",
-                        alignItems: "center",
-                        gap: "1.5rem",
-                        background: "var(--color-brand-10)",
-                        border: "1px solid var(--color-brand-20)",
-                        borderRadius: 12,
-                        padding: "1rem 1.5rem",
-                        marginBottom: "1.5rem",
-                        flexWrap: "wrap",
-                      }}
-                    >
-                      <div>
-                        <div
-                          style={{
-                            fontSize: "0.65rem",
-                            letterSpacing: "0.15em",
-                            textTransform: "uppercase",
-                            color: "var(--color-brand-dark)",
-                            fontWeight: 600,
-                          }}
-                        >
-                          Стоимость
-                        </div>
-                        <div
-                          style={{
-                            fontFamily: "var(--font-serif)",
-                            fontSize: "1.4rem",
-                            fontWeight: 400,
-                            color: "var(--color-brand-dark)",
-                          }}
-                        >
-                          {service.price}
-                        </div>
-                      </div>
-                      <div
-                        style={{
-                          width: 1,
-                          height: 36,
-                          background: "rgba(184,149,90,0.2)",
-                        }}
+                  {/* Text with LottiePlaceholder */}
+                  <div style={{ direction: "ltr" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "0.5rem" }}>
+                      <LottiePlaceholder
+                        type={service.icon}
+                        size={44}
+                        color="#B8955A"
                       />
-                      <div>
-                        <div
-                          style={{
-                            fontSize: "0.65rem",
-                            letterSpacing: "0.15em",
-                            textTransform: "uppercase",
-                            color: "var(--color-brand-dark)",
-                            fontWeight: 600,
-                          }}
-                        >
-                          Гости
-                        </div>
-                        <div
-                          style={{
-                            fontFamily: "var(--font-serif)",
-                            fontSize: "1.4rem",
-                            fontWeight: 400,
-                            color: "var(--color-brand-dark)",
-                          }}
-                        >
-                          {service.guests}
-                        </div>
-                      </div>
-                      <div
-                        style={{
-                          width: 1,
-                          height: 36,
-                          background: "rgba(184,149,90,0.2)",
-                        }}
-                      />
-                      <div>
-                        <div
-                          style={{
-                            fontSize: "0.65rem",
-                            letterSpacing: "0.15em",
-                            textTransform: "uppercase",
-                            color: "var(--color-brand-dark)",
-                            fontWeight: 600,
-                          }}
-                        >
-                          Формат
-                        </div>
-                        <div
-                          style={{
-                            fontFamily: "var(--font-serif)",
-                            fontSize: "1.4rem",
-                            fontWeight: 400,
-                            color: "var(--color-brand-dark)",
-                          }}
-                        >
-                          {service.duration}
-                        </div>
-                      </div>
+                      <Reveal>
+                        <span className="section-label">{service.title}</span>
+                      </Reveal>
                     </div>
-                  </Reveal>
+                    <TextReveal
+                      text={service.title}
+                      as="h2"
+                      className="section-title"
+                    />
+                    <Reveal delay={0.1}>
+                      <p
+                        style={{
+                          fontSize: "1rem",
+                          lineHeight: 1.8,
+                          color: "#555",
+                          marginBottom: "1rem",
+                        }}
+                      >
+                        {service.description}
+                      </p>
+                    </Reveal>
+                    <Reveal delay={0.2}>
+                      <p
+                        style={{
+                          fontSize: "0.95rem",
+                          lineHeight: 1.8,
+                          color: "#666",
+                          marginBottom: "1.5rem",
+                        }}
+                      >
+                        {service.descriptionExtra}
+                      </p>
+                    </Reveal>
 
-                  {/* Features */}
-                  <Reveal delay={0.3}>
-                    <ul
-                      style={{
-                        listStyle: "none",
-                        padding: 0,
-                        display: "flex",
-                        flexDirection: "column",
-                        gap: "0.5rem",
-                        marginBottom: "2rem",
-                      }}
-                    >
-                      {service.features.map((feat, fi) => (
-                        <li
-                          key={fi}
-                          style={{
-                            display: "flex",
-                            alignItems: "center",
-                            gap: "0.75rem",
-                            fontSize: "0.9rem",
-                            color: "#444",
-                          }}
-                        >
-                          <span
+                    {/* Price badge */}
+                    <Reveal delay={0.25}>
+                      <div
+                        style={{
+                          display: "inline-flex",
+                          alignItems: "center",
+                          gap: "1.5rem",
+                          background: "var(--color-brand-10)",
+                          border: "1px solid var(--color-brand-20)",
+                          borderRadius: 12,
+                          padding: "1rem 1.5rem",
+                          marginBottom: "1.5rem",
+                          flexWrap: "wrap",
+                        }}
+                      >
+                        <div>
+                          <div
                             style={{
-                              width: 6,
-                              height: 6,
-                              borderRadius: "50%",
-                              background: "var(--color-brand)",
-                              flexShrink: 0,
+                              fontSize: "0.65rem",
+                              letterSpacing: "0.15em",
+                              textTransform: "uppercase",
+                              color: "var(--color-brand-dark)",
+                              fontWeight: 600,
                             }}
-                          />
-                          {feat}
-                        </li>
-                      ))}
-                    </ul>
-                  </Reveal>
+                          >
+                            Стоимость
+                          </div>
+                          <div
+                            style={{
+                              fontFamily: "var(--font-serif)",
+                              fontSize: "1.4rem",
+                              fontWeight: 400,
+                              color: "var(--color-brand-dark)",
+                            }}
+                          >
+                            {service.price}
+                          </div>
+                        </div>
+                        <div
+                          style={{
+                            width: 1,
+                            height: 36,
+                            background: "rgba(184,149,90,0.2)",
+                          }}
+                        />
+                        <div>
+                          <div
+                            style={{
+                              fontSize: "0.65rem",
+                              letterSpacing: "0.15em",
+                              textTransform: "uppercase",
+                              color: "var(--color-brand-dark)",
+                              fontWeight: 600,
+                            }}
+                          >
+                            Гости
+                          </div>
+                          <div
+                            style={{
+                              fontFamily: "var(--font-serif)",
+                              fontSize: "1.4rem",
+                              fontWeight: 400,
+                              color: "var(--color-brand-dark)",
+                            }}
+                          >
+                            {service.guests}
+                          </div>
+                        </div>
+                        <div
+                          style={{
+                            width: 1,
+                            height: 36,
+                            background: "rgba(184,149,90,0.2)",
+                          }}
+                        />
+                        <div>
+                          <div
+                            style={{
+                              fontSize: "0.65rem",
+                              letterSpacing: "0.15em",
+                              textTransform: "uppercase",
+                              color: "var(--color-brand-dark)",
+                              fontWeight: 600,
+                            }}
+                          >
+                            Формат
+                          </div>
+                          <div
+                            style={{
+                              fontFamily: "var(--font-serif)",
+                              fontSize: "1.4rem",
+                              fontWeight: 400,
+                              color: "var(--color-brand-dark)",
+                            }}
+                          >
+                            {service.duration}
+                          </div>
+                        </div>
+                      </div>
+                    </Reveal>
 
-                  <Reveal delay={0.35}>
-                    <MagneticButton
-                      as="a"
-                      href="/#contact"
-                      className="btn-gold"
-                    >
-                      Заказать {service.title.toLowerCase()}
-                    </MagneticButton>
-                  </Reveal>
+                    {/* Features */}
+                    <Reveal delay={0.3}>
+                      <ul
+                        style={{
+                          listStyle: "none",
+                          padding: 0,
+                          display: "flex",
+                          flexDirection: "column",
+                          gap: "0.5rem",
+                          marginBottom: "2rem",
+                        }}
+                      >
+                        {service.features.map((feat, fi) => (
+                          <li
+                            key={fi}
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              gap: "0.75rem",
+                              fontSize: "0.9rem",
+                              color: "#444",
+                            }}
+                          >
+                            <span
+                              style={{
+                                width: 6,
+                                height: 6,
+                                borderRadius: "50%",
+                                background: "var(--color-brand)",
+                                flexShrink: 0,
+                              }}
+                            />
+                            {feat}
+                          </li>
+                        ))}
+                      </ul>
+                    </Reveal>
+
+                    {/* ConfettiButton for CTA */}
+                    <Reveal delay={0.35}>
+                      <ConfettiButton
+                        className="btn-gold"
+                        style={{
+                          padding: "1rem 2.5rem",
+                          fontFamily: "var(--font-sans)",
+                          fontSize: "0.75rem",
+                          fontWeight: 600,
+                          letterSpacing: "0.15em",
+                          textTransform: "uppercase" as const,
+                          border: "none",
+                          cursor: "pointer",
+                        }}
+                      >
+                        Заказать {service.title.toLowerCase()}
+                      </ConfettiButton>
+                    </Reveal>
+                  </div>
                 </div>
               </div>
+            </section>
+
+            {/* TextMarquee strip between service sections */}
+            <div
+              style={{
+                background: "#FEFDFB",
+                padding: "0.8rem 0",
+                overflow: "hidden",
+                borderTop: "1px solid rgba(184,149,90,0.08)",
+                borderBottom: "1px solid rgba(184,149,90,0.08)",
+              }}
+            >
+              <TextMarquee
+                texts={[
+                  service.title,
+                  `${service.price}`,
+                  `${service.guests} гостей`,
+                  service.duration,
+                  "Интерфуд",
+                ]}
+                speed={35}
+                direction={isEven ? "left" : "right"}
+                style={{
+                  fontFamily: "var(--font-serif)",
+                  fontSize: "0.9rem",
+                  color: "rgba(184,149,90,0.35)",
+                  letterSpacing: "0.2em",
+                  textTransform: "uppercase",
+                }}
+              />
             </div>
-          </section>
+
+            {/* VideoBreak after services 2, 4, 6 */}
+            {videoBreakAfter}
+          </div>
         );
       })}
 
       {/* ═══════════════════════════════════════════════════
-         3. PRICING TABLE
+         3. COMPARISON TABLE — Spotlight Cards
          ═══════════════════════════════════════════════════ */}
       <section
         className="section section-dark"
-        aria-label="Стоимость услуг"
+        aria-label="Сравнение услуг"
       >
         <div className="container">
           <Reveal>
-            <span className="section-label">Стоимость</span>
+            <span className="section-label">Сравнение</span>
           </Reveal>
           <TextReveal
-            text="Прозрачные цены"
+            text="Сравните форматы"
             as="h2"
             className="section-title section-title-light"
           />
@@ -580,126 +742,148 @@ export default function ServicesPage() {
               className="section-subtitle section-subtitle-light"
               style={{ maxWidth: 600, marginBottom: "2.5rem" }}
             >
-              Указана базовая стоимость на человека. Итоговая цена зависит от
-              меню, количества гостей и дополнительных услуг. Бесплатная
-              дегустация при заказе от 50 человек.
+              Выберите подходящий формат мероприятия. Каждая карточка — это
+              отдельный мир возможностей с прозрачной ценой.
             </p>
           </Reveal>
 
-          <Reveal delay={0.2}>
-            <div
-              style={{
-                background: "rgba(255,255,255,0.03)",
-                border: "1px solid rgba(184,149,90,0.1)",
-                borderRadius: 20,
-                overflow: "hidden",
-              }}
-            >
-              {/* Table Header */}
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "2fr 1.2fr 1fr",
-                  padding: "1.2rem 2rem",
-                  background: "rgba(184,149,90,0.08)",
-                  borderBottom: "1px solid rgba(184,149,90,0.1)",
-                }}
+          {/* Spotlight Cards Grid */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+              gap: "1.5rem",
+            }}
+          >
+            {PRICING.map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.08, duration: 0.6 }}
               >
-                <div
+                <SpotlightCard
+                  spotlightColor="rgba(184,149,90,0.15)"
+                  borderRadius={16}
                   style={{
-                    fontSize: "0.7rem",
-                    letterSpacing: "0.15em",
-                    textTransform: "uppercase",
-                    color: "var(--color-brand-light)",
-                    fontWeight: 600,
+                    background: item.highlight
+                      ? "linear-gradient(135deg, rgba(184,149,90,0.12) 0%, rgba(26,26,26,0.95) 100%)"
+                      : "rgba(26,26,26,0.95)",
+                    border: item.highlight
+                      ? "1px solid rgba(184,149,90,0.25)"
+                      : "1px solid rgba(255,255,255,0.05)",
                   }}
                 >
-                  Формат
-                </div>
-                <div
-                  style={{
-                    fontSize: "0.7rem",
-                    letterSpacing: "0.15em",
-                    textTransform: "uppercase",
-                    color: "var(--color-brand-light)",
-                    fontWeight: 600,
-                  }}
-                >
-                  Количество гостей
-                </div>
-                <div
-                  style={{
-                    fontSize: "0.7rem",
-                    letterSpacing: "0.15em",
-                    textTransform: "uppercase",
-                    color: "var(--color-brand-light)",
-                    fontWeight: 600,
-                    textAlign: "right",
-                  }}
-                >
-                  Цена за чел.
-                </div>
-              </div>
-
-              {/* Table Rows */}
-              {PRICING.map((row, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.08, duration: 0.5 }}
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "2fr 1.2fr 1fr",
-                    padding: "1.1rem 2rem",
-                    borderBottom:
-                      i < PRICING.length - 1
-                        ? "1px solid rgba(255,255,255,0.04)"
-                        : "none",
-                    alignItems: "center",
-                    transition: "background 0.3s",
-                  }}
-                  onMouseEnter={(e) =>
-                    (e.currentTarget.style.background =
-                      "rgba(184,149,90,0.04)")
-                  }
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.background = "transparent")
-                  }
-                >
-                  <div
-                    style={{
-                      fontFamily: "var(--font-serif)",
-                      fontSize: "1.05rem",
-                      color: "#fff",
-                      fontWeight: 400,
-                    }}
-                  >
-                    {row.format}
+                  <div style={{ padding: "2rem" }}>
+                    {item.highlight && (
+                      <span
+                        style={{
+                          display: "inline-block",
+                          padding: "0.25rem 0.8rem",
+                          background: "var(--color-brand)",
+                          color: "#fff",
+                          borderRadius: 100,
+                          fontSize: "0.6rem",
+                          fontWeight: 700,
+                          letterSpacing: "0.15em",
+                          textTransform: "uppercase",
+                          marginBottom: "1rem",
+                        }}
+                      >
+                        Популярный
+                      </span>
+                    )}
+                    <h3
+                      style={{
+                        fontFamily: "var(--font-serif)",
+                        fontSize: "1.3rem",
+                        fontWeight: 400,
+                        color: "#fff",
+                        marginBottom: "0.5rem",
+                      }}
+                    >
+                      {item.format}
+                    </h3>
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "baseline",
+                        gap: "0.5rem",
+                        marginBottom: "1rem",
+                      }}
+                    >
+                      <span
+                        style={{
+                          fontFamily: "var(--font-serif)",
+                          fontSize: "1.8rem",
+                          fontWeight: 400,
+                          color: "var(--color-brand-light)",
+                        }}
+                      >
+                        {item.price}
+                      </span>
+                      <span
+                        style={{
+                          fontSize: "0.75rem",
+                          color: "rgba(255,255,255,0.4)",
+                        }}
+                      >
+                        за чел.
+                      </span>
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        padding: "0.8rem 0",
+                        borderTop: "1px solid rgba(255,255,255,0.06)",
+                      }}
+                    >
+                      <span
+                        style={{
+                          fontSize: "0.75rem",
+                          color: "rgba(255,255,255,0.4)",
+                          letterSpacing: "0.1em",
+                          textTransform: "uppercase",
+                        }}
+                      >
+                        Гости
+                      </span>
+                      <span
+                        style={{
+                          fontSize: "0.85rem",
+                          color: "rgba(255,255,255,0.7)",
+                        }}
+                      >
+                        {item.guests}
+                      </span>
+                    </div>
+                    <ConfettiButton
+                      style={{
+                        width: "100%",
+                        marginTop: "1.2rem",
+                        padding: "0.8rem",
+                        background: "transparent",
+                        border: "1px solid rgba(184,149,90,0.3)",
+                        color: "var(--color-brand-light)",
+                        borderRadius: 10,
+                        fontFamily: "var(--font-sans)",
+                        fontSize: "0.7rem",
+                        fontWeight: 600,
+                        letterSpacing: "0.15em",
+                        textTransform: "uppercase" as const,
+                        cursor: "pointer",
+                        transition: "all 0.3s",
+                      }}
+                    >
+                      Заказать
+                    </ConfettiButton>
                   </div>
-                  <div
-                    style={{
-                      fontSize: "0.9rem",
-                      color: "rgba(255,255,255,0.5)",
-                    }}
-                  >
-                    {row.guests}
-                  </div>
-                  <div
-                    style={{
-                      fontSize: "1rem",
-                      color: "var(--color-brand-light)",
-                      fontWeight: 500,
-                      textAlign: "right",
-                    }}
-                  >
-                    {row.price}
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </Reveal>
+                </SpotlightCard>
+              </motion.div>
+            ))}
+          </div>
 
           <Reveal delay={0.4}>
             <p
@@ -718,16 +902,7 @@ export default function ServicesPage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════
-         4. VIDEO BREAK — Kitchen
-         ═══════════════════════════════════════════════════ */}
-      <VideoBreak
-        src={VID.kitchen}
-        title="Искусство вкуса"
-        subtitle="Каждое блюдо — результат многолетнего опыта и безупречной техники"
-      />
-
-      {/* ═══════════════════════════════════════════════════
-         5. FAQ ACCORDION
+         4. FAQ ACCORDION
          ═══════════════════════════════════════════════════ */}
       <section className="section section-cream" aria-label="Частые вопросы">
         <div className="container" style={{ maxWidth: 860 }}>
@@ -834,7 +1009,7 @@ export default function ServicesPage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════
-         6. CTA SECTION — Full-bleed with parallax
+         5. CTA SECTION — Full-bleed with parallax
          ═══════════════════════════════════════════════════ */}
       <section
         ref={ctaRef}
@@ -924,9 +1099,21 @@ export default function ServicesPage() {
                 flexWrap: "wrap",
               }}
             >
-              <MagneticButton as="a" href="/#contact" className="btn-gold">
-                Заказать кейтеринг
-              </MagneticButton>
+              <ConfettiButton
+                className="btn-gold"
+                style={{
+                  padding: "1rem 2.5rem",
+                  fontFamily: "var(--font-sans)",
+                  fontSize: "0.75rem",
+                  fontWeight: 600,
+                  letterSpacing: "0.15em",
+                  textTransform: "uppercase" as const,
+                  border: "none",
+                  cursor: "pointer",
+                }}
+              >
+                Заказать
+              </ConfettiButton>
               <MagneticButton
                 as="a"
                 href="tel:+78129195911"
@@ -940,7 +1127,7 @@ export default function ServicesPage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════
-         7. FOOTER
+         6. FOOTER
          ═══════════════════════════════════════════════════ */}
       <footer className="footer" role="contentinfo">
         <div style={{ maxWidth: 1320, margin: "0 auto" }}>

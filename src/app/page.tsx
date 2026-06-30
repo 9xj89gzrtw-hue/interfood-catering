@@ -34,6 +34,14 @@ import StaggerReveal from "@/components/StaggerReveal";
 import SpotlightCard from "@/components/SpotlightCard";
 import AnimatedTypewriter from "@/components/AnimatedTypewriter";
 import ScrollVideoPlayer from "@/components/ScrollVideoPlayer";
+import CursorTrail from "@/components/CursorTrail";
+import KineticText from "@/components/KineticText";
+import FluidBackground from "@/components/FluidBackground";
+import HorizontalVideoScroll from "@/components/HorizontalVideoScroll";
+import FlipCard3D from "@/components/FlipCard3D";
+import TextMarquee from "@/components/TextMarquee";
+import ConfettiButton from "@/components/ConfettiButton";
+import LottiePlaceholder from "@/components/LottiePlaceholder";
 
 /* ═══════════════════════════════════════════════════════════════
    ИНТЕРФУД КЕЙТЕРИНГ — Ultimate Animation Showcase v32
@@ -114,6 +122,15 @@ const GALLERY = [
   { src: IMG.about, alt: "О нас", h: 340 },
 ];
 
+const HORIZONTAL_VIDEOS = [
+  { src: "https://videos.pexels.com/video-files/3195394/3195394-uhd_2560_1440_25fps.mp4", title: "Сервировка стола", subtitle: "Элегантность в каждой детали" },
+  { src: "https://videos.pexels.com/video-files/4761433/4761433-uhd_2560_1440_25fps.mp4", title: "Кухня в действии", subtitle: "Авторские блюда от шеф-повара" },
+  { src: "https://videos.pexels.com/video-files/4763824/4763824-uhd_2560_1440_24fps.mp4", title: "Процесс приготовления", subtitle: "Свежие ингредиенты, мастерство" },
+  { src: "https://videos.pexels.com/video-files/5377703/5377703-uhd_2560_1440_25fps.mp4", title: "Обслуживание", subtitle: "Безупречный сервис" },
+  { src: "https://videos.pexels.com/video-files/3742004/3742004-uhd_2560_1440_24fps.mp4", title: "Свадебный банкет", subtitle: "Незабываемый вечер" },
+  { src: "https://videos.pexels.com/video-files/2759750/2759750-uhd_2560_1440_25fps.mp4", title: "Праздничное мероприятие", subtitle: "Радость каждого момента" },
+];
+
 const VIDEO_SLIDES = [
   { src: VID.kitchen, title: "Наша кухня", subtitle: "Авторские блюда от шеф-повара" },
   { src: VID.cooking, title: "Процесс приготовления", subtitle: "Свежие ингредиенты, мастерство" },
@@ -158,6 +175,7 @@ export default function Home() {
   return (
     <main style={{ background: "var(--color-warm-white)" }}>
       <SiteNav />
+      <CursorTrail />
 
       {/* ═══ 1. HERO — Video + ParticleField + MorphingText ═══ */}
       <section ref={heroRef} className="hero" style={{ minHeight: "100vh", maxHeight: "100vh" }}>
@@ -220,9 +238,9 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 1.5 }}
             style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}
           >
-            <RippleButton className="btn-gold" href="/#contact" as="a">
+            <ConfettiButton className="btn-gold">
               Заказать мероприятие
-            </RippleButton>
+            </ConfettiButton>
             <RippleButton className="btn-outline" href="/calculator" as="a">
               Рассчитать стоимость
             </RippleButton>
@@ -261,6 +279,21 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* ═══ TEXT MARQUEE STRIP ═══ */}
+      <div style={{ padding: "1.5rem 0", background: "var(--color-brand)", overflow: "hidden" }}>
+        <TextMarquee
+          texts={["ФУРШЕТ", "БАНКЕТ", "КОФЕ-БРЕЙК", "СВАДЬБА", "КОРПОРАТИВ", "БАР", "ДЕКОР", "ГРИЛЬ"]}
+          speed={25}
+          style={{
+            fontFamily: "var(--font-serif)",
+            fontSize: "clamp(1rem, 2vw, 1.5rem)",
+            fontWeight: 400,
+            color: "#fff",
+            letterSpacing: "0.15em",
+          }}
+        />
+      </div>
 
       {/* ═══ 3. CLIENT MARQUEE ═══ */}
       <ClientMarquee />
@@ -350,6 +383,121 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ═══ HORIZONTAL VIDEO SCROLL ═══ */}
+      <section style={{ background: "var(--color-warm-white)" }}>
+        <div className="container" style={{ paddingTop: "3rem" }}>
+          <Reveal>
+            <div className="section-label">Горизонтальный скролл</div>
+            <TextReveal text="Погрузитесь в атмосферу" as="h2" className="section-title" />
+            <p className="section-subtitle" style={{ marginBottom: "2rem" }}>
+              Прокрутите страницу — видеоряд движется горизонтально, как в Apple-презентациях
+            </p>
+          </Reveal>
+        </div>
+        <HorizontalVideoScroll videos={HORIZONTAL_VIDEOS} />
+      </section>
+
+      {/* ═══ FLUID BACKGROUND + KINETIC TEXT ═══ */}
+      <section style={{ position: "relative", padding: "8rem 2rem", overflow: "hidden", minHeight: 500, display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <FluidBackground
+          color1="rgba(184, 149, 90, 0.12)"
+          color2="rgba(158, 182, 143, 0.08)"
+          color3="rgba(232, 196, 184, 0.06)"
+          speed={6}
+        />
+        <div style={{ position: "relative", zIndex: 1, textAlign: "center", maxWidth: 800 }}>
+          <div className="section-label">Fluid Design 2026</div>
+          <KineticText
+            text="Ваш праздник — наше искусство"
+            as="h2"
+            animation="wave"
+            stagger={0.04}
+            duration={0.6}
+            style={{
+              fontFamily: "var(--font-serif)",
+              fontSize: "clamp(2rem, 5vw, 3.5rem)",
+              fontWeight: 400,
+              color: "var(--color-dark)",
+              marginBottom: "1.5rem",
+              justifyContent: "center",
+            }}
+          />
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.5 }}
+            style={{ color: "#555", lineHeight: 1.8, maxWidth: 600, margin: "0 auto" }}
+          >
+            Mesh-градиенты с отслеживанием мыши — тренд 2026 года. Двигайте курсор по экрану и наблюдайте, как цвета плавно перетекают, создавая живой, дышащий фон. Каждая буква заголовка анимируется отдельно с wave-эффектом.
+          </motion.p>
+        </div>
+      </section>
+
+      {/* ═══ KINETIC TYPOGRAPHY ═══ */}
+      <section style={{ padding: "6rem 2rem", background: "var(--color-cream)" }}>
+        <div className="container" style={{ textAlign: "center" }}>
+          <div className="section-label">Кинетическая типографика</div>
+          <KineticText
+            text="Мастерство в каждой детали"
+            as="h2"
+            animation="scale"
+            stagger={0.05}
+            duration={0.5}
+            style={{
+              fontFamily: "var(--font-serif)",
+              fontSize: "clamp(2rem, 5vw, 4rem)",
+              fontWeight: 400,
+              color: "var(--color-dark)",
+              marginBottom: "2rem",
+              justifyContent: "center",
+            }}
+          />
+          <KineticText
+            text="Каждая буква оживает при прокрутке — анимация scale для заголовка и blur для описания"
+            as="p"
+            animation="blur"
+            stagger={0.015}
+            duration={0.4}
+            delay={0.8}
+            style={{
+              fontSize: "1.1rem",
+              color: "#666",
+              lineHeight: 1.6,
+              maxWidth: 700,
+              margin: "0 auto 2rem",
+              justifyContent: "center",
+            }}
+          />
+          <div style={{ display: "flex", gap: "1.5rem", justifyContent: "center", flexWrap: "wrap" }}>
+            {[
+              { type: "fadeUp" as const, label: "Fade Up" },
+              { type: "wave" as const, label: "Wave" },
+              { type: "rotate" as const, label: "Rotate" },
+              { type: "scale" as const, label: "Scale" },
+              { type: "blur" as const, label: "Blur" },
+            ].map((anim) => (
+              <div key={anim.label} style={{ minWidth: 140 }}>
+                <KineticText
+                  text={anim.label}
+                  as="span"
+                  animation={anim.type}
+                  stagger={0.04}
+                  duration={0.5}
+                  style={{
+                    fontFamily: "var(--font-serif)",
+                    fontSize: "1.3rem",
+                    fontWeight: 400,
+                    color: "var(--color-brand)",
+                    justifyContent: "center",
+                  }}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ═══ 9. WEDDING CTA — Parallax + ParticleField ═══ */}
       <section style={{ position: "relative", padding: "6rem 0", overflow: "hidden" }}>
         <ParallaxImage src={IMG.wedding} alt="Свадебный кейтеринг" speed={0.2} style={{ position: "absolute", inset: 0, minHeight: "100%" }} overlay overlayOpacity={0.7} />
@@ -416,6 +564,9 @@ export default function Home() {
           </Reveal>
         </div>
       </section>
+
+      {/* ═══ VIDEO BREAK 3 — Extra ═══ */}
+      <VideoBreak src={VID.food1} title="Кулинарное искусство" subtitle="От ингредиента до шедевра" />
 
       {/* ═══ 12. GALLERY with ParticleField ═══ */}
       <section id="gallery" style={{ padding: "6rem 0", background: "var(--color-cream)", position: "relative" }}>
@@ -487,44 +638,47 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ═══ VIDEO BREAK 4 — Extra ═══ */}
+      <VideoBreak src={VID.food2} title="Гастрономия без границ" subtitle="Вкус, который запоминается навсегда" />
+
       {/* ═══ 15. PARALLAX DIVIDER ═══ */}
       <ParallaxImage src={IMG.roses} alt="Декор мероприятия" speed={0.3} style={{ height: "40vh", minHeight: 250 }} overlay overlayOpacity={0.4} />
 
-      {/* ═══ 16. CIRCULAR PROGRESS + LINKS GRID ═══ */}
+      {/* ═══ 16. 3D FLIP CARDS — Services ═══ */}
       <section style={{ padding: "6rem 0", background: "var(--color-cream)" }}>
         <div className="container">
           <Reveal>
-            <div className="section-label">Навигация</div>
-            <TextReveal text="Исследуйте наш сайт" as="h2" className="section-title" />
+            <div className="section-label">3D Карточки</div>
+            <TextReveal text="Наведите — карточка перевернётся" as="h2" className="section-title" />
+            <p className="section-subtitle" style={{ marginBottom: "3rem" }}>
+              Флип-эффект 2026: наведите курсор, чтобы увидеть подробности услуги
+            </p>
           </Reveal>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", gap: "2rem", marginTop: "2rem", textAlign: "center" }}>
-            {[
-              { label: "Меню", href: "/menu", icon: "🍽" },
-              { label: "Услуги", href: "/services", icon: "🎪" },
-              { label: "Свадьбы", href: "/wedding", icon: "💒" },
-              { label: "Площадки", href: "/venues", icon: "🏛" },
-              { label: "Блог", href: "/blog", icon: "📝" },
-              { label: "Калькулятор", href: "/calculator", icon: "🧮" },
-              { label: "Квиз", href: "/quiz", icon: "🎯" },
-              { label: "Контакты", href: "/contacts", icon: "📞" },
-            ].map((item, i) => (
-              <Reveal key={item.href} delay={i * 0.05}>
-                <Link href={item.href} style={{ textDecoration: "none", color: "inherit" }}>
-                  <motion.div
-                    whileHover={{ y: -8, boxShadow: "0 10px 30px rgba(184,149,90,0.2)" }}
-                    whileTap={{ scale: 0.95 }}
-                    style={{
-                      background: "#fff",
-                      padding: "2rem 1rem",
-                      borderRadius: 20,
-                      textAlign: "center",
-                      boxShadow: "0 4px 15px rgba(0,0,0,0.05)",
-                    }}
-                  >
-                    <div style={{ fontSize: "2rem", marginBottom: "0.5rem" }}>{item.icon}</div>
-                    <div style={{ fontSize: "0.85rem", fontWeight: 500, color: "var(--color-dark)" }}>{item.label}</div>
-                  </motion.div>
-                </Link>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.5rem" }}>
+            {SERVICES.map((svc, i) => (
+              <Reveal key={svc.title} delay={i * 0.08}>
+                <div style={{ height: 380 }}>
+                  <FlipCard3D
+                    front={
+                      <div style={{ width: "100%", height: "100%", position: "relative" }}>
+                        <img src={svc.img} alt={svc.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 50%)" }} />
+                        <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "2rem", color: "#fff" }}>
+                          <h3 style={{ fontFamily: "var(--font-serif)", fontSize: "1.5rem", fontWeight: 400, margin: 0 }}>{svc.title}</h3>
+                          <span style={{ fontSize: "0.75rem", letterSpacing: "0.1em", color: "rgba(255,255,255,0.7)" }}>{svc.price}</span>
+                        </div>
+                      </div>
+                    }
+                    back={
+                      <div style={{ width: "100%", height: "100%", padding: "2rem", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", textAlign: "center", background: "#FEFDFB" }}>
+                        <LottiePlaceholder type={(["chef", "utensils", "glass", "heart", "star", "utensils"] as const)[i]} size={60} />
+                        <h3 style={{ fontFamily: "var(--font-serif)", fontSize: "1.3rem", fontWeight: 400, margin: "1rem 0 0.5rem", color: "var(--color-dark)" }}>{svc.title}</h3>
+                        <p style={{ fontSize: "0.9rem", color: "#666", lineHeight: 1.6, margin: "0 0 1rem" }}>{svc.desc}</p>
+                        <span style={{ fontSize: "0.8rem", fontWeight: 600, color: "var(--color-brand)" }}>{svc.price}</span>
+                      </div>
+                    }
+                  />
+                </div>
               </Reveal>
             ))}
           </div>

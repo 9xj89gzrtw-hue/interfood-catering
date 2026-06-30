@@ -6,6 +6,12 @@ import Link from "next/link";
 import SiteNav from "@/components/SiteNav";
 import MagneticButton from "@/components/MagneticButton";
 import CountUp from "@/components/CountUp";
+import FluidBackground from "@/components/FluidBackground";
+import MorphingBlob from "@/components/MorphingBlob";
+import KineticText from "@/components/KineticText";
+import ConfettiButton from "@/components/ConfettiButton";
+import ParticleField from "@/components/ParticleField";
+import LottiePlaceholder from "@/components/LottiePlaceholder";
 
 /* ═══════════════════════════════════════════════════════════════
    ИНТЕРФУД КЕЙТЕРИНГ — Interactive Quiz Page
@@ -399,21 +405,49 @@ export default function QuizPage() {
             paddingBottom: "2rem",
             textAlign: "center",
             background: "var(--color-cream)",
+            position: "relative",
+            overflow: "hidden",
           }}
         >
-          <div className="container">
+          <FluidBackground
+            color1="rgba(184,149,90,0.06)"
+            color2="rgba(158,182,143,0.04)"
+            color3="rgba(232,196,184,0.03)"
+            speed={6}
+          />
+          <ParticleField count={20} speed={0.15} style={{ opacity: 0.4 }} />
+          <MorphingBlob
+            size={280}
+            color1="rgba(184,149,90,0.10)"
+            color2="rgba(158,182,143,0.06)"
+            opacity={0.45}
+            speed={10}
+            style={{ position: "absolute", top: "5%", right: "8%", zIndex: 0 }}
+          />
+          <MorphingBlob
+            size={200}
+            color1="rgba(232,196,184,0.07)"
+            color2="rgba(184,149,90,0.04)"
+            opacity={0.35}
+            speed={13}
+            style={{ position: "absolute", bottom: "10%", left: "5%", zIndex: 0 }}
+          />
+          <div className="container" style={{ position: "relative", zIndex: 2 }}>
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
               <span className="section-label">Подбор мероприятия</span>
-              <h1
+              <KineticText
+                text="Какой формат кейтеринга вам подходит?"
+                as="h1"
+                animation="scale"
                 className="section-title"
+                stagger={0.03}
+                duration={0.5}
                 style={{ maxWidth: 700, margin: "0 auto 1rem" }}
-              >
-                Какой формат <em>кейтеринга</em> вам подходит?
-              </h1>
+              />
               <p
                 className="section-subtitle"
                 style={{ margin: "0 auto", textAlign: "center" }}
@@ -516,18 +550,24 @@ export default function QuizPage() {
                     transition={{ duration: 0.5, delay: 0.1 }}
                     style={{ marginBottom: "2rem" }}
                   >
-                    <h2
-                      style={{
-                        fontFamily: "var(--font-serif)",
-                        fontSize: "clamp(1.5rem, 4vw, 2.2rem)",
-                        fontWeight: 400,
-                        color: "var(--color-dark)",
-                        marginBottom: "0.5rem",
-                        lineHeight: 1.2,
-                      }}
-                    >
-                      {STEPS[currentStep].question}
-                    </h2>
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "0.5rem" }}>
+                      <LottiePlaceholder
+                        type={currentStep === 0 ? "star" : currentStep === 1 ? "utensils" : currentStep === 2 ? "glass" : currentStep === 3 ? "heart" : "chef"}
+                        size={40}
+                        color="#B8955A"
+                      />
+                      <h2
+                        style={{
+                          fontFamily: "var(--font-serif)",
+                          fontSize: "clamp(1.5rem, 4vw, 2.2rem)",
+                          fontWeight: 400,
+                          color: "var(--color-dark)",
+                          lineHeight: 1.2,
+                        }}
+                      >
+                        {STEPS[currentStep].question}
+                      </h2>
+                    </div>
                     <p
                       style={{
                         fontSize: "0.95rem",
@@ -671,13 +711,13 @@ export default function QuizPage() {
                       ← Назад
                     </button>
 
-                    <MagneticButton
+                    <ConfettiButton
                       className={`btn-gold ${!hasAnswer ? "opacity-50 cursor-not-allowed" : ""}`}
                       onClick={goNext}
-                      strength={0.2}
+                      style={{ padding: "0.85rem 2rem", borderRadius: "100px", fontSize: "0.85rem", fontWeight: 600, letterSpacing: "0.05em", border: "none", cursor: hasAnswer ? "pointer" : "not-allowed" }}
                     >
                       {isLastStep ? "Узнать результат" : "Далее →"}
-                    </MagneticButton>
+                    </ConfettiButton>
                   </div>
                 </motion.div>
               ) : (

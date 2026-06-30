@@ -15,6 +15,12 @@ import TextReveal from "@/components/TextReveal";
 import CountUp from "@/components/CountUp";
 import MagneticButton from "@/components/MagneticButton";
 import TiltCard from "@/components/TiltCard";
+import ParticleField from "@/components/ParticleField";
+import KineticText from "@/components/KineticText";
+import FluidBackground from "@/components/FluidBackground";
+import MorphingBlob from "@/components/MorphingBlob";
+import ConfettiButton from "@/components/ConfettiButton";
+import FloatingElements from "@/components/FloatingElements";
 
 /* ═══════════════════════════════════════════════════════════════
    ИНТЕРФУД КЕЙТЕРИНГ — Отзывы / Reviews Page  (LIGHT THEME)
@@ -344,6 +350,25 @@ export default function ReviewsPage() {
           }}
         />
 
+        <ParticleField count={25} speed={0.2} style={{ opacity: 0.5, zIndex: 1 }} />
+        <FloatingElements count={8} color="#B8955A" />
+        <MorphingBlob
+          size={300}
+          color1="rgba(184,149,90,0.10)"
+          color2="rgba(158,182,143,0.06)"
+          opacity={0.4}
+          speed={10}
+          style={{ position: "absolute", top: "5%", right: "8%", zIndex: 0 }}
+        />
+        <MorphingBlob
+          size={220}
+          color1="rgba(232,196,184,0.07)"
+          color2="rgba(184,149,90,0.04)"
+          opacity={0.35}
+          speed={12}
+          style={{ position: "absolute", bottom: "10%", left: "5%", zIndex: 0 }}
+        />
+
         {/* Content */}
         <motion.div
           className="hero-content"
@@ -362,10 +387,13 @@ export default function ReviewsPage() {
             Отзывы клиентов
           </motion.div>
 
-          <TextReveal
+          <KineticText
             text="Что говорят о нас клиенты"
             as="h1"
+            animation="blur"
             className="section-title"
+            stagger={0.03}
+            duration={0.5}
             style={{
               textAlign: "center",
               fontSize: "clamp(2.2rem, 6vw, 4rem)",
@@ -429,10 +457,18 @@ export default function ReviewsPage() {
         style={{
           background: "#FAFAF8",
           padding: "5rem 2rem",
+          position: "relative",
+          overflow: "hidden",
         }}
         aria-label="Рейтинги"
       >
-        <div className="container" style={{ textAlign: "center" }}>
+        <FluidBackground
+          color1="rgba(184,149,90,0.05)"
+          color2="rgba(158,182,143,0.03)"
+          color3="rgba(232,196,184,0.02)"
+          speed={5}
+        />
+        <div className="container" style={{ textAlign: "center", position: "relative", zIndex: 2 }}>
           <Reveal>
             <span className="section-label">Рейтинги</span>
             <h2 className="section-title">
@@ -998,9 +1034,13 @@ export default function ReviewsPage() {
                 flexWrap: "wrap",
               }}
             >
-              <MagneticButton className="btn-gold" strength={0.25}>
+              <ConfettiButton
+                className="btn-gold"
+                style={{ padding: "1rem 2.5rem", borderRadius: "100px", fontSize: "0.85rem", fontWeight: 600, letterSpacing: "0.05em", border: "none", cursor: "pointer" }}
+                onClick={() => {}}
+              >
                 Оставить отзыв
-              </MagneticButton>
+              </ConfettiButton>
 
               <MagneticButton
                 as="a"

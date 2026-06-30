@@ -11,15 +11,24 @@ import CountUp from "@/components/CountUp";
 import MagneticButton from "@/components/MagneticButton";
 import TiltCard from "@/components/TiltCard";
 import ImageReveal from "@/components/ImageReveal";
+import ParticleField from "@/components/ParticleField";
+import KineticText from "@/components/KineticText";
+import AnimatedTypewriter from "@/components/AnimatedTypewriter";
+import FluidBackground from "@/components/FluidBackground";
+import MorphingBlob from "@/components/MorphingBlob";
+import ConfettiButton from "@/components/ConfettiButton";
 
 /* ═══════════════════════════════════════════════════════════════
    ИНТЕРФУД КЕЙТЕРИНГ — О компании / About Page  (LIGHT THEME)
+   Upgraded: ParticleField, KineticText, AnimatedTypewriter,
+   2x VideoBreak, FluidBackground, MorphingBlob, ConfettiButton
    ═══════════════════════════════════════════════════════════════ */
 
 /* ─── Media ─── */
 const VID = {
   hero: "https://videos.pexels.com/video-files/4761433/4761433-uhd_2560_1440_25fps.mp4",
   kitchen: "https://videos.pexels.com/video-files/4763824/4763824-uhd_2560_1440_24fps.mp4",
+  serving: "https://videos.pexels.com/video-files/5377703/5377703-uhd_2560_1440_25fps.mp4",
 };
 
 const IMG = {
@@ -120,6 +129,15 @@ const GALLERY = [
   { img: IMG.banquet, alt: "Банкетная подача" },
 ];
 
+/* ─── Typewriter phrases ─── */
+const VALUE_PHRASES = [
+  "Страсть к гастрономии",
+  "Качество без компромиссов",
+  "Индивидуальный подход",
+  "Невидимый сервис",
+  "Ответственность за результат",
+];
+
 /* ─── Animation helpers ─── */
 const fadeUp = {
   hidden: { opacity: 0, y: 60 },
@@ -157,7 +175,7 @@ export default function AboutPage() {
       <SiteNav />
 
       {/* ────────────────────────────────────────────
-          1. HERO — Video background + parallax
+          1. HERO — Video background + ParticleField + KineticText
           ──────────────────────────────────────────── */}
       <section ref={heroRef} aria-label="О компании" style={{ position: "relative", minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", background: "#FEFDFB" }}>
         {/* Video BG */}
@@ -174,9 +192,11 @@ export default function AboutPage() {
         </motion.div>
         {/* Light overlay */}
         <div style={{ position: "absolute", inset: 0, zIndex: 1, background: "linear-gradient(to bottom, rgba(254,253,251,0.25) 0%, rgba(254,253,251,0.15) 30%, rgba(254,253,251,0.4) 60%, rgba(254,253,251,0.92) 100%)" }} />
+        {/* ParticleField overlay */}
+        <ParticleField count={50} speed={0.25} style={{ zIndex: 2 }} />
         {/* Content */}
         <motion.div
-          style={{ position: "relative", zIndex: 2, textAlign: "center", padding: "2rem", maxWidth: 900, opacity: heroOpacity }}
+          style={{ position: "relative", zIndex: 3, textAlign: "center", padding: "2rem", maxWidth: 900, opacity: heroOpacity }}
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.3 }}
@@ -189,12 +209,29 @@ export default function AboutPage() {
           >
             О компании
           </motion.div>
-          <TextReveal
+          {/* KineticText with fadeUp animation */}
+          <KineticText
             text="Нас объединяет страсть к гастрономии"
             as="h1"
+            animation="fadeUp"
+            className="section-title"
             style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(2.4rem, 6vw, 4.5rem)", fontWeight: 400, lineHeight: 1.1, color: "#1A1A1A" }}
             stagger={0.04}
           />
+          {/* AnimatedTypewriter for values */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 1.5 }}
+            style={{ marginTop: "1rem", fontSize: "1.15rem", color: "#B8955A", fontFamily: "var(--font-serif)", minHeight: "2rem" }}
+          >
+            <AnimatedTypewriter
+              texts={VALUE_PHRASES}
+              speed={70}
+              deleteSpeed={35}
+              pauseDuration={2500}
+            />
+          </motion.div>
           <motion.p
             style={{ marginTop: "1.5rem", fontSize: "1.05rem", lineHeight: 1.7, color: "rgba(26,26,26,0.65)", maxWidth: 600, marginLeft: "auto", marginRight: "auto" }}
             initial={{ opacity: 0, y: 20 }}
@@ -209,9 +246,13 @@ export default function AboutPage() {
             transition={{ duration: 0.8, delay: 1.2 }}
             style={{ marginTop: "2rem" }}
           >
-            <MagneticButton as="a" href="/#contact" className="btn-gold">
+            <ConfettiButton
+              onClick={() => {}}
+              className="btn-gold"
+              style={{ padding: "1rem 2.5rem", fontSize: "0.75rem", fontWeight: 600, letterSpacing: "0.15em", textTransform: "uppercase", borderRadius: "100px", cursor: "pointer" }}
+            >
               Узнать подробнее
-            </MagneticButton>
+            </ConfettiButton>
           </motion.div>
         </motion.div>
       </section>
@@ -242,10 +283,19 @@ export default function AboutPage() {
       </section>
 
       {/* ────────────────────────────────────────────
-          3. STORY — Two-column: ImageReveal + Text
+          3. STORY — Two-column: ImageReveal + Text + MorphingBlob
           ──────────────────────────────────────────── */}
-      <section aria-label="Наша история" style={{ padding: "6rem 2rem", background: "#FEFDFB" }}>
-        <div className="container">
+      <section aria-label="Наша история" style={{ padding: "6rem 2rem", background: "#FEFDFB", position: "relative", overflow: "hidden" }}>
+        {/* MorphingBlob decoration */}
+        <MorphingBlob
+          size={500}
+          color1="rgba(184,149,90,0.08)"
+          color2="rgba(158,182,143,0.05)"
+          opacity={0.5}
+          speed={10}
+          style={{ position: "absolute", top: "-10%", right: "-8%", zIndex: 0 }}
+        />
+        <div className="container" style={{ position: "relative", zIndex: 1 }}>
           <div className="about-story-grid">
             {/* Left — Image */}
             <ImageReveal
@@ -287,7 +337,7 @@ export default function AboutPage() {
       </section>
 
       {/* ────────────────────────────────────────────
-          Video interlude
+          Video interlude 1
           ──────────────────────────────────────────── */}
       <VideoBreak
         src={VID.kitchen}
@@ -361,6 +411,15 @@ export default function AboutPage() {
       </section>
 
       {/* ────────────────────────────────────────────
+          Video interlude 2
+          ──────────────────────────────────────────── */}
+      <VideoBreak
+        src={VID.serving}
+        title="Сервис, который не замечают"
+        subtitle="Невидимое совершенство в каждом жесте"
+      />
+
+      {/* ────────────────────────────────────────────
           Parallax Divider
           ──────────────────────────────────────────── */}
       <ParallaxImage
@@ -373,10 +432,27 @@ export default function AboutPage() {
       />
 
       {/* ────────────────────────────────────────────
-          5. VALUES — 4 TiltCards
+          5. VALUES — 4 TiltCards + FluidBackground + MorphingBlob
           ──────────────────────────────────────────── */}
-      <section aria-label="Наши ценности" style={{ padding: "6rem 2rem", background: "#FEFDFB" }}>
-        <div className="container">
+      <section aria-label="Наши ценности" style={{ padding: "6rem 2rem", background: "#FEFDFB", position: "relative", overflow: "hidden" }}>
+        {/* FluidBackground behind values */}
+        <FluidBackground
+          color1="rgba(184, 149, 90, 0.06)"
+          color2="rgba(158, 182, 143, 0.04)"
+          color3="rgba(232, 196, 184, 0.04)"
+          speed={6}
+          style={{ position: "absolute", inset: 0, zIndex: 0 }}
+        />
+        {/* MorphingBlob decoration */}
+        <MorphingBlob
+          size={350}
+          color1="rgba(184,149,90,0.10)"
+          color2="rgba(232,196,184,0.06)"
+          opacity={0.4}
+          speed={12}
+          style={{ position: "absolute", bottom: "-5%", left: "-5%", zIndex: 0 }}
+        />
+        <div className="container" style={{ position: "relative", zIndex: 1 }}>
           <Reveal>
             <span className="section-label">Ценности</span>
           </Reveal>
@@ -464,8 +540,16 @@ export default function AboutPage() {
       {/* ────────────────────────────────────────────
           7. MASONRY GALLERY — 8 images
           ──────────────────────────────────────────── */}
-      <section aria-label="Фотогалерея" style={{ padding: "6rem 2rem", background: "#FEFDFB" }}>
-        <div className="container">
+      <section aria-label="Фотогалерея" style={{ padding: "6rem 2rem", background: "#FEFDFB", position: "relative", overflow: "hidden" }}>
+        <MorphingBlob
+          size={300}
+          color1="rgba(184,149,90,0.07)"
+          color2="rgba(158,182,143,0.04)"
+          opacity={0.5}
+          speed={14}
+          style={{ position: "absolute", top: "20%", right: "-5%", zIndex: 0 }}
+        />
+        <div className="container" style={{ position: "relative", zIndex: 1 }}>
           <Reveal>
             <span className="section-label">Галерея</span>
           </Reveal>
@@ -495,7 +579,7 @@ export default function AboutPage() {
       </section>
 
       {/* ────────────────────────────────────────────
-          8. CTA — Full bleed
+          8. CTA — Full bleed with ConfettiButton
           ──────────────────────────────────────────── */}
       <section aria-label="Стать клиентом" style={{ position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", inset: 0 }}>
@@ -510,8 +594,24 @@ export default function AboutPage() {
             <p style={{ color: "rgba(255,255,255,0.7)", fontSize: "1rem", lineHeight: 1.7, marginBottom: "2rem" }}>
               Оставьте заявку — и наш кейтеринг-консьерж свяжется с вами в течение 30 минут для обсуждения деталей.
             </p>
-            <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
-              <MagneticButton as="a" href="/#contact" className="btn-gold">Заказать кейтеринг</MagneticButton>
+            <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap", alignItems: "center" }}>
+              <ConfettiButton
+                onClick={() => {}}
+                style={{
+                  padding: "1rem 2.5rem",
+                  background: "linear-gradient(135deg, #B8955A, #D4B87C)",
+                  color: "#fff",
+                  fontSize: "0.75rem",
+                  fontWeight: 600,
+                  letterSpacing: "0.15em",
+                  textTransform: "uppercase",
+                  borderRadius: "100px",
+                  border: "none",
+                  cursor: "pointer",
+                }}
+              >
+                Заказать кейтеринг
+              </ConfettiButton>
               <MagneticButton as="a" href="tel:+78129195911" className="btn-outline btn-outline-light">+7 (812) 919-59-11</MagneticButton>
             </div>
           </Reveal>

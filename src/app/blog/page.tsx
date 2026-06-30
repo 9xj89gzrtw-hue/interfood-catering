@@ -10,6 +10,11 @@ import MagneticButton from "@/components/MagneticButton";
 import TiltCard from "@/components/TiltCard";
 import FloatingElements from "@/components/FloatingElements";
 import ParticleField from "@/components/ParticleField";
+import KineticText from "@/components/KineticText";
+import MorphingBlob from "@/components/MorphingBlob";
+import FluidBackground from "@/components/FluidBackground";
+import ConfettiButton from "@/components/ConfettiButton";
+import VideoBreak from "@/components/VideoBreak";
 
 /* ═══════════════════════════════════════════════════════════════
    ИНТЕРФУД КЕЙТЕРИНГ — Блог и рецепты / Blog Page  (LIGHT THEME)
@@ -291,6 +296,23 @@ function ArticleCard({ article, index }: { article: Article; index: number }) {
                   {article.readTime}
                 </span>
               </div>
+              <ConfettiButton
+                className="btn-gold"
+                style={{
+                  padding: "0.5rem 1.2rem",
+                  borderRadius: "100px",
+                  fontSize: "0.72rem",
+                  fontWeight: 600,
+                  letterSpacing: "0.05em",
+                  border: "1.5px solid var(--color-brand)",
+                  background: "transparent",
+                  color: "var(--color-brand)",
+                  cursor: "pointer",
+                }}
+                onClick={() => {}}
+              >
+                Читать далее
+              </ConfettiButton>
             </div>
           </div>
         </TiltCard>
@@ -357,6 +379,22 @@ export default function BlogPage() {
 
         <ParticleField count={30} speed={0.2} style={{ opacity: 0.6 }} />
         <FloatingElements count={6} color="var(--color-brand)" />
+        <MorphingBlob
+          size={280}
+          color1="rgba(184,149,90,0.10)"
+          color2="rgba(158,182,143,0.06)"
+          opacity={0.4}
+          speed={10}
+          style={{ position: "absolute", top: "10%", right: "6%", zIndex: 0 }}
+        />
+        <MorphingBlob
+          size={200}
+          color1="rgba(232,196,184,0.07)"
+          color2="rgba(184,149,90,0.04)"
+          opacity={0.35}
+          speed={13}
+          style={{ position: "absolute", bottom: "12%", left: "4%", zIndex: 0 }}
+        />
 
         <motion.div
           className="hero-content"
@@ -371,16 +409,22 @@ export default function BlogPage() {
               Интерфуд Блог
             </span>
 
-            <h1 style={{
-              fontFamily: "var(--font-serif)",
-              fontSize: "clamp(2.5rem, 7vw, 5rem)",
-              fontWeight: 400,
-              lineHeight: 1.05,
-              color: "#1A1A1A",
-              marginBottom: "1rem",
-            }}>
-              Блог и{" "}
-              <MorphingText
+            <KineticText
+              text="Блог и"
+              as="h1"
+              animation="fadeUp"
+              stagger={0.04}
+              duration={0.6}
+              style={{
+                fontFamily: "var(--font-serif)",
+                fontSize: "clamp(2.5rem, 7vw, 5rem)",
+                fontWeight: 400,
+                lineHeight: 1.05,
+                color: "#1A1A1A",
+                display: "inline",
+              }}
+            />{" "}
+            <MorphingText
                 words={["Рецепты", "Советы", "Идеи", "Тренды"]}
                 interval={2500}
                 style={{
@@ -388,7 +432,6 @@ export default function BlogPage() {
                   fontStyle: "italic",
                 }}
               />
-            </h1>
 
             <p style={{
               fontSize: "1.1rem",
@@ -457,6 +500,11 @@ export default function BlogPage() {
       {/* ────────────────────────────────────────────
           3. BLOG GRID
           ──────────────────────────────────────────── */}
+      <VideoBreak
+        src="https://videos.pexels.com/video-files/4763824/4763824-uhd_2560_1440_24fps.mp4"
+        title="Кулинарное вдохновение"
+        subtitle="Откройте для себя новые вкусы и идеи"
+      />
       <section aria-label="Статьи" style={{
         padding: "3rem 2rem 6rem",
         background: "var(--color-warm-white)",
@@ -541,6 +589,12 @@ export default function BlogPage() {
             <source src={VID.cooking} type="video/mp4" />
           </video>
         </div>
+        <FluidBackground
+          color1="rgba(184,149,90,0.04)"
+          color2="rgba(158,182,143,0.03)"
+          color3="rgba(232,196,184,0.02)"
+          speed={4}
+        />
         <div style={{
           position: "absolute",
           inset: 0,

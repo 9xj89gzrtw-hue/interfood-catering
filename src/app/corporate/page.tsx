@@ -13,10 +13,19 @@ import CountUp from "@/components/CountUp";
 import MagneticButton from "@/components/MagneticButton";
 import TiltCard from "@/components/TiltCard";
 import ImageReveal from "@/components/ImageReveal";
+import ParticleField from "@/components/ParticleField";
+import FloatingElements from "@/components/FloatingElements";
+import KineticText from "@/components/KineticText";
+import TextMarquee from "@/components/TextMarquee";
+import FluidBackground from "@/components/FluidBackground";
+import LottiePlaceholder from "@/components/LottiePlaceholder";
+import ConfettiButton from "@/components/ConfettiButton";
 
 /* ═══════════════════════════════════════════════════════════════
    ИНТЕРФУД КЕЙТЕРИНГ — Корпоративный кейтеринг / Corporate Page
    Light theme — warm white, cream, gold accent
+   Upgraded: ParticleField, FloatingElements, KineticText (scale),
+   3x VideoBreak, TextMarquee, FluidBackground, LottiePlaceholder, ConfettiButton
    ═══════════════════════════════════════════════════════════════ */
 
 const VID = {
@@ -72,12 +81,12 @@ const FORMATS = [
 ];
 
 const ADVANTAGES = [
-  { icon: "⏱", title: "Пунктуальность", desc: "Подача блюд по расписанию с точностью до 5 минут. Координация с вашим сценарием и таймлайном мероприятия." },
-  { icon: "📐", title: "Масштаб", desc: "От 15 до 5 000 гостей. Увеличение или сокращение заказа за 48 часов. Резерв блюд на случай доп. участников." },
-  { icon: "🔄", title: "Гибкость", desc: "Меняем меню, тайминг и формат за 24 часа. Адаптируемся под любые изменения в программе мероприятия." },
-  { icon: "👨‍🍳", title: "Собственная кухня", desc: "Готовим на собственной базе, а не собираем из полуфабрикатов. Контроль качества на каждом этапе." },
-  { icon: "🏢", title: "Единый подрядчик", desc: "Еда, бар, сервировка, персонал и логистика — одна заявка, один договор, одна команда." },
-  { icon: "📊", title: "Отчётность", desc: "Полный пакет документов: договор, счета, акты, счета-фактуры. Работаем с НДС и без. Любые формы расчёта." },
+  { icon: "⏱", title: "Пунктуальность", desc: "Подача блюд по расписанию с точностью до 5 минут. Координация с вашим сценарием и таймлайном мероприятия.", lottie: "utensils" as const },
+  { icon: "📐", title: "Масштаб", desc: "От 15 до 5 000 гостей. Увеличение или сокращение заказа за 48 часов. Резерв блюд на случай доп. участников.", lottie: "star" as const },
+  { icon: "🔄", title: "Гибкость", desc: "Меняем меню, тайминг и формат за 24 часа. Адаптируемся под любые изменения в программе мероприятия.", lottie: "glass" as const },
+  { icon: "👨‍🍳", title: "Собственная кухня", desc: "Готовим на собственной базе, а не собираем из полуфабрикатов. Контроль качества на каждом этапе.", lottie: "chef" as const },
+  { icon: "🏢", title: "Единый подрядчик", desc: "Еда, бар, сервировка, персонал и логистика — одна заявка, один договор, одна команда.", lottie: "heart" as const },
+  { icon: "📊", title: "Отчётность", desc: "Полный пакет документов: договор, счета, акты, счета-фактуры. Работаем с НДС и без. Любые формы расчёта.", lottie: "star" as const },
 ];
 
 const CASES = [
@@ -139,71 +148,6 @@ function Reveal({ children, className = "", delay = 0 }: { children: React.React
   );
 }
 
-/* ─── Icons as simple SVG components ─── */
-
-function IconClock() {
-  return (
-    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="12" r="10" />
-      <polyline points="12 6 12 12 16 14" />
-    </svg>
-  );
-}
-function IconScale() {
-  return (
-    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M21 3H3v7h18V3z" />
-      <path d="M21 14H3v7h18v-7z" />
-      <line x1="12" y1="3" x2="12" y2="21" />
-    </svg>
-  );
-}
-function IconFlex() {
-  return (
-    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <polyline points="15 3 21 3 21 9" />
-      <polyline points="9 21 3 21 3 15" />
-      <line x1="21" y1="3" x2="14" y2="10" />
-      <line x1="3" y1="21" x2="10" y2="14" />
-    </svg>
-  );
-}
-function IconChef() {
-  return (
-    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M6 13.87A4 4 0 0 1 7.41 6a5.11 5.11 0 0 1 1.05-1.54 5 5 0 0 1 7.08 0A5.11 5.11 0 0 1 16.59 6 4 4 0 0 1 18 13.87V21H6z" />
-      <line x1="6" y1="17" x2="18" y2="17" />
-    </svg>
-  );
-}
-function IconBuilding() {
-  return (
-    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="4" y="2" width="16" height="20" rx="2" ry="2" />
-      <line x1="9" y1="6" x2="9" y2="6.01" />
-      <line x1="15" y1="6" x2="15" y2="6.01" />
-      <line x1="9" y1="10" x2="9" y2="10.01" />
-      <line x1="15" y1="10" x2="15" y2="10.01" />
-      <line x1="9" y1="14" x2="9" y2="14.01" />
-      <line x1="15" y1="14" x2="15" y2="14.01" />
-      <path d="M9 18h6v4H9z" />
-    </svg>
-  );
-}
-function IconReport() {
-  return (
-    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-      <polyline points="14 2 14 8 20 8" />
-      <line x1="16" y1="13" x2="8" y2="13" />
-      <line x1="16" y1="17" x2="8" y2="17" />
-      <polyline points="10 9 9 9 8 9" />
-    </svg>
-  );
-}
-
-const ADV_ICONS = [<IconClock key="0" />, <IconScale key="1" />, <IconFlex key="2" />, <IconChef key="3" />, <IconBuilding key="4" />, <IconReport key="5" />];
-
 /* ═══════════════════════════════════════════════════════════════
    Page Component
    ═══════════════════════════════════════════════════════════════ */
@@ -218,7 +162,7 @@ export default function CorporatePage() {
       <SiteNav />
 
       {/* ═══════════════════════════════════════════════════════
-          1. HERO — Video background with parallax
+          1. HERO — Video background with ParticleField + FloatingElements + KineticText
           ═══════════════════════════════════════════════════════ */}
       <section className="hero" ref={heroRef} aria-label="Корпоративный кейтеринг">
         {/* Video BG */}
@@ -238,6 +182,11 @@ export default function CorporatePage() {
         <div className="hero-overlay" style={{
           background: "linear-gradient(to bottom, rgba(254,253,251,0.15) 0%, rgba(254,253,251,0.25) 40%, rgba(254,253,251,0.75) 80%, rgba(254,253,251,0.95) 100%)",
         }} />
+        {/* ParticleField */}
+        <ParticleField count={45} speed={0.2} />
+        {/* FloatingElements */}
+        <FloatingElements count={8} />
+        {/* Content */}
         <motion.div
           className="hero-content"
           initial={{ opacity: 0, y: 40 }}
@@ -259,9 +208,13 @@ export default function CorporatePage() {
             Корпоративный кейтеринг
           </motion.div>
 
-          <TextReveal
+          {/* KineticText with "scale" animation */}
+          <KineticText
             text="Кейтеринг для бизнеса"
             as="h1"
+            animation="scale"
+            stagger={0.04}
+            duration={0.6}
             style={{
               fontFamily: "var(--font-serif)",
               fontSize: "clamp(2.8rem, 7vw, 5.5rem)",
@@ -346,11 +299,34 @@ export default function CorporatePage() {
         </div>
       </section>
 
+      {/* ─── TextMarquee strip ─── */}
+      <section style={{ background: "#FEFDFB", padding: "1.5rem 0", borderTop: "1px solid rgba(184,149,90,0.08)", borderBottom: "1px solid rgba(184,149,90,0.08)" }}>
+        <TextMarquee
+          texts={["Конференции", "Форумы", "Тимбилдинги", "Кофе-брейки", "Бизнес-ланчи", "Презентации", "BBQ", "Фуршеты", "Корпоративы", "Семинары"]}
+          speed={25}
+          className="section-title"
+          style={{
+            fontFamily: "var(--font-serif)",
+            fontSize: "clamp(1.2rem, 2.5vw, 2rem)",
+            fontWeight: 300,
+            color: "rgba(184,149,90,0.25)",
+          }}
+        />
+      </section>
+
       {/* ═══════════════════════════════════════════════════════
-          2. FORMATS — 4 format cards
+          2. FORMATS — 4 format cards + FluidBackground
           ═══════════════════════════════════════════════════════ */}
-      <section id="formats" style={{ padding: "6rem 0", background: "var(--color-warm-white)" }} aria-label="Форматы">
-        <div className="container">
+      <section id="formats" style={{ padding: "6rem 0", background: "var(--color-warm-white)", position: "relative", overflow: "hidden" }} aria-label="Форматы">
+        {/* FluidBackground behind packages */}
+        <FluidBackground
+          color1="rgba(184, 149, 90, 0.07)"
+          color2="rgba(158, 182, 143, 0.05)"
+          color3="rgba(232, 196, 184, 0.04)"
+          speed={7}
+          style={{ position: "absolute", inset: 0, zIndex: 0 }}
+        />
+        <div className="container" style={{ position: "relative", zIndex: 1 }}>
           <Reveal>
             <span className="section-label">Форматы</span>
             <h2 className="section-title">
@@ -427,8 +403,15 @@ export default function CorporatePage() {
         </div>
       </section>
 
+      {/* ─── VideoBreak 1 ─── */}
+      <VideoBreak
+        src={VID.corporate1}
+        title="Организация конференций"
+        subtitle="Профессиональная команда для вашего бизнеса"
+      />
+
       {/* ═══════════════════════════════════════════════════════
-          3. ADVANTAGES — 6 cards with icons
+          3. ADVANTAGES — 6 cards with LottiePlaceholder icons
           ═══════════════════════════════════════════════════════ */}
       <section style={{ padding: "6rem 0", background: "var(--color-cream)" }} aria-label="Преимущества">
         <div className="container">
@@ -453,26 +436,31 @@ export default function CorporatePage() {
           >
             {ADVANTAGES.map((item, i) => (
               <motion.div key={i} variants={staggerItem}>
-                <div className="review-card" style={{ padding: "2rem", height: "100%" }}>
-                  <div style={{
-                    width: 56, height: 56, borderRadius: 16,
-                    background: "var(--color-brand-10)",
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    color: "var(--color-brand-dark)",
-                    marginBottom: "1.25rem",
-                  }}>
-                    {ADV_ICONS[i]}
+                <div className="review-card" style={{ padding: "2rem", height: "100%", display: "flex", flexDirection: "column" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "1.25rem" }}>
+                    <div style={{
+                      width: 56, height: 56, borderRadius: 16,
+                      background: "var(--color-brand-10)",
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                      flexShrink: 0,
+                    }}>
+                      <LottiePlaceholder
+                        type={item.lottie}
+                        size={36}
+                        color="#B8955A"
+                      />
+                    </div>
+                    <h3 style={{
+                      fontFamily: "var(--font-serif)",
+                      fontSize: "1.2rem", fontWeight: 400,
+                      color: "var(--color-dark)",
+                    }}>
+                      {item.title}
+                    </h3>
                   </div>
-                  <h3 style={{
-                    fontFamily: "var(--font-serif)",
-                    fontSize: "1.2rem", fontWeight: 400,
-                    color: "var(--color-dark)", marginBottom: "0.75rem",
-                  }}>
-                    {item.title}
-                  </h3>
                   <p style={{
                     fontSize: "0.88rem", lineHeight: 1.7,
-                    color: "#777",
+                    color: "#777", flex: 1,
                   }}>
                     {item.desc}
                   </p>
@@ -482,6 +470,13 @@ export default function CorporatePage() {
           </motion.div>
         </div>
       </section>
+
+      {/* ─── VideoBreak 2 ─── */}
+      <VideoBreak
+        src={VID.corporate2}
+        title="Сервировка для форумов"
+        subtitle="Быстрая подача, безупречный вид"
+      />
 
       {/* ═══════════════════════════════════════════════════════
           4. CLIENT LOGOS MARQUEE
@@ -574,6 +569,13 @@ export default function CorporatePage() {
         </div>
       </section>
 
+      {/* ─── VideoBreak 3 ─── */}
+      <VideoBreak
+        src={VID.corporate3}
+        title="Тимбилдинг на природе"
+        subtitle="BBQ и гриль под открытым небом"
+      />
+
       {/* ═══════════════════════════════════════════════════════
           6. VIDEO CAROUSEL — 4 corporate videos
           ═══════════════════════════════════════════════════════ */}
@@ -609,7 +611,7 @@ export default function CorporatePage() {
       />
 
       {/* ═══════════════════════════════════════════════════════
-          8. CTA — Full-bleed
+          8. CTA — Full-bleed with ConfettiButton
           ═══════════════════════════════════════════════════════ */}
       <section style={{ position: "relative", overflow: "hidden" }} aria-label="Заказать корпоративное питание">
         <div style={{
@@ -639,20 +641,21 @@ export default function CorporatePage() {
               }}>
                 Подготовим КП за 2 часа. Полный пакет документов, расчёт по вашему бюджету, бесплатная дегустация.
               </p>
-              <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
-                <MagneticButton as="a" href="/#contact" strength={0.2}>
-                  <span style={{
+              <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap", alignItems: "center" }}>
+                <ConfettiButton
+                  onClick={() => {}}
+                  style={{
                     display: "inline-flex", alignItems: "center", justifyContent: "center",
                     padding: "1rem 2.5rem",
                     background: "#fff", color: "var(--color-brand-dark)",
                     fontSize: "0.75rem", fontWeight: 600,
                     letterSpacing: "0.15em", textTransform: "uppercase",
-                    borderRadius: "100px", textDecoration: "none",
+                    borderRadius: "100px", border: "none", cursor: "pointer",
                     transition: "all 0.4s",
-                  }}>
-                    Запросить КП
-                  </span>
-                </MagneticButton>
+                  }}
+                >
+                  Запросить КП
+                </ConfettiButton>
                 <MagneticButton as="a" href="tel:+78129195911" strength={0.2}>
                   <span style={{
                     display: "inline-flex", alignItems: "center", justifyContent: "center",

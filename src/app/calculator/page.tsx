@@ -14,6 +14,12 @@ import SiteNav from "@/components/SiteNav";
 import TextReveal from "@/components/TextReveal";
 import MagneticButton from "@/components/MagneticButton";
 import TiltCard from "@/components/TiltCard";
+import FluidBackground from "@/components/FluidBackground";
+import KineticText from "@/components/KineticText";
+import MorphingBlob from "@/components/MorphingBlob";
+import ConfettiButton from "@/components/ConfettiButton";
+import ParticleField from "@/components/ParticleField";
+import VideoBreak from "@/components/VideoBreak";
 
 /* ═══════════════════════════════════════════════════════════════
    ИНТЕРФУД КЕЙТЕРИНГ — Калькулятор стоимости
@@ -359,7 +365,7 @@ export default function CalculatorPage() {
       {/* ─── Hero ─── */}
       <section
         className="hero"
-        style={{ minHeight: "60vh", background: "var(--color-cream)" }}
+        style={{ minHeight: "60vh", background: "var(--color-cream)", position: "relative", overflow: "hidden" }}
         aria-label="Калькулятор стоимости"
       >
         <div
@@ -380,6 +386,29 @@ export default function CalculatorPage() {
               "linear-gradient(to bottom, rgba(254,253,251,0.5) 0%, rgba(254,253,251,0.9) 70%, var(--color-warm-white) 100%)",
           }}
         />
+        <FluidBackground
+          color1="rgba(184,149,90,0.06)"
+          color2="rgba(158,182,143,0.04)"
+          color3="rgba(232,196,184,0.03)"
+          speed={6}
+        />
+        <ParticleField count={25} speed={0.2} style={{ opacity: 0.5 }} />
+        <MorphingBlob
+          size={350}
+          color1="rgba(184,149,90,0.10)"
+          color2="rgba(158,182,143,0.06)"
+          opacity={0.5}
+          speed={10}
+          style={{ position: "absolute", top: "10%", right: "5%", zIndex: 0 }}
+        />
+        <MorphingBlob
+          size={250}
+          color1="rgba(232,196,184,0.08)"
+          color2="rgba(184,149,90,0.05)"
+          opacity={0.4}
+          speed={12}
+          style={{ position: "absolute", bottom: "15%", left: "3%", zIndex: 0 }}
+        />
         <motion.div
           className="hero-content"
           style={{ position: "relative", zIndex: 2 }}
@@ -395,10 +424,13 @@ export default function CalculatorPage() {
           >
             Онлайн-расчёт
           </motion.div>
-          <TextReveal
+          <KineticText
             text="Калькулятор стоимости"
             as="h1"
+            animation="scale"
             className="hero-title"
+            stagger={0.04}
+            duration={0.6}
           />
           <motion.p
             className="hero-sub"
@@ -412,12 +444,27 @@ export default function CalculatorPage() {
         </motion.div>
       </section>
 
+      {/* ─── Video Break ─── */}
+      <VideoBreak
+        src="https://videos.pexels.com/video-files/4763824/4763824-uhd_2560_1440_24fps.mp4"
+        title="Рассчитайте ваш праздник"
+        subtitle="Точная стоимость за 60 секунд"
+      />
+
       {/* ─── Calculator Section ─── */}
       <section
         className="section section-light"
         aria-label="Калькулятор"
+        style={{ position: "relative", overflow: "hidden" }}
       >
-        <div className="container">
+        <FluidBackground
+          color1="rgba(184,149,90,0.05)"
+          color2="rgba(158,182,143,0.03)"
+          color3="rgba(232,196,184,0.02)"
+          speed={5}
+        />
+        <ParticleField count={15} speed={0.15} style={{ opacity: 0.35 }} />
+        <div className="container" style={{ position: "relative", zIndex: 2 }}>
           <Reveal>
             <span className="section-label">Настройте мероприятие</span>
             <h2 className="section-title">
@@ -1323,11 +1370,13 @@ export default function CalculatorPage() {
                 flexWrap: "wrap",
               }}
             >
-              <MagneticButton as="a" href="/#contact" strength={0.2}>
-                <span className="btn-gold" style={{ background: "#fff", color: "var(--color-brand-dark)" }}>
-                  Получить точный расчёт
-                </span>
-              </MagneticButton>
+              <ConfettiButton
+                className="btn-gold"
+                style={{ background: "#fff", color: "var(--color-brand-dark)", padding: "1rem 2.5rem", borderRadius: "100px", fontSize: "0.85rem", fontWeight: 600, letterSpacing: "0.05em", border: "none", cursor: "pointer" }}
+                onClick={() => { window.location.href = "/#contact"; }}
+              >
+                Рассчитать
+              </ConfettiButton>
               <MagneticButton as="a" href="tel:+78129195911" strength={0.2}>
                 <span className="btn-outline" style={{ borderColor: "rgba(255,255,255,0.4)", color: "#fff" }}>
                   +7 (812) 919-59-11

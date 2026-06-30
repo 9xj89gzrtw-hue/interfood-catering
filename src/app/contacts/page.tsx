@@ -14,6 +14,12 @@ import TextReveal from "@/components/TextReveal";
 import MagneticButton from "@/components/MagneticButton";
 import TiltCard from "@/components/TiltCard";
 import ImageReveal from "@/components/ImageReveal";
+import FluidBackground from "@/components/FluidBackground";
+import KineticText from "@/components/KineticText";
+import MorphingBlob from "@/components/MorphingBlob";
+import ConfettiButton from "@/components/ConfettiButton";
+import ParticleField from "@/components/ParticleField";
+import LottiePlaceholder from "@/components/LottiePlaceholder";
 
 /* ═══════════════════════════════════════════════════════════════
    ИНТЕРФУД КЕЙТЕРИНГ — Контакты / Contacts Page
@@ -278,10 +284,14 @@ export default function ContactsPage() {
           >
             Контакты
           </motion.div>
-          <h1 className="hero-title">
-            Свяжитесь<br />
-            <em>с нами</em>
-          </h1>
+          <KineticText
+            text="Свяжитесь с нами"
+            as="h1"
+            animation="fadeUp"
+            className="hero-title"
+            stagger={0.04}
+            duration={0.6}
+          />
           <p className="hero-sub">
             Мы всегда рады ответить на ваши вопросы и обсудить детали будущего
             мероприятия. Оставьте заявку или позвоните — ответим в течение 30
@@ -340,19 +350,34 @@ export default function ContactsPage() {
                   >
                     <div
                       style={{
+                        position: "relative",
                         width: 56,
                         height: 56,
-                        borderRadius: "50%",
-                        background: "var(--color-brand-10)",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
                         marginBottom: "1.25rem",
-                        fontSize: "1.5rem",
-                        color: "var(--color-brand)",
                       }}
                     >
-                      {card.icon}
+                      <div
+                        style={{
+                          width: 56,
+                          height: 56,
+                          borderRadius: "50%",
+                          background: "var(--color-brand-10)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          fontSize: "1.5rem",
+                          color: "var(--color-brand)",
+                        }}
+                      >
+                        {card.icon}
+                      </div>
+                      <div style={{ position: "absolute", top: -8, right: -12 }}>
+                        <LottiePlaceholder
+                          type={i === 0 ? "star" : i === 1 ? "utensils" : i === 2 ? "heart" : "glass"}
+                          size={28}
+                          color="#B8955A"
+                        />
+                      </div>
                     </div>
                     <div
                       style={{
@@ -418,8 +443,30 @@ export default function ContactsPage() {
       </section>
 
       {/* ═══════════════ Contact Form + Image ═══════════════ */}
-      <section className="section section-light" aria-label="Форма заявки">
-        <div className="container">
+      <section className="section section-light" aria-label="Форма заявки" style={{ position: "relative", overflow: "hidden" }}>
+        <FluidBackground
+          color1="rgba(184,149,90,0.05)"
+          color2="rgba(158,182,143,0.03)"
+          color3="rgba(232,196,184,0.02)"
+          speed={5}
+        />
+        <MorphingBlob
+          size={300}
+          color1="rgba(184,149,90,0.08)"
+          color2="rgba(158,182,143,0.05)"
+          opacity={0.4}
+          speed={10}
+          style={{ position: "absolute", top: "5%", right: "8%", zIndex: 0 }}
+        />
+        <MorphingBlob
+          size={220}
+          color1="rgba(232,196,184,0.06)"
+          color2="rgba(184,149,90,0.04)"
+          opacity={0.35}
+          speed={12}
+          style={{ position: "absolute", bottom: "10%", left: "5%", zIndex: 0 }}
+        />
+        <div className="container" style={{ position: "relative", zIndex: 2 }}>
           <Reveal>
             <span className="section-label">Оставить заявку</span>
             <TextReveal
@@ -969,14 +1016,20 @@ export default function ContactsPage() {
                         gap: "1rem",
                       }}
                     >
-                      <MagneticButton
+                      <ConfettiButton
                         className="btn-gold"
-                        as="button"
                         onClick={() => {}}
                         style={{
                           width: "100%",
                           opacity: submitting ? 0.7 : 1,
                           pointerEvents: submitting ? "none" : "auto",
+                          padding: "1rem 2rem",
+                          borderRadius: "100px",
+                          fontSize: "0.85rem",
+                          fontWeight: 600,
+                          letterSpacing: "0.05em",
+                          border: "none",
+                          cursor: "pointer",
                         }}
                       >
                         {submitting ? (
@@ -1003,7 +1056,7 @@ export default function ContactsPage() {
                         ) : (
                           "Отправить заявку"
                         )}
-                      </MagneticButton>
+                      </ConfettiButton>
                     </div>
 
                     <p
@@ -1099,8 +1152,9 @@ export default function ContactsPage() {
       </section>
 
       {/* ═══════════════ Map ═══════════════ */}
-      <section className="section-wide" aria-label="Карта">
-        <div style={{ width: "100%" }}>
+      <section className="section-wide" aria-label="Карта" style={{ position: "relative", overflow: "hidden" }}>
+        <ParticleField count={20} speed={0.15} style={{ opacity: 0.4 }} />
+        <div style={{ width: "100%", position: "relative", zIndex: 2 }}>
           <Reveal>
             <div style={{ textAlign: "center", marginBottom: "2rem" }}>
               <span className="section-label">Мы на карте</span>

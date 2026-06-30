@@ -11,6 +11,11 @@ import VideoBreak from "@/components/VideoBreak";
 import ParallaxImage from "@/components/ParallaxImage";
 import VideoCarousel from "@/components/VideoCarousel";
 import BackToTop from "@/components/BackToTop";
+import KineticText from "@/components/KineticText";
+import ParticleField from "@/components/ParticleField";
+import MorphingBlob from "@/components/MorphingBlob";
+import ConfettiButton from "@/components/ConfettiButton";
+import TextMarquee from "@/components/TextMarquee";
 
 /* ═══════════════════════════════════════════════════════════════
    ИНТЕРФУД КЕЙТЕРИНГ — Меню / Menu Page (LIGHT THEME)
@@ -399,12 +404,30 @@ export default function MenuPage() {
             playsInline
             style={{ width: "100%", height: "100%", objectFit: "cover" }}
           >
-            <source src={VID.hero} type="video/mp4" />
+            <source src="https://videos.pexels.com/video-files/4763824/4763824-uhd_2560_1440_24fps.mp4" type="video/mp4" />
           </video>
         </div>
 
         {/* Overlay */}
         <div className="hero-overlay" />
+
+        <ParticleField count={30} speed={0.2} style={{ opacity: 0.6 }} />
+        <MorphingBlob
+          size={300}
+          color1="rgba(184,149,90,0.12)"
+          color2="rgba(158,182,143,0.07)"
+          opacity={0.5}
+          speed={10}
+          style={{ position: "absolute", top: "8%", right: "5%", zIndex: 0 }}
+        />
+        <MorphingBlob
+          size={200}
+          color1="rgba(232,196,184,0.08)"
+          color2="rgba(184,149,90,0.05)"
+          opacity={0.4}
+          speed={14}
+          style={{ position: "absolute", bottom: "15%", left: "8%", zIndex: 0 }}
+        />
 
         {/* Content */}
         <div className="hero-content">
@@ -433,10 +456,13 @@ export default function MenuPage() {
             </span>
           </motion.div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.5, ease: [0.25, 1, 0.5, 1] }}
+          <KineticText
+            text="Наше меню"
+            as="h1"
+            animation="wave"
+            className="hero-title"
+            stagger={0.05}
+            duration={0.6}
             style={{
               fontFamily: "var(--font-serif)",
               fontSize: "clamp(2.5rem, 7vw, 5rem)",
@@ -445,12 +471,7 @@ export default function MenuPage() {
               lineHeight: 1.1,
               marginBottom: "1.5rem",
             }}
-          >
-            Наше{" "}
-            <em style={{ fontStyle: "italic", color: "var(--color-brand)" }}>
-              меню
-            </em>
-          </motion.h1>
+          />
 
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -520,6 +541,28 @@ export default function MenuPage() {
           </motion.div>
         </motion.div>
       </section>
+
+      {/* ─── TextMarquee with dish names ─── */}
+      <div style={{ background: "var(--color-cream)", padding: "1.2rem 0", overflow: "hidden" }}>
+        <TextMarquee
+          texts={[
+            "Канапе с лососем", "Тарталетки с крем-сыром", "Брускетта с томатами",
+            "Фуа-гра", "Ризотто с трюфелем", "Стейк рибай", "Тирамису",
+            "Чизкейк", "Макаруны", "Панна-котта", "Карпаччо из говядины",
+            "Севиче из тунца", "Крем-суп из тыквы", "Мини-бургеры",
+          ]}
+          speed={35}
+          direction="left"
+          style={{
+            fontSize: "0.85rem",
+            fontWeight: 500,
+            color: "var(--color-brand)",
+            letterSpacing: "0.1em",
+            textTransform: "uppercase",
+            opacity: 0.7,
+          }}
+        />
+      </div>
 
       {/* ═════════════════════════════════════════════
           2. CATEGORY NAVIGATION — Sticky Bar
@@ -756,6 +799,22 @@ export default function MenuPage() {
         }}
       >
         {/* Decorative circles */}
+        <MorphingBlob
+          size={350}
+          color1="rgba(255,255,255,0.06)"
+          color2="rgba(255,255,255,0.03)"
+          opacity={0.5}
+          speed={10}
+          style={{ position: "absolute", top: "-15%", right: "-8%", zIndex: 0 }}
+        />
+        <MorphingBlob
+          size={280}
+          color1="rgba(255,255,255,0.04)"
+          color2="rgba(255,255,255,0.02)"
+          opacity={0.4}
+          speed={14}
+          style={{ position: "absolute", bottom: "-20%", left: "-10%", zIndex: 0 }}
+        />
         <div
           style={{
             position: "absolute",
@@ -840,17 +899,23 @@ export default function MenuPage() {
               flexWrap: "wrap",
             }}
           >
-            <MagneticButton
-              as="a"
-              href="/#contact"
+            <ConfettiButton
               className="btn-gold"
               style={{
                 background: "#fff",
                 color: "var(--color-brand-dark)",
+                padding: "1rem 2.5rem",
+                borderRadius: "100px",
+                fontSize: "0.85rem",
+                fontWeight: 600,
+                letterSpacing: "0.05em",
+                border: "none",
+                cursor: "pointer",
               }}
+              onClick={() => { window.location.href = "/#contact"; }}
             >
               Заказать меню
-            </MagneticButton>
+            </ConfettiButton>
             <MagneticButton
               as="a"
               href="/calculator"

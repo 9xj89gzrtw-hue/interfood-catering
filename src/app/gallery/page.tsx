@@ -13,46 +13,53 @@ import SiteNav from "@/components/SiteNav";
 import TextReveal from "@/components/TextReveal";
 import MagneticButton from "@/components/MagneticButton";
 import ParallaxImage from "@/components/ParallaxImage";
+import ParticleField from "@/components/ParticleField";
+import KineticText from "@/components/KineticText";
+import FluidBackground from "@/components/FluidBackground";
+import HorizontalVideoScroll from "@/components/HorizontalVideoScroll";
+import MorphingBlob from "@/components/MorphingBlob";
+import ConfettiButton from "@/components/ConfettiButton";
+import FlipCard3D from "@/components/FlipCard3D";
 
 /* ═══════════════════════════════════════════════════════════════
-   ИНТЕРФУД КЕЙТЕРИНГ — Галерея проектов
+   ИНТЕРФУД КЕЙТЕРИНГ — Галерея проектов (Upgraded)
    Photo & Video showcase with maximum visual impact
    ═══════════════════════════════════════════════════════════════ */
 
 // ─── IMAGE DATA (30+ items) ───
 const IMAGES = [
-  { src: "https://sfile.chatglm.cn/images-ppt/a2fbd3b8447b.jpg", alt: "Фуршет", cat: "furshet", h: 420 },
-  { src: "https://sfile.chatglm.cn/images-ppt/b0afca3cdeee.jpg", alt: "Банкет", cat: "banquet", h: 380 },
-  { src: "https://sfile.chatglm.cn/images-ppt/4f51d25798b0.jpg", alt: "Кофе-брейк", cat: "coffee", h: 300 },
-  { src: "https://sfile.chatglm.cn/images-ppt/b77fad9eff9e.jpg", alt: "Свадьба", cat: "wedding", h: 360 },
-  { src: "https://sfile.chatglm.cn/images-ppt/b26bc8017630.png", alt: "Корпоратив", cat: "corporate", h: 320 },
-  { src: "https://sfile.chatglm.cn/images-ppt/99f244d30b4d.jpg", alt: "Декор", cat: "decor", h: 450 },
-  { src: "https://sfile.chatglm.cn/images-ppt/c73dc40e41d4.jpg", alt: "Бар", cat: "furshet", h: 340 },
-  { src: "https://sfile.chatglm.cn/images-ppt/cf9ca554baf6.jpg", alt: "Десерт", cat: "banquet", h: 380 },
-  { src: "https://sfile.chatglm.cn/images-ppt/2585575d2db2.jpg", alt: "Канапе", cat: "furshet", h: 300 },
-  { src: "https://sfile.chatglm.cn/images-ppt/7d1938ffb3e1.jpg", alt: "Шеф", cat: "corporate", h: 400 },
-  { src: "https://sfile.chatglm.cn/images-ppt/85381eb37c45.jpg", alt: "Розы", cat: "wedding", h: 320 },
-  { src: "https://sfile.chatglm.cn/images-ppt/31ca0a361dc4.jpg", alt: "Зал", cat: "banquet", h: 380 },
-  { src: "https://sfile.chatglm.cn/images-ppt/3a442a2e6e71.jpg", alt: "Мероприятие", cat: "corporate", h: 420 },
-  { src: "https://sfile.chatglm.cn/images-ppt/a2fbd3b8447b.jpg", alt: "Гриль-станция", cat: "furshet", h: 340 },
-  { src: "https://sfile.chatglm.cn/images-ppt/b0afca3cdeee.jpg", alt: "Сервировка", cat: "banquet", h: 440 },
-  { src: "https://sfile.chatglm.cn/images-ppt/b77fad9eff9e.jpg", alt: "Молодожёны", cat: "wedding", h: 400 },
-  { src: "https://sfile.chatglm.cn/images-ppt/4f51d25798b0.jpg", alt: "Перерыв", cat: "coffee", h: 280 },
-  { src: "https://sfile.chatglm.cn/images-ppt/99f244d30b4d.jpg", alt: "Цветы", cat: "decor", h: 380 },
-  { src: "https://sfile.chatglm.cn/images-ppt/c73dc40e41d4.jpg", alt: "Коктейли", cat: "furshet", h: 360 },
-  { src: "https://sfile.chatglm.cn/images-ppt/cf9ca554baf6.jpg", alt: "Торт", cat: "wedding", h: 340 },
-  { src: "https://sfile.chatglm.cn/images-ppt/7d1938ffb3e1.jpg", alt: "Команда", cat: "corporate", h: 380 },
-  { src: "https://sfile.chatglm.cn/images-ppt/85381eb37c45.jpg", alt: "Букет", cat: "wedding", h: 360 },
-  { src: "https://sfile.chatglm.cn/images-ppt/31ca0a361dc4.jpg", alt: "Банкетный зал", cat: "banquet", h: 420 },
-  { src: "https://sfile.chatglm.cn/images-ppt/3a442a2e6e71.jpg", alt: "Форум", cat: "corporate", h: 300 },
-  { src: "https://sfile.chatglm.cn/images-ppt/2585575d2db2.jpg", alt: "Закуски", cat: "coffee", h: 320 },
-  { src: "https://sfile.chatglm.cn/images-ppt/b26bc8017630.png", alt: "Презентация", cat: "corporate", h: 340 },
-  { src: "https://sfile.chatglm.cn/images-ppt/a2fbd3b8447b.jpg", alt: "Станция", cat: "furshet", h: 380 },
-  { src: "https://sfile.chatglm.cn/images-ppt/99f244d30b4d.jpg", alt: "Драпировка", cat: "decor", h: 400 },
-  { src: "https://sfile.chatglm.cn/images-ppt/b0afca3cdeee.jpg", alt: "Праздник", cat: "banquet", h: 360 },
-  { src: "https://sfile.chatglm.cn/images-ppt/4f51d25798b0.jpg", alt: "Кофе", cat: "coffee", h: 300 },
-  { src: "https://sfile.chatglm.cn/images-ppt/b77fad9eff9e.jpg", alt: "Церемония", cat: "wedding", h: 440 },
-  { src: "https://sfile.chatglm.cn/images-ppt/c73dc40e41d4.jpg", alt: "Шампанское", cat: "decor", h: 350 },
+  { src: "https://sfile.chatglm.cn/images-ppt/a2fbd3b8447b.jpg", alt: "Фуршет", cat: "furshet", h: 420, desc: "Изысканные фуршетные закуски, оформленные с вниманием к каждой детали" },
+  { src: "https://sfile.chatglm.cn/images-ppt/b0afca3cdeee.jpg", alt: "Банкет", cat: "banquet", h: 380, desc: "Роскошная банкетная сервировка в авторском стиле" },
+  { src: "https://sfile.chatglm.cn/images-ppt/4f51d25798b0.jpg", alt: "Кофе-брейк", cat: "coffee", h: 300, desc: "Уютная зона кофе-брейка для делового мероприятия" },
+  { src: "https://sfile.chatglm.cn/images-ppt/b77fad9eff9e.jpg", alt: "Свадьба", cat: "wedding", h: 360, desc: "Свадебный ужин под звёздным небом" },
+  { src: "https://sfile.chatglm.cn/images-ppt/b26bc8017630.png", alt: "Корпоратив", cat: "corporate", h: 320, desc: "Корпоративное мероприятие для 300 гостей" },
+  { src: "https://sfile.chatglm.cn/images-ppt/99f244d30b4d.jpg", alt: "Декор", cat: "decor", h: 450, desc: "Авторский декор в золотистых тонах" },
+  { src: "https://sfile.chatglm.cn/images-ppt/c73dc40e41d4.jpg", alt: "Бар", cat: "furshet", h: 340, desc: "Коктейльная станция с авторскими напитками" },
+  { src: "https://sfile.chatglm.cn/images-ppt/cf9ca554baf6.jpg", alt: "Десерт", cat: "banquet", h: 380, desc: "Десертный стол — визуальный центр праздника" },
+  { src: "https://sfile.chatglm.cn/images-ppt/2585575d2db2.jpg", alt: "Канапе", cat: "furshet", h: 300, desc: "Канапе ручной работы из свежих ингредиентов" },
+  { src: "https://sfile.chatglm.cn/images-ppt/7d1938ffb3e1.jpg", alt: "Шеф", cat: "corporate", h: 400, desc: "Шеф-повар за работой — живая готовка на мероприятии" },
+  { src: "https://sfile.chatglm.cn/images-ppt/85381eb37c45.jpg", alt: "Розы", cat: "wedding", h: 320, desc: "Цветочное оформление свадебного торжества" },
+  { src: "https://sfile.chatglm.cn/images-ppt/31ca0a361dc4.jpg", alt: "Зал", cat: "banquet", h: 380, desc: "Банкетный зал в классическом стиле" },
+  { src: "https://sfile.chatglm.cn/images-ppt/3a442a2e6e71.jpg", alt: "Мероприятие", cat: "corporate", h: 420, desc: "Масштабное корпоративное мероприятие" },
+  { src: "https://sfile.chatglm.cn/images-ppt/a2fbd3b8447b.jpg", alt: "Гриль-станция", cat: "furshet", h: 340, desc: "Гриль-станция с живой готовкой на открытом воздухе" },
+  { src: "https://sfile.chatglm.cn/images-ppt/b0afca3cdeee.jpg", alt: "Сервировка", cat: "banquet", h: 440, desc: "Индивидуальная сервировка по стандартам премиум-ресторанов" },
+  { src: "https://sfile.chatglm.cn/images-ppt/b77fad9eff9e.jpg", alt: "Молодожёны", cat: "wedding", h: 400, desc: "Свадебный вечер — романтика и гастрономия" },
+  { src: "https://sfile.chatglm.cn/images-ppt/4f51d25798b0.jpg", alt: "Перерыв", cat: "coffee", h: 280, desc: "Кофе-пауза — время для нетворкинга" },
+  { src: "https://sfile.chatglm.cn/images-ppt/99f244d30b4d.jpg", alt: "Цветы", cat: "decor", h: 380, desc: "Живые цветы в авторской аранжировке" },
+  { src: "https://sfile.chatglm.cn/images-ppt/c73dc40e41d4.jpg", alt: "Коктейли", cat: "furshet", h: 360, desc: "Сигнатурные коктейли для вашего мероприятия" },
+  { src: "https://sfile.chatglm.cn/images-ppt/cf9ca554baf6.jpg", alt: "Торт", cat: "wedding", h: 340, desc: "Свадебный торт ручной работы" },
+  { src: "https://sfile.chatglm.cn/images-ppt/7d1938ffb3e1.jpg", alt: "Команда", cat: "corporate", h: 380, desc: "Профессиональная команда официантов" },
+  { src: "https://sfile.chatglm.cn/images-ppt/85381eb37c45.jpg", alt: "Букет", cat: "wedding", h: 360, desc: "Свадебный букет и оформление в едином стиле" },
+  { src: "https://sfile.chatglm.cn/images-ppt/31ca0a361dc4.jpg", alt: "Банкетный зал", cat: "banquet", h: 420, desc: "Величественный банкетный зал с авторским освещением" },
+  { src: "https://sfile.chatglm.cn/images-ppt/3a442a2e6e71.jpg", alt: "Форум", cat: "corporate", h: 300, desc: "Кейтеринг для форума на 1000 участников" },
+  { src: "https://sfile.chatglm.cn/images-ppt/2585575d2db2.jpg", alt: "Закуски", cat: "coffee", h: 320, desc: "Лёгкие закуски для кофе-брейка" },
+  { src: "https://sfile.chatglm.cn/images-ppt/b26bc8017630.png", alt: "Презентация", cat: "corporate", h: 340, desc: "Кейтеринг для корпоративной презентации" },
+  { src: "https://sfile.chatglm.cn/images-ppt/a2fbd3b8447b.jpg", alt: "Станция", cat: "furshet", h: 380, desc: "Фуршетная станция с тематическим оформлением" },
+  { src: "https://sfile.chatglm.cn/images-ppt/99f244d30b4d.jpg", alt: "Драпировка", cat: "decor", h: 400, desc: "Драпировка и текстильное оформление зала" },
+  { src: "https://sfile.chatglm.cn/images-ppt/b0afca3cdeee.jpg", alt: "Праздник", cat: "banquet", h: 360, desc: "Праздничный ужин в кругу друзей и близких" },
+  { src: "https://sfile.chatglm.cn/images-ppt/4f51d25798b0.jpg", alt: "Кофе", cat: "coffee", h: 300, desc: "Ароматный зерновой кофе и свежая выпечка" },
+  { src: "https://sfile.chatglm.cn/images-ppt/b77fad9eff9e.jpg", alt: "Церемония", cat: "wedding", h: 440, desc: "Церемония и банкет в одном стиле" },
+  { src: "https://sfile.chatglm.cn/images-ppt/c73dc40e41d4.jpg", alt: "Шампанское", cat: "decor", h: 350, desc: "Шампанское и фуршет — идеальное начало вечера" },
 ];
 
 // ─── VIDEO DATA ───
@@ -63,6 +70,14 @@ const VIDEOS = [
   { src: "https://videos.pexels.com/video-files/5377703/5377703-uhd_2560_1440_25fps.mp4", title: "Обслуживание" },
   { src: "https://videos.pexels.com/video-files/3742004/3742004-uhd_2560_1440_24fps.mp4", title: "Свадьба" },
   { src: "https://videos.pexels.com/video-files/2759750/2759750-uhd_2560_1440_25fps.mp4", title: "Мероприятие" },
+];
+
+// ─── HORIZONTAL VIDEO SCROLL DATA (4 videos) ───
+const HORIZONTAL_VIDEOS = [
+  { src: "https://videos.pexels.com/video-files/3195394/3195394-uhd_2560_1440_25fps.mp4", title: "Искусство приготовления", subtitle: "Шеф-повар создаёт шедевры" },
+  { src: "https://videos.pexels.com/video-files/4761433/4761433-uhd_2560_1440_25fps.mp4", title: "Живая готовка", subtitle: "Мобильная кухня на мероприятии" },
+  { src: "https://videos.pexels.com/video-files/5377703/5377703-uhd_2560_1440_25fps.mp4", title: "Безупречный сервис", subtitle: "Профессиональная команда" },
+  { src: "https://videos.pexels.com/video-files/2759750/2759750-uhd_2560_1440_25fps.mp4", title: "Атмосфера праздника", subtitle: "Каждый момент — воспоминание" },
 ];
 
 // ─── CATEGORIES ───
@@ -274,24 +289,50 @@ export default function GalleryPage() {
       {/* ═══ NAVIGATION ═══ */}
       <SiteNav />
 
-      {/* ═══ 1. HERO ═══ */}
-      <section ref={heroRef} className="hero" style={{ minHeight: "80vh" }}>
+      {/* ═══ 1. VIDEO HERO ═══ */}
+      <section ref={heroRef} className="hero" style={{ minHeight: "85vh" }}>
         <motion.div style={{ position: "absolute", inset: 0, y: heroY }}>
-          <ParallaxImage
-            src="https://sfile.chatglm.cn/images-ppt/3a442a2e6e71.jpg"
-            alt="Галерея мероприятий Интерфуд"
-            speed={0.2}
-            style={{ position: "absolute", inset: 0 }}
-          />
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+            }}
+          >
+            <source src="https://videos.pexels.com/video-files/3195394/3195394-uhd_2560_1440_25fps.mp4" type="video/mp4" />
+          </video>
         </motion.div>
         <div
           style={{
             position: "absolute",
             inset: 0,
             zIndex: 1,
-            background: "linear-gradient(to bottom, rgba(254,253,251,0.15) 0%, rgba(254,253,251,0.1) 30%, rgba(254,253,251,0.3) 60%, rgba(254,253,251,0.9) 100%)",
+            background: "linear-gradient(to bottom, rgba(254,253,251,0.1) 0%, rgba(254,253,251,0.05) 30%, rgba(254,253,251,0.25) 60%, rgba(254,253,251,0.92) 100%)",
           }}
         />
+        {/* MorphingBlob decorations */}
+        <div style={{ position: "absolute", top: "10%", right: "-5%", zIndex: 1, pointerEvents: "none" }}>
+          <MorphingBlob
+            size={300}
+            color1="rgba(184,149,90,0.12)"
+            color2="rgba(158,182,143,0.08)"
+            opacity={0.5}
+            speed={10}
+          />
+        </div>
+        <div style={{ position: "absolute", bottom: "15%", left: "-3%", zIndex: 1, pointerEvents: "none" }}>
+          <MorphingBlob
+            size={250}
+            color1="rgba(232,196,184,0.1)"
+            color2="rgba(184,149,90,0.06)"
+            opacity={0.4}
+            speed={12}
+          />
+        </div>
         <motion.div
           className="hero-content"
           style={{ zIndex: 2, opacity: heroOpacity }}
@@ -304,9 +345,13 @@ export default function GalleryPage() {
           >
             Портфолио
           </motion.div>
-          <TextReveal
+          {/* KineticText with "wave" animation */}
+          <KineticText
             text="Галерея проектов"
             as="h1"
+            animation="wave"
+            stagger={0.035}
+            duration={0.6}
             className="section-title"
             style={{
               fontFamily: "var(--font-serif)",
@@ -314,6 +359,7 @@ export default function GalleryPage() {
               fontWeight: 400,
               lineHeight: 1.1,
               color: "var(--color-dark)",
+              justifyContent: "center",
             }}
           />
           <motion.p
@@ -338,9 +384,16 @@ export default function GalleryPage() {
         </motion.div>
       </section>
 
-      {/* ═══ 2. CATEGORY FILTER ═══ */}
-      <section id="gallery" style={{ background: "var(--color-warm-white)", padding: "3rem 2rem 0" }}>
-        <div className="container">
+      {/* ═══ 2. CATEGORY FILTER — with FluidBackground ═══ */}
+      <section id="gallery" style={{ background: "var(--color-warm-white)", padding: "3rem 2rem 0", position: "relative", overflow: "hidden" }}>
+        <FluidBackground
+          color1="rgba(184, 149, 90, 0.06)"
+          color2="rgba(158, 182, 143, 0.04)"
+          color3="rgba(232, 196, 184, 0.03)"
+          speed={5}
+          style={{ opacity: 0.7 }}
+        />
+        <div className="container" style={{ position: "relative", zIndex: 2 }}>
           <Reveal>
             <div
               style={{
@@ -380,9 +433,16 @@ export default function GalleryPage() {
         </div>
       </section>
 
-      {/* ═══ 3. MASONRY GALLERY ═══ */}
-      <section style={{ background: "var(--color-warm-white)", padding: "2rem 2rem 6rem" }}>
-        <div className="container">
+      {/* ═══ 3. MASONRY GALLERY — with ParticleField + FlipCard3D ═══ */}
+      <section style={{ background: "var(--color-warm-white)", padding: "2rem 2rem 6rem", position: "relative", overflow: "hidden" }}>
+        {/* ParticleField behind gallery grid */}
+        <ParticleField
+          count={30}
+          color="184,149,90"
+          speed={0.2}
+          style={{ zIndex: 0 }}
+        />
+        <div className="container" style={{ position: "relative", zIndex: 2 }}>
           <AnimatePresence mode="wait">
             <motion.div
               key={activeCategory}
@@ -404,70 +464,108 @@ export default function GalleryPage() {
                     delay: i * 0.04,
                     ease: [0.25, 1, 0.5, 1],
                   }}
-                  onClick={() => openLightbox(i)}
                   layout
                 >
-                  <img
-                    src={img.src}
-                    alt={img.alt}
-                    loading="lazy"
-                    style={{ height: img.h, objectFit: "cover" }}
+                  {/* FlipCard3D — front: photo, back: description */}
+                  <FlipCard3D
+                    flipDirection="horizontal"
+                    style={{ height: img.h }}
+                    front={
+                      <div style={{ position: "relative", width: "100%", height: "100%" }}>
+                        <img
+                          src={img.src}
+                          alt={img.alt}
+                          loading="lazy"
+                          style={{ height: img.h, width: "100%", objectFit: "cover" }}
+                        />
+                        {/* Category Tag */}
+                        <span
+                          style={{
+                            position: "absolute",
+                            bottom: "1rem",
+                            left: "1rem",
+                            zIndex: 2,
+                            padding: "0.3rem 0.9rem",
+                            background: "rgba(255,255,255,0.15)",
+                            backdropFilter: "blur(10px)",
+                            borderRadius: 100,
+                            fontSize: "0.65rem",
+                            fontWeight: 600,
+                            letterSpacing: "0.1em",
+                            textTransform: "uppercase",
+                            color: "#fff",
+                          }}
+                        >
+                          {CAT_LABELS[img.cat] || img.cat}
+                        </span>
+                      </div>
+                    }
+                    back={
+                      <div
+                        style={{
+                          height: img.h,
+                          display: "flex",
+                          flexDirection: "column",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          padding: "2rem",
+                          background: "var(--color-warm-white)",
+                          textAlign: "center",
+                        }}
+                      >
+                        <div
+                          style={{
+                            fontSize: "0.6rem",
+                            letterSpacing: "0.2em",
+                            textTransform: "uppercase",
+                            color: "var(--color-brand)",
+                            fontWeight: 600,
+                            marginBottom: "0.8rem",
+                          }}
+                        >
+                          {CAT_LABELS[img.cat] || img.cat}
+                        </div>
+                        <h3
+                          style={{
+                            fontFamily: "var(--font-serif)",
+                            fontSize: "1.4rem",
+                            fontWeight: 400,
+                            color: "var(--color-dark)",
+                            marginBottom: "0.8rem",
+                          }}
+                        >
+                          {img.alt}
+                        </h3>
+                        <p
+                          style={{
+                            fontSize: "0.85rem",
+                            lineHeight: 1.7,
+                            color: "#666",
+                            marginBottom: "1.2rem",
+                          }}
+                        >
+                          {img.desc}
+                        </p>
+                        <ConfettiButton
+                          style={{
+                            padding: "0.6rem 1.5rem",
+                            background: "var(--color-brand)",
+                            color: "#fff",
+                            border: "none",
+                            borderRadius: 100,
+                            fontFamily: "var(--font-sans)",
+                            fontSize: "0.65rem",
+                            fontWeight: 600,
+                            letterSpacing: "0.15em",
+                            textTransform: "uppercase" as const,
+                            cursor: "pointer",
+                          }}
+                        >
+                          Подробнее
+                        </ConfettiButton>
+                      </div>
+                    }
                   />
-                  {/* Category Tag */}
-                  <span
-                    style={{
-                      position: "absolute",
-                      bottom: "1rem",
-                      left: "1rem",
-                      zIndex: 2,
-                      padding: "0.3rem 0.9rem",
-                      background: "rgba(255,255,255,0.15)",
-                      backdropFilter: "blur(10px)",
-                      borderRadius: 100,
-                      fontSize: "0.65rem",
-                      fontWeight: 600,
-                      letterSpacing: "0.1em",
-                      textTransform: "uppercase",
-                      color: "#fff",
-                      opacity: 0,
-                      transform: "translateY(8px)",
-                      transition: "all 0.4s cubic-bezier(0.25,1,0.5,1)",
-                    }}
-                    onMouseEnter={(e) => {
-                      (e.target as HTMLElement).style.opacity = "1";
-                      (e.target as HTMLElement).style.transform = "translateY(0)";
-                    }}
-                  />
-                  {/* Hover overlay with category label */}
-                  <div
-                    style={{
-                      position: "absolute",
-                      inset: 0,
-                      zIndex: 1,
-                      display: "flex",
-                      alignItems: "flex-end",
-                      padding: "1.25rem",
-                      opacity: 0,
-                      transition: "opacity 0.4s",
-                    }}
-                    className="gallery-item-overlay"
-                  >
-                    <span
-                      style={{
-                        padding: "0.35rem 1rem",
-                        background: "rgba(255,255,255,0.2)",
-                        backdropFilter: "blur(12px)",
-                        borderRadius: 100,
-                        fontSize: "0.65rem",
-                        fontWeight: 600,
-                        letterSpacing: "0.12em",
-                        textTransform: "uppercase",
-                        color: "#fff",
-                      }}
-                    >
-                      {CAT_LABELS[img.cat] || img.cat}
-                    </span>
-                  </div>
                 </motion.div>
               ))}
             </motion.div>
@@ -475,7 +573,13 @@ export default function GalleryPage() {
         </div>
       </section>
 
-      {/* ═══ 4. VIDEO GALLERY ═══ */}
+      {/* ═══ 4. HORIZONTAL VIDEO SCROLL ═══ */}
+      <HorizontalVideoScroll
+        videos={HORIZONTAL_VIDEOS}
+        style={{ background: "var(--color-cream)" }}
+      />
+
+      {/* ═══ 5. VIDEO GALLERY ═══ */}
       <section style={{ background: "var(--color-cream)", padding: "6rem 0" }} className="section-wide">
         <div className="container" style={{ textAlign: "center" }}>
           <Reveal>
@@ -506,9 +610,19 @@ export default function GalleryPage() {
         </div>
       </section>
 
-      {/* ═══ 5. 360° VIRTUAL TOUR CTA ═══ */}
-      <section style={{ background: "var(--color-warm-white)", padding: "6rem 0" }} className="section-wide">
-        <div className="container">
+      {/* ═══ 6. 360° VIRTUAL TOUR CTA — with MorphingBlob ═══ */}
+      <section style={{ background: "var(--color-warm-white)", padding: "6rem 0", position: "relative", overflow: "hidden" }} className="section-wide">
+        {/* MorphingBlob decoration */}
+        <div style={{ position: "absolute", top: "-10%", right: "-5%", pointerEvents: "none" }}>
+          <MorphingBlob
+            size={350}
+            color1="rgba(184,149,90,0.1)"
+            color2="rgba(158,182,143,0.06)"
+            opacity={0.5}
+            speed={9}
+          />
+        </div>
+        <div className="container" style={{ position: "relative", zIndex: 2 }}>
           <div className="tour-grid">
             <Reveal>
               <div>
@@ -568,12 +682,22 @@ export default function GalleryPage() {
         </div>
       </section>
 
-      {/* ═══ 6. CTA SECTION ═══ */}
+      {/* ═══ 7. CTA SECTION — with ConfettiButton ═══ */}
       <section
         className="section-brand section-wide"
-        style={{ padding: "6rem 0" }}
+        style={{ padding: "6rem 0", position: "relative", overflow: "hidden" }}
       >
-        <div className="container" style={{ textAlign: "center" }}>
+        {/* MorphingBlob decorations */}
+        <div style={{ position: "absolute", bottom: "-15%", left: "-8%", pointerEvents: "none" }}>
+          <MorphingBlob
+            size={400}
+            color1="rgba(255,255,255,0.05)"
+            color2="rgba(184,149,90,0.08)"
+            opacity={0.3}
+            speed={10}
+          />
+        </div>
+        <div className="container" style={{ textAlign: "center", position: "relative", zIndex: 2 }}>
           <Reveal>
             <div
               className="section-label"
@@ -598,17 +722,24 @@ export default function GalleryPage() {
           </Reveal>
           <Reveal delay={0.3}>
             <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
-              <MagneticButton
-                as="a"
-                href="/contacts"
-                className="btn-gold"
+              <ConfettiButton
                 style={{
+                  padding: "1rem 2.5rem",
                   background: "#fff",
                   color: "var(--color-brand-dark)",
+                  border: "none",
+                  borderRadius: 100,
+                  fontFamily: "var(--font-sans)",
+                  fontSize: "0.75rem",
+                  fontWeight: 600,
+                  letterSpacing: "0.15em",
+                  textTransform: "uppercase" as const,
+                  cursor: "pointer",
+                  transition: "all 0.3s",
                 }}
               >
-                Заказать мероприятие
-              </MagneticButton>
+                Заказать кейтеринг
+              </ConfettiButton>
               <MagneticButton
                 as="a"
                 href="tel:+78129195911"
@@ -621,7 +752,7 @@ export default function GalleryPage() {
         </div>
       </section>
 
-      {/* ═══ 7. FOOTER ═══ */}
+      {/* ═══ 8. FOOTER ═══ */}
       <footer className="footer">
         <div style={{ maxWidth: 1320, margin: "0 auto" }}>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "2rem", marginBottom: "3rem" }}>
