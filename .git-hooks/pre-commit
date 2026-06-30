@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# ============================================================
+# PRE-COMMIT HOOK — auto-push after every commit
+# Ensures no work stays only local
+# ============================================================
+PROJECT_DIR="/home/z/my-project"
+BRANCH=$(git branch --show-current 2>/dev/null || echo "main")
+
+# Push in background to not block the commit
+(git push origin "$BRANCH" 2>/dev/null && echo "[autosave] Pushed to GitHub" >> "$PROJECT_DIR/.autosave.log" || echo "[autosave] Push failed" >> "$PROJECT_DIR/.autosave.log") &
+
+exit 0  # Always allow the commit

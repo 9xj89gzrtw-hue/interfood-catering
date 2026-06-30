@@ -1,0 +1,10 @@
+2a7b92f feat: Add /team with 3D holographic cards, /faq, /privacy, /terms pages; Resend email API; WebGL shader BG, morphing blobs, glitch text, spotlight cards, typewriter, scroll-driven video; All 17 routes verified HTTP 200
+fe34b85 61502b74-7390-48e0-be17-fda8ce0ff79b
+391a51a feat: v31 Ultimate Animation Showcase — mobile-first, max video & animation
+da314ad c130a724-8cb2-43d5-948c-857589b8ff1e
+5fd34bd feat: Interfood Catering v30 - Light theme, max animation & video showcase
+b5c80de v31: Escape key lightbox, BackToTop with Lenis, bug fixes, polish
+d6c3778 v30: World-class upgrade - SmoothScroll, CustomCursor, ScrollProgress, PageLoader, ClientMarquee, VideoBreak, ParallaxImage, SplitText, BackToTop, Yandex.Metrica, /about, /reviews, bug fixes
+3018ca7 afeb7fcc-dae5-4ab7-902e-41284f741238
+a6299b6 0ccf9150-0443-4b1a-8dfd-b8856b36b7c5
+471739c 178aef74-432f-4ced-8f4c-8769d1141cd6
