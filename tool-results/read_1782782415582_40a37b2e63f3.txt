@@ -1,0 +1,837 @@
+     1→"use client";
+     2→
+     3→import { useState, useRef, useEffect } from "react";
+     4→import Link from "next/link";
+     5→import {
+     6→  motion,
+     7→  AnimatePresence,
+     8→  useScroll,
+     9→  useTransform,
+    10→  useInView,
+    11→} from "framer-motion";
+    12→import SiteNav from "@/components/SiteNav";
+    13→import TextReveal from "@/components/TextReveal";
+    14→import MagneticButton from "@/components/MagneticButton";
+    15→import ParallaxImage from "@/components/ParallaxImage";
+    16→
+    17→/* ═══════════════════════════════════════════════════════════════
+    18→   ИНТЕРФУД КЕЙТЕРИНГ — Галерея проектов
+    19→   Photo & Video showcase with maximum visual impact
+    20→   ═══════════════════════════════════════════════════════════════ */
+    21→
+    22→// ─── IMAGE DATA (30+ items) ───
+    23→const IMAGES = [
+    24→  { src: "https://sfile.chatglm.cn/images-ppt/a2fbd3b8447b.jpg", alt: "Фуршет", cat: "furshet", h: 420 },
+    25→  { src: "https://sfile.chatglm.cn/images-ppt/b0afca3cdeee.jpg", alt: "Банкет", cat: "banquet", h: 380 },
+    26→  { src: "https://sfile.chatglm.cn/images-ppt/4f51d25798b0.jpg", alt: "Кофе-брейк", cat: "coffee", h: 300 },
+    27→  { src: "https://sfile.chatglm.cn/images-ppt/b77fad9eff9e.jpg", alt: "Свадьба", cat: "wedding", h: 360 },
+    28→  { src: "https://sfile.chatglm.cn/images-ppt/b26bc8017630.png", alt: "Корпоратив", cat: "corporate", h: 320 },
+    29→  { src: "https://sfile.chatglm.cn/images-ppt/99f244d30b4d.jpg", alt: "Декор", cat: "decor", h: 450 },
+    30→  { src: "https://sfile.chatglm.cn/images-ppt/c73dc40e41d4.jpg", alt: "Бар", cat: "furshet", h: 340 },
+    31→  { src: "https://sfile.chatglm.cn/images-ppt/cf9ca554baf6.jpg", alt: "Десерт", cat: "banquet", h: 380 },
+    32→  { src: "https://sfile.chatglm.cn/images-ppt/2585575d2db2.jpg", alt: "Канапе", cat: "furshet", h: 300 },
+    33→  { src: "https://sfile.chatglm.cn/images-ppt/7d1938ffb3e1.jpg", alt: "Шеф", cat: "corporate", h: 400 },
+    34→  { src: "https://sfile.chatglm.cn/images-ppt/85381eb37c45.jpg", alt: "Розы", cat: "wedding", h: 320 },
+    35→  { src: "https://sfile.chatglm.cn/images-ppt/31ca0a361dc4.jpg", alt: "Зал", cat: "banquet", h: 380 },
+    36→  { src: "https://sfile.chatglm.cn/images-ppt/3a442a2e6e71.jpg", alt: "Мероприятие", cat: "corporate", h: 420 },
+    37→  { src: "https://sfile.chatglm.cn/images-ppt/a2fbd3b8447b.jpg", alt: "Гриль-станция", cat: "furshet", h: 340 },
+    38→  { src: "https://sfile.chatglm.cn/images-ppt/b0afca3cdeee.jpg", alt: "Сервировка", cat: "banquet", h: 440 },
+    39→  { src: "https://sfile.chatglm.cn/images-ppt/b77fad9eff9e.jpg", alt: "Молодожёны", cat: "wedding", h: 400 },
+    40→  { src: "https://sfile.chatglm.cn/images-ppt/4f51d25798b0.jpg", alt: "Перерыв", cat: "coffee", h: 280 },
+    41→  { src: "https://sfile.chatglm.cn/images-ppt/99f244d30b4d.jpg", alt: "Цветы", cat: "decor", h: 380 },
+    42→  { src: "https://sfile.chatglm.cn/images-ppt/c73dc40e41d4.jpg", alt: "Коктейли", cat: "furshet", h: 360 },
+    43→  { src: "https://sfile.chatglm.cn/images-ppt/cf9ca554baf6.jpg", alt: "Торт", cat: "wedding", h: 340 },
+    44→  { src: "https://sfile.chatglm.cn/images-ppt/7d1938ffb3e1.jpg", alt: "Команда", cat: "corporate", h: 380 },
+    45→  { src: "https://sfile.chatglm.cn/images-ppt/85381eb37c45.jpg", alt: "Букет", cat: "wedding", h: 360 },
+    46→  { src: "https://sfile.chatglm.cn/images-ppt/31ca0a361dc4.jpg", alt: "Банкетный зал", cat: "banquet", h: 420 },
+    47→  { src: "https://sfile.chatglm.cn/images-ppt/3a442a2e6e71.jpg", alt: "Форум", cat: "corporate", h: 300 },
+    48→  { src: "https://sfile.chatglm.cn/images-ppt/2585575d2db2.jpg", alt: "Закуски", cat: "coffee", h: 320 },
+    49→  { src: "https://sfile.chatglm.cn/images-ppt/b26bc8017630.png", alt: "Презентация", cat: "corporate", h: 340 },
+    50→  { src: "https://sfile.chatglm.cn/images-ppt/a2fbd3b8447b.jpg", alt: "Станция", cat: "furshet", h: 380 },
+    51→  { src: "https://sfile.chatglm.cn/images-ppt/99f244d30b4d.jpg", alt: "Драпировка", cat: "decor", h: 400 },
+    52→  { src: "https://sfile.chatglm.cn/images-ppt/b0afca3cdeee.jpg", alt: "Праздник", cat: "banquet", h: 360 },
+    53→  { src: "https://sfile.chatglm.cn/images-ppt/4f51d25798b0.jpg", alt: "Кофе", cat: "coffee", h: 300 },
+    54→  { src: "https://sfile.chatglm.cn/images-ppt/b77fad9eff9e.jpg", alt: "Церемония", cat: "wedding", h: 440 },
+    55→  { src: "https://sfile.chatglm.cn/images-ppt/c73dc40e41d4.jpg", alt: "Шампанское", cat: "decor", h: 350 },
+    56→];
+    57→
+    58→// ─── VIDEO DATA ───
+    59→const VIDEOS = [
+    60→  { src: "https://videos.pexels.com/video-files/3195394/3195394-uhd_2560_1440_25fps.mp4", title: "Наша кухня" },
+    61→  { src: "https://videos.pexels.com/video-files/4761433/4761433-uhd_2560_1440_25fps.mp4", title: "Приготовление" },
+    62→  { src: "https://videos.pexels.com/video-files/4763824/4763824-uhd_2560_1440_24fps.mp4", title: "Сервировка" },
+    63→  { src: "https://videos.pexels.com/video-files/5377703/5377703-uhd_2560_1440_25fps.mp4", title: "Обслуживание" },
+    64→  { src: "https://videos.pexels.com/video-files/3742004/3742004-uhd_2560_1440_24fps.mp4", title: "Свадьба" },
+    65→  { src: "https://videos.pexels.com/video-files/2759750/2759750-uhd_2560_1440_25fps.mp4", title: "Мероприятие" },
+    66→];
+    67→
+    68→// ─── CATEGORIES ───
+    69→type Category = "all" | "wedding" | "corporate" | "furshet" | "banquet" | "coffee" | "decor";
+    70→
+    71→const CATEGORIES: { key: Category; label: string }[] = [
+    72→  { key: "all", label: "Все" },
+    73→  { key: "wedding", label: "Свадьбы" },
+    74→  { key: "corporate", label: "Корпоратив" },
+    75→  { key: "furshet", label: "Фуршет" },
+    76→  { key: "banquet", label: "Банкет" },
+    77→  { key: "coffee", label: "Кофе-брейк" },
+    78→  { key: "decor", label: "Декор" },
+    79→];
+    80→
+    81→const CAT_LABELS: Record<string, string> = {
+    82→  wedding: "Свадьба",
+    83→  corporate: "Корпоратив",
+    84→  furshet: "Фуршет",
+    85→  banquet: "Банкет",
+    86→  coffee: "Кофе-брейк",
+    87→  decor: "Декор",
+    88→};
+    89→
+    90→// ─── Reveal helper ───
+    91→function Reveal({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
+    92→  const ref = useRef<HTMLDivElement>(null);
+    93→  const inView = useInView(ref, { once: true, margin: "-60px" });
+    94→  return (
+    95→    <motion.div
+    96→      ref={ref}
+    97→      className={className}
+    98→      initial={{ opacity: 0, y: 40 }}
+    99→      animate={inView ? { opacity: 1, y: 0 } : {}}
+   100→      transition={{ duration: 0.8, delay, ease: [0.25, 1, 0.5, 1] }}
+   101→    >
+   102→      {children}
+   103→    </motion.div>
+   104→  );
+   105→}
+   106→
+   107→// ─── Video Card Component ───
+   108→function VideoCard({ video, index }: { video: typeof VIDEOS[0]; index: number }) {
+   109→  const videoRef = useRef<HTMLVideoElement>(null);
+   110→  const [isPlaying, setIsPlaying] = useState(false);
+   111→
+   112→  const handleMouseEnter = () => {
+   113→    if (videoRef.current) {
+   114→      videoRef.current.play().catch(() => {});
+   115→      setIsPlaying(true);
+   116→    }
+   117→  };
+   118→
+   119→  const handleMouseLeave = () => {
+   120→    if (videoRef.current) {
+   121→      videoRef.current.pause();
+   122→      videoRef.current.currentTime = 0;
+   123→      setIsPlaying(false);
+   124→    }
+   125→  };
+   126→
+   127→  return (
+   128→    <Reveal delay={index * 0.1}>
+   129→      <div
+   130→        className="video-card"
+   131→        onMouseEnter={handleMouseEnter}
+   132→        onMouseLeave={handleMouseLeave}
+   133→        style={{
+   134→          position: "relative",
+   135→          borderRadius: 20,
+   136→          overflow: "hidden",
+   137→          cursor: "pointer",
+   138→          aspectRatio: "16/9",
+   139→          background: "var(--color-cream-dark)",
+   140→        }}
+   141→      >
+   142→        <video
+   143→          ref={videoRef}
+   144→          src={video.src}
+   145→          muted
+   146→          loop
+   147→          playsInline
+   148→          preload="metadata"
+   149→          style={{
+   150→            width: "100%",
+   151→            height: "100%",
+   152→            objectFit: "cover",
+   153→            transition: "transform 0.7s cubic-bezier(0.25,1,0.5,1)",
+   154→            transform: isPlaying ? "scale(1.05)" : "scale(1)",
+   155→          }}
+   156→        />
+   157→        {/* Overlay */}
+   158→        <div
+   159→          style={{
+   160→            position: "absolute",
+   161→            inset: 0,
+   162→            background: isPlaying
+   163→              ? "linear-gradient(to top, rgba(26,26,26,0.4) 0%, transparent 60%)"
+   164→              : "linear-gradient(to top, rgba(26,26,26,0.6) 0%, rgba(26,26,26,0.1) 50%, transparent 100%)",
+   165→            transition: "background 0.5s",
+   166→            display: "flex",
+   167→            flexDirection: "column",
+   168→            justifyContent: "flex-end",
+   169→            padding: "1.5rem",
+   170→          }}
+   171→        >
+   172→          {/* Play icon */}
+   173→          {!isPlaying && (
+   174→            <motion.div
+   175→              initial={{ scale: 0.8, opacity: 0 }}
+   176→              animate={{ scale: 1, opacity: 1 }}
+   177→              style={{
+   178→                position: "absolute",
+   179→                top: "50%",
+   180→                left: "50%",
+   181→                transform: "translate(-50%, -50%)",
+   182→                width: 64,
+   183→                height: 64,
+   184→                borderRadius: "50%",
+   185→                background: "rgba(255,255,255,0.2)",
+   186→                backdropFilter: "blur(10px)",
+   187→                display: "flex",
+   188→                alignItems: "center",
+   189→                justifyContent: "center",
+   190→                border: "1.5px solid rgba(255,255,255,0.3)",
+   191→              }}
+   192→            >
+   193→              <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+   194→                <path d="M8 5v14l11-7z" />
+   195→              </svg>
+   196→            </motion.div>
+   197→          )}
+   198→          <span
+   199→            style={{
+   200→              color: "#fff",
+   201→              fontFamily: "var(--font-serif)",
+   202→              fontSize: "1.3rem",
+   203→              fontWeight: 400,
+   204→            }}
+   205→          >
+   206→            {video.title}
+   207→          </span>
+   208→        </div>
+   209→      </div>
+   210→    </Reveal>
+   211→  );
+   212→}
+   213→
+   214→// ═══════════════════════════════════════════════════════════════
+   215→//   MAIN PAGE COMPONENT
+   216→// ═══════════════════════════════════════════════════════════════
+   217→export default function GalleryPage() {
+   218→  const [activeCategory, setActiveCategory] = useState<Category>("all");
+   219→  const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null);
+   220→  const [lightboxIndex, setLightboxIndex] = useState(0);
+   221→
+   222→  // Filter images
+   223→  const filteredImages = activeCategory === "all"
+   224→    ? IMAGES
+   225→    : IMAGES.filter((img) => img.cat === activeCategory);
+   226→
+   227→  // Lightbox navigation
+   228→  const openLightbox = (index: number) => {
+   229→    setLightboxIndex(index);
+   230→    setLightbox({ src: filteredImages[index].src, alt: filteredImages[index].alt });
+   231→  };
+   232→
+   233→  const closeLightbox = () => {
+   234→    setLightbox(null);
+   235→  };
+   236→
+   237→  const navigateLightbox = (direction: "prev" | "next") => {
+   238→    const newIndex = direction === "next"
+   239→      ? (lightboxIndex + 1) % filteredImages.length
+   240→      : (lightboxIndex - 1 + filteredImages.length) % filteredImages.length;
+   241→    setLightboxIndex(newIndex);
+   242→    setLightbox({ src: filteredImages[newIndex].src, alt: filteredImages[newIndex].alt });
+   243→  };
+   244→
+   245→  // Keyboard navigation for lightbox
+   246→  useEffect(() => {
+   247→    const handleKeyDown = (e: KeyboardEvent) => {
+   248→      if (!lightbox) return;
+   249→      if (e.key === "Escape") closeLightbox();
+   250→      if (e.key === "ArrowRight") navigateLightbox("next");
+   251→      if (e.key === "ArrowLeft") navigateLightbox("prev");
+   252→    };
+   253→    window.addEventListener("keydown", handleKeyDown);
+   254→    return () => window.removeEventListener("keydown", handleKeyDown);
+   255→  });
+   256→
+   257→  // Lock body scroll when lightbox is open
+   258→  useEffect(() => {
+   259→    document.body.style.overflow = lightbox ? "hidden" : "";
+   260→    return () => { document.body.style.overflow = ""; };
+   261→  }, [lightbox]);
+   262→
+   263→  // Hero parallax
+   264→  const heroRef = useRef<HTMLDivElement>(null);
+   265→  const { scrollYProgress: heroScroll } = useScroll({
+   266→    target: heroRef,
+   267→    offset: ["start start", "end start"],
+   268→  });
+   269→  const heroY = useTransform(heroScroll, [0, 1], ["0%", "30%"]);
+   270→  const heroOpacity = useTransform(heroScroll, [0, 0.8], [1, 0]);
+   271→
+   272→  return (
+   273→    <main>
+   274→      {/* ═══ NAVIGATION ═══ */}
+   275→      <SiteNav />
+   276→
+   277→      {/* ═══ 1. HERO ═══ */}
+   278→      <section ref={heroRef} className="hero" style={{ minHeight: "80vh" }}>
+   279→        <motion.div style={{ position: "absolute", inset: 0, y: heroY }}>
+   280→          <ParallaxImage
+   281→            src="https://sfile.chatglm.cn/images-ppt/3a442a2e6e71.jpg"
+   282→            alt="Галерея мероприятий Интерфуд"
+   283→            speed={0.2}
+   284→            style={{ position: "absolute", inset: 0 }}
+   285→          />
+   286→        </motion.div>
+   287→        <div
+   288→          style={{
+   289→            position: "absolute",
+   290→            inset: 0,
+   291→            zIndex: 1,
+   292→            background: "linear-gradient(to bottom, rgba(254,253,251,0.15) 0%, rgba(254,253,251,0.1) 30%, rgba(254,253,251,0.3) 60%, rgba(254,253,251,0.9) 100%)",
+   293→          }}
+   294→        />
+   295→        <motion.div
+   296→          className="hero-content"
+   297→          style={{ zIndex: 2, opacity: heroOpacity }}
+   298→        >
+   299→          <motion.div
+   300→            className="section-label"
+   301→            initial={{ opacity: 0, y: 20 }}
+   302→            animate={{ opacity: 1, y: 0 }}
+   303→            transition={{ duration: 0.8, delay: 0.2 }}
+   304→          >
+   305→            Портфолио
+   306→          </motion.div>
+   307→          <TextReveal
+   308→            text="Галерея проектов"
+   309→            as="h1"
+   310→            className="section-title"
+   311→            style={{
+   312→              fontFamily: "var(--font-serif)",
+   313→              fontSize: "clamp(2.5rem, 7vw, 5rem)",
+   314→              fontWeight: 400,
+   315→              lineHeight: 1.1,
+   316→              color: "var(--color-dark)",
+   317→            }}
+   318→          />
+   319→          <motion.p
+   320→            className="section-subtitle"
+   321→            style={{ margin: "1.5rem auto 0", maxWidth: 500 }}
+   322→            initial={{ opacity: 0, y: 20 }}
+   323→            animate={{ opacity: 1, y: 0 }}
+   324→            transition={{ duration: 0.8, delay: 0.6 }}
+   325→          >
+   326→            Более 3&nbsp;500 мероприятий за 18&nbsp;лет работы. Каждый проект — уникальная история, запечатлённая в деталях.
+   327→          </motion.p>
+   328→          <motion.div
+   329→            initial={{ opacity: 0, y: 20 }}
+   330→            animate={{ opacity: 1, y: 0 }}
+   331→            transition={{ duration: 0.8, delay: 0.9 }}
+   332→            style={{ marginTop: "2rem" }}
+   333→          >
+   334→            <MagneticButton as="a" href="#gallery" className="btn-gold">
+   335→              Смотреть галерею
+   336→            </MagneticButton>
+   337→          </motion.div>
+   338→        </motion.div>
+   339→      </section>
+   340→
+   341→      {/* ═══ 2. CATEGORY FILTER ═══ */}
+   342→      <section id="gallery" style={{ background: "var(--color-warm-white)", padding: "3rem 2rem 0" }}>
+   343→        <div className="container">
+   344→          <Reveal>
+   345→            <div
+   346→              style={{
+   347→                display: "flex",
+   348→                flexWrap: "wrap",
+   349→                gap: "0.75rem",
+   350→                justifyContent: "center",
+   351→              }}
+   352→            >
+   353→              {CATEGORIES.map((cat) => (
+   354→                <motion.button
+   355→                  key={cat.key}
+   356→                  onClick={() => setActiveCategory(cat.key)}
+   357→                  whileHover={{ y: -2 }}
+   358→                  whileTap={{ scale: 0.97 }}
+   359→                  style={{
+   360→                    padding: "0.7rem 1.8rem",
+   361→                    border: "1.5px solid",
+   362→                    borderColor: activeCategory === cat.key ? "var(--color-brand)" : "var(--color-cream-darker)",
+   363→                    borderRadius: 100,
+   364→                    background: activeCategory === cat.key ? "var(--color-brand)" : "transparent",
+   365→                    color: activeCategory === cat.key ? "#fff" : "var(--color-dark)",
+   366→                    fontFamily: "var(--font-sans)",
+   367→                    fontSize: "0.75rem",
+   368→                    fontWeight: 600,
+   369→                    letterSpacing: "0.1em",
+   370→                    textTransform: "uppercase" as const,
+   371→                    cursor: "pointer",
+   372→                    transition: "all 0.4s cubic-bezier(0.25,1,0.5,1)",
+   373→                  }}
+   374→                >
+   375→                  {cat.label}
+   376→                </motion.button>
+   377→              ))}
+   378→            </div>
+   379→          </Reveal>
+   380→        </div>
+   381→      </section>
+   382→
+   383→      {/* ═══ 3. MASONRY GALLERY ═══ */}
+   384→      <section style={{ background: "var(--color-warm-white)", padding: "2rem 2rem 6rem" }}>
+   385→        <div className="container">
+   386→          <AnimatePresence mode="wait">
+   387→            <motion.div
+   388→              key={activeCategory}
+   389→              className="gallery-masonry"
+   390→              initial={{ opacity: 0 }}
+   391→              animate={{ opacity: 1 }}
+   392→              exit={{ opacity: 0 }}
+   393→              transition={{ duration: 0.4 }}
+   394→            >
+   395→              {filteredImages.map((img, i) => (
+   396→                <motion.div
+   397→                  key={`${img.src}-${img.alt}-${i}`}
+   398→                  className="gallery-item"
+   399→                  initial={{ opacity: 0, y: 30 }}
+   400→                  animate={{ opacity: 1, y: 0 }}
+   401→                  exit={{ opacity: 0, scale: 0.9 }}
+   402→                  transition={{
+   403→                    duration: 0.5,
+   404→                    delay: i * 0.04,
+   405→                    ease: [0.25, 1, 0.5, 1],
+   406→                  }}
+   407→                  onClick={() => openLightbox(i)}
+   408→                  layout
+   409→                >
+   410→                  <img
+   411→                    src={img.src}
+   412→                    alt={img.alt}
+   413→                    loading="lazy"
+   414→                    style={{ height: img.h, objectFit: "cover" }}
+   415→                  />
+   416→                  {/* Category Tag */}
+   417→                  <span
+   418→                    style={{
+   419→                      position: "absolute",
+   420→                      bottom: "1rem",
+   421→                      left: "1rem",
+   422→                      zIndex: 2,
+   423→                      padding: "0.3rem 0.9rem",
+   424→                      background: "rgba(255,255,255,0.15)",
+   425→                      backdropFilter: "blur(10px)",
+   426→                      borderRadius: 100,
+   427→                      fontSize: "0.65rem",
+   428→                      fontWeight: 600,
+   429→                      letterSpacing: "0.1em",
+   430→                      textTransform: "uppercase",
+   431→                      color: "#fff",
+   432→                      opacity: 0,
+   433→                      transform: "translateY(8px)",
+   434→                      transition: "all 0.4s cubic-bezier(0.25,1,0.5,1)",
+   435→                    }}
+   436→                    onMouseEnter={(e) => {
+   437→                      (e.target as HTMLElement).style.opacity = "1";
+   438→                      (e.target as HTMLElement).style.transform = "translateY(0)";
+   439→                    }}
+   440→                  />
+   441→                  {/* Hover overlay with category label */}
+   442→                  <div
+   443→                    style={{
+   444→                      position: "absolute",
+   445→                      inset: 0,
+   446→                      zIndex: 1,
+   447→                      display: "flex",
+   448→                      alignItems: "flex-end",
+   449→                      padding: "1.25rem",
+   450→                      opacity: 0,
+   451→                      transition: "opacity 0.4s",
+   452→                    }}
+   453→                    className="gallery-item-overlay"
+   454→                  >
+   455→                    <span
+   456→                      style={{
+   457→                        padding: "0.35rem 1rem",
+   458→                        background: "rgba(255,255,255,0.2)",
+   459→                        backdropFilter: "blur(12px)",
+   460→                        borderRadius: 100,
+   461→                        fontSize: "0.65rem",
+   462→                        fontWeight: 600,
+   463→                        letterSpacing: "0.12em",
+   464→                        textTransform: "uppercase",
+   465→                        color: "#fff",
+   466→                      }}
+   467→                    >
+   468→                      {CAT_LABELS[img.cat] || img.cat}
+   469→                    </span>
+   470→                  </div>
+   471→                </motion.div>
+   472→              ))}
+   473→            </motion.div>
+   474→          </AnimatePresence>
+   475→        </div>
+   476→      </section>
+   477→
+   478→      {/* ═══ 4. VIDEO GALLERY ═══ */}
+   479→      <section style={{ background: "var(--color-cream)", padding: "6rem 0" }} className="section-wide">
+   480→        <div className="container" style={{ textAlign: "center" }}>
+   481→          <Reveal>
+   482→            <div className="section-label">Видео</div>
+   483→          </Reveal>
+   484→          <TextReveal
+   485→            text="За кулисами каждого события"
+   486→            as="h2"
+   487→            className="section-title"
+   488→            style={{ marginBottom: "1rem" }}
+   489→          />
+   490→          <Reveal delay={0.2}>
+   491→            <p className="section-subtitle" style={{ margin: "0 auto 3rem" }}>
+   492→              Погрузитесь в атмосферу наших мероприятий — от приготовления блюд до финального аккорда праздника.
+   493→            </p>
+   494→          </Reveal>
+   495→          <div
+   496→            style={{
+   497→              display: "grid",
+   498→              gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))",
+   499→              gap: "1.5rem",
+   500→            }}
+   501→          >
+   502→            {VIDEOS.map((video, i) => (
+   503→              <VideoCard key={video.title} video={video} index={i} />
+   504→            ))}
+   505→          </div>
+   506→        </div>
+   507→      </section>
+   508→
+   509→      {/* ═══ 5. 360° VIRTUAL TOUR CTA ═══ */}
+   510→      <section style={{ background: "var(--color-warm-white)", padding: "6rem 0" }} className="section-wide">
+   511→        <div className="container">
+   512→          <div className="tour-grid">
+   513→            <Reveal>
+   514→              <div>
+   515→                <div className="section-label">Виртуальный тур</div>
+   516→                <TextReveal
+   517→                  text="Прогулка по вашим будущим впечатлениям"
+   518→                  as="h2"
+   519→                  className="section-title"
+   520→                />
+   521→                <p className="section-subtitle" style={{ marginTop: "1rem", marginBottom: "2rem" }}>
+   522→                  Совершите 360° виртуальный тур по нашим площадкам и банкетным залам. Оцените атмосферу, декор и возможности пространства ещё до первой встречи.
+   523→                </p>
+   524→                <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+   525→                  <MagneticButton as="a" href="/contacts" className="btn-gold">
+   526→                    Начать тур
+   527→                  </MagneticButton>
+   528→                  <MagneticButton as="a" href="/contacts" className="btn-outline">
+   529→                    Записаться на viewing
+   530→                  </MagneticButton>
+   531→                </div>
+   532→              </div>
+   533→            </Reveal>
+   534→            <Reveal delay={0.2}>
+   535→              <div style={{ position: "relative" }}>
+   536→                <ParallaxImage
+   537→                  src="https://sfile.chatglm.cn/images-ppt/31ca0a361dc4.jpg"
+   538→                  alt="Виртуальный тур по залам"
+   539→                  speed={0.15}
+   540→                  style={{ borderRadius: 24, height: 480 }}
+   541→                  overlay
+   542→                  overlayOpacity={0.15}
+   543→                />
+   544→                {/* 360 badge */}
+   545→                <motion.div
+   546→                  initial={{ scale: 0, rotate: -180 }}
+   547→                  animate={{ scale: 1, rotate: 0 }}
+   548→                  transition={{ delay: 0.8, duration: 0.6, type: "spring", stiffness: 200 }}
+   549→                  style={{
+   550→                    position: "absolute",
+   551→                    top: "1.5rem",
+   552→                    right: "1.5rem",
+   553→                    width: 72,
+   554→                    height: 72,
+   555→                    borderRadius: "50%",
+   556→                    background: "var(--color-brand)",
+   557→                    display: "flex",
+   558→                    alignItems: "center",
+   559→                    justifyContent: "center",
+   560→                    boxShadow: "0 8px 30px rgba(184,149,90,0.4)",
+   561→                  }}
+   562→                >
+   563→                  <span style={{ color: "#fff", fontSize: "0.7rem", fontWeight: 700, letterSpacing: "0.05em" }}>360°</span>
+   564→                </motion.div>
+   565→              </div>
+   566→            </Reveal>
+   567→          </div>
+   568→        </div>
+   569→      </section>
+   570→
+   571→      {/* ═══ 6. CTA SECTION ═══ */}
+   572→      <section
+   573→        className="section-brand section-wide"
+   574→        style={{ padding: "6rem 0" }}
+   575→      >
+   576→        <div className="container" style={{ textAlign: "center" }}>
+   577→          <Reveal>
+   578→            <div
+   579→              className="section-label"
+   580→              style={{ color: "rgba(255,255,255,0.6)" }}
+   581→            >
+   582→              Готовы начать?
+   583→            </div>
+   584→          </Reveal>
+   585→          <TextReveal
+   586→            text="Закажите мероприятие мечты"
+   587→            as="h2"
+   588→            className="section-title section-title-light"
+   589→            style={{ marginBottom: "1rem" }}
+   590→          />
+   591→          <Reveal delay={0.2}>
+   592→            <p
+   593→              className="section-subtitle section-subtitle-light"
+   594→              style={{ margin: "0 auto 2.5rem", maxWidth: 500 }}
+   595→            >
+   596→              Обсудим ваш проект, подберём площадку и составим меню. Первая консультация и дегустация — бесплатно.
+   597→            </p>
+   598→          </Reveal>
+   599→          <Reveal delay={0.3}>
+   600→            <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
+   601→              <MagneticButton
+   602→                as="a"
+   603→                href="/contacts"
+   604→                className="btn-gold"
+   605→                style={{
+   606→                  background: "#fff",
+   607→                  color: "var(--color-brand-dark)",
+   608→                }}
+   609→              >
+   610→                Заказать мероприятие
+   611→              </MagneticButton>
+   612→              <MagneticButton
+   613→                as="a"
+   614→                href="tel:+78129195911"
+   615→                className="btn-outline btn-outline-light"
+   616→              >
+   617→                +7 (812) 919-59-11
+   618→              </MagneticButton>
+   619→            </div>
+   620→          </Reveal>
+   621→        </div>
+   622→      </section>
+   623→
+   624→      {/* ═══ 7. FOOTER ═══ */}
+   625→      <footer className="footer">
+   626→        <div style={{ maxWidth: 1320, margin: "0 auto" }}>
+   627→          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "2rem", marginBottom: "3rem" }}>
+   628→            <div>
+   629→              <div style={{ fontFamily: "var(--font-serif)", fontSize: "1.5rem", fontWeight: 400, color: "#fff", letterSpacing: "0.15em", marginBottom: "1rem" }}>
+   630→                ИНТЕРФУД
+   631→              </div>
+   632→              <p style={{ fontSize: "0.85rem", lineHeight: 1.7, color: "rgba(255,255,255,0.5)" }}>
+   633→                Ресторан выездного обслуживания. Кейтеринг для свадеб, корпоративов и закрытых мероприятий с 2007 года.
+   634→              </p>
+   635→            </div>
+   636→            <div>
+   637→              <div style={{ fontSize: "0.7rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--color-brand-light)", marginBottom: "1rem" }}>
+   638→                Услуги
+   639→              </div>
+   640→              <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+   641→                {[
+   642→                  { label: "Фуршет", href: "/services#furshet" },
+   643→                  { label: "Банкет", href: "/services#banquet" },
+   644→                  { label: "Кофе-брейк", href: "/services#coffee" },
+   645→                  { label: "Свадебный", href: "/wedding" },
+   646→                  { label: "Корпоративный", href: "/corporate" },
+   647→                ].map((link) => (
+   648→                  <Link key={link.href} href={link.href} style={{ fontSize: "0.85rem" }}>{link.label}</Link>
+   649→                ))}
+   650→              </div>
+   651→            </div>
+   652→            <div>
+   653→              <div style={{ fontSize: "0.7rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--color-brand-light)", marginBottom: "1rem" }}>
+   654→                Компания
+   655→              </div>
+   656→              <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+   657→                {[
+   658→                  { label: "О нас", href: "/about" },
+   659→                  { label: "Меню", href: "/menu" },
+   660→                  { label: "Галерея", href: "/gallery" },
+   661→                  { label: "Отзывы", href: "/reviews" },
+   662→                  { label: "Калькулятор", href: "/calculator" },
+   663→                  { label: "Контакты", href: "/contacts" },
+   664→                ].map((link) => (
+   665→                  <Link key={link.href} href={link.href} style={{ fontSize: "0.85rem" }}>{link.label}</Link>
+   666→                ))}
+   667→              </div>
+   668→            </div>
+   669→            <div>
+   670→              <div style={{ fontSize: "0.7rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--color-brand-light)", marginBottom: "1rem" }}>
+   671→                Контакты
+   672→              </div>
+   673→              <a href="tel:+78129195911" style={{ fontSize: "0.95rem", fontWeight: 500, display: "block", marginBottom: "0.5rem" }}>
+   674→                +7 (812) 919-59-11
+   675→              </a>
+   676→              <a href="mailto:info@interfood-catering.ru" style={{ fontSize: "0.85rem", display: "block", marginBottom: "0.5rem" }}>
+   677→                info@interfood-catering.ru
+   678→              </a>
+   679→              <p style={{ fontSize: "0.85rem", color: "rgba(255,255,255,0.5)" }}>
+   680→                Санкт-Петербург<br />Невский проспект, 100
+   681→              </p>
+   682→            </div>
+   683→          </div>
+   684→          <div style={{
+   685→            borderTop: "1px solid rgba(255,255,255,0.08)",
+   686→            paddingTop: "1.5rem",
+   687→            display: "flex",
+   688→            justifyContent: "space-between",
+   689→            alignItems: "center",
+   690→            flexWrap: "wrap",
+   691→            gap: "1rem",
+   692→          }}>
+   693→            <span style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.3)" }}>
+   694→              © 2007–2026 Интерфуд Кейтеринг
+   695→            </span>
+   696→            <span style={{ fontSize: "0.7rem", color: "rgba(255,255,255,0.2)" }}>
+   697→              Дизайн и разработка — Интерфуд Digital
+   698→            </span>
+   699→          </div>
+   700→        </div>
+   701→      </footer>
+   702→
+   703→      {/* ═══ WhatsApp Float ═══ */}
+   704→      <a
+   705→        href="https://wa.me/78129195911?text=Здравствуйте!%20Хочу%20заказать%20кейтеринг"
+   706→        target="_blank"
+   707→        rel="noopener noreferrer"
+   708→        className="wa-float"
+   709→        aria-label="Написать в WhatsApp"
+   710→      >
+   711→        <svg width="28" height="28" fill="#fff" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+   712→      </a>
+   713→
+   714→      {/* ═══ LIGHTBOX ═══ */}
+   715→      <AnimatePresence>
+   716→        {lightbox && (
+   717→          <motion.div
+   718→            className="lightbox"
+   719→            initial={{ opacity: 0 }}
+   720→            animate={{ opacity: 1 }}
+   721→            exit={{ opacity: 0 }}
+   722→            transition={{ duration: 0.3 }}
+   723→            onClick={closeLightbox}
+   724→          >
+   725→            <motion.img
+   726→              key={lightbox.src}
+   727→              src={lightbox.src}
+   728→              alt={lightbox.alt}
+   729→              initial={{ scale: 0.85, opacity: 0 }}
+   730→              animate={{ scale: 1, opacity: 1 }}
+   731→              exit={{ scale: 0.85, opacity: 0 }}
+   732→              transition={{ duration: 0.4, ease: [0.25, 1, 0.5, 1] }}
+   733→              onClick={(e) => e.stopPropagation()}
+   734→            />
+   735→            {/* Close button */}
+   736→            <button
+   737→              onClick={closeLightbox}
+   738→              aria-label="Закрыть"
+   739→              style={{
+   740→                position: "absolute",
+   741→                top: "2rem",
+   742→                right: "2rem",
+   743→                background: "rgba(0,0,0,0.08)",
+   744→                border: "none",
+   745→                color: "var(--color-dark)",
+   746→                width: 48,
+   747→                height: 48,
+   748→                borderRadius: "50%",
+   749→                fontSize: "1.5rem",
+   750→                cursor: "pointer",
+   751→                display: "flex",
+   752→                alignItems: "center",
+   753→                justifyContent: "center",
+   754→                transition: "background 0.3s",
+   755→              }}
+   756→            >
+   757→              ✕
+   758→            </button>
+   759→            {/* Navigation arrows */}
+   760→            {filteredImages.length > 1 && (
+   761→              <>
+   762→                <button
+   763→                  onClick={(e) => { e.stopPropagation(); navigateLightbox("prev"); }}
+   764→                  aria-label="Предыдущее фото"
+   765→                  style={{
+   766→                    position: "absolute",
+   767→                    left: "2rem",
+   768→                    top: "50%",
+   769→                    transform: "translateY(-50%)",
+   770→                    background: "rgba(0,0,0,0.08)",
+   771→                    border: "none",
+   772→                    color: "var(--color-dark)",
+   773→                    width: 48,
+   774→                    height: 48,
+   775→                    borderRadius: "50%",
+   776→                    fontSize: "1.2rem",
+   777→                    cursor: "pointer",
+   778→                    display: "flex",
+   779→                    alignItems: "center",
+   780→                    justifyContent: "center",
+   781→                    transition: "background 0.3s",
+   782→                  }}
+   783→                >
+   784→                  ‹
+   785→                </button>
+   786→                <button
+   787→                  onClick={(e) => { e.stopPropagation(); navigateLightbox("next"); }}
+   788→                  aria-label="Следующее фото"
+   789→                  style={{
+   790→                    position: "absolute",
+   791→                    right: "2rem",
+   792→                    top: "50%",
+   793→                    transform: "translateY(-50%)",
+   794→                    background: "rgba(0,0,0,0.08)",
+   795→                    border: "none",
+   796→                    color: "var(--color-dark)",
+   797→                    width: 48,
+   798→                    height: 48,
+   799→                    borderRadius: "50%",
+   800→                    fontSize: "1.2rem",
+   801→                    cursor: "pointer",
+   802→                    display: "flex",
+   803→                    alignItems: "center",
+   804→                    justifyContent: "center",
+   805→                    transition: "background 0.3s",
+   806→                  }}
+   807→                >
+   808→                  ›
+   809→                </button>
+   810→              </>
+   811→            )}
+   812→            {/* Image counter */}
+   813→            <div
+   814→              style={{
+   815→                position: "absolute",
+   816→                bottom: "2rem",
+   817→                left: "50%",
+   818→                transform: "translateX(-50%)",
+   819→                padding: "0.5rem 1.2rem",
+   820→                background: "rgba(0,0,0,0.06)",
+   821→                borderRadius: 100,
+   822→                fontSize: "0.75rem",
+   823→                fontWeight: 500,
+   824→                color: "var(--color-dark)",
+   825→                letterSpacing: "0.05em",
+   826→              }}
+   827→            >
+   828→              {lightboxIndex + 1} / {filteredImages.length}
+   829→            </div>
+   830→          </motion.div>
+   831→        )}
+   832→      </AnimatePresence>
+   833→
+   834→    </main>
+   835→  );
+   836→}
+   837→

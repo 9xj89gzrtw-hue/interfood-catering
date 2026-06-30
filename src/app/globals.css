@@ -675,3 +675,204 @@ img { max-width: 100%; height: auto; }
     gap: 2rem;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   MOBILE-FIRST ENHANCEMENTS — v31
+   Maximum video & animation on mobile devices
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ─── Mobile Video Optimization ─── */
+@media (max-width: 768px) {
+  .hero {
+    min-height: 100svh !important;
+    max-height: 100svh !important;
+  }
+  .hero-video video {
+    object-position: center 30%;
+  }
+  .hero-content {
+    padding: 1rem !important;
+  }
+  .hero-content h1 {
+    font-size: 2.2rem !important;
+  }
+  /* Make grid columns stack on mobile */
+  [style*="grid-template-columns: 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+  /* Full-width video on mobile */
+  .video-carousel {
+    border-radius: 12px !important;
+  }
+  /* Touch-friendly buttons */
+  .btn-gold, .btn-outline, .btn-outline-light {
+    padding: 0.9rem 2rem !important;
+    font-size: 0.8rem !important;
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  /* Touch-friendly nav links */
+  .nav-cta {
+    padding: 0.5rem 1.2rem !important;
+  }
+  /* Larger touch targets for gallery items */
+  .gallery-item {
+    border-radius: 12px !important;
+  }
+  .gallery-item img {
+    height: auto !important;
+    min-height: 200px;
+  }
+  /* Stats bar - 2 columns on very small screens */
+  .trust-bar {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.5rem !important;
+  }
+  /* Card adjustments */
+  .card {
+    border-radius: 16px !important;
+  }
+  /* Review cards */
+  .review-card {
+    border-radius: 16px !important;
+    padding: 1.5rem !important;
+  }
+  /* Lightbox close button */
+  .lightbox button {
+    top: 1rem !important;
+    right: 1rem !important;
+    width: 40px !important;
+    height: 40px !important;
+  }
+  /* WhatsApp float - smaller on mobile */
+  .wa-float {
+    width: 50px !important;
+    height: 50px !important;
+    bottom: 1.5rem !important;
+    left: 1.5rem !important;
+  }
+  /* Footer padding */
+  .footer {
+    padding: 3rem 1.5rem 2rem !important;
+  }
+  /* Parallax sections */
+  [style*="height: 40vh"], [style*="height:60vh"] {
+    height: 30vh !important;
+    min-height: 200px !important;
+  }
+  /* Mobile menu improvements */
+  .mobile-menu a {
+    font-size: 1.5rem !important;
+  }
+  /* Section padding */
+  .section, section {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  /* Container padding */
+  .container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  /* Image compare touch improvements */
+  .image-compare-handle {
+    width: 50px !important;
+    height: 50px !important;
+  }
+}
+
+/* ─── Mobile Performance: Lazy load videos ─── */
+@media (max-width: 768px) and (prefers-reduced-motion: reduce) {
+  .hero-video video,
+  video {
+    display: none !important;
+  }
+  .hero-video {
+    background: var(--color-cream) !important;
+  }
+}
+
+/* ─── Smooth mobile scrolling ─── */
+@supports (-webkit-overflow-scrolling: touch) {
+  .gallery-masonry {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* ─── Safe area insets for notched phones ─── */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .footer {
+    padding-bottom: calc(2rem + env(safe-area-inset-bottom));
+  }
+  .wa-float {
+    bottom: calc(1.5rem + env(safe-area-inset-bottom));
+  }
+}
+
+/* ─── Blog grid responsive ─── */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+@media (max-width: 1024px) {
+  .blog-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .blog-grid { grid-template-columns: 1fr; }
+}
+
+/* ─── Venue grid responsive ─── */
+.venue-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+@media (max-width: 768px) {
+  .venue-grid { grid-template-columns: 1fr; }
+}
+
+/* ─── About page grids ─── */
+.about-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1.5rem;
+  text-align: center;
+}
+.about-story-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+.about-values-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+.about-team-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+.about-timeline-row {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+@media (max-width: 1024px) {
+  .about-stats-grid { grid-template-columns: repeat(3, 1fr); }
+  .about-values-grid { grid-template-columns: repeat(2, 1fr); }
+  .about-team-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .about-stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .about-story-grid { grid-template-columns: 1fr; }
+  .about-values-grid { grid-template-columns: 1fr; }
+  .about-team-grid { grid-template-columns: 1fr; }
+  .about-timeline-row { grid-template-columns: 1fr; }
+}
