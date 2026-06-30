@@ -1,5 +1,0 @@
-879db27 infra: complete anti-loss system — autosave, watcher, snapshot, restore, emergency, safe-push, guide
-8d1b144 infra: anti-loss system — autosave, watcher, snapshot, restore, emergency recovery scripts
-ba0d387 autosave(pages): 20260630_045653 — 145 file(s)
-2a7b92f feat: Add /team with 3D holographic cards, /faq, /privacy, /terms pages; Resend email API; WebGL shader BG, morphing blobs, glitch text, spotlight cards, typewriter, scroll-driven video; All 17 routes verified HTTP 200
-fe34b85 61502b74-7390-48e0-be17-fda8ce0ff79b
