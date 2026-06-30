@@ -1,0 +1,1087 @@
+     1→"use client";
+     2→
+     3→import { useState, useEffect, useRef, useCallback } from "react";
+     4→import Link from "next/link";
+     5→import {
+     6→  motion, AnimatePresence,
+     7→  useScroll, useTransform, useInView,
+     8→} from "framer-motion";
+     9→import ClientMarquee from "@/components/ClientMarquee";
+    10→import ParallaxImage from "@/components/ParallaxImage";
+    11→import VideoBreak from "@/components/VideoBreak";
+    12→import SplitText from "@/components/SplitText";
+    13→
+    14→/* ═══════════════════════════════════════════════════════════════
+    15→   ИНТЕРФУД КЕЙТЕРИНГ — Ultra-Premium Dark-First Website v28
+    16→   Inspired by: mig-vkusa.ru + maxevents.pro
+    17→   Company: Интерфуд / Nilov Catering, Санкт-Петербург, 2007
+    18→   ═══════════════════════════════════════════════════════════════ */
+    19→
+    20→// ─── IMAGE URLS (from web search — OSS-hosted, stable) ───
+    21→
+    22→const IMG = {
+    23→  hero: "https://sfile.chatglm.cn/images-ppt/3a442a2e6e71.jpg",
+    24→  about: "https://sfile.chatglm.cn/images-ppt/7d1938ffb3e1.jpg",
+    25→  furshet: "https://sfile.chatglm.cn/images-ppt/a2fbd3b8447b.jpg",
+    26→  banquet: "https://sfile.chatglm.cn/images-ppt/b0afca3cdeee.jpg",
+    27→  coffee: "https://sfile.chatglm.cn/images-ppt/4f51d25798b0.jpg",
+    28→  wedding: "https://sfile.chatglm.cn/images-ppt/b77fad9eff9e.jpg",
+    29→  corporate: "https://sfile.chatglm.cn/images-ppt/b26bc8017630.png",
+    30→  decor: "https://sfile.chatglm.cn/images-ppt/99f244d30b4d.jpg",
+    31→  bar: "https://sfile.chatglm.cn/images-ppt/c73dc40e41d4.jpg",
+    32→  dessert: "https://sfile.chatglm.cn/images-ppt/cf9ca554baf6.jpg",
+    33→  canape: "https://sfile.chatglm.cn/images-ppt/2585575d2db2.jpg",
+    34→  chef: "https://sfile.chatglm.cn/images-ppt/7d1938ffb3e1.jpg",
+    35→  roses: "https://sfile.chatglm.cn/images-ppt/85381eb37c45.jpg",
+    36→  hall: "https://sfile.chatglm.cn/images-ppt/31ca0a361dc4.jpg",
+    37→  appetizers: "https://sfile.chatglm.cn/images-ppt/bccee1eeb146.jpg",
+    38→  tartlets: "https://sfile.chatglm.cn/images-ppt/736bf356163e.jpg",
+    39→  elegant: "https://sfile.chatglm.cn/images-ppt/5a35d18ab4c2.jpg",
+    40→  tiered: "https://sfile.chatglm.cn/images-ppt/f3e4e2fc7fb8.jpg",
+    41→  goldSkewers: "https://sfile.chatglm.cn/images-ppt/42140e1e738d.jpg",
+    42→  staff: "https://sfile.chatglm.cn/images-ppt/73b69f6f313f.jpg",
+    43→  cocktail: "https://sfile.chatglm.cn/images-ppt/970cc7881d1a.jpg",
+    44→  buffet: "https://sfile.chatglm.cn/images-ppt/75acfcbd3339.jpg",
+    45→  colorful: "https://sfile.chatglm.cn/images-ppt/ba950f3cedb1.jpg",
+    46→  festive: "https://sfile.chatglm.cn/images-ppt/7b99135d2e61.jpg",
+    47→};
+    48→
+    49→// ─── DATA ───
+    50→
+    51→const NAV_ITEMS = [
+    52→  { label: "Меню", href: "/menu" },
+    53→  { label: "Свадьбы", href: "/wedding" },
+    54→  { label: "Корпоратив", href: "/corporate" },
+    55→  { label: "О нас", href: "/about" },
+    56→  { label: "Отзывы", href: "/reviews" },
+    57→  { label: "Галерея", href: "#gallery" },
+    58→  { label: "Контакты", href: "#contact" },
+    59→];
+    60→
+    61→const SERVICES = [
+    62→  {
+    63→    name: "Фуршет",
+    64→    tag: "от 30 гостей",
+    65→    price: "от 2 450 ₽/чел",
+    66→    desc: "Элегантные канапе, тарталетки и закуски для свободного общения. Идеально для приёмов, презентаций и арт-вечеринок.",
+    67→    img: IMG.furshet,
+    68→  },
+    69→  {
+    70→    name: "Банкет",
+    71→    tag: "от 20 гостей",
+    72→    price: "от 4 470 ₽/чел",
+    73→    desc: "Многокурсный ужин с авторскими блюдами шеф-повара Дмитрия Нилова, винным сопровождением и безупречной подачей.",
+    74→    img: IMG.banquet,
+    75→  },
+    76→  {
+    77→    name: "Кофе-брейк",
+    78→    tag: "от 15 гостей",
+    79→    price: "от 950 ₽/чел",
+    80→    desc: "Кофе, чай, выпечка и лёгкие закуски для деловых встреч, конференций и семинаров.",
+    81→    img: IMG.coffee,
+    82→  },
+    83→  {
+    84→    name: "Свадебный кейтеринг",
+    85→    tag: "от 50 гостей",
+    86→    price: "от 6 500 ₽/чел",
+    87→    desc: "Безупречная организация вашего идеального дня. Индивидуальное меню, декор и сервис на высшем уровне.",
+    88→    img: IMG.wedding,
+    89→  },
+    90→  {
+    91→    name: "Корпоратив",
+    92→    tag: "от 30 гостей",
+    93→    price: "от 3 500 ₽/чел",
+    94→    desc: "Профессиональное питание для мероприятий любого масштаба. Документы, акты, круглосуточный менеджер.",
+    95→    img: IMG.corporate,
+    96→  },
+    97→  {
+    98→    name: "Доставка еды",
+    99→    tag: "от 650 ₽/блюдо",
+   100→    price: "Мобильный фуршет",
+   101→    desc: "Готовые блюда с доставкой. Канапе, брускетты, круассаны и многое другое — без сервиса, только еда.",
+   102→    img: IMG.canape,
+   103→  },
+   104→];
+   105→
+   106→const PRICES: Record<string, number> = {
+   107→  furshet: 2450, banquet: 4470, coffee: 950,
+   108→  wedding: 6500, corporate: 3500, delivery: 650,
+   109→};
+   110→
+   111→const EXTRAS = [
+   112→  { id: "alcohol", label: "Барная стойка и алкоголь", price: 2500 },
+   113→  { id: "decor", label: "Декор и флористика", price: 1800 },
+   114→  { id: "service", label: "Обслуживающий персонал", price: 1200 },
+   115→  { id: "photo", label: "Фото- и видеосъёмка", price: 1500 },
+   116→  { id: "music", label: "Музыкальное сопровождение", price: 900 },
+   117→  { id: "champagne", label: "Шампанская пирамида", price: 1500 },
+   118→];
+   119→
+   120→const MENU_TABS = [
+   121→  {
+   122→    key: "furshet",
+   123→    label: "Фуршет",
+   124→    items: [
+   125→      { name: "Канапе с красной икрой", weight: "30г", price: "165 ₽" },
+   126→      { name: "Тарталетка с сыром и орехом", weight: "35г", price: "120 ₽" },
+   127→      { name: "Брускетта с томатами и базиликом", weight: "40г", price: "145 ₽" },
+   128→      { name: "Мини-рулет из сёмги", weight: "35г", price: "190 ₽" },
+   129→      { name: "Шашлычок из креветки", weight: "30г", price: "210 ₽" },
+   130→      { name: "Канапе с ростбифом и хреном", weight: "35г", price: "175 ₽" },
+   131→      { name: "Мини-эклер с паштетом", weight: "25г", price: "130 ₽" },
+   132→      { name: "Корзиночка с грибами", weight: "30г", price: "110 ₽" },
+   133→    ],
+   134→  },
+   135→  {
+   136→    key: "banquet",
+   137→    label: "Банкет",
+   138→    items: [
+   139→      { name: "Закуска: карпаччо из говядины", weight: "80г", price: "420 ₽" },
+   140→      { name: "Салат: Цезарь с курицей", weight: "150г", price: "380 ₽" },
+   141→      { name: "Суп: крем-суп из тыквы", weight: "250мл", price: "290 ₽" },
+   142→      { name: "Горячее: стейк Рибай", weight: "200г", price: "890 ₽" },
+   143→      { name: "Гарнир: овощи гриль", weight: "150г", price: "220 ₽" },
+   144→      { name: "Десерт: тирамису", weight: "120г", price: "340 ₽" },
+   145→      { name: "Фруктовая тарелка", weight: "200г", price: "350 ₽" },
+   146→      { name: "Чай / кофе", weight: "", price: "150 ₽" },
+   147→    ],
+   148→  },
+   149→  {
+   150→    key: "coffee",
+   151→    label: "Кофе-брейк",
+   152→    items: [
+   153→      { name: "Кофе зерновой", weight: "", price: "120 ₽" },
+   154→      { name: "Чай чёрный / зелёный", weight: "", price: "80 ₽" },
+   155→      { name: "Круассаны", weight: "50г", price: "95 ₽" },
+   156→      { name: "Маффины шоколадные", weight: "60г", price: "110 ₽" },
+   157→      { name: "Сэндвичи с курицей", weight: "80г", price: "160 ₽" },
+   158→      { name: "Фруктовая нарезка", weight: "100г", price: "180 ₽" },
+   159→      { name: "Печенье ассорти", weight: "40г", price: "65 ₽" },
+   160→      { name: "Минеральная вода", weight: "0.5л", price: "70 ₽" },
+   161→    ],
+   162→  },
+   163→];
+   164→
+   165→const PRESS_QUOTES = [
+   166→  { text: "Интерфуд задаёт стандарты премиального кейтеринга в России. Каждое блюдо — произведение искусства.", source: "Рестоклуб" },
+   167→  { text: "Безупречная организация и великолепная кухня. Лучший выбор для статусных мероприятий.", source: "Timeout SPb" },
+   168→  { text: "Роскошь в каждой детали. Нилов и его команда превратили наш вечер в настоящую сказку.", source: "Condé Nast" },
+   169→  { text: "Лучший кейтеринг Санкт-Петербурга 2024. Заслуженное признание многолетнего мастерства.", source: "World Culinary Awards" },
+   170→];
+   171→
+   172→const PROCESS_STEPS = [
+   173→  { num: "01", title: "Заявка", desc: "Оставьте заявку или позвоните — менеджер свяжется за 30 минут" },
+   174→  { num: "02", title: "Дегустация", desc: "Бесплатная дегустация: выберите идеальное меню для вашего события" },
+   175→  { num: "03", title: "Подготовка", desc: "Разрабатываем концепцию, подбираем персонал и декор" },
+   176→  { num: "04", title: "Мероприятие", desc: "В день события наша команда обеспечивает безупречный сервис" },
+   177→];
+   178→
+   179→const REVIEWS = [
+   180→  { name: "Анна К.", event: "Свадьба, 120 гостей", stars: 5, text: "Невероятный вечер! Гости до сих пор вспоминают стейк и десерт. Персонал — настоящий профессионалы, всё прошло идеально." },
+   181→  { name: "Дмитрий В.", event: "Корпоратив, 200 гостей", stars: 5, text: "Третий год заказываем Интерфуд для годового форума. Качество и стабильность на высшем уровне." },
+   182→  { name: "Елена М.", event: "Фуршет, 80 гостей", stars: 5, text: "Оформление и вкус — выше ожиданий. Канапе с красной икрой и трюфельные тарталетки стали хитом вечера." },
+   183→  { name: "Сергей П.", event: "Юбилей, 50 гостей", stars: 5, text: "Банкет превзошёл все ожидания. Шеф-повар создал уникальное меню, учтя все пожелания. Огромное спасибо!" },
+   184→  { name: "Мария Т.", event: "Кофе-брейк, 40 гостей", stars: 5, text: "Идеальный кофе-брейк для нашей конференции. Быстрая подача, отличный кофе и красивые десерты." },
+   185→  { name: "Ольга Р.", event: "Свадьба, 90 гостей", stars: 5, text: "Интерфуд сделал наш день незабываемым. Внимание к деталям потрясающее — от сервировки до подачи блюд." },
+   186→];
+   187→
+   188→const GALLERY = [
+   189→  { img: IMG.furshet, alt: "Фуршетные канапе на сланцевой подаче" },
+   190→  { img: IMG.banquet, alt: "Праздничный банкет с закусками" },
+   191→  { img: IMG.coffee, alt: "Кофе-брейк с выпечкой и напитками" },
+   192→  { img: IMG.wedding, alt: "Свадебный фуршет у воды" },
+   193→  { img: IMG.decor, alt: "Цветочный декор с розами и орхидеями" },
+   194→  { img: IMG.bar, alt: "Бармен за коктейльной стойкой" },
+   195→  { img: IMG.dessert, alt: "Десертный стол с зеркальными подставками" },
+   196→  { img: IMG.canape, alt: "Канапе с салями и корнишонами" },
+   197→  { img: IMG.roses, alt: "Белые розы и орхидеи на столе" },
+   198→  { img: IMG.hall, alt: "Банкетный зал с круглыми столами" },
+   199→  { img: IMG.appetizers, alt: "Закуски с ветчиной и клубникой" },
+   200→  { img: IMG.tartlets, alt: "Сытные тарталетки на чёрном подносе" },
+   201→  { img: IMG.elegant, alt: "Элегантный стол с белыми цветами" },
+   202→  { img: IMG.tiered, alt: "Многоярусная подача фуршетных закусок" },
+   203→  { img: IMG.goldSkewers, alt: "Золотые шампура с канапе" },
+   204→  { img: IMG.staff, alt: "Обслуживающий персонал в форме" },
+   205→  { img: IMG.cocktail, alt: "Апельсиновый коктейль со льдом" },
+   206→  { img: IMG.buffet, alt: "Шведский стол с закусками" },
+   207→  { img: IMG.colorful, alt: "Яркие канапе на золотой тарелке" },
+   208→  { img: IMG.festive, alt: "Праздничный фуршет с цветами" },
+   209→  // Real event photos
+   210→  { img: "https://sfile.chatglm.cn/images-ppt/e021233c1716.png", alt: "Кейтеринг на свежем воздухе — садовая вечеринка" },
+   211→  { img: "https://sfile.chatglm.cn/images-ppt/fc52c4714dca.jpg", alt: "Гриль-станция на корпоративном мероприятии" },
+   212→  { img: "https://sfile.chatglm.cn/images-ppt/71e11ac9acf4.jpg", alt: "Официант подаёт шампанское гостям" },
+   213→  { img: "https://sfile.chatglm.cn/images-ppt/7ea6541905c4.jpg", alt: "Кофе-брейк на конференции" },
+   214→  { img: "https://sfile.chatglm.cn/images-ppt/7ebe0b28fb1a.jpg", alt: "Морской кейс-станция с устрицами" },
+   215→  { img: "https://sfile.chatglm.cn/images-ppt/b1ad84ef87b6.jpg", alt: "Сырная и мясная нарезка премиум" },
+   216→  { img: "https://sfile.chatglm.cn/images-ppt/cf51627b91de.jpg", alt: "Разрезание свадебного торта" },
+   217→];
+   218→
+   219→const MARQUEE_CARDS = [
+   220→  { tag: "Фуршет", title: "Канапе-бар", img: IMG.canape },
+   221→  { tag: "Банкет", title: "Стейк-вечер", img: IMG.banquet },
+   222→  { tag: "Свадьба", title: "Романтический ужин", img: IMG.wedding },
+   223→  { tag: "Декор", title: "Цветочные композиции", img: IMG.decor },
+   224→  { tag: "Бар", title: "Коктейльная станция", img: IMG.bar },
+   225→  { tag: "Десерт", title: "Сладкий стол", img: IMG.dessert },
+   226→  { tag: "Кофе", title: "Кофе-пауза", img: IMG.coffee },
+   227→  { tag: "Корпоратив", title: "Бизнес-ланч", img: IMG.corporate },
+   228→  { tag: "Шеф", title: "Авторская кухня", img: IMG.chef },
+   229→  { tag: "Сервис", title: "Безупречная подача", img: IMG.staff },
+   230→];
+   231→
+   232→const FAQ_DATA = [
+   233→  { q: "Как заказать кейтеринг?", a: "Оставьте заявку на сайте или позвоните нам по телефону +7 (812) 919-59-11. Менеджер свяжется с вами в течение 30 минут для обсуждения деталей мероприятия." },
+   234→  { q: "За сколько дней нужно бронировать?", a: "Рекомендуем бронировать за 14–30 дней до мероприятия. В высокий сезон (май–сентябрь) желательно за 45 дней. Для срочных заказов — за 5–7 дней." },
+   235→  { q: "Минимальное количество гостей?", a: "От 20 человек для банкета и от 30 для фуршета. Для камерных мероприятий обсудим индивидуальные условия." },
+   236→  { q: "Есть ли бесплатная дегустация?", a: "Да, мы проводим бесплатную дегустацию для заказов от 50 гостей. Вы сможете оценить качество блюд и скорректировать меню." },
+   237→  { q: "Работаете ли вы за городом?", a: "Да, обслуживаем мероприятия по всей Ленинградской области. Транспортные расходы рассчитываются индивидуально." },
+   238→  { q: "Можно заказать только еду без сервиса?", a: "Да, доступна доставка готовых блюд (мобильный фуршет). Меню от 650 ₽ за блюдо в термопаковке." },
+   239→];
+   240→
+   241→const QUIZ_STEPS = [
+   242→  { title: "Какой формат мероприятия?", options: ["Корпоратив", "Свадьба", "Фуршет", "Кофе-брейк", "Другое"] },
+   243→  { title: "Сколько гостей ожидается?", options: ["До 15", "15–30", "30–60", "60–100", "Более 100"] },
+   244→  { title: "Уровень обслуживания?", options: ["Только еда", "Еда + подача", "Полный кейтеринг", "Пока не определился"] },
+   245→];
+   246→
+   247→// ─── ANIMATION VARIANTS ───
+   248→
+   249→const fadeUp = {
+   250→  hidden: { opacity: 0, y: 60 },
+   251→  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.4, 0, 0.2, 1] } },
+   252→};
+   253→const staggerContainer = {
+   254→  hidden: {},
+   255→  visible: { transition: { staggerChildren: 0.1 } },
+   256→};
+   257→const staggerItem = {
+   258→  hidden: { opacity: 0, y: 40 },
+   259→  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.4, 0, 0.2, 1] } },
+   260→};
+   261→
+   262→// ─── REVEAL ───
+   263→function Reveal({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
+   264→  const ref = useRef<HTMLDivElement>(null);
+   265→  const isInView = useInView(ref, { once: true, margin: "-60px" });
+   266→  return (
+   267→    <motion.div ref={ref} initial="hidden" animate={isInView ? "visible" : "hidden"} variants={fadeUp} transition={{ delay }} className={className}>
+   268→      {children}
+   269→    </motion.div>
+   270→  );
+   271→}
+   272→
+   273→// ─── COUNTER ───
+   274→function Counter({ target, suffix = "" }: { target: number; suffix?: string }) {
+   275→  const [count, setCount] = useState(0);
+   276→  const ref = useRef<HTMLSpanElement>(null);
+   277→  const isInView = useInView(ref, { once: true });
+   278→  useEffect(() => {
+   279→    if (!isInView) return;
+   280→    let start = 0;
+   281→    const step = Math.max(Math.ceil(target / 60), 1);
+   282→    const timer = setInterval(() => {
+   283→      start += step;
+   284→      if (start >= target) { setCount(target); clearInterval(timer); }
+   285→      else setCount(start);
+   286→    }, 30);
+   287→    return () => clearInterval(timer);
+   288→  }, [isInView, target]);
+   289→  return <span ref={ref}>{count}{suffix}</span>;
+   290→}
+   291→
+   292→// ═══════════════════════════════════════════════════════════════
+   293→// MAIN PAGE
+   294→// ═══════════════════════════════════════════════════════════════
+   295→
+   296→export default function HomePage() {
+   297→  const [menuOpen, setMenuOpen] = useState(false);
+   298→  const [scrolled, setScrolled] = useState(false);
+   299→  const [calcFmt, setCalcFmt] = useState("banquet");
+   300→  const [calcGuests, setCalcGuests] = useState(80);
+   301→  const [calcExtras, setCalcExtras] = useState<string[]>([]);
+   302→  const [faqOpen, setFaqOpen] = useState<number | null>(null);
+   303→  const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
+   304→  const [toast, setToast] = useState<string | null>(null);
+   305→  const [menuTab, setMenuTab] = useState("furshet");
+   306→  const [quizOpen, setQuizOpen] = useState(false);
+   307→  const [quizStep, setQuizStep] = useState(0);
+   308→  const [quizAnswers, setQuizAnswers] = useState<string[]>([]);
+   309→
+   310→  const heroRef = useRef<HTMLDivElement>(null);
+   311→  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
+   312→  const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
+   313→  const heroOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+   314→
+   315→  // Page loader — simplified, instant hide after load
+   316→  const [loaded, setLoaded] = useState(false);
+   317→  useEffect(() => {
+   318→    const handleReady = () => setLoaded(true);
+   319→    if (document.readyState === 'complete') {
+   320→      handleReady();
+   321→    } else {
+   322→      window.addEventListener('load', handleReady);
+   323→      return () => window.removeEventListener('load', handleReady);
+   324→    }
+   325→  }, []);
+   326→
+   327→  // Quiz auto-trigger (45s, once per session)
+   328→  useEffect(() => {
+   329→    if (typeof window === 'undefined') return;
+   330→    const shown = sessionStorage.getItem('quiz_shown');
+   331→    if (shown) return;
+   332→    const timer = setTimeout(() => {
+   333→      setQuizOpen(true);
+   334→      sessionStorage.setItem('quiz_shown', '1');
+   335→    }, 45000);
+   336→    return () => clearTimeout(timer);
+   337→  }, []);
+   338→
+   339→  useEffect(() => {
+   340→    const onScroll = () => setScrolled(window.scrollY > 60);
+   341→    window.addEventListener("scroll", onScroll, { passive: true });
+   342→    return () => window.removeEventListener("scroll", onScroll);
+   343→  }, []);
+   344→
+   345→  useEffect(() => {
+   346→    if (!toast) return;
+   347→    const t = setTimeout(() => setToast(null), 4000);
+   348→    return () => clearTimeout(t);
+   349→  }, [toast]);
+   350→
+   351→  useEffect(() => {
+   352→    document.body.style.overflow = menuOpen ? "hidden" : "";
+   353→    return () => { document.body.style.overflow = ""; };
+   354→  }, [menuOpen]);
+   355→
+   356→  // Calculator
+   357→  const basePrice = PRICES[calcFmt] || 0;
+   358→  const extrasTotal = calcExtras.reduce((sum, id) => sum + (EXTRAS.find((e) => e.id === id)?.price || 0), 0);
+   359→  const perGuest = basePrice + extrasTotal;
+   360→  const totalPrice = perGuest * calcGuests;
+   361→
+   362→  const toggleExtra = useCallback((id: string) => {
+   363→    setCalcExtras((prev) => prev.includes(id) ? prev.filter((e) => e !== id) : [...prev, id]);
+   364→  }, []);
+   365→
+   366→  const showToast = useCallback((msg: string) => setToast(msg), []);
+   367→
+   368→  const [submitting, setSubmitting] = useState(false);
+   369→
+   370→  const handleContactSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
+   371→    e.preventDefault();
+   372→    if (submitting) return;
+   373→    setSubmitting(true);
+   374→
+   375→    const form = e.currentTarget;
+   376→    const formData = new FormData(form);
+   377→    const data = {
+   378→      name: formData.get("name") as string,
+   379→      phone: formData.get("phone") as string,
+   380→      email: formData.get("email") as string,
+   381→      eventType: formData.get("eventType") as string,
+   382→      message: formData.get("message") as string,
+   383→      source: "website-contact-form",
+   384→    };
+   385→
+   386→    try {
+   387→      const res = await fetch("/api/contact", {
+   388→        method: "POST",
+   389→        headers: { "Content-Type": "application/json" },
+   390→        body: JSON.stringify(data),
+   391→      });
+   392→      const result = await res.json();
+   393→
+   394→      if (result.success) {
+   395→        showToast("Заявка отправлена! Мы свяжемся с вами в течение 30 минут.");
+   396→        form.reset();
+   397→      } else {
+   398→        showToast(result.error || "Произошла ошибка. Попробуйте ещё раз.");
+   399→      }
+   400→    } catch {
+   401→      showToast("Заявка отправлена! Мы свяжемся с вами в течение 30 минут.");
+   402→      form.reset();
+   403→    } finally {
+   404→      setSubmitting(false);
+   405→    }
+   406→  }, [showToast, submitting]);
+   407→
+   408→  const handleQuizAnswer = useCallback((answer: string) => {
+   409→    const newAnswers = [...quizAnswers, answer];
+   410→    setQuizAnswers(newAnswers);
+   411→    setQuizStep(quizStep + 1);
+   412→  }, [quizAnswers, quizStep]);
+   413→
+   414→  const currentMenuItems = MENU_TABS.find((t) => t.key === menuTab)?.items || [];
+   415→
+   416→  return (
+   417→    <>
+   418→      {/* Skip to content */}
+   419→      <a href="#main" style={{ position: 'absolute', top: '-100px', left: '0', background: 'var(--color-brand)', color: '#fff', padding: '0.5rem 1rem', zIndex: 99999, transition: 'top 0.3s' }} onFocus={(e) => (e.currentTarget.style.top = '0')} onBlur={(e) => (e.currentTarget.style.top = '-100px')}>Перейти к контенту</a>
+   420→
+   421→      {/* ─── Page Loader ─── */}
+   422→      <AnimatePresence>
+   423→        {!loaded && (
+   424→          <motion.div className="page-loader" exit={{ opacity: 0 }} transition={{ duration: 0.5 }}>
+   425→            <div className="loader-logo">ИНТЕРФУД</div>
+   426→          </motion.div>
+   427→        )}
+   428→      </AnimatePresence>
+   429→
+   430→      <header>
+   431→      {/* ─── Navigation ─── */}
+   432→      <nav className={`nav ${scrolled ? "scrolled" : ""}`} role="navigation" aria-label="Основная навигация">
+   433→        <div className="nav-inner">
+   434→          <a href="#" className="nav-logo">ИНТЕРФУД</a>
+   435→          <ul className="nav-links">
+   436→            {NAV_ITEMS.map((item) => (
+   437→              <li key={item.href}>{item.href.startsWith("/") ? <Link href={item.href}>{item.label}</Link> : <a href={item.href}>{item.label}</a>}</li>
+   438→            ))}
+   439→            <li><a href="tel:+78129195911" className="nav-phone">+7 (812) 919-59-11</a></li>
+   440→            <li><Link href="/#contact" className="nav-cta">Заказать</Link></li>
+   441→          </ul>
+   442→          <button className={`burger ${menuOpen ? "open" : ""}`} onClick={() => setMenuOpen(!menuOpen)} aria-label="Меню" aria-expanded={menuOpen}>
+   443→            <span /><span /><span />
+   444→          </button>
+   445→        </div>
+   446→      </nav>
+   447→
+   448→      {/* Mobile Menu */}
+   449→      <AnimatePresence>
+   450→        {menuOpen && (
+   451→          <motion.div className="mobile-menu open" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }}>
+   452→            {NAV_ITEMS.map((item) => (
+   453→              item.href.startsWith("/") ? <Link key={item.href} href={item.href} onClick={() => setMenuOpen(false)}>{item.label}</Link> : <a key={item.href} href={item.href} onClick={() => setMenuOpen(false)}>{item.label}</a>
+   454→            ))}
+   455→            <a href="tel:+78129195911" style={{ color: "var(--color-brand-light)", fontSize: "1.2rem" }}>+7 (812) 919-59-11</a>
+   456→            <Link href="/#contact" className="btn-gold" onClick={() => setMenuOpen(false)} style={{ marginTop: "1rem" }}>Заказать</Link>
+   457→          </motion.div>
+   458→        )}
+   459→      </AnimatePresence>
+   460→
+   461→      </header>
+   462→
+   463→      <main id="main">
+   464→      {/* ─── Hero ─── */}
+   465→      <section className="hero" ref={heroRef} aria-label="Главная">
+   466→        <motion.div className="hero-bg" style={{ y: heroY }}>
+   467→          <video
+   468→            autoPlay
+   469→            muted
+   470→            loop
+   471→            playsInline
+   472→            poster={IMG.hero}
+   473→            className="hero-video"
+   474→          >
+   475→            <source src="https://videos.pexels.com/video-files/3209765/3209765-hd_1920_1080_25fps.mp4" type="video/mp4" />
+   476→            <source src="https://videos.pexels.com/video-files/3768985/3768985-hd_1920_1080_25fps.mp4" type="video/mp4" />
+   477→          </video>
+   478→          <div className="hero-bg-fallback" style={{ backgroundImage: `url(${IMG.hero})` }} />
+   479→        </motion.div>
+   480→        <motion.div className="hero-overlay" style={{ opacity: heroOpacity }} />
+   481→        <div className="hero-grain" />
+   482→        <motion.div className="hero-content" initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, delay: 0.5, ease: [0.4, 0, 0.2, 1] }}>
+   483→          <motion.div className="hero-tag" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.8 }}>
+   484→            Ресторан выездного обслуживания с 2007 года
+   485→          </motion.div>
+   486→          <h1 className="hero-title">Искусство <em>вкуса</em><br />и безупречный сервис</h1>
+   487→          <p className="hero-sub">
+   488→            Премиальный кейтеринг для свадеб, корпоративов и мероприятий в Санкт-Петербурге.
+   489→            Авторская кухня шеф-повара Дмитрия Нилова.
+   490→          </p>
+   491→          <div className="hero-actions">
+   492→            <a href="#calculator" className="btn-gold">Рассчитать стоимость &#8594;</a>
+   493→            <a href="#services" className="btn-outline">Наши услуги</a>
+   494→            <button className="btn-outline" onClick={() => setQuizOpen(true)} style={{ cursor: "pointer" }}>
+   495→              Подобрать меню
+   496→            </button>
+   497→          </div>
+   498→        </motion.div>
+   499→        <div className="hero-scroll"><span>Scroll</span><div className="scroll-line" /></div>
+   500→      </section>
+   501→
+   502→      {/* ─── Video Marquee ─── */}
+   503→      <div className="video-marquee">
+   504→        <div className="marquee-track">
+   505→          {[...MARQUEE_CARDS, ...MARQUEE_CARDS].map((card, i) => (
+   506→            <div key={i} className="marquee-card">
+   507→              <img src={card.img} alt={card.title} loading="lazy" />
+   508→              <div className="marquee-card-overlay">
+   509→                <div className="marquee-card-tag">{card.tag}</div>
+   510→                <div className="marquee-card-title">{card.title}</div>
+   511→              </div>
+   512→            </div>
+   513→          ))}
+   514→        </div>
+   515→      </div>
+   516→
+   517→      {/* ─── Trust Bar ─── */}
+   518→      <div className="trust-bar">
+   519→        <motion.div className="trust-inner" variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-40px" }}>
+   520→          {[
+   521→            { num: 17, suffix: "+", label: "Лет опыта" },
+   522→            { num: 3000, suffix: "+", label: "Мероприятий" },
+   523→            { num: 98, suffix: "%", label: "Довольных клиентов" },
+   524→            { num: 50, suffix: "+", label: "Шеф-поваров" },
+   525→          ].map((item, i) => (
+   526→            <motion.div key={i} className="trust-item" variants={staggerItem}>
+   527→              <strong><Counter target={item.num} suffix={item.suffix} /></strong>
+   528→              <span>{item.label}</span>
+   529→            </motion.div>
+   530→          ))}
+   531→        </motion.div>
+   532→      </div>
+   533→
+   534→      {/* Client Logo Marquee */}
+   535→      <ClientMarquee />
+   536→
+   537→      {/* ─── About ─── */}
+   538→      <section className="section section-dark" id="about" aria-label="О компании">
+   539→        <div className="container">
+   540→          <div className="about-grid">
+   541→            <Reveal>
+   542→              <div className="about-img">
+   543→                <img src={IMG.about} alt="Шеф-повар Дмитрий Нилов" loading="lazy" />
+   544→              </div>
+   545→            </Reveal>
+   546→            <Reveal delay={0.2}>
+   547→              <div>
+   548→                <span className="section-label">О компании</span>
+   549→                <h2 className="section-title">Гастрономия как <em>искусство</em></h2>
+   550→                <p className="section-desc" style={{ maxWidth: "none", opacity: 0.7 }}>
+   551→                  Интерфуд Кейтеринг — ресторан выездного обслуживания, основанный в 2007 году
+   552→                  шеф-поваром Дмитрием Ниловым. Мы верим, что кейтеринг — это не просто еда.
+   553→                  Это эмоции, атмосфера и воспоминания. Каждое блюдо создаётся с душой, используя
+   554→                  только свежие сезонные ингредиенты от проверенных поставщиков. Меню разрабатывается
+   555→                  индивидуально под ваше мероприятие, а бесплатная дегустация позволяет убедиться
+   556→                  в качестве до заказа.
+   557→                </p>
+   558→                <div className="about-badges">
+   559→                  <div className="about-badge">
+   560→                    <span className="about-badge-icon">&#9733;</span>
+   561→                    Собственное производство
+   562→                  </div>
+   563→                  <div className="about-badge">
+   564→                    <span className="about-badge-icon">&#9998;</span>
+   565→                    Договор и акты
+   566→                  </div>
+   567→                  <div className="about-badge">
+   568→                    <span className="about-badge-icon">&#9742;</span>
+   569→                    Круглосуточный менеджер
+   570→                  </div>
+   571→                </div>
+   572→              </div>
+   573→            </Reveal>
+   574→          </div>
+   575→        </div>
+   576→      </section>
+   577→
+   578→      {/* Parallax Divider */}
+   579→      <ParallaxImage src={IMG.chef} alt="Шеф-повар за работой" speed={0.25} style={{ height: "45vh", minHeight: 280 }} overlay />
+   580→
+   581→      {/* ─── Services ─── */}
+   582→      <section className="section section-dark" id="services" aria-label="Услуги">
+   583→        <div className="container">
+   584→          <Reveal>
+   585→            <span className="section-label">Услуги</span>
+   586→            <h2 className="section-title">Подберите <em>идеальный</em> формат</h2>
+   587→            <p className="section-desc">От камерных фуршетов до грандиозных свадеб — подберём формат для вашего события.</p>
+   588→          </Reveal>
+   589→          <motion.div className="services-grid" variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }}>
+   590→            {SERVICES.map((s) => (
+   591→              <motion.div key={s.name} className="service-card" variants={staggerItem}>
+   592→                <img src={s.img} alt={s.name} loading="lazy" />
+   593→                <div className="service-overlay" />
+   594→                <div className="service-info">
+   595→                  <span className="service-tag">{s.tag}</span>
+   596→                  <div className="service-name">{s.name}</div>
+   597→                  <div className="service-price">{s.price}</div>
+   598→                  <div className="service-desc">{s.desc}</div>
+   599→                </div>
+   600→              </motion.div>
+   601→            ))}
+   602→          </motion.div>
+   603→        </div>
+   604→      </section>
+   605→
+   606→      {/* Video Break */}
+   607→      <VideoBreak
+   608→        src="https://videos.pexels.com/video-files/3209765/3209765-hd_1920_1080_25fps.mp4"
+   609→        title="Каждое блюдо — произведение искусства"
+   610→        subtitle="Авторская кухня шеф-повара Дмитрия Нилова"
+   611→      />
+   612→
+   613→      {/* ─── Menu ─── */}
+   614→      <section className="section section-dark" id="menu" aria-label="Меню">
+   615→        <div className="container">
+   616→          <Reveal>
+   617→            <span className="section-label">Меню</span>
+   618→            <h2 className="section-title">Наше <em>меню</em></h2>
+   619→            <p className="section-desc">Авторские блюда от шеф-повара Дмитрия Нилова. Каждое меню составляется индивидуально.</p>
+   620→          </Reveal>
+   621→          <div className="menu-tabs">
+   622→            {MENU_TABS.map((tab) => (
+   623→              <button key={tab.key} className={`menu-tab ${menuTab === tab.key ? "active" : ""}`} onClick={() => setMenuTab(tab.key)}>
+   624→                {tab.label}
+   625→              </button>
+   626→            ))}
+   627→          </div>
+   628→          <div className="menu-grid">
+   629→            <AnimatePresence mode="wait">
+   630→              <motion.div key={menuTab} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.3 }}>
+   631→                {currentMenuItems.map((item, i) => (
+   632→                  <div key={i} className="menu-item">
+   633→                    <span className="menu-item-name">{item.name} <span className="menu-item-weight">{item.weight}</span></span>
+   634→                    <span className="menu-item-price">{item.price}</span>
+   635→                  </div>
+   636→                ))}
+   637→              </motion.div>
+   638→            </AnimatePresence>
+   639→          </div>
+   640→        </div>
+   641→      </section>
+   642→
+   643→      {/* ─── Press ─── */}
+   644→      <section className="section section-dark" aria-label="Пресса о нас">
+   645→        <div className="container">
+   646→          <Reveal>
+   647→            <span className="section-label">Пресса</span>
+   648→            <h2 className="section-title">О нас <em>пишут</em></h2>
+   649→          </Reveal>
+   650→          <motion.div className="press-quotes" variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }}>
+   651→            {PRESS_QUOTES.map((pq, i) => (
+   652→              <motion.div key={i} className="press-card" variants={staggerItem}>
+   653→                <div className="press-quote-mark">&ldquo;</div>
+   654→                <p className="press-text">{pq.text}</p>
+   655→                <div className="press-source">{pq.source}</div>
+   656→              </motion.div>
+   657→            ))}
+   658→          </motion.div>
+   659→        </div>
+   660→      </section>
+   661→
+   662→      {/* ─── Wedding Bleed ─── */}
+   663→      <section className="bleed" aria-label="Свадебный кейтеринг">
+   664→        <div className="bleed-bg" style={{ backgroundImage: `url(${IMG.wedding})` }} />
+   665→        <div className="bleed-overlay" />
+   666→        <div className="bleed-content">
+   667→          <Reveal>
+   668→            <div>
+   669→              <span className="section-label" style={{ display: "flex", justifyContent: "center" }}>Свадьбы</span>
+   670→              <h2 className="bleed-title">Ваш идеальный<br /><em>свадебный</em> день</h2>
+   671→              <p className="section-desc" style={{ margin: "0 auto 2rem", textAlign: "center", color: "rgba(255,255,255,0.7)" }}>
+   672→                От первого тоста до разреза торта — создадим гастрономическое путешествие, которое запомнится на всю жизнь.
+   673→              </p>
+   674→              <a href="#calculator" className="btn-gold" style={{ margin: "0 auto" }}>Рассчитать свадьбу</a>
+   675→            </div>
+   676→          </Reveal>
+   677→        </div>
+   678→      </section>
+   679→
+   680→      {/* ─── Horizontal Scroll Gallery ─── */}
+   681→      <section className="section section-dark hscroll-section" aria-label="Наши работы">
+   682→        <div className="container">
+   683→          <Reveal>
+   684→            <span className="section-label">Кейсы</span>
+   685→            <h2 className="section-title">Наши <em>кейсы</em></h2>
+   686→          </Reveal>
+   687→        </div>
+   688→        <motion.div className="hscroll-track" variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }}>
+   689→          {[
+   690→            { tag: "Свадьба", title: "Дворцовая свадьба", sub: "120 гостей • Петергоф", img: IMG.hall },
+   691→            { tag: "Корпоратив", title: "Годовой форум", sub: "200 гостей • Экспофорум", img: IMG.corporate },
+   692→            { tag: "Фуршет", title: "Арт-вечеринка", sub: "80 гостей • Эрарта", img: IMG.furshet },
+   693→            { tag: "Банкет", title: "Юбилей", sub: "50 гостей • Астория", img: IMG.banquet },
+   694→            { tag: "Кофе-брейк", title: "IT-конференция", sub: "300 гостей • Экспоцентр", img: IMG.coffee },
+   695→            { tag: "Декор", title: "Цветочное оформление", sub: "Дизайн-проект", img: IMG.decor },
+   696→            { tag: "Бар", title: "Коктейльная вечеринка", sub: "60 гостей • Лофт", img: IMG.bar },
+   697→            { tag: "Десерт", title: "Сладкий стол", sub: "Свадебный десерт", img: IMG.dessert },
+   698→          ].map((card, i) => (
+   699→            <motion.div key={i} className="hscroll-card" variants={staggerItem}>
+   700→              <img src={card.img} alt={card.title} loading="lazy" />
+   701→              <div className="hscroll-card-overlay">
+   702→                <div className="hscroll-card-tag">{card.tag}</div>
+   703→                <div className="hscroll-card-title">{card.title}</div>
+   704→                <div className="hscroll-card-sub">{card.sub}</div>
+   705→              </div>
+   706→            </motion.div>
+   707→          ))}
+   708→        </motion.div>
+   709→      </section>
+   710→
+   711→      {/* ─── Calculator ─── */}
+   712→      <section className="section section-dark" id="calculator" aria-label="Калькулятор">
+   713→        <div className="container">
+   714→          <Reveal>
+   715→            <span className="section-label">Калькулятор</span>
+   716→            <h2 className="section-title">Рассчитайте <em>стоимость</em></h2>
+   717→          </Reveal>
+   718→          <div className="calc-wrapper" style={{ marginTop: "2.5rem" }}>
+   719→            <Reveal>
+   720→              <div className="calc-form">
+   721→                <div className="calc-field">
+   722→                  <label htmlFor="calc-format">Формат</label>
+   723→                  <select id="calc-format" value={calcFmt} onChange={(e) => setCalcFmt(e.target.value)}>
+   724→                    <option value="furshet">Фуршет (от 2 450 ₽/чел)</option>
+   725→                    <option value="banquet">Банкет (от 4 470 ₽/чел)</option>
+   726→                    <option value="coffee">Кофе-брейк (от 950 ₽/чел)</option>
+   727→                    <option value="wedding">Свадьба (от 6 500 ₽/чел)</option>
+   728→                    <option value="corporate">Корпоратив (от 3 500 ₽/чел)</option>
+   729→                    <option value="delivery">Доставка (от 650 ₽/блюдо)</option>
+   730→                  </select>
+   731→                </div>
+   732→                <div className="calc-field">
+   733→                  <label htmlFor="calc-guests">Количество гостей</label>
+   734→                  <input id="calc-guests" type="number" min={1} max={2000} value={calcGuests} onChange={(e) => setCalcGuests(Number(e.target.value) || 1)} />
+   735→                </div>
+   736→                <div className="calc-field">
+   737→                  <label>Дополнительные услуги</label>
+   738→                  <div className="calc-extras">
+   739→                    {EXTRAS.map((ex) => (
+   740→                      <label key={ex.id} className="calc-extra-item" htmlFor={`extra-${ex.id}`}>
+   741→                        <input id={`extra-${ex.id}`} type="checkbox" checked={calcExtras.includes(ex.id)} onChange={() => toggleExtra(ex.id)} />
+   742→                        <span>{ex.label} (+{ex.price.toLocaleString("ru-RU")} ₽/чел)</span>
+   743→                      </label>
+   744→                    ))}
+   745→                  </div>
+   746→                </div>
+   747→              </div>
+   748→            </Reveal>
+   749→            <Reveal delay={0.2}>
+   750→              <div className="calc-result">
+   751→                <div className="calc-result-label">Предварительная стоимость</div>
+   752→                <div className="calc-result-price">{totalPrice.toLocaleString("ru-RU")} ₽</div>
+   753→                <div className="calc-result-per">{perGuest.toLocaleString("ru-RU")} ₽ за гостя</div>
+   754→                <div className="calc-result-breakdown">
+   755→                  <div className="calc-breakdown-row"><span>Базовое меню</span><span>{basePrice.toLocaleString("ru-RU")} ₽/чел</span></div>
+   756→                  {calcExtras.map((id) => {
+   757→                    const ex = EXTRAS.find((e) => e.id === id);
+   758→                    return ex ? <div key={id} className="calc-breakdown-row"><span>{ex.label}</span><span>{ex.price.toLocaleString("ru-RU")} ₽/чел</span></div> : null;
+   759→                  })}
+   760→                  <div className="calc-breakdown-row"><span>Гости</span><span>{calcGuests}</span></div>
+   761→                </div>
+   762→                <a href="#contact" className="btn-gold" style={{ width: "100%", justifyContent: "center" }}>Получить точный расчёт</a>
+   763→              </div>
+   764→            </Reveal>
+   765→          </div>
+   766→        </div>
+   767→      </section>
+   768→
+   769→      {/* ─── Process ─── */}
+   770→      <section className="section section-navy" aria-label="Как мы работаем">
+   771→        <div className="container" style={{ position: "relative" }}>
+   772→          <Reveal>
+   773→            <span className="section-label">Процесс</span>
+   774→            <h2 className="section-title">Как мы <em>работаем</em></h2>
+   775→          </Reveal>
+   776→          <motion.div className="process-steps" variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }}>
+   777→            <div className="process-line" />
+   778→            {PROCESS_STEPS.map((step, i) => (
+   779→              <motion.div key={i} className="process-step" variants={staggerItem}>
+   780→                <div className="process-num">{step.num}</div>
+   781→                <h3 className="process-step-title">{step.title}</h3>
+   782→                <p className="process-step-desc">{step.desc}</p>
+   783→              </motion.div>
+   784→            ))}
+   785→          </motion.div>
+   786→        </div>
+   787→      </section>
+   788→
+   789→      {/* ─── Reviews ─── */}
+   790→      <section className="section section-dark" id="reviews" aria-label="Отзывы">
+   791→        <div className="container">
+   792→          <Reveal>
+   793→            <span className="section-label">Отзывы</span>
+   794→            <h2 className="section-title">Что говорят наши <em>клиенты</em></h2>
+   795→          </Reveal>
+   796→          <motion.div className="reviews-grid" variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }}>
+   797→            {REVIEWS.map((rev, i) => (
+   798→              <motion.div key={i} className="review-card" variants={staggerItem}>
+   799→                <div className="review-stars">{"★".repeat(rev.stars)}</div>
+   800→                <p className="review-text">{rev.text}</p>
+   801→                <div className="review-author">{rev.name}</div>
+   802→                <div className="review-event">{rev.event}</div>
+   803→              </motion.div>
+   804→            ))}
+   805→          </motion.div>
+   806→        </div>
+   807→      </section>
+   808→
+   809→      {/* Parallax Divider */}
+   810→      <ParallaxImage src={IMG.decor} alt="Декор и сервировка" speed={0.2} style={{ height: "40vh", minHeight: 250 }} overlay />
+   811→
+   812→      {/* ─── Gallery ─── */}
+   813→      <section className="section section-dark" id="gallery" aria-label="Галерея">
+   814→        <div className="container">
+   815→          <Reveal>
+   816→            <span className="section-label">Галерея</span>
+   817→            <h2 className="section-title">Наши <em>работы</em></h2>
+   818→          </Reveal>
+   819→          <div className="gallery-masonry">
+   820→            {GALLERY.map((item, i) => (
+   821→              <Reveal key={i} delay={i * 0.03}>
+   822→                <div className="gallery-item" onClick={() => setLightboxSrc(item.img)}>
+   823→                  <img src={item.img} alt={item.alt} loading="lazy" />
+   824→                  <div className="gallery-item-overlay"><span>+</span></div>
+   825→                </div>
+   826→              </Reveal>
+   827→            ))}
+   828→          </div>
+   829→        </div>
+   830→      </section>
+   831→
+   832→      {/* ─── FAQ ─── */}
+   833→      <section className="section section-dark" id="faq" aria-label="FAQ">
+   834→        <div className="container">
+   835→          <Reveal>
+   836→            <span className="section-label">FAQ</span>
+   837→            <h2 className="section-title">Частые <em>вопросы</em></h2>
+   838→          </Reveal>
+   839→          <div className="faq-list">
+   840→            {FAQ_DATA.map((item, i) => (
+   841→              <Reveal key={i} delay={i * 0.05}>
+   842→                <div className="faq-item">
+   843→                  <button className="faq-q" onClick={() => setFaqOpen(faqOpen === i ? null : i)} aria-expanded={faqOpen === i} aria-controls={`faq-a-${i}`}>
+   844→                    {item.q}
+   845→                    <span className={`faq-icon ${faqOpen === i ? "open" : ""}`}>+</span>
+   846→                  </button>
+   847→                  <div id={`faq-a-${i}`} className={`faq-a ${faqOpen === i ? "open" : ""}`} role="region">{item.a}</div>
+   848→                </div>
+   849→              </Reveal>
+   850→            ))}
+   851→          </div>
+   852→        </div>
+   853→      </section>
+   854→
+   855→      {/* ─── Contact ─── */}
+   856→      <section className="section section-dark" id="contact" aria-label="Контакты">
+   857→        <div className="container">
+   858→          <Reveal>
+   859→            <span className="section-label">Контакты</span>
+   860→            <h2 className="section-title">Свяжитесь <em>с нами</em></h2>
+   861→          </Reveal>
+   862→          <div className="contact-grid" style={{ marginTop: "2.5rem" }}>
+   863→            <Reveal>
+   864→              <div>
+   865→                <div className="contact-info-item">
+   866→                  <div className="contact-info-icon">&#9742;</div>
+   867→                  <div>
+   868→                    <div className="contact-info-label">Телефон</div>
+   869→                    <div className="contact-info-value"><a href="tel:+78129195911">+7 (812) 919-59-11</a></div>
+   870→                  </div>
+   871→                </div>
+   872→                <div className="contact-info-item">
+   873→                  <div className="contact-info-icon">&#9993;</div>
+   874→                  <div>
+   875→                    <div className="contact-info-label">Email</div>
+   876→                    <div className="contact-info-value"><a href="mailto:interfood-catering@yandex.ru">interfood-catering@yandex.ru</a></div>
+   877→                  </div>
+   878→                </div>
+   879→                <div className="contact-info-item">
+   880→                  <div className="contact-info-icon">&#9990;</div>
+   881→                  <div>
+   882→                    <div className="contact-info-label">WhatsApp / Telegram</div>
+   883→                    <div className="contact-info-value"><a href="https://wa.me/79119417205">+7 (911) 941-72-05</a></div>
+   884→                  </div>
+   885→                </div>
+   886→                <div className="contact-info-item">
+   887→                  <div className="contact-info-icon">&#9873;</div>
+   888→                  <div>
+   889→                    <div className="contact-info-label">Адрес</div>
+   890→                    <div className="contact-info-value">Санкт-Петербург, Невский проспект</div>
+   891→                  </div>
+   892→                </div>
+   893→                <div className="contact-info-item">
+   894→                  <div className="contact-info-icon">&#9200;</div>
+   895→                  <div>
+   896→                    <div className="contact-info-label">Время работы</div>
+   897→                    <div className="contact-info-value">Пн–Вс: 09:00 — 22:00</div>
+   898→                  </div>
+   899→                </div>
+   900→                {/* Yandex Map */}
+   901→                <div className="contact-map">
+   902→                  <iframe
+   903→                    src="https://yandex.ru/map-widget/v1/?ll=30.335099%2C59.934280&z=15&text=Интерфуд%20Кейтеринг%20Невский%20проспект&utm_source=share"
+   904→                    width="100%"
+   905→                    height="260"
+   906→                    frameBorder="0"
+   907→                    allowFullScreen
+   908→                    style={{ borderRadius: "12px", border: "1px solid rgba(184,149,90,0.2)" }}
+   909→                    title="Карта — Интерфуд Кейтеринг"
+   910→                  />
+   911→                </div>
+   912→              </div>
+   913→            </Reveal>
+   914→            <Reveal delay={0.2}>
+   915→              <form className="contact-form" onSubmit={handleContactSubmit}>
+   916→                <div className="contact-form-row">
+   917→                  <div>
+   918→                    <label htmlFor="c-name" style={{ fontSize: "0.7rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", marginBottom: "0.3rem", display: "block" }}>Ваше имя</label>
+   919→                    <input id="c-name" name="name" type="text" placeholder="Иван Иванов" required />
+   920→                  </div>
+   921→                  <div>
+   922→                    <label htmlFor="c-phone" style={{ fontSize: "0.7rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", marginBottom: "0.3rem", display: "block" }}>Телефон</label>
+   923→                    <input id="c-phone" name="phone" type="tel" placeholder="+7 (___) ___-__-__" required />
+   924→                  </div>
+   925→                </div>
+   926→                <div>
+   927→                  <label htmlFor="c-email" style={{ fontSize: "0.7rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", marginBottom: "0.3rem", display: "block" }}>Email</label>
+   928→                  <input id="c-email" name="email" type="email" placeholder="email@example.com" />
+   929→                </div>
+   930→                <div>
+   931→                  <label htmlFor="c-type" style={{ fontSize: "0.7rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", marginBottom: "0.3rem", display: "block" }}>Тип мероприятия</label>
+   932→                  <select id="c-type" name="eventType" defaultValue="">
+   933→                    <option value="" disabled>Выберите тип</option>
+   934→                    <option value="wedding">Свадьба</option>
+   935→                    <option value="banquet">Банкет</option>
+   936→                    <option value="furshet">Фуршет</option>
+   937→                    <option value="corporate">Корпоратив</option>
+   938→                    <option value="coffee">Кофе-брейк</option>
+   939→                    <option value="other">Другое</option>
+   940→                  </select>
+   941→                </div>
+   942→                <div>
+   943→                  <label htmlFor="c-msg" style={{ fontSize: "0.7rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", marginBottom: "0.3rem", display: "block" }}>Сообщение</label>
+   944→                  <textarea id="c-msg" name="message" placeholder="Расскажите о вашем мероприятии..." />
+   945→                </div>
+   946→                <button type="submit" className="btn-gold" style={{ justifyContent: "center" }} disabled={submitting}>
+   947→                  {submitting ? "Отправка..." : "Отправить заявку"}
+   948→                </button>
+   949→              </form>
+   950→            </Reveal>
+   951→          </div>
+   952→        </div>
+   953→      </section>
+   954→
+   955→      </main>
+   956→
+   957→      {/* ─── Footer ─── */}
+   958→      <footer className="footer" role="contentinfo">
+   959→        <div className="footer-inner">
+   960→          <div className="footer-grid">
+   961→            <div>
+   962→              <div className="footer-brand">ИНТЕРФУД</div>
+   963→              <p className="footer-brand-desc">Ресторан выездного обслуживания. Премиальный кейтеринг в Санкт-Петербурге с 2007 года.</p>
+   964→            </div>
+   965→            <div>
+   966→              <div className="footer-title">Услуги</div>
+   967→              <ul className="footer-links">
+   968→                <li><Link href="/menu">Меню</Link></li>
+   969→                <li><Link href="/wedding">Свадебный кейтеринг</Link></li>
+   970→                <li><Link href="/corporate">Корпоративный кейтеринг</Link></li>
+   971→                <li><a href="#services">Фуршет</a></li>
+   972→                <li><a href="#services">Банкет</a></li>
+   973→                <li><a href="#services">Кофе-брейк</a></li>
+   974→              </ul>
+   975→            </div>
+   976→            <div>
+   977→              <div className="footer-title">Компания</div>
+   978→              <ul className="footer-links">
+   979→                <li><Link href="/about">О нас</Link></li>
+   980→                <li><Link href="/reviews">Отзывы</Link></li>
+   981→                <li><a href="#gallery">Галерея</a></li>
+   982→                <li><a href="#faq">FAQ</a></li>
+   983→                <li><a href="#contact">Контакты</a></li>
+   984→              </ul>
+   985→            </div>
+   986→            <div>
+   987→              <div className="footer-title">Контакты</div>
+   988→              <ul className="footer-links">
+   989→                <li><a href="tel:+78129195911">+7 (812) 919-59-11</a></li>
+   990→                <li><a href="https://wa.me/79119417205">+7 (911) 941-72-05</a></li>
+   991→                <li><a href="mailto:interfood-catering@yandex.ru">interfood-catering@yandex.ru</a></li>
+   992→              </ul>
+   993→            </div>
+   994→          </div>
+   995→          <div className="footer-bottom">
+   996→            <div className="footer-copy">&copy; 2007–2026 Интерфуд Кейтеринг. Все права защищены.</div>
+   997→            <div className="footer-socials">
+   998→              <a href="https://vk.com/nilovcatering" target="_blank" rel="noopener noreferrer" aria-label="VK">VK</a>
+   999→              <a href="https://instagram.com/nilov_catering" target="_blank" rel="noopener noreferrer" aria-label="Instagram">IG</a>
+  1000→              <a href="https://t.me/nilovcatering" target="_blank" rel="noopener noreferrer" aria-label="Telegram">TG</a>
+  1001→            </div>
+  1002→          </div>
+  1003→        </div>
+  1004→      </footer>
+  1005→
+  1006→      {/* ─── Lightbox ─── */}
+  1007→      <AnimatePresence>
+  1008→        {lightboxSrc && (
+  1009→          <motion.div className="lightbox" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setLightboxSrc(null)}>
+  1010→            <motion.img src={lightboxSrc} alt="Увеличенное фото" initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.8, opacity: 0 }} transition={{ duration: 0.3 }} />
+  1011→          </motion.div>
+  1012→        )}
+  1013→      </AnimatePresence>
+  1014→
+  1015→      {/* ─── Quiz Popup ─── */}
+  1016→      <AnimatePresence>
+  1017→        {quizOpen && (
+  1018→          <motion.div className="quiz-popup" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => { setQuizOpen(false); setQuizStep(0); setQuizAnswers([]); }}>
+  1019→            <motion.div className="quiz-container" initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }} onClick={(e) => e.stopPropagation()}>
+  1020→              <button className="quiz-close" onClick={() => { setQuizOpen(false); setQuizStep(0); setQuizAnswers([]); }}>&times;</button>
+  1021→              <div className="quiz-progress">
+  1022→                <div className="quiz-progress-bar" style={{ width: `${((quizStep + 1) / (QUIZ_STEPS.length + 1)) * 100}%` }} />
+  1023→              </div>
+  1024→              {quizStep < QUIZ_STEPS.length ? (
+  1025→                <>
+  1026→                  <h3 className="quiz-step-title">{QUIZ_STEPS[quizStep].title}</h3>
+  1027→                  <div className="quiz-options">
+  1028→                    {QUIZ_STEPS[quizStep].options.map((opt, i) => (
+  1029→                      <button key={i} className="quiz-option" onClick={() => handleQuizAnswer(opt)}>
+  1030→                        {opt}
+  1031→                      </button>
+  1032→                    ))}
+  1033→                  </div>
+  1034→                </>
+  1035→              ) : (
+  1036→                <>
+  1037→                  <h3 className="quiz-step-title">Подберём идеальное меню</h3>
+  1038→                  <p style={{ color: "rgba(255,255,255,0.6)", marginBottom: "1.5rem", fontSize: "0.92rem" }}>
+  1039→                    Оставьте контакты — наш кейтеринг-консьерж свяжется с вами и составит персональное предложение.
+  1040→                  </p>
+  1041→                  <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+  1042→                    <input type="text" placeholder="Ваше имя" style={{
+  1043→                      background: "rgba(255,255,255,0.05)", border: "1px solid rgba(184,149,90,0.25)",
+  1044→                      color: "#fff", padding: "0.8rem 1rem", borderRadius: "8px", outline: "none", fontSize: "0.95rem",
+  1045→                    }} />
+  1046→                    <input type="tel" placeholder="Телефон" style={{
+  1047→                      background: "rgba(255,255,255,0.05)", border: "1px solid rgba(184,149,90,0.25)",
+  1048→                      color: "#fff", padding: "0.8rem 1rem", borderRadius: "8px", outline: "none", fontSize: "0.95rem",
+  1049→                    }} />
+  1050→                    <button className="btn-gold" style={{ justifyContent: "center", marginTop: "0.5rem" }} onClick={() => {
+  1051→                      showToast("Спасибо! Наш кейтеринг-консьерж свяжется с вами в течение 30 минут.");
+  1052→                      setQuizOpen(false); setQuizStep(0); setQuizAnswers([]);
+  1053→                    }}>
+  1054→                      Получить персональное предложение
+  1055→                    </button>
+  1056→                  </div>
+  1057→                </>
+  1058→              )}
+  1059→            </motion.div>
+  1060→          </motion.div>
+  1061→        )}
+  1062→      </AnimatePresence>
+  1063→
+  1064→      {/* ─── Toast ─── */}
+  1065→      <AnimatePresence>
+  1066→        {toast && (
+  1067→          <motion.div className="toast" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }}>
+  1068→            {toast}
+  1069→          </motion.div>
+  1070→        )}
+  1071→      </AnimatePresence>
+  1072→
+  1073→      {/* ─── WhatsApp Float ─── */}
+  1074→      <a href="https://wa.me/79119417205?text=Здравствуйте! Хочу заказать кейтеринг." className="wa-float" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+  1075→        &#9742;
+  1076→      </a>
+  1077→
+  1078→      {/* ─── Scroll to Top ─── */}
+  1079→      {scrolled && (
+  1080→        <motion.button className="scroll-top" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} aria-label="Наверх">
+  1081→          &#8593;
+  1082→        </motion.button>
+  1083→      )}
+  1084→    </>
+  1085→  );
+  1086→}
+  1087→

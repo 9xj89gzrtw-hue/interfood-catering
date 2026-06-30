@@ -125,6 +125,13 @@ function Reveal({ children, className = "", delay = 0 }: { children: React.React
 export default function CorporatePage() {
   const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
 
+  // Escape closes lightbox
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setLightboxSrc(null); };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, []);
+
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);

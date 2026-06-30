@@ -1,40 +1,57 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Lenis from "lenis";
 
 /* ═══════════════════════════════════════════════════════════════
-   Back to Top — floating button that appears on scroll
+   Back to Top — floating button with Lenis smooth scroll
    ═══════════════════════════════════════════════════════════════ */
 
 export default function BackToTop() {
   const [visible, setVisible] = useState(false);
+  const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
+    // Find the Lenis instance from the SmoothScroll provider
+    const findLenis = () => {
+      const el = document.querySelector("[data-lenis]");
+      if (el) {
+        // Try to find Lenis instance on the element
+        lenisRef.current = (window as unknown as Record<string, unknown>).__lenis as Lenis | null;
+      }
+    };
+    findLenis();
+
     const onScroll = () => setVisible(window.scrollY > 600);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    // Use Lenis if available, otherwise native smooth scroll
+    if (lenisRef.current) {
+      lenisRef.current.scrollTo(0, { duration: 1.5 });
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
 
   return (
     <AnimatePresence>
       {visible && (
         <motion.button
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.8 }}
-          whileHover={{ scale: 1.1 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 20 }}
+          whileHover={{ scale: 1.1, background: "rgba(184,149,90,0.25)" }}
           whileTap={{ scale: 0.95 }}
           onClick={scrollToTop}
           aria-label="Наверх"
           style={{
             position: "fixed",
             bottom: "2rem",
-            left: "2rem",
+            right: "2rem",
             width: 48,
             height: 48,
             borderRadius: "50%",

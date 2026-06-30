@@ -150,6 +150,13 @@ export default function MenuPage() {
   const [activeCat, setActiveCat] = useState("furshet");
   const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
 
+  // Escape closes lightbox
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setLightboxSrc(null); };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, []);
+
   const currentCategory = CATEGORIES.find((c) => c.key === activeCat) || CATEGORIES[0];
 
   return (

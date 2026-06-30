@@ -302,6 +302,15 @@ export default function HomePage() {
   const [faqOpen, setFaqOpen] = useState<number | null>(null);
   const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
   const [toast, setToast] = useState<string | null>(null);
+
+  // Escape key closes lightbox
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setLightboxSrc(null);
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, []);
   const [menuTab, setMenuTab] = useState("furshet");
   const [quizOpen, setQuizOpen] = useState(false);
   const [quizStep, setQuizStep] = useState(0);
