@@ -6,6 +6,10 @@ import {
   motion, AnimatePresence,
   useScroll, useTransform, useInView,
 } from "framer-motion";
+import ClientMarquee from "@/components/ClientMarquee";
+import ParallaxImage from "@/components/ParallaxImage";
+import VideoBreak from "@/components/VideoBreak";
+import SplitText from "@/components/SplitText";
 
 /* ═══════════════════════════════════════════════════════════════
    ИНТЕРФУД КЕЙТЕРИНГ — Ultra-Premium Dark-First Website v28
@@ -45,11 +49,11 @@ const IMG = {
 // ─── DATA ───
 
 const NAV_ITEMS = [
-  { label: "Услуги", href: "#services" },
   { label: "Меню", href: "/menu" },
   { label: "Свадьбы", href: "/wedding" },
   { label: "Корпоратив", href: "/corporate" },
-  { label: "О нас", href: "#about" },
+  { label: "О нас", href: "/about" },
+  { label: "Отзывы", href: "/reviews" },
   { label: "Галерея", href: "#gallery" },
   { label: "Контакты", href: "#contact" },
 ];
@@ -527,6 +531,9 @@ export default function HomePage() {
         </motion.div>
       </div>
 
+      {/* Client Logo Marquee */}
+      <ClientMarquee />
+
       {/* ─── About ─── */}
       <section className="section section-dark" id="about" aria-label="О компании">
         <div className="container">
@@ -568,6 +575,9 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Parallax Divider */}
+      <ParallaxImage src={IMG.chef} alt="Шеф-повар за работой" speed={0.25} style={{ height: "45vh", minHeight: 280 }} overlay />
+
       {/* ─── Services ─── */}
       <section className="section section-dark" id="services" aria-label="Услуги">
         <div className="container">
@@ -592,6 +602,13 @@ export default function HomePage() {
           </motion.div>
         </div>
       </section>
+
+      {/* Video Break */}
+      <VideoBreak
+        src="https://videos.pexels.com/video-files/3209765/3209765-hd_1920_1080_25fps.mp4"
+        title="Каждое блюдо — произведение искусства"
+        subtitle="Авторская кухня шеф-повара Дмитрия Нилова"
+      />
 
       {/* ─── Menu ─── */}
       <section className="section section-dark" id="menu" aria-label="Меню">
@@ -788,6 +805,9 @@ export default function HomePage() {
           </motion.div>
         </div>
       </section>
+
+      {/* Parallax Divider */}
+      <ParallaxImage src={IMG.decor} alt="Декор и сервировка" speed={0.2} style={{ height: "40vh", minHeight: 250 }} overlay />
 
       {/* ─── Gallery ─── */}
       <section className="section section-dark" id="gallery" aria-label="Галерея">

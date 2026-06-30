@@ -26,6 +26,10 @@
 /* ─── Base ─── */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
 body {
   font-family: var(--font-sans);
   background: var(--color-dark);
@@ -38,6 +42,48 @@ body {
 ::-webkit-scrollbar-thumb { background: var(--color-brand-dark); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--color-brand); }
 img { max-width: 100%; height: auto; }
+
+/* ─── Custom Cursor (desktop only) ─── */
+@media (hover: hover) and (pointer: fine) {
+  * { cursor: none !important; }
+  a, button, [role="button"], input, textarea, select, label[for] {
+    cursor: none !important;
+  }
+}
+
+.cursor-dot {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: var(--color-brand);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 100000;
+  mix-blend-mode: difference;
+  transition: width 0.2s, height 0.2s, background 0.2s;
+}
+.cursor-dot.hover {
+  width: 40px;
+  height: 40px;
+  background: rgba(184,149,90,0.3);
+  mix-blend-mode: normal;
+}
+
+/* ─── Enhanced button hover shimmer ─── */
+.btn-gold::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, transparent, rgba(255,255,255,0.1), transparent 30%);
+  animation: shimmer-rotate 4s linear infinite;
+  pointer-events: none;
+}
+@keyframes shimmer-rotate {
+  100% { transform: rotate(360deg); }
+}
 
 /* ─── Page Loader ─── */
 .page-loader {

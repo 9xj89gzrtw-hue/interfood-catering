@@ -188,7 +188,7 @@ export default function MenuPage() {
       </section>
 
       {/* Category Navigation */}
-      <div style={{ background: "var(--color-dark)", borderBottom: "1px solid rgba(184,149,90,0.1)", padding: "1.5rem 2rem", position: "sticky", top: 0, zIndex: 100 }}>
+      <div style={{ background: "var(--color-dark)", borderBottom: "1px solid rgba(184,149,90,0.1)", padding: "1.5rem 2rem", position: "sticky", top: 76, zIndex: 100 }}>
         <div style={{ maxWidth: 1440, margin: "0 auto", display: "flex", gap: "0.5rem", overflowX: "auto", scrollbarWidth: "none" }}>
           {CATEGORIES.map((cat) => (
             <button
