@@ -41,15 +41,7 @@ COMMIT_MSG="autosave(${SCOPE}): ${TIMESTAMP} — ${CHANGED_COUNT} file(s)"
 # Commit
 git commit -m "$COMMIT_MSG" --allow-empty-message 2>/dev/null || true
 
-# Push (with retry)
-MAX_RETRIES=3
-for i in $(seq 1 $MAX_RETRIES); do
-    if git push origin main 2>/dev/null; then
-        echo "[$(date)] Autosave pushed: $COMMIT_MSG" >> "$PROJECT_DIR/.autosave.log"
-        exit 0
-    fi
-    sleep 5
-done
+# Push via safe-push (handles credentials gracefully)
+bash "$PROJECT_DIR/scripts/safe-push.sh" 2>/dev/null || true
 
-echo "[$(date)] WARNING: Push failed after $MAX_RETRIES retries" >> "$PROJECT_DIR/.autosave.log"
-exit 1
+echo "[$(date)] Autosave committed: $COMMIT_MSG" >> "$PROJECT_DIR/.autosave.log"
