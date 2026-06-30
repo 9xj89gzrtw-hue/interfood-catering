@@ -4,16 +4,18 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 /* ═══════════════════════════════════════════════════════════════
-   Parallax Image — scroll-driven parallax on any image
+   ParallaxImage — scroll-driven parallax for images
+   Image moves at different speed than scroll
    ═══════════════════════════════════════════════════════════════ */
 
 interface ParallaxImageProps {
   src: string;
   alt: string;
-  speed?: number; // parallax intensity: 0.2 = subtle, 0.5 = strong
+  speed?: number;
   className?: string;
   style?: React.CSSProperties;
   overlay?: boolean;
+  overlayOpacity?: number;
 }
 
 export default function ParallaxImage({
@@ -23,6 +25,7 @@ export default function ParallaxImage({
   className = "",
   style,
   overlay = false,
+  overlayOpacity = 0.3,
 }: ParallaxImageProps) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -42,7 +45,6 @@ export default function ParallaxImage({
           position: "absolute",
           inset: "-20%",
           y,
-          willChange: "transform",
         }}
       >
         <img
@@ -57,7 +59,7 @@ export default function ParallaxImage({
           style={{
             position: "absolute",
             inset: 0,
-            background: "linear-gradient(to bottom, rgba(12,11,11,0.3) 0%, rgba(12,11,11,0.6) 100%)",
+            background: `rgba(254,253,251,${overlayOpacity})`,
           }}
         />
       )}

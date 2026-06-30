@@ -4,8 +4,8 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 /* ═══════════════════════════════════════════════════════════════
-   Video Break — Full-bleed video section between content
-   Like Creative Edge's cinematic interludes
+   VideoBreak — Full-bleed video section for light theme
+   Cinematic interlude with warm overlay
    ═══════════════════════════════════════════════════════════════ */
 
 interface VideoBreakProps {
@@ -17,7 +17,7 @@ interface VideoBreakProps {
 export default function VideoBreak({ src, title, subtitle }: VideoBreakProps) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [1.1, 1, 1.1]);
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [1.15, 1, 1.15]);
   const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
 
   return (
@@ -33,8 +33,9 @@ export default function VideoBreak({ src, title, subtitle }: VideoBreakProps) {
           <source src={src} type="video/mp4" />
         </video>
       </motion.div>
-      {/* Dark overlay */}
-      <div style={{ position: "absolute", inset: 0, background: "rgba(12,11,11,0.55)" }} />
+      {/* Warm overlay for light theme */}
+      <div style={{ position: "absolute", inset: 0, background: "rgba(254,253,251,0.3)" }} />
+      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(254,253,251,0.1) 0%, rgba(254,253,251,0.7) 100%)" }} />
       {/* Content */}
       <motion.div
         style={{ opacity }}
@@ -54,8 +55,8 @@ export default function VideoBreak({ src, title, subtitle }: VideoBreakProps) {
           <h2 style={{
             fontFamily: "var(--font-serif)",
             fontSize: "clamp(1.8rem, 5vw, 3.5rem)",
-            fontWeight: 300,
-            color: "#fff",
+            fontWeight: 400,
+            color: "var(--color-dark)",
             lineHeight: 1.2,
             marginBottom: "0.5rem",
           }}>
@@ -63,7 +64,7 @@ export default function VideoBreak({ src, title, subtitle }: VideoBreakProps) {
           </h2>
           {subtitle && (
             <p style={{
-              color: "rgba(255,255,255,0.6)",
+              color: "rgba(26,26,26,0.6)",
               fontSize: "clamp(0.85rem, 2vw, 1.1rem)",
               maxWidth: 500,
             }}>

@@ -5,24 +5,24 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 
 /* ═══════════════════════════════════════════════════════════════
-   Shared Navigation with Burger Menu for Subpages
+   Unified Site Navigation — used on ALL pages including main
+   Glass morphism on scroll, burger menu on mobile
    ═══════════════════════════════════════════════════════════════ */
 
 const NAV_LINKS = [
+  { label: "Главная", href: "/" },
   { label: "Меню", href: "/menu" },
+  { label: "Услуги", href: "/services" },
   { label: "Свадьбы", href: "/wedding" },
   { label: "Корпоратив", href: "/corporate" },
   { label: "О нас", href: "/about" },
+  { label: "Галерея", href: "/gallery" },
   { label: "Отзывы", href: "/reviews" },
-  { label: "Галерея", href: "/#gallery" },
+  { label: "Калькулятор", href: "/calculator" },
+  { label: "Контакты", href: "/contacts" },
 ];
 
-interface SiteNavProps {
-  /** Extra hash links that only show on certain pages */
-  extraLinks?: { label: string; href: string }[];
-}
-
-export default function SiteNav({ extraLinks }: SiteNavProps) {
+export default function SiteNav() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -37,19 +37,15 @@ export default function SiteNav({ extraLinks }: SiteNavProps) {
     return () => { document.body.style.overflow = ""; };
   }, [menuOpen]);
 
-  const allLinks = [...NAV_LINKS, ...(extraLinks || [])];
-
   return (
     <>
       <nav className={`nav ${scrolled ? "scrolled" : ""}`} role="navigation" aria-label="Навигация">
         <div className="nav-inner">
           <Link href="/" className="nav-logo">ИНТЕРФУД</Link>
           <ul className="nav-links">
-            {allLinks.map((item) => (
+            {NAV_LINKS.map((item) => (
               <li key={item.href}>
-                {item.href.startsWith("/") && !item.href.includes("#")
-                  ? <Link href={item.href}>{item.label}</Link>
-                  : <a href={item.href}>{item.label}</a>}
+                <Link href={item.href}>{item.label}</Link>
               </li>
             ))}
             <li>
@@ -80,14 +76,12 @@ export default function SiteNav({ extraLinks }: SiteNavProps) {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
           >
-            {allLinks.map((item) => (
-              item.href.startsWith("/") && !item.href.includes("#") ? (
-                <Link key={item.href} href={item.href} onClick={() => setMenuOpen(false)}>{item.label}</Link>
-              ) : (
-                <a key={item.href} href={item.href} onClick={() => setMenuOpen(false)}>{item.label}</a>
-              )
+            {NAV_LINKS.map((item) => (
+              <Link key={item.href} href={item.href} onClick={() => setMenuOpen(false)}>
+                {item.label}
+              </Link>
             ))}
-            <a href="tel:+78129195911" style={{ color: "var(--color-brand-light)", fontSize: "1.2rem" }}>
+            <a href="tel:+78129195911" style={{ color: "var(--color-brand)", fontSize: "1.2rem" }}>
               +7 (812) 919-59-11
             </a>
             <Link

@@ -1,111 +1,128 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence, useInView, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import Link from "next/link";
 import SiteNav from "@/components/SiteNav";
-import VideoCarousel from "@/components/VideoCarousel";
+import ClientMarquee from "@/components/ClientMarquee";
 import ParallaxImage from "@/components/ParallaxImage";
+import VideoCarousel from "@/components/VideoCarousel";
+import VideoBreak from "@/components/VideoBreak";
+import TextReveal from "@/components/TextReveal";
+import CountUp from "@/components/CountUp";
+import MagneticButton from "@/components/MagneticButton";
+import TiltCard from "@/components/TiltCard";
+import ImageReveal from "@/components/ImageReveal";
 
 /* ═══════════════════════════════════════════════════════════════
    ИНТЕРФУД КЕЙТЕРИНГ — Корпоративный кейтеринг / Corporate Page
+   Light theme — warm white, cream, gold accent
    ═══════════════════════════════════════════════════════════════ */
+
+const VID = {
+  hero: "https://videos.pexels.com/video-files/2759750/2759750-uhd_2560_1440_25fps.mp4",
+  corporate1: "https://videos.pexels.com/video-files/3195394/3195394-uhd_2560_1440_25fps.mp4",
+  corporate2: "https://videos.pexels.com/video-files/4761433/4761433-uhd_2560_1440_25fps.mp4",
+  corporate3: "https://videos.pexels.com/video-files/5377703/5377703-uhd_2560_1440_25fps.mp4",
+  corporate4: "https://videos.pexels.com/video-files/4763824/4763824-uhd_2560_1440_24fps.mp4",
+};
 
 const IMG = {
   corporate: "https://sfile.chatglm.cn/images-ppt/b26bc8017630.png",
-  coffee: "https://sfile.chatglm.cn/images-ppt/4f51d25798b0.jpg",
-  furshet: "https://sfile.chatglm.cn/images-ppt/a2fbd3b8447b.jpg",
-  banquet: "https://sfile.chatglm.cn/images-ppt/b0afca3cdeee.jpg",
-  hall: "https://sfile.chatglm.cn/images-ppt/31ca0a361dc4.jpg",
+  conference: "https://sfile.chatglm.cn/images-ppt/31ca0a361dc4.jpg",
+  teambuilding: "https://sfile.chatglm.cn/images-ppt/a2fbd3b8447b.jpg",
+  presentation: "https://sfile.chatglm.cn/images-ppt/4f51d25798b0.jpg",
+  buffet: "https://sfile.chatglm.cn/images-ppt/b0afca3cdeee.jpg",
   bar: "https://sfile.chatglm.cn/images-ppt/c73dc40e41d4.jpg",
-  staff: "https://sfile.chatglm.cn/images-ppt/73b69f6f313f.jpg",
-  canape: "https://sfile.chatglm.cn/images-ppt/2585575d2db2.jpg",
-  cocktail: "https://sfile.chatglm.cn/images-ppt/970cc7881d1a.jpg",
-  festive: "https://sfile.chatglm.cn/images-ppt/7b99135d2e61.jpg",
-  buffet: "https://sfile.chatglm.cn/images-ppt/75acfcbd3339.jpg",
   dessert: "https://sfile.chatglm.cn/images-ppt/cf9ca554baf6.jpg",
+  hero: "https://sfile.chatglm.cn/images-ppt/3a442a2e6e71.jpg",
 };
+
+/* ─── Data ─── */
 
 const FORMATS = [
   {
-    name: "Корпоративный фуршет",
-    price: "от 2 450 ₽/чел",
-    guests: "30–500",
-    desc: "Элегантные канапе и закуски для свободного общения. Идеально для юбилеев компании, выставок и приёмов.",
-    img: IMG.furshet,
-    features: ["30+ позиций меню", "Официанты и бармены", "Сервировка и текстиль", "Барная стойка"],
+    title: "Конференция",
+    subtitle: "Кофе-брейки + обед",
+    desc: "Полное питание для деловых мероприятий: утренние кофе-брейки, бизнес-ланчи и вечерние приёмы. Быстрая подача, безупречная сервировка.",
+    img: IMG.conference,
+    features: ["Кофе-брейк от 950 ₽", "Бизнес-ланч от 1 800 ₽", "Несколько станций", "Меню для аллергиков"],
   },
   {
-    name: "Бизнес-банкет",
-    price: "от 4 470 ₽/чел",
-    guests: "20–300",
-    desc: "Многокурсный ужин с авторскими блюдами для статусных мероприятий и награждений.",
-    img: IMG.banquet,
-    features: ["5–7 курсов", "Винная карта от сомелье", "Индивидуальная сервировка", "Координация таймлайна"],
-  },
-  {
-    name: "Кофе-брейк",
-    price: "от 950 ₽/чел",
-    guests: "15–1000",
-    desc: "Кофе, чай, выпечка и лёгкие закуски для конференций, семинаров и деловых встреч.",
-    img: IMG.coffee,
-    features: ["Быстрая подача", "Несколько станций", "Меню для аллергиков", "Гибкий тайминг"],
-  },
-  {
-    name: "Шведский стол",
-    price: "от 2 800 ₽/чел",
-    guests: "50–1000",
-    desc: "Разнообразные станции с блюдами разных кухонь мира. Масштабируемое решение для крупных мероприятий.",
+    title: "Форум",
+    subtitle: "Полный день питания",
+    desc: "Круглосуточное обслуживание масштабных форумов и саммитов. 3–5 приёмов пищи, кофейные зоны, фуршетные станции.",
     img: IMG.buffet,
-    features: ["5–8 станций", "Живая готовка", "Вегетарианские опции", "Эко-посуда"],
-  },
-];
-
-const CLIENTS = [
-  "Газпром", "Сбербанк", "Яндекс", "VK", "Тинькофф", "Росатом",
-  "Лукойл", "МТС", "Ростелеком", "СИБУР", "Норникель", "Магнит",
-];
-
-const CASES = [
-  {
-    title: "Годовой форум IT-компании",
-    client: "Крупный IT-холдинг",
-    guests: 500,
-    format: "Кофе-брейк + Фуршет",
-    desc: "Обеспечили питание на 3-дневном форуме: утренние кофе-брейки, обеденные фуршеты и вечерние приёмы. 12 станций, 40 официантов, 0 задержек.",
-    img: IMG.hall,
+    features: ["3–5 приёмов пищи", "Кофе-зоны 24/7", "До 5 000 гостей", "Тайминг ±5 мин"],
   },
   {
-    title: "Юбилей промышленного концерна",
-    client: "Промышленный холдинг",
-    guests: 300,
-    format: "Банкет",
-    desc: "Премиальный банкет на 300 персон в историческом особняке. Авторское меню из 7 курсов, живая музыка, шампанская пирамида.",
-    img: IMG.banquet,
+    title: "Тимбилдинг",
+    subtitle: "BBQ / outdoor",
+    desc: "Питание на природе для корпоративных выездов. BBQ-станции, гриль-бар, полевая кухня, кейтеринг под открытым небом.",
+    img: IMG.teambuilding,
+    features: ["BBQ и гриль", "Полевая кухня", "Напитки и бар", "Эко-посуда"],
   },
   {
-    title: "Открытие нового офиса",
-    client: "Финтех-стартап",
-    guests: 150,
-    format: "Фуршет + Коктейльная зона",
-    desc: "Современный формат с фуршетными станциями и авторскими коктейлями. Шеф-стол с живой готовкой и десертная зона.",
-    img: IMG.festive,
+    title: "Презентация",
+    subtitle: "Фуршетный формат",
+    desc: "Элегантный фуршет для продуктовых презентаций, выставок и приёмов. Канапе, закуски, шампанская зона.",
+    img: IMG.presentation,
+    features: ["Канапе и закуски", "Шампанская зона", "Официанты", "Сервировка и текстиль"],
   },
 ];
 
 const ADVANTAGES = [
-  { icon: "📋", title: "Полное документальное оформление", desc: "Договор, счета, акты выполненных работ, счета-фактуры. Работаем с НДС и без. Любые формы расчёта." },
-  { icon: "👨‍💼", title: "Выделенный менеджер проекта", desc: "Персональный менеджер курирует ваш проект от заявки до финальной уборки. Доступен 24/7 в день мероприятия." },
-  { icon: "🕐", title: "Точное соблюдение таймлайна", desc: "Подача блюд по расписанию с точностью до 5 минут. Координация с вашим сценаристом и ведущим." },
-  { icon: "🌿", title: "Экологичные решения", desc: "Биоразлагаемая посуда, сортировка отходов, локальные поставщики. Экологичный кейтеринг для осознанного бизнеса." },
-  { icon: "🔒", title: "NDA и конфиденциальность", desc: "Подписываем NDA. Дискретный персонал, закрытые площадки. Ваше мероприятие остаётся вашим." },
-  { icon: "📊", title: "Гибкое масштабирование", desc: "От 15 до 5000 гостей. Увеличение или сокращение за 48 часов. Резерв блюд на случай доп. гостей." },
+  { icon: "⏱", title: "Пунктуальность", desc: "Подача блюд по расписанию с точностью до 5 минут. Координация с вашим сценарием и таймлайном мероприятия." },
+  { icon: "📐", title: "Масштаб", desc: "От 15 до 5 000 гостей. Увеличение или сокращение заказа за 48 часов. Резерв блюд на случай доп. участников." },
+  { icon: "🔄", title: "Гибкость", desc: "Меняем меню, тайминг и формат за 24 часа. Адаптируемся под любые изменения в программе мероприятия." },
+  { icon: "👨‍🍳", title: "Собственная кухня", desc: "Готовим на собственной базе, а не собираем из полуфабрикатов. Контроль качества на каждом этапе." },
+  { icon: "🏢", title: "Единый подрядчик", desc: "Еда, бар, сервировка, персонал и логистика — одна заявка, один договор, одна команда." },
+  { icon: "📊", title: "Отчётность", desc: "Полный пакет документов: договор, счета, акты, счета-фактуры. Работаем с НДС и без. Любые формы расчёта." },
 ];
+
+const CASES = [
+  {
+    client: "Газпром",
+    title: "Ежегодный корпоративный форум",
+    guests: 500,
+    duration: "3 дня",
+    result: "1 500+ кофе-брейков",
+    desc: "Обеспечили полное питание на 3-дневном форуме: утренние кофе-брейки, бизнес-ланчи и вечерние приёмы. 12 станций, 40 официантов, 0 задержек.",
+    quote: "Интерфуд безупречно справился с масштабом нашего форума. Всё по расписанию, качество на высоте.",
+    quoteAuthor: "Руководитель протокола",
+    img: IMG.conference,
+  },
+  {
+    client: "Яндекс",
+    title: "Презентация нового продукта",
+    guests: 200,
+    duration: "Полный день",
+    result: "4.9 / 5.0 рейтинг",
+    desc: "Фуршетный формат с интерактивными станциями и авторскими коктейлями. Шеф-стол с живой готовкой и десертная зона. Рейтинг мероприятия 4.9 из 5.",
+    quote: "Стильно, вкусно, профессионально. Наши сотрудники были в восторге от формата и качества.",
+    quoteAuthor: "HR-директор",
+    img: IMG.dessert,
+  },
+  {
+    client: "Сбербанк",
+    title: "Корпоративный тимбилдинг",
+    guests: 300,
+    duration: "Outdoor BBQ",
+    result: "Безупречное исполнение",
+    desc: "Outdoor BBQ на 300 участников. Гриль-станции, полевая кухня, кальянная зона и авторские лимонады. Погода не помеха — установили шатры за 2 часа.",
+    quote: "Даже дождь не испортил мероприятие — команда Интерфуда оперативно установила шатры. Всё прошло идеально.",
+    quoteAuthor: "Организатор мероприятия",
+    img: IMG.teambuilding,
+  },
+];
+
+/* ─── Animation helpers ─── */
 
 const fadeUp = {
   hidden: { opacity: 0, y: 60 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.4, 0, 0.2, 1] } },
 };
+
 const staggerContainer = { hidden: {}, visible: { transition: { staggerChildren: 0.1 } } };
 const staggerItem = {
   hidden: { opacity: 0, y: 40 },
@@ -122,16 +139,76 @@ function Reveal({ children, className = "", delay = 0 }: { children: React.React
   );
 }
 
+/* ─── Icons as simple SVG components ─── */
+
+function IconClock() {
+  return (
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10" />
+      <polyline points="12 6 12 12 16 14" />
+    </svg>
+  );
+}
+function IconScale() {
+  return (
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 3H3v7h18V3z" />
+      <path d="M21 14H3v7h18v-7z" />
+      <line x1="12" y1="3" x2="12" y2="21" />
+    </svg>
+  );
+}
+function IconFlex() {
+  return (
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="15 3 21 3 21 9" />
+      <polyline points="9 21 3 21 3 15" />
+      <line x1="21" y1="3" x2="14" y2="10" />
+      <line x1="3" y1="21" x2="10" y2="14" />
+    </svg>
+  );
+}
+function IconChef() {
+  return (
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M6 13.87A4 4 0 0 1 7.41 6a5.11 5.11 0 0 1 1.05-1.54 5 5 0 0 1 7.08 0A5.11 5.11 0 0 1 16.59 6 4 4 0 0 1 18 13.87V21H6z" />
+      <line x1="6" y1="17" x2="18" y2="17" />
+    </svg>
+  );
+}
+function IconBuilding() {
+  return (
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="4" y="2" width="16" height="20" rx="2" ry="2" />
+      <line x1="9" y1="6" x2="9" y2="6.01" />
+      <line x1="15" y1="6" x2="15" y2="6.01" />
+      <line x1="9" y1="10" x2="9" y2="10.01" />
+      <line x1="15" y1="10" x2="15" y2="10.01" />
+      <line x1="9" y1="14" x2="9" y2="14.01" />
+      <line x1="15" y1="14" x2="15" y2="14.01" />
+      <path d="M9 18h6v4H9z" />
+    </svg>
+  );
+}
+function IconReport() {
+  return (
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+      <polyline points="14 2 14 8 20 8" />
+      <line x1="16" y1="13" x2="8" y2="13" />
+      <line x1="16" y1="17" x2="8" y2="17" />
+      <polyline points="10 9 9 9 8 9" />
+    </svg>
+  );
+}
+
+const ADV_ICONS = [<IconClock key="0" />, <IconScale key="1" />, <IconFlex key="2" />, <IconChef key="3" />, <IconBuilding key="4" />, <IconReport key="5" />];
+
+/* ═══════════════════════════════════════════════════════════════
+   Page Component
+   ═══════════════════════════════════════════════════════════════ */
+
 export default function CorporatePage() {
-  const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
-
-  // Escape closes lightbox
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setLightboxSrc(null); };
-    document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
-  }, []);
-
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
@@ -140,86 +217,265 @@ export default function CorporatePage() {
     <>
       <SiteNav />
 
-      {/* Hero */}
+      {/* ═══════════════════════════════════════════════════════
+          1. HERO — Video background with parallax
+          ═══════════════════════════════════════════════════════ */}
       <section className="hero" ref={heroRef} aria-label="Корпоративный кейтеринг">
-        <motion.div className="hero-bg" style={{ y: heroY, backgroundImage: `url(${IMG.corporate})`, backgroundSize: "cover", backgroundPosition: "center" }} />
-        <div className="hero-overlay" style={{ background: "linear-gradient(135deg, rgba(10,22,40,0.85) 0%, rgba(12,11,11,0.7) 50%, rgba(10,22,40,0.8) 100%)" }} />
-        <div className="hero-grain" />
-        <motion.div className="hero-content" initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, delay: 0.3 }}>
-          <motion.div className="hero-tag" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.6 }}>
+        {/* Video BG */}
+        <motion.div className="hero-video" style={{ y: heroY }}>
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster={IMG.hero}
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          >
+            <source src={VID.hero} type="video/mp4" />
+          </video>
+        </motion.div>
+        {/* Light overlay — warm gradient */}
+        <div className="hero-overlay" style={{
+          background: "linear-gradient(to bottom, rgba(254,253,251,0.15) 0%, rgba(254,253,251,0.25) 40%, rgba(254,253,251,0.75) 80%, rgba(254,253,251,0.95) 100%)",
+        }} />
+        <motion.div
+          className="hero-content"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, delay: 0.3 }}
+        >
+          <motion.div
+            style={{
+              fontSize: "0.65rem", fontWeight: 600, letterSpacing: "0.3em",
+              textTransform: "uppercase", color: "var(--color-brand)",
+              marginBottom: "1.5rem", display: "inline-block",
+              padding: "0.4rem 1.2rem", border: "1px solid var(--color-brand-20)",
+              borderRadius: "100px",
+            }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
             Корпоративный кейтеринг
           </motion.div>
-          <h1 className="hero-title">Кейтеринг для<br /><em>бизнеса</em></h1>
-          <p className="hero-sub">Профессиональное питание для мероприятий любого масштаба. Полное документальное оформление, выделенный менеджер и безупречный сервис.</p>
-          <div className="hero-actions">
-            <Link href="/#contact" className="btn-gold">Запросить КП &#8594;</Link>
-            <a href="#formats" className="btn-outline">Форматы</a>
-          </div>
+
+          <TextReveal
+            text="Кейтеринг для бизнеса"
+            as="h1"
+            style={{
+              fontFamily: "var(--font-serif)",
+              fontSize: "clamp(2.8rem, 7vw, 5.5rem)",
+              fontWeight: 400,
+              lineHeight: 1.1,
+              color: "var(--color-dark)",
+              marginBottom: "1.5rem",
+            }}
+          />
+
+          <motion.p
+            style={{
+              fontSize: "1.05rem", lineHeight: 1.7, color: "rgba(26,26,26,0.6)",
+              maxWidth: 580, margin: "0 auto 2.5rem",
+            }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.9 }}
+          >
+            Профессиональное питание для мероприятий любого масштаба.
+            Конференции, форумы, тимбилдинги — с документами и НДС.
+          </motion.p>
+
+          <motion.div
+            style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.1 }}
+          >
+            <MagneticButton as="a" href="/#contact" className="btn-gold" strength={0.2}>
+              Запросить КП →
+            </MagneticButton>
+            <MagneticButton as="a" href="#formats" className="btn-outline" strength={0.2}>
+              Форматы
+            </MagneticButton>
+          </motion.div>
         </motion.div>
       </section>
 
-      {/* Stats */}
-      <div className="trust-bar">
-        <div className="trust-inner">
-          {[
-            { label: "Корпоративов проведено", value: "1 200+" },
-            { label: "Постоянных клиентов", value: "85+" },
-            { label: "Макс. гостей на мероп.", value: "5 000" },
-            { label: "Работаем с НДС", value: "Да" },
-          ].map((item, i) => (
-            <div key={i} className="trust-item">
-              <strong style={{ color: "var(--color-brand-light)" }}>{item.value}</strong>
-              <span>{item.label}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Video Carousel */}
-      <section className="section section-dark" style={{ paddingBottom: "2rem" }}>
-        <div className="container">
-          <Reveal>
-            <span className="section-label">Видео</span>
-            <h2 className="section-title" style={{ fontSize: "1.5rem", marginBottom: "1.5rem" }}>Корпоративный <em>сервис</em> в действии</h2>
-          </Reveal>
-          <VideoCarousel
-            slides={[
-              { src: "https://videos.pexels.com/video-files/3768941/3768941-hd_1920_1080_25fps.mp4", title: "Организация корпоративного питания", subtitle: "Профессиональная команда для вашего бизнеса" },
-              { src: "https://videos.pexels.com/video-files/3209765/3209765-hd_1920_1080_25fps.mp4", title: "Сервировка для конференций", subtitle: "Быстрая подача, безупречный вид" },
-              { src: "https://videos.pexels.com/video-files/3768985/3768985-hd_1920_1080_25fps.mp4", title: "Шеф-повар за работой", subtitle: "Контроль качества на каждом этапе" },
-            ]}
-          />
+      {/* ─── Stats Bar ─── */}
+      <section style={{
+        background: "var(--color-cream)",
+        borderBottom: "1px solid rgba(184,149,90,0.12)",
+        padding: "3rem 2rem",
+      }}>
+        <div style={{ maxWidth: 1320, margin: "0 auto" }}>
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(3, 1fr)",
+            gap: "2rem",
+            textAlign: "center",
+          }}
+          className="trust-bar-grid"
+          >
+            {[
+              { value: 1200, suffix: "+", label: "мероприятий" },
+              { value: 85, suffix: "+", label: "клиентов" },
+              { value: 98, suffix: "%", label: "повторных обращений" },
+            ].map((stat, i) => (
+              <div key={i} style={{ padding: "1rem 0" }}>
+                <div style={{
+                  fontFamily: "var(--font-serif)",
+                  fontSize: "clamp(2.2rem, 4vw, 3.2rem)",
+                  fontWeight: 400,
+                  color: "var(--color-brand)",
+                  lineHeight: 1.2,
+                }}>
+                  <CountUp target={stat.value} suffix={stat.suffix} duration={2.5} />
+                </div>
+                <div style={{
+                  fontSize: "0.7rem",
+                  letterSpacing: "0.2em",
+                  textTransform: "uppercase",
+                  color: "#888",
+                  marginTop: "0.5rem",
+                }}>
+                  {stat.label}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Parallax Divider */}
-      <ParallaxImage src={IMG.banquet} alt="Банкетная подача" speed={0.2} style={{ height: "40vh", minHeight: 250 }} overlay />
-
-      {/* Formats */}
-      <section className="section section-dark" id="formats" aria-label="Форматы">
+      {/* ═══════════════════════════════════════════════════════
+          2. FORMATS — 4 format cards
+          ═══════════════════════════════════════════════════════ */}
+      <section id="formats" style={{ padding: "6rem 0", background: "var(--color-warm-white)" }} aria-label="Форматы">
         <div className="container">
           <Reveal>
             <span className="section-label">Форматы</span>
-            <h2 className="section-title">Подберите <em>формат</em></h2>
-            <p className="section-desc">От кофе-брейка на 15 человек до банкета на 5000 гостей. Масштабируемые решения под ваш бюджет.</p>
+            <h2 className="section-title">
+              Подберите <em style={{ fontFamily: "var(--font-serif)", fontStyle: "italic", color: "var(--color-brand)" }}>формат</em>
+            </h2>
+            <p className="section-subtitle" style={{ marginBottom: "3rem" }}>
+              От кофе-брейка на 15 человек до форума на 5 000 гостей. Масштабируемые решения под ваш бюджет.
+            </p>
           </Reveal>
-          <motion.div className="services-grid" variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }}>
-            {FORMATS.map((fmt) => (
-              <motion.div key={fmt.name} className="service-card" variants={staggerItem}>
-                <img src={fmt.img} alt={fmt.name} loading="lazy" />
-                <div className="service-overlay" />
-                <div className="service-info">
-                  <span className="service-tag">{fmt.guests} гостей</span>
-                  <div className="service-name">{fmt.name}</div>
-                  <div className="service-price">{fmt.price}</div>
-                  <div className="service-desc">{fmt.desc}</div>
-                  <div style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap", marginTop: "0.75rem" }}>
-                    {fmt.features.map((f, j) => (
-                      <span key={j} style={{ background: "rgba(184,149,90,0.12)", color: "var(--color-brand-light)", fontSize: "0.65rem", padding: "0.2rem 0.5rem", borderRadius: "3px", letterSpacing: "0.05em" }}>
-                        {f}
+
+          <motion.div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(4, 1fr)",
+              gap: "1.5rem",
+            }}
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+          >
+            {FORMATS.map((fmt, i) => (
+              <motion.div key={fmt.title} variants={staggerItem}>
+                <TiltCard glare>
+                  <div className="card" style={{ height: "100%", display: "flex", flexDirection: "column" }}>
+                    <div style={{ position: "relative", height: 220, overflow: "hidden" }}>
+                      <ImageReveal
+                        src={fmt.img}
+                        alt={fmt.title}
+                        direction={i % 2 === 0 ? "left" : "right"}
+                        style={{ width: "100%", height: "100%" }}
+                      />
+                    </div>
+                    <div style={{ padding: "1.5rem", flex: 1, display: "flex", flexDirection: "column" }}>
+                      <span style={{
+                        fontSize: "0.6rem", fontWeight: 600, letterSpacing: "0.25em",
+                        textTransform: "uppercase", color: "var(--color-brand)",
+                        marginBottom: "0.5rem",
+                      }}>
+                        {fmt.subtitle}
                       </span>
-                    ))}
+                      <h3 style={{
+                        fontFamily: "var(--font-serif)",
+                        fontSize: "1.4rem", fontWeight: 400,
+                        color: "var(--color-dark)", marginBottom: "0.75rem",
+                      }}>
+                        {fmt.title}
+                      </h3>
+                      <p style={{
+                        fontSize: "0.88rem", lineHeight: 1.6,
+                        color: "#666", marginBottom: "1rem", flex: 1,
+                      }}>
+                        {fmt.desc}
+                      </p>
+                      <div style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap" }}>
+                        {fmt.features.map((f, j) => (
+                          <span key={j} style={{
+                            background: "var(--color-brand-10)",
+                            color: "var(--color-brand-dark)",
+                            fontSize: "0.65rem", padding: "0.3rem 0.7rem",
+                            borderRadius: "100px", fontWeight: 500,
+                            letterSpacing: "0.03em",
+                          }}>
+                            {f}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
                   </div>
+                </TiltCard>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════
+          3. ADVANTAGES — 6 cards with icons
+          ═══════════════════════════════════════════════════════ */}
+      <section style={{ padding: "6rem 0", background: "var(--color-cream)" }} aria-label="Преимущества">
+        <div className="container">
+          <Reveal>
+            <span className="section-label">Преимущества</span>
+            <h2 className="section-title">
+              Почему <em style={{ fontFamily: "var(--font-serif)", fontStyle: "italic", color: "var(--color-brand)" }}>компании</em> выбирают нас
+            </h2>
+          </Reveal>
+
+          <motion.div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(3, 1fr)",
+              gap: "1.5rem",
+              marginTop: "2.5rem",
+            }}
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            {ADVANTAGES.map((item, i) => (
+              <motion.div key={i} variants={staggerItem}>
+                <div className="review-card" style={{ padding: "2rem", height: "100%" }}>
+                  <div style={{
+                    width: 56, height: 56, borderRadius: 16,
+                    background: "var(--color-brand-10)",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    color: "var(--color-brand-dark)",
+                    marginBottom: "1.25rem",
+                  }}>
+                    {ADV_ICONS[i]}
+                  </div>
+                  <h3 style={{
+                    fontFamily: "var(--font-serif)",
+                    fontSize: "1.2rem", fontWeight: 400,
+                    color: "var(--color-dark)", marginBottom: "0.75rem",
+                  }}>
+                    {item.title}
+                  </h3>
+                  <p style={{
+                    fontSize: "0.88rem", lineHeight: 1.7,
+                    color: "#777",
+                  }}>
+                    {item.desc}
+                  </p>
                 </div>
               </motion.div>
             ))}
@@ -227,75 +483,89 @@ export default function CorporatePage() {
         </div>
       </section>
 
-      {/* Advantages */}
-      <section className="section section-navy" aria-label="Преимущества">
-        <div className="container">
-          <Reveal>
-            <span className="section-label">Преимущества</span>
-            <h2 className="section-title">Почему <em>компании</em> выбирают нас</h2>
-          </Reveal>
-          <motion.div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1.5rem", marginTop: "2.5rem" }} variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-            {ADVANTAGES.map((item, i) => (
-              <motion.div key={i} className="review-card" variants={staggerItem}>
-                <div style={{ fontSize: "1.8rem", marginBottom: "0.75rem" }}>{item.icon}</div>
-                <h3 style={{ fontFamily: "var(--font-serif)", fontSize: "1.1rem", fontWeight: 400, marginBottom: "0.5rem", color: "var(--color-brand-light)" }}>{item.title}</h3>
-                <p style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.88rem", lineHeight: 1.6 }}>{item.desc}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
+      {/* ═══════════════════════════════════════════════════════
+          4. CLIENT LOGOS MARQUEE
+          ═══════════════════════════════════════════════════════ */}
+      <ClientMarquee />
 
-      {/* Trusted By */}
-      <section className="section section-dark" aria-label="Наши клиенты">
-        <div className="container" style={{ textAlign: "center" }}>
-          <Reveal>
-            <span className="section-label">Клиенты</span>
-            <h2 className="section-title">Нам <em>доверяют</em></h2>
-          </Reveal>
-          <motion.div
-            style={{ display: "flex", gap: "2rem", justifyContent: "center", flexWrap: "wrap", marginTop: "2rem" }}
-            variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}
-          >
-            {CLIENTS.map((client, i) => (
-              <motion.div
-                key={i}
-                variants={staggerItem}
-                style={{
-                  background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)",
-                  padding: "1rem 2rem", borderRadius: "8px", fontSize: "0.9rem",
-                  color: "rgba(255,255,255,0.5)", fontWeight: 500, letterSpacing: "0.05em",
-                }}
-              >
-                {client}
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Case Studies */}
-      <section className="section section-dark" aria-label="Кейсы">
+      {/* ═══════════════════════════════════════════════════════
+          5. CASE STUDIES — 3 real cases
+          ═══════════════════════════════════════════════════════ */}
+      <section style={{ padding: "6rem 0", background: "var(--color-warm-white)" }} aria-label="Кейсы">
         <div className="container">
           <Reveal>
             <span className="section-label">Кейсы</span>
-            <h2 className="section-title">Наши <em>кейсы</em></h2>
+            <h2 className="section-title">
+              Наши <em style={{ fontFamily: "var(--font-serif)", fontStyle: "italic", color: "var(--color-brand)" }}>кейсы</em>
+            </h2>
           </Reveal>
-          <div style={{ display: "flex", flexDirection: "column", gap: "2rem", marginTop: "2.5rem" }}>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: "2.5rem", marginTop: "2.5rem" }}>
             {CASES.map((cs, i) => (
               <Reveal key={i} delay={i * 0.1}>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: "2rem", background: "rgba(255,255,255,0.02)", border: "1px solid rgba(184,149,90,0.1)", borderRadius: "16px", overflow: "hidden" }}>
-                  <div style={{ height: 280, overflow: "hidden" }}>
-                    <img src={cs.img} alt={cs.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} loading="lazy" />
+                <div className="card" style={{
+                  display: "grid",
+                  gridTemplateColumns: "1fr 1.5fr",
+                  overflow: "hidden",
+                }}>
+                  <div style={{ height: 320, overflow: "hidden" }}>
+                    <ImageReveal
+                      src={cs.img}
+                      alt={cs.title}
+                      direction={i % 2 === 0 ? "left" : "right"}
+                      style={{ width: "100%", height: "100%" }}
+                    />
                   </div>
-                  <div style={{ padding: "2rem 2rem 2rem 0" }}>
-                    <span style={{ fontSize: "0.65rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--color-brand)", fontWeight: 600 }}>{cs.format}</span>
-                    <h3 style={{ fontFamily: "var(--font-serif)", fontSize: "1.5rem", fontWeight: 400, color: "#fff", margin: "0.5rem 0" }}>{cs.title}</h3>
-                    <div style={{ display: "flex", gap: "1.5rem", marginBottom: "0.75rem" }}>
-                      <span style={{ fontSize: "0.82rem", color: "var(--color-brand-light)" }}>{cs.client}</span>
-                      <span style={{ fontSize: "0.82rem", color: "rgba(255,255,255,0.4)" }}>{cs.guests} гостей</span>
+                  <div style={{ padding: "2.5rem", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1rem" }}>
+                      <span style={{
+                        fontSize: "0.6rem", fontWeight: 700, letterSpacing: "0.25em",
+                        textTransform: "uppercase", color: "var(--color-brand)",
+                        background: "var(--color-brand-10)",
+                        padding: "0.3rem 0.8rem", borderRadius: "100px",
+                      }}>
+                        {cs.client}
+                      </span>
+                      <span style={{ fontSize: "0.75rem", color: "#999" }}>
+                        {cs.guests} гостей · {cs.duration}
+                      </span>
                     </div>
-                    <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "0.92rem", lineHeight: 1.7 }}>{cs.desc}</p>
+                    <h3 style={{
+                      fontFamily: "var(--font-serif)",
+                      fontSize: "1.6rem", fontWeight: 400,
+                      color: "var(--color-dark)", marginBottom: "0.75rem",
+                    }}>
+                      {cs.title}
+                    </h3>
+                    <p style={{
+                      fontSize: "0.9rem", lineHeight: 1.7,
+                      color: "#666", marginBottom: "1.25rem",
+                    }}>
+                      {cs.desc}
+                    </p>
+                    <div style={{
+                      display: "inline-flex", alignItems: "center", gap: "0.5rem",
+                      background: "var(--color-brand-10)", borderRadius: "8px",
+                      padding: "0.5rem 1rem", marginBottom: "1.25rem", width: "fit-content",
+                    }}>
+                      <span style={{ fontSize: "1rem" }}>✓</span>
+                      <span style={{ fontSize: "0.82rem", fontWeight: 600, color: "var(--color-brand-dark)" }}>
+                        {cs.result}
+                      </span>
+                    </div>
+                    <blockquote style={{
+                      borderLeft: "2px solid var(--color-brand-20)",
+                      paddingLeft: "1rem",
+                      fontStyle: "italic",
+                      fontSize: "0.85rem",
+                      lineHeight: 1.6,
+                      color: "#888",
+                    }}>
+                      &ldquo;{cs.quote}&rdquo;
+                      <span style={{ display: "block", marginTop: "0.5rem", fontStyle: "normal", fontSize: "0.75rem", color: "var(--color-brand-dark)" }}>
+                        — {cs.quoteAuthor}, {cs.client}
+                      </span>
+                    </blockquote>
                   </div>
                 </div>
               </Reveal>
@@ -304,55 +574,161 @@ export default function CorporatePage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="bleed" aria-label="Запросить КП">
-        <div className="bleed-bg" style={{ backgroundImage: `url(${IMG.bar})` }} />
-        <div className="bleed-overlay" />
-        <div className="bleed-content">
+      {/* ═══════════════════════════════════════════════════════
+          6. VIDEO CAROUSEL — 4 corporate videos
+          ═══════════════════════════════════════════════════════ */}
+      <section style={{ padding: "6rem 0", background: "var(--color-cream)" }} aria-label="Видео">
+        <div className="container">
           <Reveal>
-            <div>
-              <h2 className="bleed-title">Запросите <em>коммерческое</em><br />предложение</h2>
-              <p className="section-desc" style={{ margin: "0 auto 2rem", textAlign: "center", color: "rgba(255,255,255,0.7)" }}>
-                Подготовим КП за 2 часа. Полный пакет документов, расчёт по вашему бюджету, бесплатная дегустация.
-              </p>
-              <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
-                <Link href="/#contact" className="btn-gold">Запросить КП</Link>
-                <a href="tel:+78129195911" className="btn-outline">+7 (812) 919-59-11</a>
-              </div>
-            </div>
+            <span className="section-label">Видео</span>
+            <h2 className="section-title" style={{ fontSize: "clamp(1.5rem, 3vw, 2.5rem)", marginBottom: "1.5rem" }}>
+              Корпоративный <em style={{ fontFamily: "var(--font-serif)", fontStyle: "italic", color: "var(--color-brand)" }}>сервис</em> в действии
+            </h2>
           </Reveal>
+          <VideoCarousel
+            slides={[
+              { src: VID.corporate1, title: "Организация конференций", subtitle: "Профессиональная команда для вашего бизнеса" },
+              { src: VID.corporate2, title: "Сервировка для форумов", subtitle: "Быстрая подача, безупречный вид" },
+              { src: VID.corporate3, title: "Тимбилдинг на природе", subtitle: "BBQ и гриль под открытым небом" },
+              { src: VID.corporate4, title: "Шеф-повар за работой", subtitle: "Контроль качества на каждом этапе" },
+            ]}
+          />
         </div>
       </section>
 
-      {/* Footer */}
+      {/* ═══════════════════════════════════════════════════════
+          7. PARALLAX DIVIDER
+          ═══════════════════════════════════════════════════════ */}
+      <ParallaxImage
+        src={IMG.bar}
+        alt="Кейтеринг для корпоративных мероприятий"
+        speed={0.2}
+        style={{ height: "40vh", minHeight: 250 }}
+        overlay
+        overlayOpacity={0.4}
+      />
+
+      {/* ═══════════════════════════════════════════════════════
+          8. CTA — Full-bleed
+          ═══════════════════════════════════════════════════════ */}
+      <section style={{ position: "relative", overflow: "hidden" }} aria-label="Заказать корпоративное питание">
+        <div style={{
+          position: "absolute", inset: 0,
+          backgroundImage: `url(${IMG.corporate})`,
+          backgroundSize: "cover", backgroundPosition: "center",
+        }} />
+        <div style={{
+          position: "absolute", inset: 0,
+          background: "linear-gradient(135deg, rgba(184,149,90,0.92) 0%, rgba(139,111,78,0.95) 100%)",
+        }} />
+        <div style={{ position: "relative", zIndex: 2, padding: "6rem 2rem" }}>
+          <div className="container" style={{ textAlign: "center" }}>
+            <Reveal>
+              <h2 style={{
+                fontFamily: "var(--font-serif)",
+                fontSize: "clamp(2rem, 5vw, 3.5rem)",
+                fontWeight: 400, color: "#fff",
+                lineHeight: 1.2, marginBottom: "1.5rem",
+              }}>
+                Заказать <em style={{ fontStyle: "italic" }}>корпоративное</em> питание
+              </h2>
+              <p style={{
+                fontSize: "1.05rem", lineHeight: 1.7,
+                color: "rgba(255,255,255,0.8)",
+                maxWidth: 560, margin: "0 auto 2.5rem",
+              }}>
+                Подготовим КП за 2 часа. Полный пакет документов, расчёт по вашему бюджету, бесплатная дегустация.
+              </p>
+              <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
+                <MagneticButton as="a" href="/#contact" strength={0.2}>
+                  <span style={{
+                    display: "inline-flex", alignItems: "center", justifyContent: "center",
+                    padding: "1rem 2.5rem",
+                    background: "#fff", color: "var(--color-brand-dark)",
+                    fontSize: "0.75rem", fontWeight: 600,
+                    letterSpacing: "0.15em", textTransform: "uppercase",
+                    borderRadius: "100px", textDecoration: "none",
+                    transition: "all 0.4s",
+                  }}>
+                    Запросить КП
+                  </span>
+                </MagneticButton>
+                <MagneticButton as="a" href="tel:+78129195911" strength={0.2}>
+                  <span style={{
+                    display: "inline-flex", alignItems: "center", justifyContent: "center",
+                    padding: "1rem 2.5rem",
+                    background: "transparent", color: "#fff",
+                    fontSize: "0.75rem", fontWeight: 600,
+                    letterSpacing: "0.15em", textTransform: "uppercase",
+                    border: "1.5px solid rgba(255,255,255,0.5)",
+                    borderRadius: "100px", textDecoration: "none",
+                    transition: "all 0.4s",
+                  }}>
+                    +7 (812) 919-59-11
+                  </span>
+                </MagneticButton>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════
+          9. FOOTER
+          ═══════════════════════════════════════════════════════ */}
       <footer className="footer" role="contentinfo">
-        <div className="footer-inner">
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem" }}>
-            <Link href="/" className="footer-brand" style={{ textDecoration: "none" }}>ИНТЕРФУД</Link>
-            <div style={{ display: "flex", gap: "1.5rem", flexWrap: "wrap" }}>
-              <Link href="/menu" style={{ color: "rgba(255,255,255,0.45)", textDecoration: "none", fontSize: "0.85rem" }}>Меню</Link>
-              <Link href="/wedding" style={{ color: "rgba(255,255,255,0.45)", textDecoration: "none", fontSize: "0.85rem" }}>Свадьбы</Link>
-              <Link href="/corporate" style={{ color: "rgba(255,255,255,0.45)", textDecoration: "none", fontSize: "0.85rem" }}>Корпоратив</Link>
-              <Link href="/about" style={{ color: "rgba(255,255,255,0.45)", textDecoration: "none", fontSize: "0.85rem" }}>О нас</Link>
-              <Link href="/reviews" style={{ color: "rgba(255,255,255,0.45)", textDecoration: "none", fontSize: "0.85rem" }}>Отзывы</Link>
-              <Link href="/" style={{ color: "rgba(255,255,255,0.45)", textDecoration: "none", fontSize: "0.85rem" }}>Главная</Link>
+        <div className="container">
+          <div style={{
+            display: "flex", justifyContent: "space-between",
+            alignItems: "center", flexWrap: "wrap", gap: "1rem",
+            padding: "2rem 0",
+          }}>
+            <Link href="/" style={{
+              fontFamily: "var(--font-serif)",
+              fontSize: "1.5rem", fontWeight: 500,
+              color: "#fff", textDecoration: "none",
+              letterSpacing: "0.15em",
+            }}>
+              ИНТЕРФУД
+            </Link>
+            <nav style={{ display: "flex", gap: "1.5rem", flexWrap: "wrap" }} aria-label="Навигация подвала">
+              {[
+                { label: "Меню", href: "/menu" },
+                { label: "Свадьбы", href: "/wedding" },
+                { label: "Корпоратив", href: "/corporate" },
+                { label: "О нас", href: "/about" },
+                { label: "Отзывы", href: "/reviews" },
+                { label: "Главная", href: "/" },
+              ].map((link) => (
+                <Link key={link.href} href={link.href} style={{
+                  color: "rgba(255,255,255,0.45)",
+                  textDecoration: "none", fontSize: "0.85rem",
+                  transition: "color 0.3s",
+                }}>
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+            <div style={{
+              fontSize: "0.8rem", color: "rgba(255,255,255,0.35)",
+            }}>
+              &copy; 2007–2026 Интерфуд Кейтеринг
             </div>
-            <div className="footer-copy">&copy; 2007–2026 Интерфуд Кейтеринг</div>
           </div>
         </div>
       </footer>
 
-      {/* Lightbox */}
-      <AnimatePresence>
-        {lightboxSrc && (
-          <motion.div className="lightbox" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setLightboxSrc(null)}>
-            <motion.img src={lightboxSrc} alt="Увеличенное фото" initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.8, opacity: 0 }} transition={{ duration: 0.3 }} />
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* WhatsApp */}
-      <a href="https://wa.me/79119417205?text=Здравствуйте! Хочу заказать корпоративный кейтеринг." className="wa-float" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">&#9742;</a>
+      {/* WhatsApp Float */}
+      <a
+        href="https://wa.me/79119417205?text=Здравствуйте! Хочу заказать корпоративный кейтеринг."
+        className="wa-float"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="WhatsApp"
+        style={{ fontSize: "1.4rem", color: "#fff", textDecoration: "none" }}
+      >
+        &#9742;
+      </a>
     </>
   );
 }

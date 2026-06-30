@@ -4,7 +4,7 @@ import { motion, useScroll, useSpring } from "framer-motion";
 
 /* ═══════════════════════════════════════════════════════════════
    Scroll Progress — thin gold bar at top of viewport
-   Shows reading progress across the page
+   Works with light theme
    ═══════════════════════════════════════════════════════════════ */
 
 export default function ScrollProgress() {

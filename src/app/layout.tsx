@@ -23,24 +23,24 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL("https://interfood-catering.ru"),
   title: {
-    default: "Интерфуд Кейтеринг — Премиальный кейтеринг в Санкт-Петербурге",
+    default: "Интерфуд Кейтеринг — Ресторан выездного обслуживания в Санкт-Петербурге",
     template: "%s — Интерфуд Кейтеринг",
   },
   description:
-    "Ресторан выездного обслуживания. Премиальный кейтеринг для свадеб, корпоративов, фуршетов и кофе-брейков. Авторская кухня Дмитрия Нилова с 2007 года.",
+    "Кейтеринг для свадеб, корпоративов, фуршетов и кофе-брейков. Авторская кухня, безупречный сервис. Более 3500 мероприятий с 2007 года.",
   keywords: [
     "кейтеринг Санкт-Петербург",
-    "премиальный кейтеринг",
+    "кейтеринг",
     "кейтеринг на свадьбу",
     "корпоративный кейтеринг",
     "выездной банкет",
     "фуршет",
     "кофе-брейк",
     "Интерфуд",
-    "Нилов кейтеринг",
     "кейтеринг СПб",
     "ресторан выездного обслуживания",
     "свадебный кейтеринг",
+    "кейтеринг цены",
   ],
   authors: [{ name: "Интерфуд Кейтеринг" }],
   creator: "Интерфуд Кейтеринг",
@@ -51,23 +51,23 @@ export const metadata: Metadata = {
     canonical: "https://interfood-catering.ru",
   },
   other: {
-    "theme-color": "#0c0b0b",
+    "theme-color": "#FEFDFB",
   },
   openGraph: {
     title: "Интерфуд Кейтеринг — Ресторан выездного обслуживания",
     description:
-      "Премиальный кейтеринг для свадеб, корпоративов и закрытых мероприятий. Авторская кухня, безупречный сервис.",
+      "Кейтеринг для свадеб, корпоративов и закрытых мероприятий. Авторская кухня, безупречный сервис.",
     url: "https://interfood-catering.ru",
     siteName: "Интерфуд Кейтеринг",
     type: "website",
     locale: "ru_RU",
-    images: [{ url: "/images/hero.jpg", width: 1200, height: 630, alt: "Интерфуд Кейтеринг — премиальный кейтеринг в Санкт-Петербурге" }],
+    images: [{ url: "/images/hero.jpg", width: 1200, height: 630, alt: "Интерфуд Кейтеринг" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Интерфуд Кейтеринг — Ресторан выездного обслуживания",
     description:
-      "Премиальный кейтеринг для свадеб, корпоративов и закрытых мероприятий.",
+      "Кейтеринг для свадеб, корпоративов и закрытых мероприятий.",
     images: ["/images/hero.jpg"],
   },
   verification: {
@@ -86,7 +86,7 @@ export default function RootLayout({
     name: "Интерфуд Кейтеринг",
     alternateName: "Nilov Catering",
     description:
-      "Премиальный кейтеринг в Санкт-Петербурге. Ресторан выездного обслуживания. Авторская кухня Дмитрия Нилова.",
+      "Кейтеринг в Санкт-Петербурге. Ресторан выездного обслуживания. Авторская кухня Дмитрия Нилова.",
     url: "https://interfood-catering.ru",
     telephone: "+7 (812) 919-59-11",
     address: {
@@ -96,7 +96,7 @@ export default function RootLayout({
       postalCode: "191186",
       addressCountry: "RU",
     },
-    priceRange: "$$$$",
+    priceRange: "$$",
     foundingDate: "2007",
     founder: { "@type": "Person", name: "Дмитрий Нилов" },
     image: "https://interfood-catering.ru/images/hero.jpg",
@@ -142,48 +142,7 @@ export default function RootLayout({
           text: "Да, мы проводим бесплатную дегустацию для заказов от 50 гостей. Вы сможете оценить качество блюд и скорректировать меню.",
         },
       },
-      {
-        "@type": "Question",
-        name: "Работаете ли вы за городом?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Да, обслуживаем мероприятия по всей Ленинградской области. Транспортные расходы рассчитываются индивидуально.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Можно заказать только еду без сервиса?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Да, доступна доставка готовых блюд (мобильный фуршет). Меню от 650 ₽ за блюдо в термопаковке.",
-        },
-      },
     ],
-  };
-
-  const schemaService = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    name: "Премиальный кейтеринг в Санкт-Петербурге",
-    provider: {
-      "@type": "LocalBusiness",
-      name: "Интерфуд Кейтеринг",
-    },
-    areaServed: {
-      "@type": "City",
-      name: "Санкт-Петербург",
-    },
-    hasOfferCatalog: {
-      "@type": "OfferCatalog",
-      name: "Услуги кейтеринга",
-      itemListElement: [
-        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Фуршет", description: "от 2 450 ₽/чел" } },
-        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Банкет", description: "от 4 470 ₽/чел" } },
-        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Кофе-брейк", description: "от 950 ₽/чел" } },
-        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Свадебный кейтеринг", description: "от 6 500 ₽/чел" } },
-        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Корпоративный кейтеринг", description: "от 3 500 ₽/чел" } },
-      ],
-    },
   };
 
   return (
@@ -191,7 +150,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/logo.svg" type="image/svg+xml" />
         <link rel="canonical" href="https://interfood-catering.ru" />
-        <meta name="theme-color" content="#0c0b0b" />
+        <meta name="theme-color" content="#FEFDFB" />
         <link rel="apple-touch-icon" href="/logo.svg" />
         {/* Yandex.Metrica */}
         <script
@@ -225,10 +184,6 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaFAQ) }}
         />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaService) }}
-        />
       </head>
       <body className={`${cormorant.variable} ${inter.variable} antialiased`}>
         <PageLoader />
@@ -238,6 +193,8 @@ export default function RootLayout({
           {children}
         </SmoothScroll>
         <BackToTop />
+        {/* Grain overlay for texture */}
+        <div className="grain-overlay" />
       </body>
     </html>
   );

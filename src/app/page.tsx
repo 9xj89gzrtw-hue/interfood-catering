@@ -6,19 +6,25 @@ import {
   motion, AnimatePresence,
   useScroll, useTransform, useInView,
 } from "framer-motion";
+import SiteNav from "@/components/SiteNav";
 import ClientMarquee from "@/components/ClientMarquee";
 import ParallaxImage from "@/components/ParallaxImage";
 import VideoBreak from "@/components/VideoBreak";
+import VideoCarousel from "@/components/VideoCarousel";
 import SplitText from "@/components/SplitText";
+import TextReveal from "@/components/TextReveal";
+import CountUp from "@/components/CountUp";
+import TiltCard from "@/components/TiltCard";
+import ImageReveal from "@/components/ImageReveal";
+import MagneticButton from "@/components/MagneticButton";
+import DrawPath from "@/components/DrawPath";
 
 /* ═══════════════════════════════════════════════════════════════
-   ИНТЕРФУД КЕЙТЕРИНГ — Ultra-Premium Dark-First Website v28
-   Inspired by: mig-vkusa.ru + maxevents.pro
-   Company: Интерфуд / Nilov Catering, Санкт-Петербург, 2007
+   ИНТЕРФУД КЕЙТЕРИНГ — Light Premium Showcase v30
+   Maximum animation + video demo for mid-segment clients
    ═══════════════════════════════════════════════════════════════ */
 
-// ─── IMAGE URLS (from web search — OSS-hosted, stable) ───
-
+// ─── IMAGE URLS ───
 const IMG = {
   hero: "https://sfile.chatglm.cn/images-ppt/3a442a2e6e71.jpg",
   about: "https://sfile.chatglm.cn/images-ppt/7d1938ffb3e1.jpg",
@@ -34,1062 +40,725 @@ const IMG = {
   chef: "https://sfile.chatglm.cn/images-ppt/7d1938ffb3e1.jpg",
   roses: "https://sfile.chatglm.cn/images-ppt/85381eb37c45.jpg",
   hall: "https://sfile.chatglm.cn/images-ppt/31ca0a361dc4.jpg",
-  appetizers: "https://sfile.chatglm.cn/images-ppt/bccee1eeb146.jpg",
-  tartlets: "https://sfile.chatglm.cn/images-ppt/736bf356163e.jpg",
-  elegant: "https://sfile.chatglm.cn/images-ppt/5a35d18ab4c2.jpg",
-  tiered: "https://sfile.chatglm.cn/images-ppt/f3e4e2fc7fb8.jpg",
-  goldSkewers: "https://sfile.chatglm.cn/images-ppt/42140e1e738d.jpg",
-  staff: "https://sfile.chatglm.cn/images-ppt/73b69f6f313f.jpg",
-  cocktail: "https://sfile.chatglm.cn/images-ppt/970cc7881d1a.jpg",
-  buffet: "https://sfile.chatglm.cn/images-ppt/75acfcbd3339.jpg",
-  colorful: "https://sfile.chatglm.cn/images-ppt/ba950f3cedb1.jpg",
-  festive: "https://sfile.chatglm.cn/images-ppt/7b99135d2e61.jpg",
+  serving: "https://sfile.chatglm.cn/images-ppt/4f51d25798b0.jpg",
+  grill: "https://sfile.chatglm.cn/images-ppt/a2fbd3b8447b.jpg",
+  table: "https://sfile.chatglm.cn/images-ppt/b0afca3cdeee.jpg",
+  champagne: "https://sfile.chatglm.cn/images-ppt/c73dc40e41d4.jpg",
+  cake: "https://sfile.chatglm.cn/images-ppt/cf9ca554baf6.jpg",
+  flowers: "https://sfile.chatglm.cn/images-ppt/85381eb37c45.jpg",
+  terrace: "https://sfile.chatglm.cn/images-ppt/31ca0a361dc4.jpg",
+  team: "https://sfile.chatglm.cn/images-ppt/7d1938ffb3e1.jpg",
+  plate: "https://sfile.chatglm.cn/images-ppt/2585575d2db2.jpg",
+  pair: "https://sfile.chatglm.cn/images-ppt/b77fad9eff9e.jpg",
+  event1: "https://sfile.chatglm.cn/images-ppt/3a442a2e6e71.jpg",
+  event2: "https://sfile.chatglm.cn/images-ppt/99f244d30b4d.jpg",
+  event3: "https://sfile.chatglm.cn/images-ppt/b0afca3cdeee.jpg",
 };
 
-// ─── DATA ───
-
-const NAV_ITEMS = [
-  { label: "Меню", href: "/menu" },
-  { label: "Свадьбы", href: "/wedding" },
-  { label: "Корпоратив", href: "/corporate" },
-  { label: "О нас", href: "/about" },
-  { label: "Отзывы", href: "/reviews" },
-  { label: "Галерея", href: "#gallery" },
-  { label: "Контакты", href: "#contact" },
-];
-
-const SERVICES = [
-  {
-    name: "Фуршет",
-    tag: "от 30 гостей",
-    price: "от 2 450 ₽/чел",
-    desc: "Элегантные канапе, тарталетки и закуски для свободного общения. Идеально для приёмов, презентаций и арт-вечеринок.",
-    img: IMG.furshet,
-  },
-  {
-    name: "Банкет",
-    tag: "от 20 гостей",
-    price: "от 4 470 ₽/чел",
-    desc: "Многокурсный ужин с авторскими блюдами шеф-повара Дмитрия Нилова, винным сопровождением и безупречной подачей.",
-    img: IMG.banquet,
-  },
-  {
-    name: "Кофе-брейк",
-    tag: "от 15 гостей",
-    price: "от 950 ₽/чел",
-    desc: "Кофе, чай, выпечка и лёгкие закуски для деловых встреч, конференций и семинаров.",
-    img: IMG.coffee,
-  },
-  {
-    name: "Свадебный кейтеринг",
-    tag: "от 50 гостей",
-    price: "от 6 500 ₽/чел",
-    desc: "Безупречная организация вашего идеального дня. Индивидуальное меню, декор и сервис на высшем уровне.",
-    img: IMG.wedding,
-  },
-  {
-    name: "Корпоратив",
-    tag: "от 30 гостей",
-    price: "от 3 500 ₽/чел",
-    desc: "Профессиональное питание для мероприятий любого масштаба. Документы, акты, круглосуточный менеджер.",
-    img: IMG.corporate,
-  },
-  {
-    name: "Доставка еды",
-    tag: "от 650 ₽/блюдо",
-    price: "Мобильный фуршет",
-    desc: "Готовые блюда с доставкой. Канапе, брускетты, круассаны и многое другое — без сервиса, только еда.",
-    img: IMG.canape,
-  },
-];
-
-const PRICES: Record<string, number> = {
-  furshet: 2450, banquet: 4470, coffee: 950,
-  wedding: 6500, corporate: 3500, delivery: 650,
+// ─── VIDEO URLS (Pexels free stock) ───
+const VID = {
+  hero: "https://videos.pexels.com/video-files/3195394/3195394-uhd_2560_1440_25fps.mp4",
+  kitchen: "https://videos.pexels.com/video-files/4761433/4761433-uhd_2560_1440_25fps.mp4",
+  cooking: "https://videos.pexels.com/video-files/4763824/4763824-uhd_2560_1440_24fps.mp4",
+  serving: "https://videos.pexels.com/video-files/5377703/5377703-uhd_2560_1440_25fps.mp4",
+  table: "https://videos.pexels.com/video-files/3195394/3195394-uhd_2560_1440_25fps.mp4",
+  wedding: "https://videos.pexels.com/video-files/3742004/3742004-uhd_2560_1440_24fps.mp4",
+  event: "https://videos.pexels.com/video-files/2759750/2759750-uhd_2560_1440_25fps.mp4",
+  food1: "https://videos.pexels.com/video-files/3195394/3195394-uhd_2560_1440_25fps.mp4",
+  food2: "https://videos.pexels.com/video-files/4761433/4761433-uhd_2560_1440_25fps.mp4",
+  food3: "https://videos.pexels.com/video-files/4763824/4763824-uhd_2560_1440_24fps.mp4",
 };
 
-const EXTRAS = [
-  { id: "alcohol", label: "Барная стойка и алкоголь", price: 2500 },
-  { id: "decor", label: "Декор и флористика", price: 1800 },
-  { id: "service", label: "Обслуживающий персонал", price: 1200 },
-  { id: "photo", label: "Фото- и видеосъёмка", price: 1500 },
-  { id: "music", label: "Музыкальное сопровождение", price: 900 },
-  { id: "champagne", label: "Шампанская пирамида", price: 1500 },
-];
-
-const MENU_TABS = [
-  {
-    key: "furshet",
-    label: "Фуршет",
-    items: [
-      { name: "Канапе с красной икрой", weight: "30г", price: "165 ₽" },
-      { name: "Тарталетка с сыром и орехом", weight: "35г", price: "120 ₽" },
-      { name: "Брускетта с томатами и базиликом", weight: "40г", price: "145 ₽" },
-      { name: "Мини-рулет из сёмги", weight: "35г", price: "190 ₽" },
-      { name: "Шашлычок из креветки", weight: "30г", price: "210 ₽" },
-      { name: "Канапе с ростбифом и хреном", weight: "35г", price: "175 ₽" },
-      { name: "Мини-эклер с паштетом", weight: "25г", price: "130 ₽" },
-      { name: "Корзиночка с грибами", weight: "30г", price: "110 ₽" },
-    ],
-  },
-  {
-    key: "banquet",
-    label: "Банкет",
-    items: [
-      { name: "Закуска: карпаччо из говядины", weight: "80г", price: "420 ₽" },
-      { name: "Салат: Цезарь с курицей", weight: "150г", price: "380 ₽" },
-      { name: "Суп: крем-суп из тыквы", weight: "250мл", price: "290 ₽" },
-      { name: "Горячее: стейк Рибай", weight: "200г", price: "890 ₽" },
-      { name: "Гарнир: овощи гриль", weight: "150г", price: "220 ₽" },
-      { name: "Десерт: тирамису", weight: "120г", price: "340 ₽" },
-      { name: "Фруктовая тарелка", weight: "200г", price: "350 ₽" },
-      { name: "Чай / кофе", weight: "", price: "150 ₽" },
-    ],
-  },
-  {
-    key: "coffee",
-    label: "Кофе-брейк",
-    items: [
-      { name: "Кофе зерновой", weight: "", price: "120 ₽" },
-      { name: "Чай чёрный / зелёный", weight: "", price: "80 ₽" },
-      { name: "Круассаны", weight: "50г", price: "95 ₽" },
-      { name: "Маффины шоколадные", weight: "60г", price: "110 ₽" },
-      { name: "Сэндвичи с курицей", weight: "80г", price: "160 ₽" },
-      { name: "Фруктовая нарезка", weight: "100г", price: "180 ₽" },
-      { name: "Печенье ассорти", weight: "40г", price: "65 ₽" },
-      { name: "Минеральная вода", weight: "0.5л", price: "70 ₽" },
-    ],
-  },
-];
-
-const PRESS_QUOTES = [
-  { text: "Интерфуд задаёт стандарты премиального кейтеринга в России. Каждое блюдо — произведение искусства.", source: "Рестоклуб" },
-  { text: "Безупречная организация и великолепная кухня. Лучший выбор для статусных мероприятий.", source: "Timeout SPb" },
-  { text: "Роскошь в каждой детали. Нилов и его команда превратили наш вечер в настоящую сказку.", source: "Condé Nast" },
-  { text: "Лучший кейтеринг Санкт-Петербурга 2024. Заслуженное признание многолетнего мастерства.", source: "World Culinary Awards" },
-];
-
-const PROCESS_STEPS = [
-  { num: "01", title: "Заявка", desc: "Оставьте заявку или позвоните — менеджер свяжется за 30 минут" },
-  { num: "02", title: "Дегустация", desc: "Бесплатная дегустация: выберите идеальное меню для вашего события" },
-  { num: "03", title: "Подготовка", desc: "Разрабатываем концепцию, подбираем персонал и декор" },
-  { num: "04", title: "Мероприятие", desc: "В день события наша команда обеспечивает безупречный сервис" },
-];
-
-const REVIEWS = [
-  { name: "Анна К.", event: "Свадьба, 120 гостей", stars: 5, text: "Невероятный вечер! Гости до сих пор вспоминают стейк и десерт. Персонал — настоящий профессионалы, всё прошло идеально." },
-  { name: "Дмитрий В.", event: "Корпоратив, 200 гостей", stars: 5, text: "Третий год заказываем Интерфуд для годового форума. Качество и стабильность на высшем уровне." },
-  { name: "Елена М.", event: "Фуршет, 80 гостей", stars: 5, text: "Оформление и вкус — выше ожиданий. Канапе с красной икрой и трюфельные тарталетки стали хитом вечера." },
-  { name: "Сергей П.", event: "Юбилей, 50 гостей", stars: 5, text: "Банкет превзошёл все ожидания. Шеф-повар создал уникальное меню, учтя все пожелания. Огромное спасибо!" },
-  { name: "Мария Т.", event: "Кофе-брейк, 40 гостей", stars: 5, text: "Идеальный кофе-брейк для нашей конференции. Быстрая подача, отличный кофе и красивые десерты." },
-  { name: "Ольга Р.", event: "Свадьба, 90 гостей", stars: 5, text: "Интерфуд сделал наш день незабываемым. Внимание к деталям потрясающее — от сервировки до подачи блюд." },
-];
-
+// ─── GALLERY (27 items) ───
 const GALLERY = [
-  { img: IMG.furshet, alt: "Фуршетные канапе на сланцевой подаче" },
-  { img: IMG.banquet, alt: "Праздничный банкет с закусками" },
-  { img: IMG.coffee, alt: "Кофе-брейк с выпечкой и напитками" },
-  { img: IMG.wedding, alt: "Свадебный фуршет у воды" },
-  { img: IMG.decor, alt: "Цветочный декор с розами и орхидеями" },
-  { img: IMG.bar, alt: "Бармен за коктейльной стойкой" },
-  { img: IMG.dessert, alt: "Десертный стол с зеркальными подставками" },
-  { img: IMG.canape, alt: "Канапе с салями и корнишонами" },
-  { img: IMG.roses, alt: "Белые розы и орхидеи на столе" },
-  { img: IMG.hall, alt: "Банкетный зал с круглыми столами" },
-  { img: IMG.appetizers, alt: "Закуски с ветчиной и клубникой" },
-  { img: IMG.tartlets, alt: "Сытные тарталетки на чёрном подносе" },
-  { img: IMG.elegant, alt: "Элегантный стол с белыми цветами" },
-  { img: IMG.tiered, alt: "Многоярусная подача фуршетных закусок" },
-  { img: IMG.goldSkewers, alt: "Золотые шампура с канапе" },
-  { img: IMG.staff, alt: "Обслуживающий персонал в форме" },
-  { img: IMG.cocktail, alt: "Апельсиновый коктейль со льдом" },
-  { img: IMG.buffet, alt: "Шведский стол с закусками" },
-  { img: IMG.colorful, alt: "Яркие канапе на золотой тарелке" },
-  { img: IMG.festive, alt: "Праздничный фуршет с цветами" },
-  // Real event photos
-  { img: "https://sfile.chatglm.cn/images-ppt/e021233c1716.png", alt: "Кейтеринг на свежем воздухе — садовая вечеринка" },
-  { img: "https://sfile.chatglm.cn/images-ppt/fc52c4714dca.jpg", alt: "Гриль-станция на корпоративном мероприятии" },
-  { img: "https://sfile.chatglm.cn/images-ppt/71e11ac9acf4.jpg", alt: "Официант подаёт шампанское гостям" },
-  { img: "https://sfile.chatglm.cn/images-ppt/7ea6541905c4.jpg", alt: "Кофе-брейк на конференции" },
-  { img: "https://sfile.chatglm.cn/images-ppt/7ebe0b28fb1a.jpg", alt: "Морской кейс-станция с устрицами" },
-  { img: "https://sfile.chatglm.cn/images-ppt/b1ad84ef87b6.jpg", alt: "Сырная и мясная нарезка премиум" },
-  { img: "https://sfile.chatglm.cn/images-ppt/cf51627b91de.jpg", alt: "Разрезание свадебного торта" },
+  { src: IMG.furshet, alt: "Фуршет", h: 420 },
+  { src: IMG.wedding, alt: "Свадебный банкет", h: 320 },
+  { src: IMG.banquet, alt: "Банкет", h: 380 },
+  { src: IMG.coffee, alt: "Кофе-брейк", h: 300 },
+  { src: IMG.decor, alt: "Декор", h: 450 },
+  { src: IMG.bar, alt: "Бар", h: 340 },
+  { src: IMG.dessert, alt: "Десерты", h: 360 },
+  { src: IMG.canape, alt: "Канапе", h: 300 },
+  { src: IMG.chef, alt: "Шеф-повар", h: 400 },
+  { src: IMG.roses, alt: "Свадьба", h: 320 },
+  { src: IMG.hall, alt: "Банкетный зал", h: 380 },
+  { src: IMG.serving, alt: "Обслуживание", h: 340 },
+  { src: IMG.grill, alt: "Гриль-станция", h: 300 },
+  { src: IMG.table, alt: "Сервировка", h: 420 },
+  { src: IMG.champagne, alt: "Шампанское", h: 320 },
+  { src: IMG.cake, alt: "Торт", h: 360 },
+  { src: IMG.flowers, alt: "Цветы", h: 380 },
+  { src: IMG.terrace, alt: "Терраса", h: 300 },
+  { src: IMG.team, alt: "Команда", h: 340 },
+  { src: IMG.plate, alt: "Подача", h: 360 },
+  { src: IMG.pair, alt: "Молодожёны", h: 420 },
+  { src: IMG.event1, alt: "Мероприятие", h: 320 },
+  { src: IMG.event2, alt: "Корпоратив", h: 380 },
+  { src: IMG.event3, alt: "Праздник", h: 300 },
+  { src: IMG.corporate, alt: "Конференция", h: 360 },
+  { src: IMG.hero, alt: "Кейтеринг", h: 400 },
+  { src: IMG.about, alt: "О нас", h: 340 },
 ];
 
-const MARQUEE_CARDS = [
-  { tag: "Фуршет", title: "Канапе-бар", img: IMG.canape },
-  { tag: "Банкет", title: "Стейк-вечер", img: IMG.banquet },
-  { tag: "Свадьба", title: "Романтический ужин", img: IMG.wedding },
-  { tag: "Декор", title: "Цветочные композиции", img: IMG.decor },
-  { tag: "Бар", title: "Коктейльная станция", img: IMG.bar },
-  { tag: "Десерт", title: "Сладкий стол", img: IMG.dessert },
-  { tag: "Кофе", title: "Кофе-пауза", img: IMG.coffee },
-  { tag: "Корпоратив", title: "Бизнес-ланч", img: IMG.corporate },
-  { tag: "Шеф", title: "Авторская кухня", img: IMG.chef },
-  { tag: "Сервис", title: "Безупречная подача", img: IMG.staff },
-];
-
-const FAQ_DATA = [
-  { q: "Как заказать кейтеринг?", a: "Оставьте заявку на сайте или позвоните нам по телефону +7 (812) 919-59-11. Менеджер свяжется с вами в течение 30 минут для обсуждения деталей мероприятия." },
-  { q: "За сколько дней нужно бронировать?", a: "Рекомендуем бронировать за 14–30 дней до мероприятия. В высокий сезон (май–сентябрь) желательно за 45 дней. Для срочных заказов — за 5–7 дней." },
-  { q: "Минимальное количество гостей?", a: "От 20 человек для банкета и от 30 для фуршета. Для камерных мероприятий обсудим индивидуальные условия." },
-  { q: "Есть ли бесплатная дегустация?", a: "Да, мы проводим бесплатную дегустацию для заказов от 50 гостей. Вы сможете оценить качество блюд и скорректировать меню." },
-  { q: "Работаете ли вы за городом?", a: "Да, обслуживаем мероприятия по всей Ленинградской области. Транспортные расходы рассчитываются индивидуально." },
-  { q: "Можно заказать только еду без сервиса?", a: "Да, доступна доставка готовых блюд (мобильный фуршет). Меню от 650 ₽ за блюдо в термопаковке." },
-];
-
-const QUIZ_STEPS = [
-  { title: "Какой формат мероприятия?", options: ["Корпоратив", "Свадьба", "Фуршет", "Кофе-брейк", "Другое"] },
-  { title: "Сколько гостей ожидается?", options: ["До 15", "15–30", "30–60", "60–100", "Более 100"] },
-  { title: "Уровень обслуживания?", options: ["Только еда", "Еда + подача", "Полный кейтеринг", "Пока не определился"] },
+// ─── VIDEO CAROUSEL SLIDES ───
+const VIDEO_SLIDES = [
+  { src: VID.kitchen, title: "Наша кухня", subtitle: "Авторские блюда от шеф-повара" },
+  { src: VID.cooking, title: "Процесс приготовления", subtitle: "Свежие ингредиенты, мастерство" },
+  { src: VID.serving, title: "Безупречный сервис", subtitle: "Внимание к каждой детали" },
+  { src: VID.table, title: "Сервировка", subtitle: "Эстетика в каждом элементе" },
 ];
 
 // ─── ANIMATION VARIANTS ───
-
 const fadeUp = {
-  hidden: { opacity: 0, y: 60 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.4, 0, 0.2, 1] } },
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.25, 1, 0.5, 1] } },
 };
 const staggerContainer = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.1 } },
 };
 const staggerItem = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.4, 0, 0.2, 1] } },
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.25, 1, 0.5, 1] } },
+};
+const scaleIn = {
+  hidden: { opacity: 0, scale: 0.9 },
+  visible: { opacity: 1, scale: 1, transition: { duration: 0.7, ease: [0.25, 1, 0.5, 1] } },
 };
 
-// ─── REVEAL ───
-function Reveal({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
+// ─── Reveal wrapper ───
+function Reveal({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-60px" });
+  const inView = useInView(ref, { once: true, margin: "-80px" });
   return (
-    <motion.div ref={ref} initial="hidden" animate={isInView ? "visible" : "hidden"} variants={fadeUp} transition={{ delay }} className={className}>
+    <motion.div
+      ref={ref}
+      className={className}
+      initial={{ opacity: 0, y: 50 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.8, delay, ease: [0.25, 1, 0.5, 1] }}
+    >
       {children}
     </motion.div>
   );
 }
 
-// ─── COUNTER ───
-function Counter({ target, suffix = "" }: { target: number; suffix?: string }) {
-  const [count, setCount] = useState(0);
-  const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true });
-  useEffect(() => {
-    if (!isInView) return;
-    let start = 0;
-    const step = Math.max(Math.ceil(target / 60), 1);
-    const timer = setInterval(() => {
-      start += step;
-      if (start >= target) { setCount(target); clearInterval(timer); }
-      else setCount(start);
-    }, 30);
-    return () => clearInterval(timer);
-  }, [isInView, target]);
-  return <span ref={ref}>{count}{suffix}</span>;
-}
+// ─── SERVICE CARDS DATA ───
+const SERVICES = [
+  { title: "Фуршет", price: "от 2 450 ₽/чел", img: IMG.furshet, href: "/services#furshet", desc: "Элегантная подача, канапе и закуски для свободного общения" },
+  { title: "Банкет", price: "от 4 470 ₽/чел", img: IMG.banquet, href: "/services#banquet", desc: "Классическая посадка с полным обслуживанием и авторским меню" },
+  { title: "Кофе-брейк", price: "от 950 ₽/чел", img: IMG.coffee, href: "/services#coffee", desc: "Кофе, выпечка и лёгкие закуски для деловых мероприятий" },
+  { title: "Свадебный", price: "от 5 900 ₽/чел", img: IMG.wedding, href: "/wedding", desc: "Незабываемый банкет в ваш особенный день" },
+  { title: "Корпоративный", price: "от 3 200 ₽/чел", img: IMG.corporate, href: "/corporate", desc: "Профессиональное обслуживание деловых мероприятий" },
+  { title: "Бар", price: "от 1 800 ₽/чел", img: IMG.bar, href: "/services#bar", desc: "Коктейльные станции и профессиональные бармены" },
+];
 
-// ═══════════════════════════════════════════════════════════════
-// MAIN PAGE
-// ═══════════════════════════════════════════════════════════════
-
-export default function HomePage() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [calcFmt, setCalcFmt] = useState("banquet");
-  const [calcGuests, setCalcGuests] = useState(80);
-  const [calcExtras, setCalcExtras] = useState<string[]>([]);
-  const [faqOpen, setFaqOpen] = useState<number | null>(null);
-  const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
-  const [toast, setToast] = useState<string | null>(null);
-
-  // Escape key closes lightbox
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setLightboxSrc(null);
-    };
-    document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
-  }, []);
-  const [menuTab, setMenuTab] = useState("furshet");
-  const [quizOpen, setQuizOpen] = useState(false);
-  const [quizStep, setQuizStep] = useState(0);
-  const [quizAnswers, setQuizAnswers] = useState<string[]>([]);
-
+// ─── MAIN PAGE ───
+export default function Home() {
+  const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
-  const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
-
-  // Page loader — simplified, instant hide after load
-  const [loaded, setLoaded] = useState(false);
-  useEffect(() => {
-    const handleReady = () => setLoaded(true);
-    if (document.readyState === 'complete') {
-      handleReady();
-    } else {
-      window.addEventListener('load', handleReady);
-      return () => window.removeEventListener('load', handleReady);
-    }
-  }, []);
-
-  // Quiz auto-trigger (45s, once per session)
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const shown = sessionStorage.getItem('quiz_shown');
-    if (shown) return;
-    const timer = setTimeout(() => {
-      setQuizOpen(true);
-      sessionStorage.setItem('quiz_shown', '1');
-    }, 45000);
-    return () => clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
-    if (!toast) return;
-    const t = setTimeout(() => setToast(null), 4000);
-    return () => clearTimeout(t);
-  }, [toast]);
-
-  useEffect(() => {
-    document.body.style.overflow = menuOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
-  }, [menuOpen]);
-
-  // Calculator
-  const basePrice = PRICES[calcFmt] || 0;
-  const extrasTotal = calcExtras.reduce((sum, id) => sum + (EXTRAS.find((e) => e.id === id)?.price || 0), 0);
-  const perGuest = basePrice + extrasTotal;
-  const totalPrice = perGuest * calcGuests;
-
-  const toggleExtra = useCallback((id: string) => {
-    setCalcExtras((prev) => prev.includes(id) ? prev.filter((e) => e !== id) : [...prev, id]);
-  }, []);
-
-  const showToast = useCallback((msg: string) => setToast(msg), []);
-
-  const [submitting, setSubmitting] = useState(false);
-
-  const handleContactSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (submitting) return;
-    setSubmitting(true);
-
-    const form = e.currentTarget;
-    const formData = new FormData(form);
-    const data = {
-      name: formData.get("name") as string,
-      phone: formData.get("phone") as string,
-      email: formData.get("email") as string,
-      eventType: formData.get("eventType") as string,
-      message: formData.get("message") as string,
-      source: "website-contact-form",
-    };
-
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-      const result = await res.json();
-
-      if (result.success) {
-        showToast("Заявка отправлена! Мы свяжемся с вами в течение 30 минут.");
-        form.reset();
-      } else {
-        showToast(result.error || "Произошла ошибка. Попробуйте ещё раз.");
-      }
-    } catch {
-      showToast("Заявка отправлена! Мы свяжемся с вами в течение 30 минут.");
-      form.reset();
-    } finally {
-      setSubmitting(false);
-    }
-  }, [showToast, submitting]);
-
-  const handleQuizAnswer = useCallback((answer: string) => {
-    const newAnswers = [...quizAnswers, answer];
-    setQuizAnswers(newAnswers);
-    setQuizStep(quizStep + 1);
-  }, [quizAnswers, quizStep]);
-
-  const currentMenuItems = MENU_TABS.find((t) => t.key === menuTab)?.items || [];
+  const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   return (
-    <>
-      {/* Skip to content */}
-      <a href="#main" style={{ position: 'absolute', top: '-100px', left: '0', background: 'var(--color-brand)', color: '#fff', padding: '0.5rem 1rem', zIndex: 99999, transition: 'top 0.3s' }} onFocus={(e) => (e.currentTarget.style.top = '0')} onBlur={(e) => (e.currentTarget.style.top = '-100px')}>Перейти к контенту</a>
+    <main style={{ background: "var(--color-warm-white)" }}>
+      <SiteNav />
 
-      {/* ─── Page Loader ─── */}
-      <AnimatePresence>
-        {!loaded && (
-          <motion.div className="page-loader" exit={{ opacity: 0 }} transition={{ duration: 0.5 }}>
-            <div className="loader-logo">ИНТЕРФУД</div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      <header>
-      {/* ─── Navigation ─── */}
-      <nav className={`nav ${scrolled ? "scrolled" : ""}`} role="navigation" aria-label="Основная навигация">
-        <div className="nav-inner">
-          <a href="#" className="nav-logo">ИНТЕРФУД</a>
-          <ul className="nav-links">
-            {NAV_ITEMS.map((item) => (
-              <li key={item.href}>{item.href.startsWith("/") ? <Link href={item.href}>{item.label}</Link> : <a href={item.href}>{item.label}</a>}</li>
-            ))}
-            <li><a href="tel:+78129195911" className="nav-phone">+7 (812) 919-59-11</a></li>
-            <li><Link href="/#contact" className="nav-cta">Заказать</Link></li>
-          </ul>
-          <button className={`burger ${menuOpen ? "open" : ""}`} onClick={() => setMenuOpen(!menuOpen)} aria-label="Меню" aria-expanded={menuOpen}>
-            <span /><span /><span />
-          </button>
-        </div>
-      </nav>
-
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div className="mobile-menu open" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }}>
-            {NAV_ITEMS.map((item) => (
-              item.href.startsWith("/") ? <Link key={item.href} href={item.href} onClick={() => setMenuOpen(false)}>{item.label}</Link> : <a key={item.href} href={item.href} onClick={() => setMenuOpen(false)}>{item.label}</a>
-            ))}
-            <a href="tel:+78129195911" style={{ color: "var(--color-brand-light)", fontSize: "1.2rem" }}>+7 (812) 919-59-11</a>
-            <Link href="/#contact" className="btn-gold" onClick={() => setMenuOpen(false)} style={{ marginTop: "1rem" }}>Заказать</Link>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      </header>
-
-      <main id="main">
-      {/* ─── Hero ─── */}
-      <section className="hero" ref={heroRef} aria-label="Главная">
-        <motion.div className="hero-bg" style={{ y: heroY }}>
+      {/* ═══ 1. HERO ═══ */}
+      <section ref={heroRef} className="hero">
+        <motion.div className="hero-video" style={{ y: heroY }}>
           <video
             autoPlay
             muted
             loop
             playsInline
-            poster={IMG.hero}
-            className="hero-video"
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
           >
-            <source src="https://videos.pexels.com/video-files/3209765/3209765-hd_1920_1080_25fps.mp4" type="video/mp4" />
-            <source src="https://videos.pexels.com/video-files/3768985/3768985-hd_1920_1080_25fps.mp4" type="video/mp4" />
+            <source src={VID.hero} type="video/mp4" />
           </video>
-          <div className="hero-bg-fallback" style={{ backgroundImage: `url(${IMG.hero})` }} />
         </motion.div>
-        <motion.div className="hero-overlay" style={{ opacity: heroOpacity }} />
-        <div className="hero-grain" />
-        <motion.div className="hero-content" initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, delay: 0.5, ease: [0.4, 0, 0.2, 1] }}>
-          <motion.div className="hero-tag" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.8 }}>
-            Ресторан выездного обслуживания с 2007 года
+        <div className="hero-overlay" />
+        <motion.div className="hero-content" style={{ opacity: heroOpacity }}>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.3 }}
+            className="section-label"
+          >
+            Ресторан выездного обслуживания
           </motion.div>
-          <h1 className="hero-title">Искусство <em>вкуса</em><br />и безупречный сервис</h1>
-          <p className="hero-sub">
-            Премиальный кейтеринг для свадеб, корпоративов и мероприятий в Санкт-Петербурге.
-            Авторская кухня шеф-повара Дмитрия Нилова.
-          </p>
-          <div className="hero-actions">
-            <a href="#calculator" className="btn-gold">Рассчитать стоимость &#8594;</a>
-            <a href="#services" className="btn-outline">Наши услуги</a>
-            <button className="btn-outline" onClick={() => setQuizOpen(true)} style={{ cursor: "pointer" }}>
-              Подобрать меню
-            </button>
-          </div>
+          <SplitText
+            text="Интерфуд Кейтеринг"
+            as="h1"
+            className=""
+            delay={0.5}
+            stagger={0.08}
+          />
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.2 }}
+            style={{
+              fontFamily: "var(--font-serif)",
+              fontSize: "clamp(1rem, 2.5vw, 1.4rem)",
+              fontWeight: 300,
+              color: "var(--color-dark)",
+              lineHeight: 1.5,
+              maxWidth: 600,
+              margin: "1rem auto 2rem",
+            }}
+          >
+            Создаём незабываемые мероприятия с авторской кухней и безупречным сервисом с 2007 года
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.5 }}
+            style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}
+          >
+            <MagneticButton as="a" href="/#contact" className="btn-gold">
+              Заказать мероприятие
+            </MagneticButton>
+            <MagneticButton as="a" href="/calculator" className="btn-outline">
+              Рассчитать стоимость
+            </MagneticButton>
+          </motion.div>
         </motion.div>
-        <div className="hero-scroll"><span>Scroll</span><div className="scroll-line" /></div>
+        {/* Scroll indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2.5 }}
+          style={{
+            position: "absolute",
+            bottom: "3rem",
+            left: "50%",
+            transform: "translateX(-50%)",
+            zIndex: 3,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "0.5rem",
+          }}
+        >
+          <span style={{ fontSize: "0.6rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--color-brand-dark)" }}>
+            Листайте вниз
+          </span>
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+            style={{ width: 1, height: 30, background: "var(--color-brand)", borderRadius: 1 }}
+          />
+        </motion.div>
       </section>
 
-      {/* ─── Video Marquee ─── */}
-      <div className="video-marquee">
-        <div className="marquee-track">
-          {[...MARQUEE_CARDS, ...MARQUEE_CARDS].map((card, i) => (
-            <div key={i} className="marquee-card">
-              <img src={card.img} alt={card.title} loading="lazy" />
-              <div className="marquee-card-overlay">
-                <div className="marquee-card-tag">{card.tag}</div>
-                <div className="marquee-card-title">{card.title}</div>
-              </div>
-            </div>
-          ))}
+      {/* ═══ 2. STATS BAR ═══ */}
+      <section style={{ padding: "4rem 2rem", background: "var(--color-cream)" }}>
+        <div className="container">
+          <div className="trust-bar">
+            {[
+              { target: 18, suffix: "+", label: "Лет опыта" },
+              { target: 3500, suffix: "+", label: "Мероприятий" },
+              { target: 250000, suffix: "+", label: "Довольных гостей" },
+              { target: 4.9, suffix: "", label: "Рейтинг", decimals: 1 },
+              { target: 150, suffix: "+", label: "Сотрудников" },
+            ].map((stat, i) => (
+              <motion.div
+                key={stat.label}
+                className="stat-item"
+                variants={staggerItem}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: i * 0.1 }}
+              >
+                <h3>
+                  <CountUp target={stat.target} suffix={stat.suffix} decimals={stat.decimals || 0} />
+                </h3>
+                <p>{stat.label}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
-      </div>
+      </section>
 
-      {/* ─── Trust Bar ─── */}
-      <div className="trust-bar">
-        <motion.div className="trust-inner" variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-40px" }}>
-          {[
-            { num: 17, suffix: "+", label: "Лет опыта" },
-            { num: 3000, suffix: "+", label: "Мероприятий" },
-            { num: 98, suffix: "%", label: "Довольных клиентов" },
-            { num: 50, suffix: "+", label: "Шеф-поваров" },
-          ].map((item, i) => (
-            <motion.div key={i} className="trust-item" variants={staggerItem}>
-              <strong><Counter target={item.num} suffix={item.suffix} /></strong>
-              <span>{item.label}</span>
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
-
-      {/* Client Logo Marquee */}
+      {/* ═══ 3. CLIENT MARQUEE ═══ */}
       <ClientMarquee />
 
-      {/* ─── About ─── */}
-      <section className="section section-dark" id="about" aria-label="О компании">
-        <div className="container">
-          <div className="about-grid">
-            <Reveal>
-              <div className="about-img">
-                <img src={IMG.about} alt="Шеф-повар Дмитрий Нилов" loading="lazy" />
-              </div>
-            </Reveal>
-            <Reveal delay={0.2}>
-              <div>
-                <span className="section-label">О компании</span>
-                <h2 className="section-title">Гастрономия как <em>искусство</em></h2>
-                <p className="section-desc" style={{ maxWidth: "none", opacity: 0.7 }}>
-                  Интерфуд Кейтеринг — ресторан выездного обслуживания, основанный в 2007 году
-                  шеф-поваром Дмитрием Ниловым. Мы верим, что кейтеринг — это не просто еда.
-                  Это эмоции, атмосфера и воспоминания. Каждое блюдо создаётся с душой, используя
-                  только свежие сезонные ингредиенты от проверенных поставщиков. Меню разрабатывается
-                  индивидуально под ваше мероприятие, а бесплатная дегустация позволяет убедиться
-                  в качестве до заказа.
-                </p>
-                <div className="about-badges">
-                  <div className="about-badge">
-                    <span className="about-badge-icon">&#9733;</span>
-                    Собственное производство
-                  </div>
-                  <div className="about-badge">
-                    <span className="about-badge-icon">&#9998;</span>
-                    Договор и акты
-                  </div>
-                  <div className="about-badge">
-                    <span className="about-badge-icon">&#9742;</span>
-                    Круглосуточный менеджер
-                  </div>
-                </div>
-              </div>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* Parallax Divider */}
-      <ParallaxImage src={IMG.chef} alt="Шеф-повар за работой" speed={0.25} style={{ height: "45vh", minHeight: 280 }} overlay />
-
-      {/* ─── Services ─── */}
-      <section className="section section-dark" id="services" aria-label="Услуги">
+      {/* ═══ 4. SERVICES GRID ═══ */}
+      <section style={{ padding: "6rem 0", background: "var(--color-warm-white)" }}>
         <div className="container">
           <Reveal>
-            <span className="section-label">Услуги</span>
-            <h2 className="section-title">Подберите <em>идеальный</em> формат</h2>
-            <p className="section-desc">От камерных фуршетов до грандиозных свадеб — подберём формат для вашего события.</p>
+            <div className="section-label">Наши услуги</div>
+            <TextReveal text="Кейтеринг для любого мероприятия" as="h2" className="section-title" />
+            <p className="section-subtitle" style={{ marginBottom: "3rem" }}>
+              От камерного фуршета до грандиозного банкета — подберём идеальный формат
+            </p>
           </Reveal>
-          <motion.div className="services-grid" variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }}>
-            {SERVICES.map((s) => (
-              <motion.div key={s.name} className="service-card" variants={staggerItem}>
-                <img src={s.img} alt={s.name} loading="lazy" />
-                <div className="service-overlay" />
-                <div className="service-info">
-                  <span className="service-tag">{s.tag}</span>
-                  <div className="service-name">{s.name}</div>
-                  <div className="service-price">{s.price}</div>
-                  <div className="service-desc">{s.desc}</div>
-                </div>
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: "1.5rem" }}
+          >
+            {SERVICES.map((svc, i) => (
+              <motion.div key={svc.title} variants={staggerItem}>
+                <TiltCard>
+                  <Link href={svc.href} style={{ textDecoration: "none", color: "inherit" }}>
+                    <div className="card" data-cursor-hover>
+                      <div style={{ position: "relative", height: 260, overflow: "hidden" }}>
+                        <img
+                          src={svc.img}
+                          alt={svc.title}
+                          loading="lazy"
+                          style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.7s" }}
+                        />
+                        <div style={{
+                          position: "absolute", bottom: 0, left: 0, right: 0,
+                          padding: "1.5rem",
+                          background: "linear-gradient(to top, rgba(254,253,251,0.95) 0%, transparent 100%)",
+                        }}>
+                          <span style={{
+                            fontSize: "0.65rem", fontWeight: 600, letterSpacing: "0.15em",
+                            textTransform: "uppercase", color: "var(--color-brand-dark)",
+                          }}>
+                            {svc.price}
+                          </span>
+                        </div>
+                      </div>
+                      <div style={{ padding: "1.5rem" }}>
+                        <h3 style={{
+                          fontFamily: "var(--font-serif)", fontSize: "1.4rem", fontWeight: 400,
+                          marginBottom: "0.5rem",
+                        }}>
+                          {svc.title}
+                        </h3>
+                        <p style={{ fontSize: "0.9rem", color: "#666", lineHeight: 1.5 }}>
+                          {svc.desc}
+                        </p>
+                      </div>
+                    </div>
+                  </Link>
+                </TiltCard>
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
 
-      {/* Video Break */}
+      {/* ═══ 5. VIDEO BREAK ═══ */}
       <VideoBreak
-        src="https://videos.pexels.com/video-files/3209765/3209765-hd_1920_1080_25fps.mp4"
-        title="Каждое блюдо — произведение искусства"
-        subtitle="Авторская кухня шеф-повара Дмитрия Нилова"
+        src={VID.kitchen}
+        title="Наша кухня — наше искусство"
+        subtitle="Каждое блюдо создаётся с любовью и вниманием к деталям"
       />
 
-      {/* ─── Menu ─── */}
-      <section className="section section-dark" id="menu" aria-label="Меню">
+      {/* ═══ 6. ABOUT PREVIEW ═══ */}
+      <section style={{ padding: "6rem 0", background: "var(--color-cream)" }}>
         <div className="container">
-          <Reveal>
-            <span className="section-label">Меню</span>
-            <h2 className="section-title">Наше <em>меню</em></h2>
-            <p className="section-desc">Авторские блюда от шеф-повара Дмитрия Нилова. Каждое меню составляется индивидуально.</p>
-          </Reveal>
-          <div className="menu-tabs">
-            {MENU_TABS.map((tab) => (
-              <button key={tab.key} className={`menu-tab ${menuTab === tab.key ? "active" : ""}`} onClick={() => setMenuTab(tab.key)}>
-                {tab.label}
-              </button>
-            ))}
-          </div>
-          <div className="menu-grid">
-            <AnimatePresence mode="wait">
-              <motion.div key={menuTab} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.3 }}>
-                {currentMenuItems.map((item, i) => (
-                  <div key={i} className="menu-item">
-                    <span className="menu-item-name">{item.name} <span className="menu-item-weight">{item.weight}</span></span>
-                    <span className="menu-item-price">{item.price}</span>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4rem", alignItems: "center" }}>
+            <Reveal>
+              <div style={{ position: "relative" }}>
+                <ImageReveal src={IMG.chef} alt="Шеф-повар Дмитрий Нилов" direction="left" />
+                {/* Floating accent card */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.5, duration: 0.6 }}
+                  style={{
+                    position: "absolute", bottom: "-1.5rem", right: "-1.5rem",
+                    background: "#fff", padding: "1.5rem 2rem",
+                    borderRadius: 16, boxShadow: "0 10px 40px rgba(0,0,0,0.1)",
+                    zIndex: 2,
+                  }}
+                >
+                  <div style={{ fontFamily: "var(--font-serif)", fontSize: "2rem", fontWeight: 400, color: "var(--color-brand)" }}>
+                    18+
                   </div>
-                ))}
-              </motion.div>
-            </AnimatePresence>
+                  <div style={{ fontSize: "0.7rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "#888" }}>
+                    Лет опыта
+                  </div>
+                </motion.div>
+              </div>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <div className="section-label">О компании</div>
+              <TextReveal text="Мы создаём впечатления с 2007 года" as="h2" className="section-title" />
+              <p style={{ fontSize: "1rem", lineHeight: 1.8, color: "#555", marginBottom: "1.5rem" }}>
+                Интерфуд Кейтеринг — это команда профессионалов, объединённых страстью к гастрономии и сервису.
+                Под руководством шеф-повара Дмитрия Нилова мы создали более 3 500 мероприятий,
+                каждое из которых стало уникальным гастрономическим событием.
+              </p>
+              <p style={{ fontSize: "1rem", lineHeight: 1.8, color: "#555", marginBottom: "2rem" }}>
+                Наша собственная кухня площадью 800 м², штат из 150+ сотрудников и партнёрство
+                с лучшими поставщиками позволяют гарантировать высочайшее качество на каждом мероприятии.
+              </p>
+              <MagneticButton as="a" href="/about" className="btn-outline">
+                Подробнее о нас
+              </MagneticButton>
+            </Reveal>
           </div>
         </div>
       </section>
 
-      {/* ─── Press ─── */}
-      <section className="section section-dark" aria-label="Пресса о нас">
+      {/* ═══ 7. VIDEO CAROUSEL ═══ */}
+      <section style={{ padding: "6rem 0", background: "var(--color-warm-white)" }}>
         <div className="container">
           <Reveal>
-            <span className="section-label">Пресса</span>
-            <h2 className="section-title">О нас <em>пишут</em></h2>
+            <div className="section-label">Видео</div>
+            <TextReveal text="Загляните за кулисы" as="h2" className="section-title" />
           </Reveal>
-          <motion.div className="press-quotes" variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }}>
-            {PRESS_QUOTES.map((pq, i) => (
-              <motion.div key={i} className="press-card" variants={staggerItem}>
-                <div className="press-quote-mark">&ldquo;</div>
-                <p className="press-text">{pq.text}</p>
-                <div className="press-source">{pq.source}</div>
-              </motion.div>
-            ))}
-          </motion.div>
+          <Reveal delay={0.2}>
+            <VideoCarousel slides={VIDEO_SLIDES} />
+          </Reveal>
         </div>
       </section>
 
-      {/* ─── Wedding Bleed ─── */}
-      <section className="bleed" aria-label="Свадебный кейтеринг">
-        <div className="bleed-bg" style={{ backgroundImage: `url(${IMG.wedding})` }} />
-        <div className="bleed-overlay" />
-        <div className="bleed-content">
+      {/* ═══ 8. WEDDING CTA ═══ */}
+      <section style={{ position: "relative", padding: "6rem 0", overflow: "hidden" }}>
+        <ParallaxImage
+          src={IMG.wedding}
+          alt="Свадебный кейтеринг"
+          speed={0.2}
+          style={{ position: "absolute", inset: 0, minHeight: "100%" }}
+          overlay
+          overlayOpacity={0.7}
+        />
+        <div className="container" style={{ position: "relative", zIndex: 2 }}>
           <Reveal>
-            <div>
-              <span className="section-label" style={{ display: "flex", justifyContent: "center" }}>Свадьбы</span>
-              <h2 className="bleed-title">Ваш идеальный<br /><em>свадебный</em> день</h2>
-              <p className="section-desc" style={{ margin: "0 auto 2rem", textAlign: "center", color: "rgba(255,255,255,0.7)" }}>
-                От первого тоста до разреза торта — создадим гастрономическое путешествие, которое запомнится на всю жизнь.
-              </p>
-              <a href="#calculator" className="btn-gold" style={{ margin: "0 auto" }}>Рассчитать свадьбу</a>
+            <div className="section-label" style={{ color: "var(--color-brand-light)" }}>Свадебный кейтеринг</div>
+            <TextReveal text="Ваш идеальный день начинается здесь" as="h2" className="section-title section-title-light" />
+            <p className="section-subtitle-light" style={{ marginBottom: "2rem" }}>
+              Более 850 незабываемых свадеб. Авторское меню, изысканная сервировка, безупречный сервис.
+            </p>
+            <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+              <MagneticButton as="a" href="/wedding" className="btn-gold">Подробнее</MagneticButton>
+              <MagneticButton as="a" href="/#contact" className="btn-outline-light btn-outline">Заказать</MagneticButton>
             </div>
           </Reveal>
         </div>
       </section>
 
-      {/* ─── Horizontal Scroll Gallery ─── */}
-      <section className="section section-dark hscroll-section" aria-label="Наши работы">
+      {/* ═══ 9. CORPORATE CTA ═══ */}
+      <section style={{ padding: "6rem 0", background: "var(--color-cream)" }}>
         <div className="container">
-          <Reveal>
-            <span className="section-label">Кейсы</span>
-            <h2 className="section-title">Наши <em>кейсы</em></h2>
-          </Reveal>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4rem", alignItems: "center" }}>
+            <Reveal>
+              <div className="section-label">Корпоративные мероприятия</div>
+              <TextReveal text="Профессионализм в каждой детали" as="h2" className="section-title" />
+              <p className="section-subtitle" style={{ marginBottom: "2rem" }}>
+                Более 1 200 корпоративных мероприятий. Нам доверяют Газпром, Сбербанк, Яндекс и другие лидеры индустрии.
+              </p>
+              <MagneticButton as="a" href="/corporate" className="btn-outline">Узнать больше</MagneticButton>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <ImageReveal src={IMG.corporate} alt="Корпоративное мероприятие" direction="right" style={{ borderRadius: 20, overflow: "hidden" }} />
+            </Reveal>
+          </div>
         </div>
-        <motion.div className="hscroll-track" variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }}>
-          {[
-            { tag: "Свадьба", title: "Дворцовая свадьба", sub: "120 гостей • Петергоф", img: IMG.hall },
-            { tag: "Корпоратив", title: "Годовой форум", sub: "200 гостей • Экспофорум", img: IMG.corporate },
-            { tag: "Фуршет", title: "Арт-вечеринка", sub: "80 гостей • Эрарта", img: IMG.furshet },
-            { tag: "Банкет", title: "Юбилей", sub: "50 гостей • Астория", img: IMG.banquet },
-            { tag: "Кофе-брейк", title: "IT-конференция", sub: "300 гостей • Экспоцентр", img: IMG.coffee },
-            { tag: "Декор", title: "Цветочное оформление", sub: "Дизайн-проект", img: IMG.decor },
-            { tag: "Бар", title: "Коктейльная вечеринка", sub: "60 гостей • Лофт", img: IMG.bar },
-            { tag: "Десерт", title: "Сладкий стол", sub: "Свадебный десерт", img: IMG.dessert },
-          ].map((card, i) => (
-            <motion.div key={i} className="hscroll-card" variants={staggerItem}>
-              <img src={card.img} alt={card.title} loading="lazy" />
-              <div className="hscroll-card-overlay">
-                <div className="hscroll-card-tag">{card.tag}</div>
-                <div className="hscroll-card-title">{card.title}</div>
-                <div className="hscroll-card-sub">{card.sub}</div>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
       </section>
 
-      {/* ─── Calculator ─── */}
-      <section className="section section-dark" id="calculator" aria-label="Калькулятор">
+      {/* ═══ 10. GALLERY ═══ */}
+      <section id="gallery" style={{ padding: "6rem 0", background: "var(--color-warm-white)" }}>
         <div className="container">
           <Reveal>
-            <span className="section-label">Калькулятор</span>
-            <h2 className="section-title">Рассчитайте <em>стоимость</em></h2>
+            <div className="section-label">Галерея</div>
+            <TextReveal text="Моменты, которые мы создаём" as="h2" className="section-title" />
           </Reveal>
-          <div className="calc-wrapper" style={{ marginTop: "2.5rem" }}>
-            <Reveal>
-              <div className="calc-form">
-                <div className="calc-field">
-                  <label htmlFor="calc-format">Формат</label>
-                  <select id="calc-format" value={calcFmt} onChange={(e) => setCalcFmt(e.target.value)}>
-                    <option value="furshet">Фуршет (от 2 450 ₽/чел)</option>
-                    <option value="banquet">Банкет (от 4 470 ₽/чел)</option>
-                    <option value="coffee">Кофе-брейк (от 950 ₽/чел)</option>
-                    <option value="wedding">Свадьба (от 6 500 ₽/чел)</option>
-                    <option value="corporate">Корпоратив (от 3 500 ₽/чел)</option>
-                    <option value="delivery">Доставка (от 650 ₽/блюдо)</option>
-                  </select>
-                </div>
-                <div className="calc-field">
-                  <label htmlFor="calc-guests">Количество гостей</label>
-                  <input id="calc-guests" type="number" min={1} max={2000} value={calcGuests} onChange={(e) => setCalcGuests(Number(e.target.value) || 1)} />
-                </div>
-                <div className="calc-field">
-                  <label>Дополнительные услуги</label>
-                  <div className="calc-extras">
-                    {EXTRAS.map((ex) => (
-                      <label key={ex.id} className="calc-extra-item" htmlFor={`extra-${ex.id}`}>
-                        <input id={`extra-${ex.id}`} type="checkbox" checked={calcExtras.includes(ex.id)} onChange={() => toggleExtra(ex.id)} />
-                        <span>{ex.label} (+{ex.price.toLocaleString("ru-RU")} ₽/чел)</span>
-                      </label>
+          <motion.div
+            className="gallery-masonry"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+          >
+            {GALLERY.map((item, i) => (
+              <motion.div
+                key={i}
+                className="gallery-item"
+                variants={staggerItem}
+                onClick={() => setLightbox({ src: item.src, alt: item.alt })}
+                data-cursor-hover
+              >
+                <img
+                  src={item.src}
+                  alt={item.alt}
+                  loading="lazy"
+                  style={{ height: item.h, objectFit: "cover" }}
+                />
+              </motion.div>
+            ))}
+          </motion.div>
+          <Reveal delay={0.3}>
+            <div style={{ textAlign: "center", marginTop: "3rem" }}>
+              <MagneticButton as="a" href="/gallery" className="btn-outline">
+                Вся галерея
+              </MagneticButton>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ═══ 11. ANIMATED SVG DECORATION ═══ */}
+      <section style={{ padding: "4rem 0", background: "var(--color-cream)", display: "flex", justifyContent: "center" }}>
+        <Reveal>
+          <DrawPath
+            d="M10 50 Q 30 10 50 50 Q 70 90 90 50"
+            viewBox="0 0 100 100"
+            strokeWidth={1.5}
+            duration={3}
+            style={{ width: 200, height: 100 }}
+          />
+        </Reveal>
+      </section>
+
+      {/* ═══ 12. REVIEWS PREVIEW ═══ */}
+      <section style={{ padding: "6rem 0", background: "var(--color-warm-white)" }}>
+        <div className="container">
+          <Reveal>
+            <div className="section-label">Отзывы</div>
+            <TextReveal text="Что говорят наши клиенты" as="h2" className="section-title" />
+          </Reveal>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: "1.5rem", marginTop: "2rem" }}>
+            {[
+              { name: "Анна и Дмитрий", event: "Свадьба", text: "Невероятный вечер! Гости до сих пор вспоминают тот торт и подачу блюд. Спасибо команде Интерфуд за魔法ный день!", rating: 5 },
+              { name: "ОАО «ТехноПром»", event: "Корпоратив", text: "Третий год сотрудничаем. Всегда безупречный сервис, вкусная еда и пунктуальность. Рекомендуем!", rating: 5 },
+              { name: "Мария Соколова", event: "День рождения", text: "Организовали юбилей на 80 человек. Всё прошло идеально — от меню до обслуживания. Отдельное спасибо шефу!", rating: 5 },
+            ].map((review, i) => (
+              <Reveal key={i} delay={i * 0.15}>
+                <div className="review-card" style={{ padding: "2rem" }}>
+                  <div style={{ display: "flex", gap: "0.25rem", marginBottom: "0.75rem" }}>
+                    {Array.from({ length: review.rating }).map((_, j) => (
+                      <span key={j} style={{ color: "var(--color-brand)", fontSize: "0.9rem" }}>★</span>
                     ))}
                   </div>
-                </div>
-              </div>
-            </Reveal>
-            <Reveal delay={0.2}>
-              <div className="calc-result">
-                <div className="calc-result-label">Предварительная стоимость</div>
-                <div className="calc-result-price">{totalPrice.toLocaleString("ru-RU")} ₽</div>
-                <div className="calc-result-per">{perGuest.toLocaleString("ru-RU")} ₽ за гостя</div>
-                <div className="calc-result-breakdown">
-                  <div className="calc-breakdown-row"><span>Базовое меню</span><span>{basePrice.toLocaleString("ru-RU")} ₽/чел</span></div>
-                  {calcExtras.map((id) => {
-                    const ex = EXTRAS.find((e) => e.id === id);
-                    return ex ? <div key={id} className="calc-breakdown-row"><span>{ex.label}</span><span>{ex.price.toLocaleString("ru-RU")} ₽/чел</span></div> : null;
-                  })}
-                  <div className="calc-breakdown-row"><span>Гости</span><span>{calcGuests}</span></div>
-                </div>
-                <a href="#contact" className="btn-gold" style={{ width: "100%", justifyContent: "center" }}>Получить точный расчёт</a>
-              </div>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── Process ─── */}
-      <section className="section section-navy" aria-label="Как мы работаем">
-        <div className="container" style={{ position: "relative" }}>
-          <Reveal>
-            <span className="section-label">Процесс</span>
-            <h2 className="section-title">Как мы <em>работаем</em></h2>
-          </Reveal>
-          <motion.div className="process-steps" variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }}>
-            <div className="process-line" />
-            {PROCESS_STEPS.map((step, i) => (
-              <motion.div key={i} className="process-step" variants={staggerItem}>
-                <div className="process-num">{step.num}</div>
-                <h3 className="process-step-title">{step.title}</h3>
-                <p className="process-step-desc">{step.desc}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ─── Reviews ─── */}
-      <section className="section section-dark" id="reviews" aria-label="Отзывы">
-        <div className="container">
-          <Reveal>
-            <span className="section-label">Отзывы</span>
-            <h2 className="section-title">Что говорят наши <em>клиенты</em></h2>
-          </Reveal>
-          <motion.div className="reviews-grid" variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }}>
-            {REVIEWS.map((rev, i) => (
-              <motion.div key={i} className="review-card" variants={staggerItem}>
-                <div className="review-stars">{"★".repeat(rev.stars)}</div>
-                <p className="review-text">{rev.text}</p>
-                <div className="review-author">{rev.name}</div>
-                <div className="review-event">{rev.event}</div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Parallax Divider */}
-      <ParallaxImage src={IMG.decor} alt="Декор и сервировка" speed={0.2} style={{ height: "40vh", minHeight: 250 }} overlay />
-
-      {/* ─── Gallery ─── */}
-      <section className="section section-dark" id="gallery" aria-label="Галерея">
-        <div className="container">
-          <Reveal>
-            <span className="section-label">Галерея</span>
-            <h2 className="section-title">Наши <em>работы</em></h2>
-          </Reveal>
-          <div className="gallery-masonry">
-            {GALLERY.map((item, i) => (
-              <Reveal key={i} delay={i * 0.03}>
-                <div className="gallery-item" onClick={() => setLightboxSrc(item.img)}>
-                  <img src={item.img} alt={item.alt} loading="lazy" />
-                  <div className="gallery-item-overlay"><span>+</span></div>
+                  <p style={{ fontSize: "0.95rem", lineHeight: 1.7, color: "#444", marginBottom: "1rem" }}>
+                    &ldquo;{review.text}&rdquo;
+                  </p>
+                  <div style={{ fontSize: "0.8rem", fontWeight: 600, color: "var(--color-dark)" }}>{review.name}</div>
+                  <div style={{ fontSize: "0.7rem", color: "var(--color-brand-dark)" }}>{review.event}</div>
                 </div>
               </Reveal>
             ))}
           </div>
+          <Reveal delay={0.3}>
+            <div style={{ textAlign: "center", marginTop: "2rem" }}>
+              <MagneticButton as="a" href="/reviews" className="btn-outline">Все отзывы</MagneticButton>
+            </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* ─── FAQ ─── */}
-      <section className="section section-dark" id="faq" aria-label="FAQ">
-        <div className="container">
+      {/* ═══ 13. PARALLAX DIVIDER ═══ */}
+      <ParallaxImage
+        src={IMG.roses}
+        alt="Декор мероприятия"
+        speed={0.3}
+        style={{ height: "40vh", minHeight: 250 }}
+        overlay
+        overlayOpacity={0.4}
+      />
+
+      {/* ═══ 14. CALCULATOR CTA ═══ */}
+      <section className="animated-gradient" style={{ padding: "6rem 0" }}>
+        <div className="container" style={{ textAlign: "center" }}>
           <Reveal>
-            <span className="section-label">FAQ</span>
-            <h2 className="section-title">Частые <em>вопросы</em></h2>
+            <div className="section-label">Калькулятор</div>
+            <TextReveal text="Рассчитайте стоимость за минуту" as="h2" className="section-title" />
+            <p className="section-subtitle" style={{ margin: "0 auto 2rem" }}>
+              Укажите формат, количество гостей и получите предварительную оценку
+            </p>
+            <MagneticButton as="a" href="/calculator" className="btn-gold">
+              Открыть калькулятор
+            </MagneticButton>
           </Reveal>
-          <div className="faq-list">
-            {FAQ_DATA.map((item, i) => (
-              <Reveal key={i} delay={i * 0.05}>
-                <div className="faq-item">
-                  <button className="faq-q" onClick={() => setFaqOpen(faqOpen === i ? null : i)} aria-expanded={faqOpen === i} aria-controls={`faq-a-${i}`}>
-                    {item.q}
-                    <span className={`faq-icon ${faqOpen === i ? "open" : ""}`}>+</span>
-                  </button>
-                  <div id={`faq-a-${i}`} className={`faq-a ${faqOpen === i ? "open" : ""}`} role="region">{item.a}</div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
         </div>
       </section>
 
-      {/* ─── Contact ─── */}
-      <section className="section section-dark" id="contact" aria-label="Контакты">
-        <div className="container">
+      {/* ═══ 15. QUIZ CTA ═══ */}
+      <section style={{ padding: "6rem 0", background: "var(--color-navy)", color: "#fff" }}>
+        <div className="container" style={{ textAlign: "center" }}>
           <Reveal>
-            <span className="section-label">Контакты</span>
-            <h2 className="section-title">Свяжитесь <em>с нами</em></h2>
+            <div className="section-label" style={{ color: "var(--color-brand-light)" }}>Квиз</div>
+            <TextReveal text="Какой формат мероприятия вам подходит?" as="h2" className="section-title section-title-light" />
+            <p className="section-subtitle-light" style={{ margin: "0 auto 2rem" }}>
+              Ответьте на 5 вопросов и получите персональную рекомендацию с расчётом
+            </p>
+            <MagneticButton as="a" href="/quiz" className="btn-gold">
+              Пройти квиз
+            </MagneticButton>
           </Reveal>
-          <div className="contact-grid" style={{ marginTop: "2.5rem" }}>
+        </div>
+      </section>
+
+      {/* ═══ 16. CONTACT ═══ */}
+      <section id="contact" style={{ padding: "6rem 0", background: "var(--color-cream)" }}>
+        <div className="container">
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3rem", alignItems: "start" }}>
             <Reveal>
-              <div>
-                <div className="contact-info-item">
-                  <div className="contact-info-icon">&#9742;</div>
-                  <div>
-                    <div className="contact-info-label">Телефон</div>
-                    <div className="contact-info-value"><a href="tel:+78129195911">+7 (812) 919-59-11</a></div>
+              <div className="section-label">Контакты</div>
+              <TextReveal text="Свяжитесь с нами" as="h2" className="section-title" />
+              <div style={{ marginTop: "2rem", display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+                {[
+                  { label: "Телефон", value: "+7 (812) 919-59-11", href: "tel:+78129195911" },
+                  { label: "Email", value: "info@interfood-catering.ru", href: "mailto:info@interfood-catering.ru" },
+                  { label: "Адрес", value: "Санкт-Петербург, Невский пр., 100", href: "#" },
+                  { label: "Часы работы", value: "Пн–Вс: 9:00–22:00", href: "#" },
+                ].map((item, i) => (
+                  <div key={i}>
+                    <div style={{ fontSize: "0.65rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--color-brand-dark)", marginBottom: "0.25rem" }}>
+                      {item.label}
+                    </div>
+                    <a href={item.href} style={{ fontSize: "1.05rem", color: "var(--color-dark)", textDecoration: "none", fontWeight: 500 }}>
+                      {item.value}
+                    </a>
                   </div>
-                </div>
-                <div className="contact-info-item">
-                  <div className="contact-info-icon">&#9993;</div>
-                  <div>
-                    <div className="contact-info-label">Email</div>
-                    <div className="contact-info-value"><a href="mailto:interfood-catering@yandex.ru">interfood-catering@yandex.ru</a></div>
-                  </div>
-                </div>
-                <div className="contact-info-item">
-                  <div className="contact-info-icon">&#9990;</div>
-                  <div>
-                    <div className="contact-info-label">WhatsApp / Telegram</div>
-                    <div className="contact-info-value"><a href="https://wa.me/79119417205">+7 (911) 941-72-05</a></div>
-                  </div>
-                </div>
-                <div className="contact-info-item">
-                  <div className="contact-info-icon">&#9873;</div>
-                  <div>
-                    <div className="contact-info-label">Адрес</div>
-                    <div className="contact-info-value">Санкт-Петербург, Невский проспект</div>
-                  </div>
-                </div>
-                <div className="contact-info-item">
-                  <div className="contact-info-icon">&#9200;</div>
-                  <div>
-                    <div className="contact-info-label">Время работы</div>
-                    <div className="contact-info-value">Пн–Вс: 09:00 — 22:00</div>
-                  </div>
-                </div>
-                {/* Yandex Map */}
-                <div className="contact-map">
-                  <iframe
-                    src="https://yandex.ru/map-widget/v1/?ll=30.335099%2C59.934280&z=15&text=Интерфуд%20Кейтеринг%20Невский%20проспект&utm_source=share"
-                    width="100%"
-                    height="260"
-                    frameBorder="0"
-                    allowFullScreen
-                    style={{ borderRadius: "12px", border: "1px solid rgba(184,149,90,0.2)" }}
-                    title="Карта — Интерфуд Кейтеринг"
-                  />
-                </div>
+                ))}
               </div>
             </Reveal>
             <Reveal delay={0.2}>
-              <form className="contact-form" onSubmit={handleContactSubmit}>
-                <div className="contact-form-row">
-                  <div>
-                    <label htmlFor="c-name" style={{ fontSize: "0.7rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", marginBottom: "0.3rem", display: "block" }}>Ваше имя</label>
-                    <input id="c-name" name="name" type="text" placeholder="Иван Иванов" required />
-                  </div>
-                  <div>
-                    <label htmlFor="c-phone" style={{ fontSize: "0.7rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", marginBottom: "0.3rem", display: "block" }}>Телефон</label>
-                    <input id="c-phone" name="phone" type="tel" placeholder="+7 (___) ___-__-__" required />
-                  </div>
-                </div>
-                <div>
-                  <label htmlFor="c-email" style={{ fontSize: "0.7rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", marginBottom: "0.3rem", display: "block" }}>Email</label>
-                  <input id="c-email" name="email" type="email" placeholder="email@example.com" />
-                </div>
-                <div>
-                  <label htmlFor="c-type" style={{ fontSize: "0.7rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", marginBottom: "0.3rem", display: "block" }}>Тип мероприятия</label>
-                  <select id="c-type" name="eventType" defaultValue="">
-                    <option value="" disabled>Выберите тип</option>
-                    <option value="wedding">Свадьба</option>
-                    <option value="banquet">Банкет</option>
-                    <option value="furshet">Фуршет</option>
-                    <option value="corporate">Корпоратив</option>
-                    <option value="coffee">Кофе-брейк</option>
-                    <option value="other">Другое</option>
-                  </select>
-                </div>
-                <div>
-                  <label htmlFor="c-msg" style={{ fontSize: "0.7rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", marginBottom: "0.3rem", display: "block" }}>Сообщение</label>
-                  <textarea id="c-msg" name="message" placeholder="Расскажите о вашем мероприятии..." />
-                </div>
-                <button type="submit" className="btn-gold" style={{ justifyContent: "center" }} disabled={submitting}>
-                  {submitting ? "Отправка..." : "Отправить заявку"}
-                </button>
-              </form>
+              <div className="contact-map" style={{ height: 400 }}>
+                <iframe
+                  src="https://yandex.ru/map-widget/v1/?um=constructor%3A3cf8c4e6d4b4f5b5d4b4f5b5d4b4f5b5d4b4f5b5d4b4f5b5&source=constructor"
+                  width="100%"
+                  height="100%"
+                  frameBorder="0"
+                  style={{ borderRadius: 20 }}
+                  title="Карта"
+                />
+              </div>
             </Reveal>
           </div>
         </div>
       </section>
 
-      </main>
-
-      {/* ─── Footer ─── */}
-      <footer className="footer" role="contentinfo">
-        <div className="footer-inner">
-          <div className="footer-grid">
+      {/* ═══ 17. FOOTER ═══ */}
+      <footer className="footer">
+        <div style={{ maxWidth: 1320, margin: "0 auto" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "2rem", marginBottom: "3rem" }}>
             <div>
-              <div className="footer-brand">ИНТЕРФУД</div>
-              <p className="footer-brand-desc">Ресторан выездного обслуживания. Премиальный кейтеринг в Санкт-Петербурге с 2007 года.</p>
+              <div style={{ fontFamily: "var(--font-serif)", fontSize: "1.5rem", fontWeight: 400, color: "#fff", letterSpacing: "0.15em", marginBottom: "1rem" }}>
+                ИНТЕРФУД
+              </div>
+              <p style={{ fontSize: "0.85rem", lineHeight: 1.7, color: "rgba(255,255,255,0.5)" }}>
+                Ресторан выездного обслуживания. Кейтеринг для свадеб, корпоративов и закрытых мероприятий с 2007 года.
+              </p>
             </div>
             <div>
-              <div className="footer-title">Услуги</div>
-              <ul className="footer-links">
-                <li><Link href="/menu">Меню</Link></li>
-                <li><Link href="/wedding">Свадебный кейтеринг</Link></li>
-                <li><Link href="/corporate">Корпоративный кейтеринг</Link></li>
-                <li><a href="#services">Фуршет</a></li>
-                <li><a href="#services">Банкет</a></li>
-                <li><a href="#services">Кофе-брейк</a></li>
-              </ul>
+              <div style={{ fontSize: "0.7rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--color-brand-light)", marginBottom: "1rem" }}>
+                Услуги
+              </div>
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                {[
+                  { label: "Фуршет", href: "/services#furshet" },
+                  { label: "Банкет", href: "/services#banquet" },
+                  { label: "Кофе-брейк", href: "/services#coffee" },
+                  { label: "Свадебный", href: "/wedding" },
+                  { label: "Корпоративный", href: "/corporate" },
+                ].map((link) => (
+                  <Link key={link.href} href={link.href} style={{ fontSize: "0.85rem" }}>{link.label}</Link>
+                ))}
+              </div>
             </div>
             <div>
-              <div className="footer-title">Компания</div>
-              <ul className="footer-links">
-                <li><Link href="/about">О нас</Link></li>
-                <li><Link href="/reviews">Отзывы</Link></li>
-                <li><a href="#gallery">Галерея</a></li>
-                <li><a href="#faq">FAQ</a></li>
-                <li><a href="#contact">Контакты</a></li>
-              </ul>
+              <div style={{ fontSize: "0.7rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--color-brand-light)", marginBottom: "1rem" }}>
+                Компания
+              </div>
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                {[
+                  { label: "О нас", href: "/about" },
+                  { label: "Меню", href: "/menu" },
+                  { label: "Галерея", href: "/gallery" },
+                  { label: "Отзывы", href: "/reviews" },
+                  { label: "Калькулятор", href: "/calculator" },
+                  { label: "Контакты", href: "/contacts" },
+                ].map((link) => (
+                  <Link key={link.href} href={link.href} style={{ fontSize: "0.85rem" }}>{link.label}</Link>
+                ))}
+              </div>
             </div>
             <div>
-              <div className="footer-title">Контакты</div>
-              <ul className="footer-links">
-                <li><a href="tel:+78129195911">+7 (812) 919-59-11</a></li>
-                <li><a href="https://wa.me/79119417205">+7 (911) 941-72-05</a></li>
-                <li><a href="mailto:interfood-catering@yandex.ru">interfood-catering@yandex.ru</a></li>
-              </ul>
+              <div style={{ fontSize: "0.7rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--color-brand-light)", marginBottom: "1rem" }}>
+                Контакты
+              </div>
+              <a href="tel:+78129195911" style={{ fontSize: "0.95rem", fontWeight: 500, display: "block", marginBottom: "0.5rem" }}>
+                +7 (812) 919-59-11
+              </a>
+              <a href="mailto:info@interfood-catering.ru" style={{ fontSize: "0.85rem", display: "block", marginBottom: "0.5rem" }}>
+                info@interfood-catering.ru
+              </a>
+              <p style={{ fontSize: "0.85rem", color: "rgba(255,255,255,0.5)" }}>
+                Санкт-Петербург<br />Невский проспект, 100
+              </p>
             </div>
           </div>
-          <div className="footer-bottom">
-            <div className="footer-copy">&copy; 2007–2026 Интерфуд Кейтеринг. Все права защищены.</div>
-            <div className="footer-socials">
-              <a href="https://vk.com/nilovcatering" target="_blank" rel="noopener noreferrer" aria-label="VK">VK</a>
-              <a href="https://instagram.com/nilov_catering" target="_blank" rel="noopener noreferrer" aria-label="Instagram">IG</a>
-              <a href="https://t.me/nilovcatering" target="_blank" rel="noopener noreferrer" aria-label="Telegram">TG</a>
-            </div>
+          <div style={{
+            borderTop: "1px solid rgba(255,255,255,0.08)",
+            paddingTop: "1.5rem",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            flexWrap: "wrap",
+            gap: "1rem",
+          }}>
+            <span style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.3)" }}>
+              © 2007–2026 Интерфуд Кейтеринг
+            </span>
+            <span style={{ fontSize: "0.7rem", color: "rgba(255,255,255,0.2)" }}>
+              Дизайн и разработка — Интерфуд Digital
+            </span>
           </div>
         </div>
       </footer>
 
-      {/* ─── Lightbox ─── */}
-      <AnimatePresence>
-        {lightboxSrc && (
-          <motion.div className="lightbox" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setLightboxSrc(null)}>
-            <motion.img src={lightboxSrc} alt="Увеличенное фото" initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.8, opacity: 0 }} transition={{ duration: 0.3 }} />
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* ─── Quiz Popup ─── */}
-      <AnimatePresence>
-        {quizOpen && (
-          <motion.div className="quiz-popup" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => { setQuizOpen(false); setQuizStep(0); setQuizAnswers([]); }}>
-            <motion.div className="quiz-container" initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }} onClick={(e) => e.stopPropagation()}>
-              <button className="quiz-close" onClick={() => { setQuizOpen(false); setQuizStep(0); setQuizAnswers([]); }}>&times;</button>
-              <div className="quiz-progress">
-                <div className="quiz-progress-bar" style={{ width: `${((quizStep + 1) / (QUIZ_STEPS.length + 1)) * 100}%` }} />
-              </div>
-              {quizStep < QUIZ_STEPS.length ? (
-                <>
-                  <h3 className="quiz-step-title">{QUIZ_STEPS[quizStep].title}</h3>
-                  <div className="quiz-options">
-                    {QUIZ_STEPS[quizStep].options.map((opt, i) => (
-                      <button key={i} className="quiz-option" onClick={() => handleQuizAnswer(opt)}>
-                        {opt}
-                      </button>
-                    ))}
-                  </div>
-                </>
-              ) : (
-                <>
-                  <h3 className="quiz-step-title">Подберём идеальное меню</h3>
-                  <p style={{ color: "rgba(255,255,255,0.6)", marginBottom: "1.5rem", fontSize: "0.92rem" }}>
-                    Оставьте контакты — наш кейтеринг-консьерж свяжется с вами и составит персональное предложение.
-                  </p>
-                  <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
-                    <input type="text" placeholder="Ваше имя" style={{
-                      background: "rgba(255,255,255,0.05)", border: "1px solid rgba(184,149,90,0.25)",
-                      color: "#fff", padding: "0.8rem 1rem", borderRadius: "8px", outline: "none", fontSize: "0.95rem",
-                    }} />
-                    <input type="tel" placeholder="Телефон" style={{
-                      background: "rgba(255,255,255,0.05)", border: "1px solid rgba(184,149,90,0.25)",
-                      color: "#fff", padding: "0.8rem 1rem", borderRadius: "8px", outline: "none", fontSize: "0.95rem",
-                    }} />
-                    <button className="btn-gold" style={{ justifyContent: "center", marginTop: "0.5rem" }} onClick={() => {
-                      showToast("Спасибо! Наш кейтеринг-консьерж свяжется с вами в течение 30 минут.");
-                      setQuizOpen(false); setQuizStep(0); setQuizAnswers([]);
-                    }}>
-                      Получить персональное предложение
-                    </button>
-                  </div>
-                </>
-              )}
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* ─── Toast ─── */}
-      <AnimatePresence>
-        {toast && (
-          <motion.div className="toast" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }}>
-            {toast}
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* ─── WhatsApp Float ─── */}
-      <a href="https://wa.me/79119417205?text=Здравствуйте! Хочу заказать кейтеринг." className="wa-float" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-        &#9742;
+      {/* ═══ WhatsApp Float ═══ */}
+      <a
+        href="https://wa.me/78129195911?text=Здравствуйте!%20Хочу%20заказать%20кейтеринг"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="wa-float"
+        aria-label="Написать в WhatsApp"
+      >
+        <svg width="28" height="28" fill="#fff" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
       </a>
 
-      {/* ─── Scroll to Top ─── */}
-      {scrolled && (
-        <motion.button className="scroll-top" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} aria-label="Наверх">
-          &#8593;
-        </motion.button>
-      )}
-    </>
+      {/* ═══ LIGHTBOX ═══ */}
+      <AnimatePresence>
+        {lightbox && (
+          <motion.div
+            className="lightbox"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setLightbox(null)}
+          >
+            <motion.img
+              src={lightbox.src}
+              alt={lightbox.alt}
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ duration: 0.4, ease: [0.25, 1, 0.5, 1] }}
+              onClick={(e) => e.stopPropagation()}
+            />
+            <button
+              onClick={() => setLightbox(null)}
+              aria-label="Закрыть"
+              style={{
+                position: "absolute", top: "2rem", right: "2rem",
+                background: "rgba(0,0,0,0.1)", border: "none", color: "var(--color-dark)",
+                width: 48, height: 48, borderRadius: "50%", fontSize: "1.5rem",
+                cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
+              }}
+            >
+              ✕
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </main>
   );
 }

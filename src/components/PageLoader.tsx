@@ -4,15 +4,15 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 /* ═══════════════════════════════════════════════════════════════
-   Page Loader — branded loading screen
-   Shows gold spinner on dark background until page hydrates
+   Page Loader — elegant loading screen for light theme
+   Gold line animation with brand reveal
    ═══════════════════════════════════════════════════════════════ */
 
 export default function PageLoader() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1200);
+    const timer = setTimeout(() => setLoading(false), 1500);
     return () => clearTimeout(timer);
   }, []);
 
@@ -22,40 +22,40 @@ export default function PageLoader() {
         <motion.div
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+          transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
           style={{
             position: "fixed",
             inset: 0,
             zIndex: 99999,
-            background: "var(--color-dark)",
+            background: "var(--color-warm-white)",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
-            gap: "1.5rem",
+            gap: "2rem",
           }}
         >
-          {/* Logo text */}
+          {/* Animated logo */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
             style={{
               fontFamily: "var(--font-serif)",
-              fontSize: "2rem",
-              fontWeight: 300,
-              color: "#fff",
+              fontSize: "2.5rem",
+              fontWeight: 400,
+              color: "var(--color-dark)",
               letterSpacing: "0.3em",
             }}
           >
             ИНТЕРФУД
           </motion.div>
 
-          {/* Animated bar */}
+          {/* Animated line */}
           <div
             style={{
-              width: 120,
-              height: 2,
+              width: 140,
+              height: 1,
               background: "rgba(184,149,90,0.15)",
               borderRadius: 1,
               overflow: "hidden",
@@ -64,7 +64,7 @@ export default function PageLoader() {
             <motion.div
               initial={{ x: "-100%" }}
               animate={{ x: "100%" }}
-              transition={{ duration: 1, repeat: Infinity, ease: "easeInOut" }}
+              transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
               style={{
                 width: "40%",
                 height: "100%",
@@ -74,19 +74,19 @@ export default function PageLoader() {
             />
           </div>
 
-          {/* Subtle tag */}
+          {/* Tag */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
+            transition={{ delay: 0.5, duration: 0.6 }}
             style={{
-              fontSize: "0.65rem",
-              letterSpacing: "0.25em",
+              fontSize: "0.6rem",
+              letterSpacing: "0.3em",
               textTransform: "uppercase",
-              color: "rgba(184,149,90,0.5)",
+              color: "var(--color-brand-dark)",
             }}
           >
-            Кейтеринг
+            Кейтеринг & Выездной ресторан
           </motion.div>
         </motion.div>
       )}
