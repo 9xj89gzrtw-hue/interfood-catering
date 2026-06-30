@@ -52,3 +52,21 @@ prompt
 server.log
 # Skills directory
 /skills/
+
+# Backup system (local only, pushed to GitHub via code)
+/backups/
+.autosave.log
+.watcher.log
+.watcher.pid
+.last_autosave
+.zscripts/
+
+# Heavy research/image data
+/research/
+/research_v2/
+/research_v22/
+/research_2026/
+/images/
+/images_v11/
+/images_v11_b64/
+/tool-results/
