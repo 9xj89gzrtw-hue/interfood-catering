@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
@@ -6,6 +6,7 @@ import ScrollProgress from "@/components/ScrollProgress";
 import PageLoader from "@/components/PageLoader";
 import BackToTop from "@/components/BackToTop";
 import CustomCursor from "@/components/CustomCursor";
+import ServiceWorkerRegistrar from "@/components/ServiceWorkerRegistrar";
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-serif",
@@ -19,6 +20,13 @@ const inter = Inter({
   subsets: ["latin", "cyrillic"],
   display: "swap",
 });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: "#B8955A",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://interfood-catering.ru"),
@@ -45,13 +53,19 @@ export const metadata: Metadata = {
   authors: [{ name: "Интерфуд Кейтеринг" }],
   creator: "Интерфуд Кейтеринг",
   publisher: "Интерфуд Кейтеринг",
-  icons: { icon: "/logo.svg" },
+  icons: {
+    icon: [
+      { url: "/logo.svg", type: "image/svg+xml" },
+      { url: "/icons/icon-192.png", sizes: "192x192", type: "image/png" },
+    ],
+    apple: [
+      { url: "/icons/icon-192.png", sizes: "192x192" },
+      { url: "/icons/icon-512.png", sizes: "512x512" },
+    ],
+  },
   robots: { index: true, follow: true },
   alternates: {
     canonical: "https://interfood-catering.ru",
-  },
-  other: {
-    "theme-color": "#FEFDFB",
   },
   openGraph: {
     title: "Интерфуд Кейтеринг — Ресторан выездного обслуживания",
@@ -72,6 +86,10 @@ export const metadata: Metadata = {
   },
   verification: {
     yandex: "interfood-catering",
+  },
+  other: {
+    "apple-mobile-web-app-capable": "yes",
+    "mobile-web-app-capable": "yes",
   },
 };
 
@@ -126,74 +144,98 @@ export default function RootLayout({
           text: "Рекомендуем бронировать за 14–30 дней. В высокий сезон (май–сентябрь) — за 45 дней.",
         },
       },
-      {
-        "@type": "Question",
-        name: "Минимальное количество гостей?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "От 20 человек для банкета и от 30 для фуршета. Для камерных мероприятий обсудим индивидуально.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Есть ли бесплатная дегустация?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Да, мы проводим бесплатную дегустацию для заказов от 50 гостей. Вы сможете оценить качество блюд и скорректировать меню.",
-        },
-      },
+    ],
+  };
+
+  const schemaBreadcrumb = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Главная", item: "https://interfood-catering.ru" },
+      { "@type": "ListItem", position: 2, name: "Услуги", item: "https://interfood-catering.ru/services" },
+      { "@type": "ListItem", position: 3, name: "Меню", item: "https://interfood-catering.ru/menu" },
+      { "@type": "ListItem", position: 4, name: "Контакты", item: "https://interfood-catering.ru/contacts" },
     ],
   };
 
   return (
-    <html lang="ru" suppressHydrationWarning>
+    <html lang="ru" suppressHydrationWarning data-scroll-behavior="smooth" style={{ overflowX: "hidden" }}>
       <head>
-        <link rel="icon" href="/logo.svg" type="image/svg+xml" />
-        <link rel="canonical" href="https://interfood-catering.ru" />
-        <meta name="theme-color" content="#FEFDFB" />
-        <link rel="apple-touch-icon" href="/logo.svg" />
-        {/* Yandex.Metrica */}
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+              *{margin:0;padding:0;box-sizing:border-box}
+              html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+              html,body{max-width:100vw}
+              body{font-family:"Inter",system-ui,-apple-system,sans-serif;background:#FEFDFB;color:#1A1A1A;overflow-x:hidden;-webkit-overflow-scrolling:touch}
+              .hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+              .hero-dark{background:#0a0a0a}
+              .hero-bg{position:absolute;inset:0;background-size:cover;background-position:center 30%}
+              .hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,10,.55) 0%,rgba(10,10,10,.35) 40%,rgba(10,10,10,.45) 65%,rgba(10,10,10,.85) 100%)}
+              .hero-content{position:relative;z-index:5;text-align:center;padding:2rem;max-width:800px;margin:0 auto}
+              .section-label{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:#B8955A;margin-bottom:.75rem;font-weight:500}
+              .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+              .skip-to-content{position:absolute;top:-100%;left:1rem;z-index:10000;background:#B8955A;color:#fff;padding:.75rem 1.5rem;border-radius:0 0 8px 8px;font-size:.9rem;text-decoration:none;transition:top .2s}
+              .skip-to-content:focus{top:0}
+              .container{max-width:1320px;margin:0 auto;padding:0 2rem}
+              .grain-overlay{position:fixed;inset:0;pointer-events:none;z-index:9998;opacity:.03}
+              @media(max-width:640px){.container{padding:0 1rem}.hero-content{padding:1rem}}
+              @media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+            `,
+          }}
+        />
+
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+        <link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512.png" />
+        <link rel="preload" as="image" href="/images/hero.jpg" type="image/jpeg" fetchPriority="high" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://mc.yandex.ru" />
+        <link rel="dns-prefetch" href="https://api-maps.yandex.ru" />
+
         <script
           dangerouslySetInnerHTML={{
             __html: `
-   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-   m[i].l=1*new Date();
-   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-
-   ym(99073454, "init", {
-        clickmap:true,
-        trackLinks:true,
-        accurateTrackBounce:true,
-        webvisor:true,
-        trackHash:true,
-        ecommerce:"dataLayer"
-   });
+              (function(){
+                var w=window;
+                w.ym=w.ym||function(){(w.ym.a=w.ym.a||[]).push(arguments)};
+                if('requestIdleCallback' in w){
+                  w.requestIdleCallback(loadMetrica,{timeout:3000});
+                } else {
+                  w.addEventListener('load',function(){setTimeout(loadMetrica,1000)});
+                }
+                function loadMetrica(){
+                  var s=document.createElement('script');
+                  s.async=1;s.src='https://mc.yandex.ru/metrika/tag.js';
+                  document.head.appendChild(s);
+                  ym(99073454,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true,trackHash:true,ecommerce:"dataLayer",defer:true});
+                }
+              })();
             `,
           }}
         />
         <noscript>
           <div><img src="https://mc.yandex.ru/watch/99073454" style={{ position: "absolute", left: "-9999px" }} alt="" /></div>
         </noscript>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrg) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaFAQ) }}
-        />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrg) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaFAQ) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaBreadcrumb) }} />
       </head>
       <body className={`${cormorant.variable} ${inter.variable} antialiased`}>
+        <a href="#main-content" className="skip-to-content">
+          Перейти к основному содержанию
+        </a>
         <PageLoader />
-        <ScrollProgress />
-        <CustomCursor />
         <SmoothScroll>
-          {children}
+          <ScrollProgress />
+          <CustomCursor />
+          <div id="main-content">
+            {children}
+          </div>
+          <BackToTop />
         </SmoothScroll>
-        <BackToTop />
-        {/* Grain overlay for texture */}
+        <ServiceWorkerRegistrar />
         <div className="grain-overlay" />
       </body>
     </html>

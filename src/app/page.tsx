@@ -37,11 +37,25 @@ import ScrollVideoPlayer from "@/components/ScrollVideoPlayer";
 import CursorTrail from "@/components/CursorTrail";
 import KineticText from "@/components/KineticText";
 import FluidBackground from "@/components/FluidBackground";
+import dynamic from "next/dynamic";
 import HorizontalVideoScroll from "@/components/HorizontalVideoScroll";
 import FlipCard3D from "@/components/FlipCard3D";
 import TextMarquee from "@/components/TextMarquee";
 import ConfettiButton from "@/components/ConfettiButton";
 import LottiePlaceholder from "@/components/LottiePlaceholder";
+
+/* Dynamic imports for heavy components */
+const BentoGrid = dynamic(() => import("@/components/BentoGrid"), { ssr: false });
+const HorizontalScrollGallery = dynamic(() => import("@/components/HorizontalScrollGallery"), { ssr: false });
+const Parallax3D = dynamic(() => import("@/components/Parallax3D"), { ssr: false });
+const SmartQuiz = dynamic(() => import("@/components/SmartQuiz"), { ssr: false });
+const WhatsAppFloat = dynamic(() => import("@/components/WhatsAppFloat"), { ssr: false });
+const ContactForm = dynamic(() => import("@/components/ContactForm"), { ssr: false });
+const TimelineCarousel = dynamic(() => import("@/components/TimelineCarousel"), { ssr: false, loading: () => <div style={{height:200}} /> });
+const CountdownTimer = dynamic(() => import("@/components/CountdownTimer"), { ssr: false });
+const MenuBuilder = dynamic(() => import("@/components/MenuBuilder"), { ssr: false });
+const ServiceSelector = dynamic(() => import("@/components/ServiceSelector"), { ssr: false });
+const StickyBottomCTA = dynamic(() => import("@/components/StickyBottomCTA"), { ssr: false });
 
 /* ═══════════════════════════════════════════════════════════════
    ИНТЕРФУД КЕЙТЕРИНГ — Ultimate Animation Showcase v32
@@ -139,7 +153,7 @@ const VIDEO_SLIDES = [
 ];
 
 const SERVICES = [
-  { title: "Фуршет", price: "от 2 450 ₽/чел", img: IMG.furshet, href: "/services#furshet", desc: "Элегантная подача, канапе и закуски для свободного общения" },
+  { title: "Фуршет", price: "от 2 450 ₽/чел", img: IMG.furshet, href: "/services#furshet", desc: "Элегантная подача, канапе и закуски для свободного общения", span: "span-2x2", accent: "var(--color-brand)", stat: "1200+", statLabel: "мероприятий", video: "/videos/cooking.mp4" },
   { title: "Банкет", price: "от 4 470 ₽/чел", img: IMG.banquet, href: "/services#banquet", desc: "Классическая посадка с полным обслуживанием и авторским меню" },
   { title: "Кофе-брейк", price: "от 950 ₽/чел", img: IMG.coffee, href: "/services#coffee", desc: "Кофе, выпечка и лёгкие закуски для деловых мероприятий" },
   { title: "Свадебный", price: "от 5 900 ₽/чел", img: IMG.wedding, href: "/wedding", desc: "Незабываемый банкет в ваш особенный день" },
@@ -672,6 +686,19 @@ export default function Home() {
                     back={
                       <div style={{ width: "100%", height: "100%", padding: "2rem", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", textAlign: "center", background: "#FEFDFB" }}>
                         <LottiePlaceholder type={(["chef", "utensils", "glass", "heart", "star", "utensils"] as const)[i]} size={60} />
+
+/* Dynamic imports for heavy components */
+const BentoGrid = dynamic(() => import("@/components/BentoGrid"), { ssr: false });
+const HorizontalScrollGallery = dynamic(() => import("@/components/HorizontalScrollGallery"), { ssr: false });
+const Parallax3D = dynamic(() => import("@/components/Parallax3D"), { ssr: false });
+const SmartQuiz = dynamic(() => import("@/components/SmartQuiz"), { ssr: false });
+const WhatsAppFloat = dynamic(() => import("@/components/WhatsAppFloat"), { ssr: false });
+const ContactForm = dynamic(() => import("@/components/ContactForm"), { ssr: false });
+const TimelineCarousel = dynamic(() => import("@/components/TimelineCarousel"), { ssr: false, loading: () => <div style={{height:200}} /> });
+const CountdownTimer = dynamic(() => import("@/components/CountdownTimer"), { ssr: false });
+const MenuBuilder = dynamic(() => import("@/components/MenuBuilder"), { ssr: false });
+const ServiceSelector = dynamic(() => import("@/components/ServiceSelector"), { ssr: false });
+const StickyBottomCTA = dynamic(() => import("@/components/StickyBottomCTA"), { ssr: false });
                         <h3 style={{ fontFamily: "var(--font-serif)", fontSize: "1.3rem", fontWeight: 400, margin: "1rem 0 0.5rem", color: "var(--color-dark)" }}>{svc.title}</h3>
                         <p style={{ fontSize: "0.9rem", color: "#666", lineHeight: 1.6, margin: "0 0 1rem" }}>{svc.desc}</p>
                         <span style={{ fontSize: "0.8rem", fontWeight: 600, color: "var(--color-brand)" }}>{svc.price}</span>
