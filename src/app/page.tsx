@@ -687,18 +687,6 @@ export default function Home() {
                       <div style={{ width: "100%", height: "100%", padding: "2rem", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", textAlign: "center", background: "#FEFDFB" }}>
                         <LottiePlaceholder type={(["chef", "utensils", "glass", "heart", "star", "utensils"] as const)[i]} size={60} />
 
-/* Dynamic imports for heavy components */
-const BentoGrid = dynamic(() => import("@/components/BentoGrid"), { ssr: false });
-const HorizontalScrollGallery = dynamic(() => import("@/components/HorizontalScrollGallery"), { ssr: false });
-const Parallax3D = dynamic(() => import("@/components/Parallax3D"), { ssr: false });
-const SmartQuiz = dynamic(() => import("@/components/SmartQuiz"), { ssr: false });
-const WhatsAppFloat = dynamic(() => import("@/components/WhatsAppFloat"), { ssr: false });
-const ContactForm = dynamic(() => import("@/components/ContactForm"), { ssr: false });
-const TimelineCarousel = dynamic(() => import("@/components/TimelineCarousel"), { ssr: false, loading: () => <div style={{height:200}} /> });
-const CountdownTimer = dynamic(() => import("@/components/CountdownTimer"), { ssr: false });
-const MenuBuilder = dynamic(() => import("@/components/MenuBuilder"), { ssr: false });
-const ServiceSelector = dynamic(() => import("@/components/ServiceSelector"), { ssr: false });
-const StickyBottomCTA = dynamic(() => import("@/components/StickyBottomCTA"), { ssr: false });
                         <h3 style={{ fontFamily: "var(--font-serif)", fontSize: "1.3rem", fontWeight: 400, margin: "1rem 0 0.5rem", color: "var(--color-dark)" }}>{svc.title}</h3>
                         <p style={{ fontSize: "0.9rem", color: "#666", lineHeight: 1.6, margin: "0 0 1rem" }}>{svc.desc}</p>
                         <span style={{ fontSize: "0.8rem", fontWeight: 600, color: "var(--color-brand)" }}>{svc.price}</span>
