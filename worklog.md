@@ -399,3 +399,24 @@ Stage Summary:
 - New: Real content synced from interfood-catering.ru
 - GitHub: up to date (commit af7783a8)
 - Vercel: needs re-authentication (token expired) — user should run `vercel login` or reconnect GitHub integration
+
+---
+Task ID: v70-deploy
+Agent: Main (Session 4, continued)
+Task: Deploy v70 Light Premium to Vercel
+
+Work Log:
+- Vercel free tier rate limited (100 deploys/day exceeded)
+- Created new Vercel project "interfood-catering-v70" linked to GitHub repo
+- Discovered old "interfood-catering" project already had GitHub integration active
+- Latest commit (3db0cfc) was auto-deployed by Vercel GitHub integration
+- Verified live site at https://interfood-catering.vercel.app:
+  - Home page: Light theme (#FAFAF7), gold accent (#B8860B), "Интерфуд Кейтеринг" rendering
+  - Menu page: Real pricing from interfood-catering.ru (2,450-5,350₽ furshet, 4,470-6,970₽ banket)
+  - Contacts page: Real phone numbers (+7 812 919-59-11, +7 911 941-72-05), email
+  - All pages HTTP 200, zero dark backgrounds (#060607) remaining
+
+Stage Summary:
+- v70 successfully deployed and live at https://interfood-catering.vercel.app
+- Light Premium theme confirmed on production
+- Content synced with interfood-catering.ru verified
