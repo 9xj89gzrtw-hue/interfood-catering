@@ -38,6 +38,11 @@ const IMG = {
   dessert: "/images/coffee.jpg",
   roses: "/images/banket_meat.jpg",
   hero: "/images/gallery_1.jpg",
+  // Scanned handwritten testimonials from original site
+  review1: "/images/original/otzyv-sporting.jpg",
+  review2: "/images/original/IMG_0034.jpeg",
+  review3: "/images/original/IMG_0037.jpeg",
+  review4: "/images/original/otziv.jpg",
 };
 
 type Category = "all" | "wedding" | "corporate" | "private";
@@ -962,7 +967,74 @@ export default function ReviewsPage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════
-          6. PARALLAX DIVIDER
+          6. SCANNED HANDWRITTEN TESTIMONIALS
+          ═══════════════════════════════════════════════════════════ */}
+      <section
+        style={{
+          background: "#FEFDFB",
+          padding: "5rem 2rem",
+        }}
+        aria-label="Рукописные отзывы"
+      >
+        <div className="container" style={{ textAlign: "center" }}>
+          <Reveal>
+            <span className="section-label">Оригинальные отзывы</span>
+            <h2 className="section-title">
+              Рукописные <em style={{ color: "#B8955A" }}>благодарности</em>
+            </h2>
+            <p className="section-subtitle" style={{ margin: "0 auto" }}>
+              Подлинные письма благодарности от наших клиентов — сканы оригиналов
+            </p>
+          </Reveal>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+              gap: "2rem",
+              marginTop: "3rem",
+            }}
+          >
+            {[
+              { src: IMG.review1, alt: "Отзыв от Sporting" },
+              { src: IMG.review2, alt: "Рукописный отзыв клиента" },
+              { src: IMG.review3, alt: "Рукописный отзыв клиента" },
+              { src: IMG.review4, alt: "Благодарственное письмо" },
+            ].map((review, i) => (
+              <Reveal key={i} delay={i * 0.1}>
+                <motion.div
+                  whileHover={{ y: -6 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                  style={{
+                    borderRadius: 16,
+                    overflow: "hidden",
+                    boxShadow: "0 4px 24px rgba(0,0,0,0.08)",
+                    border: "1px solid rgba(184,149,90,0.15)",
+                    background: "#fff",
+                  }}
+                >
+                  <img
+                    src={review.src}
+                    alt={review.alt}
+                    loading="lazy"
+                    style={{
+                      width: "100%",
+                      height: "auto",
+                      minHeight: 300,
+                      objectFit: "contain",
+                      display: "block",
+                      background: "#FAFAF8",
+                    }}
+                  />
+                </motion.div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════
+          7. PARALLAX DIVIDER
           ═══════════════════════════════════════════════════════════ */}
       <ParallaxImage
         src={IMG.roses}

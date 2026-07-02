@@ -37,7 +37,7 @@ const CONTACT_CARDS = [
     title: "Телефон (городской)",
     value: "+7 (812) 919-59-11",
     href: "tel:+78129195911",
-    desc: "Звоните пн–вс с 9:00 до 22:00",
+    desc: "Просим предварительно позвонить",
   },
   {
     icon: "📱",
@@ -51,7 +51,7 @@ const CONTACT_CARDS = [
     title: "Email",
     value: "interfood-catering@yandex.ru",
     href: "mailto:interfood-catering@yandex.ru",
-    desc: "Ответим в течение 30 минут",
+    desc: "Просим Вас предварительно позвонить, чтобы договориться о встрече",
   },
   {
     icon: "◉",
@@ -65,7 +65,7 @@ const CONTACT_CARDS = [
     title: "WhatsApp / Telegram",
     value: "+7 (911) 941-72-05",
     href: "https://wa.me/79119417205?text=Здравствуйте! Хочу узнать подробнее о кейтеринге.",
-    desc: "Пишите — отвечаем за 5 минут",
+    desc: "Telegram и WhatsApp",
   },
   {
     icon: "🔧",

@@ -5,6 +5,35 @@
 
 ---
 
+## v77 — 2026-07-03 — Real Content Sync + Mobile Overhaul + MenuBuilder Redesign
+- **Тема**: Light Premium (продолжение v76)
+- **Синхронизация с оригинальным сайтом**:
+  - ✅ 90 изображений скачано с interfood-catering.ru
+  - ✅ Все AI-тексты заменены на реальные данные компании
+  - ✅ Реальные цены меню: Фуршет (2 450-5 350₽), Банкет (4 470-6 970₽), Кофе-брейк (950-2 450₽)
+  - ✅ Реальные отзывы (сканы рукописных благодарностей)
+  - ✅ Реальные услуги, площадки, FAQ
+  - ✅ Основатель: Дмитрий Нилов, с 2007 года
+- **Критические мобильные фиксы**:
+  - ✅ Футер: тёмный фон #1A1714 (был белый текст на светлом фоне!)
+  - ✅ Философия/KineticTypography: упрощена на мобильном, whileInView вместо scroll-driven
+  - ✅ CulinaryJourney: отдельный мобильный рендеринг, нет sticky scroll
+  - ✅ CTASection: trust text от 3vw вместо 1.2vw (было 3.8px!)
+  - ✅ ReviewsStack: touch targets 44px для точек, touch feedback для стрелок
+- **MenuBuilder v2 — Дизайн 2026**:
+  - ✅ jspdf для реального PDF скачивания
+  - ✅ Кнопка "Скачать PDF меню" всегда видна в шапке
+  - ✅ Pill-shaped категории, горизонтальные карточки на десктопе
+  - ✅ Hover анимации (card lift, image zoom), skeleton loading
+  - ✅ Touch targets 44px, "Хит" badge на популярных блюдах
+  - ✅ Floating cart не перекрывает WhatsApp кнопку
+- **globals.css**:
+  - ✅ Footer background → #1A1714
+  - ✅ Touch targets: scoped для кнопок, исключены inline links
+  - ✅ Section padding: без !important, исключает hero секции
+  - ✅ iOS Safari fallback: @supports (-webkit-touch-callout)
+  - ✅ Все vw-шрифты проверены: минимум 12px на 320px
+
 ## v76 — 2026-07-03 — MenuBuilder + WA/TG Icons + Urgency Banner + Mobile Overhaul + Sub-page Fix
 - **Тема**: Light Premium (продолжение v75)
 - **Интерактивный конструктор меню**:

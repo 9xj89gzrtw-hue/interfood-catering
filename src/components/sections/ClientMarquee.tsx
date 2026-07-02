@@ -126,7 +126,7 @@ export default function ClientMarquee() {
 
         /* ─── Gold dot separator ─── */
         .cm-dot {
-          font-size: clamp(0.6rem, 1vw, 0.8rem);
+          font-size: clamp(0.75rem, 1vw, 0.8rem); /* audited: raised min to 0.75rem (12px) for 320px safety */
           color: var(--color-brand);
           opacity: 0.25;
           padding: 0 0.25rem;

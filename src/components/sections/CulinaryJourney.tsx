@@ -6,18 +6,17 @@ import {
   useScroll,
   useTransform,
   type MotionValue,
+  useInView,
 } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 /* ═══════════════════════════════════════════════════════════════
    CulinaryJourney v2 — Bell-curve clip-path animation
 
-   CRITICAL FIX: Images now expand to full size in the MIDDLE
-   of the scroll window, then hold. Previously they just grew
-   from invisible to full — now it's a proper reveal animation.
-   
-   Animation curve: inset(40%) → inset(0%) → inset(0%)
-   (starts small, expands, stays visible)
+   FIX: Description font-size now uses clamp(0.9rem, 4vw, 1.1rem)
+   instead of 1.4vw which = 4.5px on 320px. Mobile scroll container
+   reduced from 300vh to 200vh. Mobile uses whileInView animations
+   instead of sticky scroll. Timeline line position fixed on mobile.
    ═══════════════════════════════════════════════════════════════ */
 
 const JOURNEY_STEPS = [
@@ -52,7 +51,6 @@ function JourneyStep({
   const y = useTransform(scrollYProgress, [start, revealEnd], [60, 0]);
 
   // Clip-path: bell curve — start small, expand fully, STAY expanded
-  // inset(40% 40% 40% 40%) → inset(0% 0% 0% 0%) → stays at 0%
   const clipInset = useTransform(scrollYProgress, [start, revealEnd, holdEnd], [
     "inset(40% 40% 40% 40% round 16px)",
     "inset(0% 0% 0% 0% round 16px)",
@@ -95,6 +93,57 @@ function JourneyStep({
   );
 }
 
+/** Mobile-only step with whileInView (no sticky scroll) */
+function MobileJourneyStep({
+  step,
+  index,
+}: {
+  step: typeof JOURNEY_STEPS[number];
+  index: number;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.6, delay: 0.1 }}
+      className="cj-step"
+    >
+      {index > 0 && (
+        <div className="cj-connector" aria-hidden="true">
+          <div className="cj-connector-dot" />
+        </div>
+      )}
+
+      <div className="cj-step-inner">
+        <div className="cj-image-col">
+          <motion.div
+            initial={{ clipPath: "inset(20% 20% 20% 20% round 12px)" }}
+            whileInView={{ clipPath: "inset(0% 0% 0% 0% round 12px)" }}
+            viewport={{ once: true, margin: "-30px" }}
+            transition={{ duration: 0.7 }}
+            className="cj-image-wrapper"
+          >
+            <img
+              src={step.image}
+              alt={step.title}
+              loading="lazy"
+              className="cj-image"
+            />
+            <div className="cj-image-overlay" aria-hidden="true" />
+          </motion.div>
+        </div>
+
+        <div className="cj-content-col">
+          <span className="cj-step-number">{step.number}</span>
+          <h3 className="cj-step-title">{step.title}</h3>
+          <p className="cj-step-desc">{step.description}</p>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
 export default function CulinaryJourney() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
@@ -104,6 +153,93 @@ export default function CulinaryJourney() {
     offset: ["start start", "end end"],
   });
 
+  // Mobile: no sticky, just normal flow with whileInView
+  if (isMobile) {
+    return (
+      <section
+        aria-label="Кулинарный путь"
+        style={{ position: "relative", background: "var(--color-surface-1)", padding: "4rem 0" }}
+      >
+        <style>{`
+          .cj-step { position: relative; }
+          .cj-connector {
+            display: flex; align-items: center; justify-content: center;
+            padding: 0.5rem 0; position: relative;
+          }
+          .cj-connector::before {
+            content: ""; width: 1px; height: 100%;
+            background: linear-gradient(180deg, transparent, var(--color-brand-30) 30%, var(--color-brand-40) 50%, var(--color-brand-30) 70%, transparent);
+          }
+          .cj-connector-dot {
+            position: absolute; width: 6px; height: 6px; border-radius: 50%;
+            background: var(--color-brand); box-shadow: 0 0 12px rgba(201,169,106,0.3);
+          }
+          .cj-step-inner {
+            display: grid; grid-template-columns: 1fr; gap: 1.25rem; align-items: center;
+          }
+          .cj-image-col { position: relative; }
+          .cj-image-wrapper {
+            position: relative; border-radius: 12px; overflow: hidden;
+            aspect-ratio: 16 / 10; background: var(--color-surface-3);
+          }
+          .cj-image {
+            width: 100%; height: 100%; object-fit: cover;
+          }
+          .cj-image-overlay {
+            position: absolute; inset: 0; pointer-events: none;
+            background: linear-gradient(135deg, rgba(250,250,247,0.12) 0%, transparent 50%, rgba(250,250,247,0.2) 100%);
+          }
+          .cj-content-col { display: flex; flex-direction: column; gap: 0.6rem; text-align: left; }
+          .cj-step-number {
+            font-family: var(--font-serif); font-size: clamp(2.5rem, 8vw, 4rem);
+            font-weight: 200; color: var(--color-brand); line-height: 1;
+            letter-spacing: -0.02em; opacity: 0.7;
+          }
+          .cj-step-title {
+            font-family: var(--font-serif); font-size: clamp(1.3rem, 5vw, 1.8rem);
+            font-weight: 400; color: var(--color-text-primary); line-height: 1.2;
+          }
+          .cj-step-desc {
+            font-size: clamp(0.9rem, 4vw, 1.1rem); color: var(--color-text-secondary);
+            line-height: 1.7; font-weight: 300;
+          }
+          .cj-timeline-line-mobile {
+            position: absolute; left: 1.5rem; top: 0; bottom: 0; width: 1px;
+            background: linear-gradient(180deg, transparent, var(--color-brand-16) 10%, var(--color-brand-20) 50%, var(--color-brand-16) 90%, transparent);
+            z-index: 0; pointer-events: none;
+          }
+        `}</style>
+
+        <div style={{ position: "relative", maxWidth: 1100, margin: "0 auto", padding: "0 1.25rem" }}>
+          <div className="cj-timeline-line-mobile" aria-hidden="true" />
+
+          <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} style={{ textAlign: "center", marginBottom: "1rem", position: "relative", zIndex: 1 }}>
+            <span style={{ fontSize: "clamp(0.6rem, 2vw, 0.7rem)", fontWeight: 600, letterSpacing: "0.35em", textTransform: "uppercase", color: "var(--color-brand)", display: "inline-flex", alignItems: "center", gap: "0.75rem" }}>
+              <span style={{ width: 24, height: 1, background: "var(--color-brand-30)", display: "inline-block" }} />
+              Наш путь
+              <span style={{ width: 24, height: 1, background: "var(--color-brand-30)", display: "inline-block" }} />
+            </span>
+          </motion.div>
+
+          <motion.h2 initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.1 }} style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(2rem, 6vw, 3rem)", fontWeight: 300, color: "var(--color-text-primary)", textAlign: "center", lineHeight: 1.15, letterSpacing: "-0.02em", marginBottom: "0.75rem", position: "relative", zIndex: 1 }}>
+            От кухни до вашего <em style={{ color: "var(--color-brand)", fontStyle: "italic" }}>стола</em>
+          </motion.h2>
+
+          <motion.p initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.2 }} style={{ fontSize: "clamp(0.9rem, 3vw, 1.1rem)", color: "var(--color-text-secondary)", textAlign: "center", lineHeight: 1.7, fontWeight: 300, maxWidth: 520, margin: "0 auto 3rem", position: "relative", zIndex: 1 }}>
+            Каждое блюдо проходит путь от шефа до гостя
+          </motion.p>
+
+          <div style={{ position: "relative", zIndex: 1 }}>
+            {JOURNEY_STEPS.map((step, i) => (
+              <MobileJourneyStep key={step.number} step={step} index={i} />
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // Desktop: scroll-driven sticky animation
   return (
     <section
       ref={sectionRef}
@@ -154,7 +290,7 @@ export default function CulinaryJourney() {
           font-weight: 400; color: var(--color-text-primary); line-height: 1.2;
         }
         .cj-step-desc {
-          font-size: clamp(0.9rem, 1.4vw, 1.1rem); color: var(--color-text-secondary);
+          font-size: clamp(0.9rem, 4vw, 1.1rem); color: var(--color-text-secondary);
           line-height: 1.7; font-weight: 300; max-width: 380px;
         }
         .cj-progress-track {
@@ -171,23 +307,15 @@ export default function CulinaryJourney() {
           background: linear-gradient(180deg, transparent, var(--color-brand-16) 10%, var(--color-brand-20) 50%, var(--color-brand-16) 90%, transparent);
           transform: translateX(-50%); z-index: 0; pointer-events: none;
         }
-        @media (max-width: 768px) {
-          .cj-step-inner { grid-template-columns: 1fr; gap: 1.5rem; }
-          .cj-step-inner.cj-step-reversed { direction: ltr; }
-          .cj-image-wrapper { aspect-ratio: 16 / 10; }
-          .cj-content-col { text-align: left; }
-          .cj-connector { padding: 0.5rem 0; }
-          .cj-timeline-line { left: 1.5rem; }
-        }
       `}</style>
 
-      <div style={{ position: "relative", height: isMobile ? "300vh" : "250vh" }}>
+      <div style={{ position: "relative", height: "250vh" }}>
         <div
           style={{
             position: "sticky", top: 0, minHeight: "100vh",
             display: "flex", flexDirection: "column", alignItems: "center",
             justifyContent: "center", background: "var(--color-surface-1)",
-            overflow: "hidden", padding: isMobile ? "4rem 1.25rem" : "8rem 2rem",
+            overflow: "hidden", padding: "8rem 2rem",
           }}
         >
           <div className="cj-progress-track">
@@ -218,7 +346,7 @@ export default function CulinaryJourney() {
 
             <div style={{ position: "relative", zIndex: 1 }}>
               {JOURNEY_STEPS.map((step, i) => (
-                <JourneyStep key={step.number} step={step} index={i} scrollYProgress={scrollYProgress} isMobile={isMobile} />
+                <JourneyStep key={step.number} step={step} index={i} scrollYProgress={scrollYProgress} isMobile={false} />
               ))}
             </div>
           </div>

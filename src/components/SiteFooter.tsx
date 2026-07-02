@@ -8,6 +8,9 @@ import { motion, AnimatePresence } from "framer-motion";
    Site Footer — Awwwards-Level Premium v2
    Dark, warm, sophisticated. Gold accents on warm dark.
    SVG social icons, newsletter capture
+
+   FIX: Dark background (#1A1714) so white text is visible.
+   Touch targets ≥ 44px, readable font sizes on mobile.
    ═══════════════════════════════════════════════════════════════ */
 
 const NAV_SECTIONS = [
@@ -114,6 +117,8 @@ export default function SiteFooter() {
       className="site-footer"
       style={{
         marginTop: "auto",
+        background: "#1A1714",
+        color: "rgba(255,255,255,0.6)",
       }}
     >
       {/* Top decorative line */}
@@ -151,7 +156,7 @@ export default function SiteFooter() {
             ИНТЕРФУД
           </Link>
           <p style={{
-            fontSize: "0.85rem", lineHeight: 1.75,
+            fontSize: "clamp(0.85rem, 2.5vw, 0.9rem)", lineHeight: 1.75,
             marginBottom: "1.75rem", color: "rgba(255,255,255,0.5)",
           }}>
             Ресторан выездного обслуживания в Санкт-Петербурге. Авторская кухня, безупречный сервис с 2007 года.
@@ -162,8 +167,11 @@ export default function SiteFooter() {
               display: "block",
               color: "rgba(255,255,255,0.45)",
               textDecoration: "none",
-              fontSize: "0.82rem",
+              fontSize: "clamp(0.82rem, 2.5vw, 0.85rem)",
               marginBottom: "0.5rem",
+              minHeight: 44,
+              display: "flex",
+              alignItems: "center",
             }}
           >
             WhatsApp: +7 (911) 941-72-05
@@ -174,10 +182,13 @@ export default function SiteFooter() {
               display: "block",
               color: "var(--color-brand-light)",
               textDecoration: "none",
-              fontSize: "1.05rem",
+              fontSize: "clamp(1rem, 3vw, 1.05rem)",
               fontWeight: 500,
               marginBottom: "0.5rem",
               letterSpacing: "0.02em",
+              minHeight: 44,
+              display: "flex",
+              alignItems: "center",
             }}
           >
             +7 (812) 919-59-11
@@ -188,13 +199,16 @@ export default function SiteFooter() {
               display: "block",
               color: "rgba(255,255,255,0.45)",
               textDecoration: "none",
-              fontSize: "0.82rem",
+              fontSize: "clamp(0.82rem, 2.5vw, 0.85rem)",
+              minHeight: 44,
+              display: "flex",
+              alignItems: "center",
             }}
           >
             interfood-catering@yandex.ru
           </a>
 
-          {/* Social links — SVG icons */}
+          {/* Social links — SVG icons with 44×44 touch targets */}
           <div style={{ display: "flex", gap: "0.6rem", marginTop: "1.75rem" }}>
             {SOCIAL_LINKS.map((s) => (
               <a
@@ -204,25 +218,35 @@ export default function SiteFooter() {
                 rel="noopener noreferrer"
                 aria-label={s.label}
                 style={{
-                  width: 36,
-                  height: 36,
+                  width: 44,
+                  height: 44,
                   borderRadius: "50%",
-                  border: "1px solid rgba(255,255,255,0.1)",
+                  border: "1px solid rgba(255,255,255,0.12)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  color: "rgba(255,255,255,0.45)",
+                  color: "rgba(255,255,255,0.5)",
                   textDecoration: "none",
                   transition: "all 0.3s",
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.borderColor = "var(--color-brand-30)";
                   e.currentTarget.style.color = "var(--color-brand-light)";
-                  e.currentTarget.style.background = "var(--color-brand-8)";
+                  e.currentTarget.style.background = "rgba(184,134,11,0.1)";
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = "rgba(255,255,255,0.1)";
-                  e.currentTarget.style.color = "rgba(255,255,255,0.45)";
+                  e.currentTarget.style.borderColor = "rgba(255,255,255,0.12)";
+                  e.currentTarget.style.color = "rgba(255,255,255,0.5)";
+                  e.currentTarget.style.background = "transparent";
+                }}
+                onTouchStart={(e) => {
+                  e.currentTarget.style.borderColor = "var(--color-brand-30)";
+                  e.currentTarget.style.color = "var(--color-brand-light)";
+                  e.currentTarget.style.background = "rgba(184,134,11,0.1)";
+                }}
+                onTouchEnd={(e) => {
+                  e.currentTarget.style.borderColor = "rgba(255,255,255,0.12)";
+                  e.currentTarget.style.color = "rgba(255,255,255,0.5)";
                   e.currentTarget.style.background = "transparent";
                 }}
               >
@@ -238,7 +262,7 @@ export default function SiteFooter() {
             <h3
               style={{
                 fontFamily: "var(--font-serif)",
-                fontSize: "0.95rem",
+                fontSize: "clamp(0.9rem, 2.5vw, 0.95rem)",
                 color: "rgba(255,255,255,0.85)",
                 marginBottom: "1.25rem",
                 fontWeight: 400,
@@ -249,15 +273,19 @@ export default function SiteFooter() {
             </h3>
             <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
               {section.links.map((link) => (
-                <li key={link.href} style={{ marginBottom: "0.45rem" }}>
+                <li key={link.href} style={{ marginBottom: "0.2rem" }}>
                   <Link
                     href={link.href}
                     style={{
                       color: "rgba(255,255,255,0.4)",
                       textDecoration: "none",
-                      fontSize: "0.82rem",
+                      fontSize: "clamp(0.85rem, 2.5vw, 0.88rem)",
                       transition: "color 0.3s",
                       letterSpacing: "0.01em",
+                      display: "inline-block",
+                      padding: "0.3rem 0",
+                      minHeight: 44,
+                      lineHeight: "calc(44px - 0.6rem)",
                     }}
                     onMouseEnter={(e) => { e.currentTarget.style.color = "var(--color-brand-light)"; }}
                     onMouseLeave={(e) => { e.currentTarget.style.color = "rgba(255,255,255,0.4)"; }}
@@ -275,7 +303,7 @@ export default function SiteFooter() {
           <h3
             style={{
               fontFamily: "var(--font-serif)",
-              fontSize: "0.95rem",
+              fontSize: "clamp(0.9rem, 2.5vw, 0.95rem)",
               color: "rgba(255,255,255,0.85)",
               marginBottom: "1.25rem",
               fontWeight: 400,
@@ -284,7 +312,7 @@ export default function SiteFooter() {
           >
             Контакты
           </h3>
-          <address style={{ fontStyle: "normal", fontSize: "0.82rem", lineHeight: 1.85, color: "rgba(255,255,255,0.4)" }}>
+          <address style={{ fontStyle: "normal", fontSize: "clamp(0.85rem, 2.5vw, 0.88rem)", lineHeight: 1.85, color: "rgba(255,255,255,0.4)" }}>
             <p>Новолитовская ул., 15</p>
             <p>Санкт-Петербург</p>
             <p style={{ marginTop: "0.75rem" }}>Пн–Вс: 9:00–22:00</p>
@@ -292,16 +320,19 @@ export default function SiteFooter() {
           <Link
             href="/contacts"
             style={{
-              display: "inline-block",
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
               marginTop: "1.25rem",
               padding: "0.55rem 1.5rem",
               border: "1px solid var(--color-brand-30)",
               color: "var(--color-brand-light)",
               textDecoration: "none",
               borderRadius: 100,
-              fontSize: "0.75rem",
+              fontSize: "clamp(0.75rem, 2vw, 0.8rem)",
               transition: "all 0.3s",
               letterSpacing: "0.04em",
+              minHeight: 44,
             }}
           >
             Все контакты
@@ -310,7 +341,7 @@ export default function SiteFooter() {
           {/* Newsletter signup */}
           <div style={{ marginTop: "2rem" }}>
             <div style={{
-              fontSize: "0.7rem",
+              fontSize: "clamp(0.75rem, 2vw, 0.8rem)",
               fontWeight: 600,
               letterSpacing: "0.14em",
               textTransform: "uppercase",
@@ -324,7 +355,7 @@ export default function SiteFooter() {
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 style={{
-                  fontSize: "0.82rem",
+                  fontSize: "clamp(0.85rem, 2.5vw, 0.88rem)",
                   color: "var(--color-brand-light)",
                   display: "flex",
                   alignItems: "center",
@@ -354,11 +385,12 @@ export default function SiteFooter() {
                     border: "1px solid rgba(255,255,255,0.1)",
                     borderRadius: 8,
                     color: "#fff",
-                    fontSize: "0.8rem",
+                    fontSize: "clamp(0.85rem, 2.5vw, 0.9rem)",
                     outline: "none",
                     fontFamily: "var(--font-sans)",
                     transition: "border-color 0.3s",
                     minWidth: 0,
+                    minHeight: 44,
                   }}
                   onFocus={(e) => { e.target.style.borderColor = "var(--color-brand-30)"; }}
                   onBlur={(e) => { e.target.style.borderColor = "rgba(255,255,255,0.1)"; }}
@@ -367,12 +399,12 @@ export default function SiteFooter() {
                   type="submit"
                   disabled={submitting}
                   style={{
-                    padding: "0.6rem 1rem",
+                    padding: "0.6rem 1.2rem",
                     background: "var(--color-brand)",
                     color: "#fff",
                     border: "none",
                     borderRadius: 8,
-                    fontSize: "0.7rem",
+                    fontSize: "clamp(0.75rem, 2vw, 0.8rem)",
                     fontWeight: 600,
                     cursor: submitting ? "not-allowed" : "pointer",
                     fontFamily: "var(--font-sans)",
@@ -380,6 +412,7 @@ export default function SiteFooter() {
                     textTransform: "uppercase",
                     transition: "background 0.3s",
                     whiteSpace: "nowrap",
+                    minHeight: 44,
                   }}
                 >
                   {submitting ? "..." : "OK"}
@@ -393,7 +426,7 @@ export default function SiteFooter() {
       {/* Bottom bar */}
       <div
         style={{
-          borderTop: "1px solid rgba(255,255,255,0.06)",
+          borderTop: "1px solid rgba(255,255,255,0.08)",
           maxWidth: 1320,
           margin: "0 auto",
           padding: "1.5rem clamp(1.25rem, 3vw, 2.5rem)",
@@ -402,7 +435,7 @@ export default function SiteFooter() {
           justifyContent: "center",
           alignItems: "center",
           gap: "0.75rem",
-          fontSize: "0.7rem",
+          fontSize: "clamp(0.75rem, 2vw, 0.8rem)",
           color: "rgba(255,255,255,0.3)",
           textAlign: "center",
         }}
@@ -411,13 +444,13 @@ export default function SiteFooter() {
         <div style={{ display: "flex", gap: "1.5rem" }}>
           <Link
             href="/privacy"
-            style={{ color: "rgba(255,255,255,0.3)", textDecoration: "none" }}
+            style={{ color: "rgba(255,255,255,0.3)", textDecoration: "none", minHeight: 44, display: "inline-flex", alignItems: "center" }}
           >
             Политика конфиденциальности
           </Link>
           <Link
             href="/terms"
-            style={{ color: "rgba(255,255,255,0.3)", textDecoration: "none" }}
+            style={{ color: "rgba(255,255,255,0.3)", textDecoration: "none", minHeight: 44, display: "inline-flex", alignItems: "center" }}
           >
             Условия использования
           </Link>

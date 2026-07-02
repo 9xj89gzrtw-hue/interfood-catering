@@ -6,11 +6,16 @@ import {
   useMotionValue,
   useSpring,
 } from "framer-motion";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 /* ═══════════════════════════════════════════════════════════════
    CTASection — Dramatic Call-to-Action with Animated Mesh Gradient
    Full-width dark section with animated mesh gradient background,
    floating gold particles, magnetic button, and noise overlay.
+
+   FIX: Trust text font-size from 1.2vw to clamp(0.72rem, 3vw, 0.85rem).
+   Added onTouchStart feedback for magnetic button on mobile.
+   Using useIsMobile() hook instead of one-time window.innerWidth check.
    ═══════════════════════════════════════════════════════════════ */
 
 const EASE_PREMIUM = [0.16, 1, 0.3, 1] as const;
@@ -26,9 +31,8 @@ interface Particle {
   drift: number;
 }
 
-function FloatingParticles({ count = 15 }: { count?: number }) {
+function FloatingParticles({ count = 15, isMobile }: { count?: number; isMobile: boolean }) {
   const particles: Particle[] = useMemo(() => {
-    const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
     const actualCount = isMobile ? Math.min(count, 7) : count;
     return Array.from({ length: actualCount }, (_, i) => ({
       id: i,
@@ -39,7 +43,7 @@ function FloatingParticles({ count = 15 }: { count?: number }) {
       opacity: 0.2 + Math.random() * 0.4,
       drift: (Math.random() - 0.5) * 60,
     }));
-  }, [count]);
+  }, [count, isMobile]);
 
   return (
     <>
@@ -75,10 +79,11 @@ function FloatingParticles({ count = 15 }: { count?: number }) {
   );
 }
 
-// ─── Magnetic Button with Spring Physics ───────────────────
-function MagneticButtonCTA() {
+// ─── Magnetic Button with Spring Physics + Touch Feedback ───
+function MagneticButtonCTA({ isMobile }: { isMobile: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
+  const [isTouched, setIsTouched] = useState(false);
   const [clickState, setClickState] = useState<
     "idle" | "pressed" | "bounced" | "settled"
   >("idle");
@@ -90,7 +95,7 @@ function MagneticButtonCTA() {
 
   const handleMouseMove = useCallback(
     (e: React.MouseEvent) => {
-      if (!ref.current) return;
+      if (!ref.current || isMobile) return;
       const rect = ref.current.getBoundingClientRect();
       const centerX = rect.left + rect.width / 2;
       const centerY = rect.top + rect.height / 2;
@@ -101,7 +106,7 @@ function MagneticButtonCTA() {
       x.set(Math.max(-maxDelta, Math.min(maxDelta, deltaX)));
       y.set(Math.max(-maxDelta, Math.min(maxDelta, deltaY)));
     },
-    [x, y]
+    [x, y, isMobile]
   );
 
   const handleMouseLeave = useCallback(() => {
@@ -109,6 +114,14 @@ function MagneticButtonCTA() {
     y.set(0);
     setIsHovered(false);
   }, [x, y]);
+
+  const handleTouchStart = useCallback(() => {
+    setIsTouched(true);
+  }, []);
+
+  const handleTouchEnd = useCallback(() => {
+    setIsTouched(false);
+  }, []);
 
   const handleClick = useCallback(() => {
     // Spring bounce: down (0.95) → up (1.05) → settle (1.0)
@@ -133,6 +146,8 @@ function MagneticButtonCTA() {
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={handleMouseLeave}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
       style={{
         x: springX,
         y: springY,
@@ -143,7 +158,7 @@ function MagneticButtonCTA() {
         onClick={handleClick}
         animate={{
           scale: scaleValue,
-          boxShadow: isHovered
+          boxShadow: isHovered || isTouched
             ? "0 8px 40px rgba(201,169,106,0.3), 0 0 80px rgba(201,169,106,0.15)"
             : "0 4px 20px rgba(201,169,106,0.15)",
         }}
@@ -156,7 +171,7 @@ function MagneticButtonCTA() {
           minWidth: "44px",
           minHeight: "44px",
           padding: "1.1rem 2.5rem",
-          fontSize: "0.8rem",
+          fontSize: "clamp(0.75rem, 2vw, 0.85rem)",
           letterSpacing: "0.14em",
         }}
       >
@@ -174,6 +189,8 @@ export default function CTASection() {
     () => true,
     () => false
   );
+
+  const isMobile = useIsMobile();
 
   return (
     <section
@@ -228,7 +245,7 @@ export default function CTASection() {
         }}
         aria-hidden="true"
       >
-        {mounted && <FloatingParticles count={15} />}
+        {mounted && <FloatingParticles count={15} isMobile={isMobile} />}
       </div>
 
       {/* ── Content ── */}
@@ -268,7 +285,7 @@ export default function CTASection() {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 1, delay: 0.15, ease: EASE_PREMIUM }}
           style={{
-            fontSize: "clamp(0.9rem, 1.6vw, 1.1rem)",
+            fontSize: "clamp(0.9rem, 3vw, 1.1rem)",
             color: "var(--color-text-secondary)",
             lineHeight: 1.7,
             fontWeight: 300,
@@ -288,7 +305,7 @@ export default function CTASection() {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 1, delay: 0.3, ease: EASE_PREMIUM }}
         >
-          <MagneticButtonCTA />
+          <MagneticButtonCTA isMobile={isMobile} />
         </motion.div>
 
         {/* ── Trust Line ── */}
@@ -322,7 +339,7 @@ function TrustItem({ text }: { text: string }) {
   return (
     <span
       style={{
-        fontSize: "clamp(0.72rem, 1.2vw, 0.85rem)",
+        fontSize: "clamp(0.72rem, 3vw, 0.85rem)",
         color: "var(--color-text-muted)",
         fontWeight: 400,
         letterSpacing: "0.04em",

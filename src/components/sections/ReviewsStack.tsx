@@ -2,12 +2,17 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence, useMotionValue, useTransform } from "framer-motion";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 /* ═══════════════════════════════════════════════════════════════
    ReviewsStack — 3D Stack Carousel of Review Cards
    Current card in front, previous cards stacked behind
    with offset and opacity. Navigation via arrows, swipe,
    and auto-advance every 5 seconds.
+
+   FIX: Progress dots now have 44×44px touch area.
+   Decorative quote mark reduced on mobile. Touch feedback
+   added for navigation arrows. Card text size fixed on mobile.
    ═══════════════════════════════════════════════════════════════ */
 
 const EASE_PREMIUM = [0.16, 1, 0.3, 1] as const;
@@ -53,9 +58,11 @@ function RatingStars({ rating }: { rating: number }) {
 function ReviewCard({
   review,
   stackPosition,
+  isMobile,
 }: {
   review: (typeof REVIEWS)[number];
   stackPosition: number; // 0 = current, 1 = prev, 2 = prev-prev
+  isMobile: boolean;
 }) {
   const scale = stackPosition === 0 ? 1 : stackPosition === 1 ? 0.95 : 0.9;
   const opacity = stackPosition === 0 ? 1 : stackPosition === 1 ? 0.5 : 0.3;
@@ -85,7 +92,7 @@ function ReviewCard({
     >
       <div
         style={{
-          padding: "2.5rem 2rem 2rem",
+          padding: isMobile ? "2rem 1.25rem 1.5rem" : "2.5rem 2rem 2rem",
           borderRadius: "20px",
           background: "var(--color-surface-2)",
           border: "1px solid var(--color-brand-8)",
@@ -103,7 +110,7 @@ function ReviewCard({
             top: "-0.3rem",
             left: "0.5rem",
             fontFamily: "var(--font-serif)",
-            fontSize: "8rem",
+            fontSize: isMobile ? "4rem" : "8rem",
             lineHeight: 1,
             color: "var(--color-brand)",
             opacity: 0.15,
@@ -119,7 +126,7 @@ function ReviewCard({
         <p
           style={{
             fontFamily: "var(--font-serif)",
-            fontSize: "1.15rem",
+            fontSize: isMobile ? "clamp(0.95rem, 3vw, 1.1rem)" : "1.15rem",
             color: "var(--color-text-primary)",
             lineHeight: 1.7,
             fontWeight: 300,
@@ -141,7 +148,7 @@ function ReviewCard({
         <div style={{ position: "relative", zIndex: 1 }}>
           <p
             style={{
-              fontSize: "0.9rem",
+              fontSize: isMobile ? "clamp(0.85rem, 2.5vw, 0.9rem)" : "0.9rem",
               fontWeight: 500,
               color: "var(--color-text-primary)",
               marginBottom: "0.25rem",
@@ -151,7 +158,7 @@ function ReviewCard({
           </p>
           <p
             style={{
-              fontSize: "0.78rem",
+              fontSize: isMobile ? "clamp(0.72rem, 2vw, 0.78rem)" : "0.78rem",
               color: "var(--color-text-muted)",
               letterSpacing: "0.04em",
             }}
@@ -164,12 +171,82 @@ function ReviewCard({
   );
 }
 
+// ─── Navigation Arrow Button with Touch Feedback ──────────
+function NavArrow({
+  direction,
+  onClick,
+  ariaLabel,
+}: {
+  direction: "prev" | "next";
+  onClick: () => void;
+  ariaLabel: string;
+}) {
+  return (
+    <button
+      onClick={onClick}
+      aria-label={ariaLabel}
+      style={{
+        width: "48px",
+        height: "48px",
+        borderRadius: "50%",
+        border: "1px solid var(--color-brand-20)",
+        background: "var(--color-surface-2)",
+        color: "var(--color-brand)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        cursor: "pointer",
+        transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+        WebkitTapHighlightColor: "transparent",
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.borderColor = "var(--color-brand)";
+        e.currentTarget.style.background = "var(--color-brand-8)";
+        e.currentTarget.style.transform = "scale(1.05)";
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.borderColor = "var(--color-brand-20)";
+        e.currentTarget.style.background = "var(--color-surface-2)";
+        e.currentTarget.style.transform = "scale(1)";
+      }}
+      onTouchStart={(e) => {
+        e.currentTarget.style.borderColor = "var(--color-brand)";
+        e.currentTarget.style.background = "var(--color-brand-8)";
+        e.currentTarget.style.transform = "scale(0.95)";
+      }}
+      onTouchEnd={(e) => {
+        e.currentTarget.style.borderColor = "var(--color-brand-20)";
+        e.currentTarget.style.background = "var(--color-surface-2)";
+        e.currentTarget.style.transform = "scale(1)";
+      }}
+    >
+      <svg
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        {direction === "prev" ? (
+          <path d="M15 18l-6-6 6-6" />
+        ) : (
+          <path d="M9 18l6-6-6-6" />
+        )}
+      </svg>
+    </button>
+  );
+}
+
 // ─── Main Component ────────────────────────────────────────
 export default function ReviewsStack() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(1); // 1 = forward, -1 = backward
   const autoTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const dragX = useMotionValue(0);
+  const isMobile = useIsMobile();
 
   const totalReviews = REVIEWS.length;
 
@@ -261,7 +338,7 @@ export default function ReviewsStack() {
         >
           <span
             style={{
-              fontSize: "0.6rem",
+              fontSize: "clamp(0.6rem, 2vw, 0.7rem)",
               letterSpacing: "0.3em",
               textTransform: "uppercase",
               color: "var(--color-brand)",
@@ -354,6 +431,7 @@ export default function ReviewsStack() {
                   key={`stack-${reviewIndex}-${currentIndex}`}
                   review={REVIEWS[reviewIndex]}
                   stackPosition={stackPos}
+                  isMobile={isMobile}
                 />
               ))}
             </AnimatePresence>
@@ -368,101 +446,30 @@ export default function ReviewsStack() {
               marginTop: "1.5rem",
             }}
           >
-            <button
+            <NavArrow
+              direction="prev"
               onClick={() => {
                 goToPrev();
                 resetAutoTimer();
               }}
-              aria-label="Предыдущий отзыв"
-              style={{
-                width: "48px",
-                height: "48px",
-                borderRadius: "50%",
-                border: "1px solid var(--color-brand-20)",
-                background: "var(--color-surface-2)",
-                color: "var(--color-brand)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                cursor: "pointer",
-                transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = "var(--color-brand)";
-                e.currentTarget.style.background = "var(--color-brand-8)";
-                e.currentTarget.style.transform = "scale(1.05)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = "var(--color-brand-20)";
-                e.currentTarget.style.background = "var(--color-surface-2)";
-                e.currentTarget.style.transform = "scale(1)";
-              }}
-            >
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M15 18l-6-6 6-6" />
-              </svg>
-            </button>
-
-            <button
+              ariaLabel="Предыдущий отзыв"
+            />
+            <NavArrow
+              direction="next"
               onClick={() => {
                 goToNext();
                 resetAutoTimer();
               }}
-              aria-label="Следующий отзыв"
-              style={{
-                width: "48px",
-                height: "48px",
-                borderRadius: "50%",
-                border: "1px solid var(--color-brand-20)",
-                background: "var(--color-surface-2)",
-                color: "var(--color-brand)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                cursor: "pointer",
-                transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = "var(--color-brand)";
-                e.currentTarget.style.background = "var(--color-brand-8)";
-                e.currentTarget.style.transform = "scale(1.05)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = "var(--color-brand-20)";
-                e.currentTarget.style.background = "var(--color-surface-2)";
-                e.currentTarget.style.transform = "scale(1)";
-              }}
-            >
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M9 18l6-6-6-6" />
-              </svg>
-            </button>
+              ariaLabel="Следующий отзыв"
+            />
           </div>
 
-          {/* ── Progress Dots ── */}
+          {/* ── Progress Dots with 44×44 touch targets ── */}
           <div
             style={{
               display: "flex",
               justifyContent: "center",
-              gap: "0.5rem",
+              gap: "0.25rem",
               marginTop: "1.5rem",
             }}
             role="tablist"
@@ -479,20 +486,33 @@ export default function ReviewsStack() {
                 aria-selected={i === currentIndex}
                 aria-label={`Отзыв ${i + 1}`}
                 style={{
-                  width: i === currentIndex ? "24px" : "8px",
-                  height: "8px",
-                  borderRadius: "4px",
+                  width: "44px",
+                  height: "44px",
                   border: "none",
-                  background:
-                    i === currentIndex
-                      ? "var(--color-brand)"
-                      : "var(--color-brand-20)",
+                  background: "transparent",
                   cursor: "pointer",
-                  transition:
-                    "width 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.4s",
                   padding: 0,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  WebkitTapHighlightColor: "transparent",
                 }}
-              />
+              >
+                <span
+                  style={{
+                    display: "block",
+                    width: i === currentIndex ? "24px" : "8px",
+                    height: "8px",
+                    borderRadius: "4px",
+                    background:
+                      i === currentIndex
+                        ? "var(--color-brand)"
+                        : "var(--color-brand-20)",
+                    transition:
+                      "width 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.4s",
+                  }}
+                />
+              </button>
             ))}
           </div>
         </div>
