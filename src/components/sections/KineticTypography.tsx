@@ -189,21 +189,25 @@ export default function KineticTypography() {
   return (
     <section
       ref={sectionRef}
+      className="kinetic-typography-section"
       style={{
         position: "relative",
-        minHeight: "100vh",
+        minHeight: "clamp(70vh, 100vh, 100vh)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         overflow: "hidden",
         background: "var(--color-surface-1)",
-        padding: "10rem 2rem",
+        padding: "clamp(5rem, 10vw, 10rem) clamp(1.25rem, 3vw, 2rem)",
       }}
     >
       {/* Mobile padding override via media query handled inline with a wrapper */}
       <style>{`
         @media (max-width: 640px) {
-          .kinetic-typography-section { padding: 6rem 1.25rem !important; }
+          .kinetic-typography-section { padding: 5rem 1.25rem !important; min-height: auto !important; }
+        }
+        @media (min-width: 641px) and (max-width: 1024px) {
+          .kinetic-typography-section { padding: 7rem 1.75rem !important; }
         }
       `}</style>
       <div

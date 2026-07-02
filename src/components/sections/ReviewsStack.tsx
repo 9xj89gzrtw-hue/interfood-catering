@@ -236,7 +236,7 @@ export default function ReviewsStack() {
       style={{
         position: "relative",
         background: "var(--color-surface-0)",
-        padding: "clamp(4rem, 8vw, 8rem) 0",
+        padding: "clamp(3rem, 8vw, 8rem) 0",
         overflow: "hidden",
       }}
       aria-label="Отзывы клиентов"
@@ -245,7 +245,7 @@ export default function ReviewsStack() {
         style={{
           maxWidth: "1320px",
           margin: "0 auto",
-          padding: "0 2rem",
+          padding: "0 clamp(1.25rem, 3vw, 2rem)",
         }}
       >
         {/* ── Section Header ── */}
@@ -323,12 +323,22 @@ export default function ReviewsStack() {
             margin: "0 auto",
           }}
         >
+          {/* Mobile override */}
+          <style>{`
+            @media (max-width: 640px) {
+              .review-stack-container {
+                max-width: 100% !important;
+                height: 360px !important;
+              }
+            }
+          `}</style>
           {/* Stack container */}
           <motion.div
             drag="x"
             dragConstraints={{ left: 0, right: 0 }}
             dragElastic={0.15}
             onDragEnd={handleDragEnd}
+            className="review-stack-container"
             style={{
               position: "relative",
               width: "100%",

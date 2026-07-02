@@ -1,14 +1,14 @@
 # 🧠 MEMORY.md — Файл памяти проекта Интерфуд Кейтеринг
 
 > **Создан:** 2026-07-02  
-> **Обновлён:** 2026-07-02 (сессия 5 — v72 Fix ALL broken media + Hero bulletproof)  
+> **Обновлён:** 2026-07-03 (сессия 6 — v74 Mobile Video Hero + MorphingText + Responsive Overhaul)  
 > **Проект:** Сайт кейтеринговой компании «Интерфуд» (interfood-catering.ru)  
 > **Репозиторий:** https://github.com/9xj89gzrtw-hue/interfood-catering  
 > **Vercel:** ✅ Токен получен от пользователя  
 > **Vercel проект:** interfood-catering (дубли удалены)  
 > **Vercel URL:** https://interfood-catering.vercel.app  
 > **GitHub Pages:** https://9xj89gzrtw-hue.github.io/interfood-catering/  
-> **Текущая версия:** v73 — Mobile Hero Photo + Layout Fixes + Readability + Touch Feedback
+> **Текущая версия:** v74 — Mobile Video Hero + MorphingText + Responsive Overhaul + Nav Fix
 
 ---
 

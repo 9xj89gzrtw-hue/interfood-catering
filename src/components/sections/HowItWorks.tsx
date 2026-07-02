@@ -353,7 +353,14 @@ export default function HowItWorks() {
       `}</style>
 
       {/* Scroll height container — provides the scroll space for the pinned animation */}
-      <div style={{ position: "relative", height: "250vh" }}>
+      <style>{`
+        @media (max-width: 768px) {
+          .hiw-scroll-container {
+            height: 180vh !important;
+          }
+        }
+      `}</style>
+      <div className="hiw-scroll-container" style={{ position: "relative", height: "250vh" }}>
         {/* Sticky pinned content */}
         <div
           style={{

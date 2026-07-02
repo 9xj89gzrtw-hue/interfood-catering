@@ -473,7 +473,7 @@ export default function CinematicGallery() {
           <h2
             style={{
               fontFamily: "var(--font-serif)",
-              fontSize: "clamp(2rem, 5vw, 3.5rem)",
+              fontSize: "clamp(1.8rem, 5vw, 3.5rem)",
               fontWeight: 300,
               color: "var(--color-text-primary)",
               lineHeight: 1.15,
@@ -487,7 +487,7 @@ export default function CinematicGallery() {
           {/* Subtitle */}
           <p
             style={{
-              fontSize: "clamp(0.9rem, 1.6vw, 1.1rem)",
+              fontSize: "clamp(0.85rem, 1.6vw, 1.1rem)",
               color: "var(--color-text-secondary)",
               lineHeight: 1.7,
               fontWeight: 300,
@@ -495,7 +495,7 @@ export default function CinematicGallery() {
               margin: "0 auto",
             }}
           >
-            Каждое мероприятие — уникальная история
+            Каждое мероприятие — уникальная история, рассказанная через вкус и эстетику
           </p>
         </motion.div>
 

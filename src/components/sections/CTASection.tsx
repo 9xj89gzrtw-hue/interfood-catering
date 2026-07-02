@@ -258,7 +258,7 @@ export default function CTASection() {
             marginBottom: "1.25rem",
           }}
         >
-          Создадим мероприятие вашей мечты
+          Создадим мероприятие, которое запомнится навсегда
         </motion.h2>
 
         {/* ── Subtitle ── */}
@@ -278,7 +278,7 @@ export default function CTASection() {
             marginRight: "auto",
           }}
         >
-          Бесплатная консультация и дегустация — оставьте заявку
+          Бесплатная консультация и дегустация — мы ответим за 30 минут и подберём идеальное меню
         </motion.p>
 
         {/* ── Magnetic Button ── */}

@@ -5,6 +5,31 @@
 
 ---
 
+## v74 — 2026-07-03 — Mobile Video Hero + MorphingText + Responsive Overhaul + Nav Fix
+- **Тема**: Light Premium (продолжение v73)
+- **Hero v5**:
+  - ✅ Видео теперь воспроизводится и на мобильных (с мобильным src)
+  - ✅ MorphingText возвращён с улучшенными blur-переходами
+  - ✅ CTA кнопки: вертикальный стек на мобильных, 48px touch targets
+  - ✅ Улучшенный scroll indicator
+  - ✅ "Ответим за 30 минут" — под CTA на мобильных
+- **Навигация**:
+  - ✅ Логотип и бургер: белый на hero, тёмный при скролле
+  - ✅ Плавный переход цвета через CSS transition
+- **Services grid**:
+  - ✅ Responsive minmax(min(300px, 100%), 1fr) — не ломается на маленьких экранах
+  - ✅ Card image: clamp(200px, 40vw, 280px)
+- **StatsOdometer**:
+  - ✅ Исправлен баг двойного grid (был grid внутри grid)
+- **Footer**:
+  - ✅ Responsive padding с clamp()
+  - ✅ Bottom bar: центрированный на мобильных
+- **globals.css**:
+  - ✅ Комплексные мобильные фиксы (section spacing, touch targets, gallery cards, nav padding)
+  - ✅ Tablet fixes (769-1024px)
+  - ✅ Mobile menu: 1.25rem, 44px min-height
+  - ✅ Buttons: min-height 48px на мобильных
+
 ## v73 — 2026-07-03 — Mobile Hero Photo + Layout Fixes + Readability + Touch Feedback
 - **Тема**: Light Premium (продолжение v72)
 - **Hero v4**:
