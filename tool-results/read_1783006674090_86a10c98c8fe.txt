@@ -1,0 +1,1274 @@
+     1→"use client";
+     2→
+     3→import dynamic from "next/dynamic";
+     4→import { useState, useEffect, useRef, useCallback } from "react";
+     5→import { motion, AnimatePresence } from "framer-motion";
+     6→import Link from "next/link";
+     7→import SiteNav from "@/components/SiteNav";
+     8→import MagneticButton from "@/components/MagneticButton";
+     9→import CountUp from "@/components/CountUp";
+    10→const FluidBackground = dynamic(() => import("@/components/FluidBackground"), { ssr: false });
+    11→const MorphingBlob = dynamic(() => import("@/components/MorphingBlob"), { ssr: false });
+    12→const KineticText = dynamic(() => import("@/components/KineticText"), { ssr: false });
+    13→const ConfettiButton = dynamic(() => import("@/components/ConfettiButton"), { ssr: false });
+    14→const ParticleField = dynamic(() => import("@/components/ParticleField"), { ssr: false });
+    15→const LottiePlaceholder = dynamic(() => import("@/components/LottiePlaceholder"), { ssr: false });
+    16→
+    17→/* ═══════════════════════════════════════════════════════════════
+    18→   ИНТЕРФУД КЕЙТЕРИНГ — Interactive Quiz Page
+    19→   5-step quiz → personalised catering recommendation
+    20→   ═══════════════════════════════════════════════════════════════ */
+    21→
+    22→/* ─── Quiz step data ─── */
+    23→interface QuizOption {
+    24→  label: string;
+    25→  value: string;
+    26→  icon?: string;
+    27→}
+    28→
+    29→interface QuizStep {
+    30→  question: string;
+    31→  subtitle: string;
+    32→  options: QuizOption[];
+    33→}
+    34→
+    35→const STEPS: QuizStep[] = [
+    36→  {
+    37→    question: "Какой тип мероприятия?",
+    38→    subtitle: "Выберите тип вашего события",
+    39→    options: [
+    40→      { label: "Свадьба", value: "wedding", icon: "💒" },
+    41→      { label: "Корпоратив", value: "corporate", icon: "🏢" },
+    42→      { label: "День рождения", value: "birthday", icon: "🎂" },
+    43→      { label: "Юбилей", value: "anniversary", icon: "🍾" },
+    44→      { label: "Выпускной", value: "graduation", icon: "🎓" },
+    45→      { label: "Другое", value: "other", icon: "✨" },
+    46→    ],
+    47→  },
+    48→  {
+    49→    question: "Сколько гостей ожидается?",
+    50→    subtitle: "Примерное количество приглашённых",
+    51→    options: [
+    52→      { label: "До 30", value: "0-30", icon: "👫" },
+    53→      { label: "30–50", value: "30-50", icon: "👨‍👩‍👧‍👦" },
+    54→      { label: "50–100", value: "50-100", icon: "🎉" },
+    55→      { label: "100–200", value: "100-200", icon: "🎪" },
+    56→      { label: "200+", value: "200+", icon: "🏛" },
+    57→    ],
+    58→  },
+    59→  {
+    60→    question: "Какой формат предпочитаете?",
+    61→    subtitle: "Как вам видится подача блюд",
+    62→    options: [
+    63→      { label: "Фуршет", value: "furshet", icon: "🥂" },
+    64→      { label: "Банкет", value: "banquet", icon: "🍽" },
+    65→      { label: "Кофе-брейк", value: "coffeebreak", icon: "☕" },
+    66→      { label: "Шведский стол", value: "buffet", icon: "🍗" },
+    67→      { label: "Не уверен", value: "unsure", icon: "🤔" },
+    68→    ],
+    69→  },
+    70→  {
+    71→    question: "Что для вас важнее?",
+    72→    subtitle: "Выберите главный приоритет",
+    73→    options: [
+    74→      { label: "Вкусная еда", value: "taste", icon: "👨‍🍳" },
+    75→      { label: "Красивая подача", value: "presentation", icon: "✨" },
+    76→      { label: "Разнообразие", value: "variety", icon: "🌮" },
+    77→      { label: "Бюджет", value: "budget", icon: "💰" },
+    78→      { label: "Сервис", value: "service", icon: "🤵" },
+    79→    ],
+    80→  },
+    81→  {
+    82→    question: "Ваш бюджет на человека?",
+    83→    subtitle: "Ориентировочная сумма на одного гостя",
+    84→    options: [
+    85→      { label: "До 2 000 ₽", value: "0-2000", icon: "💵" },
+    86→      { label: "2 000–4 000 ₽", value: "2000-4000", icon: "💰" },
+    87→      { label: "4 000–7 000 ₽", value: "4000-7000", icon: "💎" },
+    88→      { label: "7 000+ ₽", value: "7000+", icon: "👑" },
+    89→    ],
+    90→  },
+    91→];
+    92→
+    93→/* ─── Recommendation logic ─── */
+    94→interface Recommendation {
+    95→  title: string;
+    96→  priceRange: string;
+    97→  description: string;
+    98→  features: string[];
+    99→  icon: string;
+   100→}
+   101→
+   102→function getRecommendation(answers: Record<number, string>): Recommendation {
+   103→  const eventType = answers[0] ?? "";
+   104→  const guestCount = answers[1] ?? "";
+   105→  const format = answers[2] ?? "";
+   106→  const priority = answers[3] ?? "";
+   107→  const budget = answers[4] ?? "";
+   108→
+   109→  // Wedding + 50+ guests + banquet
+   110→  if (
+   111→    eventType === "wedding" &&
+   112→    (guestCount === "50-100" || guestCount === "100-200" || guestCount === "200+") &&
+   113→    format === "banquet"
+   114→  ) {
+   115→    return {
+   116→      title: "Свадебный банкет",
+   117→      priceRange: "6 500 – 14 500 ₽/чел",
+   118→      description:
+   119→        "Роскошный свадебный банкет с авторским меню, шампанской пирамидой и персональным менеджером. Каждое блюдо — произведение кулинарного искусства, а обслуживание на высочайшем уровне создаст незабываемую атмосферу вашего праздника.",
+   120→      features: [
+   121→        "Авторское меню из 12–18 позиций",
+   122→        "Шампанская пирамида",
+   123→        "Персональный кейтеринг-менеджер",
+   124→        "Декор и цветочные композиции",
+   125→        "1 официант на 8 гостей",
+   126→        "Welcome-дринк при встрече",
+   127→      ],
+   128→      icon: "💒",
+   129→    };
+   130→  }
+   131→
+   132→  // Corporate + 100+
+   133→  if (
+   134→    eventType === "corporate" &&
+   135→    (guestCount === "100-200" || guestCount === "200+")
+   136→  ) {
+   137→    return {
+   138→      title: "Корпоративный фуршет",
+   139→      priceRange: "3 000 – 7 000 ₽/чел",
+   140→      description:
+   141→        "Элегантный фуршетный формат для масштабного корпоратива. Гости свободно общаются, пробуют изысканные закуски и наслаждаются профессиональным обслуживанием. Идеально для нетворкинга и праздничной атмосферы.",
+   142→      features: [
+   143→        "Фуршетное меню из 15–20 позиций",
+   144→        "Коктейльная зона",
+   145→        "Живые станции с готовкой",
+   146→        "Профессиональный бар",
+   147→        "Координация по таймлайну",
+   148→        "Брендирование блюд",
+   149→      ],
+   150→      icon: "🏢",
+   151→    };
+   152→  }
+   153→
+   154→  // Birthday + 30-50 + budget priority
+   155→  if (
+   156→    eventType === "birthday" &&
+   157→    (guestCount === "30-50" || guestCount === "0-30") &&
+   158→    (priority === "budget" || budget === "0-2000" || budget === "2000-4000")
+   159→  ) {
+   160→    return {
+   161→      title: "Фуршет",
+   162→      priceRange: "2 000 – 4 500 ₽/чел",
+   163→      description:
+   164→        "Лёгкий и стильный фуршет — идеальный выбор для дня рождения в кругу друзей и близких. Разнообразные закуски, канапе и десерты создадут праздничную атмосферу без лишних формальностей.",
+   165→      features: [
+   166→        "Фуршетное меню из 10–15 позиций",
+   167→        "Канапе и тарталетки",
+   168→        "Десертная станция",
+   169→        "Безалкогольные напитки",
+   170→        "Сервировка и текстиль",
+   171→        "Меню для аллергиков",
+   172→      ],
+   173→      icon: "🥂",
+   174→    };
+   175→  }
+   176→
+   177→  // Coffee-break selected
+   178→  if (format === "coffeebreak") {
+   179→    return {
+   180→      title: "Кофе-брейк",
+   181→      priceRange: "1 500 – 3 500 ₽/чел",
+   182→      description:
+   183→        "Компактный и уютный формат для деловых встреч, конференций и презентаций. Свежая выпечка, ароматный кофе и лёгкие закуски поддержат работоспособность и создадят комфортную атмосферу.",
+   184→      features: [
+   185→        "Кофе и чайная станция",
+   186→        "Свежая выпечка и круассаны",
+   187→        "Лёгкие закуски и снеки",
+   188→        "Фруктовые тарелки",
+   189→        "Сок и вода",
+   190→        "Сервировка на 2 перерыва",
+   191→      ],
+   192→      icon: "☕",
+   193→    };
+   194→  }
+   195→
+   196→  // Default: Фуршет
+   197→  return {
+   198→    title: "Фуршет",
+   199→    priceRange: "2 500 – 6 000 ₽/чел",
+   200→    description:
+   201→      "Универсальный и элегантный формат, который подходит для любого мероприятия. Гости свободно перемещаются, общаются и наслаждаются разнообразными закусками. Самый популярный выбор наших клиентов.",
+   202→    features: [
+   203→      "Фуршетное меню из 12–18 позиций",
+   204→      "Канапе, тарталетки, брускетты",
+   205→      "Десертная станция",
+   206→      "Коктейльная зона",
+   207→      "Профессиональные официанты",
+   208→      "Сервировка и декор",
+   209→    ],
+   210→    icon: "🥂",
+   211→  };
+   212→}
+   213→
+   214→/* ─── Animation variants ─── */
+   215→const slideVariants = {
+   216→  enter: (direction: number) => ({
+   217→    x: direction > 0 ? 80 : -80,
+   218→    opacity: 0,
+   219→  }),
+   220→  center: {
+   221→    x: 0,
+   222→    opacity: 1,
+   223→  },
+   224→  exit: (direction: number) => ({
+   225→    x: direction < 0 ? 80 : -80,
+   226→    opacity: 0,
+   227→  }),
+   228→};
+   229→
+   230→const optionVariants = {
+   231→  hidden: { opacity: 0, y: 24 },
+   232→  visible: (i: number) => ({
+   233→    opacity: 1,
+   234→    y: 0,
+   235→    transition: { delay: 0.15 + i * 0.06, duration: 0.45, ease: [0.4, 0, 0.2, 1] as const },
+   236→  }),
+   237→};
+   238→
+   239→const resultVariants = {
+   240→  hidden: { opacity: 0, scale: 0.95 },
+   241→  visible: {
+   242→    opacity: 1,
+   243→    scale: 1,
+   244→    transition: { duration: 0.6, ease: [0.4, 0, 0.2, 1] as const },
+   245→  },
+   246→};
+   247→
+   248→/* ─── Quiz Page ─── */
+   249→export default function QuizPage() {
+   250→  const [currentStep, setCurrentStep] = useState(0);
+   251→  const [answers, setAnswers] = useState<Record<number, string>>({});
+   252→  const [direction, setDirection] = useState(1);
+   253→  const [showResults, setShowResults] = useState(false);
+   254→  const [focusedIndex, setFocusedIndex] = useState(0);
+   255→  const [contactForm, setContactForm] = useState({ name: "", phone: "" });
+   256→  const [formSubmitted, setFormSubmitted] = useState(false);
+   257→  const [isSubmitting, setIsSubmitting] = useState(false);
+   258→  const [toast, setToast] = useState<string | null>(null);
+   259→
+   260→  const quizContainerRef = useRef<HTMLDivElement>(null);
+   261→  const optionsRef = useRef<(HTMLButtonElement | null)[]>([]);
+   262→
+   263→  const totalSteps = STEPS.length;
+   264→  const isLastStep = currentStep === totalSteps - 1;
+   265→  const hasAnswer = answers[currentStep] !== undefined;
+   266→
+   267→  /* Toast auto-dismiss */
+   268→  useEffect(() => {
+   269→    if (!toast) return;
+   270→    const t = setTimeout(() => setToast(null), 4000);
+   271→    return () => clearTimeout(t);
+   272→  }, [toast]);
+   273→
+   274→  const selectOption = useCallback(
+   275→    (value: string) => {
+   276→      setAnswers((prev) => ({ ...prev, [currentStep]: value }));
+   277→    },
+   278→    [currentStep]
+   279→  );
+   280→
+   281→  /* Keyboard navigation */
+   282→  useEffect(() => {
+   283→    if (showResults) return;
+   284→
+   285→    const handleKeyDown = (e: KeyboardEvent) => {
+   286→      const step = STEPS[currentStep];
+   287→      if (!step) return;
+   288→      const maxIdx = step.options.length - 1;
+   289→
+   290→      if (e.key === "ArrowDown" || e.key === "ArrowRight") {
+   291→        e.preventDefault();
+   292→        setFocusedIndex((prev) => (prev < maxIdx ? prev + 1 : 0));
+   293→      } else if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
+   294→        e.preventDefault();
+   295→        setFocusedIndex((prev) => (prev > 0 ? prev - 1 : maxIdx));
+   296→      } else if (e.key === "Enter" || e.key === " ") {
+   297→        e.preventDefault();
+   298→        selectOption(step.options[focusedIndex].value);
+   299→      } else if (e.key === "Tab") {
+   300→        // Allow Tab to leave quiz options so users can reach nav/action buttons
+   301→      }
+   302→    };
+   303→
+   304→    window.addEventListener("keydown", handleKeyDown);
+   305→    return () => window.removeEventListener("keydown", handleKeyDown);
+   306→  }, [currentStep, focusedIndex, showResults, selectOption]);
+   307→
+   308→  /* Focus the option button when focusedIndex changes */
+   309→  useEffect(() => {
+   310→    const el = optionsRef.current[focusedIndex];
+   311→    if (el && !showResults) {
+   312→      el.focus();
+   313→    }
+   314→  }, [focusedIndex, currentStep, showResults]);
+   315→
+   316→  /* Reset focusedIndex when step changes */
+   317→  useEffect(() => {
+   318→    setFocusedIndex(0);
+   319→    optionsRef.current = [];
+   320→  }, [currentStep]);
+   321→
+   322→  const goNext = useCallback(() => {
+   323→    if (!hasAnswer) return;
+   324→    if (isLastStep) {
+   325→      setShowResults(true);
+   326→    } else {
+   327→      setDirection(1);
+   328→      setCurrentStep((prev) => prev + 1);
+   329→    }
+   330→  }, [hasAnswer, isLastStep]);
+   331→
+   332→  const goBack = useCallback(() => {
+   333→    if (showResults) {
+   334→      setShowResults(false);
+   335→      return;
+   336→    }
+   337→    if (currentStep > 0) {
+   338→      setDirection(-1);
+   339→      setCurrentStep((prev) => prev - 1);
+   340→    }
+   341→  }, [currentStep, showResults]);
+   342→
+   343→  /* Auto-advance on select */
+   344→  useEffect(() => {
+   345→    if (!hasAnswer) return;
+   346→    const timer = setTimeout(goNext, 450);
+   347→    return () => clearTimeout(timer);
+   348→  }, [hasAnswer, goNext]);
+   349→
+   350→  /* Contact form submit */
+   351→  const handleSubmitContact = async () => {
+   352→    if (!contactForm.name.trim() || !contactForm.phone.trim()) {
+   353→      setToast("Пожалуйста, заполните все поля");
+   354→      return;
+   355→    }
+   356→    setIsSubmitting(true);
+   357→    try {
+   358→      const res = await fetch("/api/contact", {
+   359→        method: "POST",
+   360→        headers: { "Content-Type": "application/json" },
+   361→        body: JSON.stringify({
+   362→          name: contactForm.name,
+   363→          phone: contactForm.phone,
+   364→          message: `Квиз: рекомендация — ${getRecommendation(answers).title}, бюджет — ${getRecommendation(answers).priceRange}`,
+   365→        }),
+   366→      });
+   367→      if (res.ok) {
+   368→        setFormSubmitted(true);
+   369→        setToast("Заявка отправлена! Мы свяжемся с вами в ближайшее время.");
+   370→      } else {
+   371→        setToast("Ошибка отправки. Попробуйте ещё раз.");
+   372→      }
+   373→    } catch {
+   374→      setToast("Ошибка сети. Попробуйте ещё раз.");
+   375→    } finally {
+   376→      setIsSubmitting(false);
+   377→    }
+   378→  };
+   379→
+   380→  const recommendation = getRecommendation(answers);
+   381→
+   382→  /* ─── Render ─── */
+   383→  return (
+   384→    <>
+   385→      <SiteNav />
+   386→
+   387→      <main
+   388→        style={{
+   389→          minHeight: "100vh",
+   390→          background: "var(--color-warm-white)",
+   391→          display: "flex",
+   392→          flexDirection: "column",
+   393→        }}
+   394→      >
+   395→        {/* ── Hero header ── */}
+   396→        <section
+   397→          style={{
+   398→            paddingTop: "clamp(6rem, 12vh, 8rem)",
+   399→            paddingBottom: "2rem",
+   400→            textAlign: "center",
+   401→            background: "var(--color-cream)",
+   402→            position: "relative",
+   403→            overflow: "hidden",
+   404→          }}
+   405→        >
+   406→          <FluidBackground
+   407→            color1="rgba(184,149,90,0.06)"
+   408→            color2="rgba(158,182,143,0.04)"
+   409→            color3="rgba(232,196,184,0.03)"
+   410→            speed={6}
+   411→          />
+   412→          <ParticleField count={20} speed={0.15} style={{ opacity: 0.4 }} />
+   413→          <MorphingBlob
+   414→            size={280}
+   415→            color1="rgba(184,149,90,0.10)"
+   416→            color2="rgba(158,182,143,0.06)"
+   417→            opacity={0.45}
+   418→            speed={10}
+   419→            style={{ position: "absolute", top: "5%", right: "8%", zIndex: 0 }}
+   420→          />
+   421→          <MorphingBlob
+   422→            size={200}
+   423→            color1="rgba(232,196,184,0.07)"
+   424→            color2="rgba(184,149,90,0.04)"
+   425→            opacity={0.35}
+   426→            speed={13}
+   427→            style={{ position: "absolute", bottom: "10%", left: "5%", zIndex: 0 }}
+   428→          />
+   429→          <div className="container" style={{ position: "relative", zIndex: 2 }}>
+   430→            <motion.div
+   431→              initial={{ opacity: 0, y: 30 }}
+   432→              animate={{ opacity: 1, y: 0 }}
+   433→              transition={{ duration: 0.8 }}
+   434→            >
+   435→              <span className="section-label">Подбор мероприятия</span>
+   436→              <h1 className="sr-only">Подбор кейтеринга — Какой формат вам подходит?</h1>
+   437→              <KineticText
+   438→                text="Какой формат кейтеринга вам подходит?"
+   439→                as="h2"
+   440→                animation="scale"
+   441→                className="section-title"
+   442→                stagger={0.03}
+   443→                duration={0.5}
+   444→                style={{ maxWidth: 700, margin: "0 auto 1rem" }}
+   445→              />
+   446→              <p
+   447→                className="section-subtitle"
+   448→                style={{ margin: "0 auto", textAlign: "center" }}
+   449→              >
+   450→                Ответьте на 5 вопросов — и мы подберём идеальный формат для
+   451→                вашего мероприятия
+   452→              </p>
+   453→            </motion.div>
+   454→          </div>
+   455→        </section>
+   456→
+   457→        {/* ── Quiz area ── */}
+   458→        <section
+   459→          ref={quizContainerRef}
+   460→          style={{
+   461→            flex: 1,
+   462→            padding: "3rem 0 5rem",
+   463→            display: "flex",
+   464→            alignItems: "flex-start",
+   465→            justifyContent: "center",
+   466→          }}
+   467→        >
+   468→          <div
+   469→            className="container"
+   470→            style={{ maxWidth: 720 }}
+   471→          >
+   472→            <AnimatePresence mode="wait" custom={direction}>
+   473→              {!showResults ? (
+   474→                <motion.div
+   475→                  key={`step-${currentStep}`}
+   476→                  custom={direction}
+   477→                  variants={slideVariants}
+   478→                  initial="enter"
+   479→                  animate="center"
+   480→                  exit="exit"
+   481→                  transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] as const }}
+   482→                >
+   483→                  {/* Progress bar */}
+   484→                  <div style={{ marginBottom: "2.5rem" }}>
+   485→                    <div
+   486→                      style={{
+   487→                        display: "flex",
+   488→                        justifyContent: "space-between",
+   489→                        alignItems: "center",
+   490→                        marginBottom: "0.75rem",
+   491→                      }}
+   492→                    >
+   493→                      <span
+   494→                        style={{
+   495→                          fontSize: "0.7rem",
+   496→                          fontWeight: 600,
+   497→                          letterSpacing: "0.15em",
+   498→                          textTransform: "uppercase",
+   499→                          color: "var(--color-brand)",
+   500→                        }}
+   501→                      >
+   502→                        Шаг {currentStep + 1} из {totalSteps}
+   503→                      </span>
+   504→                      <span
+   505→                        style={{
+   506→                          fontSize: "0.75rem",
+   507→                          color: "var(--color-text-muted)",
+   508→                        }}
+   509→                      >
+   510→                        {Math.round(((currentStep + 1) / totalSteps) * 100)}%
+   511→                      </span>
+   512→                    </div>
+   513→                    <div
+   514→                      style={{
+   515→                        width: "100%",
+   516→                        height: 4,
+   517→                        borderRadius: 2,
+   518→                        background: "var(--color-cream-darker)",
+   519→                        overflow: "hidden",
+   520→                      }}
+   521→                    >
+   522→                      <motion.div
+   523→                        initial={{ width: 0 }}
+   524→                        animate={{
+   525→                          width: `${((currentStep + 1) / totalSteps) * 100}%`,
+   526→                        }}
+   527→                        transition={{
+   528→                          duration: 0.5,
+   529→                          ease: [0.4, 0, 0.2, 1] as const,
+   530→                        }}
+   531→                        style={{
+   532→                          height: "100%",
+   533→                          borderRadius: 2,
+   534→                          background:
+   535→                            "linear-gradient(90deg, var(--color-brand), var(--color-brand-light))",
+   536→                        }}
+   537→                      />
+   538→                    </div>
+   539→                  </div>
+   540→
+   541→                  {/* Question */}
+   542→                  <motion.div
+   543→                    initial={{ opacity: 0, y: 20 }}
+   544→                    animate={{ opacity: 1, y: 0 }}
+   545→                    transition={{ duration: 0.5, delay: 0.1 }}
+   546→                    style={{ marginBottom: "2rem" }}
+   547→                  >
+   548→                    <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "0.5rem" }}>
+   549→                      <LottiePlaceholder
+   550→                        type={currentStep === 0 ? "star" : currentStep === 1 ? "utensils" : currentStep === 2 ? "glass" : currentStep === 3 ? "heart" : "chef"}
+   551→                        size={40}
+   552→                        color="#B8955A"
+   553→                      />
+   554→                      <h2
+   555→                        style={{
+   556→                          fontFamily: "var(--font-serif)",
+   557→                          fontSize: "clamp(1.5rem, 4vw, 2.2rem)",
+   558→                          fontWeight: 400,
+   559→                          color: "var(--color-dark)",
+   560→                          lineHeight: 1.2,
+   561→                        }}
+   562→                      >
+   563→                        {STEPS[currentStep].question}
+   564→                      </h2>
+   565→                    </div>
+   566→                    <p
+   567→                      style={{
+   568→                        fontSize: "0.95rem",
+   569→                        color: "var(--color-text-muted)",
+   570→                        lineHeight: 1.5,
+   571→                      }}
+   572→                    >
+   573→                      {STEPS[currentStep].subtitle}
+   574→                    </p>
+   575→                  </motion.div>
+   576→
+   577→                  {/* Options */}
+   578→                  <div
+   579→                    style={{
+   580→                      display: "grid",
+   581→                      gridTemplateColumns:
+   582→                        STEPS[currentStep].options.length <= 4
+   583→                          ? "repeat(2, 1fr)"
+   584→                          : "repeat(auto-fill, minmax(180px, 1fr))",
+   585→                      gap: "0.75rem",
+   586→                    }}
+   587→                  >
+   588→                    {STEPS[currentStep].options.map((opt, i) => {
+   589→                      const isSelected = answers[currentStep] === opt.value;
+   590→                      const isFocused = focusedIndex === i;
+   591→                      return (
+   592→                        <motion.button
+   593→                          key={opt.value}
+   594→                          ref={(el) => {
+   595→                            optionsRef.current[i] = el;
+   596→                          }}
+   597→                          className={`quiz-option ${isSelected ? "selected" : ""}`}
+   598→                          custom={i}
+   599→                          variants={optionVariants}
+   600→                          initial="hidden"
+   601→                          animate="visible"
+   602→                          onClick={() => selectOption(opt.value)}
+   603→                          onFocus={() => setFocusedIndex(i)}
+   604→                          aria-pressed={isSelected}
+   605→                          aria-label={opt.label}
+   606→                          style={{
+   607→                            display: "flex",
+   608→                            alignItems: "center",
+   609→                            gap: "0.75rem",
+   610→                            outline: "none",
+   611→                            border:
+   612→                              isFocused && !isSelected
+   613→                                ? "1.5px solid var(--color-brand-light)"
+   614→                                : isSelected
+   615→                                ? "1.5px solid var(--color-brand)"
+   616→                                : "1.5px solid var(--color-cream-darker)",
+   617→                            background: isSelected
+   618→                              ? "var(--color-brand-10)"
+   619→                              : isFocused
+   620→                              ? "rgba(184,149,90,0.05)"
+   621→                              : "#fff",
+   622→                          }}
+   623→                        >
+   624→                          {opt.icon && (
+   625→                            <span
+   626→                              style={{
+   627→                                fontSize: "1.4rem",
+   628→                                flexShrink: 0,
+   629→                                width: 32,
+   630→                                textAlign: "center",
+   631→                              }}
+   632→                            >
+   633→                              {opt.icon}
+   634→                            </span>
+   635→                          )}
+   636→                          <span
+   637→                            style={{
+   638→                              fontSize: "0.95rem",
+   639→                              fontWeight: isSelected ? 600 : 400,
+   640→                              color: isSelected
+   641→                                ? "var(--color-brand-dark)"
+   642→                                : "var(--color-dark)",
+   643→                              transition: "all 0.3s",
+   644→                            }}
+   645→                          >
+   646→                            {opt.label}
+   647→                          </span>
+   648→                          {isSelected && (
+   649→                            <motion.span
+   650→                              initial={{ scale: 0 }}
+   651→                              animate={{ scale: 1 }}
+   652→                              style={{
+   653→                                marginLeft: "auto",
+   654→                                width: 20,
+   655→                                height: 20,
+   656→                                borderRadius: "50%",
+   657→                                background: "var(--color-brand)",
+   658→                                display: "flex",
+   659→                                alignItems: "center",
+   660→                                justifyContent: "center",
+   661→                                color: "#fff",
+   662→                                fontSize: "0.65rem",
+   663→                                flexShrink: 0,
+   664→                              }}
+   665→                            >
+   666→                              ✓
+   667→                            </motion.span>
+   668→                          )}
+   669→                        </motion.button>
+   670→                      );
+   671→                    })}
+   672→                  </div>
+   673→
+   674→                  {/* Navigation */}
+   675→                  <div
+   676→                    style={{
+   677→                      display: "flex",
+   678→                      justifyContent: "space-between",
+   679→                      alignItems: "center",
+   680→                      marginTop: "2.5rem",
+   681→                      gap: "1rem",
+   682→                    }}
+   683→                  >
+   684→                    <button
+   685→                      onClick={goBack}
+   686→                      disabled={currentStep === 0}
+   687→                      style={{
+   688→                        background: "none",
+   689→                        border: "none",
+   690→                        color:
+   691→                          currentStep === 0
+   692→                            ? "transparent"
+   693→                            : "var(--color-brand-dark)",
+   694→                        fontSize: "0.8rem",
+   695→                        fontWeight: 600,
+   696→                        letterSpacing: "0.1em",
+   697→                        textTransform: "uppercase",
+   698→                        cursor: currentStep === 0 ? "default" : "pointer",
+   699→                        display: "flex",
+   700→                        alignItems: "center",
+   701→                        gap: "0.5rem",
+   702→                        transition: "color 0.3s",
+   703→                        padding: "0.5rem 0",
+   704→                      }}
+   705→                    >
+   706→                      ← Назад
+   707→                    </button>
+   708→
+   709→                    <ConfettiButton
+   710→                      className={`btn-gold ${!hasAnswer ? "opacity-50 cursor-not-allowed" : ""}`}
+   711→                      onClick={goNext}
+   712→                      style={{ padding: "0.85rem 2rem", borderRadius: "100px", fontSize: "0.85rem", fontWeight: 600, letterSpacing: "0.05em", border: "none", cursor: hasAnswer ? "pointer" : "not-allowed" }}
+   713→                    >
+   714→                      {isLastStep ? "Узнать результат" : "Далее →"}
+   715→                    </ConfettiButton>
+   716→                  </div>
+   717→                </motion.div>
+   718→              ) : (
+   719→                /* ── Results ── */
+   720→                <motion.div
+   721→                  key="results"
+   722→                  variants={resultVariants}
+   723→                  initial="hidden"
+   724→                  animate="visible"
+   725→                >
+   726→                  {/* Result card */}
+   727→                  <div
+   728→                    style={{
+   729→                      background: "var(--color-warm-white)",
+   730→                      borderRadius: 24,
+   731→                      overflow: "hidden",
+   732→                      boxShadow: "0 8px 50px rgba(0,0,0,0.08)",
+   733→                      marginBottom: "2rem",
+   734→                    }}
+   735→                  >
+   736→                    {/* Result header */}
+   737→                    <div
+   738→                      style={{
+   739→                        background:
+   740→                          "linear-gradient(135deg, var(--color-brand) 0%, var(--color-brand-dark) 100%)",
+   741→                        padding: "3rem 2rem",
+   742→                        textAlign: "center",
+   743→                        color: "#fff",
+   744→                      }}
+   745→                    >
+   746→                      <motion.div
+   747→                        initial={{ scale: 0 }}
+   748→                        animate={{ scale: 1 }}
+   749→                        transition={{
+   750→                          type: "spring",
+   751→                          stiffness: 200,
+   752→                          damping: 15,
+   753→                          delay: 0.2,
+   754→                        }}
+   755→                        style={{
+   756→                          fontSize: "3rem",
+   757→                          marginBottom: "1rem",
+   758→                          display: "block",
+   759→                        }}
+   760→                      >
+   761→                        {recommendation.icon}
+   762→                      </motion.div>
+   763→                      <motion.div
+   764→                        initial={{ opacity: 0, y: 20 }}
+   765→                        animate={{ opacity: 1, y: 0 }}
+   766→                        transition={{ delay: 0.3 }}
+   767→                      >
+   768→                        <span
+   769→                          style={{
+   770→                            fontSize: "0.65rem",
+   771→                            fontWeight: 600,
+   772→                            letterSpacing: "0.3em",
+   773→                            textTransform: "uppercase",
+   774→                            opacity: 0.8,
+   775→                            display: "block",
+   776→                            marginBottom: "0.75rem",
+   777→                          }}
+   778→                        >
+   779→                          Мы рекомендуем
+   780→                        </span>
+   781→                        <h2
+   782→                          style={{
+   783→                            fontFamily: "var(--font-serif)",
+   784→                            fontSize: "clamp(1.8rem, 5vw, 2.8rem)",
+   785→                            fontWeight: 400,
+   786→                            marginBottom: "1rem",
+   787→                            lineHeight: 1.15,
+   788→                          }}
+   789→                        >
+   790→                          {recommendation.title}
+   791→                        </h2>
+   792→                        <div
+   793→                          style={{
+   794→                            display: "flex",
+   795→                            alignItems: "center",
+   796→                            justifyContent: "center",
+   797→                            gap: "0.5rem",
+   798→                            fontSize: "1.3rem",
+   799→                            fontFamily: "var(--font-serif)",
+   800→                            fontWeight: 300,
+   801→                            opacity: 0.95,
+   802→                          }}
+   803→                        >
+   804→                          <CountUp
+   805→                            target={parseInt(
+   806→                              recommendation.priceRange.replace(/\D/g, "").slice(0, 4)
+   807→                            ) || 3000}
+   808→                            duration={1.5}
+   809→                            prefix="от "
+   810→                            suffix=" ₽/чел"
+   811→                          />
+   812→                        </div>
+   813→                      </motion.div>
+   814→                    </div>
+   815→
+   816→                    {/* Result body */}
+   817→                    <div style={{ padding: "2rem" }}>
+   818→                      <p
+   819→                        style={{
+   820→                          fontSize: "1rem",
+   821→                          lineHeight: 1.7,
+   822→                          color: "var(--color-text-subtle)",
+   823→                          marginBottom: "2rem",
+   824→                        }}
+   825→                      >
+   826→                        {recommendation.description}
+   827→                      </p>
+   828→
+   829→                      {/* Features */}
+   830→                      <div
+   831→                        style={{
+   832→                          display: "grid",
+   833→                          gridTemplateColumns:
+   834→                            "repeat(auto-fill, minmax(220px, 1fr))",
+   835→                          gap: "0.75rem",
+   836→                          marginBottom: "2rem",
+   837→                        }}
+   838→                      >
+   839→                        {recommendation.features.map((feature, i) => (
+   840→                          <motion.div
+   841→                            key={i}
+   842→                            initial={{ opacity: 0, x: -10 }}
+   843→                            animate={{ opacity: 1, x: 0 }}
+   844→                            transition={{ delay: 0.5 + i * 0.08 }}
+   845→                            style={{
+   846→                              display: "flex",
+   847→                              alignItems: "center",
+   848→                              gap: "0.5rem",
+   849→                              fontSize: "0.88rem",
+   850→                              color: "var(--color-dark)",
+   851→                            }}
+   852→                          >
+   853→                            <span
+   854→                              style={{
+   855→                                color: "var(--color-brand)",
+   856→                                flexShrink: 0,
+   857→                              }}
+   858→                            >
+   859→                              ✓
+   860→                            </span>
+   861→                            {feature}
+   862→                          </motion.div>
+   863→                        ))}
+   864→                      </div>
+   865→
+   866→                      {/* Price range detail */}
+   867→                      <motion.div
+   868→                        initial={{ opacity: 0 }}
+   869→                        animate={{ opacity: 1 }}
+   870→                        transition={{ delay: 0.8 }}
+   871→                        style={{
+   872→                          background: "var(--color-cream)",
+   873→                          borderRadius: 16,
+   874→                          padding: "1.25rem 1.5rem",
+   875→                          display: "flex",
+   876→                          alignItems: "center",
+   877→                          justifyContent: "space-between",
+   878→                          flexWrap: "wrap",
+   879→                          gap: "0.75rem",
+   880→                          marginBottom: "2rem",
+   881→                        }}
+   882→                      >
+   883→                        <div>
+   884→                          <span
+   885→                            style={{
+   886→                              fontSize: "0.7rem",
+   887→                              fontWeight: 600,
+   888→                              letterSpacing: "0.15em",
+   889→                              textTransform: "uppercase",
+   890→                              color: "var(--color-brand)",
+   891→                              display: "block",
+   892→                              marginBottom: "0.25rem",
+   893→                            }}
+   894→                          >
+   895→                            Ориентировочный бюджет
+   896→                          </span>
+   897→                          <span
+   898→                            style={{
+   899→                              fontFamily: "var(--font-serif)",
+   900→                              fontSize: "1.3rem",
+   901→                              fontWeight: 400,
+   902→                              color: "var(--color-dark)",
+   903→                            }}
+   904→                          >
+   905→                            {recommendation.priceRange}
+   906→                          </span>
+   907→                        </div>
+   908→                        <Link
+   909→                          href="/#contact"
+   910→                          className="btn-outline"
+   911→                          style={{ fontSize: "0.7rem" }}
+   912→                        >
+   913→                          Точный расчёт →
+   914→                        </Link>
+   915→                      </motion.div>
+   916→
+   917→                      {/* CTA buttons */}
+   918→                      <div
+   919→                        style={{
+   920→                          display: "flex",
+   921→                          gap: "1rem",
+   922→                          flexWrap: "wrap",
+   923→                        }}
+   924→                      >
+   925→                        <MagneticButton
+   926→                          className="btn-gold"
+   927→                          as="a"
+   928→                          href="/#contact"
+   929→                          strength={0.2}
+   930→                        >
+   931→                          Заказать
+   932→                        </MagneticButton>
+   933→                        <MagneticButton
+   934→                          className="btn-outline"
+   935→                          onClick={goBack}
+   936→                          strength={0.2}
+   937→                        >
+   938→                          ← Пройти ещё раз
+   939→                        </MagneticButton>
+   940→                      </div>
+   941→                    </div>
+   942→                  </div>
+   943→
+   944→                  {/* Contact form */}
+   945→                  <motion.div
+   946→                    initial={{ opacity: 0, y: 30 }}
+   947→                    animate={{ opacity: 1, y: 0 }}
+   948→                    transition={{ delay: 0.6, duration: 0.6 }}
+   949→                    style={{
+   950→                      background: "var(--color-warm-white)",
+   951→                      borderRadius: 24,
+   952→                      padding: "2rem",
+   953→                      boxShadow: "0 4px 30px rgba(0,0,0,0.05)",
+   954→                    }}
+   955→                  >
+   956→                    <div style={{ textAlign: "center", marginBottom: "1.5rem" }}>
+   957→                      <span className="section-label">Персональное предложение</span>
+   958→                      <h3
+   959→                        style={{
+   960→                          fontFamily: "var(--font-serif)",
+   961→                          fontSize: "1.5rem",
+   962→                          fontWeight: 400,
+   963→                          color: "var(--color-dark)",
+   964→                          marginTop: "0.5rem",
+   965→                        }}
+   966→                      >
+   967→                        Получите расчёт за 30 минут
+   968→                      </h3>
+   969→                      <p
+   970→                        style={{
+   971→                          fontSize: "0.9rem",
+   972→                          color: "var(--color-text-muted)",
+   973→                          marginTop: "0.5rem",
+   974→                        }}
+   975→                      >
+   976→                        Оставьте контакты — наш менеджер свяжется с вами
+   977→                      </p>
+   978→                    </div>
+   979→
+   980→                    {formSubmitted ? (
+   981→                      <motion.div
+   982→                        initial={{ opacity: 0, scale: 0.95 }}
+   983→                        animate={{ opacity: 1, scale: 1 }}
+   984→                        style={{
+   985→                          textAlign: "center",
+   986→                          padding: "2rem 0",
+   987→                        }}
+   988→                      >
+   989→                        <span
+   990→                          style={{
+   991→                            fontSize: "2.5rem",
+   992→                            display: "block",
+   993→                            marginBottom: "1rem",
+   994→                          }}
+   995→                        >
+   996→                          ✅
+   997→                        </span>
+   998→                        <h4
+   999→                          style={{
+  1000→                            fontFamily: "var(--font-serif)",
+  1001→                            fontSize: "1.3rem",
+  1002→                            fontWeight: 400,
+  1003→                            marginBottom: "0.5rem",
+  1004→                          }}
+  1005→                        >
+  1006→                          Заявка отправлена!
+  1007→                        </h4>
+  1008→                        <p style={{ color: "var(--color-text-muted)", fontSize: "0.9rem" }}>
+  1009→                          Мы свяжемся с вами в течение 30 минут
+  1010→                        </p>
+  1011→                      </motion.div>
+  1012→                    ) : (
+  1013→                      <div
+  1014→                        style={{
+  1015→                          display: "flex",
+  1016→                          flexDirection: "column",
+  1017→                          gap: "1rem",
+  1018→                          maxWidth: 400,
+  1019→                          margin: "0 auto",
+  1020→                        }}
+  1021→                      >
+  1022→                        <div>
+  1023→                          <label
+  1024→                            htmlFor="quiz-name"
+  1025→                            style={{
+  1026→                              display: "block",
+  1027→                              fontSize: "0.75rem",
+  1028→                              fontWeight: 600,
+  1029→                              letterSpacing: "0.1em",
+  1030→                              textTransform: "uppercase",
+  1031→                              color: "var(--color-dark)",
+  1032→                              marginBottom: "0.5rem",
+  1033→                            }}
+  1034→                          >
+  1035→                            Ваше имя
+  1036→                          </label>
+  1037→                          <input
+  1038→                            id="quiz-name"
+  1039→                            type="text"
+  1040→                            placeholder="Иван"
+  1041→                            value={contactForm.name}
+  1042→                            onChange={(e) =>
+  1043→                              setContactForm((prev) => ({
+  1044→                                ...prev,
+  1045→                                name: e.target.value,
+  1046→                              }))
+  1047→                            }
+  1048→                            style={{
+  1049→                              width: "100%",
+  1050→                              padding: "0.85rem 1.2rem",
+  1051→                              border: "1.5px solid var(--color-cream-darker)",
+  1052→                              borderRadius: 12,
+  1053→                              fontSize: "0.95rem",
+  1054→                              background: "var(--color-warm-white)",
+  1055→                              outline: "none",
+  1056→                              transition: "border-color 0.3s",
+  1057→                              fontFamily: "var(--font-sans)",
+  1058→                            }}
+  1059→                            onFocus={(e) =>
+  1060→                              (e.target.style.borderColor =
+  1061→                                "var(--color-brand)")
+  1062→                            }
+  1063→                            onBlur={(e) =>
+  1064→                              (e.target.style.borderColor =
+  1065→                                "var(--color-cream-darker)")
+  1066→                            }
+  1067→                          />
+  1068→                        </div>
+  1069→                        <div>
+  1070→                          <label
+  1071→                            htmlFor="quiz-phone"
+  1072→                            style={{
+  1073→                              display: "block",
+  1074→                              fontSize: "0.75rem",
+  1075→                              fontWeight: 600,
+  1076→                              letterSpacing: "0.1em",
+  1077→                              textTransform: "uppercase",
+  1078→                              color: "var(--color-dark)",
+  1079→                              marginBottom: "0.5rem",
+  1080→                            }}
+  1081→                          >
+  1082→                            Телефон
+  1083→                          </label>
+  1084→                          <input
+  1085→                            id="quiz-phone"
+  1086→                            type="tel"
+  1087→                            placeholder="+7 (___) ___-__-__"
+  1088→                            value={contactForm.phone}
+  1089→                            onChange={(e) =>
+  1090→                              setContactForm((prev) => ({
+  1091→                                ...prev,
+  1092→                                phone: e.target.value,
+  1093→                              }))
+  1094→                            }
+  1095→                            style={{
+  1096→                              width: "100%",
+  1097→                              padding: "0.85rem 1.2rem",
+  1098→                              border: "1.5px solid var(--color-cream-darker)",
+  1099→                              borderRadius: 12,
+  1100→                              fontSize: "0.95rem",
+  1101→                              background: "var(--color-warm-white)",
+  1102→                              outline: "none",
+  1103→                              transition: "border-color 0.3s",
+  1104→                              fontFamily: "var(--font-sans)",
+  1105→                            }}
+  1106→                            onFocus={(e) =>
+  1107→                              (e.target.style.borderColor =
+  1108→                                "var(--color-brand)")
+  1109→                            }
+  1110→                            onBlur={(e) =>
+  1111→                              (e.target.style.borderColor =
+  1112→                                "var(--color-cream-darker)")
+  1113→                            }
+  1114→                          />
+  1115→                        </div>
+  1116→                        <MagneticButton
+  1117→                          className="btn-gold"
+  1118→                          onClick={handleSubmitContact}
+  1119→                          strength={0.15}
+  1120→                          style={{
+  1121→                            width: "100%",
+  1122→                            marginTop: "0.5rem",
+  1123→                            opacity: isSubmitting ? 0.7 : 1,
+  1124→                          }}
+  1125→                        >
+  1126→                          {isSubmitting
+  1127→                            ? "Отправляем..."
+  1128→                            : "Получить расчёт →"}
+  1129→                        </MagneticButton>
+  1130→                      </div>
+  1131→                    )}
+  1132→                  </motion.div>
+  1133→                </motion.div>
+  1134→              )}
+  1135→            </AnimatePresence>
+  1136→          </div>
+  1137→        </section>
+  1138→      </main>
+  1139→
+  1140→      {/* Footer */}
+  1141→      <footer className="footer" role="contentinfo">
+  1142→        <div className="container">
+  1143→          <div
+  1144→            style={{
+  1145→              display: "flex",
+  1146→              justifyContent: "space-between",
+  1147→              alignItems: "center",
+  1148→              flexWrap: "wrap",
+  1149→              gap: "1rem",
+  1150→            }}
+  1151→          >
+  1152→            <Link
+  1153→              href="/"
+  1154→              style={{
+  1155→                fontFamily: "var(--font-serif)",
+  1156→                fontSize: "1.3rem",
+  1157→                fontWeight: 500,
+  1158→                letterSpacing: "0.15em",
+  1159→                color: "#fff",
+  1160→                textDecoration: "none",
+  1161→              }}
+  1162→            >
+  1163→              ИНТЕРФУД
+  1164→            </Link>
+  1165→            <div
+  1166→              style={{
+  1167→                display: "flex",
+  1168→                gap: "1.5rem",
+  1169→                flexWrap: "wrap",
+  1170→              }}
+  1171→            >
+  1172→              <Link
+  1173→                href="/menu"
+  1174→                style={{
+  1175→                  color: "rgba(255,255,255,0.45)",
+  1176→                  textDecoration: "none",
+  1177→                  fontSize: "0.85rem",
+  1178→                }}
+  1179→              >
+  1180→                Меню
+  1181→              </Link>
+  1182→              <Link
+  1183→                href="/wedding"
+  1184→                style={{
+  1185→                  color: "rgba(255,255,255,0.45)",
+  1186→                  textDecoration: "none",
+  1187→                  fontSize: "0.85rem",
+  1188→                }}
+  1189→              >
+  1190→               Свадьбы
+  1191→              </Link>
+  1192→              <Link
+  1193→                href="/corporate"
+  1194→                style={{
+  1195→                  color: "rgba(255,255,255,0.45)",
+  1196→                  textDecoration: "none",
+  1197→                  fontSize: "0.85rem",
+  1198→                }}
+  1199→              >
+  1200→                Корпоратив
+  1201→              </Link>
+  1202→              <Link
+  1203→                href="/about"
+  1204→                style={{
+  1205→                  color: "rgba(255,255,255,0.45)",
+  1206→                  textDecoration: "none",
+  1207→                  fontSize: "0.85rem",
+  1208→                }}
+  1209→              >
+  1210→                О нас
+  1211→              </Link>
+  1212→              <Link
+  1213→                href="/reviews"
+  1214→                style={{
+  1215→                  color: "rgba(255,255,255,0.45)",
+  1216→                  textDecoration: "none",
+  1217→                  fontSize: "0.85rem",
+  1218→                }}
+  1219→              >
+  1220→                Отзывы
+  1221→              </Link>
+  1222→            </div>
+  1223→            <div
+  1224→              style={{
+  1225→                color: "rgba(255,255,255,0.35)",
+  1226→                fontSize: "0.8rem",
+  1227→              }}
+  1228→            >
+  1229→              &copy; 2007–2026 Интерфуд Кейтеринг
+  1230→            </div>
+  1231→          </div>
+  1232→        </div>
+  1233→      </footer>
+  1234→
+  1235→      {/* Toast */}
+  1236→      <AnimatePresence>
+  1237→        {toast && (
+  1238→          <motion.div
+  1239→            initial={{ opacity: 0, y: 30 }}
+  1240→            animate={{ opacity: 1, y: 0 }}
+  1241→            exit={{ opacity: 0, y: 30 }}
+  1242→            style={{
+  1243→              position: "fixed",
+  1244→              bottom: "2rem",
+  1245→              right: "2rem",
+  1246→              background: "var(--color-dark)",
+  1247→              color: "#fff",
+  1248→              padding: "1rem 1.5rem",
+  1249→              borderRadius: 12,
+  1250→              fontSize: "0.88rem",
+  1251→              boxShadow: "0 8px 30px rgba(0,0,0,0.2)",
+  1252→              zIndex: 9999,
+  1253→              maxWidth: 360,
+  1254→            }}
+  1255→          >
+  1256→            {toast}
+  1257→          </motion.div>
+  1258→        )}
+  1259→      </AnimatePresence>
+  1260→
+  1261→      {/* WhatsApp float */}
+  1262→      <a
+  1263→        href="https://wa.me/79119417205?text=Здравствуйте! Прошёл квиз на сайте — хочу узнать подробнее."
+  1264→        className="wa-float"
+  1265→        target="_blank"
+  1266→        rel="noopener noreferrer"
+  1267→        aria-label="WhatsApp"
+  1268→      >
+  1269→        &#9742;
+  1270→      </a>
+  1271→    </>
+  1272→  );
+  1273→}
+  1274→
