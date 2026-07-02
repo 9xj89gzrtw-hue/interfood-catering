@@ -1,0 +1,79 @@
+QUALITY GATES v2 REPORT — Thu Jul  2 22:34:44 UTC 2026
+Site: https://interfood-catering.vercel.app
+═══════════════════════════════════════════════════════════
+━━━ GATE A: СТАТИЧЕСКИЕ ПРОВЕРКИ ━━━
+── A1: Build ──
+  ✅ GATE 1: A1: Build succeeds — PASS
+    Evidence: Pages: 23
+── A2: TypeScript ──
+  ❌ GATE 2: A2: TypeScript clean — FAIL
+    Evidence: 2 errors
+backups/snap_20260630_045640_test-run/src/app/about/page.tsx(137,7): error TS2322: Type '{ hidden: { opacity: number; y: number; }; visible: { opacity: number; y: number; transition: { duration: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+backups/snap_20260630_045640_test-run/src/app/blog/page.tsx(186,7): error TS2322: Type '{ hidden: { opacity: number; y: number; }; visible: { opacity: number; y: number; transition: { duration: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+backups/snap_20260630_045640_test-run/src/app/calculator/page.tsx(213,7): error TS2322: Type '{ hidden: { opacity: number; y: number; }; visible: { opacity: number; y: number; transition: { duration: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+backups/snap_20260630_045640_test-run/src/app/contacts/page.tsx(139,7): error TS2322: Type '{ hidden: { opacity: number; y: number; }; visible: { opacity: number; y: number; transition: { duration: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+backups/snap_20260630_045640_test-run/src/app/contacts/page.tsx(325,35): error TS2322: Type '{ hidden: { opacity: number; y: number; }; visible: { opacity: number; y: number; transition: { duration: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+backups/snap_20260630_045640_test-run/src/app/contacts/page.tsx(1172,35): error TS2322: Type '{ hidden: { opacity: number; y: number; }; visible: { opacity: number; y: number; transition: { duration: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+backups/snap_20260630_045640_test-run/src/app/corporate/page.tsx(136,86): error TS2322: Type '{ hidden: { opacity: number; y: number; }; visible: { opacity: number; y: number; transition: { duration: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+backups/snap_20260630_045640_test-run/src/app/corporate/page.tsx(376,43): error TS2322: Type '{ hidden: { opacity: number; y: number; }; visible: { opacity: number; y: number; transition: { duration: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+backups/snap_20260630_045640_test-run/src/app/corporate/page.tsx(455,35): error TS2322: Type '{ hidden: { opacity: number; y: number; }; visible: { opacity: number; y: number; transition: { duration: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+backups/snap_20260630_045640_test-run/src/app/menu/page.tsx(198,7): error TS2322: Type '{ hidden: { opacity: number; y: number; }; visible: { opacity: number; y: number; transition: { duration: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+backups/snap_20260630_045640_test-run/src/app/menu/page.tsx(255,7): error TS2322: Type '{ hidden: { opacity: number; y: number; scale: number; }; visible: (i: number) => { opacity: number; y: number; scale: number; transition: { duration: number; delay: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+backups/snap_20260630_045640_test-run/src/app/menu/page.tsx(607,15): error TS2322: Type 'HTMLElement | null' is not assignable to type 'HTMLDivElement | null'.
+backups/snap_20260630_045640_test-run/src/app/quiz/page.tsx(564,27): error TS2322: Type '{ hidden: { opacity: number; y: number; }; visible: (i: number) => { opacity: number; y: number; transition: { delay: number; duration: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+backups/snap_20260630_045640_test-run/src/app/quiz/page.tsx(687,19): error TS2322: Type '{ hidden: { opacity: number; scale: number; }; visible: { opacity: number; scale: number; transition: { duration: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+backups/snap_20260630_045640_test-run/src/app/reviews/page.tsx(264,7): error TS2322: Type '{ hidden: { opacity: number; y: number; }; visible: { opacity: number; y: number; transition: { duration: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+backups/snap_20260630_045640_test-run/src/app/services/page.tsx(234,7): error TS2322: Type '{ hidden: { opacity: number; y: number; }; visible: { opacity: number; y: number; transition: { duration: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+backups/snap_20260630_045640_test-run/src/app/team/page.tsx(232,11): error TS1117: An object literal cannot have multiple properties with the same name.
+backups/snap_20260630_045640_test-run/src/app/team/page.tsx(473,9): error TS2322: Type '{ src: string; alt: string; height: string; overlay: true; overlayOpacity: number; }' is not assignable to type 'IntrinsicAttributes & ParallaxImageProps'.
+backups/snap_20260630_045640_test-run/src/app/venues/page.tsx(527,9): error TS2322: Type '(e: React.PointerEvent | React.TouchEvent) => void' is not assignable to type 'MouseEventHandler<HTMLDivElement>'.
+backups/snap_20260630_045640_test-run/src/app/venues/page.tsx(528,9): error TS2322: Type '(e: React.PointerEvent | React.TouchEvent) => void' is not assignable to type 'MouseEventHandler<HTMLDivElement>'.
+── A3: No ignoreBuildErrors ──
+  ❌ GATE 3: A3: ignoreBuildErrors disabled — FAIL
+    Evidence: ignoreBuildErrors: true found!
+── A4: Critical Files ──
+  ✅ GATE 4: A4: All critical files exist — PASS
+── A5: Media References ──
+  ✅ GATE 5: A5: No broken image references — PASS
+    Evidence: 0 broken
+
+━━━ GATE B: РЕАЛЬНЫЙ РЕНДЕРИНГ (agent-browser) ━━━
+── B1: Console Errors ──
+  ✅ GATE 6: B1: Console errors < 5 — PASS
+    Evidence: 0 errors
+── B2: Hero Visible ──
+  ✅ GATE 7: B2: Hero heading visible — PASS
+    Evidence: Text: "ИнтерфудКейтеринг"
+── B3: Nav Clickable ──
+  ✅ GATE 8: B3: Nav has MenuBuilder link — PASS
+    Evidence: Link found in nav
+── B4: MenuBuilder Interactive ──
+  ❌ GATE 9: B4: MenuBuilder Add button found — FAIL
+    Evidence: No 'Добавить' button found
+── B5: Mobile Viewport ──
+  ✅ GATE 10: B5: Mobile hero visible — PASS
+    Evidence: Text: "ИнтерфудКейтеринг"
+── B6: Mobile MenuBuilder ──
+  ❌ GATE 11: B6: Mobile MenuBuilder found — FAIL
+    Evidence: No add button on mobile
+── B7: Footer Visible ──
+  ✅ GATE 12: B7: Footer visible — PASS
+    Evidence: Footer content found
+── B8: Screenshot Evidence ──
+  ✅ GATE 13: B8: Screenshots captured — PASS
+    Evidence: 3 screenshots in download/
+
+━━━ GATE C: РЕГРЕССИЯ ━━━
+── C1: Bug Registry ──
+  ❌ GATE 14: C1: Bug registry has open items — FAIL
+    Evidence: 7 open bugs
+
+═══════════════════════════════════════════════════════════
+  GATES PASSED: 9 / 14
+  GATES FAILED: 5 / 14
+  CRITICAL FAILED: 4
+═══════════════════════════════════════════════════════════
+
+  🚫 COMMIT/PUSH/DEPLOY ЗАПРЕЩЁН — есть критические ошибки!
+  Исправь критические gates и перезапусти проверку.
+

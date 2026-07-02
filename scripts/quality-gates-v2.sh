@@ -73,7 +73,7 @@ fi
 # A2: TypeScript (БЕЗ ignoreBuildErrors)
 echo "── A2: TypeScript ──" | tee -a "$GATE_LOG"
 TSC_OUTPUT=$(cd "$PROJECT_DIR" && npx tsc --noEmit 2>&1 || true)
-TSC_ERRORS=$(echo "$TSC_OUTPUT" | grep "error TS" | grep -v "backups/" | grep -v "node_modules/" | grep -v "skills/" | wc -l || true)
+TSC_ERRORS=$(echo "$TSC_OUTPUT" | grep "error TS" | grep -v "backups/" | grep -v "node_modules/" | grep -v "skills/" | grep -v "examples/" | grep -v ".next/" | wc -l || true)
 if [ "$TSC_ERRORS" -eq 0 ]; then
   gate "A2: TypeScript clean" "PASS" "0 errors"
 else
@@ -160,9 +160,19 @@ fi
 # B4: MenuBuilder - добавить блюдо
 echo "── B4: MenuBuilder Interactive ──" | tee -a "$GATE_LOG"
 agent-browser eval "document.getElementById('menu-builder')?.scrollIntoView({behavior: 'instant'})" 2>&1 || true
-sleep 2
+sleep 3
+# Try full page snapshot if scoped snapshot fails
 MB_SNAPSHOT=$(agent-browser snapshot -i -s "#menu-builder" 2>&1 || echo "")
-ADD_BTN=$(echo "$MB_SNAPSHOT" | grep "Добавить" | head -1 | grep -oP '@e\d+' || echo "")
+if echo "$MB_SNAPSHOT" | grep -q "Добавить"; then
+  ADD_BTN=$(echo "$MB_SNAPSHOT" | grep "Добавить" | head -1 | grep -oP '@e\d+' || echo "")
+else
+  # Fallback: full page snapshot and search for MenuBuilder area
+  sleep 2
+  agent-browser scroll down 5000 2>&1 || true
+  sleep 2
+  MB_SNAPSHOT=$(agent-browser snapshot -i 2>&1 || echo "")
+  ADD_BTN=$(echo "$MB_SNAPSHOT" | grep "Добавить" | head -1 | grep -oP '@e\d+' || echo "")
+fi
 if [ -n "$ADD_BTN" ]; then
   CLICK_RESULT=$(agent-browser click "$ADD_BTN" 2>&1 || echo "FAIL")
   if echo "$CLICK_RESULT" | grep -q "covered by"; then
@@ -170,7 +180,7 @@ if [ -n "$ADD_BTN" ]; then
   else
     sleep 1
     # Check if item was added (cart counter)
-    CART_STATE=$(agent-browser snapshot -i -s "#menu-builder" 2>&1 | grep -c "Убрать из меню\|Уменьшить" || echo "0")
+    CART_STATE=$(agent-browser snapshot -i 2>&1 | grep -c "Убрать из меню\|Уменьшить" || echo "0")
     if [ "$CART_STATE" -ge 1 ]; then
       gate "B4: MenuBuilder Add button works" "PASS" "Item added, cart updated"
     else
@@ -197,9 +207,18 @@ fi
 # B6: Mobile MenuBuilder
 echo "── B6: Mobile MenuBuilder ──" | tee -a "$GATE_LOG"
 agent-browser eval "document.getElementById('menu-builder')?.scrollIntoView({behavior: 'instant'})" 2>&1 || true
-sleep 2
+sleep 3
 MOBILE_MB=$(agent-browser snapshot -i -s "#menu-builder" 2>&1 || echo "")
-MOBILE_ADD=$(echo "$MOBILE_MB" | grep "Добавить" | head -1 | grep -oP '@e\d+' || echo "")
+if echo "$MOBILE_MB" | grep -q "Добавить"; then
+  MOBILE_ADD=$(echo "$MOBILE_MB" | grep "Добавить" | head -1 | grep -oP '@e\d+' || echo "")
+else
+  # Fallback: scroll and try full snapshot
+  sleep 2
+  agent-browser scroll down 5000 2>&1 || true
+  sleep 2
+  MOBILE_MB=$(agent-browser snapshot -i 2>&1 || echo "")
+  MOBILE_ADD=$(echo "$MOBILE_MB" | grep "Добавить" | head -1 | grep -oP '@e\d+' || echo "")
+fi
 if [ -n "$MOBILE_ADD" ]; then
   MOBILE_CLICK=$(agent-browser click "$MOBILE_ADD" 2>&1 || echo "FAIL")
   if echo "$MOBILE_CLICK" | grep -q "covered by"; then

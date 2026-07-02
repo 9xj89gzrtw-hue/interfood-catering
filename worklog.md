@@ -224,3 +224,50 @@ Stage Summary:
 - Quality Gates: 14 automated checks before any deploy
 - Honest audit culture: "assume you broke something" after every change
 - Real bugs found that were invisible to build-only checks
+
+---
+Task ID: 9
+Agent: Main
+Task: Process Redesign v2 — Full audit of development process + Quality Gates v2 + Bug Registry
+
+Work Log:
+- Read MEMORY.md, VERSION.md, checked git state (v81.1 on GitHub, local v81)
+- Ran old quality-gates.sh — ALL 14/14 PASSED (this is the problem!)
+- Used agent-browser to do REAL testing of deployed site
+- Found 6 real bugs that old Quality Gates completely missed:
+  1. BUG-001: "Скачать PDF" button covered by navigation on mobile (agent-browser: "Element covered by div")
+  2. BUG-002: "Закрыть меню" button covered on mobile (agent-browser: "Element covered by burger-btn")
+  3. BUG-003: PDF button stays disabled after adding dish on desktop (agent-browser: is enabled → false)
+  4. BUG-004: MorphingText shows incorrect words sequence
+  5. BUG-005: ignoreBuildErrors:true hides TypeScript errors
+  6. BUG-006: Navigation duplicated on page
+- Identified 6 root causes of "illusion of progress":
+  1. All quality checks are static analysis (grep, build, HTTP 200) — none verify actual rendering
+  2. No distinction between "code written" and "code works"
+  3. Quantity over quality (60+ WOW effects = 60+ regression risks)
+  4. Parallel agents without z-index/pointer-events coordination
+  5. "Fixed" markers without objective evidence
+  6. No bug registry → regression amnesia
+- Created PROCESS_AUDIT.md — full honest audit with tables of false quality signals
+- Created DEV_STANDARD.md — mandatory 6-phase workflow:
+  Phase 1: Analysis (don't touch code)
+  Phase 2: Change (minimal, max 5 files)
+  Phase 3: Static check (build, TS, media refs)
+  Phase 4: Real browser testing (agent-browser mandatory)
+  Phase 5: Error search (3 internal critics)
+  Phase 6: Decision (2 clean cycles before commit)
+- Created BUG_REGISTRY.md — 6 open bugs with agent-browser evidence
+- Created scripts/quality-gates-v2.sh — 16 gates including:
+  Gate A: Static (build, TS, ignoreBuildErrors, files, media)
+  Gate B: Real rendering (console errors, hero visible, nav clickable, MenuBuilder works, mobile, footer, screenshots)
+  Gate C: Regression (bug registry check)
+- Updated MEMORY.md with process v2 info
+- Committed v81.2 and pushed to GitHub
+
+Stage Summary:
+- PROCESS REDESIGNED: Old process gave 14/14 PASS while 6 real bugs existed
+- New Quality Gates v2: browser-based verification, not just grep
+- New 6-phase workflow: mandatory real testing before any commit
+- New bug registry: track all bugs, never delete, verify fixes
+- 10 forbidden actions + 8 mandatory rules defined in DEV_STANDARD.md
+- Key principle: "After every change, assume you broke something"
