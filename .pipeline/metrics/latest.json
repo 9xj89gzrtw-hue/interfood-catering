@@ -1,0 +1,13 @@
+{
+  "timestamp": "2026-07-02T23:42:00+00:00",
+  "pass_rate": 70.8,
+  "critical_pass_rate": 91.7,
+  "visual_quality": 70.8,
+  "mobile_ux": 0,
+  "performance": 0,
+  "accessibility": 0,
+  "total_checks": 48,
+  "passed": 34,
+  "failed": 13,
+  "critical_fail": 4
+}

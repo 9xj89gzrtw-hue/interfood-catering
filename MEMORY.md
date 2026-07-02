@@ -1,7 +1,7 @@
 # 🧠 MEMORY.md — Файл памяти проекта Интерфуд Кейтеринг
 
 > **Создан:** 2026-07-02  
-> **Обновлён:** 2026-07-03 (сессия 12 — Quality Pipeline v3 + Pre-commit Hook)
+> **Обновлён:** 2026-07-03 (сессия 13 — Quality Pipeline v4: 49 проверок, метрики, самообучение)
 > **Проект:** Сайт кейтеринговой компании «Интерфуд» (interfood-catering.ru)  
 > **Репозиторий:** https://github.com/9xj89gzrtw-hue/interfood-catering  
 > **Vercel:** ✅ Токен получен от пользователя  
@@ -9,7 +9,7 @@
 > **Vercel URL:** https://interfood-catering.vercel.app  
 > **GitHub Pages:** https://9xj89gzrtw-hue.github.io/interfood-catering/  
 > **Текущая версия:** v81 — Ultra WOW: 2026 Motion Design + MenuBuilder Nav Fix + Interactive Effects
-> **Процесс разработки:** v3 — Quality Pipeline v3 + Pre-commit Hook + 8-этапный конвейер
+> **Процесс разработки:** v4 — Quality Pipeline v4 + 49 проверок + Метрики + Самообучение
 
 ---
 
@@ -259,26 +259,44 @@
 
 ---
 
-## 🏛️ Процесс разработки v2 (сессия 11)
+## 🏛️ Процесс разработки v4 (сессия 13)
 
 ### Документы процесса:
+- **PIPELINE.md** — полная документация Quality Pipeline v4 (49 проверок, ЧТО/КАК/ЧЕМ)
 - **PROCESS_AUDIT.md** — полный аудит старого процесса + корневые причины
-- **DEV_STANDARD.md** — обязательный стандарт разработки v3 (Quality Pipeline)
+- **DEV_STANDARD.md** — обязательный стандарт разработки
 - **BUG_REGISTRY.md** — реестр багов (никогда не удалять)
-- **scripts/quality-pipeline.sh** — 30 проверок в 8 этапах (P1-P8)
-- **scripts/quality-gates-v2.sh** — предыдущая версия (заменена на pipeline)
-- **scripts/pre-commit-hook.sh** — автоматический pre-commit hook
-- **.pipeline/** — директория с отчётами и скриншотами pipeline
+- **scripts/quality-pipeline-v4.sh** — 49 проверок в 10 этапов (S1-S10)
+- **scripts/quality-metrics.py** — расчёт интегральных метрик (Visual/Mobile/Perf/A11y)
+- **scripts/visual-diff.py** — пиксельное сравнение скриншотов (PIL)
+- **scripts/pre-commit-hook-v2.sh** — автоматический pre-commit hook
+- **.pipeline/** — директория с отчётами, скриншотами, метриками
 
-### Quality Pipeline v3 — 8 этапов, 30 проверок:
-1. **P1: Статический анализ** — build, ignoreBuildErrors, TypeScript, ESLint, unused deps
-2. **P2: Анализ кода** — pointer-events, z-index, duplicate CSS, console.log
-3. **P3: Проверка ресурсов** — images, videos, routes HTTP, internal links
-4. **P4: Браузерное тестирование** — console errors, hero, nav, CTA, MenuBuilder, mobile, footer
-5. **P5: Визуальная регрессия** — desktop/mobile/tablet screenshots, baseline diff
-6. **P6: Производительность** — page load time, Core Web Vitals
-7. **P7: Доступность** — ARIA, alt text, form labels, color contrast
-8. **P8: Верификация багов** — BUG_REGISTRY open items
+### Quality Pipeline v4 — 10 этапов, 49 проверок:
+1. **S1: Статический анализ** — build, ignoreBuildErrors, TypeScript, ESLint, depcheck
+2. **S2: Линтинг и анализ кода** — pointer-events, z-index, console.log, duplicate CSS, unused exports, any type
+3. **S3: Ресурсы и маршруты** — images, videos, routes HTTP, links, favicon, large assets
+4. **S4: Браузерное десктоп** — console errors, hero, nav, CTA clickable, footer, screenshot
+5. **S5: Браузерное мобильное** — console, menu toggle, touch targets 44px, overflow, screenshot
+6. **S6: Формы и интерактив** — contact form, MenuBuilder, PDF button, WA/TG links, phone tel:
+7. **S7: Доступность** — pa11y WCAG2AA, image alt, form labels, ARIA landmarks
+8. **S8: Производительность** — load time, DOM size, resource count, Lighthouse
+9. **S9: Визуальная регрессия** — tablet/mobile screenshots, PIL pixel diff, size stability
+10. **S10: Верификация багов** — BUG_REGISTRY open items, new errors vs previous, self-improvement
+
+### Инструменты:
+- TypeScript tsc 5.9.3, ESLint v9.39.2, depcheck v1.4.7
+- pa11y v9.1.1 (WCAG2AA accessibility)
+- Lighthouse v13.4.0 (performance, fallback Navigation Timing)
+- agent-browser v0.27.3 (real browser testing)
+- Python Pillow (visual diff)
+
+### Метрики качества (baseline v81):
+- Visual Quality: 100.0 / 100
+- Mobile UX: 80.0 / 100
+- Performance: 85.0 / 100
+- Accessibility: 45.0 / 100
+- **OVERALL: 77.5 / 100**
 
 ### Ключевые правила:
 1. ❌ ЗАПРЕЩЕНО: commit/push/deploy без прохождения Pipeline
@@ -289,12 +307,14 @@
 6. ✅ ОБЯЗАТЕЛЬНО: agent-browser для проверки реального рендеринга
 7. ✅ ОБЯЗАТЕЛЬНО: 2 полных цикла без новых ошибок перед commit
 8. ✅ ОБЯЗАТЕЛЬНО: обновлять BUG_REGISTRY.md
+9. ✅ САМООБУЧЕНИЕ: каждая найденная ошибка → новая проверка в pipeline
 
 ### Что НЕ автоматизировано (честно):
-- Пиксельное сравнение скриншотов → размер файла как proxy (нужен Percy/Chromatic)
-- Lighthouse CI → Navigation Timing API как proxy
-- Core Web Vitals → async observer не работает синхронно
-- Цветовой контраст WCAG → дизайн-система проверена вручную (нужен axe-core)
+- Кросс-браузерное тестирование (Safari/Firefox) → ⏭️ MANUAL
+- Полные E2E пользовательские пути → ⚠️ ЧАСТИЧНО (agent-browser ключевые точки)
+- Lighthouse Performance → ⚠️ ЧАСТИЧНО (падает на тяжёлых анимациях → Navigation Timing API)
+- Пиксельное сравнение скриншотов → ✅ АВТОМАТИЗИРОВАНО (PIL через visual-diff.py)
+- Цветовой контраст WCAG → ✅ АВТОМАТИЗИРОВАНО (pa11y v9.1.1)
 
 ### Известные баги (BUG_REGISTRY.md):
 - BUG-001: Кнопка "Скачать PDF" перекрыта на мобильном

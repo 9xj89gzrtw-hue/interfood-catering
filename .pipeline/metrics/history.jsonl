@@ -1,0 +1,2 @@
+{"timestamp": "2026-07-02T23:35:55.316202", "pipeline_version": "4.0", "total": 49, "passed": 26, "failed": 20, "critical_fail": 5, "skipped": 3, "pass_rate": 52.1, "critical_pass_rate": 89.6}
+{"timestamp": "2026-07-02T23:42:00.229745", "pipeline_version": "4.0", "total": 49, "passed": 35, "failed": 13, "critical_fail": 4, "skipped": 1, "pass_rate": 70.8, "critical_pass_rate": 91.7}

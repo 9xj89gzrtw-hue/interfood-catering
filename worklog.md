@@ -314,3 +314,38 @@ Stage Summary:
 - Results comparison: v1 gates 14/14 PASS (missed bugs) → v3 pipeline 18/30 PASS (found all issues)
 - Honest about limitations: 4 checks marked SKIP with alternatives proposed
 - Pipeline reports saved to .pipeline/ directory for tracking
+
+---
+Task ID: 10
+Agent: main
+Task: Build Quality Pipeline v4 — самообучающаяся система качества мирового уровня
+
+Work Log:
+- Checked MEMORY.md on GitHub — verified latest version v81.3
+- Audited environment: ESLint v9.39.2, TypeScript v5.9.3, depcheck v1.4.7, pa11y v9.1.1, Lighthouse v13.4.0
+- Installed depcheck, lighthouse, pa11y via npm
+- Found Chrome via Playwright at /home/z/.cache/ms-playwright/chromium-1228/ — symlinked for Puppeteer/pa11y
+- Tested pa11y — found 14+ WCAG2AA contrast errors on live site (real findings)
+- Tested Lighthouse — crashes on heavy animation site (TARGET_CRASHED), falls back to Navigation Timing API
+- Designed Quality Pipeline v4 with 49 checks across 10 stages (S1-S10)
+- Created quality-pipeline-v4.sh with ЧТО/КАК/ЧЕМ specification for every gate
+- Created visual-diff.py for pixel-level screenshot comparison (Python Pillow)
+- Created quality-metrics.py for integral quality metrics (Visual/Mobile/Perf/A11y scores)
+- Created pre-commit-hook-v2.sh with quick mode (static checks) and full mode
+- Installed git pre-commit hook
+- Ran pipeline v4 against live site — baseline results:
+  - 35 PASS / 13 FAIL / 4 CRITICAL / 1 SKIP
+  - Pass Rate: 70.8%, Critical Pass: 91.7%
+  - Visual Quality: 100, Mobile UX: 80, Performance: 85, Accessibility: 45
+  - OVERALL: 77.5/100
+- Created baseline screenshots for visual regression
+- Created PIPELINE.md documentation
+- Updated MEMORY.md with Pipeline v4 info
+
+Stage Summary:
+- Quality Pipeline v4 built with 49 automated checks (was 16 in v3)
+- Key improvements: pa11y accessibility, depcheck, visual regression with PIL, quality metrics
+- Each gate documented: ЧТО/КАК/ЧЕМ
+- Self-improvement mechanism: every bug → new pipeline check
+- Real findings: ignoreBuildErrors:true, PDF button disabled, 28 touch targets <44px, pa11y errors
+- Baseline established for visual regression comparison

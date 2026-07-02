@@ -1,0 +1,638 @@
+# Quality Pipeline v4 — Отчёт
+
+**Дата:** 2026-07-02 23:40:29
+**URL:** https://interfood-catering.vercel.app
+**Версия:** # VERSION HISTORY — Interfood Catering Website
+**Pipeline:** v4.0
+
+---
+
+
+---
+
+## Детали по каждой проверке
+
+## S1.1: Build — PASS
+
+| Поле | Значение |
+|------|----------|
+| Результат | ✅ PASS |
+| Critical | yes |
+| ЧТО проверяет | Проект собирается без ошибок |
+| КАК проверяет | npm run build, проверка exit code |
+| ЧЕМ проверяет | npm run build |
+| Evidence | exit=0,  ○  (Static)   prerendered as static content ƒ  (Dynamic)  server-rendered on demand  |
+
+## S1.2: ignoreBuildErrors=false — FAIL-CRITICAL
+
+| Поле | Значение |
+|------|----------|
+| Результат | ❌ FAIL-CRITICAL |
+| Critical | yes |
+| ЧТО проверяет | ignoreBuildErrors НЕ установлен в true (не маскирует TS ошибки) |
+| КАК проверяет | grep ignoreBuildErrors true в next.config.ts |
+| ЧЕМ проверяет | grep |
+| Evidence | НАЙДЕНО ignoreBuildErrors:true — маскирует TypeScript ошибки! |
+
+## S1.3: TypeScript strict — PASS
+
+| Поле | Значение |
+|------|----------|
+| Результат | ✅ PASS |
+| Critical | yes |
+| ЧТО проверяет | Нет TypeScript ошибок (исключая backups/) |
+| КАК проверяет | tsc --noEmit с фильтром backups/ |
+| ЧЕМ проверяет | tsc v5.9.3 |
+| Evidence | ошибок: 0 |
+
+## S1.4: ESLint — PASS
+
+| Поле | Значение |
+|------|----------|
+| Результат | ✅ PASS |
+| Critical | no |
+| ЧТО проверяет | Нет критических ESLint ошибок в src/ |
+| КАК проверяет | eslint src/ --format compact, подсчёт error/warning |
+| ЧЕМ проверяет | ESLint v9.39.2 |
+| Evidence | errors: 0, warnings: 0 |
+
+## S1.5: Unused dependencies — PASS
+
+| Поле | Значение |
+|------|----------|
+| Результат | ✅ PASS |
+| Critical | no |
+| ЧТО проверяет | Нет неиспользуемых зависимостей в package.json |
+| КАК проверяет | depcheck --json, подсчёт unused dependencies |
+| ЧЕМ проверяет | depcheck v1.4.7 |
+| Evidence | неиспользуемых: 0 |
+
+## S2.1: Pointer-events safety — PASS
+
+| Поле | Значение |
+|------|----------|
+| Результат | ✅ PASS |
+| Critical | no |
+| ЧТО проверяет | Минимальное использование pointer-events:none (≤50 — допустимые случаи, includes CSS classes like disabled:pointer-events-none) |
+| КАК проверяет | grep pointer-events none в src/, подсчёт |
+| ЧЕМ проверяет | grep |
+| Evidence | найдено: 45 |
+
+## S2.2: z-index audit — FAIL
+
+| Поле | Значение |
+|------|----------|
+| Результат | ❌ FAIL |
+| Critical | no |
+| ЧТО проверяет | Нет экстремальных z-index значений (<10000) |
+| КАК проверяет | grep z-index в src/, извлечение чисел, поиск максимума |
+| ЧЕМ проверяет | grep |
+| Evidence | макс z-index: 10001 — возможен конфликт |
+
+## S2.3: Console.log audit — PASS
+
+| Поле | Значение |
+|------|----------|
+| Результат | ✅ PASS |
+| Critical | no |
+| ЧТО проверяет | Нет забытых console.log в продакшен-коде (≤3 допустимо) |
+| КАК проверяет | grep console.log в src/, подсчёт |
+| ЧЕМ проверяет | grep |
+| Evidence | найдено: 3 |
+
+## S2.4: Duplicate CSS properties — FAIL
+
+| Поле | Значение |
+|------|----------|
+| Результат | ❌ FAIL |
+| Critical | no |
+| ЧТО проверяет | Нет дублей CSS свойств в globals.css |
+| КАК проверяет | Извлечение свойств, sort, uniq -d |
+| ЧЕМ проверяет | grep + sort + uniq |
+| Evidence | дублирующиеся свойства: --gradient-angle,-webkit-appearance,-webkit-backdrop-filter,-webkit-overflow-scrolling,a, |
+
+## S2.5: Unused component exports — FAIL
+
+| Поле | Значение |
+|------|----------|
+| Результат | ❌ FAIL |
+| Critical | no |
+| ЧТО проверяет | Все экспортируемые компоненты используются в проекте |
+| КАК проверяет | Для каждого component.tsx — grep имени в других файлах |
+| ЧЕМ проверяет | grep |
+| Evidence | возможно неиспользуемые: AIChatAssistant,BentoGrid,CircularProgress,CountdownTimer,CursorTrail,DrawPath,ExitIntentPopup,HorizontalScrollGallery,KineticFontSection,Parallax3D, |
+
+## S2.6: TypeScript 'any' usage — PASS
+
+| Поле | Значение |
+|------|----------|
+| Результат | ✅ PASS |
+| Critical | no |
+| ЧТО проверяет | Минимальное использование 'any' типа (≤5) |
+| КАК проверяет | grep ': any' и 'as any' в src/ |
+| ЧЕМ проверяет | grep |
+| Evidence | найдено: 0 |
+
+## S3.1: Broken image references — PASS
+
+| Поле | Значение |
+|------|----------|
+| Результат | ✅ PASS |
+| Critical | yes |
+| ЧТО проверяет | Все ссылки на изображения указывают на существующие файлы |
+| КАК проверяет | Извлечение /images/* путей из src/, проверка public/ |
+| ЧЕМ проверяет | grep + file existence check |
+| Evidence | сломанных: 0 |
+
+## S3.2: Broken video references — PASS
+
+| Поле | Значение |
+|------|----------|
+| Результат | ✅ PASS |
+| Critical | yes |
+| ЧТО проверяет | Все ссылки на видео указывают на существующие файлы |
+| КАК проверяет | Извлечение /videos/*.mp4 из src/, проверка public/ |
+| ЧЕМ проверяет | grep + file existence check |
+| Evidence | сломанных: 0 |
+
+## S3.3: Route HTTP status — PASS
+
+| Поле | Значение |
+|------|----------|
+| Результат | ✅ PASS |
+| Critical | yes |
+| ЧТО проверяет | Все 17 маршрутов возвращают HTTP 200 |
+| КАК проверяет | curl -s -o /dev/null -w '%{http_code}' для каждого маршрута |
+| ЧЕМ проверяет | curl |
+| Evidence | все 17 маршрутов HTTP 200 |
+
+## S3.4: Internal links catalog — PASS
+
+| Поле | Значение |
+|------|----------|
+| Результат | ✅ PASS |
+| Critical | no |
+| ЧТО проверяет | Каталог всех ссылок в проекте (внутренние + внешние) |
+| КАК проверяет | grep href в src/, подсчёт внутренних и внешних |
+| ЧЕМ проверяет | grep |
+| Evidence | внутренних: 163, внешних (не interfood): 32 |
+
+## S3.5: Favicon and icons — FAIL
+
+| Поле | Значение |
+|------|----------|
+| Результат | ❌ FAIL |
+| Critical | no |
+| ЧТО проверяет | favicon и manifest.json существуют |
+| КАК проверяет | Проверка наличия файлов в public/ |
+| ЧЕМ проверяет | file existence check |
+| Evidence | favicon: no, manifest: yes |
+
+## S3.6: Large assets (>1MB) — FAIL
+
+| Поле | Значение |
+|------|----------|
+| Результат | ❌ FAIL |
+| Critical | no |
+| ЧТО проверяет | Нет чрезмерно больших файлов в public/ (≤5 файлов >1MB) |
+| КАК проверяет | find public/ -size +1M |
+| ЧЕМ проверяет | find |
+| Evidence | файлов >1MB: 10, примеры: hero-catering.mp4,coffee.jpg,hero.jpg,DSC02258.jpg,2025-10-04-12-09-53-6-scaled.jpeg,DSC02179.jpg,vegetarian_menu.pdf,IMG_0591.jpg,barbecue_menu.pdf,DSC02168.jpg, |
+
+## S4.1: Console errors (desktop) — PASS
+
+| Поле | Значение |
+|------|----------|
+| Результат | ✅ PASS |
+| Critical | yes |
+| ЧТО проверяет | Нет JS ошибок в консоли браузера на главной странице (≤2 допустимо) |
+| КАК проверяет | agent-browser: open URL → errors → подсчёт error строк |
+| ЧЕМ проверяет | agent-browser + Chrome |
+| Evidence | ошибок: 0 |
+
+## S4.2: Hero section visible — PASS
+
+| Поле | Значение |
+|------|----------|
+| Результат | ✅ PASS |
+| Critical | yes |
+| ЧТО проверяет | Hero секция рендерится с ключевым контентом |
+| КАК проверяет | agent-browser: snapshot с поиском ключевых слов |
+| ЧЕМ проверяет | agent-browser snapshot |
+| Evidence | ключевые слова найдены: 4 |
+
+## S4.3: Navigation links — FAIL-CRITICAL
+
+| Поле | Значение |
+|------|----------|
+| Результат | ❌ FAIL-CRITICAL |
+| Critical | yes |
+| ЧТО проверяет | Навигация содержит ≥3 ключевых ссылок |
+| КАК проверяет | agent-browser: snapshot с поиском ссылок |
+| ЧЕМ проверяет | agent-browser snapshot |
+| Evidence | ссылок найдено: 1 |
+
+## S4.4: CTA buttons clickable — PASS
+
+| Поле | Значение |
+|------|----------|
+| Результат | ✅ PASS |
+| Critical | yes |
+| ЧТО проверяет | CTA кнопки кликабельны, НЕ перекрыты другими элементами |
+| КАК проверяет | agent-browser: find text 'Рассчитать' click → проверка 'covered by' |
+| ЧЕМ проверяет | agent-browser find text click |
+| Evidence | covered-by: нет |
+
+## S4.5: Footer visible — PASS
+
+| Поле | Значение |
+|------|----------|
+| Результат | ✅ PASS |
+| Critical | no |
+| ЧТО проверяет | Footer рендерится внизу страницы |
+| КАК проверяет | agent-browser: scroll to bottom → snapshot → поиск ключевых слов |
+| ЧЕМ проверяет | agent-browser snapshot |
+| Evidence | footer элементы найдены: 4 |
+
+## S4.6: Desktop screenshot — PASS
+
+| Поле | Значение |
+|------|----------|
+| Результат | ✅ PASS |
+| Critical | no |
+| ЧТО проверяет | Скриншот десктоп версии сохранён для visual regression |
+| КАК проверяет | agent-browser: screenshot path.png |
+| ЧЕМ проверяет | agent-browser screenshot |
+| Evidence | файл: desktop-20260702-234110.png, размер: 715431 bytes |
+
+## S5.1: Mobile console errors — PASS
+
+| Поле | Значение |
+|------|----------|
+| Результат | ✅ PASS |
+| Critical | yes |
+| ЧТО проверяет | Нет JS ошибок в мобильной версии (≤2) |
+| КАК проверяет | agent-browser: open с viewport 375x812 → errors |
+| ЧЕМ проверяет | agent-browser |
+| Evidence | ошибок: 0
+0 |
+
+## S5.2: Mobile menu toggle — PASS
+
+| Поле | Значение |
+|------|----------|
+| Результат | ✅ PASS |
+| Critical | yes |
+| ЧТО проверяет | Кнопка мобильного меню кликабельна, НЕ перекрыта |
+| КАК проверяет | agent-browser: find text 'Меню' click → проверка 'covered by' |
+| ЧЕМ проверяет | agent-browser find text click |
+| Evidence | covered-by: нет |
+
+## S5.3: Mobile touch targets (44px) — FAIL
+
+| Поле | Значение |
+|------|----------|
+| Результат | ❌ FAIL |
+| Critical | no |
+| ЧТО проверяет | Все кликабельные элементы ≥44px (Apple HIG) |
+| КАК проверяет | JS: querySelectorAll buttons/links → getBoundingClientRect → count <44px |
+| ЧЕМ проверяет | agent-browser eval |
+| Evidence | элементов <44px: 28 |
+
+## S5.4: Mobile horizontal overflow — PASS
+
+| Поле | Значение |
+|------|----------|
+| Результат | ✅ PASS |
+| Critical | yes |
+| ЧТО проверяет | Нет горизонтального скролла на мобильном |
+| КАК проверяет | JS: scrollWidth > clientWidth → OVERFLOW |
+| ЧЕМ проверяет | agent-browser eval |
+| Evidence | результат: "OK" |
+
+## S5.5: Mobile screenshot — PASS
+
+| Поле | Значение |
+|------|----------|
+| Результат | ✅ PASS |
+| Critical | no |
+| ЧТО проверяет | Скриншот мобильной версии сохранён для visual regression |
+| КАК проверяет | agent-browser: screenshot path.png |
+| ЧЕМ проверяет | agent-browser screenshot |
+| Evidence | файл: mobile-20260702-234115.png, размер: 166687 bytes |
+
+## S6.1: Contact form fields — PASS
+
+| Поле | Значение |
+|------|----------|
+| Результат | ✅ PASS |
+| Critical | no |
+| ЧТО проверяет | Контактная форма содержит поля ввода |
+| КАК проверяет | JS: querySelectorAll('form input/textarea/select') → список полей |
+| ЧЕМ проверяет | agent-browser eval |
+| Evidence | поля: "Ваш email" |
+
+## S6.2: MenuBuilder add dish — FAIL
+
+| Поле | Значение |
+|------|----------|
+| Результат | ❌ FAIL |
+| Critical | no |
+| ЧТО проверяет | Можно добавить блюдо в конструктор меню |
+| КАК проверяет | agent-browser: scroll to #menu-builder → find text 'Добавить' click |
+| ЧЕМ проверяет | agent-browser find text click |
+| Evidence | клик НЕ удался: FAIL |
+
+## S6.3: PDF button state — FAIL-CRITICAL
+
+| Поле | Значение |
+|------|----------|
+| Результат | ❌ FAIL-CRITICAL |
+| Critical | yes |
+| ЧТО проверяет | Кнопка 'Скачать PDF' активна после добавления блюда |
+| КАК проверяет | JS: найти кнопку с текстом PDF/Скачать → проверить disabled |
+| ЧЕМ проверяет | agent-browser eval |
+| Evidence | КНОПКА DISABLED после добавления блюда! BUG-003 |
+
+## S6.4: WhatsApp/Telegram links — PASS
+
+| Поле | Значение |
+|------|----------|
+| Результат | ✅ PASS |
+| Critical | no |
+| ЧТО проверяет | На странице есть ссылки на WhatsApp и Telegram |
+| КАК проверяет | JS: querySelectorAll a[href] → поиск wa.me/t.me |
+| ЧЕМ проверяет | agent-browser eval |
+| Evidence | WhatsApp: 5, Telegram: 4 |
+
+## S6.5: Phone number clickable — PASS
+
+| Поле | Значение |
+|------|----------|
+| Результат | ✅ PASS |
+| Critical | no |
+| ЧТО проверяет | Номер телефона — кликабельная ссылка tel: |
+| КАК проверяет | JS: querySelectorAll a[href^='tel:'] → первый элемент |
+| ЧЕМ проверяет | agent-browser eval |
+| Evidence | найден: "tel:+78129195911" |
+
+## S7.1: pa11y WCAG2AA errors — FAIL
+
+| Поле | Значение |
+|------|----------|
+| Результат | ❌ FAIL |
+| Critical | no |
+| ЧТО проверяет | Нет критических ошибок доступности WCAG2AA |
+| КАК проверяет | pa11y --standard WCAG2AA --reporter=json → подсчёт error |
+| ЧЕМ проверяет | pa11y v9.1.1 + Chrome |
+| Evidence | ошибок: parse_error |
+
+## S7.2: Image alt text — PASS
+
+| Поле | Значение |
+|------|----------|
+| Результат | ✅ PASS |
+| Critical | no |
+| ЧТО проверяет | Все изображения имеют alt текст |
+| КАК проверяет | JS: querySelectorAll('img') → проверка alt |
+| ЧЕМ проверяет | agent-browser eval |
+| Evidence | изображений: 22, без alt: 0 |
+
+## S7.3: Form labels — FAIL
+
+| Поле | Значение |
+|------|----------|
+| Результат | ❌ FAIL |
+| Critical | no |
+| ЧТО проверяет | Все поля форм имеют label, aria-label или placeholder |
+| КАК проверяет | JS: querySelectorAll input/textarea/select → проверка label |
+| ЧЕМ проверяет | agent-browser eval |
+| Evidence | полей: 2, без label: 1 |
+
+## S7.4: ARIA landmarks — PASS
+
+| Поле | Значение |
+|------|----------|
+| Результат | ✅ PASS |
+| Critical | no |
+| ЧТО проверяет | Страница имеет основные ARIA landmarks (nav, main, header, footer) |
+| КАК проверяет | JS: querySelectorAll nav/main/header/footer → подсчёт |
+| ЧЕМ проверяет | agent-browser eval |
+| Evidence | "nav:4,main:1,header:0,footer:1" |
+
+## S8.1: Page load time (<5s) — PASS
+
+| Поле | Значение |
+|------|----------|
+| Результат | ✅ PASS |
+| Critical | no |
+| ЧТО проверяет | Страница загружается менее чем за 5 секунд |
+| КАК проверяет | JS: performance.getEntriesByType('navigation')[0].loadEventEnd |
+| ЧЕМ проверяет | agent-browser eval + Navigation Timing API |
+| Evidence | load time: 101ms |
+
+## S8.2: DOM size (<3000 nodes) — PASS
+
+| Поле | Значение |
+|------|----------|
+| Результат | ✅ PASS |
+| Critical | no |
+| ЧТО проверяет | Размер DOM дерева менее 3000 узлов |
+| КАК проверяет | JS: document.querySelectorAll('*').length |
+| ЧЕМ проверяет | agent-browser eval |
+| Evidence | DOM узлов: 1566 |
+
+## S8.3: Resource count (<100) — PASS
+
+| Поле | Значение |
+|------|----------|
+| Результат | ✅ PASS |
+| Critical | no |
+| ЧТО проверяет | Количество загружаемых ресурсов менее 100 |
+| КАК проверяет | JS: performance.getEntriesByType('resource').length + transferSize |
+| ЧЕМ проверяет | Navigation Timing API |
+| Evidence | ресурсов: 53, ~3KB transfer |
+
+## S8.4: Lighthouse performance — PASS
+
+| Поле | Значение |
+|------|----------|
+| Результат | ✅ PASS |
+| Critical | no |
+| ЧТО проверяет | Lighthouse Performance score ≥50 |
+| КАК проверяет | CHROME_PATH=npx lighthouse --only-categories=performance --output=json |
+| ЧЕМ проверяет | Lighthouse v13.4.0 (fallback: Navigation Timing API) |
+| Evidence | Lighthouse Performance: 60/100 |
+
+## S9.1: Tablet screenshot — PASS
+
+| Поле | Значение |
+|------|----------|
+| Результат | ✅ PASS |
+| Critical | no |
+| ЧТО проверяет | Скриншот планшетной версии для visual regression |
+| КАК проверяет | agent-browser: viewport 768x1024 → screenshot |
+| ЧЕМ проверяет | agent-browser screenshot |
+| Evidence | файл: tablet-20260702-234156.png |
+
+## S9.2: Small mobile screenshot — PASS
+
+| Поле | Значение |
+|------|----------|
+| Результат | ✅ PASS |
+| Critical | no |
+| ЧТО проверяет | Скриншот маленького мобильного (320x568) для visual regression |
+| КАК проверяет | agent-browser: viewport 320x568 → screenshot |
+| ЧЕМ проверяет | agent-browser screenshot |
+| Evidence | файл: small-mobile-20260702-234159.png |
+
+## S9.3: Visual diff vs baseline — SKIP
+
+| Поле | Значение |
+|------|----------|
+| Результат | ⏭️ SKIP |
+| Critical | no |
+| ЧТО проверяет | Визуальное отличие от baseline <5% пикселей |
+| КАК проверяет | PIL: load 2 images → resize to same → pixel diff → % changed pixels |
+| ЧЕМ проверяет | Python PIL (visual-diff.py) |
+| Evidence | Baseline скриншот не найден — первый запуск, baseline будет создан |
+
+## S9.4: Screenshot size stability — PASS
+
+| Поле | Значение |
+|------|----------|
+| Результат | ✅ PASS |
+| Critical | no |
+| ЧТО проверяет | Скриншот разумного размера (50-2000KB) — нет пустого/битого рендера |
+| КАК проверяет | stat -c%s screenshot.png → проверка 50KB < size < 2000KB |
+| ЧЕМ проверяет | stat |
+| Evidence | размер: 698KB |
+
+## S10.1: BUG_REGISTRY open items — FAIL-CRITICAL
+
+| Поле | Значение |
+|------|----------|
+| Результат | ❌ FAIL-CRITICAL |
+| Critical | yes |
+| ЧТО проверяет | Нет открытых критических багов |
+| КАК проверяет | grep '❌ OPEN' в BUG_REGISTRY.md → подсчёт |
+| ЧЕМ проверяет | grep |
+| Evidence | открытых багов: 6: | BUG-001 | Кнопка "Скачать PDF меню" перекрыта навигацией на мобильном. agent-browser: "Element is covered by div.jsx-e840ff966773960" | v81, 2026-07-03 | ❌ OPEN | agent-browser click @e93 → covered by |;| BUG-002 | Кнопка "Закрыть меню" перекрыта на мобильном. agent-browser: "Element is covered by |
+
+## S10.2: New errors vs previous — PASS
+
+| Поле | Значение |
+|------|----------|
+| Результат | ✅ PASS |
+| Critical | no |
+| ЧТО проверяет | Количество ошибок не увеличилось по сравнению с предыдущим запуском |
+| КАК проверяет | Сравнение FAIL count в текущем и предыдущем отчётах |
+| ЧЕМ проверяет | diff pipeline reports |
+| Evidence | предыдущий: 45 FAIL, текущий: 13 FAIL |
+
+## S10.3: Self-improvement audit — PASS
+
+| Поле | Значение |
+|------|----------|
+| Результат | ✅ PASS |
+| Critical | no |
+| ЧТО проверяет | Pipeline способен к самообучению: каждая ошибка → новая проверка |
+| КАК проверяет | Анализ BUG_REGISTRY на Pipeline Gap записи, проверка версии pipeline |
+| ЧЕМ проверяет | grep + version check |
+| Evidence | Pipeline v4.0, Gap записей: 0 |
+
+## S10.4: Quality metrics — PASS
+
+| Поле | Значение |
+|------|----------|
+| Результат | ✅ PASS |
+| Critical | no |
+| ЧТО проверяет | Расчёт интегральных метрик качества |
+| КАК проверяет | Python: pass_rate, critical_pass_rate, visual_quality из результатов |
+| ЧЕМ проверяет | Python + JSON |
+| Evidence | Pass Rate: 70.8%, Critical Pass: 91.7%, Visual Quality: 70.8/100 |
+
+---
+
+## Итоги
+
+| Метрика | Значение |
+|---------|----------|
+| ✅ PASS | 35 |
+| ❌ FAIL | 13 |
+| 🔥 CRITICAL | 4 |
+| ⏭️ SKIP | 1 |
+| 📊 TOTAL | 49 |
+| Pass Rate | 70.8% |
+| Critical Pass | 91.7% |
+| **PIPELINE** | **FAILED** |
+
+---
+
+## Структура проверок (ЧТО / КАК / ЧЕМ)
+
+| Stage | ЧТО проверяет | КАК | ЧЕМ |
+|-------|--------------|-----|-----|
+| S1.1 | Build без ошибок | npm run build exit code | npm |
+| S1.2 | ignoreBuildErrors=false | grep в next.config.ts | grep |
+| S1.3 | TypeScript strict | tsc --noEmit (excl. backups/) | tsc v5.9.3 |
+| S1.4 | ESLint ошибки | eslint src/ --format compact | ESLint v9.39.2 |
+| S1.5 | Unused dependencies | depcheck --json | depcheck v1.4.7 |
+| S2.1 | pointer-events:none | grep в src/ | grep |
+| S2.2 | z-index conflict | grep z-index, find max | grep |
+| S2.3 | Console.log audit | grep в src/ | grep |
+| S2.4 | Duplicate CSS | sort + uniq -d | grep+sort+uniq |
+| S2.5 | Unused component exports | grep имени в других файлах | grep |
+| S2.6 | TypeScript 'any' | grep ': any' | grep |
+| S3.1 | Broken image refs | file existence check | grep+test |
+| S3.2 | Broken video refs | file existence check | grep+test |
+| S3.3 | Route HTTP status | curl HTTP code | curl |
+| S3.4 | Internal links catalog | grep href | grep |
+| S3.5 | Favicon/icons | file existence | test |
+| S3.6 | Large assets (>1MB) | find -size +1M | find |
+| S4.1 | Console errors (desktop) | agent-browser errors | agent-browser |
+| S4.2 | Hero visible | snapshot + grep keywords | agent-browser |
+| S4.3 | Nav links present | snapshot + grep links | agent-browser |
+| S4.4 | CTA clickable (covered-by) | find text click + check | agent-browser |
+| S4.5 | Footer visible | scroll+snapshot+grep | agent-browser |
+| S4.6 | Desktop screenshot | screenshot path.png | agent-browser |
+| S5.1 | Mobile console errors | viewport 375x812 + errors | agent-browser |
+| S5.2 | Mobile menu toggle | find text click + covered-by | agent-browser |
+| S5.3 | Touch targets ≥44px | JS getBoundingClientRect | agent-browser eval |
+| S5.4 | Horizontal overflow | JS scrollWidth>clientWidth | agent-browser eval |
+| S5.5 | Mobile screenshot | viewport 375 + screenshot | agent-browser |
+| S6.1 | Contact form fields | JS querySelectorAll form inputs | agent-browser eval |
+| S6.2 | MenuBuilder add dish | scroll + find text click | agent-browser find |
+| S6.3 | PDF button state | JS check disabled prop | agent-browser eval |
+| S6.4 | WhatsApp/Telegram links | JS search wa.me/t.me | agent-browser eval |
+| S6.5 | Phone clickable | re-open + JS search tel: href | agent-browser eval |
+| S7.1 | pa11y WCAG2AA | pa11y --reporter=json | pa11y v9.1.1 |
+| S7.2 | Image alt text | JS check img.alt | agent-browser eval |
+| S7.3 | Form labels | JS check label/aria/placeholder | agent-browser eval |
+| S7.4 | ARIA landmarks | JS search nav/main/header/footer | agent-browser eval |
+| S8.1 | Page load time | Navigation Timing API | agent-browser eval |
+| S8.2 | DOM size | JS querySelectorAll('*') | agent-browser eval |
+| S8.3 | Resource count | JS performance.getEntries | Navigation Timing |
+| S8.4 | Lighthouse performance | Lighthouse --only-categories=performance | Lighthouse v13.4.0 |
+| S9.1 | Tablet screenshot | viewport 768x1024 | agent-browser |
+| S9.2 | Small mobile screenshot | viewport 320x568 | agent-browser |
+| S9.3 | Visual diff vs baseline | PIL pixel comparison | Python PIL |
+| S9.4 | Screenshot size stability | stat -c%s range check | stat |
+| S10.1 | BUG_REGISTRY open items | grep '^|.*❌ OPEN' table rows | grep |
+| S10.2 | New errors vs previous | diff report FAIL counts | report comparison |
+| S10.3 | Self-improvement audit | grep Pipeline Gap | grep |
+| S10.4 | Quality metrics | Python calculation | Python+JSON |
+
+---
+
+## Статусы автоматизации
+
+| Проверка | Автоматизация | Альтернатива если ручная |
+|----------|--------------|------------------------|
+| Lighthouse Performance | ⚠️ Частично | Падает на тяжёлых сайтах → Navigation Timing API как backup |
+| Пиксельный diff | ✅ Полностью | PIL histogram comparison через visual-diff.py |
+| Цветовой контраст WCAG | ✅ Полностью | pa11y v9.1.1 с WCAG2AA стандартом |
+| E2E пользовательские пути | ⚠️ Частично | agent-browser клики по ключевым путям → нужен Playwright Test для полного |
+| Кросс-браузерное тестирование | ⏭️ Ручная | Только Chrome через agent-browser → ручная проверка Safari/Firefox |
+
+*Конвейер создан: 2026-07-03 | Версия: v4.0 | Самообучающийся: каждая ошибка → новая проверка*
