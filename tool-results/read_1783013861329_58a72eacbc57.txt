@@ -1,0 +1,1217 @@
+     1→@import "tailwindcss";
+     2→
+     3→/* ═══════════════════════════════════════════════════════════════
+     4→   INTERFOOD CATERING — Light Premium Design System v70
+     5→   
+     6→   PHILOSOPHY:
+     7→   - Light, airy canvas — gold accents sing against white
+     8→   - Elegance through restraint, sophistication through detail
+     9→   - Scroll IS the animation controller (CSS Scroll-Driven)
+    10→   - View Transitions API — seamless page morphing
+    11→   - Mobile = first-class native experience with haptics
+    12→   
+    13→   ═══════════════════════════════════════════════════════════════ */
+    14→
+    15→@theme {
+    16→  /* ─── Gold / Amber System ─── */
+    17→  --color-gold-50: #FDF8EE;
+    18→  --color-gold-100: #F9EDCF;
+    19→  --color-gold-200: #F0D89E;
+    20→  --color-gold-300: #E5BF65;
+    21→  --color-gold-400: #D4A63E;
+    22→  --color-gold-500: #C9963A;
+    23→  --color-gold-600: #B8860B;
+    24→  --color-gold-700: #9A6F0A;
+    25→  --color-gold-800: #7D5A0D;
+    26→  --color-gold-900: #5C4210;
+    27→
+    28→  /* ─── Brand ─── */
+    29→  --color-brand: #B8860B;
+    30→  --color-brand-light: #D4A63E;
+    31→  --color-brand-lighter: #E5BF65;
+    32→  --color-brand-dark: #9A6F0A;
+    33→  --color-brand-darker: #7D5A0D;
+    34→  --color-brand-5: rgba(184,134,11,0.05);
+    35→  --color-brand-8: rgba(184,134,11,0.08);
+    36→  --color-brand-12: rgba(184,134,11,0.12);
+    37→  --color-brand-16: rgba(184,134,11,0.16);
+    38→  --color-brand-20: rgba(184,134,11,0.20);
+    39→  --color-brand-30: rgba(184,134,11,0.30);
+    40→  --color-brand-40: rgba(184,134,11,0.40);
+    41→
+    42→  /* ─── Light Surface System ─── */
+    43→  --color-surface-0: #FAFAF7;
+    44→  --color-surface-1: #F5F3EE;
+    45→  --color-surface-2: #EDE9E1;
+    46→  --color-surface-3: #E4DFD5;
+    47→  --color-surface-4: #D9D3C7;
+    48→  --color-surface-5: #CBC4B6;
+    49→  --color-surface-6: #B8B0A0;
+    50→
+    51→  /* ─── Text System on Light ─── */
+    52→  --color-text-primary: #1A1714;
+    53→  --color-text-secondary: #5C564D;
+    54→  --color-text-muted: #6B655A;
+    55→  --color-text-subtle: #B0A99E;
+    56→
+    57→  /* ─── Accent Colors ─── */
+    58→  --color-burgundy: #8B3A4A;
+    59→  --color-burgundy-light: #A8505F;
+    60→  --color-sage: #5B8A5E;
+    61→  --color-sage-light: #7BA67E;
+    62→
+    63→  /* ─── Legacy Compat (now light values) ─── */
+    64→  --color-dark: #1A1714;
+    65→  --color-dark-800: #2C2720;
+    66→  --color-dark-700: #4A453D;
+    67→  --color-dark-600: #6B655A;
+    68→  --color-dark-500: #8A8578;
+    69→  --color-ivory: #FAFAF7;
+    70→  --color-cream: #F5F3EE;
+    71→  --color-warm-400: #8A8578;
+    72→  --color-warm-300: #5C564D;
+    73→
+    74→  /* ─── Typography ─── */
+    75→  --font-serif: var(--font-serif);
+    76→  --font-sans: var(--font-sans);
+    77→}
+    78→
+    79→/* ═══ BASE RESETS ═══ */
+    80→* { margin: 0; padding: 0; box-sizing: border-box; }
+    81→html {
+    82→  scroll-behavior: smooth;
+    83→  -webkit-font-smoothing: antialiased;
+    84→  -moz-osx-font-smoothing: grayscale;
+    85→  overflow-x: hidden;
+    86→  background: #FAFAF7;
+    87→}
+    88→html, body { max-width: 100vw; }
+    89→body {
+    90→  font-family: "Inter", system-ui, -apple-system, sans-serif;
+    91→  background: #FAFAF7;
+    92→  color: var(--color-text-primary);
+    93→  overflow-x: hidden;
+    94→  -webkit-overflow-scrolling: touch;
+    95→}
+    96→.sr-only {
+    97→  position: absolute; width: 1px; height: 1px;
+    98→  padding: 0; margin: -1px; overflow: hidden;
+    99→  clip: rect(0,0,0,0); border: 0;
+   100→}
+   101→
+   102→/* ═══ VIEW TRANSITIONS API ═══ */
+   103→/* Next.js 16 built-in viewTransition: true handles startViewTransition() automatically.
+   104→   We style the transitions purely with CSS. No manual ViewTransitionLink needed. */
+   105→
+   106→/* Default: smooth cross-fade */
+   107→::view-transition-old(root),
+   108→::view-transition-new(root) {
+   109→  animation: none;
+   110→  mix-blend-mode: normal;
+   111→}
+   112→
+   113→/* Custom transition types via view-transition-class */
+   114→::view-transition-old(root) {
+   115→  animation: vt-fade-out 0.25s ease-out both;
+   116→}
+   117→::view-transition-new(root) {
+   118→  animation: vt-fade-in 0.3s ease-in both;
+   119→}
+   120→
+   121→@keyframes vt-fade-out {
+   122→  from { opacity: 1; transform: scale(1); }
+   123→  to { opacity: 0; transform: scale(0.98); }
+   124→}
+   125→@keyframes vt-fade-in {
+   126→  from { opacity: 0; transform: scale(1.02); }
+   127→  to { opacity: 1; transform: scale(1); }
+   128→}
+   129→
+   130→/* Per-page transition classes — apply via style prop on route wrappers */
+   131→.page-transition-hero ::view-transition-old(root) {
+   132→  animation: vt-hero-out 0.4s cubic-bezier(0.4, 0, 0.2, 1) both;
+   133→}
+   134→.page-transition-hero ::view-transition-new(root) {
+   135→  animation: vt-hero-in 0.4s cubic-bezier(0.4, 0, 0.2, 1) both;
+   136→}
+   137→@keyframes vt-hero-out {
+   138→  to { opacity: 0; filter: blur(8px); transform: scale(1.05); }
+   139→}
+   140→@keyframes vt-hero-in {
+   141→  from { opacity: 0; filter: blur(8px); transform: scale(0.95); }
+   142→}
+   143→
+   144→/* View transition name for shared elements */
+   145→.vt-hero-image { view-transition-name: hero-image; }
+   146→.vt-nav-logo { view-transition-name: nav-logo; }
+   147→
+   148→::view-transition-old(hero-image) {
+   149→  animation: vt-shared-out 0.4s ease both;
+   150→}
+   151→::view-transition-new(hero-image) {
+   152→  animation: vt-shared-in 0.4s ease both;
+   153→}
+   154→@keyframes vt-shared-out {
+   155→  to { opacity: 0; transform: scale(0.95); }
+   156→}
+   157→@keyframes vt-shared-in {
+   158→  from { opacity: 0; transform: scale(1.05); }
+   159→  to { opacity: 1; transform: scale(1); }
+   160→}
+   161→
+   162→/* ═══ SCROLL-DRIVEN ANIMATIONS ═══ */
+   163→/* Native CSS — Chrome 115+, Edge 115+, Opera 101+
+   164→   Falls back gracefully to no animation in unsupported browsers.
+   165→   Uses animation-timeline: view() (works with Lenis!) */
+   166→
+   167→@supports (animation-timeline: view()) {
+   168→  /* Fade up on scroll entry */
+   169→  .sda-reveal {
+   170→    animation: sda-fade-up 1s linear both;
+   171→    animation-timeline: view();
+   172→    animation-range: entry 0% entry 50%;
+   173→  }
+   174→  @keyframes sda-fade-up {
+   175→    from { opacity: 0; transform: translateY(40px); }
+   176→    to { opacity: 1; transform: translateY(0); }
+   177→  }
+   178→
+   179→  /* Scale in from slightly smaller */
+   180→  .sda-scale {
+   181→    animation: sda-scale-in 1s linear both;
+   182→    animation-timeline: view();
+   183→    animation-range: entry 0% entry 50%;
+   184→  }
+   185→  @keyframes sda-scale-in {
+   186→    from { opacity: 0; transform: scale(0.9); }
+   187→    to { opacity: 1; transform: scale(1); }
+   188→  }
+   189→
+   190→  /* Clip-path reveal from center */
+   191→  .sda-clip {
+   192→    animation: sda-clip-in 1s linear both;
+   193→    animation-timeline: view();
+   194→    animation-range: entry 0% entry 45%;
+   195→  }
+   196→  @keyframes sda-clip-in {
+   197→    from { clip-path: inset(10% 10% 10% 10%); opacity: 0; }
+   198→    to { clip-path: inset(0 0 0 0); opacity: 1; }
+   199→  }
+   200→
+   201→  /* Ken Burns slow zoom driven by scroll position */
+   202→  .sda-ken-burns {
+   203→    animation: sda-kb 1s linear both;
+   204→    animation-timeline: view();
+   205→    animation-range: entry 0% exit 100%;
+   206→  }
+   207→  @keyframes sda-kb {
+   208→    from { transform: scale(1); }
+   209→    to { transform: scale(1.15); }
+   210→  }
+   211→
+   212→  /* Slide in from left */
+   213→  .sda-slide-left {
+   214→    animation: sda-slide-l 1s linear both;
+   215→    animation-timeline: view();
+   216→    animation-range: entry 0% entry 50%;
+   217→  }
+   218→  @keyframes sda-slide-l {
+   219→    from { opacity: 0; transform: translateX(-60px); }
+   220→    to { opacity: 1; transform: translateX(0); }
+   221→  }
+   222→
+   223→  /* Slide in from right */
+   224→  .sda-slide-right {
+   225→    animation: sda-slide-r 1s linear both;
+   226→    animation-timeline: view();
+   227→    animation-range: entry 0% entry 50%;
+   228→  }
+   229→  @keyframes sda-slide-r {
+   230→    from { opacity: 0; transform: translateX(60px); }
+   231→    to { opacity: 1; transform: translateX(0); }
+   232→  }
+   233→
+   234→  /* Parallax - element moves slower than scroll */
+   235→  .sda-parallax-slow {
+   236→    animation: sda-parallax-up 1s linear both;
+   237→    animation-timeline: view();
+   238→    animation-range: entry 0% exit 100%;
+   239→  }
+   240→  @keyframes sda-parallax-up {
+   241→    from { transform: translateY(30px); }
+   242→    to { transform: translateY(-30px); }
+   243→  }
+   244→
+   245→  /* Blur reveal */
+   246→  .sda-blur-reveal {
+   247→    animation: sda-blur-in 1s linear both;
+   248→    animation-timeline: view();
+   249→    animation-range: entry 0% entry 45%;
+   250→  }
+   251→  @keyframes sda-blur-in {
+   252→    from { filter: blur(12px); opacity: 0; transform: scale(0.95); }
+   253→    to { filter: blur(0); opacity: 1; transform: scale(1); }
+   254→  }
+   255→
+   256→  /* Staggered children — apply .sda-stagger to parent */
+   257→  .sda-stagger > * {
+   258→    animation: sda-fade-up 0.8s linear both;
+   259→    animation-timeline: view();
+   260→    animation-range: entry 10% entry 55%;
+   261→  }
+   262→  .sda-stagger > *:nth-child(1) { animation-range: entry 5% entry 40%; }
+   263→  .sda-stagger > *:nth-child(2) { animation-range: entry 10% entry 45%; }
+   264→  .sda-stagger > *:nth-child(3) { animation-range: entry 15% entry 50%; }
+   265→  .sda-stagger > *:nth-child(4) { animation-range: entry 20% entry 55%; }
+   266→  .sda-stagger > *:nth-child(5) { animation-range: entry 25% entry 60%; }
+   267→  .sda-stagger > *:nth-child(6) { animation-range: entry 30% entry 65%; }
+   268→
+   269→  /* Counter rotate - element stays upright while parent rotates */
+   270→  .sda-counter-rotate {
+   271→    animation: sda-counter-spin 1s linear both;
+   272→    animation-timeline: view();
+   273→    animation-range: entry 0% exit 100%;
+   274→  }
+   275→  @keyframes sda-counter-spin {
+   276→    from { transform: rotate(-3deg); }
+   277→    to { transform: rotate(3deg); }
+   278→  }
+   279→
+   280→  /* Text character stagger */
+   281→  .sda-text-reveal {
+   282→    animation: sda-blur-in 1.2s linear both;
+   283→    animation-timeline: view();
+   284→    animation-range: entry 0% entry 55%;
+   285→  }
+   286→
+   287→  /* Legacy class — kept for compatibility */
+   288→  .scroll-fade-in {
+   289→    animation: sda-fade-up 1s linear both;
+   290→    animation-timeline: view();
+   291→    animation-range: entry 0% entry 40%;
+   292→  }
+   293→}
+   294→
+   295→/* ═══ GRAIN OVERLAY (subtle for light theme) ═══ */
+   296→.grain-overlay {
+   297→  position: fixed; inset: 0;
+   298→  pointer-events: none; z-index: 9998;
+   299→  opacity: 0.02;
+   300→  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+   301→  background-size: 256px 256px;
+   302→}
+   303→
+   304→/* ═══ CONTAINER ═══ */
+   305→.container {
+   306→  max-width: 1320px;
+   307→  margin: 0 auto;
+   308→  padding: 0 2rem;
+   309→}
+   310→@media (max-width: 640px) {
+   311→  .container { padding: 0 1.25rem; }
+   312→}
+   313→
+   314→/* ═══ SECTION TYPOGRAPHY ═══ */
+   315→.section-label {
+   316→  font-size: 0.7rem;
+   317→  letter-spacing: 0.3em;
+   318→  text-transform: uppercase;
+   319→  color: var(--color-brand);
+   320→  margin-bottom: 1.5rem;
+   321→  font-weight: 600;
+   322→  display: flex;
+   323→  align-items: center;
+   324→  gap: 0.75rem;
+   325→}
+   326→.section-label::before {
+   327→  content: "";
+   328→  display: inline-block;
+   329→  width: 24px;
+   330→  height: 1px;
+   331→  background: var(--color-brand-30);
+   332→}
+   333→.section-title {
+   334→  font-family: var(--font-serif);
+   335→  font-size: clamp(2rem, 5vw, 3.5rem);
+   336→  font-weight: 300;
+   337→  color: var(--color-text-primary);
+   338→  line-height: 1.15;
+   339→  letter-spacing: -0.02em;
+   340→  margin-bottom: 1rem;
+   341→}
+   342→.section-subtitle {
+   343→  font-size: clamp(0.9rem, 1.6vw, 1.1rem);
+   344→  color: var(--color-text-secondary);
+   345→  line-height: 1.7;
+   346→  max-width: 520px;
+   347→  font-weight: 300;
+   348→}
+   349→
+   350→/* ═══ BUTTONS ═══ */
+   351→.btn-gold {
+   352→  display: inline-flex;
+   353→  align-items: center;
+   354→  justify-content: center;
+   355→  padding: 0.9rem 2rem;
+   356→  background: linear-gradient(135deg, var(--color-brand-dark), var(--color-brand));
+   357→  color: #FFFFFF;
+   358→  font-size: 0.75rem;
+   359→  font-weight: 600;
+   360→  letter-spacing: 0.14em;
+   361→  text-transform: uppercase;
+   362→  text-decoration: none;
+   363→  border: none;
+   364→  border-radius: 60px;
+   365→  cursor: pointer;
+   366→  position: relative;
+   367→  overflow: hidden;
+   368→  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s;
+   369→}
+   370→.btn-gold:hover {
+   371→  transform: scale(1.04);
+   372→  box-shadow: 0 8px 40px rgba(184,134,11,0.25), 0 0 80px rgba(184,134,11,0.1);
+   373→}
+   374→.btn-gold::after {
+   375→  content: "";
+   376→  position: absolute;
+   377→  inset: 0;
+   378→  background: linear-gradient(135deg, transparent 30%, rgba(255,255,255,0.2) 50%, transparent 70%);
+   379→  transform: translateX(-100%);
+   380→  transition: transform 0.6s;
+   381→}
+   382→.btn-gold:hover::after {
+   383→  transform: translateX(100%);
+   384→}
+   385→
+   386→.btn-outline {
+   387→  display: inline-flex;
+   388→  align-items: center;
+   389→  justify-content: center;
+   390→  padding: 0.9rem 2rem;
+   391→  background: transparent;
+   392→  color: var(--color-brand);
+   393→  font-size: 0.75rem;
+   394→  font-weight: 500;
+   395→  letter-spacing: 0.14em;
+   396→  text-transform: uppercase;
+   397→  text-decoration: none;
+   398→  border: 1px solid var(--color-brand-30);
+   399→  border-radius: 60px;
+   400→  cursor: pointer;
+   401→  position: relative;
+   402→  overflow: hidden;
+   403→  transition: border-color 0.4s, background 0.4s, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+   404→}
+   405→.btn-outline:hover {
+   406→  border-color: var(--color-brand);
+   407→  background: var(--color-brand-8);
+   408→  transform: scale(1.04);
+   409→}
+   410→
+   411→/* ═══ NAV ═══ */
+   412→.nav {
+   413→  position: fixed;
+   414→  top: 0; left: 0; right: 0;
+   415→  z-index: 1000;
+   416→  padding: 1.25rem 0;
+   417→  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+   418→}
+   419→.nav.scrolled {
+   420→  padding: 0.75rem 0;
+   421→  background: rgba(250,250,247,0.88);
+   422→  backdrop-filter: blur(24px) saturate(180%);
+   423→  -webkit-backdrop-filter: blur(24px) saturate(180%);
+   424→  border-bottom: 1px solid var(--color-brand-12);
+   425→  box-shadow: 0 1px 20px rgba(0,0,0,0.04);
+   426→}
+   427→.nav-inner {
+   428→  max-width: 1320px;
+   429→  margin: 0 auto;
+   430→  padding: 0 2rem;
+   431→  display: flex;
+   432→  align-items: center;
+   433→  justify-content: space-between;
+   434→}
+   435→.nav-logo {
+   436→  font-family: var(--font-serif);
+   437→  font-size: 1.1rem;
+   438→  font-weight: 400;
+   439→  letter-spacing: 0.18em;
+   440→  color: var(--color-text-primary);
+   441→  text-decoration: none;
+   442→  transition: color 0.3s;
+   443→}
+   444→.nav-logo:hover { color: var(--color-brand); }
+   445→.nav-links {
+   446→  display: flex;
+   447→  align-items: center;
+   448→  gap: 2rem;
+   449→  list-style: none;
+   450→}
+   451→.nav-links a, .nav-links button {
+   452→  font-size: 0.78rem;
+   453→  letter-spacing: 0.14em;
+   454→  text-transform: uppercase;
+   455→  font-weight: 500;
+   456→  color: var(--color-text-secondary);
+   457→  text-decoration: none;
+   458→  transition: color 0.3s;
+   459→  position: relative;
+   460→}
+   461→.nav-links a::after, .nav-links button::after {
+   462→  content: "";
+   463→  position: absolute;
+   464→  bottom: -4px;
+   465→  left: 0;
+   466→  width: 0;
+   467→  height: 1px;
+   468→  background: var(--color-brand);
+   469→  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+   470→}
+   471→.nav-links a:hover, .nav-links button:hover { color: var(--color-text-primary); }
+   472→.nav-links a:hover::after, .nav-links button:hover::after { width: 100%; }
+   473→.nav-phone {
+   474→  color: var(--color-brand) !important;
+   475→  font-weight: 600 !important;
+   476→  letter-spacing: 0.06em !important;
+   477→}
+   478→.nav-cta {
+   479→  display: inline-flex;
+   480→  align-items: center;
+   481→  padding: 0.55rem 1.3rem;
+   482→  background: var(--color-brand);
+   483→  color: #FFFFFF !important;
+   484→  border-radius: 60px;
+   485→  font-weight: 600 !important;
+   486→  font-size: 0.75rem !important;
+   487→  letter-spacing: 0.12em !important;
+   488→  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+   489→}
+   490→.nav-cta:hover {
+   491→  transform: scale(1.06);
+   492→  box-shadow: 0 4px 20px rgba(184,134,11,0.25);
+   493→}
+   494→
+   495→/* ─── Burger ─── */
+   496→.burger {
+   497→  display: none;
+   498→  flex-direction: column;
+   499→  gap: 5px;
+   500→  background: none;
+   501→  border: none;
+   502→  cursor: pointer;
+   503→  padding: 8px;
+   504→  z-index: 1002;
+   505→}
+   506→.burger span {
+   507→  display: block;
+   508→  width: 22px;
+   509→  height: 1.5px;
+   510→  background: var(--color-text-primary);
+   511→  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+   512→  transform-origin: center;
+   513→}
+   514→.burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+   515→.burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+   516→.burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+   517→
+   518→/* ─── Mobile Menu ─── */
+   519→.mobile-menu {
+   520→  position: fixed;
+   521→  inset: 0;
+   522→  background: rgba(250,250,247,0.97);
+   523→  backdrop-filter: blur(40px);
+   524→  -webkit-backdrop-filter: blur(40px);
+   525→  z-index: 1001;
+   526→  padding: 6rem 2rem 2rem;
+   527→  display: flex;
+   528→  flex-direction: column;
+   529→}
+   530→.mobile-menu a {
+   531→  color: var(--color-text-primary);
+   532→  text-decoration: none;
+   533→  font-family: var(--font-serif);
+   534→  font-size: 1.5rem;
+   535→  font-weight: 300;
+   536→  padding: 0.75rem 0;
+   537→  border-bottom: 1px solid var(--color-brand-12);
+   538→  transition: color 0.3s, padding-left 0.3s;
+   539→}
+   540→.mobile-menu a:hover {
+   541→  color: var(--color-brand);
+   542→  padding-left: 0.5rem;
+   543→}
+   544→
+   545→/* ─── Nav Responsive ─── */
+   546→@media (max-width: 900px) {
+   547→  .nav-links { display: none; }
+   548→  .burger { display: flex; }
+   549→  .nav-theme-mobile { display: flex; }
+   550→}
+   551→@media (min-width: 901px) {
+   552→  .burger { display: none; }
+   553→  .nav-theme-mobile { display: none; }
+   554→}
+   555→
+   556→/* ═══ KEYFRAME ANIMATIONS ═══ */
+   557→
+   558→/* ─── Ken Burns slow zoom ─── */
+   559→@keyframes ken-burns-zoom {
+   560→  0% { transform: scale(1); }
+   561→  100% { transform: scale(1.12); }
+   562→}
+   563→
+   564→/* ─── Slow float for particles ─── */
+   565→@keyframes float-particle {
+   566→  0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+   567→  10% { opacity: 1; }
+   568→  90% { opacity: 1; }
+   569→  100% { transform: translateY(-100vh) translateX(20px); opacity: 0; }
+   570→}
+   571→
+   572→/* ─── Hero-specific floating particle (reliable cross-browser) ─── */
+   573→@keyframes float-particle-hero {
+   574→  0% { transform: translateY(0) translateX(0); opacity: 0; }
+   575→  5% { opacity: var(--particle-opacity, 0.3); }
+   576→  90% { opacity: var(--particle-opacity, 0.3); }
+   577→  100% { transform: translateY(-110vh) translateX(calc((var(--particle-drift, 20) - 10) * 1px)); opacity: 0; }
+   578→}
+   579→
+   580→/* ─── Gradient border rotation ─── */
+   581→@keyframes gradient-rotate {
+   582→  0% { --gradient-angle: 0deg; }
+   583→  100% { --gradient-angle: 360deg; }
+   584→}
+   585→
+   586→/* ─── Glow pulse ─── */
+   587→@keyframes glow-pulse {
+   588→  0%, 100% { opacity: 0.4; }
+   589→  50% { opacity: 1; }
+   590→}
+   591→
+   592→/* ─── Shimmer sweep ─── */
+   593→@keyframes shimmer-sweep {
+   594→  0% { transform: translateX(-100%); }
+   595→  100% { transform: translateX(100%); }
+   596→}
+   597→
+   598→/* ─── Subtle breathing ─── */
+   599→@keyframes breathe {
+   600→  0%, 100% { transform: scale(1); }
+   601→  50% { transform: scale(1.02); }
+   602→}
+   603→
+   604→/* ─── Fade up for section reveals ─── */
+   605→@keyframes fade-up {
+   606→  from { opacity: 0; transform: translateY(30px); }
+   607→  to { opacity: 1; transform: translateY(0); }
+   608→}
+   609→
+   610→/* ─── Scroll indicator bounce ─── */
+   611→@keyframes scroll-bounce {
+   612→  0%, 100% { transform: translateY(0); }
+   613→  50% { transform: translateY(8px); }
+   614→}
+   615→
+   616→/* ─── Odometer digit roll ─── */
+   617→@keyframes digit-roll {
+   618→  0% { transform: translateY(0); }
+   619→  100% { transform: translateY(-100%); }
+   620→}
+   621→
+   622→/* ─── Ambient mesh gradient shift ─── */
+   623→@keyframes mesh-shift {
+   624→  0% { background-position: 0% 0%; }
+   625→  25% { background-position: 100% 0%; }
+   626→  50% { background-position: 100% 100%; }
+   627→  75% { background-position: 0% 100%; }
+   628→  100% { background-position: 0% 0%; }
+   629→}
+   630→
+   631→/* ─── Text blur reveal ─── */
+   632→@keyframes blur-reveal {
+   633→  0% { filter: blur(12px); opacity: 0; transform: scale(0.95); }
+   634→  100% { filter: blur(0); opacity: 1; transform: scale(1); }
+   635→}
+   636→
+   637→/* ─── Clip-path circle expand ─── */
+   638→@keyframes clip-circle-expand {
+   639→  0% { clip-path: circle(0% at 50% 50%); }
+   640→  100% { clip-path: circle(100% at 50% 50%); }
+   641→}
+   642→
+   643→/* ─── Ripple expand (button click feedback) ─── */
+   644→@keyframes ripple-expand {
+   645→  0% { width: 0; height: 0; opacity: 0.5; }
+   646→  100% { width: 300px; height: 300px; opacity: 0; }
+   647→}
+   648→
+   649→/* ═══ SERVICE CARD STYLES ═══ */
+   650→.service-card {
+   651→  position: relative;
+   652→  border-radius: 20px;
+   653→  overflow: hidden;
+   654→  background: #FFFFFF;
+   655→  border: 1px solid var(--color-brand-12);
+   656→  transition: border-color 0.5s, box-shadow 0.5s, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+   657→}
+   658→.service-card:hover {
+   659→  border-color: var(--color-brand-20);
+   660→  box-shadow: 0 20px 60px rgba(0,0,0,0.08), 0 0 40px rgba(184,134,11,0.06);
+   661→  transform: translateY(-4px);
+   662→}
+   663→.service-card-img {
+   664→  transition: transform 8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s;
+   665→}
+   666→.service-card:hover .service-card-img {
+   667→  transform: scale(1.08);
+   668→  filter: brightness(1.05);
+   669→}
+   670→
+   671→/* ─── Animated gradient border ─── */
+   672→.gradient-border {
+   673→  position: relative;
+   674→  background: #FFFFFF;
+   675→  border-radius: 20px;
+   676→}
+   677→.gradient-border::before {
+   678→  content: "";
+   679→  position: absolute;
+   680→  inset: -1px;
+   681→  border-radius: 21px;
+   682→  background: conic-gradient(from var(--gradient-angle, 0deg), transparent 40%, var(--color-brand) 50%, transparent 60%);
+   683→  z-index: -1;
+   684→  animation: gradient-rotate 4s linear infinite;
+   685→}
+   686→@property --gradient-angle {
+   687→  syntax: "<angle>";
+   688→  initial-value: 0deg;
+   689→  inherits: false;
+   690→}
+   691→
+   692→/* ─── Light sweep effect ─── */
+   693→.light-sweep::after {
+   694→  content: "";
+   695→  position: absolute;
+   696→  inset: 0;
+   697→  background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.5) 45%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0.5) 55%, transparent 60%);
+   698→  animation: shimmer-sweep 5s ease-in-out infinite;
+   699→  pointer-events: none;
+   700→  z-index: 2;
+   701→}
+   702→
+   703→/* ─── Ken Burns ─── */
+   704→.ken-burns img, .ken-burns video {
+   705→  animation: ken-burns-zoom 20s ease-in-out alternate infinite;
+   706→}
+   707→
+   708→/* ─── Depth effect ─── */
+   709→.depth-effect {
+   710→  transform-style: preserve-3d;
+   711→  perspective: 800px;
+   712→}
+   713→
+   714→/* ═══ TRUST BAR / STATS ═══ */
+   715→.trust-bar {
+   716→  display: grid;
+   717→  grid-template-columns: repeat(4, 1fr);
+   718→  gap: 1.5rem;
+   719→  text-align: center;
+   720→}
+   721→@media (max-width: 768px) {
+   722→  .trust-bar {
+   723→    grid-template-columns: repeat(2, 1fr);
+   724→    gap: 1rem;
+   725→  }
+   726→}
+   727→.stat-item h3 {
+   728→  font-family: var(--font-serif);
+   729→  font-size: clamp(2rem, 4vw, 3rem);
+   730→  font-weight: 300;
+   731→  color: var(--color-brand);
+   732→  letter-spacing: -0.02em;
+   733→}
+   734→.stat-item p {
+   735→  font-size: 0.78rem;
+   736→  color: var(--color-text-muted);
+   737→  margin-top: 0.35rem;
+   738→  letter-spacing: 0.04em;
+   739→}
+   740→
+   741→/* ═══ STEP CARD ═══ */
+   742→.step-card {
+   743→  padding: 2.5rem 1.5rem;
+   744→  border-radius: 20px;
+   745→  background: #FFFFFF;
+   746→  border: 1px solid var(--color-brand-12);
+   747→  text-align: center;
+   748→  transition: border-color 0.5s, box-shadow 0.5s, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+   749→}
+   750→.step-card:hover {
+   751→  border-color: var(--color-brand-20);
+   752→  box-shadow: 0 12px 40px rgba(0,0,0,0.06), 0 0 30px rgba(184,134,11,0.04);
+   753→  transform: translateY(-4px);
+   754→}
+   755→.glow-effect {
+   756→  position: relative;
+   757→}
+   758→.glow-effect::after {
+   759→  content: "";
+   760→  position: absolute;
+   761→  inset: -1px;
+   762→  border-radius: inherit;
+   763→  background: radial-gradient(ellipse at 50% 0%, var(--color-brand-12) 0%, transparent 70%);
+   764→  opacity: 0;
+   765→  transition: opacity 0.5s;
+   766→  pointer-events: none;
+   767→  z-index: -1;
+   768→}
+   769→.glow-effect:hover::after {
+   770→  opacity: 1;
+   771→}
+   772→
+   773→/* ═══ REVIEW CARD ═══ */
+   774→.review-card {
+   775→  padding: 2rem;
+   776→  border-radius: 20px;
+   777→  background: #FFFFFF;
+   778→  border: 1px solid var(--color-brand-12);
+   779→  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+   780→}
+   781→.review-card:hover {
+   782→  border-color: var(--color-brand-16);
+   783→  box-shadow: 0 16px 48px rgba(0,0,0,0.06);
+   784→}
+   785→
+   786→/* ═══ FOOTER ═══ */
+   787→.site-footer {
+   788→  background: var(--color-surface-1);
+   789→  border-top: 1px solid var(--color-brand-12);
+   790→  padding: 4rem 2rem 2rem;
+   791→  color: var(--color-text-muted);
+   792→}
+   793→.site-footer a {
+   794→  color: var(--color-text-secondary);
+   795→  text-decoration: none;
+   796→  transition: color 0.3s;
+   797→}
+   798→.site-footer a:hover { color: var(--color-brand); }
+   799→
+   800→/* ═══ SCROLL PROGRESS ═══ */
+   801→.scroll-progress {
+   802→  position: fixed;
+   803→  top: 0;
+   804→  left: 0;
+   805→  height: 2px;
+   806→  background: linear-gradient(90deg, var(--color-brand-dark), var(--color-brand), var(--color-brand-light));
+   807→  z-index: 9999;
+   808→  transform-origin: left;
+   809→}
+   810→
+   811→/* ═══ CUSTOM CURSOR ═══ */
+   812→.custom-cursor {
+   813→  position: fixed;
+   814→  width: 20px;
+   815→  height: 20px;
+   816→  border: 1.5px solid var(--color-brand-40);
+   817→  border-radius: 50%;
+   818→  pointer-events: none;
+   819→  z-index: 9997;
+   820→  transform: translate(-50%, -50%);
+   821→  transition: width 0.3s, height 0.3s, border-color 0.3s, background 0.3s;
+   822→  mix-blend-mode: difference;
+   823→}
+   824→.custom-cursor.hovering {
+   825→  width: 50px;
+   826→  height: 50px;
+   827→  border-color: var(--color-brand);
+   828→  background: rgba(184,134,11,0.08);
+   829→}
+   830→@media (max-width: 900px) {
+   831→  .custom-cursor { display: none; }
+   832→}
+   833→
+   834→/* ═══ WHATSAPP FLOAT ═══ */
+   835→.whatsapp-float {
+   836→  position: fixed;
+   837→  bottom: 2rem;
+   838→  right: 2rem;
+   839→  z-index: 999;
+   840→  width: 56px;
+   841→  height: 56px;
+   842→  border-radius: 50%;
+   843→  background: #25D366;
+   844→  display: flex;
+   845→  align-items: center;
+   846→  justify-content: center;
+   847→  box-shadow: 0 4px 20px rgba(37,211,102,0.3);
+   848→  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s;
+   849→}
+   850→.whatsapp-float:hover {
+   851→  transform: scale(1.1);
+   852→  box-shadow: 0 6px 30px rgba(37,211,102,0.4);
+   853→}
+   854→
+   855→/* ═══ LIGHTBOX ═══ */
+   856→.lightbox-overlay {
+   857→  position: fixed;
+   858→  inset: 0;
+   859→  z-index: 9990;
+   860→  background: rgba(250,250,247,0.95);
+   861→  backdrop-filter: blur(20px);
+   862→  display: flex;
+   863→  align-items: center;
+   864→  justify-content: center;
+   865→  padding: 2rem;
+   866→  cursor: zoom-out;
+   867→}
+   868→.lightbox-overlay img {
+   869→  max-width: 90vw;
+   870→  max-height: 85vh;
+   871→  object-fit: contain;
+   872→  border-radius: 12px;
+   873→  box-shadow: 0 20px 80px rgba(0,0,0,0.12);
+   874→}
+   875→
+   876→/* ═══ BACK TO TOP ═══ */
+   877→.back-to-top {
+   878→  position: fixed;
+   879→  bottom: 2rem;
+   880→  left: 2rem;
+   881→  width: 44px;
+   882→  height: 44px;
+   883→  border-radius: 50%;
+   884→  background: #FFFFFF;
+   885→  border: 1px solid var(--color-brand-12);
+   886→  display: flex;
+   887→  align-items: center;
+   888→  justify-content: center;
+   889→  cursor: pointer;
+   890→  z-index: 998;
+   891→  opacity: 0;
+   892→  transform: translateY(20px);
+   893→  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+   894→  color: var(--color-brand);
+   895→  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+   896→}
+   897→.back-to-top.visible {
+   898→  opacity: 1;
+   899→  transform: translateY(0);
+   900→}
+   901→.back-to-top:hover {
+   902→  background: var(--color-brand-8);
+   903→  transform: translateY(-2px);
+   904→}
+   905→
+   906→/* ═══ FORM STYLES ═══ */
+   907→.form-input {
+   908→  width: 100%;
+   909→  padding: 1rem 1.25rem;
+   910→  background: #FFFFFF;
+   911→  border: 1px solid var(--color-brand-12);
+   912→  border-radius: 14px;
+   913→  color: var(--color-text-primary);
+   914→  font-size: 0.95rem;
+   915→  font-family: inherit;
+   916→  outline: none;
+   917→  transition: border-color 0.4s, box-shadow 0.4s, background 0.3s;
+   918→}
+   919→.form-input:focus {
+   920→  border-color: var(--color-brand-30);
+   921→  box-shadow: 0 0 0 3px var(--color-brand-8);
+   922→  background: #FFFFFF;
+   923→}
+   924→.form-input::placeholder {
+   925→  color: var(--color-text-subtle);
+   926→}
+   927→.form-label {
+   928→  display: block;
+   929→  font-size: 0.72rem;
+   930→  font-weight: 500;
+   931→  letter-spacing: 0.1em;
+   932→  text-transform: uppercase;
+   933→  color: var(--color-text-secondary);
+   934→  margin-bottom: 0.5rem;
+   935→}
+   936→
+   937→/* ═══ PAGE LOADER ═══ */
+   938→.page-loader {
+   939→  position: fixed;
+   940→  inset: 0;
+   941→  z-index: 10000;
+   942→  background: #FAFAF7;
+   943→  display: flex;
+   944→  align-items: center;
+   945→  justify-content: center;
+   946→  transition: opacity 0.8s, visibility 0.8s;
+   947→}
+   948→.page-loader.done {
+   949→  opacity: 0;
+   950→  visibility: hidden;
+   951→  pointer-events: none;
+   952→}
+   953→
+   954→/* ═══ SECTION DIVIDER ─── */
+   955→.section-divider {
+   956→  display: flex;
+   957→  align-items: center;
+   958→  justify-content: center;
+   959→  gap: 1rem;
+   960→  padding: 0.5rem 0;
+   961→}
+   962→.section-divider::before,
+   963→.section-divider::after {
+   964→  content: "";
+   965→  width: 48px;
+   966→  height: 1px;
+   967→  background: linear-gradient(90deg, transparent, var(--color-brand-20));
+   968→}
+   969→.section-divider::after {
+   970→  background: linear-gradient(90deg, var(--color-brand-20), transparent);
+   971→}
+   972→.section-divider-dot {
+   973→  width: 4px;
+   974→  height: 4px;
+   975→  border-radius: 50%;
+   976→  border: 1px solid var(--color-brand-20);
+   977→}
+   978→
+   979→/* ═══ MARQUEE ═══ */
+   980→.marquee-track {
+   981→  display: flex;
+   982→  gap: 3rem;
+   983→  animation: marquee-scroll 30s linear infinite;
+   984→  width: max-content;
+   985→}
+   986→@keyframes marquee-scroll {
+   987→  0% { transform: translateX(0); }
+   988→  100% { transform: translateX(-50%); }
+   989→}
+   990→
+   991→/* ═══ HORIZONTAL GALLERY ═══ */
+   992→.horizontal-gallery {
+   993→  display: flex;
+   994→  gap: 1.5rem;
+   995→  overflow-x: auto;
+   996→  scroll-snap-type: x mandatory;
+   997→  -webkit-overflow-scrolling: touch;
+   998→  scrollbar-width: none;
+   999→  padding: 2rem 0;
+  1000→}
+  1001→.horizontal-gallery::-webkit-scrollbar { display: none; }
+  1002→.horizontal-gallery > * {
+  1003→  scroll-snap-align: center;
+  1004→  flex-shrink: 0;
+  1005→}
+  1006→
+  1007→/* ═══ ODOMETER ═══ */
+  1008→.odometer-digit {
+  1009→  display: inline-block;
+  1010→  overflow: hidden;
+  1011→  height: 1em;
+  1012→  line-height: 1;
+  1013→  position: relative;
+  1014→}
+  1015→.odometer-digit-inner {
+  1016→  display: flex;
+  1017→  flex-direction: column;
+  1018→  transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+  1019→}
+  1020→
+  1021→/* ═══ ANIMATED UNDERLINE ═══ */
+  1022→.animated-underline {
+  1023→  position: relative;
+  1024→  display: inline-block;
+  1025→}
+  1026→.animated-underline::after {
+  1027→  content: "";
+  1028→  position: absolute;
+  1029→  bottom: -2px;
+  1030→  left: 0;
+  1031→  width: 0;
+  1032→  height: 1px;
+  1033→  background: var(--color-brand);
+  1034→  transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  1035→}
+  1036→.animated-underline:hover::after {
+  1037→  width: 100%;
+  1038→}
+  1039→
+  1040→/* ═══ SKIP TO CONTENT ═══ */
+  1041→.skip-to-content {
+  1042→  position: absolute;
+  1043→  top: -100%;
+  1044→  left: 1rem;
+  1045→  z-index: 10000;
+  1046→  background: var(--color-brand);
+  1047→  color: #FFFFFF;
+  1048→  padding: 0.75rem 1.5rem;
+  1049→  border-radius: 0 0 8px 8px;
+  1050→  font-size: 0.9rem;
+  1051→  text-decoration: none;
+  1052→  transition: top 0.2s;
+  1053→}
+  1054→.skip-to-content:focus { top: 0; }
+  1055→
+  1056→/* ═══ MOBILE TOUCH ENHANCEMENTS ═══ */
+  1057→
+  1058→/* Active press state for touch */
+  1059→@media (hover: none) and (pointer: coarse) {
+  1060→  .btn-gold:active,
+  1061→  .btn-outline:active {
+  1062→    transform: scale(0.97);
+  1063→    transition-duration: 0.1s;
+  1064→  }
+  1065→  .service-card:active {
+  1066→    transform: scale(0.98);
+  1067→    transition-duration: 0.1s;
+  1068→  }
+  1069→  .nav-cta:active {
+  1070→    transform: scale(0.95);
+  1071→  }
+  1072→  /* Disable custom cursor on touch devices */
+  1073→  .custom-cursor { display: none !important; }
+  1074→  /* Disable grain overlay for performance on mobile */
+  1075→  .grain-overlay { display: none; }
+  1076→}
+  1077→
+  1078→/* Safe area insets for notched phones */
+  1079→@supports (padding: env(safe-area-inset-bottom)) {
+  1080→  .whatsapp-float {
+  1081→    bottom: calc(2rem + env(safe-area-inset-bottom));
+  1082→  }
+  1083→  .back-to-top {
+  1084→    bottom: calc(2rem + env(safe-area-inset-bottom));
+  1085→  }
+  1086→  .mobile-menu {
+  1087→    padding-bottom: env(safe-area-inset-bottom);
+  1088→  }
+  1089→}
+  1090→
+  1091→/* Swipe hint animation for carousels */
+  1092→.swipe-hint {
+  1093→  animation: swipe-hint 2s ease-in-out 1s 2;
+  1094→}
+  1095→@keyframes swipe-hint {
+  1096→  0%, 100% { transform: translateX(0); }
+  1097→  30% { transform: translateX(-20px); }
+  1098→  60% { transform: translateX(10px); }
+  1099→}
+  1100→
+  1101→/* ═══ REDUCED MOTION ═══ */
+  1102→@media (prefers-reduced-motion: reduce) {
+  1103→  *, *::before, *::after {
+  1104→    animation-duration: 0.01ms !important;
+  1105→    animation-iteration-count: 1 !important;
+  1106→    transition-duration: 0.01ms !important;
+  1107→    scroll-behavior: auto !important;
+  1108→  }
+  1109→}
+  1110→
+  1111→/* ═══ MOBILE-SPECIFIC ═══ */
+  1112→@media (max-width: 640px) {
+  1113→  .section-title {
+  1114→    font-size: clamp(1.6rem, 7vw, 2.5rem);
+  1115→  }
+  1116→  .btn-gold, .btn-outline {
+  1117→    padding: 0.85rem 1.5rem;
+  1118→    font-size: 0.7rem;
+  1119→    min-height: 48px;
+  1120→  }
+  1121→  .nav-inner {
+  1122→    padding: 0 1rem;
+  1123→  }
+  1124→  .nav-logo {
+  1125→    font-size: 0.95rem;
+  1126→    letter-spacing: 0.12em;
+  1127→  }
+  1128→}
+  1129→
+  1130→/* ═══ COMPREHENSIVE MOBILE FIXES ═══ */
+  1131→@media (max-width: 768px) {
+  1132→  /* Container tighter on mobile */
+  1133→  .container {
+  1134→    padding: 0 1.25rem;
+  1135→  }
+  1136→
+  1137→  /* Section spacing */
+  1138→  section {
+  1139→    padding-top: clamp(3rem, 8vw, 5rem) !important;
+  1140→    padding-bottom: clamp(3rem, 8vw, 5rem) !important;
+  1141→  }
+  1142→
+  1143→  /* Mobile menu: better typography */
+  1144→  .mobile-menu a {
+  1145→    font-size: 1.25rem;
+  1146→    padding: 0.65rem 0;
+  1147→    min-height: 44px;
+  1148→    display: flex;
+  1149→    align-items: center;
+  1150→  }
+  1151→
+  1152→  /* Service cards: single column on very small screens */
+  1153→  .svc-grid-mobile {
+  1154→    grid-template-columns: 1fr !important;
+  1155→  }
+  1156→
+  1157→  /* Gallery: smaller cards on mobile */
+  1158→  .gallery-card {
+  1159→    width: clamp(260px, 82vw, 340px) !important;
+  1160→  }
+  1161→
+  1162→  /* Footer: tighter layout */
+  1163→  .site-footer {
+  1164→    padding: 3rem 1.25rem 1.5rem;
+  1165→  }
+  1166→
+  1167→  /* Stats: tighter grid */
+  1168→  .trust-bar {
+  1169→    gap: 0.75rem;
+  1170→  }
+  1171→  .stat-item h3 {
+  1172→    font-size: clamp(1.5rem, 5vw, 2.5rem);
+  1173→  }
+  1174→  .stat-item p {
+  1175→    font-size: 0.7rem;
+  1176→  }
+  1177→
+  1178→  /* Review cards: full width on mobile */
+  1179→  .review-stack-mobile {
+  1180→    max-width: 100% !important;
+  1181→  }
+  1182→
+  1183→  /* Step cards: better mobile spacing */
+  1184→  .step-card {
+  1185→    padding: 1.75rem 1.25rem;
+  1186→  }
+  1187→
+  1188→  /* Buttons: ensure 48px touch target */
+  1189→  .btn-gold, .btn-outline {
+  1190→    min-height: 48px;
+  1191→    display: inline-flex;
+  1192→    align-items: center;
+  1193→    justify-content: center;
+  1194→  }
+  1195→
+  1196→  /* Better scrolling in gallery */
+  1197→  .gal-scroll-container {
+  1198→    padding-top: 1rem;
+  1199→    padding-bottom: 1rem;
+  1200→  }
+  1201→
+  1202→  /* Nav: ensure no overflow */
+  1203→  .nav {
+  1204→    padding: 0.75rem 0;
+  1205→  }
+  1206→  .nav.scrolled {
+  1207→    padding: 0.5rem 0;
+  1208→  }
+  1209→}
+  1210→
+  1211→/* ═══ TABLET FIXES ═══ */
+  1212→@media (min-width: 769px) and (max-width: 1024px) {
+  1213→  .container {
+  1214→    padding: 0 1.75rem;
+  1215→  }
+  1216→}
+  1217→

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback, useSyncExternalStore } from "react";
+import { useState, useEffect, useRef, useCallback, useMemo, useSyncExternalStore } from "react";
 import {
   motion,
   AnimatePresence,
@@ -29,23 +29,45 @@ function useIsMobile() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   CinematicHero v5 — Full Video on Mobile + MorphingText + Premium UX
+   CinematicHero v6 — Mobile-First Overhaul + WA/TG + Improved MorphingText
    
-   CRITICAL CHANGES from v4:
-   1. MOBILE: video now plays on mobile too (with mobile-specific src)
-   2. MorphingText with blur transitions restored and enhanced
-   3. Better mobile layout — stacked CTAs, improved spacing
-   4. Stronger readability guarantees on any background
-   5. Enhanced particle system with gold glow
-   6. Improved scroll indicator
+   KEY CHANGES from v5:
+   1. WA/TG icon buttons in hero trust signals
+   2. MorphingText: subtle scale transition + fixed min-width based on longest word
+   3. Video fallback: Ken Burns CSS animation on poster when video fails
+   4. Full-width CTA buttons on mobile with 48px touch targets
+   5. More visible scroll indicator on mobile
+   6. Safe-area padding for notched phones
    ═══════════════════════════════════════════════════════════════ */
 
 const EASE_PREMIUM = [0.16, 1, 0.3, 1] as const;
 const TAGLINES = ["Кейтеринг", "Гастрономия", "Впечатления", "Искусство", "Магия"];
 
+// Longest word determines the min-width to prevent layout shift
+const LONGEST_TAGLINE = TAGLINES.reduce((a, b) => (a.length > b.length ? a : b), "");
+
 // ═══════════════════════════════════════════════════════════
-//  MorphingText — Smooth word morphing with blur transitions
-//  Premium feel: each character fades independently with blur
+//  WhatsApp & Telegram Icon Components
+// ═══════════════════════════════════════════════════════════
+function WhatsAppIcon({ size = 18 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="#25D366">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+      <path d="M12 0C5.373 0 0 5.373 0 12c0 2.136.558 4.143 1.534 5.886L0 24l6.305-1.654A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.82c-1.996 0-3.86-.562-5.44-1.533l-.39-.232-3.758.985 1.003-3.654-.255-.406A9.8 9.8 0 012.18 12c0-5.422 4.398-9.82 9.82-9.82 5.422 0 9.82 4.398 9.82 9.82 0 5.422-4.398 9.82-9.82 9.82z" />
+    </svg>
+  );
+}
+
+function TelegramIcon({ size = 18 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="#0088cc">
+      <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
+    </svg>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════
+//  MorphingText — Enhanced with scale + fixed min-width
 // ═══════════════════════════════════════════════════════════
 function MorphingText({ words, interval = 2800 }: { words: string[]; interval?: number }) {
   const [index, setIndex] = useState(0);
@@ -66,19 +88,21 @@ function MorphingText({ words, interval = 2800 }: { words: string[]; interval?: 
     <AnimatePresence mode="wait">
       <motion.span
         key={words[index]}
-        initial={{ opacity: 0, filter: "blur(12px)", y: 8, scale: 0.95 }}
+        initial={{ opacity: 0, filter: "blur(12px)", y: 8, scale: 0.92 }}
         animate={
           visible
             ? { opacity: 1, filter: "blur(0px)", y: 0, scale: 1 }
-            : { opacity: 0, filter: "blur(12px)", y: -8, scale: 1.05 }
+            : { opacity: 0, filter: "blur(12px)", y: -8, scale: 1.08 }
         }
-        exit={{ opacity: 0, filter: "blur(12px)", y: -8, scale: 1.05 }}
+        exit={{ opacity: 0, filter: "blur(12px)", y: -8, scale: 1.08 }}
         transition={{ duration: 0.5, ease: EASE_PREMIUM }}
         style={{
           display: "inline-block",
           fontStyle: "italic",
           color: "#D4A63E",
-          minWidth: "4.5ch",
+          // Fixed min-width based on longest word to prevent layout shift
+          minWidth: `${LONGEST_TAGLINE.length + 0.5}ch`,
+          textAlign: "center" as const,
           willChange: "opacity, filter, transform",
           textShadow:
             "0 2px 12px rgba(0,0,0,0.6), 0 0 40px rgba(184,134,11,0.3), 0 0 80px rgba(184,134,11,0.15)",
@@ -99,16 +123,19 @@ export default function CinematicHero() {
   const mounted = useIsMounted();
   const isMobile = useIsMobile();
   const [videoReady, setVideoReady] = useState(false);
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [videoFailed, setVideoFailed] = useState(false);
 
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setPrefersReducedMotion(mq.matches);
-    const handler = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
-    mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
-  }, []);
+  // Use useSyncExternalStore for prefers-reduced-motion (avoids lint error)
+  const prefersReducedMotion = useSyncExternalStore(
+    (callback) => {
+      if (typeof window === "undefined") return () => {};
+      const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+      mq.addEventListener("change", callback);
+      return () => mq.removeEventListener("change", callback);
+    },
+    () => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+    () => false // SSR fallback
+  );
 
   // ─── Video autoplay (both mobile and desktop) ──────────────
   useEffect(() => {
@@ -132,7 +159,8 @@ export default function CinematicHero() {
             await video.play();
             setVideoReady(true);
           } catch {
-            // Final fallback: video won't play, poster shows
+            // Final fallback: video won't play, poster with Ken Burns shows
+            setVideoFailed(true);
           }
           document.removeEventListener("touchstart", handleInteraction);
           document.removeEventListener("click", handleInteraction);
@@ -158,7 +186,10 @@ export default function CinematicHero() {
   }, []);
 
   const handleVideoCanPlay = useCallback(() => setVideoReady(true), []);
-  const handleVideoError = useCallback(() => setVideoReady(false), []);
+  const handleVideoError = useCallback(() => {
+    setVideoReady(false);
+    setVideoFailed(true);
+  }, []);
 
   // ─── Scroll parallax ──────────────────────────
   const { scrollYProgress } = useScroll({
@@ -177,7 +208,7 @@ export default function CinematicHero() {
         position: "relative",
         width: "100%",
         height: "100vh",
-        minHeight: "600px",
+        minHeight: mounted && isMobile ? "100svh" : "600px",
         maxHeight: "1200px",
         overflow: "hidden",
         background: "linear-gradient(135deg, #1A1714 0%, #2D2520 30%, #1A1714 60%, #2A2218 100%)",
@@ -228,7 +259,7 @@ export default function CinematicHero() {
           />
         </video>
 
-        {/* Poster fallback while video loads — always present */}
+        {/* Poster fallback — shown while video loads, or when video fails entirely */}
         <div
           style={{
             position: "absolute",
@@ -240,6 +271,10 @@ export default function CinematicHero() {
             opacity: videoReady ? 0 : 1,
             transition: "opacity 1s ease-out",
             pointerEvents: "none",
+            // Ken Burns animation when video fails — keeps the hero alive
+            ...(videoFailed && !prefersReducedMotion
+              ? { animation: "hero-poster-kenburns 20s ease-in-out alternate infinite" }
+              : {}),
           }}
         />
       </motion.div>
@@ -290,12 +325,14 @@ export default function CinematicHero() {
           zIndex: 5,
           y: contentY,
           opacity: contentOpacity,
-          height: "100vh",
+          height: mounted && isMobile ? "100svh" : "100vh",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          padding: mounted && isMobile ? "0 1.25rem" : "0 1.5rem",
+          padding: mounted && isMobile
+            ? `max(env(safe-area-inset-top, 0px), 1.5rem) 1.25rem calc(max(env(safe-area-inset-bottom, 0px), 0px) + 4rem)`
+            : "0 1.5rem",
           textAlign: "center",
           maxWidth: "860px",
           margin: "0 auto",
@@ -325,14 +362,14 @@ export default function CinematicHero() {
           <span style={{ width: "32px", height: "1px", background: "linear-gradient(90deg, rgba(184,134,11,0.6), transparent)" }} />
         </motion.div>
 
-        {/* Main Title with MorphingText */}
+        {/* Main Title with MorphingText — minimum 2rem on mobile */}
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.5, ease: EASE_PREMIUM }}
           style={{
             fontFamily: "var(--font-serif)",
-            fontSize: "clamp(2.2rem, 8vw, 5.5rem)",
+            fontSize: "clamp(2rem, 8vw, 5.5rem)",
             fontWeight: 300,
             color: "#FFFFFF",
             lineHeight: 1.05,
@@ -369,7 +406,7 @@ export default function CinematicHero() {
           Собственная кухня. 18 лет. 3&nbsp;500+ мероприятий в&nbsp;Санкт-Петербурге
         </motion.p>
 
-        {/* CTA Buttons — improved mobile layout */}
+        {/* CTA Buttons — full-width on mobile with 48px touch targets */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -380,7 +417,8 @@ export default function CinematicHero() {
             alignItems: "center",
             gap: mounted && isMobile ? "0.75rem" : "1rem",
             width: mounted && isMobile ? "100%" : "auto",
-            maxWidth: mounted && isMobile ? "360px" : "none",
+            maxWidth: mounted && isMobile ? "400px" : "none",
+            padding: mounted && isMobile ? "0 0.25rem" : "0",
           }}
         >
           <a
@@ -422,7 +460,7 @@ export default function CinematicHero() {
           </a>
         </motion.div>
 
-        {/* Trust Signals */}
+        {/* Trust Signals with WA/TG icons */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -439,6 +477,69 @@ export default function CinematicHero() {
           <span style={{ fontSize: "clamp(0.72rem, 1.3vw, 0.8rem)", letterSpacing: "0.08em", color: "rgba(255,255,255,0.85)", fontWeight: 400, whiteSpace: "nowrap", textShadow: "0 1px 6px rgba(0,0,0,0.5)" }}>От 950 ₽/чел</span>
           <span style={{ width: "3px", height: "3px", borderRadius: "50%", background: "rgba(201,169,106,0.5)", flexShrink: 0 }} />
           <a href="tel:+78129195911" style={{ fontSize: "clamp(0.72rem, 1.3vw, 0.8rem)", letterSpacing: "0.04em", color: "rgba(255,255,255,0.9)", fontWeight: 500, whiteSpace: "nowrap", textShadow: "0 1px 6px rgba(0,0,0,0.5)", textDecoration: "none" }}>+7 (812) 919-59-11</a>
+
+          {/* WhatsApp & Telegram icon buttons */}
+          <a
+            href="https://wa.me/79119417205"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Написать в WhatsApp"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              width: "32px",
+              height: "32px",
+              minWidth: "32px",
+              borderRadius: "50%",
+              background: "rgba(37,211,102,0.15)",
+              border: "1px solid rgba(37,211,102,0.3)",
+              transition: "background 0.3s, transform 0.2s",
+              textDecoration: "none",
+              flexShrink: 0,
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = "rgba(37,211,102,0.3)";
+              e.currentTarget.style.transform = "scale(1.1)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = "rgba(37,211,102,0.15)";
+              e.currentTarget.style.transform = "scale(1)";
+            }}
+          >
+            <WhatsAppIcon size={16} />
+          </a>
+          <a
+            href="https://t.me/nilov_catering"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Написать в Telegram"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              width: "32px",
+              height: "32px",
+              minWidth: "32px",
+              borderRadius: "50%",
+              background: "rgba(0,136,204,0.15)",
+              border: "1px solid rgba(0,136,204,0.3)",
+              transition: "background 0.3s, transform 0.2s",
+              textDecoration: "none",
+              flexShrink: 0,
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = "rgba(0,136,204,0.3)";
+              e.currentTarget.style.transform = "scale(1.1)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = "rgba(0,136,204,0.15)";
+              e.currentTarget.style.transform = "scale(1)";
+            }}
+          >
+            <TelegramIcon size={16} />
+          </a>
+
           <span style={{ width: "3px", height: "3px", borderRadius: "50%", background: "rgba(201,169,106,0.5)", flexShrink: 0 }} />
           <span style={{ fontSize: "clamp(0.72rem, 1.3vw, 0.8rem)", letterSpacing: "0.08em", color: "rgba(255,255,255,0.85)", fontWeight: 400, whiteSpace: "nowrap", textShadow: "0 1px 6px rgba(0,0,0,0.5)" }}>3 500+ мероприятий</span>
         </motion.div>
@@ -462,14 +563,16 @@ export default function CinematicHero() {
         )}
       </motion.div>
 
-      {/* Scroll Indicator — improved with smooth pulse */}
+      {/* Scroll Indicator — more visible on mobile */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 2, ease: EASE_PREMIUM }}
         style={{
           position: "absolute",
-          bottom: mounted && isMobile ? "1.5rem" : "2rem",
+          bottom: mounted && isMobile
+            ? "calc(max(env(safe-area-inset-bottom, 0px), 1rem) + 1rem)"
+            : "2rem",
           left: "50%",
           transform: "translateX(-50%)",
           zIndex: 6,
@@ -481,10 +584,10 @@ export default function CinematicHero() {
       >
         <motion.span
           style={{
-            fontSize: "0.7rem",
+            fontSize: mounted && isMobile ? "0.65rem" : "0.7rem",
             letterSpacing: "0.2em",
             textTransform: "uppercase" as const,
-            color: "rgba(255,255,255,0.5)",
+            color: "rgba(255,255,255,0.55)",
             fontWeight: 400,
             textShadow: "0 1px 4px rgba(0,0,0,0.5)",
           }}
@@ -494,9 +597,18 @@ export default function CinematicHero() {
         <motion.div
           animate={prefersReducedMotion ? {} : { y: [0, 8, 0] }}
           transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-          style={{ display: "flex" }}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            width: mounted && isMobile ? "36px" : "28px",
+            height: mounted && isMobile ? "36px" : "28px",
+            borderRadius: "50%",
+            background: mounted && isMobile ? "rgba(255,255,255,0.08)" : "transparent",
+            border: mounted && isMobile ? "1px solid rgba(255,255,255,0.15)" : "none",
+          }}
         >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.45)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <svg width={mounted && isMobile ? "18" : "16"} height={mounted && isMobile ? "18" : "16"} viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.55)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
             <path d="M12 5v14" />
             <path d="m19 12-7 7-7-7" />
           </svg>
@@ -517,14 +629,11 @@ export default function CinematicHero() {
 
 // ─── Floating Particles — Enhanced for mobile visibility ────
 function FloatingParticles() {
-  const [particles, setParticles] = useState<
-    { id: number; x: number; size: number; duration: number; delay: number; opacity: number; glow: number }[]
-  >([]);
-
-  useEffect(() => {
+  // Generate particles via useMemo since component is only rendered client-side (gated by `mounted`)
+  const particles = useMemo(() => {
     const isMob = typeof window !== "undefined" && window.innerWidth < 768;
     const count = isMob ? 12 : 16;
-    const generated = Array.from({ length: count }, (_, i) => ({
+    return Array.from({ length: count }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
       size: isMob ? 2 + Math.random() * 3.5 : 2 + Math.random() * 3,
@@ -533,7 +642,6 @@ function FloatingParticles() {
       opacity: isMob ? 0.35 + Math.random() * 0.4 : 0.2 + Math.random() * 0.4,
       glow: isMob ? 8 + Math.random() * 10 : 4 + Math.random() * 8,
     }));
-    setParticles(generated);
   }, []);
 
   if (particles.length === 0) return null;

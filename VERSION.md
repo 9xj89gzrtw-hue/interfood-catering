@@ -5,6 +5,49 @@
 
 ---
 
+## v76 — 2026-07-03 — MenuBuilder + WA/TG Icons + Urgency Banner + Mobile Overhaul + Sub-page Fix
+- **Тема**: Light Premium (продолжение v75)
+- **Интерактивный конструктор меню**:
+  - ✅ MenuBuilder: 4 категории (Фуршет, Банкет, Кофе-брейк, BBQ), 18 блюд
+  - ✅ Фото блюд с описанием, граммовкой, ценой за персону
+  - ✅ Drag-to-menu (Добавить/Убрать), кол-во гостей, расчёт стоимости
+  - ✅ Скидки: 10% (100+ гостей), 15% (200+ гостей)
+  - ✅ Скачать PDF меню (print-to-PDF)
+  - ✅ Мобильный: bottom sheet для корзины, плавающая кнопка "Моё меню"
+- **WhatsApp/Telegram**:
+  - ✅ Иконки WA/TG в hero trust signals
+  - ✅ Иконки WA/TG в desktop навигации рядом с телефоном
+  - ✅ Секция "Написать нам" в мобильном меню
+- **Urgency Banner v2**:
+  - ✅ Золотой фон вместо белого (видимый!)
+  - ✅ 5 сообщений: дегустация, 30 мин ответ, "даты заполняются", летнее меню, рейтинг
+  - ✅ Автопереключение каждые 5 сек
+- **ContactForm**:
+  - ✅ Убрано поле "Сообщение" (снижение фрикции)
+  - ✅ Исправлен цвет заголовка (был белый на белом!)
+  - ✅ Privacy micro-copy: ссылка на политику конфиденциальности
+  - ✅ Прямые ссылки на WA/TG/телефон под формой
+- **Hero**:
+  - ✅ MorphingText улучшен: scale-анимация, min-width 11.5ch, min 2rem на 320px
+  - ✅ Ken Burns fallback если видео не воспроизводится
+  - ✅ 100svh для notched телефонов, safe-area-inset padding
+  - ✅ Улучшенный scroll indicator
+- **Навигация**:
+  - ✅ Desktop CTA pulse-анимация
+  - ✅ Мобильное меню: тёмный gradient, крупная кнопка закрытия, контакты внизу
+- **Галерея**:
+  - ✅ Coverflow упрощён на мобильных (no 3D rotateY, no brightness change)
+  - ✅ Карточки уже на мобильных (260px вместо 300px)
+- **Подсайты**:
+  - ✅ Добавлены 45+ недостающих CSS классов и 4 CSS переменные
+  - ✅ Все 14 подсайтов корректно отображаются
+- **globals.css**:
+  - ✅ Mobile 320-375px: tighter padding, smaller fonts, full-width buttons
+  - ✅ overflow: max-width 100vw на мобильных
+  - ✅ min-height 44px для touch targets
+  - ✅ Safe-area-inset для footer и кнопок
+  - ✅ Burger button: 44px touch target
+
 ## v75 — 2026-07-03 — Expert Audit: Mobile Readability + Conversion Copy + Phone in Hero
 - **Тема**: Light Premium (продолжение v74)
 - **Mobile Readability Fixes**:

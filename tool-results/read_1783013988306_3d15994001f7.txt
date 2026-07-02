@@ -1,0 +1,741 @@
+     1→"use client";
+     2→
+     3→import { useRef } from "react";
+     4→import { motion, useScroll, useTransform, useInView } from "framer-motion";
+     5→import Link from "next/link";
+     6→import SiteNav from "@/components/SiteNav";
+     7→import ParallaxImage from "@/components/ParallaxImage";
+     8→import VideoBreak from "@/components/VideoBreak";
+     9→import TextReveal from "@/components/TextReveal";
+    10→import CountUp from "@/components/CountUp";
+    11→import MagneticButton from "@/components/MagneticButton";
+    12→import TiltCard from "@/components/TiltCard";
+    13→import ImageReveal from "@/components/ImageReveal";
+    14→import ParticleField from "@/components/ParticleField";
+    15→import KineticText from "@/components/KineticText";
+    16→import AnimatedTypewriter from "@/components/AnimatedTypewriter";
+    17→import FluidBackground from "@/components/FluidBackground";
+    18→import MorphingBlob from "@/components/MorphingBlob";
+    19→import ConfettiButton from "@/components/ConfettiButton";
+    20→
+    21→/* ═══════════════════════════════════════════════════════════════
+    22→   ИНТЕРФУД КЕЙТЕРИНГ — О компании / About Page  (LIGHT THEME)
+    23→   Upgraded: ParticleField, KineticText, AnimatedTypewriter,
+    24→   2x VideoBreak, FluidBackground, MorphingBlob, ConfettiButton
+    25→   ═══════════════════════════════════════════════════════════════ */
+    26→
+    27→/* ─── Media ─── */
+    28→const VID = {
+    29→  hero: "/videos/hero-catering.mp4",
+    30→  kitchen: "/videos/hero-catering.mp4",
+    31→  serving: "/videos/hero-catering.mp4",
+    32→};
+    33→
+    34→const IMG = {
+    35→  hero: "/images/hero.jpg",
+    36→  chef: "/images/about.jpg",
+    37→  team: "/images/about.jpg",
+    38→  kitchen: "/images/food_general.jpg",
+    39→  kitchen2: "/images/furshet_food.jpg",
+    40→  kitchen3: "/images/food_salmon.jpg",
+    41→  serving: "/images/furshet_food.jpg",
+    42→  wedding: "/images/wedding.jpg",
+    43→  corporate: "/images/hero_rooftop.jpg",
+    44→  banquet: "/images/furshet.jpg",
+    45→  decor: "/images/banket_table1.jpg",
+    46→  bar: "/images/furshet_canape.jpg",
+    47→  dessert: "/images/gallery_1.jpg",
+    48→  canape: "/images/furshet_canape.jpg",
+    49→  roses: "/images/hero_rooftop.jpg",
+    50→  hall: "/images/hero_rooftop.jpg",
+    51→};
+    52→
+    53→/* ─── Data ─── */
+    54→const ACHIEVEMENTS = [
+    55→  { target: 18, suffix: "+", label: "лет на рынке" },
+    56→  { target: 3500, suffix: "+", label: "мероприятий" },
+    57→  { target: 250000, suffix: "+", label: "гостей" },
+    58→  { target: 10, suffix: "/10", label: "Restoclub · 14 отзывов" },
+    59→  { target: 4.55, suffix: "/5", label: "CaterMe · 30 отзывов", decimals: 2 },
+    60→];
+    61→
+    62→const TIMELINE = [
+    63→  { year: "2007", title: "Основание компании", desc: "Дмитрий Нилов основал Интерфуд, начав с небольших фуршетов на 30–50 человек. Первый крупный заказ — юбилейный вечер на 120 гостей в особняке на Петроградской стороне." },
+    64→  { year: "2010", title: "Первая собственная кухня", desc: "Открыта первая производственная кухня. Инвестиции в собственное оборудование и мобильные кухни позволили контролировать качество на каждом этапе." },
+    65→  { year: "2013", title: "1 000-е мероприятие", desc: "Юбилейное тысячное мероприятие — масштабный корпоратив на 1 000 гостей. Компания расширила команду до 45 человек и приобрела первых постоянных корпоративных клиентов." },
+    66→  { year: "2016", title: "Расширение команды до 100 человек", desc: "Интерфуд стал одним из лидеров свадебного кейтеринга Санкт-Петербурга. Разработаны три свадебных пакета, проведено более 300 свадеб за сезон." },
+    67→  { year: "2019", title: "Новая производственная кухня", desc: "Запущена новая собственная производственная кухня. Новые возможности для создания блюд любой сложности, включая шоу-станции с живой готовкой." },
+    68→  { year: "2022", title: "3 000-е мероприятие", desc: "Внедрена собственная система управления мероприятиями и контроль качества HACCP. Клиенты получили личный кабинет для отслеживания заказов." },
+    69→  { year: "2025", title: "Новые форматы и цифровизация", desc: "Расширяем форматы мероприятий, запускаем онлайн-расчёт стоимости и цифровое меню. Продолжаем расти и совершенствовать сервис." },
+    70→];
+    71→
+    72→const VALUES = [
+    73→  {
+    74→    icon: "✦",
+    75→    title: "Качество без компромиссов",
+    76→    desc: "Только свежие сезонные продукты от проверенных поставщиков. Тройной контроль качества — на кухне, при упаковке и перед подачей. Никаких полуфабрикатов. За 18 лет — ни одного возврата по качеству.",
+    77→  },
+    78→  {
+    79→    icon: "◆",
+    80→    title: "Индивидуальный подход",
+    81→    desc: "Два одинаковых мероприятия не существует — и два одинаковых меню тоже. Каждое меню разрабатывается персонально под ваш формат, бюджет и предпочтения гостей. Бесплатная дегустация — от 30 человек.",
+    82→  },
+    83→  {
+    84→    icon: "❖",
+    85→    title: "Невидимый сервис",
+    86→    desc: "Лучший сервис — тот, который не замечают. Наши официанты рядом ровно в нужный момент и исчезают, когда не нужны. 1 официант на 8–10 гостей — подача ±3 мин от таймлайна.",
+    87→  },
+    88→  {
+    89→    icon: "⬡",
+    90→    title: "Ответственность по договору",
+    91→    desc: "Фиксируем бюджет и таймлайн в договоре. Резерв блюд на 10%, план Б на случай непогоды, полное документальное оформление. Если нарушим тайминг — вернём 100% стоимости обслуживания. 98% клиентов возвращаются.",
+    92→  },
+    93→];
+    94→
+    95→const TEAM = [
+    96→  {
+    97→    name: "Дмитрий Нилов",
+    98→    role: "Шеф-повар и основатель",
+    99→    desc: "Более 20 лет в гастрономии. Основатель компании «Интерфуд», создатель концепции «Гастрономическое путешествие».",
+   100→    img: IMG.chef,
+   101→  },
+   102→];
+   103→
+   104→const CLIENTS = [
+   105→  {
+   106→    name: "Pepsico",
+   107→    event: "Кофе-брейк на 300 персон",
+   108→    icon: "☕",
+   109→  },
+   110→  {
+   111→    name: "Ростелеком",
+   112→    event: "Выездное барбекю",
+   113→    icon: "🔥",
+   114→  },
+   115→  {
+   116→    name: "Emporio Armani",
+   117→    event: "Выездной фуршет для презентации",
+   118→    icon: "👔",
+   119→  },
+   120→  {
+   121→    name: "Aurora Concert Hall",
+   122→    event: "Корпоратив на 250 персон, 20 официантов, 5 шеф-поваров",
+   123→    icon: "🎵",
+   124→  },
+   125→  {
+   126→    name: "Harley Days",
+   127→    event: "260 байкеров в день",
+   128→    icon: "🏍",
+   129→  },
+   130→];
+   131→
+   132→const GALLERY = [
+   133→  { img: IMG.canape, alt: "Канапе-станция" },
+   134→  { img: IMG.wedding, alt: "Свадебная сервировка" },
+   135→  { img: IMG.kitchen2, alt: "Наша кухня" },
+   136→  { img: IMG.dessert, alt: "Десертный стол" },
+   137→  { img: IMG.roses, alt: "Выездное мероприятие" },
+   138→  { img: IMG.kitchen3, alt: "Производственная кухня" },
+   139→  { img: IMG.decor, alt: "Праздничный декор" },
+   140→  { img: IMG.banquet, alt: "Банкетная подача" },
+   141→];
+   142→
+   143→/* ─── Typewriter phrases ─── */
+   144→const VALUE_PHRASES = [
+   145→  "Страсть к гастрономии",
+   146→  "18 лет без единого срыва",
+   147→  "Контроль качества HACCP",
+   148→  "Индивидуальный подход",
+   149→  "Невидимый сервис",
+   150→  "Ответственность за результат",
+   151→];
+   152→
+   153→/* ─── Animation helpers ─── */
+   154→const fadeUp = {
+   155→  hidden: { opacity: 0, y: 60 },
+   156→  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.4, 0, 0.2, 1] as const } },
+   157→};
+   158→
+   159→function Reveal({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
+   160→  const ref = useRef<HTMLDivElement>(null);
+   161→  const isInView = useInView(ref, { once: true, margin: "-60px" });
+   162→  return (
+   163→    <motion.div
+   164→      ref={ref}
+   165→      initial="hidden"
+   166→      animate={isInView ? "visible" : "hidden"}
+   167→      variants={fadeUp}
+   168→      transition={{ delay }}
+   169→      className={className}
+   170→    >
+   171→      {children}
+   172→    </motion.div>
+   173→  );
+   174→}
+   175→
+   176→/* ═══════════════════════════════════════════════════════════════
+   177→   Page
+   178→   ═══════════════════════════════════════════════════════════════ */
+   179→export default function AboutPage() {
+   180→  const heroRef = useRef<HTMLDivElement>(null);
+   181→  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
+   182→  const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+   183→  const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+   184→
+   185→  return (
+   186→    <main>
+   187→      <SiteNav />
+   188→
+   189→      {/* ────────────────────────────────────────────
+   190→          1. HERO — Video background + ParticleField + KineticText
+   191→          ──────────────────────────────────────────── */}
+   192→      <section ref={heroRef} aria-label="О компании" style={{ position: "relative", minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", background: "#FEFDFB" }}>
+   193→        {/* Video BG */}
+   194→        <motion.div style={{ position: "absolute", inset: 0, y: heroY, zIndex: 0 }}>
+   195→          <video
+   196→            autoPlay
+   197→            muted
+   198→            loop
+   199→            playsInline
+   200→            preload="metadata"
+   201→            poster="/images/hero-poster.jpg"
+   202→            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+   203→          >
+   204→            <source src={VID.hero} type="video/mp4" />
+   205→          </video>
+   206→        </motion.div>
+   207→        {/* Light overlay */}
+   208→        <div style={{ position: "absolute", inset: 0, zIndex: 1, background: "linear-gradient(to bottom, rgba(254,253,251,0.25) 0%, rgba(254,253,251,0.15) 30%, rgba(254,253,251,0.4) 60%, rgba(254,253,251,0.92) 100%)" }} />
+   209→        {/* ParticleField overlay */}
+   210→        <ParticleField count={50} speed={0.25} style={{ zIndex: 2 }} />
+   211→        {/* Content */}
+   212→        <motion.div
+   213→          style={{ position: "relative", zIndex: 3, textAlign: "center", padding: "2rem", maxWidth: 900, opacity: heroOpacity }}
+   214→          initial={{ opacity: 0, y: 40 }}
+   215→          animate={{ opacity: 1, y: 0 }}
+   216→          transition={{ duration: 1.2, delay: 0.3 }}
+   217→        >
+   218→          <motion.div
+   219→            style={{ fontSize: "0.65rem", fontWeight: 600, letterSpacing: "0.3em", textTransform: "uppercase", color: "#B8955A", marginBottom: "1.5rem" }}
+   220→            initial={{ opacity: 0, y: 20 }}
+   221→            animate={{ opacity: 1, y: 0 }}
+   222→            transition={{ duration: 0.8, delay: 0.6 }}
+   223→          >
+   224→            О компании
+   225→          </motion.div>
+   226→          {/* KineticText with fadeUp animation */}
+   227→          <KineticText
+   228→            text="18 лет без единого срыва — потому что мы отвечаем за каждое блюдо"
+   229→            as="h1"
+   230→            animation="fadeUp"
+   231→            className="section-title"
+   232→            style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(2.4rem, 6vw, 4.5rem)", fontWeight: 400, lineHeight: 1.1, color: "#1A1A1A" }}
+   233→            stagger={0.04}
+   234→          />
+   235→          {/* AnimatedTypewriter for values */}
+   236→          <motion.div
+   237→            initial={{ opacity: 0 }}
+   238→            animate={{ opacity: 1 }}
+   239→            transition={{ duration: 0.6, delay: 1.5 }}
+   240→            style={{ marginTop: "1rem", fontSize: "1.15rem", color: "#B8955A", fontFamily: "var(--font-serif)", minHeight: "2rem" }}
+   241→          >
+   242→            <AnimatedTypewriter
+   243→              texts={VALUE_PHRASES}
+   244→              speed={70}
+   245→              deleteSpeed={35}
+   246→              pauseDuration={2500}
+   247→            />
+   248→          </motion.div>
+   249→          <motion.p
+   250→            style={{ marginTop: "1.5rem", fontSize: "1.05rem", lineHeight: 1.7, color: "rgba(26,26,26,0.65)", maxWidth: 600, marginLeft: "auto", marginRight: "auto" }}
+   251→            initial={{ opacity: 0, y: 20 }}
+   252→            animate={{ opacity: 1, y: 0 }}
+   253→            transition={{ duration: 0.8, delay: 1 }}
+   254→          >
+   255→            Для нас организация кейтеринга – не просто работа, а увлечение, которое стало стилем жизни. С 2007 года мы виртуозно подбираем меню для любого события, завоевывая сердца даже самых искушенных гурманов. Профессионализм команды, использование только качественных продуктов, оперативное обслуживание, сотрудничество с лучшими площадками и безупречная подача блюд – философия, которая отражается в каждом моменте нашей работы.
+   256→          </motion.p>
+   257→          <motion.p
+   258→            style={{ marginTop: "0.75rem", fontSize: "0.9rem", fontStyle: "italic", lineHeight: 1.7, color: "#B8955A", maxWidth: 600, marginLeft: "auto", marginRight: "auto" }}
+   259→            initial={{ opacity: 0, y: 20 }}
+   260→            animate={{ opacity: 1, y: 0 }}
+   261→            transition={{ duration: 0.8, delay: 1.1 }}
+   262→          >
+   263→            Дмитрий Нилов. Основатель компании
+   264→          </motion.p>
+   265→          <motion.div
+   266→            initial={{ opacity: 0, y: 20 }}
+   267→            animate={{ opacity: 1, y: 0 }}
+   268→            transition={{ duration: 0.8, delay: 1.2 }}
+   269→            style={{ marginTop: "2rem" }}
+   270→          >
+   271→            <ConfettiButton
+   272→              onClick={() => {}}
+   273→              className="btn-gold"
+   274→              style={{ padding: "1rem 2.5rem", fontSize: "0.75rem", fontWeight: 600, letterSpacing: "0.15em", textTransform: "uppercase", borderRadius: "100px", cursor: "pointer" }}
+   275→            >
+   276→              Узнать подробнее
+   277→            </ConfettiButton>
+   278→          </motion.div>
+   279→        </motion.div>
+   280→      </section>
+   281→
+   282→      {/* ────────────────────────────────────────────
+   283→          2. ACHIEVEMENTS BAR — CountUp animated stats
+   284→          ──────────────────────────────────────────── */}
+   285→      <section aria-label="Достижения" style={{ padding: "4rem 2rem", background: "#FAFAF8" }}>
+   286→        <div className="container">
+   287→          <div className="about-stats-grid">
+   288→            {ACHIEVEMENTS.map((item, i) => (
+   289→              <div key={i} className="stat-item">
+   290→                <h3 style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(1.6rem, 3.5vw, 2.6rem)", fontWeight: 400, color: "#B8955A" }}>
+   291→                  <CountUp
+   292→                    target={item.target}
+   293→                    suffix={item.suffix}
+   294→                    decimals={item.decimals || 0}
+   295→                    duration={2.5}
+   296→                  />
+   297→                </h3>
+   298→                <p style={{ fontSize: "0.7rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--color-text-muted)", marginTop: "0.25rem" }}>
+   299→                  {item.label}
+   300→                </p>
+   301→              </div>
+   302→            ))}
+   303→          </div>
+   304→        </div>
+   305→      </section>
+   306→
+   307→      {/* ────────────────────────────────────────────
+   308→          3. STORY — Two-column: ImageReveal + Text + MorphingBlob
+   309→          ──────────────────────────────────────────── */}
+   310→      <section aria-label="Наша история" style={{ padding: "6rem 2rem", background: "#FEFDFB", position: "relative", overflow: "hidden" }}>
+   311→        {/* MorphingBlob decoration */}
+   312→        <MorphingBlob
+   313→          size={500}
+   314→          color1="rgba(184,149,90,0.08)"
+   315→          color2="rgba(158,182,143,0.05)"
+   316→          opacity={0.5}
+   317→          speed={10}
+   318→          style={{ position: "absolute", top: "-10%", right: "-8%", zIndex: 0 }}
+   319→        />
+   320→        <div className="container" style={{ position: "relative", zIndex: 1 }}>
+   321→          <div className="about-story-grid">
+   322→            {/* Left — Image */}
+   323→            <ImageReveal
+   324→              src={IMG.chef}
+   325→              alt="Дмитрий Нилов, основатель Интерфуд"
+   326→              direction="left"
+   327→              style={{ borderRadius: 20, height: 560 }}
+   328→            />
+   329→            {/* Right — Text */}
+   330→            <div>
+   331→              <Reveal>
+   332→                <span className="section-label">Наша история</span>
+   333→              </Reveal>
+   334→              <TextReveal
+   335→                text="От маленькой кухни к лидерству в индустрии"
+   336→                as="h2"
+   337→                className="section-title"
+   338→                stagger={0.03}
+   339→              />
+   340→              <Reveal delay={0.15}>
+   341→                <p style={{ fontSize: "1rem", lineHeight: 1.8, color: "var(--color-text-subtle)", maxWidth: 520 }}>
+   342→                  Всё началось с одной мечты — показать, что кейтеринг может быть искусством. Дмитрий Нилов, посвятивший себя кулинарному мастерству и оттачивавший своё мастерство в лучших традициях гастрономии, вернулся в Санкт-Петербург с убеждением: каждое мероприятие заслуживает гастрономии ресторанного уровня.
+   343→                </p>
+   344→              </Reveal>
+   345→              <Reveal delay={0.25}>
+   346→                <p style={{ fontSize: "0.95rem", lineHeight: 1.8, color: "var(--color-text-muted)", marginTop: "1.25rem", maxWidth: 520 }}>
+   347→                  За 18 лет Интерфуд прошёл путь от команды из 5 человек до команды профессионалов. Мы построили собственную кухню, создали уникальные стандарты сервиса и обслужили более 250 000 гостей. Но главное — за 18 лет ни одного срыва мероприятия. Каждое блюдо — с душой, каждое мероприятие — как собственное.
+   348→                </p>
+   349→              </Reveal>
+   350→              <Reveal delay={0.35}>
+   351→                <div style={{ display: "flex", gap: "1rem", marginTop: "2rem", flexWrap: "wrap" }}>
+   352→                  <MagneticButton as="a" href="/menu" className="btn-gold">Наше меню</MagneticButton>
+   353→                  <MagneticButton as="a" href="/gallery" className="btn-outline">Галерея</MagneticButton>
+   354→                </div>
+   355→              </Reveal>
+   356→            </div>
+   357→          </div>
+   358→        </div>
+   359→      </section>
+   360→
+   361→      {/* ────────────────────────────────────────────
+   362→          Video interlude 1
+   363→          ──────────────────────────────────────────── */}
+   364→      <VideoBreak
+   365→        src={VID.kitchen}
+   366→        title="Искусство в каждом блюде"
+   367→        subtitle="Наша кухня — это сердце компании"
+   368→      />
+   369→
+   370→      {/* ────────────────────────────────────────────
+   371→          4. TIMELINE — 7 milestones, alternating
+   372→          ──────────────────────────────────────────── */}
+   373→      <section aria-label="Хронология" style={{ padding: "6rem 2rem", background: "#FAFAF8" }}>
+   374→        <div className="container">
+   375→          <Reveal>
+   376→            <span className="section-label">Хронология</span>
+   377→          </Reveal>
+   378→          <TextReveal
+   379→            text="Путь Интерфуда"
+   380→            as="h2"
+   381→            className="section-title"
+   382→            stagger={0.03}
+   383→          />
+   384→
+   385→          <div style={{ position: "relative", marginTop: "3rem", maxWidth: 900, marginLeft: "auto", marginRight: "auto" }}>
+   386→            {/* Central gold line */}
+   387→            <div style={{ position: "absolute", left: "50%", top: 0, bottom: 0, width: 2, background: "rgba(184,149,90,0.2)", transform: "translateX(-50%)" }} />
+   388→
+   389→            {TIMELINE.map((item, i) => {
+   390→              const isLeft = i % 2 === 0;
+   391→              return (
+   392→                <Reveal key={i} delay={i * 0.05}>
+   393→                  <div className="about-timeline-row">
+   394→                    {/* Left column */}
+   395→                    <div style={{ textAlign: "right" }}>
+   396→                      {isLeft ? (
+   397→                        <>
+   398→                          <h3 style={{ fontFamily: "var(--font-serif)", fontSize: "1.3rem", fontWeight: 400, color: "#1A1A1A", marginBottom: "0.5rem" }}>{item.title}</h3>
+   399→                          <p style={{ color: "var(--color-text-muted)", fontSize: "0.88rem", lineHeight: 1.7 }}>{item.desc}</p>
+   400→                        </>
+   401→                      ) : (
+   402→                        <div style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(2.5rem, 7vw, 4.5rem)", fontWeight: 300, color: "rgba(184,149,90,0.12)", lineHeight: 1 }}>{item.year}</div>
+   403→                      )}
+   404→                    </div>
+   405→                    {/* Dot */}
+   406→                    <div className="about-timeline-dot" style={{
+   407→                      width: 16,
+   408→                      height: 16,
+   409→                      borderRadius: "50%",
+   410→                      background: "#B8955A",
+   411→                      border: "3px solid #FAFAF8",
+   412→                      zIndex: 2,
+   413→                      position: "relative",
+   414→                      boxShadow: "0 0 0 4px rgba(184,149,90,0.15)",
+   415→                    }} />
+   416→                    {/* Right column */}
+   417→                    <div style={{ textAlign: "left" }}>
+   418→                      {isLeft ? (
+   419→                        <div style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(2.5rem, 7vw, 4.5rem)", fontWeight: 300, color: "rgba(184,149,90,0.12)", lineHeight: 1 }}>{item.year}</div>
+   420→                      ) : (
+   421→                        <>
+   422→                          <h3 style={{ fontFamily: "var(--font-serif)", fontSize: "1.3rem", fontWeight: 400, color: "#1A1A1A", marginBottom: "0.5rem" }}>{item.title}</h3>
+   423→                          <p style={{ color: "var(--color-text-muted)", fontSize: "0.88rem", lineHeight: 1.7 }}>{item.desc}</p>
+   424→                        </>
+   425→                      )}
+   426→                    </div>
+   427→                  </div>
+   428→                </Reveal>
+   429→              );
+   430→            })}
+   431→          </div>
+   432→        </div>
+   433→      </section>
+   434→
+   435→      {/* ────────────────────────────────────────────
+   436→          Video interlude 2
+   437→          ──────────────────────────────────────────── */}
+   438→      <VideoBreak
+   439→        src={VID.serving}
+   440→        title="Сервис, который не замечают"
+   441→        subtitle="Невидимое совершенство в каждом жесте"
+   442→      />
+   443→
+   444→      {/* ────────────────────────────────────────────
+   445→          Parallax Divider
+   446→          ──────────────────────────────────────────── */}
+   447→      <ParallaxImage
+   448→        src={IMG.wedding}
+   449→        alt="Свадебная сервировка"
+   450→        speed={0.25}
+   451→        style={{ height: "45vh", minHeight: 280 }}
+   452→        overlay
+   453→        overlayOpacity={0.35}
+   454→        className="parallax-ken-burns"
+   455→      />
+   456→
+   457→      {/* ────────────────────────────────────────────
+   458→          5. VALUES — 4 TiltCards + FluidBackground + MorphingBlob
+   459→          ──────────────────────────────────────────── */}
+   460→      <section aria-label="Наши ценности" style={{ padding: "6rem 2rem", background: "#FEFDFB", position: "relative", overflow: "hidden" }}>
+   461→        {/* FluidBackground behind values */}
+   462→        <FluidBackground
+   463→          color1="rgba(184, 149, 90, 0.06)"
+   464→          color2="rgba(158, 182, 143, 0.04)"
+   465→          color3="rgba(232, 196, 184, 0.04)"
+   466→          speed={6}
+   467→          style={{ position: "absolute", inset: 0, zIndex: 0 }}
+   468→        />
+   469→        {/* MorphingBlob decoration */}
+   470→        <MorphingBlob
+   471→          size={350}
+   472→          color1="rgba(184,149,90,0.10)"
+   473→          color2="rgba(232,196,184,0.06)"
+   474→          opacity={0.4}
+   475→          speed={12}
+   476→          style={{ position: "absolute", bottom: "-5%", left: "-5%", zIndex: 0 }}
+   477→        />
+   478→        <div className="container" style={{ position: "relative", zIndex: 1 }}>
+   479→          <Reveal>
+   480→            <span className="section-label">Во что мы верим</span>
+   481→          </Reveal>
+   482→          <TextReveal
+   483→            text="Принципы, которые защищают ваш праздник"
+   484→            as="h2"
+   485→            className="section-title"
+   486→            stagger={0.03}
+   487→          />
+   488→          <Reveal delay={0.1}>
+   489→            <p className="section-subtitle" style={{ marginBottom: "2.5rem" }}>
+   490→              Наши ценности — не слова на стене, а гарантии, которые вы получаете по договору.
+   491→            </p>
+   492→          </Reveal>
+   493→
+   494→          <div className="about-values-grid">
+   495→            {VALUES.map((val, i) => (
+   496→              <TiltCard key={i} glare maxTilt={8}>
+   497→                <div style={{
+   498→                  background: "var(--color-warm-white)",
+   499→                  border: "1px solid rgba(184,149,90,0.12)",
+   500→                  borderRadius: 20,
+   501→                  padding: "2.5rem",
+   502→                  position: "relative",
+   503→                  overflow: "hidden",
+   504→                }}>
+   505→                  {/* Decorative corner */}
+   506→                  <div style={{ position: "absolute", top: 0, right: 0, width: 80, height: 80, background: "linear-gradient(135deg, transparent 50%, rgba(184,149,90,0.06) 50%)", borderRadius: "0 20px 0 0" }} />
+   507→                  <div style={{ fontSize: "1.5rem", color: "#B8955A", marginBottom: "1rem" }}>{val.icon}</div>
+   508→                  <h3 style={{ fontFamily: "var(--font-serif)", fontSize: "1.25rem", fontWeight: 400, color: "#1A1A1A", marginBottom: "0.75rem" }}>{val.title}</h3>
+   509→                  <p style={{ color: "var(--color-text-muted)", fontSize: "0.9rem", lineHeight: 1.7 }}>{val.desc}</p>
+   510→                </div>
+   511→              </TiltCard>
+   512→            ))}
+   513→          </div>
+   514→        </div>
+   515→      </section>
+   516→
+   517→      {/* ────────────────────────────────────────────
+   518→          5b. NOTABLE CLIENTS — Carousel / Grid
+   519→          ──────────────────────────────────────────── */}
+   520→      <section aria-label="Наши клиенты" style={{ padding: "6rem 2rem", background: "#FFFFFF", position: "relative", overflow: "hidden" }}>
+   521→        <MorphingBlob
+   522→          size={400}
+   523→          color1="rgba(184,149,90,0.08)"
+   524→          color2="rgba(212,184,124,0.04)"
+   525→          opacity={0.4}
+   526→          speed={14}
+   527→          style={{ position: "absolute", top: "-15%", left: "-10%", zIndex: 0 }}
+   528→        />
+   529→        <div className="container" style={{ position: "relative", zIndex: 1 }}>
+   530→          <Reveal>
+   531→            <span className="section-label" style={{ color: "#B8955A" }}>Нам доверяют</span>
+   532→          </Reveal>
+   533→          <TextReveal
+   534→            text="Клиенты, которые выбрали Интерфуд"
+   535→            as="h2"
+   536→            className="section-title"
+   537→            style={{ color: "#1A1A1A" }}
+   538→            stagger={0.03}
+   539→          />
+   540→          <Reveal delay={0.1}>
+   541→            <p className="section-subtitle" style={{ marginBottom: "2.5rem", color: "var(--color-text-muted)" }}>
+   542→              Крупнейшие компании и культовые мероприятия Санкт-Петербурга
+   543→            </p>
+   544→          </Reveal>
+   545→
+   546→          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.5rem", maxWidth: 1100, margin: "0 auto" }}>
+   547→            {CLIENTS.map((client, i) => (
+   548→              <Reveal key={i} delay={i * 0.08}>
+   549→                <div style={{
+   550→                  background: "var(--color-warm-white)",
+   551→                  border: "1px solid rgba(184,149,90,0.15)",
+   552→                  borderRadius: 16,
+   553→                  padding: "2rem",
+   554→                  transition: "transform 0.4s cubic-bezier(0.25,1,0.5,1), border-color 0.4s",
+   555→                  cursor: "default",
+   556→                }}
+   557→                  onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.borderColor = "rgba(184,149,90,0.35)"; }}
+   558→                  onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.borderColor = "rgba(184,149,90,0.15)"; }}
+   559→                >
+   560→                  <div style={{ fontSize: "2rem", marginBottom: "0.75rem" }}>{client.icon}</div>
+   561→                  <h3 style={{ fontFamily: "var(--font-serif)", fontSize: "1.2rem", fontWeight: 400, color: "#1A1A1A", marginBottom: "0.5rem" }}>{client.name}</h3>
+   562→                  <p style={{ color: "var(--color-text-muted)", fontSize: "0.88rem", lineHeight: 1.6 }}>{client.event}</p>
+   563→                </div>
+   564→              </Reveal>
+   565→            ))}
+   566→          </div>
+   567→        </div>
+   568→      </section>
+   569→
+   570→      {/* ────────────────────────────────────────────
+   571→          6. TEAM — founder
+   572→          ──────────────────────────────────────────── */}
+   573→      <section aria-label="Команда" style={{ padding: "6rem 2rem", background: "#FAFAF8" }}>
+   574→        <div className="container">
+   575→          <Reveal>
+   576→            <span className="section-label">Команда</span>
+   577→          </Reveal>
+   578→          <TextReveal
+   579→            text="Профессионалы, которым доверяют 98% клиентов"
+   580→            as="h2"
+   581→            className="section-title"
+   582→            stagger={0.03}
+   583→          />
+   584→          <Reveal delay={0.1}>
+   585→            <p className="section-subtitle" style={{ marginBottom: "2.5rem" }}>
+   586→              За каждым безупречным мероприятием стоят профессионалы, которые любят своё дело и несут личную ответственность за результат.
+   587→            </p>
+   588→          </Reveal>
+   589→
+   590→          <div className="about-team-grid">
+   591→            {TEAM.map((member, i) => (
+   592→              <Reveal key={i} delay={i * 0.1}>
+   593→                <div className="card" style={{ overflow: "hidden" }}>
+   594→                  <div style={{ height: 300, overflow: "hidden" }}>
+   595→                    <img
+   596→                      src={member.img}
+   597→                      alt={member.name}
+   598→                      loading="lazy"
+   599→                      style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.7s cubic-bezier(0.25,1,0.5,1)" }}
+   600→                      onMouseEnter={(e) => { (e.target as HTMLImageElement).style.transform = "scale(1.05)"; }}
+   601→                      onMouseLeave={(e) => { (e.target as HTMLImageElement).style.transform = "scale(1)"; }}
+   602→                    />
+   603→                  </div>
+   604→                  <div style={{ padding: "1.5rem" }}>
+   605→                    <h3 style={{ fontFamily: "var(--font-serif)", fontSize: "1.15rem", fontWeight: 400, color: "#1A1A1A", marginBottom: "0.25rem" }}>{member.name}</h3>
+   606→                    <div style={{ fontSize: "0.7rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "#B8955A", fontWeight: 600, marginBottom: "0.75rem" }}>{member.role}</div>
+   607→                    <p style={{ color: "var(--color-text-muted)", fontSize: "0.82rem", lineHeight: 1.65 }}>{member.desc}</p>
+   608→                  </div>
+   609→                </div>
+   610→              </Reveal>
+   611→            ))}
+   612→          </div>
+   613→        </div>
+   614→      </section>
+   615→
+   616→      {/* ────────────────────────────────────────────
+   617→          7. MASONRY GALLERY — 8 images
+   618→          ──────────────────────────────────────────── */}
+   619→      <section aria-label="Фотогалерея" style={{ padding: "6rem 2rem", background: "#FEFDFB", position: "relative", overflow: "hidden" }}>
+   620→        <MorphingBlob
+   621→          size={300}
+   622→          color1="rgba(184,149,90,0.07)"
+   623→          color2="rgba(158,182,143,0.04)"
+   624→          opacity={0.5}
+   625→          speed={14}
+   626→          style={{ position: "absolute", top: "20%", right: "-5%", zIndex: 0 }}
+   627→        />
+   628→        <div className="container" style={{ position: "relative", zIndex: 1 }}>
+   629→          <Reveal>
+   630→            <span className="section-label">Галерея</span>
+   631→          </Reveal>
+   632→          <TextReveal
+   633→            text="Моменты, которые мы создаём для вас"
+   634→            as="h2"
+   635→            className="section-title"
+   636→            stagger={0.03}
+   637→          />
+   638→
+   639→          <div className="gallery-masonry" style={{ marginTop: "2rem" }}>
+   640→            {GALLERY.map((item, i) => (
+   641→              <Reveal key={i} delay={i * 0.05}>
+   642→                <div className="gallery-item">
+   643→                  <img src={item.img} alt={item.alt} loading="lazy" />
+   644→                  <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", opacity: 0, transition: "opacity 0.4s", background: "linear-gradient(to top, rgba(250,250,247,0.85) 0%, transparent 50%)" }}
+   645→                    onMouseEnter={(e) => { (e.currentTarget as HTMLDivElement).style.opacity = "1"; }}
+   646→                    onMouseLeave={(e) => { (e.currentTarget as HTMLDivElement).style.opacity = "0"; }}
+   647→                  >
+   648→                    <span style={{ color: "#1A1A1A", fontSize: "1.5rem", fontWeight: 300 }}>+</span>
+   649→                  </div>
+   650→                </div>
+   651→              </Reveal>
+   652→            ))}
+   653→          </div>
+   654→        </div>
+   655→      </section>
+   656→
+   657→      {/* ────────────────────────────────────────────
+   658→          8. CTA — Full bleed with ConfettiButton
+   659→          ──────────────────────────────────────────── */}
+   660→      <section aria-label="Стать клиентом" style={{ position: "relative", overflow: "hidden" }}>
+   661→        <div style={{ position: "absolute", inset: 0 }}>
+   662→          <img src={IMG.hall} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} loading="lazy" />
+   663→        </div>
+   664→        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(250,250,247,0.88) 0%, rgba(254,253,251,0.92) 100%)" }} />
+   665→        <div style={{ position: "relative", zIndex: 2, padding: "6rem 2rem", textAlign: "center", maxWidth: 700, margin: "0 auto" }}>
+   666→          <Reveal>
+   667→            <h2 style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(2rem, 5vw, 3.5rem)", fontWeight: 400, color: "#1A1A1A", lineHeight: 1.15, marginBottom: "1.5rem" }}>
+   668→              Станьте частью нашей <em style={{ color: "#D4B87C", fontStyle: "italic" }}>истории</em>
+   669→            </h2>
+   670→            <p style={{ color: "var(--color-text-subtle)", fontSize: "1rem", lineHeight: 1.7, marginBottom: "2rem" }}>
+   671→              Оставьте заявку — и наш кейтеринг-консьерж свяжется с вами в течение 30 минут. Бесплатная консультация, расчёт и подбор меню.
+   672→            </p>
+   673→            <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap", alignItems: "center" }}>
+   674→              <ConfettiButton
+   675→                onClick={() => {}}
+   676→                style={{
+   677→                  padding: "1rem 2.5rem",
+   678→                  background: "linear-gradient(135deg, #B8955A, #D4B87C)",
+   679→                  color: "#fff",
+   680→                  fontSize: "0.75rem",
+   681→                  fontWeight: 600,
+   682→                  letterSpacing: "0.15em",
+   683→                  textTransform: "uppercase",
+   684→                  borderRadius: "100px",
+   685→                  border: "none",
+   686→                  cursor: "pointer",
+   687→                }}
+   688→              >
+   689→                Заказать кейтеринг
+   690→              </ConfettiButton>
+   691→              <MagneticButton as="a" href="tel:+78129195911" className="btn-outline btn-outline-light">+7 (812) 919-59-11</MagneticButton>
+   692→              <MagneticButton as="a" href="https://wa.me/79119417205?text=Здравствуйте! Хочу узнать подробнее о кейтеринге." className="btn-outline btn-outline-light" target="_blank" rel="noopener noreferrer">WhatsApp</MagneticButton>
+   693→            </div>
+   694→            <div style={{ display: "flex", gap: "2rem", justifyContent: "center", flexWrap: "wrap", marginTop: "1.5rem", color: "var(--color-text-muted)", fontSize: "0.85rem" }}>
+   695→              <a href="mailto:interfood-catering@yandex.ru" style={{ color: "var(--color-text-muted)", textDecoration: "none", transition: "color 0.3s" }} onMouseEnter={(e) => { e.currentTarget.style.color = "#D4B87C"; }} onMouseLeave={(e) => { e.currentTarget.style.color = "var(--color-text-muted)"; }}>interfood-catering@yandex.ru</a>
+   696→              <span>Новолитовская ул., 15</span>
+   697→            </div>
+   698→          </Reveal>
+   699→        </div>
+   700→      </section>
+   701→
+   702→      {/* ────────────────────────────────────────────
+   703→          9. FOOTER
+   704→          ──────────────────────────────────────────── */}
+   705→      <footer className="footer" role="contentinfo" style={{ background: "#FAFAF7", borderTop: "1px solid rgba(184,149,90,0.12)" }}>
+   706→        <div className="container" style={{ padding: "5rem 2rem 2rem" }}>
+   707→          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem" }}>
+   708→            <Link href="/" style={{ fontFamily: "var(--font-serif)", fontSize: "1.5rem", fontWeight: 500, color: "#1A1A1A", textDecoration: "none", letterSpacing: "0.15em" }}>
+   709→              ИНТЕРФУД
+   710→            </Link>
+   711→            <div style={{ display: "flex", gap: "1.5rem", flexWrap: "wrap" }}>
+   712→              <Link href="/menu" style={{ color: "var(--color-text-muted)", textDecoration: "none", fontSize: "0.85rem" }}>Меню</Link>
+   713→              <Link href="/wedding" style={{ color: "var(--color-text-muted)", textDecoration: "none", fontSize: "0.85rem" }}>Свадьбы</Link>
+   714→              <Link href="/corporate" style={{ color: "var(--color-text-muted)", textDecoration: "none", fontSize: "0.85rem" }}>Корпоратив</Link>
+   715→              <Link href="/about" style={{ color: "var(--color-text-muted)", textDecoration: "none", fontSize: "0.85rem" }}>О нас</Link>
+   716→              <Link href="/reviews" style={{ color: "var(--color-text-muted)", textDecoration: "none", fontSize: "0.85rem" }}>Отзывы</Link>
+   717→              <Link href="/" style={{ color: "var(--color-text-muted)", textDecoration: "none", fontSize: "0.85rem" }}>Главная</Link>
+   718→            </div>
+   719→            <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "0.25rem", color: "var(--color-text-muted)", fontSize: "0.8rem" }}>
+   720→              <span>&copy; 2007–2026 Интерфуд Кейтеринг</span>
+   721→              <span>Новолитовская ул., 15 · <a href="mailto:interfood-catering@yandex.ru" style={{ color: "var(--color-text-muted)", textDecoration: "none" }}>interfood-catering@yandex.ru</a></span>
+   722→              <span>WhatsApp: +7 (911) 941-72-05</span>
+   723→            </div>
+   724→          </div>
+   725→        </div>
+   726→      </footer>
+   727→
+   728→      {/* WhatsApp float */}
+   729→      <a
+   730→        href="https://wa.me/79119417205?text=Здравствуйте! Хочу узнать подробнее о компании."
+   731→        className="wa-float"
+   732→        target="_blank"
+   733→        rel="noopener noreferrer"
+   734→        aria-label="WhatsApp"
+   735→      >
+   736→        &#9742;
+   737→      </a>
+   738→    </main>
+   739→  );
+   740→}
+   741→

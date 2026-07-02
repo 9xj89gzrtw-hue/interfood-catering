@@ -321,7 +321,7 @@ export default function ContactForm({
             fontFamily: "var(--font-serif)",
             fontSize: compact ? "1.2rem" : "1.5rem",
             fontWeight: 400,
-            color: "#fff",
+            color: "var(--color-text-primary)",
             marginBottom: "0.5rem",
           }}
         >
@@ -339,7 +339,7 @@ export default function ContactForm({
           <span
             style={{
               fontSize: "0.75rem",
-              color: "rgba(255,255,255,0.6)",
+              color: "var(--color-text-secondary)",
               display: "flex",
               alignItems: "center",
               gap: "0.3rem",
@@ -350,7 +350,7 @@ export default function ContactForm({
           <span
             style={{
               fontSize: "0.75rem",
-              color: "rgba(255,255,255,0.6)",
+              color: "var(--color-text-secondary)",
               display: "flex",
               alignItems: "center",
               gap: "0.3rem",
@@ -361,7 +361,7 @@ export default function ContactForm({
           <span
             style={{
               fontSize: "0.75rem",
-              color: "rgba(255,255,255,0.6)",
+              color: "var(--color-text-secondary)",
               display: "flex",
               alignItems: "center",
               gap: "0.3rem",
@@ -614,26 +614,6 @@ export default function ContactForm({
                 )}
               </div>
 
-              {/* Message */}
-              <div>
-                <label htmlFor="cf-message" style={labelStyle}>
-                  Пожелания
-                </label>
-                <textarea
-                  id="cf-message"
-                  name="message"
-                  value={form.message}
-                  onChange={handleChange}
-                  placeholder="Расскажите о вашем мероприятии..."
-                  rows={3}
-                  style={{
-                    ...inputStyle(false),
-                    resize: "vertical",
-                    minHeight: "80px",
-                  }}
-                />
-              </div>
-
               {errors.form && (
                 <div
                   style={{
@@ -706,18 +686,40 @@ export default function ContactForm({
         </AnimatePresence>
 
         {/* Privacy note — reduces friction */}
-        <p
+        <div
           style={{
-            fontSize: "0.7rem",
-            color: "#aaa",
             textAlign: "center",
             marginTop: "1rem",
-            lineHeight: 1.4,
           }}
         >
-          🔒 Ваши данные защищены. Мы не передаём информацию третьим лицам.
-          Также вы можете написать нам в WhatsApp: +7 (911) 941-72-05 или Telegram.
-        </p>
+          <p
+            style={{
+              fontSize: "0.7rem",
+              color: "#999",
+              lineHeight: 1.5,
+              margin: 0,
+            }}
+          >
+            Нажимая кнопку, вы соглашаетесь с{" "}
+            <a href="/privacy" style={{ color: "var(--color-brand)", textDecoration: "underline" }}>политикой конфиденциальности</a>{" "}
+            и обработкой персональных данных.
+          </p>
+          <p
+            style={{
+              fontSize: "0.7rem",
+              color: "#aaa",
+              lineHeight: 1.5,
+              margin: "0.35rem 0 0",
+            }}
+          >
+            Или напишите нам напрямую:{" "}
+            <a href="https://wa.me/79119417205" style={{ color: "#25D366", textDecoration: "none", fontWeight: 500 }}>WhatsApp</a>{" "}
+            ·{" "}
+            <a href="https://t.me/nilov_catering" style={{ color: "#0088cc", textDecoration: "none", fontWeight: 500 }}>Telegram</a>{" "}
+            ·{" "}
+            <a href="tel:+78129195911" style={{ color: "var(--color-brand)", textDecoration: "none", fontWeight: 500 }}>+7 (812) 919-59-11</a>
+          </p>
+        </div>
       </form>
     </div>
   );

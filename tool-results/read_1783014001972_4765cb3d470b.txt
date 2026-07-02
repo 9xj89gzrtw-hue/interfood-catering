@@ -1,0 +1,841 @@
+     1→"use client";
+     2→
+     3→import { useRef, useState } from "react";
+     4→import { motion, useScroll, useTransform, useInView, AnimatePresence } from "framer-motion";
+     5→import Link from "next/link";
+     6→import SiteNav from "@/components/SiteNav";
+     7→import ConversionCTA from "@/components/ConversionCTA";
+     8→import TextReveal from "@/components/TextReveal";
+     9→import MorphingText from "@/components/MorphingText";
+    10→import MagneticButton from "@/components/MagneticButton";
+    11→import TiltCard from "@/components/TiltCard";
+    12→import FloatingElements from "@/components/FloatingElements";
+    13→import ParticleField from "@/components/ParticleField";
+    14→import KineticText from "@/components/KineticText";
+    15→import MorphingBlob from "@/components/MorphingBlob";
+    16→import FluidBackground from "@/components/FluidBackground";
+    17→import VideoBreak from "@/components/VideoBreak";
+    18→
+    19→/* ═══════════════════════════════════════════════════════════════
+    20→   ИНТЕРФУД КЕЙТЕРИНГ — Блог и рецепты / Blog Page  (LIGHT THEME)
+    21→   ═══════════════════════════════════════════════════════════════ */
+    22→
+    23→/* ─── Media ─── */
+    24→const VID = {
+    25→  hero: "/videos/hero-catering.mp4",
+    26→  cooking: "/videos/hero-catering.mp4",
+    27→};
+    28→
+    29→const IMG = {
+    30→  hero: "/images/gallery_1.jpg",
+    31→  chef: "/images/gallery_2.jpg",
+    32→  furshet: "/images/food_general.jpg",
+    33→  banquet: "/images/furshet_food.jpg",
+    34→  coffee: "/images/banket_food1.jpg",
+    35→  wedding: "/images/gallery_3.jpg",
+    36→  dessert: "/images/coffee.jpg",
+    37→  bar: "/images/gallery_4.jpg",
+    38→  canape: "/images/food_salmon.jpg",
+    39→  decor: "/images/food_shrimp.jpg",
+    40→};
+    41→
+    42→/* ─── Category types ─── */
+    43→type Category = "all" | "recipes" | "tips" | "trends" | "behind";
+    44→
+    45→interface Article {
+    46→  id: number;
+    47→  title: string;
+    48→  description: string;
+    49→  body: string[];
+    50→  image: string;
+    51→  category: Category;
+    52→  categoryLabel: string;
+    53→  categoryColor: string;
+    54→  author: string;
+    55→  date: string;
+    56→  readTime: string;
+    57→}
+    58→
+    59→const CATEGORIES: { key: Category; label: string }[] = [
+    60→  { key: "all", label: "Все" },
+    61→  { key: "recipes", label: "Рецепты" },
+    62→  { key: "tips", label: "Советы" },
+    63→  { key: "trends", label: "Тренды" },
+    64→  { key: "behind", label: "За кулисами" },
+    65→];
+    66→
+    67→const ARTICLES: Article[] = [
+    68→  {
+    69→    id: 1,
+    70→    title: "Как выбрать формат мероприятия",
+    71→    description: "Разбираем основные форматы кейтеринга — фуршет, банкет, кофе-брейк и доставка закусок — с актуальными ценами и рекомендациями по количеству гостей.",
+    72→    body: [
+    73→      "Выбор формата — первое и самое важное решение при организации мероприятия. От него зависят меню, логистика, количество персонала и итоговая стоимость. Interfood Catering работает с четырьмя основными форматами, и каждый из них решает свои задачи.",
+    74→      "Фуршет (от 2 450 ₽/чел) — идеален для свободного общения. Гости перемещаются между станциями, выбирая закуски по вкусу. Подходит для 30–500 гостей, особенно на презентациях, юбилеях и корпоративных вечеринках. Банкет (от 4 470 ₽/чел) — классическая посадка для 20–300 гостей с полным ужином, обслуживанием официантами и винной картой. Лучший выбор для торжественных случаев, когда важна церемониальность.",
+    75→      "Кофе-брейк (от 950 ₽/чел) — формат для деловых мероприятий на 15–1 000 человек. Кофе, чай, выпечка и лёгкие закуски поддерживают работоспособность участников конференций и семинаров. Доставка закусок (от 8 580 ₽/набор, минимальный заказ 19 000 ₽) — когда нужен стильный фуршет без выезда команды: готовые наборы канапе, брускетт и салатов с доставкой за 48 часов.",
+    76→      "Не уверены, какой формат подойдёт? Позвоните нам по телефону +7(812)919-59-11 или напишите в WhatsApp +7(911)941-72-05 — мы поможем подобрать оптимальное решение под ваш бюджет и количество гостей.",
+    77→    ],
+    78→    image: IMG.furshet,
+    79→    category: "tips",
+    80→    categoryLabel: "Советы",
+    81→    categoryColor: "#B8955A",
+    82→    author: "Interfood Catering",
+    83→    date: "1 июля 2026",
+    84→    readTime: "5 мин",
+    85→  },
+    86→  {
+    87→    id: 2,
+    88→    title: "Свадебный кейтеринг: полное руководство",
+    89→    description: "Всё о свадебном кейтеринге от Interfood: форматы площадок, подарок при заказе — флористическое сопровождение, и гибкая система составления меню.",
+    90→    body: [
+    91→      "Свадьба — один из самых важных дней в жизни, и кейтеринг играет в нём главную роль. Interfood Catering организует свадебное питание с 2007 года, и за это время мы провели тысячи торжеств в самых разных форматах и локациях.",
+    92→      "При заказе свадебного банкета или фуршета мы дарим флористическое сопровождение — живые цветы, подобранные к стилистике вашего праздника. Это наш подарок молодожёнам, который создаёт цельную атмосферу торжества. Гибкая система составления меню позволяет учесть любые предпочтения: от вегетарианских опций до халяль-меню, от сигнатурных коктейлей до торта на заказ.",
+    93→      "Мы работаем с любыми площадками: свадьба в лофте для современных пар, на корабле с видом на невские набережные, во дворце для классического торжества, в загородном коттедже для камерного праздника, или в шатре на природе для тех, кто мечтает о единении с природой. Каждый формат требует своей логистики, и наш опыт гарантирует безупречную организацию в любой локации.",
+    94→      "Свяжитесь с нами для персональной консультации: телефон +7(812)919-59-11, WhatsApp +7(911)941-72-05. Мы обсудим ваши пожелания, предложим варианты меню и рассчитаем стоимость — бесплатно и без обязательств.",
+    95→    ],
+    96→    image: IMG.wedding,
+    97→    category: "tips",
+    98→    categoryLabel: "Советы",
+    99→    categoryColor: "#B8955A",
+   100→    author: "Дмитрий Нилов",
+   101→    date: "25 июня 2026",
+   102→    readTime: "6 мин",
+   103→  },
+   104→  {
+   105→    id: 3,
+   106→    title: "Пирамиды из шампанского и шоколадные фонтаны",
+   107→    description: "Яркие акценты вашего праздника: шампанские пирамиды от 7 000 ₽, шоколадные фонтаны трёх размеров и бармен-шоу — цены и подробности.",
+   108→    body: [
+   109→      "Пирамида из шампанского — эффектный момент любого торжества. Когда 84 бокала выстраиваются в каскад и шампанское переливается сверху вниз, это становится одним из самых ярких воспоминаний вечера. В Interfood Catering мы предлагаем три формата: 35 бокалов за 7 000 ₽ для камерных праздников, 56 бокалов за 8 000 ₽ для средних мероприятий и 84 бокала за 9 000 ₽ для масштабных торжеств.",
+   110→      "Шоколадный фонтан — ещё один зрелищный элемент, который объединяет гостей вокруг. Мы предоставляем фонтаны высотой от 30 см до 1,4 м с тремя видами шоколада: молочным, тёмным и белым. К фонтану подаётся ассортимент фруктов и выпечки для обмакивания — клубника, бананы, маршмеллоу и профитроли.",
+   111→      "Бармен-шоу (от 6 000 ₽) превратит подачу напитков в настоящее представление. Наши бармены владеют флейрингом — искусством жонглирования бутылками и шейкером, которое неизменно собирает публику. Это не просто напитки — это развлечение, которое задаёт тон всему вечеру.",
+   112→      "Все эти услуги можно заказать как по отдельности, так и в комплексе с основным кейтерингом. Узнайте подробности по телефону +7(812)919-59-11 или в WhatsApp +7(911)941-72-05.",
+   113→    ],
+   114→    image: IMG.bar,
+   115→    category: "trends",
+   116→    categoryLabel: "Тренды",
+   117→    categoryColor: "#6B8FB5",
+   118→    author: "Interfood Catering",
+   119→    date: "18 июня 2026",
+   120→    readTime: "5 мин",
+   121→  },
+   122→  {
+   123→    id: 4,
+   124→    title: "Доставка закусок на дом и в офис",
+   125→    description: "Готовые наборы канапе, брускетт и салатов с доставкой за 48 часов. Актуальные цены, условия заказа и состав наборов.",
+   126→    body: [
+   127→      "Не всегда нужен полный выездной кейтеринг — иногда достаточно стильных закусок для домашнего праздника или офисного мероприятия. Служба доставки закусок Interfood предлагает готовые наборы, которые выглядят и вкусят на уровне ресторанного кейтеринга.",
+   128→      "Ассортимент и цены: канапе — 780 ₽ за 6 штук, брускетты — 660 ₽ за 3 штуки, салаты — 690 ₽ за 3 вида. Один из самых популярных вариантов — набор из 66 канапе за 8 580 ₽, которого хватает на 10–15 гостей. Все закуски готовятся в день доставки из свежих продуктов.",
+   129→      "Условия заказа: минимальная сумма заказа — 19 000 ₽. Доставка осуществляется за 48 часов с момента подтверждения. Предоплата составляет 50% от суммы заказа, остаток — при получении. Мы привозим закуски в фирменной упаковке с лёд-пакетами, чтобы сохранить свежесть и температуру подачи.",
+   130→      "Для заказа свяжитесь с нами по телефону +7(812)919-59-11 или WhatsApp +7(911)941-72-05. Менеджер поможет подобрать набор под количество гостей и бюджет, а также согласует время и адрес доставки.",
+   131→    ],
+   132→    image: IMG.canape,
+   133→    category: "tips",
+   134→    categoryLabel: "Советы",
+   135→    categoryColor: "#B8955A",
+   136→    author: "Interfood Catering",
+   137→    date: "10 июня 2026",
+   138→    readTime: "4 мин",
+   139→  },
+   140→  {
+   141→    id: 5,
+   142→    title: "Корпоративный кейтеринг: новогодний формат",
+   143→    description: "Всё включено за 1 970 ₽/персона: доставка, обслуживание, посуда, текстиль и уборка. Форматы от офиса до спортивной площадки.",
+   144→    body: [
+   145→      "Новогодний корпоративный — один из самых частых запросов в нашем кейтеринге. Interfood Catering предлагает формат «всё включено» по цене 1 970 ₽ за персону, в который входят доставка, профессиональное обслуживание, фарфоровая посуда, текстиль и уборка после мероприятия. Никаких скрытых доплат — вы знаете стоимость заранее.",
+   146→      "Форматы проведения могут быть любыми: праздник прямо в офисе — удобно и без логистических расходов; в банкетном зале — для торжественной атмосферы с программой и танцами; в лофте — для креативных команд, которым нужен стильный неформальный формат; на спортивной площадке — для активного корпоратива с соревнованиями и фуршетом.",
+   147→      "Меню формируется индивидуально под бюджет и предпочтения команды. Мы учитываем всё: от вегетарианских и диетических опций до национальных особенностей кухни. Доступны дополнения: шоколадный фонтан, бармен-шоу, пирамида из шампанского и торты на заказ с фирменной символикой компании.",
+   148→      "Бронируйте новогодний кейтеринг заранее — декабрь — самый загруженный месяц в году. Звоните +7(812)919-59-11 или пишите в WhatsApp +7(911)941-72-05 для расчёта стоимости и бронирования даты.",
+   149→    ],
+   150→    image: IMG.banquet,
+   151→    category: "behind",
+   152→    categoryLabel: "За кулисами",
+   153→    categoryColor: "#C47A7A",
+   154→    author: "Interfood Catering",
+   155→    date: "5 июня 2026",
+   156→    readTime: "5 мин",
+   157→  },
+   158→];
+   159→
+   160→/* ─── Animation helpers ─── */
+   161→const fadeUp = {
+   162→  hidden: { opacity: 0, y: 60 },
+   163→  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.4, 0, 0.2, 1] as const } },
+   164→};
+   165→
+   166→function Reveal({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
+   167→  const ref = useRef<HTMLDivElement>(null);
+   168→  const isInView = useInView(ref, { once: true, margin: "-60px" });
+   169→  return (
+   170→    <motion.div
+   171→      ref={ref}
+   172→      initial="hidden"
+   173→      animate={isInView ? "visible" : "hidden"}
+   174→      variants={fadeUp}
+   175→      transition={{ delay }}
+   176→      className={className}
+   177→    >
+   178→      {children}
+   179→    </motion.div>
+   180→  );
+   181→}
+   182→
+   183→/* ─── Article Card ─── */
+   184→function ArticleCard({ article, index }: { article: Article; index: number }) {
+   185→  const [expanded, setExpanded] = useState(false);
+   186→  return (
+   187→    <Reveal delay={index * 0.07}>
+   188→      <TiltCard className="card" glare maxTilt={6}>
+   189→        {/* Image */}
+   190→        <div style={{ position: "relative", overflow: "hidden", aspectRatio: "16/9" }}>
+   191→          <img
+   192→            src={article.image}
+   193→            alt={article.title}
+   194→            loading="lazy"
+   195→            style={{
+   196→              width: "100%",
+   197→              height: "100%",
+   198→              objectFit: "cover",
+   199→              transition: "transform 0.7s cubic-bezier(0.25,1,0.5,1)",
+   200→            }}
+   201→            onMouseEnter={(e) => { (e.target as HTMLImageElement).style.transform = "scale(1.08)"; }}
+   202→            onMouseLeave={(e) => { (e.target as HTMLImageElement).style.transform = "scale(1)"; }}
+   203→          />
+   204→          {/* Category badge */}
+   205→          <div style={{
+   206→            position: "absolute",
+   207→            top: 16,
+   208→            left: 16,
+   209→            padding: "0.3rem 0.85rem",
+   210→            borderRadius: 100,
+   211→            background: article.categoryColor,
+   212→            color: "#fff",
+   213→            fontSize: "0.65rem",
+   214→            fontWeight: 600,
+   215→            letterSpacing: "0.1em",
+   216→            textTransform: "uppercase",
+   217→          }}>
+   218→            {article.categoryLabel}
+   219→          </div>
+   220→        </div>
+   221→
+   222→        {/* Content */}
+   223→        <div style={{ padding: "1.5rem" }}>
+   224→          <h3 style={{
+   225→            fontFamily: "var(--font-serif)",
+   226→            fontSize: "1.25rem",
+   227→            fontWeight: 400,
+   228→            color: "#1A1A1A",
+   229→            lineHeight: 1.3,
+   230→            marginBottom: "0.75rem",
+   231→          }}>
+   232→            {article.title}
+   233→          </h3>
+   234→          <p style={{
+   235→            color: "var(--color-text-muted)",
+   236→            fontSize: "0.88rem",
+   237→            lineHeight: 1.65,
+   238→            marginBottom: "1rem",
+   239→          }}>
+   240→            {article.description}
+   241→          </p>
+   242→          {/* Expandable body */}
+   243→          <AnimatePresence>
+   244→            {expanded && (
+   245→              <motion.div
+   246→                initial={{ opacity: 0, height: 0 }}
+   247→                animate={{ opacity: 1, height: "auto" }}
+   248→                exit={{ opacity: 0, height: 0 }}
+   249→                transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+   250→                style={{ overflow: "hidden" }}
+   251→              >
+   252→                <div style={{
+   253→                  borderTop: "1px solid rgba(184,149,90,0.15)",
+   254→                  paddingTop: "1rem",
+   255→                  marginBottom: "1rem",
+   256→                }}>
+   257→                  {article.body.map((paragraph, pi) => (
+   258→                    <p key={pi} style={{
+   259→                      color: "var(--color-text-secondary)",
+   260→                      fontSize: "0.88rem",
+   261→                      lineHeight: 1.75,
+   262→                      marginBottom: pi < article.body.length - 1 ? "0.75rem" : 0,
+   263→                    }}>
+   264→                      {paragraph}
+   265→                    </p>
+   266→                  ))}
+   267→                </div>
+   268→              </motion.div>
+   269→            )}
+   270→          </AnimatePresence>
+   271→          <div style={{
+   272→            display: "flex",
+   273→            justifyContent: "space-between",
+   274→            alignItems: "center",
+   275→            borderTop: "1px solid rgba(0,0,0,0.06)",
+   276→            paddingTop: "1rem",
+   277→          }}>
+   278→            <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+   279→              <div style={{
+   280→                width: 28,
+   281→                height: 28,
+   282→                borderRadius: "50%",
+   283→                background: "var(--color-brand-10)",
+   284→                display: "flex",
+   285→                alignItems: "center",
+   286→                justifyContent: "center",
+   287→                fontSize: "0.65rem",
+   288→                color: "var(--color-brand-dark)",
+   289→                fontWeight: 700,
+   290→              }}>
+   291→                {article.author.charAt(0)}
+   292→              </div>
+   293→              <span style={{ fontSize: "0.78rem", color: "var(--color-text-muted)" }}>{article.author}</span>
+   294→            </div>
+   295→            <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+   296→              <span style={{ fontSize: "0.75rem", color: "var(--color-text-muted)" }}>{article.date}</span>
+   297→              <span style={{
+   298→                fontSize: "0.7rem",
+   299→                color: "var(--color-brand)",
+   300→                fontWeight: 600,
+   301→                letterSpacing: "0.05em",
+   302→              }}>
+   303→                {article.readTime}
+   304→              </span>
+   305→            </div>
+   306→            <button
+   307→              style={{
+   308→                padding: "0.5rem 1.2rem",
+   309→                borderRadius: "100px",
+   310→                fontSize: "0.72rem",
+   311→                fontWeight: 600,
+   312→                letterSpacing: "0.05em",
+   313→                border: "1.5px solid var(--color-brand)",
+   314→                background: expanded ? "var(--color-brand)" : "transparent",
+   315→                color: expanded ? "#fff" : "var(--color-brand)",
+   316→                cursor: "pointer",
+   317→                transition: "all 0.3s",
+   318→              }}
+   319→              onClick={() => setExpanded(!expanded)}
+   320→            >
+   321→              {expanded ? "Свернуть ↑" : "Читать далее →"}
+   322→            </button>
+   323→          </div>
+   324→        </div>
+   325→      </TiltCard>
+   326→    </Reveal>
+   327→  );
+   328→}
+   329→
+   330→/* ═══════════════════════════════════════════════════════════════
+   331→   Main Page Component
+   332→   ═══════════════════════════════════════════════════════════════ */
+   333→export default function BlogPage() {
+   334→  const [activeCategory, setActiveCategory] = useState<Category>("all");
+   335→  const [email, setEmail] = useState("");
+   336→  const [subscribed, setSubscribed] = useState(false);
+   337→  const heroRef = useRef<HTMLDivElement>(null);
+   338→  const { scrollYProgress } = useScroll({
+   339→    target: heroRef,
+   340→    offset: ["start start", "end start"],
+   341→  });
+   342→  const heroY = useTransform(scrollYProgress, [0, 1], [0, 200]);
+   343→  const heroOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
+   344→
+   345→  const filteredArticles = activeCategory === "all"
+   346→    ? ARTICLES
+   347→    : ARTICLES.filter((a) => a.category === activeCategory);
+   348→
+   349→  const handleSubscribe = (e: React.FormEvent) => {
+   350→    e.preventDefault();
+   351→    if (email.trim()) {
+   352→      setSubscribed(true);
+   353→      setEmail("");
+   354→      setTimeout(() => setSubscribed(false), 4000);
+   355→    }
+   356→  };
+   357→
+   358→  return (
+   359→    <>
+   360→      <SiteNav />
+   361→
+   362→      {/* ────────────────────────────────────────────
+   363→          1. HERO — Video background + MorphingText
+   364→          ──────────────────────────────────────────── */}
+   365→      <section ref={heroRef} className="hero" aria-label="Блог и рецепты">
+   366→        <motion.div style={{ position: "absolute", inset: 0, y: heroY }}>
+   367→          <div className="hero-video">
+   368→            <video
+   369→              autoPlay
+   370→              muted
+   371→              loop
+   372→              playsInline
+   373→              preload="metadata"
+   374→              poster={IMG.hero}
+   375→              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+   376→            >
+   377→              <source src={VID.hero} type="video/mp4" />
+   378→            </video>
+   379→          </div>
+   380→        </motion.div>
+   381→
+   382→        <div className="hero-overlay" style={{
+   383→          background: "linear-gradient(to bottom, rgba(254,253,251,0.15) 0%, rgba(254,253,251,0.05) 30%, rgba(254,253,251,0.25) 60%, rgba(254,253,251,0.92) 100%)",
+   384→        }} />
+   385→
+   386→        <ParticleField count={30} speed={0.2} style={{ opacity: 0.6 }} />
+   387→        <FloatingElements count={6} color="var(--color-brand)" />
+   388→        <MorphingBlob
+   389→          size={280}
+   390→          color1="rgba(184,149,90,0.10)"
+   391→          color2="rgba(158,182,143,0.06)"
+   392→          opacity={0.4}
+   393→          speed={10}
+   394→          style={{ position: "absolute", top: "10%", right: "6%", zIndex: 0 }}
+   395→        />
+   396→        <MorphingBlob
+   397→          size={200}
+   398→          color1="rgba(232,196,184,0.07)"
+   399→          color2="rgba(184,149,90,0.04)"
+   400→          opacity={0.35}
+   401→          speed={13}
+   402→          style={{ position: "absolute", bottom: "12%", left: "4%", zIndex: 0 }}
+   403→        />
+   404→
+   405→        <motion.div
+   406→          className="hero-content"
+   407→          style={{ opacity: heroOpacity, y: heroY }}
+   408→        >
+   409→          <motion.div
+   410→            initial={{ opacity: 0, y: 40 }}
+   411→            animate={{ opacity: 1, y: 0 }}
+   412→            transition={{ duration: 1, ease: [0.25, 1, 0.5, 1] as const }}
+   413→          >
+   414→            <span className="section-label" style={{ display: "block", marginBottom: "1.5rem" }}>
+   415→              Интерфуд Блог
+   416→            </span>
+   417→
+   418→            <KineticText
+   419→              text="Блог и"
+   420→              as="h1"
+   421→              animation="fadeUp"
+   422→              stagger={0.04}
+   423→              duration={0.6}
+   424→              style={{
+   425→                fontFamily: "var(--font-serif)",
+   426→                fontSize: "clamp(2.5rem, 7vw, 5rem)",
+   427→                fontWeight: 400,
+   428→                lineHeight: 1.05,
+   429→                color: "#1A1A1A",
+   430→                display: "inline",
+   431→              }}
+   432→            />{" "}
+   433→            <MorphingText
+   434→                words={["Рецепты", "Советы", "Идеи", "Тренды"]}
+   435→                interval={2500}
+   436→                style={{
+   437→                  color: "var(--color-brand)",
+   438→                  fontStyle: "italic",
+   439→                }}
+   440→              />
+   441→
+   442→            <p style={{
+   443→              fontSize: "1.1rem",
+   444→              lineHeight: 1.7,
+   445→              color: "var(--color-text-secondary)",
+   446→              maxWidth: 560,
+   447→              margin: "0 auto",
+   448→            }}>
+   449→              Секреты от шеф-повара Дмитрия Нилова, тренды кейтеринга и пошаговые рецепты для вашего вдохновения.
+   450→            </p>
+   451→
+   452→            <div style={{ marginTop: "2rem" }}>
+   453→              <MagneticButton as="a" href="#articles" className="btn-gold">
+   454→                Читать статьи
+   455→              </MagneticButton>
+   456→            </div>
+   457→          </motion.div>
+   458→        </motion.div>
+   459→      </section>
+   460→
+   461→      {/* ────────────────────────────────────────────
+   462→          2. CATEGORY FILTER
+   463→          ──────────────────────────────────────────── */}
+   464→      <section id="articles" aria-label="Фильтр статей" style={{
+   465→        padding: "3rem 2rem 0",
+   466→        background: "var(--color-warm-white)",
+   467→      }}>
+   468→        <div className="container">
+   469→          <div style={{
+   470→            display: "flex",
+   471→            gap: "0.75rem",
+   472→            flexWrap: "wrap",
+   473→            justifyContent: "center",
+   474→          }}>
+   475→            {CATEGORIES.map((cat) => (
+   476→              <motion.button
+   477→                key={cat.key}
+   478→                onClick={() => setActiveCategory(cat.key)}
+   479→                whileHover={{ scale: 1.04 }}
+   480→                whileTap={{ scale: 0.97 }}
+   481→                style={{
+   482→                  padding: "0.7rem 1.6rem",
+   483→                  borderRadius: 100,
+   484→                  border: "1.5px solid",
+   485→                  borderColor: activeCategory === cat.key ? "var(--color-brand)" : "var(--color-cream-darker)",
+   486→                  background: activeCategory === cat.key ? "var(--color-brand)" : "#fff",
+   487→                  color: activeCategory === cat.key ? "#fff" : "var(--color-text-subtle)",
+   488→                  fontSize: "0.75rem",
+   489→                  fontWeight: 600,
+   490→                  letterSpacing: "0.1em",
+   491→                  textTransform: "uppercase" as const,
+   492→                  cursor: "pointer",
+   493→                  transition: "all 0.4s cubic-bezier(0.25,1,0.5,1)",
+   494→                  boxShadow: activeCategory === cat.key
+   495→                    ? "0 4px 20px rgba(184,149,90,0.25)"
+   496→                    : "0 2px 8px rgba(0,0,0,0.04)",
+   497→                }}
+   498→              >
+   499→                {cat.label}
+   500→              </motion.button>
+   501→            ))}
+   502→          </div>
+   503→        </div>
+   504→      </section>
+   505→
+   506→      {/* ────────────────────────────────────────────
+   507→          3. BLOG GRID
+   508→          ──────────────────────────────────────────── */}
+   509→      <VideoBreak
+   510→        src="/videos/hero-catering.mp4"
+   511→        title="Кулинарное вдохновение"
+   512→        subtitle="Откройте для себя новые вкусы и идеи"
+   513→      />
+   514→      <section aria-label="Статьи" style={{
+   515→        padding: "3rem 2rem 6rem",
+   516→        background: "var(--color-warm-white)",
+   517→      }}>
+   518→        <div className="container">
+   519→          <div style={{
+   520→            display: "grid",
+   521→            gridTemplateColumns: "1fr",
+   522→            gap: "2rem",
+   523→          }}
+   524→          className="blog-grid"
+   525→          >
+   526→            <AnimatePresence mode="wait">
+   527→              <motion.div
+   528→                key={activeCategory}
+   529→                initial={{ opacity: 0, y: 20 }}
+   530→                animate={{ opacity: 1, y: 0 }}
+   531→                exit={{ opacity: 0, y: -20 }}
+   532→                transition={{ duration: 0.4 }}
+   533→                style={{
+   534→                  display: "grid",
+   535→                  gridTemplateColumns: "1fr",
+   536→                  gap: "2rem",
+   537→                }}
+   538→                className="blog-grid-inner"
+   539→              >
+   540→                {filteredArticles.map((article, i) => (
+   541→                  <ArticleCard key={article.id} article={article} index={i} />
+   542→                ))}
+   543→              </motion.div>
+   544→            </AnimatePresence>
+   545→          </div>
+   546→
+   547→          {filteredArticles.length === 0 && (
+   548→            <div style={{
+   549→              textAlign: "center",
+   550→              padding: "4rem 0",
+   551→              color: "var(--color-text-muted)",
+   552→              fontSize: "1.1rem",
+   553→            }}>
+   554→              Статьи не найдены
+   555→            </div>
+   556→          )}
+   557→        </div>
+   558→
+   559→        {/* Responsive grid styles */}
+   560→        <style jsx global>{`
+   561→          .blog-grid-inner {
+   562→            grid-template-columns: 1fr;
+   563→          }
+   564→          @media (min-width: 640px) {
+   565→            .blog-grid-inner {
+   566→              grid-template-columns: 1fr 1fr;
+   567→            }
+   568→          }
+   569→          @media (min-width: 1024px) {
+   570→            .blog-grid-inner {
+   571→              grid-template-columns: 1fr 1fr 1fr;
+   572→            }
+   573→          }
+   574→        `}</style>
+   575→      </section>
+   576→
+   577→      {/* ────────────────────────────────────────────
+   578→          4. FEATURED RECIPE — Full-width with video
+   579→          ──────────────────────────────────────────── */}
+   580→      <section aria-label="Рецепт дня" style={{
+   581→        position: "relative",
+   582→        overflow: "hidden",
+   583→        minHeight: 500,
+   584→      }}>
+   585→        <div style={{ position: "absolute", inset: 0 }}>
+   586→          <video
+   587→            autoPlay
+   588→            muted
+   589→            loop
+   590→            playsInline
+   591→            preload="metadata"
+   592→            poster={IMG.chef}
+   593→            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+   594→          >
+   595→            <source src={VID.cooking} type="video/mp4" />
+   596→          </video>
+   597→        </div>
+   598→        <FluidBackground
+   599→          color1="rgba(184,149,90,0.04)"
+   600→          color2="rgba(158,182,143,0.03)"
+   601→          color3="rgba(232,196,184,0.02)"
+   602→          speed={4}
+   603→        />
+   604→        <div style={{
+   605→          position: "absolute",
+   606→          inset: 0,
+   607→          background: "linear-gradient(135deg, rgba(26,26,26,0.85) 0%, rgba(27,42,74,0.7) 100%)",
+   608→        }} />
+   609→        <ParticleField count={20} speed={0.15} color="212,184,124" style={{ opacity: 0.5 }} />
+   610→
+   611→        <div style={{
+   612→          position: "relative",
+   613→          zIndex: 2,
+   614→          padding: "5rem 2rem",
+   615→          maxWidth: 900,
+   616→          margin: "0 auto",
+   617→        }}>
+   618→          <Reveal>
+   619→            <span style={{
+   620→              display: "inline-block",
+   621→              padding: "0.3rem 1rem",
+   622→              borderRadius: 100,
+   623→              background: "rgba(158,182,143,0.25)",
+   624→              color: "#9EB68F",
+   625→              fontSize: "0.65rem",
+   626→              fontWeight: 600,
+   627→              letterSpacing: "0.15em",
+   628→              textTransform: "uppercase",
+   629→              marginBottom: "1.5rem",
+   630→              border: "1px solid rgba(158,182,143,0.3)",
+   631→            }}>
+   632→              Рецепт дня
+   633→            </span>
+   634→          </Reveal>
+   635→
+   636→          <TextReveal
+   637→            text="Тартар из тунца с авокадо и цитрусовой заправкой"
+   638→            as="h2"
+   639→            className="section-title section-title-light"
+   640→            stagger={0.02}
+   641→          />
+   642→
+   643→          <Reveal delay={0.2}>
+   644→            <p style={{
+   645→              color: "rgba(255,255,255,0.7)",
+   646→              fontSize: "1.05rem",
+   647→              lineHeight: 1.7,
+   648→              maxWidth: 580,
+   649→              marginBottom: "1.5rem",
+   650→            }}>
+   651→              Нежный тунец, спелое авокадо и пикантная цитрусовая заправка — рецепт от шеф-повара Дмитрия Нилова, который можно приготовить за 15 минут.
+   652→            </p>
+   653→          </Reveal>
+   654→
+   655→          <Reveal delay={0.3}>
+   656→            <div style={{
+   657→              display: "flex",
+   658→              gap: "2rem",
+   659→              marginBottom: "2rem",
+   660→              flexWrap: "wrap",
+   661→            }}>
+   662→              <div>
+   663→                <div style={{ fontSize: "0.65rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", marginBottom: "0.25rem" }}>Время</div>
+   664→                <div style={{ color: "#D4B87C", fontFamily: "var(--font-serif)", fontSize: "1.3rem" }}>15 мин</div>
+   665→              </div>
+   666→              <div>
+   667→                <div style={{ fontSize: "0.65rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", marginBottom: "0.25rem" }}>Сложность</div>
+   668→                <div style={{ color: "#D4B87C", fontFamily: "var(--font-serif)", fontSize: "1.3rem" }}>Средняя</div>
+   669→              </div>
+   670→              <div>
+   671→                <div style={{ fontSize: "0.65rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", marginBottom: "0.25rem" }}>Порции</div>
+   672→                <div style={{ color: "#D4B87C", fontFamily: "var(--font-serif)", fontSize: "1.3rem" }}>4</div>
+   673→              </div>
+   674→            </div>
+   675→          </Reveal>
+   676→
+   677→          <Reveal delay={0.4}>
+   678→            <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+   679→              <MagneticButton as="a" href="#" className="btn-gold">
+   680→                Смотреть рецепт
+   681→              </MagneticButton>
+   682→              <MagneticButton as="a" href="#" className="btn-outline btn-outline-light">
+   683→                Все рецепты
+   684→              </MagneticButton>
+   685→            </div>
+   686→          </Reveal>
+   687→        </div>
+   688→      </section>
+   689→
+   690→      {/* ────────────────────────────────────────────
+   691→          5. NEWSLETTER CTA
+   692→          ──────────────────────────────────────────── */}
+   693→      <section aria-label="Подписка" style={{
+   694→        padding: "6rem 2rem",
+   695→        background: "var(--color-cream)",
+   696→        position: "relative",
+   697→        overflow: "hidden",
+   698→      }}>
+   699→        <FloatingElements count={4} color="var(--color-brand)" />
+   700→
+   701→        <div className="container" style={{ position: "relative", zIndex: 2 }}>
+   702→          <div style={{
+   703→            maxWidth: 600,
+   704→            margin: "0 auto",
+   705→            textAlign: "center",
+   706→          }}>
+   707→            <Reveal>
+   708→              <span className="section-label">Рассылка</span>
+   709→            </Reveal>
+   710→
+   711→            <TextReveal
+   712→              text="Будьте в курсе новых рецептов"
+   713→              as="h2"
+   714→              className="section-title"
+   715→              stagger={0.03}
+   716→            />
+   717→
+   718→            <Reveal delay={0.1}>
+   719→              <p className="section-subtitle" style={{ margin: "0 auto 2.5rem" }}>
+   720→                Получайте эксклюзивные рецепты от шефа, советы по организации мероприятий и специальные предложения — раз в неделю, без спама.
+   721→              </p>
+   722→            </Reveal>
+   723→
+   724→            <Reveal delay={0.2}>
+   725→              <form onSubmit={handleSubscribe} style={{
+   726→                display: "flex",
+   727→                gap: "0.75rem",
+   728→                maxWidth: 480,
+   729→                margin: "0 auto",
+   730→              }}>
+   731→                <motion.div
+   732→                  style={{ flex: 1, position: "relative" }}
+   733→                  whileHover={{ scale: 1.01 }}
+   734→                >
+   735→                  <input
+   736→                    type="email"
+   737→                    value={email}
+   738→                    onChange={(e) => setEmail(e.target.value)}
+   739→                    placeholder="Ваш email"
+   740→                    required
+   741→                    style={{
+   742→                      width: "100%",
+   743→                      padding: "1rem 1.5rem",
+   744→                      borderRadius: 100,
+   745→                      border: "1.5px solid var(--color-cream-darker)",
+   746→                      background: "var(--color-warm-white)",
+   747→                      fontSize: "0.9rem",
+   748→                      outline: "none",
+   749→                      transition: "border-color 0.3s, box-shadow 0.3s",
+   750→                    }}
+   751→                    onFocus={(e) => {
+   752→                      e.target.style.borderColor = "var(--color-brand)";
+   753→                      e.target.style.boxShadow = "0 0 0 3px rgba(184,149,90,0.12)";
+   754→                    }}
+   755→                    onBlur={(e) => {
+   756→                      e.target.style.borderColor = "var(--color-cream-darker)";
+   757→                      e.target.style.boxShadow = "none";
+   758→                    }}
+   759→                  />
+   760→                </motion.div>
+   761→
+   762→                <MagneticButton>
+   763→                  <button
+   764→                    type="submit"
+   765→                    className="btn-gold"
+   766→                    style={{ whiteSpace: "nowrap" }}
+   767→                  >
+   768→                    Подписаться
+   769→                  </button>
+   770→                </MagneticButton>
+   771→              </form>
+   772→
+   773→              <AnimatePresence>
+   774→                {subscribed && (
+   775→                  <motion.div
+   776→                    initial={{ opacity: 0, y: 10 }}
+   777→                    animate={{ opacity: 1, y: 0 }}
+   778→                    exit={{ opacity: 0, y: -10 }}
+   779→                    style={{
+   780→                      marginTop: "1rem",
+   781→                      color: "var(--color-sage)",
+   782→                      fontSize: "0.9rem",
+   783→                      fontWeight: 500,
+   784→                    }}
+   785→                  >
+   786→                    ✓ Спасибо! Вы подписаны на рассылку
+   787→                  </motion.div>
+   788→                )}
+   789→              </AnimatePresence>
+   790→            </Reveal>
+   791→          </div>
+   792→        </div>
+   793→      </section>
+   794→
+   795→      <ConversionCTA
+   796→        headline="Вдохновились? Создадим меню, которое гости будут вспоминать с восторгом!"
+   797→        subtitle="Наш шеф-повар приготовит меню, которое гости будут вспоминать с восторгом. Гарантия по договору."
+   798→        primaryLabel="Обсудить меню"
+   799→        secondaryLabel="Квиз-подбор"
+   800→        secondaryHref="/quiz"
+   801→      />
+   802→
+   803→      {/* ────────────────────────────────────────────
+   804→          6. FOOTER
+   805→          ──────────────────────────────────────────── */}
+   806→      <footer className="footer" role="contentinfo">
+   807→        <div className="container" style={{ padding: "5rem 2rem 2rem" }}>
+   808→          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem" }}>
+   809→            <Link href="/" style={{ fontFamily: "var(--font-serif)", fontSize: "1.5rem", fontWeight: 500, color: "#fff", textDecoration: "none", letterSpacing: "0.15em" }}>
+   810→              ИНТЕРФУД
+   811→            </Link>
+   812→            <div style={{ display: "flex", gap: "1.5rem", flexWrap: "wrap" }}>
+   813→              <Link href="/menu" style={{ color: "rgba(255,255,255,0.45)", textDecoration: "none", fontSize: "0.85rem" }}>Меню</Link>
+   814→              <Link href="/wedding" style={{ color: "rgba(255,255,255,0.45)", textDecoration: "none", fontSize: "0.85rem" }}>Свадьбы</Link>
+   815→              <Link href="/corporate" style={{ color: "rgba(255,255,255,0.45)", textDecoration: "none", fontSize: "0.85rem" }}>Корпоратив</Link>
+   816→              <Link href="/about" style={{ color: "rgba(255,255,255,0.45)", textDecoration: "none", fontSize: "0.85rem" }}>О нас</Link>
+   817→              <Link href="/blog" style={{ color: "rgba(255,255,255,0.45)", textDecoration: "none", fontSize: "0.85rem" }}>Блог</Link>
+   818→              <Link href="/reviews" style={{ color: "rgba(255,255,255,0.45)", textDecoration: "none", fontSize: "0.85rem" }}>Отзывы</Link>
+   819→              <Link href="/" style={{ color: "rgba(255,255,255,0.45)", textDecoration: "none", fontSize: "0.85rem" }}>Главная</Link>
+   820→            </div>
+   821→            <div style={{ color: "rgba(255,255,255,0.35)", fontSize: "0.8rem" }}>
+   822→              &copy; 2007–2026 Интерфуд Кейтеринг
+   823→            </div>
+   824→          </div>
+   825→        </div>
+   826→      </footer>
+   827→
+   828→      {/* WhatsApp float */}
+   829→      <a
+   830→        href="https://wa.me/79119417205?text=Здравствуйте! Хочу узнать подробнее о компании."
+   831→        className="wa-float"
+   832→        target="_blank"
+   833→        rel="noopener noreferrer"
+   834→        aria-label="WhatsApp"
+   835→      >
+   836→        &#9742;
+   837→      </a>
+   838→    </>
+   839→  );
+   840→}
+   841→

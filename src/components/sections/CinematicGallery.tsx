@@ -150,7 +150,7 @@ function GalleryCard({
       data-index={index}
       style={{
         flexShrink: 0,
-        width: "clamp(300px, 85vw, 380px)",
+        width: "clamp(260px, 75vw, 380px)",
         scrollSnapAlign: "center",
         transformStyle: "preserve-3d",
         willChange: "transform, filter",
@@ -296,13 +296,16 @@ export default function CinematicGallery() {
         closestIndex = i;
       }
 
-      // Coverflow transforms
-      const rotateY = distance * -10;
-      const scale = Math.max(1 - absDistance * 0.06, 0.88);
-      const brightness = Math.max(1 - absDistance * 0.18, 0.65);
+      // Coverflow transforms — simplified on mobile for performance
+      const isMobile = window.innerWidth < 768;
+      const rotateY = isMobile ? distance * -3 : distance * -10;
+      const scale = isMobile ? Math.max(1 - absDistance * 0.03, 0.92) : Math.max(1 - absDistance * 0.06, 0.88);
+      const brightness = isMobile ? 1 : Math.max(1 - absDistance * 0.18, 0.65);
       const zIndex = Math.round(100 - absDistance * 40);
 
-      card.style.transform = `perspective(800px) rotateY(${rotateY}deg) scale(${scale})`;
+      card.style.transform = isMobile
+        ? `scale(${scale})`
+        : `perspective(800px) rotateY(${rotateY}deg) scale(${scale})`;
       card.style.zIndex = String(zIndex);
       card.style.filter = `brightness(${brightness})`;
     });

@@ -1,0 +1,1292 @@
+     1→"use client";
+     2→
+     3→import { useRef, useState, useCallback } from "react";
+     4→import { motion, useScroll, useTransform, useInView } from "framer-motion";
+     5→import Link from "next/link";
+     6→import SiteNav from "@/components/SiteNav";
+     7→import ConversionCTA from "@/components/ConversionCTA";
+     8→import TiltCard from "@/components/TiltCard";
+     9→import FlipCard3D from "@/components/FlipCard3D";
+    10→import ParticleField from "@/components/ParticleField";
+    11→import FloatingElements from "@/components/FloatingElements";
+    12→import MorphingBlob from "@/components/MorphingBlob";
+    13→import AnimatedTypewriter from "@/components/AnimatedTypewriter";
+    14→import KineticText from "@/components/KineticText";
+    15→import SpotlightCard from "@/components/SpotlightCard";
+    16→import ParallaxImage from "@/components/ParallaxImage";
+    17→import ConfettiButton from "@/components/ConfettiButton";
+    18→import CountUp from "@/components/CountUp";
+    19→
+    20→/* ═══════════════════════════════════════════════════════════════
+    21→   ИНТЕРФУД КЕЙТЕРИНГ — Команда / Team Page  (LIGHT THEME)
+    22→   3D holographic flip cards, particle fields, morphing blobs,
+    23→   animated typewriter, kinetic text, max visual impact
+    24→   ═══════════════════════════════════════════════════════════════ */
+    25→
+    26→const VID = {
+    27→  hero: "/videos/hero-catering.mp4",
+    28→  kitchen: "/videos/hero-catering.mp4",
+    29→  team: "/videos/hero-catering.mp4",
+    30→};
+    31→
+    32→const IMG = {
+    33→  hero: "/images/hero.jpg",
+    34→  chef: "/images/about.jpg",
+    35→  team1: "/images/gallery_1.jpg",
+    36→  team2: "/images/gallery_3.jpg",
+    37→  team3: "/images/gallery_4.jpg",
+    38→  team4: "/images/gallery_6.jpg",
+    39→  serving: "/images/furshet_food.jpg",
+    40→  bar: "/images/banket.jpg",
+    41→  dessert: "/images/food_shrimp.jpg",
+    42→  canape: "/images/furshet_canape.jpg",
+    43→  decor: "/images/banket_table1.jpg",
+    44→  roses: "/images/gallery_2.jpg",
+    45→  hall: "/images/hero_rooftop.jpg",
+    46→};
+    47→
+    48→/* ─── Team Data (8 members per spec) ─── */
+    49→interface TeamMember {
+    50→  id: number;
+    51→  name: string;
+    52→  role: string;
+    53→  photo: string;
+    54→  bio: string;
+    55→  achievements: string[];
+    56→  signature: string;
+    57→  glowColor: string;
+    58→  glowRgb: string;
+    59→}
+    60→
+    61→const TEAM: TeamMember[] = [
+    62→  {
+    63→    id: 1,
+    64→    name: "Дмитрий Нилов",
+    65→    role: "Основатель и шеф-повар",
+    66→    photo: IMG.chef,
+    67→    bio: "Основатель Interfood Catering с 2007 года. Для нас организация кейтеринга — не просто работа, а увлечение, которое стало стилем жизни. С 2007 года мы виртуозно подбираем меню для любого события, завоевывая сердца даже самых искушённых гурманов. Профессионализм команды, использование только качественных продуктов, оперативное обслуживание, сотрудничество с лучшими площадками и безупречная подача блюд — философия, которая отражается в каждом моменте нашей работы.",
+    68→    achievements: ["Основатель Interfood Catering", "3 500+ мероприятий", "С 2007 года"],
+    69→    signature: "Для нас кейтеринг — не просто работа, а увлечение, которое стало стилем жизни",
+    70→    glowColor: "#B8955A",
+    71→    glowRgb: "184,149,90",
+    72→  },
+    73→  {
+    74→    id: 2,
+    75→    name: "Шеф-повара и кухня",
+    76→    role: "12 шеф-поваров · 150+ сотрудников",
+    77→    photo: IMG.team2,
+    78→    bio: "Собственная кухня на Новолитовской ул., 15. Авторское меню, свежие продукты, контроль качества на каждом этапе.",
+    79→    achievements: ["12 шеф-поваров", "Собственная кухня", "Контроль качества"],
+    80→    signature: "Авторское меню и свежие продукты — основа каждого блюда",
+    81→    glowColor: "#B85A8E",
+    82→    glowRgb: "184,90,142",
+    83→  },
+    84→  {
+    85→    id: 3,
+    86→    name: "Сервис и обслуживание",
+    87→    role: "80+ официантов",
+    88→    photo: IMG.serving,
+    89→    bio: "Профессиональное обслуживание по стандартам лучших ресторанов. Обучение и аттестация каждого сотрудника.",
+    90→    achievements: ["80+ официантов", "Ресторанные стандарты", "Обучение персонала"],
+    91→    signature: "Профессиональный сервис — лицо каждого мероприятия",
+    92→    glowColor: "#5AB89E",
+    93→    glowRgb: "90,184,158",
+    94→  },
+    95→  {
+    96→    id: 4,
+    97→    name: "Логистика и координация",
+    98→    role: "8 менеджеров",
+    99→    photo: IMG.team4,
+   100→    bio: "Персональный менеджер на каждое мероприятие. Температурный контроль при транспортировке, точное время доставки.",
+   101→    achievements: ["8 менеджеров", "Персональный менеджер", "Температурный контроль"],
+   102→    signature: "Точная логистика — невидимый фундамент любого мероприятия",
+   103→    glowColor: "#B8855A",
+   104→    glowRgb: "184,133,90",
+   105→  },
+   106→  {
+   107→    id: 5,
+   108→    name: "Дизайн и декор",
+   109→    role: "Флористика и оформление",
+   110→    photo: IMG.decor,
+   111→    bio: "Флористическое сопровождение, оформление зала, сервировка. От концепции до реализации — всё продумано до мелочей.",
+   112→    achievements: ["Флористика", "Оформление залов", "Сервировка"],
+   113→    signature: "Атмосфера рождается в деталях — от цветка до салфетки",
+   114→    glowColor: "#8E6AB8",
+   115→    glowRgb: "142,106,184",
+   116→  },
+   117→];
+   118→
+   119→const STATS = [
+   120→  { target: 150, suffix: "+", label: "сотрудников" },
+   121→  { target: 12, suffix: "", label: "шеф-поваров" },
+   122→  { target: 80, suffix: "+", label: "официантов" },
+   123→  { target: 8, suffix: "", label: "менеджеров" },
+   124→  { target: 3500, suffix: "+", label: "мероприятий" },
+   125→  { target: 2007, suffix: "", label: "год основания" },
+   126→];
+   127→
+   128→const BEHIND_SCENES = [
+   129→  { src: IMG.serving, label: "Подача блюд" },
+   130→  { src: IMG.canape, label: "Канапе-станция" },
+   131→  { src: IMG.decor, label: "Декор площадки" },
+   132→  { src: IMG.roses, label: "Цветочные композиции" },
+   133→  { src: IMG.bar, label: "Барная станция" },
+   134→  { src: IMG.dessert, label: "Десертный бар" },
+   135→  { src: IMG.hall, label: "Банкетный зал" },
+   136→  { src: IMG.chef, label: "На кухне" },
+   137→];
+   138→
+   139→const TYPEWRITER_PHRASES = [
+   140→  "Для нас кейтеринг — не просто работа, а увлечение, которое стало стилем жизни",
+   141→  "150+ профессионалов одной командой",
+   142→  "С 2007 года — виртуозно подбираем меню для любого события",
+   143→  "Профессионализм, качество продуктов, безупречная подача",
+   144→  "Завоёвываем сердца даже самых искушённых гурманов",
+   145→];
+   146→
+   147→/* ─── Holographic Team Card (TiltCard + FlipCard3D pattern combined) ─── */
+   148→function HolographicTeamCard({ member, index }: { member: TeamMember; index: number }) {
+   149→  const [flipped, setFlipped] = useState(false);
+   150→  const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
+   151→  const [isHovering, setIsHovering] = useState(false);
+   152→  const ref = useRef<HTMLDivElement>(null);
+   153→  const inView = useInView(ref, { once: true, margin: "-80px" });
+   154→
+   155→  const handleMouseMove = useCallback((e: React.MouseEvent) => {
+   156→    if (!ref.current) return;
+   157→    const rect = ref.current.getBoundingClientRect();
+   158→    setMousePos({
+   159→      x: (e.clientX - rect.left) / rect.width,
+   160→      y: (e.clientY - rect.top) / rect.height,
+   161→    });
+   162→  }, []);
+   163→
+   164→  /* Holographic gradient that shifts with mouse */
+   165→  const holoGradient = isHovering
+   166→    ? `radial-gradient(ellipse at ${mousePos.x * 100}% ${mousePos.y * 100}%, 
+   167→        rgba(${member.glowRgb},0.35) 0%, 
+   168→        rgba(184,149,90,0.15) 30%, 
+   169→        rgba(158,182,143,0.08) 55%, 
+   170→        transparent 75%)`
+   171→    : "none";
+   172→
+   173→  /* Shimmer position */
+   174→  const shimmerX = isHovering ? mousePos.x * 100 : -100;
+   175→
+   176→  return (
+   177→    <motion.div
+   178→      ref={ref}
+   179→      initial={{ opacity: 0, y: 60, rotateX: 10 }}
+   180→      animate={inView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
+   181→      transition={{ duration: 0.8, delay: index * 0.1, ease: [0.25, 1, 0.5, 1] as const }}
+   182→      style={{ height: 480 }}
+   183→    >
+   184→      <TiltCard glare maxTilt={12} style={{ height: "100%" }}>
+   185→        <div
+   186→          style={{
+   187→            position: "relative",
+   188→            height: "100%",
+   189→            perspective: 1200,
+   190→            cursor: "pointer",
+   191→          }}
+   192→          onClick={() => setFlipped(!flipped)}
+   193→          onMouseMove={handleMouseMove}
+   194→          onMouseEnter={() => setIsHovering(true)}
+   195→          onMouseLeave={() => { setIsHovering(false); setFlipped(false); }}
+   196→        >
+   197→          <motion.div
+   198→            animate={{ rotateY: flipped ? 180 : 0 }}
+   199→            transition={{ duration: 0.65, ease: [0.25, 1, 0.5, 1] as const }}
+   200→            style={{
+   201→              position: "relative",
+   202→              width: "100%",
+   203→              height: "100%",
+   204→              transformStyle: "preserve-3d",
+   205→            }}
+   206→          >
+   207→            {/* ═══ FRONT ═══ */}
+   208→            <div
+   209→              style={{
+   210→                position: "absolute",
+   211→                inset: 0,
+   212→                backfaceVisibility: "hidden",
+   213→                borderRadius: 20,
+   214→                overflow: "hidden",
+   215→                background: "#FEFDFB",
+   216→                boxShadow: `0 4px 30px rgba(0,0,0,0.06), 0 0 60px rgba(${member.glowRgb},0.08)`,
+   217→              }}
+   218→            >
+   219→              {/* Photo */}
+   220→              <div style={{ position: "relative", height: 320, overflow: "hidden" }}>
+   221→                <img
+   222→                  src={member.photo}
+   223→                  alt={member.name}
+   224→                  loading="lazy"
+   225→                  style={{
+   226→                    width: "100%",
+   227→                    height: "100%",
+   228→                    objectFit: "cover",
+   229→                    transition: "transform 0.6s cubic-bezier(0.25,1,0.5,1)",
+   230→                    transform: isHovering ? "scale(1.06)" : "scale(1)",
+   231→                  }}
+   232→                />
+   233→                {/* Holographic overlay */}
+   234→                <div
+   235→                  style={{
+   236→                    position: "absolute",
+   237→                    inset: 0,
+   238→                    background: holoGradient,
+   239→                    transition: "background 0.2s ease-out",
+   240→                    mixBlendMode: "overlay",
+   241→                  }}
+   242→                />
+   243→                {/* Holographic shimmer line */}
+   244→                <div
+   245→                  style={{
+   246→                    position: "absolute",
+   247→                    top: 0,
+   248→                    bottom: 0,
+   249→                    width: 80,
+   250→                    background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent)",
+   251→                    filter: "blur(2px)",
+   252→                    transform: `translateX(${shimmerX}%)`,
+   253→                    transition: "transform 0.15s ease-out",
+   254→                    pointerEvents: "none",
+   255→                  }}
+   256→                />
+   257→                {/* Bottom gradient fade */}
+   258→                <div
+   259→                  style={{
+   260→                    position: "absolute",
+   261→                    bottom: 0,
+   262→                    left: 0,
+   263→                    right: 0,
+   264→                    height: 120,
+   265→                    background: "linear-gradient(to top, #FEFDFB, transparent)",
+   266→                    pointerEvents: "none",
+   267→                  }}
+   268→                />
+   269→                {/* Glow border */}
+   270→                <div
+   271→                  style={{
+   272→                    position: "absolute",
+   273→                    inset: 0,
+   274→                    borderRadius: 20,
+   275→                    border: `1.5px solid rgba(${member.glowRgb},${isHovering ? 0.4 : 0.1})`,
+   276→                    transition: "border-color 0.3s ease",
+   277→                    pointerEvents: "none",
+   278→                  }}
+   279→                />
+   280→              </div>
+   281→
+   282→              {/* Info */}
+   283→              <div style={{ padding: "1.2rem 1.5rem 0.8rem" }}>
+   284→                <h3
+   285→                  style={{
+   286→                    fontFamily: "var(--font-serif)",
+   287→                    fontSize: "1.25rem",
+   288→                    fontWeight: 500,
+   289→                    color: "#1a1a1a",
+   290→                    marginBottom: "0.3rem",
+   291→                  }}
+   292→                >
+   293→                  {member.name}
+   294→                </h3>
+   295→                <p
+   296→                  style={{
+   297→                    fontSize: "0.85rem",
+   298→                    color: member.glowColor,
+   299→                    fontWeight: 600,
+   300→                    letterSpacing: "0.04em",
+   301→                    marginBottom: "0.6rem",
+   302→                  }}
+   303→                >
+   304→                  {member.role}
+   305→                </p>
+   306→                <div style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap" }}>
+   307→                  {member.achievements.slice(0, 2).map((a, i) => (
+   308→                    <span
+   309→                      key={i}
+   310→                      style={{
+   311→                        fontSize: "0.7rem",
+   312→                        padding: "0.2rem 0.6rem",
+   313→                        borderRadius: 20,
+   314→                        background: `rgba(${member.glowRgb},0.08)`,
+   315→                        color: member.glowColor,
+   316→                        fontWeight: 500,
+   317→                        letterSpacing: "0.02em",
+   318→                      }}
+   319→                    >
+   320→                      {a}
+   321→                    </span>
+   322→                  ))}
+   323→                </div>
+   324→              </div>
+   325→
+   326→              {/* Flip hint */}
+   327→              <div
+   328→                style={{
+   329→                  position: "absolute",
+   330→                  bottom: 12,
+   331→                  right: 16,
+   332→                  display: "flex",
+   333→                  alignItems: "center",
+   334→                  gap: 4,
+   335→                  fontSize: "0.7rem",
+   336→                  color: "rgba(0,0,0,0.25)",
+   337→                  transition: "opacity 0.3s",
+   338→                  opacity: isHovering ? 1 : 0.5,
+   339→                }}
+   340→              >
+   341→                <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+   342→                  <path
+   343→                    d="M8 2v12M4 6l4-4 4 4"
+   344→                    stroke="currentColor"
+   345→                    strokeWidth="1.5"
+   346→                    strokeLinecap="round"
+   347→                    strokeLinejoin="round"
+   348→                  />
+   349→                </svg>
+   350→                <span>Нажмите</span>
+   351→              </div>
+   352→            </div>
+   353→
+   354→            {/* ═══ BACK ═══ */}
+   355→            <div
+   356→              style={{
+   357→                position: "absolute",
+   358→                inset: 0,
+   359→                backfaceVisibility: "hidden",
+   360→                transform: "rotateY(180deg)",
+   361→                borderRadius: 20,
+   362→                overflow: "hidden",
+   363→                background: `linear-gradient(135deg, #FEFDFB 0%, rgba(${member.glowRgb},0.03) 100%)`,
+   364→                boxShadow: `0 4px 30px rgba(0,0,0,0.06), 0 0 60px rgba(${member.glowRgb},0.1)`,
+   365→                border: `1.5px solid rgba(${member.glowRgb},0.15)`,
+   366→                padding: "2rem 1.5rem",
+   367→                display: "flex",
+   368→                flexDirection: "column",
+   369→              }}
+   370→            >
+   371→              {/* Glow dot */}
+   372→              <div
+   373→                style={{
+   374→                  position: "absolute",
+   375→                  top: -40,
+   376→                  right: -40,
+   377→                  width: 120,
+   378→                  height: 120,
+   379→                  borderRadius: "50%",
+   380→                  background: `radial-gradient(circle, rgba(${member.glowRgb},0.15), transparent 70%)`,
+   381→                  pointerEvents: "none",
+   382→                }}
+   383→              />
+   384→
+   385→              <h3
+   386→                style={{
+   387→                  fontFamily: "var(--font-serif)",
+   388→                  fontSize: "1.15rem",
+   389→                  fontWeight: 500,
+   390→                  color: "#1a1a1a",
+   391→                  marginBottom: "0.2rem",
+   392→                }}
+   393→              >
+   394→                {member.name}
+   395→              </h3>
+   396→              <p
+   397→                style={{
+   398→                  fontSize: "0.8rem",
+   399→                  color: member.glowColor,
+   400→                  fontWeight: 600,
+   401→                  letterSpacing: "0.04em",
+   402→                  marginBottom: "1rem",
+   403→                }}
+   404→              >
+   405→                {member.role}
+   406→              </p>
+   407→
+   408→              <p
+   409→                style={{
+   410→                  fontSize: "0.85rem",
+   411→                  lineHeight: 1.7,
+   412→                  color: "#444",
+   413→                  marginBottom: "1.2rem",
+   414→                  flex: 1,
+   415→                  overflow: "hidden",
+   416→                }}
+   417→              >
+   418→                {member.bio}
+   419→              </p>
+   420→
+   421→              {/* Achievements list */}
+   422→              <div style={{ marginBottom: "1rem" }}>
+   423→                <p
+   424→                  style={{
+   425→                    fontSize: "0.7rem",
+   426→                    textTransform: "uppercase",
+   427→                    letterSpacing: "0.12em",
+   428→                    color: "var(--color-text-muted)",
+   429→                    marginBottom: "0.5rem",
+   430→                    fontWeight: 600,
+   431→                  }}
+   432→                >
+   433→                  Достижения
+   434→                </p>
+   435→                <div style={{ display: "flex", flexDirection: "column", gap: "0.35rem" }}>
+   436→                  {member.achievements.map((a, i) => (
+   437→                    <div
+   438→                      key={i}
+   439→                      style={{
+   440→                        display: "flex",
+   441→                        alignItems: "center",
+   442→                        gap: "0.5rem",
+   443→                        fontSize: "0.8rem",
+   444→                        color: "#333",
+   445→                      }}
+   446→                    >
+   447→                      <div
+   448→                        style={{
+   449→                          width: 6,
+   450→                          height: 6,
+   451→                          borderRadius: "50%",
+   452→                          background: member.glowColor,
+   453→                          flexShrink: 0,
+   454→                        }}
+   455→                      />
+   456→                      {a}
+   457→                    </div>
+   458→                  ))}
+   459→                </div>
+   460→              </div>
+   461→
+   462→              {/* Signature */}
+   463→              <div
+   464→                style={{
+   465→                  padding: "0.8rem 1rem",
+   466→                  borderRadius: 12,
+   467→                  background: `rgba(${member.glowRgb},0.06)`,
+   468→                  borderLeft: `3px solid ${member.glowColor}`,
+   469→                  fontStyle: "italic",
+   470→                  fontSize: "0.82rem",
+   471→                  color: "var(--color-text-subtle)",
+   472→                  lineHeight: 1.5,
+   473→                }}
+   474→              >
+   475→                «{member.signature}»
+   476→              </div>
+   477→
+   478→              {/* Flip back hint */}
+   479→              <div
+   480→                style={{
+   481→                  position: "absolute",
+   482→                  bottom: 12,
+   483→                  right: 16,
+   484→                  display: "flex",
+   485→                  alignItems: "center",
+   486→                  gap: 4,
+   487→                  fontSize: "0.7rem",
+   488→                  color: "rgba(0,0,0,0.25)",
+   489→                }}
+   490→              >
+   491→                <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+   492→                  <path
+   493→                    d="M8 14V2M4 10l4 4 4-4"
+   494→                    stroke="currentColor"
+   495→                    strokeWidth="1.5"
+   496→                    strokeLinecap="round"
+   497→                    strokeLinejoin="round"
+   498→                  />
+   499→                </svg>
+   500→                <span>Вернуть</span>
+   501→              </div>
+   502→            </div>
+   503→          </motion.div>
+   504→        </div>
+   505→      </TiltCard>
+   506→    </motion.div>
+   507→  );
+   508→}
+   509→
+   510→/* ─── Department Card with SpotlightCard ─── */
+   511→const DEPARTMENTS = [
+   512→  { title: "Кухня", icon: "🍳", count: 12, desc: "Шеф-повара, су-шефы, кондитеры, пекари. Собственная кухня на Новолитовской ул., 15. Контроль качества на каждом этапе." },
+   513→  { title: "Сервис", icon: "🥂", count: 80, desc: "Официанты, бармены, хостес. Профессиональное обучение и аттестация каждого сотрудника." },
+   514→  { title: "Логистика", icon: "🚛", count: 8, desc: "Менеджеры-координаторы. Персональный менеджер на каждое мероприятие, температурный контроль при транспортировке." },
+   515→  { title: "Дизайн", icon: "🎨", count: 10, desc: "Флористы, декораторы, визуализаторы. Оформление зала, сервировка — от концепции до реализации." },
+   516→];
+   517→
+   518→function DepartmentCard({ dept, index }: { dept: typeof DEPARTMENTS[0]; index: number }) {
+   519→  const ref = useRef<HTMLDivElement>(null);
+   520→  const inView = useInView(ref, { once: true, margin: "-50px" });
+   521→
+   522→  return (
+   523→    <motion.div
+   524→      ref={ref}
+   525→      initial={{ opacity: 0, scale: 0.9 }}
+   526→      animate={inView ? { opacity: 1, scale: 1 } : {}}
+   527→      transition={{ duration: 0.5, delay: index * 0.08 }}
+   528→    >
+   529→      <SpotlightCard
+   530→        spotlightColor="rgba(184,149,90,0.08)"
+   531→        style={{ padding: "2rem", height: "100%" }}
+   532→      >
+   533→        <div style={{ fontSize: "2rem", marginBottom: "0.75rem" }}>{dept.icon}</div>
+   534→        <h3
+   535→          style={{
+   536→            fontFamily: "var(--font-serif)",
+   537→            fontSize: "1.25rem",
+   538→            fontWeight: 500,
+   539→            color: "#1a1a1a",
+   540→            marginBottom: "0.5rem",
+   541→          }}
+   542→        >
+   543→          {dept.title}
+   544→        </h3>
+   545→        <div
+   546→          style={{
+   547→            fontSize: "2rem",
+   548→            fontWeight: 700,
+   549→            color: "#B8955A",
+   550→            marginBottom: "0.75rem",
+   551→          }}
+   552→        >
+   553→          {inView ? <CountUp target={dept.count} suffix=" чел." /> : "0"}
+   554→        </div>
+   555→        <p style={{ fontSize: "0.85rem", color: "var(--color-text-secondary)", lineHeight: 1.7 }}>{dept.desc}</p>
+   556→      </SpotlightCard>
+   557→    </motion.div>
+   558→  );
+   559→}
+   560→
+   561→/* ═══════════════ MAIN PAGE ═══════════════ */
+   562→export default function TeamPage() {
+   563→  const heroRef = useRef<HTMLDivElement>(null);
+   564→  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
+   565→  const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+   566→  const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+   567→  const scrollRef = useRef<HTMLDivElement>(null);
+   568→
+   569→  return (
+   570→    <main>
+   571→      <SiteNav />
+   572→
+   573→      {/* ═══ HERO with ParticleField + MorphingBlob + AnimatedTypewriter ═══ */}
+   574→      <section
+   575→        ref={heroRef}
+   576→        aria-label="Команда Интерфуд"
+   577→        style={{
+   578→          position: "relative",
+   579→          minHeight: "90vh",
+   580→          display: "flex",
+   581→          alignItems: "center",
+   582→          justifyContent: "center",
+   583→          overflow: "hidden",
+   584→        }}
+   585→      >
+   586→        {/* Background image with parallax */}
+   587→        <motion.div style={{ position: "absolute", inset: 0, y: heroY }}>
+   588→          <img
+   589→            src={IMG.hero}
+   590→            alt="Команда Интерфуд"
+   591→            style={{ width: "100%", height: "120%", objectFit: "cover" }}
+   592→          />
+   593→        </motion.div>
+   594→
+   595→        {/* Dark overlay */}
+   596→        <div
+   597→          style={{
+   598→            position: "absolute",
+   599→            inset: 0,
+   600→            background: "linear-gradient(135deg, rgba(254,253,251,0.88) 0%, rgba(250,250,248,0.92) 50%, rgba(254,253,251,0.85) 100%)",
+   601→            zIndex: 1,
+   602→          }}
+   603→        />
+   604→
+   605→        {/* ParticleField behind hero content */}
+   606→        <ParticleField count={50} color="184,149,90" speed={0.2} />
+   607→
+   608→        {/* MorphingBlob decorative element */}
+   609→        <div style={{ position: "absolute", top: "10%", right: "-5%", zIndex: 1 }}>
+   610→          <MorphingBlob
+   611→            size={500}
+   612→            color1="rgba(184,149,90,0.08)"
+   613→            color2="rgba(158,182,143,0.06)"
+   614→            opacity={0.7}
+   615→            speed={10}
+   616→          />
+   617→        </div>
+   618→        <div style={{ position: "absolute", bottom: "5%", left: "-8%", zIndex: 1 }}>
+   619→          <MorphingBlob
+   620→            size={350}
+   621→            color1="rgba(184,90,90,0.05)"
+   622→            color2="rgba(184,149,90,0.04)"
+   623→            opacity={0.5}
+   624→            speed={12}
+   625→          />
+   626→        </div>
+   627→
+   628→        {/* Floating decorative elements */}
+   629→        <FloatingElements count={8} color="rgba(184,149,90,0.3)" />
+   630→
+   631→        {/* Hero content */}
+   632→        <motion.div
+   633→          style={{
+   634→            position: "relative",
+   635→            zIndex: 2,
+   636→            textAlign: "center",
+   637→            maxWidth: 800,
+   638→            padding: "2rem",
+   639→            opacity: heroOpacity,
+   640→          }}
+   641→        >
+   642→          <motion.p
+   643→            style={{
+   644→              fontSize: "0.75rem",
+   645→              letterSpacing: "0.2em",
+   646→              textTransform: "uppercase",
+   647→              color: "#B8955A",
+   648→              fontWeight: 600,
+   649→              marginBottom: "1.5rem",
+   650→            }}
+   651→            initial={{ opacity: 0, y: 20 }}
+   652→            animate={{ opacity: 1, y: 0 }}
+   653→            transition={{ delay: 0.3 }}
+   654→          >
+   655→            Наша команда
+   656→          </motion.p>
+   657→
+   658→          <KineticText
+   659→            text="Команда профессионалов, объединённых страстью к кейтерингу"
+   660→            as="h1"
+   661→            animation="fadeUp"
+   662→            className=""
+   663→            stagger={0.04}
+   664→            duration={0.6}
+   665→            style={{
+   666→              fontFamily: "var(--font-serif)",
+   667→              fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
+   668→              fontWeight: 400,
+   669→              lineHeight: 1.1,
+   670→              marginBottom: "1.5rem",
+   671→              color: "#1a1a1a",
+   672→              justifyContent: "center",
+   673→            }}
+   674→          />
+   675→
+   676→          {/* AnimatedTypewriter */}
+   677→          <motion.div
+   678→            initial={{ opacity: 0 }}
+   679→            animate={{ opacity: 1 }}
+   680→            transition={{ delay: 1 }}
+   681→            style={{
+   682→              fontSize: "1.15rem",
+   683→              color: "#B8955A",
+   684→              fontWeight: 500,
+   685→              marginBottom: "1.5rem",
+   686→              minHeight: "2rem",
+   687→            }}
+   688→          >
+   689→            <AnimatedTypewriter
+   690→              texts={TYPEWRITER_PHRASES}
+   691→              speed={50}
+   692→              deleteSpeed={25}
+   693→              pauseDuration={2500}
+   694→              cursorColor="#B8955A"
+   695→            />
+   696→          </motion.div>
+   697→
+   698→          <motion.p
+   699→            style={{ fontSize: "1.05rem", color: "var(--color-text-secondary)", maxWidth: 550, margin: "0 auto", lineHeight: 1.7 }}
+   700→            initial={{ opacity: 0 }}
+   701→            animate={{ opacity: 1 }}
+   702→            transition={{ delay: 1.3 }}
+   703→          >
+   704→            150+ профессионалов, объединённых одной целью — делать каждое мероприятие безупречным. С 2007 года.
+   705→          </motion.p>
+   706→        </motion.div>
+   707→      </section>
+   708→
+   709→      {/* ═══ STATS BAR ═══ */}
+   710→      <section aria-label="Статистика команды" style={{ padding: "3rem 2rem", background: "#FAFAF8" }}>
+   711→        <div style={{ maxWidth: 1320, margin: "0 auto" }}>
+   712→          <div
+   713→            style={{
+   714→              display: "grid",
+   715→              gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))",
+   716→              gap: "2rem",
+   717→              textAlign: "center",
+   718→            }}
+   719→          >
+   720→            {STATS.map((s, i) => (
+   721→              <motion.div
+   722→                key={i}
+   723→                initial={{ opacity: 0, y: 30 }}
+   724→                whileInView={{ opacity: 1, y: 0 }}
+   725→                viewport={{ once: true }}
+   726→                transition={{ delay: i * 0.08 }}
+   727→              >
+   728→                <h3 style={{ fontSize: "2.2rem", fontWeight: 700, color: "#B8955A", fontFamily: "var(--font-serif)" }}>
+   729→                  <CountUp target={s.target} suffix={s.suffix} decimals={s.target % 1 !== 0 ? 1 : 0} />
+   730→                </h3>
+   731→                <p style={{ fontSize: "0.8rem", color: "var(--color-text-muted)", marginTop: "0.3rem" }}>{s.label}</p>
+   732→              </motion.div>
+   733→            ))}
+   734→          </div>
+   735→        </div>
+   736→      </section>
+   737→
+   738→      {/* ═══ CORE TEAM — 3D HOLOGRAPHIC CARDS ═══ */}
+   739→      <section aria-label="Руководство компании" style={{ padding: "6rem 2rem", position: "relative", overflow: "hidden" }}>
+   740→        {/* Background MorphingBlob */}
+   741→        <div style={{ position: "absolute", top: "20%", left: "-10%", zIndex: 0 }}>
+   742→          <MorphingBlob
+   743→            size={400}
+   744→            color1="rgba(184,149,90,0.04)"
+   745→            color2="rgba(158,182,143,0.03)"
+   746→            opacity={0.5}
+   747→            speed={14}
+   748→          />
+   749→        </div>
+   750→
+   751→        <div style={{ maxWidth: 1320, margin: "0 auto", position: "relative", zIndex: 1 }}>
+   752→          <motion.p
+   753→            style={{
+   754→              fontSize: "0.75rem",
+   755→              letterSpacing: "0.2em",
+   756→              textTransform: "uppercase",
+   757→              color: "#B8955A",
+   758→              fontWeight: 600,
+   759→              marginBottom: "1rem",
+   760→            }}
+   761→            initial={{ opacity: 0 }}
+   762→            whileInView={{ opacity: 1 }}
+   763→            viewport={{ once: true }}
+   764→          >
+   765→            Лица компании
+   766→          </motion.p>
+   767→
+   768→          <KineticText
+   769→            text="Основатель и команда, которым доверяют"
+   770→            as="h2"
+   771→            animation="wave"
+   772→            stagger={0.03}
+   773→            duration={0.6}
+   774→            style={{
+   775→              fontFamily: "var(--font-serif)",
+   776→              fontSize: "clamp(2rem, 5vw, 3.5rem)",
+   777→              fontWeight: 400,
+   778→              marginBottom: "1rem",
+   779→              color: "#1a1a1a",
+   780→            }}
+   781→          />
+   782→
+   783→          <p style={{ color: "var(--color-text-secondary)", maxWidth: 600, marginBottom: "3rem", fontSize: "1.05rem", lineHeight: 1.7 }}>
+   784→            Наведите на карточку для 3D-эффекта и голографического сияния. Нажмите, чтобы узнать подробности.
+   785→          </p>
+   786→
+   787→          <div
+   788→            style={{
+   789→              display: "grid",
+   790→              gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
+   791→              gap: "2rem",
+   792→            }}
+   793→          >
+   794→            {TEAM.map((member, i) => (
+   795→              <HolographicTeamCard key={member.id} member={member} index={i} />
+   796→            ))}
+   797→          </div>
+   798→        </div>
+   799→      </section>
+   800→
+   801→      {/* ═══ PARALLAX DIVIDER ═══ */}
+   802→      <ParallaxImage
+   803→        src={IMG.hall}
+   804→        alt="Команда за работой"
+   805→        speed={0.4}
+   806→        overlay
+   807→        overlayOpacity={0.5}
+   808→        className="parallax-ken-burns"
+   809→        style={{ height: "35vh" }}
+   810→      />
+   811→
+   812→      {/* ═══ DEPARTMENTS with SpotlightCards ═══ */}
+   813→      <section aria-label="Структура компании" style={{ padding: "6rem 2rem", background: "#FAFAF8" }}>
+   814→        <div style={{ maxWidth: 1320, margin: "0 auto" }}>
+   815→          <motion.p
+   816→            style={{
+   817→              fontSize: "0.75rem",
+   818→              letterSpacing: "0.2em",
+   819→              textTransform: "uppercase",
+   820→              color: "#B8955A",
+   821→              fontWeight: 600,
+   822→              marginBottom: "1rem",
+   823→            }}
+   824→            initial={{ opacity: 0 }}
+   825→            whileInView={{ opacity: 1 }}
+   826→            viewport={{ once: true }}
+   827→          >
+   828→            Структура компании
+   829→          </motion.p>
+   830→
+   831→          <KineticText
+   832→            text="Каждый отдел — мастер своего дела"
+   833→            as="h2"
+   834→            animation="fadeUp"
+   835→            stagger={0.025}
+   836→            duration={0.5}
+   837→            style={{
+   838→              fontFamily: "var(--font-serif)",
+   839→              fontSize: "clamp(2rem, 5vw, 3.5rem)",
+   840→              fontWeight: 400,
+   841→              marginBottom: "3rem",
+   842→              color: "#1a1a1a",
+   843→            }}
+   844→          />
+   845→
+   846→          <div
+   847→            style={{
+   848→              display: "grid",
+   849→              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+   850→              gap: "1.5rem",
+   851→            }}
+   852→          >
+   853→            {DEPARTMENTS.map((dept, i) => (
+   854→              <DepartmentCard key={dept.title} dept={dept} index={i} />
+   855→            ))}
+   856→          </div>
+   857→        </div>
+   858→      </section>
+   859→
+   860→      {/* ═══ BEHIND THE SCENES — Horizontal Scroll ═══ */}
+   861→      <section aria-label="За кулисами" style={{ padding: "6rem 0", overflow: "hidden" }}>
+   862→        <div style={{ maxWidth: 1320, margin: "0 auto", paddingLeft: "2rem", paddingRight: "2rem" }}>
+   863→          <motion.p
+   864→            style={{
+   865→              fontSize: "0.75rem",
+   866→              letterSpacing: "0.2em",
+   867→              textTransform: "uppercase",
+   868→              color: "#B8955A",
+   869→              fontWeight: 600,
+   870→              marginBottom: "1rem",
+   871→            }}
+   872→            initial={{ opacity: 0 }}
+   873→            whileInView={{ opacity: 1 }}
+   874→            viewport={{ once: true }}
+   875→          >
+   876→            За кулисами
+   877→          </motion.p>
+   878→
+   879→          <KineticText
+   880→            text="Моменты, которые стоят за каждым событием"
+   881→            as="h2"
+   882→            animation="blur"
+   883→            stagger={0.02}
+   884→            duration={0.5}
+   885→            style={{
+   886→              fontFamily: "var(--font-serif)",
+   887→              fontSize: "clamp(1.8rem, 4vw, 3rem)",
+   888→              fontWeight: 400,
+   889→              marginBottom: "2.5rem",
+   890→              color: "#1a1a1a",
+   891→            }}
+   892→          />
+   893→        </div>
+   894→
+   895→        {/* Horizontal scroll container */}
+   896→        <div
+   897→          ref={scrollRef}
+   898→          className="team-behind-scroll"
+   899→          style={{
+   900→            display: "flex",
+   901→            gap: "1.5rem",
+   902→            overflowX: "auto",
+   903→            paddingBottom: "1.5rem",
+   904→            paddingLeft: "2rem",
+   905→            paddingRight: "2rem",
+   906→            scrollbarWidth: "thin",
+   907→            scrollbarColor: "rgba(184,149,90,0.3) transparent",
+   908→            msOverflowStyle: "none",
+   909→          }}
+   910→        >
+   911→          {BEHIND_SCENES.map((item, i) => (
+   912→            <motion.div
+   913→              key={i}
+   914→              initial={{ opacity: 0, x: 40 }}
+   915→              whileInView={{ opacity: 1, x: 0 }}
+   916→              viewport={{ once: true }}
+   917→              transition={{ delay: i * 0.08, duration: 0.6 }}
+   918→              style={{ flex: "0 0 300px", height: 400 }}
+   919→            >
+   920→              <FlipCard3D
+   921→                front={
+   922→                  <div style={{ position: "relative", height: "100%", borderRadius: 20, overflow: "hidden" }}>
+   923→                    <ParallaxImage
+   924→                      src={item.src}
+   925→                      alt={item.label}
+   926→                      speed={0.15}
+   927→                      style={{ height: "100%", borderRadius: 20 }}
+   928→                    />
+   929→                    <div
+   930→                      style={{
+   931→                        position: "absolute",
+   932→                        bottom: 0,
+   933→                        left: 0,
+   934→                        right: 0,
+   935→                        padding: "1.5rem",
+   936→                        background: "linear-gradient(to top, rgba(0,0,0,0.7), transparent)",
+   937→                        color: "#fff",
+   938→                      }}
+   939→                    >
+   940→                      <p style={{ fontSize: "0.95rem", fontWeight: 500, letterSpacing: "0.02em" }}>
+   941→                        {item.label}
+   942→                      </p>
+   943→                    </div>
+   944→                    <div
+   945→                      style={{
+   946→                        position: "absolute",
+   947→                        top: 12,
+   948→                        right: 12,
+   949→                        width: 28,
+   950→                        height: 28,
+   951→                        borderRadius: "50%",
+   952→                        background: "rgba(255,255,255,0.2)",
+   953→                        backdropFilter: "blur(8px)",
+   954→                        display: "flex",
+   955→                        alignItems: "center",
+   956→                        justifyContent: "center",
+   957→                        color: "#fff",
+   958→                        fontSize: "0.7rem",
+   959→                      }}
+   960→                    >
+   961→                      ↻
+   962→                    </div>
+   963→                  </div>
+   964→                }
+   965→                back={
+   966→                  <div
+   967→                    style={{
+   968→                      height: "100%",
+   969→                      borderRadius: 20,
+   970→                      background: "linear-gradient(135deg, #FEFDFB, #FAFAF8)",
+   971→                      display: "flex",
+   972→                      flexDirection: "column",
+   973→                      alignItems: "center",
+   974→                      justifyContent: "center",
+   975→                      padding: "2rem",
+   976→                      textAlign: "center",
+   977→                      border: "1.5px solid rgba(184,149,90,0.15)",
+   978→                    }}
+   979→                  >
+   980→                    <div style={{ fontSize: "2.5rem", marginBottom: "1rem" }}>📸</div>
+   981→                    <h4
+   982→                      style={{
+   983→                        fontFamily: "var(--font-serif)",
+   984→                        fontSize: "1.2rem",
+   985→                        fontWeight: 500,
+   986→                        color: "#1a1a1a",
+   987→                        marginBottom: "0.75rem",
+   988→                      }}
+   989→                    >
+   990→                      {item.label}
+   991→                    </h4>
+   992→                    <p style={{ fontSize: "0.85rem", color: "var(--color-text-secondary)", lineHeight: 1.6 }}>
+   993→                      Моменты, которые создают нашу команду. Каждый день мы превращаем идеи в реальность.
+   994→                    </p>
+   995→                  </div>
+   996→                }
+   997→                style={{ height: "100%" }}
+   998→              />
+   999→            </motion.div>
+  1000→          ))}
+  1001→        </div>
+  1002→
+  1003→        {/* Custom scrollbar styling */}
+  1004→        <style>{`
+  1005→          .team-behind-scroll::-webkit-scrollbar {
+  1006→            height: 6px;
+  1007→          }
+  1008→          .team-behind-scroll::-webkit-scrollbar-track {
+  1009→            background: transparent;
+  1010→          }
+  1011→          .team-behind-scroll::-webkit-scrollbar-thumb {
+  1012→            background: rgba(184,149,90,0.3);
+  1013→            border-radius: 3px;
+  1014→          }
+  1015→          .team-behind-scroll::-webkit-scrollbar-thumb:hover {
+  1016→            background: rgba(184,149,90,0.5);
+  1017→          }
+  1018→        `}</style>
+  1019→      </section>
+  1020→
+  1021→      {/* ═══ JOIN OUR TEAM CTA with ConfettiButton ═══ */}
+  1022→      <section
+  1023→        aria-label="Присоединяйтесь к команде"
+  1024→        style={{
+  1025→          padding: "6rem 2rem",
+  1026→          background: "linear-gradient(135deg, #F5F3EE 0%, #EDE9E1 50%, #F5F3EE 100%)",
+  1027→          color: "#fff",
+  1028→          textAlign: "center",
+  1029→          position: "relative",
+  1030→          overflow: "hidden",
+  1031→        }}
+  1032→      >
+  1033→        {/* MorphingBlob in CTA background */}
+  1034→        <div style={{ position: "absolute", top: "-20%", right: "-10%", zIndex: 0 }}>
+  1035→          <MorphingBlob
+  1036→            size={450}
+  1037→            color1="rgba(184,149,90,0.1)"
+  1038→            color2="rgba(184,149,90,0.05)"
+  1039→            opacity={0.6}
+  1040→            speed={10}
+  1041→          />
+  1042→        </div>
+  1043→        <div style={{ position: "absolute", bottom: "-15%", left: "-8%", zIndex: 0 }}>
+  1044→          <MorphingBlob
+  1045→            size={350}
+  1046→            color1="rgba(90,184,158,0.06)"
+  1047→            color2="rgba(184,149,90,0.04)"
+  1048→            opacity={0.4}
+  1049→            speed={12}
+  1050→          />
+  1051→        </div>
+  1052→
+  1053→        {/* Particles */}
+  1054→        <ParticleField count={35} color="184,149,90" speed={0.2} />
+  1055→
+  1056→        <div style={{ maxWidth: 700, margin: "0 auto", position: "relative", zIndex: 1 }}>
+  1057→          <motion.p
+  1058→            style={{
+  1059→              fontSize: "0.75rem",
+  1060→              letterSpacing: "0.2em",
+  1061→              textTransform: "uppercase",
+  1062→              color: "#B8955A",
+  1063→              fontWeight: 600,
+  1064→              marginBottom: "1.5rem",
+  1065→            }}
+  1066→            initial={{ opacity: 0 }}
+  1067→            whileInView={{ opacity: 1 }}
+  1068→            viewport={{ once: true }}
+  1069→          >
+  1070→            Присоединяйтесь к нам
+  1071→          </motion.p>
+  1072→
+  1073→          <KineticText
+  1074→            text="Хотите стать частью команды, которой доверяют?"
+  1075→            as="h2"
+  1076→            animation="scale"
+  1077→            stagger={0.03}
+  1078→            duration={0.6}
+  1079→            style={{
+  1080→              fontFamily: "var(--font-serif)",
+  1081→              fontSize: "clamp(2rem, 5vw, 3.5rem)",
+  1082→              fontWeight: 400,
+  1083→              marginBottom: "1.5rem",
+  1084→              color: "#fff",
+  1085→              justifyContent: "center",
+  1086→            }}
+  1087→          />
+  1088→
+  1089→          <motion.p
+  1090→            style={{ color: "rgba(255,255,255,0.6)", lineHeight: 1.8, marginBottom: "2.5rem", fontSize: "1.05rem" }}
+  1091→            initial={{ opacity: 0 }}
+  1092→            whileInView={{ opacity: 1 }}
+  1093→            viewport={{ once: true }}
+  1094→            transition={{ delay: 0.2 }}
+  1095→          >
+  1096→            Мы всегда ищем талантливых и страстных профессионалов. Если вы хотите создавать безупречные впечатления — отправьте нам заявку, и мы обязательно свяжемся с вами.
+  1097→          </motion.p>
+  1098→
+  1099→          <motion.div
+  1100→            initial={{ opacity: 0, y: 20 }}
+  1101→            whileInView={{ opacity: 1, y: 0 }}
+  1102→            viewport={{ once: true }}
+  1103→            transition={{ delay: 0.4 }}
+  1104→          >
+  1105→            <ConfettiButton
+  1106→              onClick={() => {}}
+  1107→              style={{
+  1108→                background: "linear-gradient(135deg, #B8955A, #D4AF37)",
+  1109→                color: "#fff",
+  1110→                border: "none",
+  1111→                padding: "1rem 2.5rem",
+  1112→                fontSize: "1rem",
+  1113→                fontWeight: 600,
+  1114→                letterSpacing: "0.05em",
+  1115→                borderRadius: 50,
+  1116→                cursor: "pointer",
+  1117→                boxShadow: "0 8px 30px rgba(184,149,90,0.35)",
+  1118→                transition: "transform 0.3s, box-shadow 0.3s",
+  1119→              }}
+  1120→            >
+  1121→              Отправить заявку
+  1122→            </ConfettiButton>
+  1123→          </motion.div>
+  1124→
+  1125→          <motion.p
+  1126→            style={{
+  1127→              marginTop: "1.5rem",
+  1128→              fontSize: "0.8rem",
+  1129→              color: "rgba(255,255,255,0.3)",
+  1130→            }}
+  1131→            initial={{ opacity: 0 }}
+  1132→            whileInView={{ opacity: 1 }}
+  1133→            viewport={{ once: true }}
+  1134→            transition={{ delay: 0.6 }}
+  1135→          >
+  1136→            Или напишите нам на interfood-catering@yandex.ru
+  1137→          </motion.p>
+  1138→        </div>
+  1139→      </section>
+  1140→
+  1141→      {/* ═══ FOOTER ═══ */}
+  1142→      <footer
+  1143→        style={{
+  1144→          background: "#F5F3EE",
+  1145→          color: "#fff",
+  1146→          padding: "4rem 2rem 2rem",
+  1147→        }}
+  1148→      >
+  1149→        <div style={{ maxWidth: 1320, margin: "0 auto" }}>
+  1150→          <div
+  1151→            style={{
+  1152→              display: "grid",
+  1153→              gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+  1154→              gap: "2rem",
+  1155→            }}
+  1156→          >
+  1157→            <div>
+  1158→              <h3
+  1159→                style={{
+  1160→                  fontFamily: "var(--font-serif)",
+  1161→                  fontSize: "1.5rem",
+  1162→                  color: "#fff",
+  1163→                  marginBottom: "1rem",
+  1164→                  letterSpacing: "0.1em",
+  1165→                }}
+  1166→              >
+  1167→                ИНТЕРФУД
+  1168→              </h3>
+  1169→              <p style={{ lineHeight: 1.8, fontSize: "0.9rem", color: "rgba(255,255,255,0.5)" }}>
+  1170→                Ресторан выездного обслуживания в Санкт-Петербурге. Кейтеринг для свадеб, корпоративов и закрытых мероприятий с 2007 года.
+  1171→              </p>
+  1172→            </div>
+  1173→            <div>
+  1174→              <h4
+  1175→                style={{
+  1176→                  color: "#fff",
+  1177→                  marginBottom: "1rem",
+  1178→                  fontSize: "0.75rem",
+  1179→                  letterSpacing: "0.15em",
+  1180→                  textTransform: "uppercase",
+  1181→                }}
+  1182→              >
+  1183→                Услуги
+  1184→              </h4>
+  1185→              <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+  1186→                <Link href="/services" style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.9rem", textDecoration: "none" }}>Фуршет</Link>
+  1187→                <Link href="/services" style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.9rem", textDecoration: "none" }}>Банкет</Link>
+  1188→                <Link href="/services" style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.9rem", textDecoration: "none" }}>Кофе-брейк</Link>
+  1189→                <Link href="/wedding" style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.9rem", textDecoration: "none" }}>Свадебный кейтеринг</Link>
+  1190→                <Link href="/corporate" style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.9rem", textDecoration: "none" }}>Корпоратив</Link>
+  1191→              </div>
+  1192→            </div>
+  1193→            <div>
+  1194→              <h4
+  1195→                style={{
+  1196→                  color: "#fff",
+  1197→                  marginBottom: "1rem",
+  1198→                  fontSize: "0.75rem",
+  1199→                  letterSpacing: "0.15em",
+  1200→                  textTransform: "uppercase",
+  1201→                }}
+  1202→              >
+  1203→                Компания
+  1204→              </h4>
+  1205→              <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+  1206→                <Link href="/about" style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.9rem", textDecoration: "none" }}>О нас</Link>
+  1207→                <Link href="/team" style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.9rem", textDecoration: "none" }}>Команда</Link>
+  1208→                <Link href="/gallery" style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.9rem", textDecoration: "none" }}>Галерея</Link>
+  1209→                <Link href="/reviews" style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.9rem", textDecoration: "none" }}>Отзывы</Link>
+  1210→                <Link href="/blog" style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.9rem", textDecoration: "none" }}>Блог</Link>
+  1211→              </div>
+  1212→            </div>
+  1213→            <div>
+  1214→              <h4
+  1215→                style={{
+  1216→                  color: "#fff",
+  1217→                  marginBottom: "1rem",
+  1218→                  fontSize: "0.75rem",
+  1219→                  letterSpacing: "0.15em",
+  1220→                  textTransform: "uppercase",
+  1221→                }}
+  1222→              >
+  1223→                Контакты
+  1224→              </h4>
+  1225→              <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+  1226→                <a href="tel:+78129195911" style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.9rem", textDecoration: "none" }}>+7 (812) 919-59-11</a>
+  1227→                <a href="mailto:interfood-catering@yandex.ru" style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.9rem", textDecoration: "none" }}>interfood-catering@yandex.ru</a>
+  1228→                <span style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.9rem" }}>Новолитовская ул., 15</span>
+  1229→                <span style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.9rem" }}>Санкт-Петербург</span>
+  1230→              </div>
+  1231→            </div>
+  1232→          </div>
+  1233→          <div
+  1234→            style={{
+  1235→              borderTop: "1px solid rgba(255,255,255,0.08)",
+  1236→              marginTop: "3rem",
+  1237→              paddingTop: "1.5rem",
+  1238→              display: "flex",
+  1239→              justifyContent: "space-between",
+  1240→              fontSize: "0.75rem",
+  1241→              color: "rgba(255,255,255,0.3)",
+  1242→              flexWrap: "wrap",
+  1243→              gap: "1rem",
+  1244→            }}
+  1245→          >
+  1246→            <span>&copy; {new Date().getFullYear()} Интерфуд Кейтеринг</span>
+  1247→            <div style={{ display: "flex", gap: "1.5rem" }}>
+  1248→              <Link href="/privacy" style={{ color: "rgba(255,255,255,0.3)", textDecoration: "none" }}>Политика конфиденциальности</Link>
+  1249→              <Link href="/terms" style={{ color: "rgba(255,255,255,0.3)", textDecoration: "none" }}>Условия</Link>
+  1250→            </div>
+  1251→          </div>
+  1252→        </div>
+  1253→      </footer>
+  1254→
+  1255→      {/* WhatsApp */}
+  1256→      <a
+  1257→        href="https://wa.me/78129195911"
+  1258→        style={{
+  1259→          position: "fixed",
+  1260→          bottom: 24,
+  1261→          right: 24,
+  1262→          width: 56,
+  1263→          height: 56,
+  1264→          borderRadius: "50%",
+  1265→          background: "#25D366",
+  1266→          display: "flex",
+  1267→          alignItems: "center",
+  1268→          justifyContent: "center",
+  1269→          boxShadow: "0 4px 20px rgba(37,211,102,0.4)",
+  1270→          zIndex: 999,
+  1271→          transition: "transform 0.3s",
+  1272→        }}
+  1273→        target="_blank"
+  1274→        rel="noopener noreferrer"
+  1275→        aria-label="WhatsApp"
+  1276→      >
+  1277→        <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff">
+  1278→          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+  1279→          <path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.12 1.52 5.855L0 24l6.335-1.652A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.82c-1.968 0-3.825-.534-5.44-1.47l-.39-.232-3.866 1.008 1.033-3.78-.254-.404A9.79 9.79 0 012.18 12c0-5.422 4.398-9.82 9.82-9.82 5.422 0 9.82 4.398 9.82 9.82 0 5.422-4.398 9.82-9.82 9.82z" />
+  1280→        </svg>
+  1281→      </a>
+  1282→      <ConversionCTA
+  1283→        headline="Доверьте праздник профессионалам — с гарантией по договору"
+  1284→        subtitle="Наша команда создаст безупречное мероприятие — от идеи до последней детали"
+  1285→        primaryLabel="Обсудить мероприятие"
+  1286→        secondaryLabel="Калькулятор стоимости"
+  1287→        secondaryHref="/calculator"
+  1288→      />
+  1289→    </main>
+  1290→  );
+  1291→}
+  1292→
