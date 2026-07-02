@@ -1,357 +1,177 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import {
   motion,
   useScroll,
   useTransform,
-  type MotionValue,
   useInView,
+  type MotionValue,
 } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
 
-/* ═══════════════════════════════════════════════════════════════
-   CulinaryJourney v2 — Bell-curve clip-path animation
+const EASE = [0.16, 1, 0.3, 1] as const;
 
-   FIX: Description font-size now uses clamp(0.9rem, 4vw, 1.1rem)
-   instead of 1.4vw which = 4.5px on 320px. Mobile scroll container
-   reduced from 300vh to 200vh. Mobile uses whileInView animations
-   instead of sticky scroll. Timeline line position fixed on mobile.
-   ═══════════════════════════════════════════════════════════════ */
-
-const JOURNEY_STEPS = [
-  { number: "01", image: "/images/food_general.jpg", title: "Авторское меню", description: "Дмитрий Нилов создаёт каждое блюдо лично" },
-  { number: "02", image: "/images/furshet_food.jpg", title: "Свежие продукты", description: "Доставка продуктов утром в день мероприятия" },
-  { number: "03", image: "/images/food_salmon.jpg", title: "Мастерство подачи", description: "Каждое блюдо — визуальный шедевр" },
-  { number: "04", image: "/images/gallery_1.jpg", title: "Впечатления гостей", description: "Результат, ради которого мы работаем" },
+const MOMENTS = [
+  { title: "Свежие ингредиенты", desc: "Отборные продукты с утра в день события", image: "/images/food_shrimp.jpg" },
+  { title: "Авторская подача", desc: "Каждое блюдо — визуальный шедевр шефа", image: "/images/banket_food1.jpg" },
+  { title: "Безупречный вкус", desc: "Гармония вкуса, проверенная дегустацией", image: "/images/food_salmon.jpg" },
 ];
 
-function JourneyStep({
-  step,
+/* ─── Desktop: scroll-pinned image with circle clip-path ─── */
+function PinnedMoment({
+  moment,
   index,
   scrollYProgress,
-  isMobile,
 }: {
-  step: typeof JOURNEY_STEPS[number];
+  moment: typeof MOMENTS[number];
   index: number;
   scrollYProgress: MotionValue<number>;
-  isMobile: boolean;
 }) {
-  /* Each step: reveal from 40% inset to 0% inset, then hold.
-     Staggered: step 0 starts at 0%, step 1 at 20%, etc.
-     Each step takes 20% of scroll to fully reveal. */
-  const start = index * 0.2;
-  const revealEnd = start + 0.12; // Quick reveal
-  const holdEnd = start + 0.25;   // Hold visible
+  const segLen = 1 / MOMENTS.length;
+  const start = index * segLen;
+  const revealEnd = start + segLen * 0.4;
+  const holdEnd = start + segLen * 0.85;
 
-  // Opacity: fade in, then stay at 1
-  const opacity = useTransform(scrollYProgress, [start, revealEnd], [0, 1]);
+  const clipProgress = useTransform(scrollYProgress, [start, revealEnd, holdEnd], [0, 100, 100]);
+  const clipPath = useTransform(clipProgress, (v: number) => {
+    const r = Math.min(v, 100);
+    return `circle(${r}% at 50% 50%)`;
+  });
 
-  // Y: slide up, then stay
-  const y = useTransform(scrollYProgress, [start, revealEnd], [60, 0]);
-
-  // Clip-path: bell curve — start small, expand fully, STAY expanded
-  const clipInset = useTransform(scrollYProgress, [start, revealEnd, holdEnd], [
-    "inset(40% 40% 40% 40% round 16px)",
-    "inset(0% 0% 0% 0% round 16px)",
-    "inset(0% 0% 0% 0% round 16px)",
-  ]);
-
-  const isReversed = index % 2 === 1;
+  const textOpacity = useTransform(scrollYProgress, [start + segLen * 0.1, start + segLen * 0.35], [0, 1]);
+  const textY = useTransform(scrollYProgress, [start + segLen * 0.1, start + segLen * 0.35], [30, 0]);
+  const scale = useTransform(scrollYProgress, [start, holdEnd], [1, 1.08]);
 
   return (
-    <motion.div style={{ opacity, y }} className="cj-step">
-      {index > 0 && (
-        <div className="cj-connector" aria-hidden="true">
-          <div className="cj-connector-dot" />
-        </div>
-      )}
-
-      <div className={`cj-step-inner ${isReversed && !isMobile ? "cj-step-reversed" : ""}`}>
-        <div className="cj-image-col">
-          <motion.div
-            className="cj-image-wrapper"
-            style={{ clipPath: clipInset }}
-          >
-            <img
-              src={step.image}
-              alt={step.title}
-              loading="lazy"
-              className="cj-image"
-            />
-            <div className="cj-image-overlay" aria-hidden="true" />
-          </motion.div>
-        </div>
-
-        <div className="cj-content-col">
-          <span className="cj-step-number">{step.number}</span>
-          <h3 className="cj-step-title">{step.title}</h3>
-          <p className="cj-step-desc">{step.description}</p>
-        </div>
+    <motion.div
+      style={{
+        position: "absolute", inset: 0,
+        clipPath,
+        willChange: "clip-path",
+      }}
+    >
+      {/* Ken Burns zoom */}
+      <motion.div style={{ position: "absolute", inset: 0, scale }}>
+        <img
+          src={moment.image}
+          alt={moment.title}
+          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+        />
+      </motion.div>
+      {/* Dark overlay */}
+      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(26,23,20,0.7) 0%, rgba(26,23,20,0.2) 50%, transparent 100%)" }} />
+      {/* Text overlay */}
+      <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: "4rem" }}>
+        <motion.div style={{ opacity: textOpacity, y: textY }}>
+          <span style={{ fontSize: "0.7rem", fontWeight: 600, letterSpacing: "0.3em", textTransform: "uppercase", color: "#D4A63E", display: "block", marginBottom: "0.75rem" }}>
+            {String(index + 1).padStart(2, "0")}
+          </span>
+          <h3 style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(1.8rem, 4vw, 3rem)", fontWeight: 300, color: "#FAFAF7", lineHeight: 1.15, marginBottom: "0.5rem" }}>
+            {moment.title}
+          </h3>
+          <p style={{ fontSize: "clamp(0.9rem, 1.5vw, 1.1rem)", color: "rgba(250,250,247,0.75)", lineHeight: 1.7, fontWeight: 300, maxWidth: 400 }}>
+            {moment.desc}
+          </p>
+        </motion.div>
       </div>
     </motion.div>
   );
 }
 
-/** Mobile-only step with whileInView (no sticky scroll) */
-function MobileJourneyStep({
-  step,
-  index,
-}: {
-  step: typeof JOURNEY_STEPS[number];
-  index: number;
-}) {
+/* ─── Mobile: vertical scroll with whileInView ─── */
+function MobileMoment({ moment, index }: { moment: typeof MOMENTS[number]; index: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-60px" });
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.6, delay: 0.1 }}
-      className="cj-step"
+      ref={ref}
+      initial={{ opacity: 0, y: 40 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.7, delay: index * 0.1, ease: EASE }}
+      style={{ position: "relative", borderRadius: 16, overflow: "hidden", aspectRatio: "16/10", marginBottom: "1.5rem" }}
     >
-      {index > 0 && (
-        <div className="cj-connector" aria-hidden="true">
-          <div className="cj-connector-dot" />
-        </div>
-      )}
-
-      <div className="cj-step-inner">
-        <div className="cj-image-col">
-          <motion.div
-            initial={{ clipPath: "inset(20% 20% 20% 20% round 12px)" }}
-            whileInView={{ clipPath: "inset(0% 0% 0% 0% round 12px)" }}
-            viewport={{ once: true, margin: "-30px" }}
-            transition={{ duration: 0.7 }}
-            className="cj-image-wrapper"
-          >
-            <img
-              src={step.image}
-              alt={step.title}
-              loading="lazy"
-              className="cj-image"
-            />
-            <div className="cj-image-overlay" aria-hidden="true" />
-          </motion.div>
-        </div>
-
-        <div className="cj-content-col">
-          <span className="cj-step-number">{step.number}</span>
-          <h3 className="cj-step-title">{step.title}</h3>
-          <p className="cj-step-desc">{step.description}</p>
-        </div>
+      <motion.div
+        initial={{ clipPath: "circle(0% at 50% 50%)" }}
+        animate={isInView ? { clipPath: "circle(100% at 50% 50%)" } : {}}
+        transition={{ duration: 0.8, delay: index * 0.1 + 0.2, ease: EASE }}
+        style={{ position: "absolute", inset: 0 }}
+      >
+        <img src={moment.image} alt={moment.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+      </motion.div>
+      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(26,23,20,0.65) 0%, transparent 60%)" }} />
+      <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "1.25rem" }}>
+        <span style={{ fontSize: "0.65rem", fontWeight: 600, letterSpacing: "0.3em", textTransform: "uppercase", color: "#D4A63E" }}>
+          {String(index + 1).padStart(2, "0")}
+        </span>
+        <h3 style={{ fontFamily: "var(--font-serif)", fontSize: "1.25rem", fontWeight: 400, color: "#FAFAF7", lineHeight: 1.2, marginTop: "0.25rem" }}>{moment.title}</h3>
+        <p style={{ fontSize: "0.8rem", color: "rgba(250,250,247,0.7)", lineHeight: 1.5, fontWeight: 300, marginTop: "0.25rem" }}>{moment.desc}</p>
       </div>
     </motion.div>
   );
 }
 
 export default function CulinaryJourney() {
-  const sectionRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end end"] });
 
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end end"],
-  });
+  /* Track current image index for dot indicator */
+  const [activeIndex, setActiveIndex] = useState(0);
+  const segLen = 1 / MOMENTS.length;
 
-  // Mobile: no sticky, just normal flow with whileInView
+  useEffect(() => {
+    if (isMobile) return;
+    const unsubscribe = scrollYProgress.on("change", (v: number) => {
+      const idx = Math.min(Math.floor(v / segLen), MOMENTS.length - 1);
+      setActiveIndex(idx);
+    });
+    return () => unsubscribe();
+  }, [scrollYProgress, isMobile, segLen]);
+
   if (isMobile) {
     return (
-      <section
-        aria-label="Кулинарный путь"
-        style={{ position: "relative", background: "var(--color-surface-1)", padding: "4rem 0" }}
-      >
-        <style>{`
-          .cj-step { position: relative; }
-          .cj-connector {
-            display: flex; align-items: center; justify-content: center;
-            padding: 0.5rem 0; position: relative;
-          }
-          .cj-connector::before {
-            content: ""; width: 1px; height: 100%;
-            background: linear-gradient(180deg, transparent, var(--color-brand-30) 30%, var(--color-brand-40) 50%, var(--color-brand-30) 70%, transparent);
-          }
-          .cj-connector-dot {
-            position: absolute; width: 6px; height: 6px; border-radius: 50%;
-            background: var(--color-brand); box-shadow: 0 0 12px rgba(201,169,106,0.3);
-          }
-          .cj-step-inner {
-            display: grid; grid-template-columns: 1fr; gap: 1.25rem; align-items: center;
-          }
-          .cj-image-col { position: relative; }
-          .cj-image-wrapper {
-            position: relative; border-radius: 12px; overflow: hidden;
-            aspect-ratio: 16 / 10; background: var(--color-surface-3);
-          }
-          .cj-image {
-            width: 100%; height: 100%; object-fit: cover;
-          }
-          .cj-image-overlay {
-            position: absolute; inset: 0; pointer-events: none;
-            background: linear-gradient(135deg, rgba(250,250,247,0.12) 0%, transparent 50%, rgba(250,250,247,0.2) 100%);
-          }
-          .cj-content-col { display: flex; flex-direction: column; gap: 0.6rem; text-align: left; }
-          .cj-step-number {
-            font-family: var(--font-serif); font-size: clamp(2.5rem, 8vw, 4rem);
-            font-weight: 200; color: var(--color-brand); line-height: 1;
-            letter-spacing: -0.02em; opacity: 0.7;
-          }
-          .cj-step-title {
-            font-family: var(--font-serif); font-size: clamp(1.3rem, 5vw, 1.8rem);
-            font-weight: 400; color: var(--color-text-primary); line-height: 1.2;
-          }
-          .cj-step-desc {
-            font-size: clamp(0.9rem, 4vw, 1.1rem); color: var(--color-text-secondary);
-            line-height: 1.7; font-weight: 300;
-          }
-          .cj-timeline-line-mobile {
-            position: absolute; left: 1.5rem; top: 0; bottom: 0; width: 1px;
-            background: linear-gradient(180deg, transparent, var(--color-brand-16) 10%, var(--color-brand-20) 50%, var(--color-brand-16) 90%, transparent);
-            z-index: 0; pointer-events: none;
-          }
-        `}</style>
-
-        <div style={{ position: "relative", maxWidth: 1100, margin: "0 auto", padding: "0 1.25rem" }}>
-          <div className="cj-timeline-line-mobile" aria-hidden="true" />
-
-          <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} style={{ textAlign: "center", marginBottom: "1rem", position: "relative", zIndex: 1 }}>
-            <span style={{ fontSize: "clamp(0.75rem, 2vw, 0.7rem)", fontWeight: 600, letterSpacing: "0.35em", textTransform: "uppercase", color: "var(--color-brand)", display: "inline-flex", alignItems: "center", gap: "0.75rem" }}>
-              <span style={{ width: 24, height: 1, background: "var(--color-brand-30)", display: "inline-block" }} />
-              Наш путь
-              <span style={{ width: 24, height: 1, background: "var(--color-brand-30)", display: "inline-block" }} />
-            </span>
-          </motion.div>
-
-          <motion.h2 initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.1 }} style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(2rem, 6vw, 3rem)", fontWeight: 300, color: "var(--color-text-primary)", textAlign: "center", lineHeight: 1.15, letterSpacing: "-0.02em", marginBottom: "0.75rem", position: "relative", zIndex: 1 }}>
-            От кухни до вашего <em style={{ color: "var(--color-brand)", fontStyle: "italic" }}>стола</em>
-          </motion.h2>
-
-          <motion.p initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.2 }} style={{ fontSize: "clamp(0.9rem, 3vw, 1.1rem)", color: "var(--color-text-secondary)", textAlign: "center", lineHeight: 1.7, fontWeight: 300, maxWidth: 520, margin: "0 auto 3rem", position: "relative", zIndex: 1 }}>
-            Каждое блюдо проходит путь от шефа до гостя
-          </motion.p>
-
-          <div style={{ position: "relative", zIndex: 1 }}>
-            {JOURNEY_STEPS.map((step, i) => (
-              <MobileJourneyStep key={step.number} step={step} index={i} />
-            ))}
-          </div>
+      <section style={{ position: "relative", background: "#FAFAF7", padding: "3rem 1.25rem" }} aria-label="Кулинарное путешествие">
+        <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} style={{ textAlign: "center", marginBottom: "0.75rem" }}>
+          <span style={{ fontSize: "0.7rem", fontWeight: 600, letterSpacing: "0.35em", textTransform: "uppercase", color: "#B8860B" }}>Наш путь</span>
+        </motion.div>
+        <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.1 }} style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(1.8rem, 6vw, 2.5rem)", fontWeight: 300, color: "#1A1714", textAlign: "center", lineHeight: 1.15, marginBottom: "2rem" }}>
+          Кулинарное <span style={{ color: "#B8860B" }}>путешествие</span>
+        </motion.h2>
+        <div style={{ maxWidth: 520, margin: "0 auto" }}>
+          {MOMENTS.map((m, i) => <MobileMoment key={i} moment={m} index={i} />)}
         </div>
       </section>
     );
   }
 
-  // Desktop: scroll-driven sticky animation
+  /* Desktop: pinned section with layered image transitions */
   return (
-    <section
-      ref={sectionRef}
-      aria-label="Кулинарный путь"
-      style={{ position: "relative", background: "var(--color-surface-1)" }}
-    >
-      <style>{`
-        .cj-step { position: relative; }
-        .cj-connector {
-          display: flex; align-items: center; justify-content: center;
-          padding: 1rem 0; position: relative;
-        }
-        .cj-connector::before {
-          content: ""; width: 1px; height: 100%;
-          background: linear-gradient(180deg, transparent, var(--color-brand-30) 30%, var(--color-brand-40) 50%, var(--color-brand-30) 70%, transparent);
-        }
-        .cj-connector-dot {
-          position: absolute; width: 6px; height: 6px; border-radius: 50%;
-          background: var(--color-brand); box-shadow: 0 0 12px rgba(201,169,106,0.3);
-        }
-        .cj-step-inner {
-          display: grid; grid-template-columns: 1fr 1fr;
-          gap: 3rem; align-items: center;
-        }
-        .cj-step-inner.cj-step-reversed { direction: rtl; }
-        .cj-step-inner.cj-step-reversed > * { direction: ltr; }
-        .cj-image-col { position: relative; }
-        .cj-image-wrapper {
-          position: relative; border-radius: 16px; overflow: hidden;
-          aspect-ratio: 4 / 3; background: var(--color-surface-3);
-        }
-        .cj-image {
-          width: 100%; height: 100%; object-fit: cover;
-          animation: ken-burns-zoom 20s ease-in-out alternate infinite;
-        }
-        .cj-image-overlay {
-          position: absolute; inset: 0; pointer-events: none;
-          background: linear-gradient(135deg, rgba(250,250,247,0.12) 0%, transparent 50%, rgba(250,250,247,0.2) 100%);
-        }
-        .cj-content-col { display: flex; flex-direction: column; gap: 0.75rem; }
-        .cj-step-number {
-          font-family: var(--font-serif); font-size: clamp(3rem, 6vw, 5rem);
-          font-weight: 200; color: var(--color-brand); line-height: 1;
-          letter-spacing: -0.02em; opacity: 0.7;
-        }
-        .cj-step-title {
-          font-family: var(--font-serif); font-size: clamp(1.5rem, 3vw, 2.2rem);
-          font-weight: 400; color: var(--color-text-primary); line-height: 1.2;
-        }
-        .cj-step-desc {
-          font-size: clamp(0.9rem, 4vw, 1.1rem); color: var(--color-text-secondary);
-          line-height: 1.7; font-weight: 300; max-width: 380px;
-        }
-        .cj-progress-track {
-          position: absolute; top: 0; left: 0; right: 0; height: 2px;
-          background: var(--color-brand-8); z-index: 10;
-        }
-        .cj-progress-fill {
-          height: 100%;
-          background: linear-gradient(90deg, var(--color-brand-dark), var(--color-brand), var(--color-brand-light));
-          transform-origin: left;
-        }
-        .cj-timeline-line {
-          position: absolute; left: 50%; top: 0; bottom: 0; width: 1px;
-          background: linear-gradient(180deg, transparent, var(--color-brand-16) 10%, var(--color-brand-20) 50%, var(--color-brand-16) 90%, transparent);
-          transform: translateX(-50%); z-index: 0; pointer-events: none;
-        }
-      `}</style>
+    <section ref={sectionRef} style={{ position: "relative", background: "#1A1714" }} aria-label="Кулинарное путешествие">
+      <div style={{ position: "relative", height: "300vh" }}>
+        <div style={{ position: "sticky", top: 0, height: "100vh", overflow: "hidden" }}>
+          {/* Layered images */}
+          {MOMENTS.map((m, i) => (
+            <PinnedMoment key={i} moment={m} index={i} scrollYProgress={scrollYProgress} />
+          ))}
 
-      <div style={{ position: "relative", height: "250vh" }}>
-        <div
-          style={{
-            position: "sticky", top: 0, minHeight: "100vh",
-            display: "flex", flexDirection: "column", alignItems: "center",
-            justifyContent: "center", background: "var(--color-surface-1)",
-            overflow: "hidden", padding: "8rem 2rem",
-          }}
-        >
-          <div className="cj-progress-track">
-            <motion.div className="cj-progress-fill" style={{ scaleX: scrollYProgress }} />
+          {/* Dot navigation */}
+          <div style={{ position: "absolute", right: "2rem", top: "50%", transform: "translateY(-50%)", zIndex: 20, display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+            {MOMENTS.map((_, i) => (
+              <div key={i} style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                <span style={{ fontSize: "0.65rem", fontWeight: 600, letterSpacing: "0.15em", color: i === activeIndex ? "#D4A63E" : "rgba(250,250,247,0.4)", transition: "color 0.4s" }}>
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <div style={{ width: 24, height: 2, borderRadius: 1, background: i === activeIndex ? "#D4A63E" : "rgba(250,250,247,0.2)", transition: "background 0.4s" }} />
+              </div>
+            ))}
           </div>
 
-          <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse 50% 40% at 50% 50%, rgba(201,169,106,0.04) 0%, transparent 70%)", pointerEvents: "none" }} />
-          <div aria-hidden="true" style={{ position: "absolute", top: 0, left: 0, right: 0, height: 120, background: "linear-gradient(to bottom, var(--color-surface-1), transparent)", pointerEvents: "none" }} />
-
-          <div style={{ position: "relative", zIndex: 2, maxWidth: 1100, width: "100%", margin: "0 auto" }}>
-            <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} style={{ textAlign: "center", marginBottom: "1rem" }}>
-              <span style={{ fontSize: "0.6rem", fontWeight: 600, letterSpacing: "0.35em", textTransform: "uppercase", color: "var(--color-brand)", display: "inline-flex", alignItems: "center", gap: "0.75rem" }}>
-                <span style={{ width: 24, height: 1, background: "var(--color-brand-30)", display: "inline-block" }} />
-                Наш путь
-                <span style={{ width: 24, height: 1, background: "var(--color-brand-30)", display: "inline-block" }} />
-              </span>
-            </motion.div>
-
-            <motion.h2 initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.1 }} style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(2rem, 5vw, 3.5rem)", fontWeight: 300, color: "var(--color-text-primary)", textAlign: "center", lineHeight: 1.15, letterSpacing: "-0.02em", marginBottom: "0.75rem" }}>
-              От кухни до вашего <em style={{ color: "var(--color-brand)", fontStyle: "italic" }}>стола</em>
-            </motion.h2>
-
-            <motion.p initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.2 }} style={{ fontSize: "clamp(0.9rem, 1.6vw, 1.1rem)", color: "var(--color-text-secondary)", textAlign: "center", lineHeight: 1.7, fontWeight: 300, maxWidth: 520, margin: "0 auto 4rem" }}>
-              Каждое блюдо проходит путь от шефа до гостя
-            </motion.p>
-
-            <div className="cj-timeline-line" aria-hidden="true" />
-
-            <div style={{ position: "relative", zIndex: 1 }}>
-              {JOURNEY_STEPS.map((step, i) => (
-                <JourneyStep key={step.number} step={step} index={i} scrollYProgress={scrollYProgress} isMobile={false} />
-              ))}
-            </div>
+          {/* Progress bar at bottom */}
+          <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 3, background: "rgba(250,250,247,0.1)", zIndex: 20 }}>
+            <motion.div style={{ height: "100%", background: "linear-gradient(90deg, #B8860B, #D4A63E)", scaleX: scrollYProgress, transformOrigin: "left" }} />
           </div>
-
-          <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 120, background: "linear-gradient(to top, var(--color-surface-1), transparent)", pointerEvents: "none" }} />
         </div>
       </div>
     </section>

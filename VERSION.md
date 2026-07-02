@@ -5,6 +5,38 @@
 
 ---
 
+## v80 — 2026-07-03 — Maximum WOW Demo: Complete Rebuild with 2026 Motion Design
+- **Тема**: Light Premium Maximum WOW (продолжение v77)
+- **Полная переработка ВСЕХ секций главной страницы**:
+  - ✅ CinematicHero: видео с Ken Burns, MorphingText (blur morph), магнитные CTA, параллакс 3 слоя, частицы, световой sweep
+  - ✅ KineticTypography: word-by-word blur reveal, золотые акценты, счётчики, диагональный clip-path вход
+  - ✅ StatsOdometer: spring physics counters, 3D tilt, glassmorphism карточки, плавающие золотые орбы
+  - ✅ HowItWorks: sticky горизонтальный storytelling, прогресс-бар, анимированные иконки, мобильный вертикальный режим
+  - ✅ CulinaryJourney: pinned scroll, circle clip-path reveal, Ken Burns, dot navigation
+  - ✅ ServicesShowcase: 3D tilt карточки, spotlight/glare, вращающийся gradient border, магнитный hover, light sweep
+  - ✅ CinematicGallery: coverflow 3D, drag навигация, автоплей, depth blur, Ken Burns на активной, gold light sweep
+  - ✅ ReviewsStack: swipe/drag стек карточек, spring physics, авторотация, staggered star fill
+  - ✅ CTASection: тёмный фон с grain, gold gradient shimmer текст, магнитные кнопки, ripple, floating orbs
+  - ✅ ContactShowcase: split layout, анимированные контакты, pulsing иконки, магнитный CTA
+- **MenuBuilder v2**:
+  - ✅ Полный редизайн 2026: 3D tilt карточки, анимированный gradient border, skeleton loading
+  - ✅ Всегда видимая кнопка "Скачать PDF" в sticky header
+  - ✅ Анимированная корзина с spring physics
+  - ✅ PDF генерация через jspdf с профессиональным форматированием
+  - ✅ Мобильный bottom sheet для корзины
+- **SiteNav v2**:
+  - ✅ Читаемость на hero: белый текст с text-shadow (2px 4px 12px rgba(0,0,0,0.7))
+  - ✅ z-index 9999 для навигации (раньше блокировался grain overlay)
+  - ✅ Fullscreen morph меню с clip-path circle анимацией
+  - ✅ Stagger анимация ссылок, WA/TG секция
+- **globals.css фиксы**:
+  - ✅ Grain overlay z-index: 9998 → 50 (НЕ блокирует клики!)
+  - ✅ iOS Safari fallback: scoped вместо global (не ломает Framer Motion)
+  - ✅ Добавлен @keyframes kenBurns для нового hero
+- **Главная страница**:
+  - ✅ MenuBuilder встроен прямо на главную (видимость #1)
+  - ✅ 13 секций в правильном порядке scroll storytelling
+
 ## v77 — 2026-07-03 — Real Content Sync + Mobile Overhaul + MenuBuilder Redesign
 - **Тема**: Light Premium (продолжение v76)
 - **Синхронизация с оригинальным сайтом**:

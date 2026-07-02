@@ -301,7 +301,7 @@ body {
 /* ═══ GRAIN OVERLAY (subtle for light theme) ═══ */
 .grain-overlay {
   position: fixed; inset: 0;
-  pointer-events: none; z-index: 9998;
+  pointer-events: none; z-index: 50;
   opacity: 0.02;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   background-size: 256px 256px;
@@ -418,7 +418,7 @@ body {
 .nav {
   position: fixed;
   top: 0; left: 0; right: 0;
-  z-index: 1000;
+  z-index: 9999;
   padding: 1.25rem 0;
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -511,7 +511,7 @@ body {
   border: none;
   cursor: pointer;
   padding: 8px;
-  z-index: 1002;
+  z-index: 10001;
 }
 .burger span {
   display: block;
@@ -538,7 +538,7 @@ body {
   );
   backdrop-filter: blur(40px);
   -webkit-backdrop-filter: blur(40px);
-  z-index: 1001;
+  z-index: 9998;
   padding: 5rem 2rem 2rem;
   display: flex;
   flex-direction: column;
@@ -575,6 +575,12 @@ body {
 @keyframes ken-burns-zoom {
   0% { transform: scale(1); }
   100% { transform: scale(1.12); }
+}
+
+/* ─── Ken Burns for hero video ─── */
+@keyframes kenBurns {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.08); }
 }
 
 /* ─── Ken Burns for poster fallback (video failed) ─── */
@@ -1144,19 +1150,15 @@ body {
 }
 
 /* ═══ iOS SAFARI ANIMATION FALLBACK ═══ */
-/* On devices with -webkit-touch-callout (iOS Safari), replace complex
-   transforms and keyframe animations with simpler opacity transitions
-   to avoid rendering glitches and jank. */
+/* Only apply to specific heavy animation elements on iOS Safari,
+   NOT globally — global override breaks Framer Motion transitions. */
 @supports (-webkit-touch-callout: none) {
-  *, *::before, *::after {
+  .ken-burns video, .ken-burns img,
+  .parallax-ken-burns video, .parallax-ken-burns img {
     animation-duration: 0.3s !important;
-    transition-property: opacity, visibility !important;
-    transition-duration: 0.3s !important;
-    transition-timing-function: ease !important;
   }
-  /* Allow opacity transitions to work normally */
-  [style*="opacity"], .fade-in, .fade-out {
-    transition-property: opacity !important;
+  .grain-overlay {
+    display: none !important;
   }
 }
 

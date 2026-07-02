@@ -1,521 +1,253 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
-import { motion, AnimatePresence, useMotionValue, useTransform } from "framer-motion";
+import {
+  motion,
+  AnimatePresence,
+  useMotionValue,
+  useTransform,
+  PanInfo,
+} from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
 
-/* ═══════════════════════════════════════════════════════════════
-   ReviewsStack — 3D Stack Carousel of Review Cards
-   Current card in front, previous cards stacked behind
-   with offset and opacity. Navigation via arrows, swipe,
-   and auto-advance every 5 seconds.
-
-   FIX: Progress dots now have 44×44px touch area.
-   Decorative quote mark reduced on mobile. Touch feedback
-   added for navigation arrows. Card text size fixed on mobile.
-   ═══════════════════════════════════════════════════════════════ */
-
-const EASE_PREMIUM = [0.16, 1, 0.3, 1] as const;
+const EASE = [0.16, 1, 0.3, 1] as const;
 
 const REVIEWS = [
-  { name: "Анна К.", event: "Свадьба, июнь 2024", rating: 5, text: "Невероятный сервис! Гости до сих пор вспоминают подачу и вкус блюд." },
-  { name: "Михаил С.", event: "Корпоратив на 200 чел.", rating: 5, text: "Третий год сотрудничаем — и каждый раз лучше предыдущего." },
-  { name: "Екатерина В.", event: "Фуршет, день рождения", rating: 5, text: "Оформление и подача — выше всех ожиданий. Каждое канапе — произведение искусства." },
-  { name: "Дмитрий Л.", event: "Банкет, юбилей", rating: 4, text: "Отличная организация, вкусное меню. Хотелось бы больше вегетарианских опций." },
-  { name: "Ольга П.", event: "Кофе-брейк, конференция", rating: 5, text: "Пунктуальность, эстетика, вкус — всё на высшем уровне." },
+  { name: "Мария К.", event: "Свадьба", rating: 5, text: "Благодарим за прекрасную организацию! Гости были в восторге от кухни и сервиса." },
+  { name: "Алексей С.", event: "Корпоратив", rating: 5, text: "Профессиональный подход на всех этапах. Рекомендуем Интерфуд!" },
+  { name: "Екатерина В.", event: "Юбилей", rating: 5, text: "Шеф-повар превзошёл все ожидания. Каждое блюдо — шедевр!" },
+  { name: "Дмитрий А.", event: "Регулярные мероприятия", rating: 5, text: "Третий год сотрудничаем. Всегда безупречно!" },
+  { name: "Ольга П.", event: "Фуршет", rating: 5, text: "Отличная организация, внимание к деталям, великолепная еда." },
 ];
 
-// ─── Gold Star SVG ─────────────────────────────────────────
-function StarIcon({ filled }: { filled: boolean }) {
+/* ─── Animated star ─── */
+function Star({ filled, delay }: { filled: boolean; delay: number }) {
   return (
-    <svg
-      width="16"
-      height="16"
+    <motion.svg
+      width={18}
+      height={18}
       viewBox="0 0 24 24"
-      fill={filled ? "var(--color-brand)" : "none"}
-      stroke={filled ? "var(--color-brand)" : "var(--color-brand-30)"}
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      initial={{ scale: 0, opacity: 0 }}
+      animate={filled ? { scale: 1, opacity: 1 } : { scale: 1, opacity: 0.3 }}
+      transition={{ type: "spring", stiffness: 300, damping: 15, delay }}
+      style={{ display: "inline-block" }}
     >
-      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-    </svg>
+      <polygon
+        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+        fill={filled ? "#B8860B" : "none"}
+        stroke={filled ? "#B8860B" : "rgba(184,134,11,0.25)"}
+        strokeWidth="1.5"
+      />
+    </motion.svg>
   );
 }
 
-// ─── Rating Stars ──────────────────────────────────────────
 function RatingStars({ rating }: { rating: number }) {
   return (
-    <div style={{ display: "flex", gap: "4px", alignItems: "center" }}>
+    <div style={{ display: "flex", gap: "3px", alignItems: "center" }}>
       {Array.from({ length: 5 }, (_, i) => (
-        <StarIcon key={i} filled={i < rating} />
+        <Star key={i} filled={i < rating} delay={i * 0.06} />
       ))}
     </div>
   );
 }
 
-// ─── Review Card ───────────────────────────────────────────
-function ReviewCard({
+/* ─── Swipeable Card ─── */
+function SwipeCard({
   review,
-  stackPosition,
-  isMobile,
+  isTop,
+  onDismiss,
+  stackIndex,
 }: {
-  review: (typeof REVIEWS)[number];
-  stackPosition: number; // 0 = current, 1 = prev, 2 = prev-prev
-  isMobile: boolean;
+  review: typeof REVIEWS[number];
+  isTop: boolean;
+  onDismiss: (dir: number) => void;
+  stackIndex: number;
 }) {
-  const scale = stackPosition === 0 ? 1 : stackPosition === 1 ? 0.95 : 0.9;
-  const opacity = stackPosition === 0 ? 1 : stackPosition === 1 ? 0.5 : 0.3;
-  const yOffset = stackPosition === 0 ? 0 : stackPosition === 1 ? 8 : 16;
-  const zIndex = 3 - stackPosition;
+  const x = useMotionValue(0);
+  const rotate = useTransform(x, [-200, 0, 200], [-15, 0, 15]);
+  const opacity = useTransform(x, [-200, -100, 0, 100, 200], [0.5, 1, 1, 1, 0.5]);
+
+  const scale = 1 - stackIndex * 0.05;
+  const yOff = stackIndex * 10;
+  const tilt = stackIndex === 0 ? 0 : (stackIndex % 2 === 0 ? 1.5 : -1.5);
+
+  function handleDragEnd(_: unknown, info: PanInfo) {
+    const threshold = 100;
+    if (info.offset.x > threshold) {
+      onDismiss(1);
+    } else if (info.offset.x < -threshold) {
+      onDismiss(-1);
+    }
+  }
 
   return (
     <motion.div
-      layout
-      initial={false}
-      animate={{
-        scale,
-        opacity,
-        y: yOffset,
-        zIndex,
-      }}
-      transition={{
-        duration: 0.5,
-        ease: EASE_PREMIUM,
-      }}
       style={{
         position: "absolute",
         inset: 0,
-        originX: 0.5,
-        originY: 0.5,
+        x: isTop ? x : 0,
+        rotate: isTop ? rotate : tilt,
+        opacity: isTop ? opacity : 1,
+        scale,
+        y: yOff,
+        zIndex: REVIEWS.length - stackIndex,
+        cursor: isTop ? "grab" : "default",
+        touchAction: "pan-y",
       }}
+      drag={isTop ? "x" : false}
+      dragConstraints={{ left: 0, right: 0 }}
+      dragElastic={0.7}
+      onDragEnd={handleDragEnd}
+      whileTap={isTop ? { cursor: "grabbing" } : {}}
     >
-      <div
-        style={{
-          padding: isMobile ? "2rem 1.25rem 1.5rem" : "2.5rem 2rem 2rem",
-          borderRadius: "20px",
-          background: "var(--color-surface-2)",
-          border: "1px solid var(--color-brand-8)",
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-          position: "relative",
-          overflow: "hidden",
-        }}
-      >
-        {/* Decorative opening quote mark */}
-        <span
-          style={{
-            position: "absolute",
-            top: "-0.3rem",
-            left: "0.5rem",
-            fontFamily: "var(--font-serif)",
-            fontSize: isMobile ? "4rem" : "8rem",
-            lineHeight: 1,
-            color: "var(--color-brand)",
-            opacity: 0.15,
-            pointerEvents: "none",
-            userSelect: "none",
-          }}
-          aria-hidden="true"
-        >
-          &ldquo;
-        </span>
+      <div style={{
+        padding: "2rem 1.5rem",
+        borderRadius: 20,
+        background: "#FAFAF7",
+        border: "1px solid rgba(184,134,11,0.1)",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        position: "relative",
+        overflow: "hidden",
+        boxShadow: stackIndex === 0 ? "0 8px 40px rgba(184,134,11,0.1)" : "0 2px 12px rgba(0,0,0,0.04)",
+      }}>
+        {/* Decorative quote */}
+        <span style={{
+          position: "absolute", top: "-0.5rem", left: "0.75rem",
+          fontFamily: "var(--font-serif)", fontSize: "6rem", lineHeight: 1,
+          color: "#B8860B", opacity: 0.08, pointerEvents: "none", userSelect: "none",
+        }} aria-hidden="true">&ldquo;</span>
 
-        {/* Review text */}
-        <p
-          style={{
-            fontFamily: "var(--font-serif)",
-            fontSize: isMobile ? "clamp(0.95rem, 3vw, 1.1rem)" : "1.15rem",
-            color: "var(--color-text-primary)",
-            lineHeight: 1.7,
-            fontWeight: 300,
-            marginBottom: "1.5rem",
-            position: "relative",
-            zIndex: 1,
-            flex: 1,
-          }}
-        >
+        <p style={{
+          fontFamily: "var(--font-serif)", fontSize: "clamp(0.95rem, 2vw, 1.1rem)",
+          color: "#1A1714", lineHeight: 1.7, fontWeight: 300,
+          marginBottom: "1.5rem", position: "relative", zIndex: 1, flex: 1,
+        }}>
           {review.text}
         </p>
 
-        {/* Rating */}
-        <div style={{ marginBottom: "1rem", position: "relative", zIndex: 1 }}>
+        <div style={{ marginBottom: "0.75rem", position: "relative", zIndex: 1 }}>
           <RatingStars rating={review.rating} />
         </div>
 
-        {/* Reviewer info */}
         <div style={{ position: "relative", zIndex: 1 }}>
-          <p
-            style={{
-              fontSize: isMobile ? "clamp(0.85rem, 2.5vw, 0.9rem)" : "0.9rem",
-              fontWeight: 500,
-              color: "var(--color-text-primary)",
-              marginBottom: "0.25rem",
-            }}
-          >
-            {review.name}
-          </p>
-          <p
-            style={{
-              fontSize: isMobile ? "clamp(0.75rem, 2vw, 0.78rem)" : "0.78rem",
-              color: "var(--color-text-muted)",
-              letterSpacing: "0.04em",
-            }}
-          >
-            {review.event}
-          </p>
+          <p style={{ fontSize: "0.9rem", fontWeight: 500, color: "#1A1714", marginBottom: "0.15rem" }}>{review.name}</p>
+          <p style={{ fontSize: "0.78rem", color: "#5C564D", letterSpacing: "0.04em" }}>{review.event}</p>
         </div>
+
+        {/* Gold accent line at top */}
+        <div style={{ position: "absolute", top: 0, left: "20%", right: "20%", height: 2, background: "linear-gradient(90deg, transparent, #B8860B, transparent)", opacity: 0.3 }} />
       </div>
     </motion.div>
   );
 }
 
-// ─── Navigation Arrow Button with Touch Feedback ──────────
-function NavArrow({
-  direction,
-  onClick,
-  ariaLabel,
-}: {
-  direction: "prev" | "next";
-  onClick: () => void;
-  ariaLabel: string;
-}) {
-  return (
-    <button
-      onClick={onClick}
-      aria-label={ariaLabel}
-      style={{
-        width: "48px",
-        height: "48px",
-        borderRadius: "50%",
-        border: "1px solid var(--color-brand-20)",
-        background: "var(--color-surface-2)",
-        color: "var(--color-brand)",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        cursor: "pointer",
-        transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
-        WebkitTapHighlightColor: "transparent",
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.borderColor = "var(--color-brand)";
-        e.currentTarget.style.background = "var(--color-brand-8)";
-        e.currentTarget.style.transform = "scale(1.05)";
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.borderColor = "var(--color-brand-20)";
-        e.currentTarget.style.background = "var(--color-surface-2)";
-        e.currentTarget.style.transform = "scale(1)";
-      }}
-      onTouchStart={(e) => {
-        e.currentTarget.style.borderColor = "var(--color-brand)";
-        e.currentTarget.style.background = "var(--color-brand-8)";
-        e.currentTarget.style.transform = "scale(0.95)";
-      }}
-      onTouchEnd={(e) => {
-        e.currentTarget.style.borderColor = "var(--color-brand-20)";
-        e.currentTarget.style.background = "var(--color-surface-2)";
-        e.currentTarget.style.transform = "scale(1)";
-      }}
-    >
-      <svg
-        width="18"
-        height="18"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        {direction === "prev" ? (
-          <path d="M15 18l-6-6 6-6" />
-        ) : (
-          <path d="M9 18l6-6-6-6" />
-        )}
-      </svg>
-    </button>
-  );
-}
-
-// ─── Main Component ────────────────────────────────────────
 export default function ReviewsStack() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [direction, setDirection] = useState(1); // 1 = forward, -1 = backward
-  const autoTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
-  const dragX = useMotionValue(0);
   const isMobile = useIsMobile();
+  const [currentIdx, setCurrentIdx] = useState(0);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  const totalReviews = REVIEWS.length;
+  const total = REVIEWS.length;
 
-  // ─── Navigation ──────────────────────────────────────
-  const goToNext = useCallback(() => {
-    setDirection(1);
-    setCurrentIndex((prev) => (prev + 1) % totalReviews);
-  }, [totalReviews]);
+  const dismiss = useCallback((_: number) => {
+    setCurrentIdx((prev) => (prev + 1) % total);
+  }, [total]);
 
-  const goToPrev = useCallback(() => {
-    setDirection(-1);
-    setCurrentIndex((prev) => (prev - 1 + totalReviews) % totalReviews);
-  }, [totalReviews]);
-
-  const goToIndex = useCallback(
-    (index: number) => {
-      setDirection(index > currentIndex ? 1 : -1);
-      setCurrentIndex(index);
-    },
-    [currentIndex]
-  );
-
-  // ─── Auto-advance every 5 seconds ───────────────────
-  const resetAutoTimer = useCallback(() => {
-    if (autoTimerRef.current) clearInterval(autoTimerRef.current);
-    autoTimerRef.current = setInterval(goToNext, 5000);
-  }, [goToNext]);
+  const resetTimer = useCallback(() => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => {
+      setCurrentIdx((prev) => (prev + 1) % total);
+    }, 5000);
+  }, [total]);
 
   useEffect(() => {
-    resetAutoTimer();
-    return () => {
-      if (autoTimerRef.current) clearInterval(autoTimerRef.current);
-    };
-  }, [resetAutoTimer]);
+    resetTimer();
+    return () => { if (timerRef.current) clearInterval(timerRef.current); };
+  }, [resetTimer]);
 
-  // ─── Drag gesture handler ───────────────────────────
-  const handleDragEnd = useCallback(
-    (_: unknown, info: { offset: { x: number } }) => {
-      const delta = info.offset.x;
-      if (delta > 50) {
-        goToPrev();
-      } else if (delta < -50) {
-        goToNext();
-      }
-      resetAutoTimer();
-    },
-    [goToNext, goToPrev, resetAutoTimer]
-  );
-
-  // ─── Compute visible stack indices ──────────────────
-  const getStackIndices = useCallback(() => {
-    const indices: number[] = [];
-    for (let offset = 0; offset < 3; offset++) {
-      const idx = (currentIndex + offset) % totalReviews;
-      indices.push(idx);
-    }
-    return indices;
-  }, [currentIndex, totalReviews]);
-
-  const stackIndices = getStackIndices();
+  /* Build visible stack: current + 2 behind */
+  const visibleCards = [0, 1, 2].map((offset) => ({
+    review: REVIEWS[(currentIdx + offset) % total],
+    stackIndex: offset,
+    globalIndex: (currentIdx + offset) % total,
+  }));
 
   return (
     <section
-      style={{
-        position: "relative",
-        background: "var(--color-surface-0)",
-        padding: "clamp(3rem, 8vw, 8rem) 0",
-        overflow: "hidden",
-      }}
+      style={{ position: "relative", background: "#EDE9E1", padding: "clamp(3rem, 8vw, 7rem) 0", overflow: "hidden" }}
       aria-label="Отзывы клиентов"
     >
-      <div
-        style={{
-          maxWidth: "1320px",
-          margin: "0 auto",
-          padding: "0 clamp(1.25rem, 3vw, 2rem)",
-        }}
-      >
-        {/* ── Section Header ── */}
+      <div style={{ maxWidth: 1320, margin: "0 auto", padding: "0 clamp(1.25rem, 3vw, 2rem)" }}>
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, ease: EASE_PREMIUM }}
-          style={{
-            textAlign: "center",
-            marginBottom: "3.5rem",
-          }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.8, ease: EASE }}
+          style={{ textAlign: "center", marginBottom: "3rem" }}
         >
-          <span
-            style={{
-              fontSize: "clamp(0.75rem, 2vw, 0.7rem)",
-              letterSpacing: "0.3em",
-              textTransform: "uppercase",
-              color: "var(--color-brand)",
-              fontWeight: 600,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: "0.75rem",
-              marginBottom: "1.25rem",
-            }}
-          >
-            <span
-              style={{
-                width: "24px",
-                height: "1px",
-                background: "var(--color-brand-30)",
-                display: "inline-block",
-              }}
-            />
+          <span style={{ fontSize: "0.7rem", fontWeight: 600, letterSpacing: "0.35em", textTransform: "uppercase", color: "#B8860B", display: "inline-flex", alignItems: "center", gap: "0.75rem", marginBottom: "1rem" }}>
+            <span style={{ width: 24, height: 1, background: "rgba(184,134,11,0.3)", display: "inline-block" }} />
             Отзывы
-            <span
-              style={{
-                width: "24px",
-                height: "1px",
-                background: "var(--color-brand-30)",
-                display: "inline-block",
-              }}
-            />
+            <span style={{ width: 24, height: 1, background: "rgba(184,134,11,0.3)", display: "inline-block" }} />
           </span>
-          <h2
-            style={{
-              fontFamily: "var(--font-serif)",
-              fontSize: "clamp(2rem, 5vw, 3.5rem)",
-              fontWeight: 300,
-              color: "var(--color-text-primary)",
-              lineHeight: 1.15,
-              letterSpacing: "-0.02em",
-              marginBottom: "0.75rem",
-            }}
-          >
-            Отзывы клиентов
+          <h2 style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(2rem, 5vw, 3.5rem)", fontWeight: 300, color: "#1A1714", lineHeight: 1.15, letterSpacing: "-0.02em" }}>
+            Клиенты о нас
           </h2>
-          {/* Gold accent line */}
-          <div
-            style={{
-              width: "48px",
-              height: "2px",
-              background: "linear-gradient(90deg, transparent, var(--color-brand), transparent)",
-              margin: "0 auto",
-            }}
-          />
         </motion.div>
 
-        {/* ── Carousel Area ── */}
-        <div
-          style={{
-            position: "relative",
-            maxWidth: "640px",
-            margin: "0 auto",
-          }}
+        {/* Card stack */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.8, delay: 0.2, ease: EASE }}
         >
-          {/* Mobile override */}
-          <style>{`
-            @media (max-width: 640px) {
-              .review-stack-container {
-                max-width: 100% !important;
-                height: 360px !important;
-              }
-            }
-          `}</style>
-          {/* Stack container */}
-          <motion.div
-            drag="x"
-            dragConstraints={{ left: 0, right: 0 }}
-            dragElastic={0.15}
-            onDragEnd={handleDragEnd}
-            className="review-stack-container"
-            style={{
-              position: "relative",
-              width: "100%",
-              height: "320px",
-              perspective: "1200px",
-              cursor: "grab",
-              touchAction: "pan-y",
-            }}
-          >
+          <div style={{ position: "relative", maxWidth: 560, margin: "0 auto", height: isMobile ? 340 : 320 }}>
             <AnimatePresence initial={false}>
-              {stackIndices.map((reviewIndex, stackPos) => (
-                <ReviewCard
-                  key={`stack-${reviewIndex}-${currentIndex}`}
-                  review={REVIEWS[reviewIndex]}
-                  stackPosition={stackPos}
-                  isMobile={isMobile}
+              {visibleCards.map(({ review, stackIndex, globalIndex }) => (
+                <SwipeCard
+                  key={`${globalIndex}-${currentIdx}`}
+                  review={review}
+                  isTop={stackIndex === 0}
+                  onDismiss={dismiss}
+                  stackIndex={stackIndex}
                 />
               ))}
             </AnimatePresence>
-          </motion.div>
-
-          {/* ── Navigation Arrows ── */}
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              gap: "1rem",
-              marginTop: "1.5rem",
-            }}
-          >
-            <NavArrow
-              direction="prev"
-              onClick={() => {
-                goToPrev();
-                resetAutoTimer();
-              }}
-              ariaLabel="Предыдущий отзыв"
-            />
-            <NavArrow
-              direction="next"
-              onClick={() => {
-                goToNext();
-                resetAutoTimer();
-              }}
-              ariaLabel="Следующий отзыв"
-            />
           </div>
 
-          {/* ── Progress Dots with 44×44 touch targets ── */}
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              gap: "0.25rem",
-              marginTop: "1.5rem",
-            }}
-            role="tablist"
-            aria-label="Навигация по отзывам"
-          >
+          {/* Navigation dots */}
+          <div style={{ display: "flex", justifyContent: "center", gap: "0.25rem", marginTop: "2rem" }} role="tablist" aria-label="Навигация по отзывам">
             {REVIEWS.map((_, i) => (
               <button
                 key={i}
-                onClick={() => {
-                  goToIndex(i);
-                  resetAutoTimer();
-                }}
+                onClick={() => { setCurrentIdx(i); resetTimer(); }}
                 role="tab"
-                aria-selected={i === currentIndex}
+                aria-selected={i === currentIdx}
                 aria-label={`Отзыв ${i + 1}`}
                 style={{
-                  width: "44px",
-                  height: "44px",
-                  border: "none",
-                  background: "transparent",
-                  cursor: "pointer",
-                  padding: 0,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
+                  width: 44, height: 44, border: "none", background: "transparent",
+                  cursor: "pointer", padding: 0, display: "flex", alignItems: "center", justifyContent: "center",
                   WebkitTapHighlightColor: "transparent",
                 }}
               >
-                <span
-                  style={{
-                    display: "block",
-                    width: i === currentIndex ? "24px" : "8px",
-                    height: "8px",
-                    borderRadius: "4px",
-                    background:
-                      i === currentIndex
-                        ? "var(--color-brand)"
-                        : "var(--color-brand-20)",
-                    transition:
-                      "width 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.4s",
-                  }}
-                />
+                <span style={{
+                  display: "block", width: i === currentIdx ? 24 : 8, height: 8, borderRadius: 4,
+                  background: i === currentIdx ? "#B8860B" : "rgba(184,134,11,0.2)",
+                  transition: "width 0.4s cubic-bezier(0.16,1,0.3,1), background 0.4s",
+                }} />
               </button>
             ))}
           </div>
-        </div>
+
+          {/* Swipe hint */}
+          <p style={{ textAlign: "center", fontSize: "0.75rem", color: "#5C564D", marginTop: "0.75rem", letterSpacing: "0.05em", opacity: 0.6 }}>
+            Потяните карточку в сторону
+          </p>
+        </motion.div>
       </div>
     </section>
   );

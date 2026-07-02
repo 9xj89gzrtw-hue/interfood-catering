@@ -1,68 +1,163 @@
 "use client";
 
-import { useRef, useEffect, useState, useMemo } from "react";
-import { motion, useInView } from "framer-motion";
+import { useRef, useEffect, useState, useCallback, useSyncExternalStore } from "react";
+import { motion, useInView, useMotionValue, useSpring } from "framer-motion";
 
 /* ═══════════════════════════════════════════════════════════════
-   StatsOdometer v2 — Fixed layout, centered, mobile-responsive
+   StatsOdometer — Animated Counters with WOW Effects
    
-   FIXES from v1:
-   1. Removed absolute-positioned ghost div that blocked layout
-   2. Proper centering with margin: 0 auto
-   3. Container class for consistent max-width
-   4. Mobile grid: 2 columns, proper gap
+   Odometer counters with spring physics, 3D tilt on hover,
+   animated underlines, floating gold orbs, stagger reveal.
+   Mobile-first, accessible, respects prefers-reduced-motion.
    ═══════════════════════════════════════════════════════════════ */
 
 const STATS = [
-  { value: 18, suffix: "+", label: "Лет на рынке СПб" },
-  { value: 3500, suffix: "+", label: "Мероприятий проведено" },
-  { value: 10, suffix: "/10", label: "Рейтинг на Restoclub" },
-  { value: 4.55, suffix: "/5", label: "Рейтинг на CaterMe" },
+  { value: 18, suffix: "", label: "Лет опыта", sub: "с 2007 года" },
+  { value: 3500, suffix: "+", label: "Мероприятий", sub: "и каждое уникально" },
+  { value: 50, suffix: "+", label: "Блюд в меню", sub: "авторская кухня" },
+  { value: 30, suffix: "", label: "Минут на ответ", sub: "быстрая связь" },
+  { value: 98, suffix: "%", label: "Довольных клиентов", sub: "подтверждено отзывами" },
 ];
 
-function useOdometer(target: number, isActive: boolean, duration: number = 2000): number {
-  const [current, setCurrent] = useState(0);
-  const rafRef = useRef<number>(0);
-  const startTimeRef = useRef<number>(0);
-
-  useEffect(() => {
-    if (!isActive) {
-      rafRef.current = requestAnimationFrame(() => setCurrent(0));
-      return;
-    }
-    startTimeRef.current = performance.now();
-    const isDecimal = target % 1 !== 0;
-    const animate = (now: number) => {
-      const elapsed = now - startTimeRef.current;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 4);
-      const next = eased * target;
-      setCurrent(isDecimal ? parseFloat(next.toFixed(2)) : Math.round(next));
-      if (progress < 1) rafRef.current = requestAnimationFrame(animate);
-    };
-    rafRef.current = requestAnimationFrame(animate);
-    return () => { if (rafRef.current) cancelAnimationFrame(rafRef.current); };
-  }, [isActive, target, duration]);
-
-  return current;
+function useMediaQuery(query: string): boolean {
+  return useSyncExternalStore(
+    (callback) => {
+      const mq = window.matchMedia(query);
+      mq.addEventListener("change", callback);
+      return () => mq.removeEventListener("change", callback);
+    },
+    () => window.matchMedia(query).matches,
+    () => false
+  );
 }
 
-function StatCard({ stat, index, isInView }: { stat: typeof STATS[number]; index: number; isInView: boolean }) {
-  const count = useOdometer(stat.value, isInView, 2200);
-  const isDecimal = stat.value % 1 !== 0;
+function useReducedMotion(): boolean {
+  return useMediaQuery("(prefers-reduced-motion: reduce)");
+}
+
+function useIsMobile(): boolean {
+  return useMediaQuery("(max-width: 767px)");
+}
+
+/* ─── Spring Counter Hook ─── */
+function useSpringCounter(target: number, active: boolean) {
+  const mv = useMotionValue(0);
+  const spring = useSpring(mv, { stiffness: 50, damping: 18, mass: 1.2 });
+  const [display, setDisplay] = useState(0);
+
+  useEffect(() => {
+    if (active) {
+      mv.set(target);
+    }
+  }, [active, target, mv]);
+
+  useEffect(() => {
+    const unsub = spring.on("change", (v) => setDisplay(Math.round(v)));
+    return unsub;
+  }, [spring]);
+
+  return display;
+}
+
+/* ─── Floating Gold Orbs ─── */
+function FloatingOrbs({ reduced }: { reduced: boolean }) {
+  if (reduced) return null;
+
+  const orbs = Array.from({ length: 6 }, (_, i) => ({
+    id: i,
+    x: 15 + Math.random() * 70,
+    y: 20 + Math.random() * 60,
+    size: 60 + Math.random() * 100,
+    delay: Math.random() * 5,
+    duration: 12 + Math.random() * 10,
+  }));
+
+  return (
+    <div aria-hidden="true" style={{ position: "absolute", inset: 0, overflow: "hidden", pointerEvents: "none", zIndex: 0 }}>
+      {orbs.map((orb) => (
+        <motion.div
+          key={orb.id}
+          style={{
+            position: "absolute",
+            left: `${orb.x}%`,
+            top: `${orb.y}%`,
+            width: orb.size,
+            height: orb.size,
+            borderRadius: "50%",
+            background: "radial-gradient(circle, rgba(212,166,62,0.08) 0%, rgba(184,134,11,0.02) 60%, transparent 70%)",
+            filter: "blur(20px)",
+          }}
+          animate={{
+            y: [0, -30, 15, -10, 0],
+            x: [0, 12, -8, 6, 0],
+            scale: [1, 1.1, 0.95, 1.05, 1],
+          }}
+          transition={{
+            duration: orb.duration,
+            delay: orb.delay,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
+/* ─── Stat Card with 3D Tilt ─── */
+function StatCard({
+  stat,
+  index,
+  isInView,
+  reduced,
+}: {
+  stat: typeof STATS[number];
+  index: number;
+  isInView: boolean;
+  reduced: boolean;
+}) {
+  const count = useSpringCounter(stat.value, isInView);
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  const handleMouseMove = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      if (reduced) return;
+      const card = cardRef.current;
+      if (!card) return;
+      const rect = card.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      setTilt({ x: y * -8, y: x * 8 });
+    },
+    [reduced]
+  );
+
+  const handleMouseLeave = useCallback(() => {
+    setTilt({ x: 0, y: 0 });
+  }, []);
+
+  const staggerDelay = index * 0.12;
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, delay: index * 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
-      whileHover={{ scale: 1.04, boxShadow: "0 0 30px rgba(201,169,106,0.15), 0 0 60px rgba(201,169,106,0.06)", borderColor: "rgba(201,169,106,0.3)", transition: { duration: 0.35 } }}
+      ref={cardRef}
+      initial={{ opacity: 0, y: 40, scale: 0.9 }}
+      animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+      transition={{
+        duration: 0.8,
+        delay: staggerDelay,
+        ease: [0.25, 0.46, 0.45, 0.94],
+      }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
       style={{
-        background: "var(--color-surface-2)",
-        border: "1px solid var(--color-brand-8)",
-        borderRadius: 16,
-        padding: "2rem 1.5rem",
+        background: "rgba(255,255,255,0.7)",
+        backdropFilter: "blur(10px)",
+        WebkitBackdropFilter: "blur(10px)",
+        border: "1px solid rgba(184,134,11,0.1)",
+        borderRadius: 20,
+        padding: "clamp(1.5rem, 3vw, 2.5rem) clamp(1rem, 2vw, 1.5rem)",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -70,80 +165,199 @@ function StatCard({ stat, index, isInView }: { stat: typeof STATS[number]; index
         cursor: "default",
         position: "relative",
         overflow: "hidden",
+        transform: reduced ? "none" : `perspective(800px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
+        transition: reduced ? "none" : "transform 0.25s ease-out",
+        willChange: "transform",
+        minWidth: 0,
       }}
     >
-      <div aria-hidden="true" style={{ position: "absolute", top: 0, left: "20%", right: "20%", height: 1, background: "linear-gradient(90deg, transparent, var(--color-brand-30), transparent)" }} />
-      <span style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(2.2rem, 5vw, 3.5rem)", fontWeight: 700, color: "var(--color-brand)", lineHeight: 1.1, letterSpacing: "-0.02em", marginBottom: "0.5rem", fontVariantNumeric: "tabular-nums" }}>
-        {isDecimal ? count.toFixed(2) : count.toLocaleString("ru-RU")}
-        <span style={{ fontSize: "0.55em", fontWeight: 400, opacity: 0.75 }}>{stat.suffix}</span>
+      {/* Top gold edge glow */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          top: 0,
+          left: "15%",
+          right: "15%",
+          height: 1,
+          background: "linear-gradient(90deg, transparent, rgba(184,134,11,0.4), transparent)",
+        }}
+      />
+
+      {/* Number */}
+      <span
+        style={{
+          fontFamily: "var(--font-serif)",
+          fontSize: "clamp(2rem, 5vw, 3.5rem)",
+          fontWeight: 700,
+          color: "#B8860B",
+          lineHeight: 1.1,
+          letterSpacing: "-0.02em",
+          marginBottom: "0.4rem",
+          fontVariantNumeric: "tabular-nums",
+        }}
+      >
+        {isInView ? count.toLocaleString("ru-RU") : "0"}
+        <span
+          style={{
+            fontSize: "0.5em",
+            fontWeight: 400,
+            opacity: 0.7,
+            marginLeft: 2,
+          }}
+        >
+          {stat.suffix}
+        </span>
       </span>
-      <span style={{ fontSize: "0.8rem", fontWeight: 400, color: "var(--color-text-muted)", letterSpacing: "0.03em", lineHeight: 1.5 }}>{stat.label}</span>
+
+      {/* Label */}
+      <span
+        style={{
+          fontFamily: "var(--font-sans)",
+          fontSize: "clamp(0.8rem, 2vw, 0.9rem)",
+          fontWeight: 500,
+          color: "#1A1714",
+          lineHeight: 1.4,
+          marginBottom: "0.3rem",
+        }}
+      >
+        {stat.label}
+      </span>
+
+      {/* Sub-label */}
+      <span
+        style={{
+          fontFamily: "var(--font-sans)",
+          fontSize: "clamp(0.7rem, 1.5vw, 0.75rem)",
+          fontWeight: 400,
+          color: "#5C564D",
+          lineHeight: 1.3,
+        }}
+      >
+        {stat.sub}
+      </span>
+
+      {/* Animated underline */}
+      <motion.div
+        initial={{ scaleX: 0 }}
+        animate={isInView ? { scaleX: 1 } : {}}
+        transition={{
+          duration: 0.8,
+          delay: staggerDelay + 0.5,
+          ease: [0.25, 0.46, 0.45, 0.94],
+        }}
+        style={{
+          height: 2,
+          width: 48,
+          marginTop: "0.75rem",
+          background: "linear-gradient(90deg, transparent, #B8860B, transparent)",
+          transformOrigin: "center",
+          borderRadius: 1,
+        }}
+      />
     </motion.div>
   );
 }
 
+/* ═══════════════════════════════════════════════════════════════ */
 export default function StatsOdometer() {
   const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-15%" });
+  const reduced = useReducedMotion();
+  const mobile = useIsMobile();
 
   return (
     <section
       ref={sectionRef}
+      aria-label="Статистика"
       style={{
         position: "relative",
-        background: "var(--color-surface-0)",
-        padding: "clamp(3rem, 6vw, 5rem) 0",
+        background: "#FAFAF7",
+        padding: "clamp(3rem, 7vw, 6rem) clamp(1.25rem, 4vw, 3rem)",
         overflow: "hidden",
       }}
-      aria-label="Статистика"
     >
-      {/* Subtle top/bottom gradient */}
-      <div aria-hidden="true" style={{ position: "absolute", top: 0, left: 0, right: 0, height: 60, background: "linear-gradient(to bottom, var(--color-surface-1), transparent)", pointerEvents: "none" }} />
-      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 60, background: "linear-gradient(to top, var(--color-surface-1), transparent)", pointerEvents: "none" }} />
+      {/* Floating gold orbs */}
+      <FloatingOrbs reduced={reduced} />
 
-      <div className="container" style={{ position: "relative", zIndex: 2 }}>
-        {/* Section micro-label — CENTERED */}
+      {/* Subtle mesh gradient background */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          inset: 0,
+          background:
+            "radial-gradient(ellipse at 20% 50%, rgba(212,166,62,0.04) 0%, transparent 50%), radial-gradient(ellipse at 80% 50%, rgba(184,134,11,0.03) 0%, transparent 50%)",
+          pointerEvents: "none",
+          zIndex: 0,
+        }}
+      />
+
+      <div style={{ position: "relative", zIndex: 2, maxWidth: 1100, margin: "0 auto" }}>
+        {/* Section micro-label */}
         <motion.div
           initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          style={{ textAlign: "center", marginBottom: "2.5rem" }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          style={{ textAlign: "center", marginBottom: "clamp(2rem, 4vw, 3.5rem)" }}
         >
-          <span style={{ fontSize: "0.6rem", fontWeight: 600, letterSpacing: "0.35em", textTransform: "uppercase", color: "var(--color-brand)", display: "inline-flex", alignItems: "center", gap: "0.75rem" }}>
-            <span style={{ width: 24, height: 1, background: "var(--color-brand-30)" }} />
-            Нам доверяют
-            <span style={{ width: 24, height: 1, background: "var(--color-brand-30)" }} />
+          <span
+            style={{
+              fontSize: "clamp(0.6rem, 2vw, 0.7rem)",
+              fontWeight: 600,
+              letterSpacing: "0.35em",
+              textTransform: "uppercase",
+              color: "#B8860B",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "0.75rem",
+            }}
+          >
+            <span style={{ width: 24, height: 1, background: "rgba(184,134,11,0.3)" }} />
+            Цифры говорят сами
+            <span style={{ width: 24, height: 1, background: "rgba(184,134,11,0.3)" }} />
           </span>
         </motion.div>
 
-        {/* Stats grid — responsive, centered */}
-        <style>{`
-          @media (max-width: 768px) {
-            .stats-odometer-grid {
-              grid-template-columns: repeat(2, 1fr) !important;
-              gap: 0.75rem !important;
-            }
-            .stats-odometer-grid > div {
-              padding: 1.25rem 0.75rem !important;
-            }
-          }
-        `}</style>
+        {/* Stats grid */}
         <div
-          className="stats-odometer-grid"
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(4, 1fr)",
-            gap: "1.5rem",
-            maxWidth: 1000,
-            margin: "0 auto",
+            gridTemplateColumns: mobile
+              ? "repeat(2, 1fr)"
+              : "repeat(5, 1fr)",
+            gap: mobile ? "0.75rem" : "1.25rem",
           }}
         >
           {STATS.map((stat, i) => (
-            <StatCard key={i} stat={stat} index={i} isInView={isInView} />
+            <StatCard
+              key={i}
+              stat={stat}
+              index={i}
+              isInView={isInView}
+              reduced={reduced}
+            />
           ))}
         </div>
+
+        {/* Bottom decorative line */}
+        <motion.div
+          initial={{ scaleX: 0, opacity: 0 }}
+          animate={isInView ? { scaleX: 1, opacity: 1 } : {}}
+          transition={{ duration: 1.2, delay: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+          style={{
+            height: 1,
+            maxWidth: 300,
+            margin: "clamp(2rem, 4vw, 3rem) auto 0",
+            background: "linear-gradient(90deg, transparent, rgba(184,134,11,0.3), transparent)",
+            transformOrigin: "center",
+          }}
+        />
       </div>
+
+      {/* Top/bottom gradient fades */}
+      <div aria-hidden="true" style={{ position: "absolute", top: 0, left: 0, right: 0, height: 60, background: "linear-gradient(to bottom, #F5F3EE, transparent)", pointerEvents: "none" }} />
+      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 60, background: "linear-gradient(to top, #FAFAF7, transparent)", pointerEvents: "none" }} />
     </section>
   );
 }

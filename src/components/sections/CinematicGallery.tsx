@@ -1,356 +1,321 @@
 "use client";
 
 import { useState, useRef, useEffect, useCallback } from "react";
-import { motion, useInView } from "framer-motion";
+import Image from "next/image";
+import {
+  motion,
+  useInView,
+  useReducedMotion,
+  AnimatePresence,
+} from "framer-motion";
 
 /* ═══════════════════════════════════════════════════════════════
-   CinematicGallery — Horizontal Scroll Coverflow Gallery
-   Dark cinematic catering website component with:
-   - Horizontal scroll with scroll-snap-type: x mandatory
-   - Coverflow 3D perspective (center flat, sides rotateY + scale)
-   - Drag-to-scroll via pointer events (desktop + mobile)
-   - Per-card: depth hover, light sweep, clip-path reveal, Ken Burns, gold border
-   - Progress indicator dots showing current scroll position
-   - Staggered entrance animation
+   CinematicGallery — Premium Coverflow Carousel
    ═══════════════════════════════════════════════════════════════ */
 
 const GALLERY = [
-  { src: "/images/gallery_1.jpg", alt: "Банкет" },
-  { src: "/images/gallery_2.jpg", alt: "Свадебный банкет" },
-  { src: "/images/gallery_3.jpg", alt: "Декор мероприятия" },
-  { src: "/images/gallery_4.jpg", alt: "Сервировка" },
-  { src: "/images/gallery_5.jpg", alt: "Фуршет" },
-  { src: "/images/gallery_6.jpg", alt: "Подача блюд" },
-  { src: "/images/banket.jpg", alt: "Бар" },
-  { src: "/images/furshet_canape.jpg", alt: "Канапе" },
-  { src: "/images/food_shrimp.jpg", alt: "Десерты" },
-  { src: "/images/wedding.jpg", alt: "Оформление" },
-  { src: "/images/hero_gala.jpg", alt: "Выездной ресторан" },
-  { src: "/images/banket_food1.jpg", alt: "Праздник" },
+  { src: "/images/hero_gala.jpg", title: "Гала-ужин" },
+  { src: "/images/banket_food1.jpg", title: "Банкетное меню" },
+  { src: "/images/furshet_canape.jpg", title: "Фуршет" },
+  { src: "/images/wedding.jpg", title: "Свадебный кейтеринг" },
+  { src: "/images/hero_rooftop.jpg", title: "Руст-топ вечеринка" },
+  { src: "/images/food_salmon.jpg", title: "Авторская кухня" },
+  { src: "/images/banket_meat.jpg", title: "Мясные деликатесы" },
+  { src: "/images/hero_ship.jpg", title: "Кейтеринг на яхте" },
 ];
 
 const EASE_PREMIUM = [0.16, 1, 0.3, 1] as const;
+const AUTOPLAY_INTERVAL = 4000;
 
-// ─── CSS injection for gallery-specific keyframes & styles ────
+/* ─── Injected styles ─── */
 const INJECTED_STYLES = `
-@keyframes gal-shimmer-sweep {
-  0% { transform: translateX(-120%) skewX(-15deg); }
-  100% { transform: translateX(220%) skewX(-15deg); }
+@keyframes gal-light-sweep {
+  0% { transform: translateX(-150%) skewX(-20deg); }
+  100% { transform: translateX(250%) skewX(-20deg); }
 }
 
-@keyframes gal-clip-reveal {
-  0% { clip-path: circle(0% at 50% 50%); }
-  100% { clip-path: circle(75% at 50% 50%); }
+@keyframes gal-ken-burns {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.08); }
 }
 
-@keyframes gal-gradient-rotate {
-  0% { --gal-gradient-angle: 0deg; }
-  100% { --gal-gradient-angle: 360deg; }
+.gal-card-active .gal-image {
+  animation: gal-ken-burns 8s ease-out forwards;
 }
 
-@property --gal-gradient-angle {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
-}
-
-.gal-scroll-container {
-  display: flex;
-  gap: 1.5rem;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  padding: 2rem 0;
-  cursor: grab;
-  perspective: 1200px;
-}
-.gal-scroll-container:active {
-  cursor: grabbing;
-}
-.gal-scroll-container::-webkit-scrollbar {
-  display: none;
-}
-
-.gal-card-clip {
-  clip-path: circle(0% at 50% 50%);
-  transition: clip-path 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.gal-card-clip.revealed {
-  clip-path: circle(75% at 50% 50%);
-}
-
-.gal-gradient-border {
-  position: relative;
-  border-radius: 20px;
-  padding: 1.5px;
-  background: transparent;
-  transition: background 0.4s, box-shadow 0.4s;
-}
-.gal-gradient-border[data-hovered="true"] {
-  background: conic-gradient(
-    from var(--gal-gradient-angle, 0deg),
-    transparent 25%,
-    var(--color-brand) 45%,
-    var(--color-brand-light) 50%,
-    var(--color-brand) 55%,
-    transparent 75%
-  );
-  animation: gal-gradient-rotate 3s linear infinite;
-  box-shadow:
-    0 16px 48px rgba(0,0,0,0.4),
-    0 0 30px rgba(201,169,106,0.15);
-}
-
-.gal-card-inner {
-  border-radius: calc(20px - 1.5px);
-  background: var(--color-surface-2);
-  overflow: hidden;
-  position: relative;
+.gal-light-sweep {
+  animation: gal-light-sweep 2s ease-in-out;
 }
 `;
 
-// ─── Individual Gallery Card ──────────────────────────────────
+/* ─── Single Gallery Card ───────────────────────────────────── */
 function GalleryCard({
   item,
   index,
-  cardRef,
+  activeIndex,
+  total,
 }: {
   item: (typeof GALLERY)[number];
   index: number;
-  cardRef: React.Ref<HTMLDivElement>;
+  activeIndex: number;
+  total: number;
 }) {
-  const [isHovered, setIsHovered] = useState(false);
-  const [isRevealed, setIsRevealed] = useState(false);
-  const innerRef = useRef<HTMLDivElement>(null);
+  const prefersReduced = useReducedMotion();
+  const isActive = index === activeIndex;
 
-  // IntersectionObserver for clip-path reveal
-  useEffect(() => {
-    const el = innerRef.current;
-    if (!el) return;
+  /* Calculate offset from active card */
+  const offset = index - activeIndex;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsRevealed(true);
-          observer.unobserve(el);
-        }
-      },
-      { threshold: 0.25, rootMargin: "0px 0px -10% 0px" }
-    );
+  /* Wrap around for circular feel */
+  const absOffset = Math.abs(offset);
+  const wrappedOffset = Math.min(absOffset, total - absOffset);
 
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
+  /* 3D coverflow transforms */
+  const rotateY = prefersReduced ? 0 : offset * -18;
+  const scale = Math.max(1 - wrappedOffset * 0.08, 0.78);
+  const translateZ = isActive ? 60 : -wrappedOffset * 40;
+  const translateX = offset * 55;
+  const opacity = wrappedOffset > 3 ? 0 : 1 - wrappedOffset * 0.15;
+  const blur = isActive ? 0 : Math.min(wrappedOffset * 1.5, 3);
+  const zIndex = 50 - wrappedOffset;
+
+  /* Clip-path reveal for active card */
+  const clipPath = isActive
+    ? "inset(0% 0% 0% 0% round 16px)"
+    : "inset(4% 4% 4% 4% round 14px)";
+
+  /* Light sweep: use activeIndex as key to trigger CSS animation on each transition */
 
   return (
-    <div
-      ref={cardRef}
-      className="gallery-card"
-      data-index={index}
-      style={{
-        flexShrink: 0,
-        width: "clamp(260px, 75vw, 380px)",
-        scrollSnapAlign: "center",
-        transformStyle: "preserve-3d",
-        willChange: "transform, filter",
-        transition: "transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s",
+    <motion.div
+      animate={{
+        rotateY,
+        scale,
+        translateZ,
+        translateX,
+        opacity,
+        filter: blur > 0 ? `blur(${blur}px)` : "blur(0px)",
+        clipPath,
       }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      transition={{
+        type: "spring",
+        stiffness: 200,
+        damping: 28,
+        mass: 1,
+      }}
+      style={{
+        position: "absolute",
+        left: "50%",
+        top: "50%",
+        marginLeft: -35,
+        marginTop: -35,
+        width: "70vw",
+        maxWidth: 900,
+        height: "60vh",
+        maxHeight: 600,
+        zIndex,
+        transformStyle: "preserve-3d",
+        willChange: "transform, opacity, filter",
+        cursor: isActive ? "default" : "pointer",
+        perspective: 1200,
+      }}
+      className={isActive ? "gal-card-active" : ""}
     >
       <div
-        ref={innerRef}
-        className={`gal-card-clip ${isRevealed ? "revealed" : ""}`}
+        style={{
+          position: "relative",
+          width: "100%",
+          height: "100%",
+          borderRadius: 16,
+          overflow: "hidden",
+          boxShadow: isActive
+            ? "0 30px 80px rgba(0,0,0,0.5), 0 0 60px rgba(184,134,11,0.15)"
+            : "0 16px 40px rgba(0,0,0,0.3)",
+          transition: "box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1)",
+        }}
       >
-        {/* Gold animated border on hover */}
+        {/* Image */}
+        <Image
+          src={item.src}
+          alt={item.title}
+          fill
+          sizes="70vw"
+          className="gal-image"
+          style={{
+            objectFit: "cover",
+            willChange: "transform",
+          }}
+          priority={isActive}
+        />
+
+        {/* Dark gradient overlay at bottom for title */}
         <div
-          className="gal-gradient-border"
-          data-hovered={isHovered}
-        >
-          <div className="gal-card-inner">
-            {/* Image with Ken Burns */}
-            <div
-              style={{
-                height: "clamp(340px, 55vw, 480px)",
-                overflow: "hidden",
-                position: "relative",
-              }}
-            >
-              <img
-                src={item.src}
-                alt={item.alt}
-                loading="lazy"
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  transition:
-                    "transform 10s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s",
-                  transform: isHovered ? "scale(1.06)" : "scale(1)",
-                  filter: isHovered ? "brightness(1.1)" : "brightness(0.95)",
-                  willChange: "transform",
-                }}
-              />
+          style={{
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            right: 0,
+            height: "50%",
+            background:
+              "linear-gradient(to top, rgba(26,23,20,0.85) 0%, rgba(26,23,20,0.4) 40%, transparent 100%)",
+            pointerEvents: "none",
+          }}
+        />
 
-              {/* Dark vignette overlay for depth and label readability */}
-              <div
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  background:
-                    "linear-gradient(to top, rgba(26, 23, 20, 0.7) 0%, transparent 50%, rgba(26, 23, 20, 0.15) 100%)",
-                  pointerEvents: "none",
-                }}
-              />
-            </div>
+        {/* Gold light sweep on active card — key triggers re-animation */}
+        {isActive && !prefersReduced && (
+          <div
+            key={`sweep-${activeIndex}`}
+            className="gal-light-sweep"
+            style={{
+              position: "absolute",
+              inset: 0,
+              background:
+                "linear-gradient(105deg, transparent 35%, rgba(212,166,62,0.08) 42%, rgba(229,191,101,0.15) 48%, rgba(212,166,62,0.08) 54%, transparent 61%)",
+              pointerEvents: "none",
+              zIndex: 5,
+              borderRadius: "inherit",
+            }}
+          />
+        )}
 
-            {/* Light sweep on hover */}
-            {isHovered && (
-              <div
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  background:
-                    "linear-gradient(105deg, transparent 38%, rgba(255,255,255,0.04) 44%, rgba(255,255,255,0.09) 50%, rgba(255,255,255,0.04) 56%, transparent 62%)",
-                  animation: "gal-shimmer-sweep 1.2s ease-out forwards",
-                  pointerEvents: "none",
-                  zIndex: 3,
-                  borderRadius: "inherit",
-                }}
-              />
-            )}
+        {/* Gold border glow on active */}
+        {isActive && (
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              borderRadius: 16,
+              border: "1.5px solid rgba(184,134,11,0.35)",
+              pointerEvents: "none",
+              zIndex: 6,
+              boxShadow:
+                "inset 0 0 30px rgba(184,134,11,0.05), 0 0 15px rgba(184,134,11,0.08)",
+            }}
+          />
+        )}
 
-            {/* Label overlay */}
-            <div
+        {/* Title overlay */}
+        <AnimatePresence mode="wait">
+          {isActive && (
+            <motion.div
+              key={`title-${index}`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.5, ease: EASE_PREMIUM }}
               style={{
                 position: "absolute",
                 bottom: 0,
                 left: 0,
                 right: 0,
-                padding: "2rem 1.5rem 1.5rem",
-                zIndex: 2,
+                padding: "2.5rem 2rem 2rem",
+                zIndex: 7,
               }}
             >
-              <span
+              <h3
                 style={{
                   fontFamily: "var(--font-serif)",
-                  fontSize: "1.05rem",
-                  color: "#FFFFFF",
+                  fontSize: "clamp(1.2rem, 3vw, 2rem)",
                   fontWeight: 300,
+                  color: "#FFFFFF",
                   letterSpacing: "0.02em",
-                  textShadow: "0 2px 12px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.5)",
+                  textShadow:
+                    "0 2px 16px rgba(0,0,0,0.8), 0 0 30px rgba(0,0,0,0.5)",
+                  lineHeight: 1.3,
                 }}
               >
-                {item.alt}
-              </span>
-            </div>
-          </div>
-        </div>
+                {item.title}
+              </h3>
+              <div
+                style={{
+                  width: 40,
+                  height: 2,
+                  background:
+                    "linear-gradient(90deg, #D4A63E, rgba(212,166,62,0.3))",
+                  marginTop: "0.75rem",
+                }}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
-// ═══════════════════════════════════════════════════════════
-//  MAIN SECTION COMPONENT
-// ═══════════════════════════════════════════════════════════
+/* ═══════════════════════════════════════════════════════════════
+   MAIN SECTION COMPONENT
+   ═══════════════════════════════════════════════════════════════ */
 export default function CinematicGallery() {
   const sectionRef = useRef<HTMLElement>(null);
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const cardRefs = useRef<(HTMLDivElement | null)[]>(
-    new Array(GALLERY.length).fill(null)
-  );
   const headerInView = useInView(sectionRef, { once: true, margin: "-80px" });
+  const prefersReduced = useReducedMotion();
 
-  // ── Progress dots state ──
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isHovering, setIsHovering] = useState(false);
+  const [isTouching, setIsTouching] = useState(false);
+  const [progress, setProgress] = useState(0);
 
-  // ── Drag-to-scroll state ──
+  /* Drag state */
+  const dragStartX = useRef(0);
   const isDragging = useRef(false);
-  const startX = useRef(0);
-  const scrollLeftStart = useRef(0);
   const hasDragged = useRef(false);
 
-  // ── Coverflow update based on scroll position ──
-  const updateCoverflow = useCallback(() => {
-    const container = scrollRef.current;
-    if (!container) return;
+  /* Autoplay */
+  useEffect(() => {
+    if (isHovering || isTouching || prefersReduced) return;
 
-    const containerRect = container.getBoundingClientRect();
-    const containerCenterX = containerRect.left + containerRect.width / 2;
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % GALLERY.length);
+    }, AUTOPLAY_INTERVAL);
 
-    const cards = container.querySelectorAll<HTMLDivElement>(".gallery-card");
-    let closestIndex = 0;
-    let closestDist = Infinity;
+    return () => clearInterval(interval);
+  }, [isHovering, isTouching, prefersReduced]);
 
-    cards.forEach((card, i) => {
-      const cardRect = card.getBoundingClientRect();
-      const cardCenterX = cardRect.left + cardRect.width / 2;
-      const distance = (cardCenterX - containerCenterX) / cardRect.width;
-      const absDistance = Math.abs(distance);
+  /* Progress bar animation */
+  useEffect(() => {
+    if (isHovering || isTouching || prefersReduced) return;
 
-      // Track closest card for progress dots
-      if (absDistance < closestDist) {
-        closestDist = absDistance;
-        closestIndex = i;
+    let start: number | null = null;
+    let rafId: number;
+
+    const animate = (timestamp: number) => {
+      if (!start) start = timestamp;
+      const elapsed = timestamp - start;
+      const p = Math.min(elapsed / AUTOPLAY_INTERVAL, 1);
+      setProgress(p);
+
+      if (p < 1) {
+        rafId = requestAnimationFrame(animate);
       }
+    };
 
-      // Coverflow transforms — simplified on mobile for performance
-      const isMobile = window.innerWidth < 768;
-      const rotateY = isMobile ? distance * -3 : distance * -10;
-      const scale = isMobile ? Math.max(1 - absDistance * 0.03, 0.92) : Math.max(1 - absDistance * 0.06, 0.88);
-      const brightness = isMobile ? 1 : Math.max(1 - absDistance * 0.18, 0.65);
-      const zIndex = Math.round(100 - absDistance * 40);
+    rafId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(rafId);
+  }, [activeIndex, isHovering, isTouching, prefersReduced]);
 
-      card.style.transform = isMobile
-        ? `scale(${scale})`
-        : `perspective(800px) rotateY(${rotateY}deg) scale(${scale})`;
-      card.style.zIndex = String(zIndex);
-      card.style.filter = `brightness(${brightness})`;
-    });
+  /* Reset progress when not autoplaying — derived inline */
 
-    setActiveIndex(closestIndex);
+  /* Navigation */
+  const goTo = useCallback((index: number) => {
+    setActiveIndex(index);
   }, []);
 
-  // ── Scroll event handler with rAF throttle ──
-  useEffect(() => {
-    const container = scrollRef.current;
-    if (!container) return;
+  const goNext = useCallback(() => {
+    setActiveIndex((prev) => (prev + 1) % GALLERY.length);
+  }, []);
 
-    let rafId: number;
-    const onScroll = () => {
-      cancelAnimationFrame(rafId);
-      rafId = requestAnimationFrame(updateCoverflow);
-    };
+  const goPrev = useCallback(() => {
+    setActiveIndex((prev) => (prev - 1 + GALLERY.length) % GALLERY.length);
+  }, []);
 
-    container.addEventListener("scroll", onScroll, { passive: true });
-
-    // Initial update
-    requestAnimationFrame(() => {
-      updateCoverflow();
-      // Re-update after a short delay for layout settling
-      setTimeout(updateCoverflow, 300);
-    });
-
-    // Also update on resize
-    const onResize = () => requestAnimationFrame(updateCoverflow);
-    window.addEventListener("resize", onResize);
-
-    return () => {
-      container.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onResize);
-      cancelAnimationFrame(rafId);
-    };
-  }, [updateCoverflow]);
-
-  // ── Drag-to-scroll handlers ──
+  /* Drag handlers */
   const handlePointerDown = useCallback(
     (e: React.PointerEvent<HTMLDivElement>) => {
+      dragStartX.current = e.clientX;
       isDragging.current = true;
       hasDragged.current = false;
-      startX.current = e.clientX;
-      scrollLeftStart.current = scrollRef.current?.scrollLeft || 0;
       (e.target as HTMLElement).setPointerCapture?.(e.pointerId);
     },
     []
@@ -358,67 +323,79 @@ export default function CinematicGallery() {
 
   const handlePointerMove = useCallback(
     (e: React.PointerEvent<HTMLDivElement>) => {
-      if (!isDragging.current || !scrollRef.current) return;
-      const dx = e.clientX - startX.current;
-      if (Math.abs(dx) > 5) hasDragged.current = true;
-      scrollRef.current.scrollLeft = scrollLeftStart.current - dx;
+      if (!isDragging.current) return;
+      const dx = e.clientX - dragStartX.current;
+      if (Math.abs(dx) > 10) hasDragged.current = true;
     },
     []
   );
 
-  const handlePointerUp = useCallback(() => {
-    isDragging.current = false;
+  const handlePointerUp = useCallback(
+    (e: React.PointerEvent<HTMLDivElement>) => {
+      if (!isDragging.current) return;
+      isDragging.current = false;
+
+      const dx = e.clientX - dragStartX.current;
+      if (hasDragged.current) {
+        if (dx > 50) goPrev();
+        else if (dx < -50) goNext();
+      }
+    },
+    [goNext, goPrev]
+  );
+
+  /* Touch handlers for mobile */
+  const handleTouchStart = useCallback(() => {
+    setIsTouching(true);
   }, []);
 
-  // ── Scroll to specific card (for dot clicks) ──
-  const scrollToCard = useCallback((index: number) => {
-    const container = scrollRef.current;
-    const card = cardRefs.current[index];
-    if (!container || !card) return;
-
-    const containerRect = container.getBoundingClientRect();
-    const cardRect = card.getBoundingClientRect();
-    const scrollOffset =
-      cardRect.left -
-      containerRect.left +
-      container.scrollLeft -
-      (containerRect.width - cardRect.width) / 2;
-
-    container.scrollTo({
-      left: scrollOffset,
-      behavior: "smooth",
-    });
+  const handleTouchEnd = useCallback(() => {
+    setTimeout(() => setIsTouching(false), 500);
   }, []);
 
   return (
     <section
       ref={sectionRef}
       style={{
-        background: "var(--color-surface-1)",
-        padding: "clamp(4rem, 8vw, 7.5rem) 0",
+        background: "#1A1714",
         position: "relative",
         overflow: "hidden",
+        padding: "clamp(3rem, 6vw, 6rem) 0",
       }}
       aria-label="Наши работы"
     >
-      {/* ── Inject component CSS ── */}
       <style dangerouslySetInnerHTML={{ __html: INJECTED_STYLES }} />
 
-      {/* ── Ambient glow ── */}
+      {/* ── Progress bar at top ── */}
       <div
         style={{
           position: "absolute",
-          top: "40%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          width: "50vw",
-          height: "50vw",
-          maxWidth: 700,
-          maxHeight: 700,
+          top: 0,
+          left: 0,
+          right: 0,
+          height: 2,
+          background: "rgba(184,134,11,0.1)",
+          zIndex: 20,
+        }}
+      >
+        <motion.div
+          style={{
+            height: "100%",
+            background: "linear-gradient(90deg, #B8860B, #D4A63E, #E5BF65)",
+            width: `${((activeIndex + (isHovering || isTouching ? 0 : progress)) / GALLERY.length) * 100}%`,
+            transition: "width 0.1s linear",
+          }}
+        />
+      </div>
+
+      {/* Gold accent line above gallery */}
+      <div
+        style={{
+          width: "min(80px, 15vw)",
+          height: 1,
           background:
-            "radial-gradient(ellipse, rgba(201,169,106,0.035) 0%, transparent 65%)",
-          pointerEvents: "none",
-          zIndex: 0,
+            "linear-gradient(90deg, transparent, rgba(184,134,11,0.4), transparent)",
+          margin: "0 auto 2rem",
         }}
       />
 
@@ -431,16 +408,16 @@ export default function CinematicGallery() {
           initial={{ opacity: 0, y: 30 }}
           animate={headerInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, ease: EASE_PREMIUM }}
-          style={{ marginBottom: "1rem", textAlign: "center" }}
+          style={{ marginBottom: "2.5rem", textAlign: "center" }}
         >
-          {/* Decorative line + label */}
+          {/* Label */}
           <div
             style={{
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               gap: "0.75rem",
-              marginBottom: "1.5rem",
+              marginBottom: "1.25rem",
             }}
           >
             <span
@@ -448,15 +425,15 @@ export default function CinematicGallery() {
                 width: 32,
                 height: 1,
                 background:
-                  "linear-gradient(90deg, transparent, var(--color-brand-30))",
+                  "linear-gradient(90deg, transparent, rgba(184,134,11,0.3))",
               }}
             />
             <span
               style={{
-                fontSize: "clamp(0.75rem, 1.1vw, 0.68rem)",
+                fontSize: "clamp(0.7rem, 1.1vw, 0.75rem)",
                 letterSpacing: "0.3em",
                 textTransform: "uppercase" as const,
-                color: "var(--color-brand)",
+                color: "#D4A63E",
                 fontWeight: 600,
               }}
             >
@@ -467,7 +444,7 @@ export default function CinematicGallery() {
                 width: 32,
                 height: 1,
                 background:
-                  "linear-gradient(90deg, var(--color-brand-30), transparent)",
+                  "linear-gradient(90deg, rgba(184,134,11,0.3), transparent)",
               }}
             />
           </div>
@@ -478,162 +455,202 @@ export default function CinematicGallery() {
               fontFamily: "var(--font-serif)",
               fontSize: "clamp(1.8rem, 5vw, 3.5rem)",
               fontWeight: 300,
-              color: "var(--color-text-primary)",
+              color: "#FFFFFF",
               lineHeight: 1.15,
               letterSpacing: "-0.02em",
-              marginBottom: "0.75rem",
+              marginBottom: "0.5rem",
             }}
           >
-            Наши работы
+            Наши <span style={{ color: "#D4A63E" }}>работы</span>
           </h2>
 
           {/* Subtitle */}
           <p
             style={{
-              fontSize: "clamp(0.85rem, 1.6vw, 1.1rem)",
-              color: "var(--color-text-secondary)",
+              fontSize: "clamp(0.85rem, 1.6vw, 1.05rem)",
+              color: "rgba(255,255,255,0.5)",
               lineHeight: 1.7,
-              fontWeight: 300,
               maxWidth: 420,
               margin: "0 auto",
+              fontWeight: 300,
             }}
           >
-            Каждое мероприятие — уникальная история, рассказанная через вкус и эстетику
+            Каждое мероприятие — уникальная история, рассказанная через вкус и
+            эстетику
           </p>
         </motion.div>
 
-        {/* ── Horizontal scroll gallery ── */}
+        {/* ── Coverflow carousel ── */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={headerInView ? { opacity: 1 } : {}}
           transition={{ duration: 1, delay: 0.3, ease: EASE_PREMIUM }}
         >
           <div
-            ref={scrollRef}
-            className="gal-scroll-container"
+            onMouseEnter={() => setIsHovering(true)}
+            onMouseLeave={() => setIsHovering(false)}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
             onPointerDown={handlePointerDown}
             onPointerMove={handlePointerMove}
             onPointerUp={handlePointerUp}
-            onPointerLeave={handlePointerUp}
             style={{
-              paddingLeft: "max(1rem, calc((100vw - 1320px) / 2 + 2rem))",
-              paddingRight: "max(1rem, calc((100vw - 1320px) / 2 + 2rem))",
+              position: "relative",
+              width: "100%",
+              height: "60vh",
+              maxHeight: 600,
+              perspective: 1200,
+              cursor: "grab",
+              userSelect: "none",
+              touchAction: "pan-y",
             }}
           >
             {GALLERY.map((item, i) => (
               <GalleryCard
-                key={`${item.src}-${i}`}
+                key={item.src}
                 item={item}
                 index={i}
-                cardRef={(el: HTMLDivElement | null) => {
-                  cardRefs.current[i] = el;
-                }}
+                activeIndex={activeIndex}
+                total={GALLERY.length}
               />
             ))}
           </div>
-        </motion.div>
 
-        {/* ── Progress indicator dots ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={headerInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.6, ease: EASE_PREMIUM }}
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: "0.4rem",
-            marginTop: "1.5rem",
-          }}
-          role="tablist"
-          aria-label="Gallery navigation"
-        >
-          {GALLERY.map((_, i) => (
+          {/* ── Navigation arrows ── */}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: "2rem",
+              marginTop: "1.5rem",
+            }}
+          >
             <button
-              key={i}
-              onClick={() => scrollToCard(i)}
-              role="tab"
-              aria-selected={activeIndex === i}
-              aria-label={`Перейти к фото ${i + 1}`}
+              onClick={goPrev}
+              aria-label="Previous image"
               style={{
-                width: activeIndex === i ? 28 : 8,
-                height: 8,
-                borderRadius: 4,
-                background:
-                  activeIndex === i
-                    ? "var(--color-brand)"
-                    : "var(--color-brand-16)",
-                border: "none",
+                width: 44,
+                height: 44,
+                borderRadius: "50%",
+                border: "1px solid rgba(184,134,11,0.25)",
+                background: "rgba(184,134,11,0.05)",
+                color: "#D4A63E",
                 cursor: "pointer",
-                transition:
-                  "width 0.35s cubic-bezier(0.16, 1, 0.3, 1), background 0.35s",
-                minWidth: 8,
-                minHeight: 44,
-                padding: "18px 0",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
+                transition: "all 0.3s",
               }}
             >
-              <span
-                style={{
-                  display: "block",
-                  width: "100%",
-                  height: 8,
-                  borderRadius: 4,
-                  background:
-                    activeIndex === i
-                      ? "var(--color-brand)"
-                      : "var(--color-brand-16)",
-                  transition: "background 0.35s",
-                }}
-              />
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="m15 18-6-6 6-6" />
+              </svg>
             </button>
-          ))}
-        </motion.div>
 
-        {/* ── Scroll hint (desktop) ── */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={headerInView ? { opacity: 1 } : {}}
-          transition={{ duration: 1, delay: 1.2, ease: EASE_PREMIUM }}
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: "0.5rem",
-            marginTop: "1.25rem",
-          }}
-          className="hidden md:flex"
-        >
-          <svg
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="var(--color-text-muted)"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            style={{ opacity: 0.5 }}
-          >
-            <path d="M5 12h14" />
-            <path d="m12 5 7 7-7 7" />
-          </svg>
-          <span
-            style={{
-              fontSize: "0.65rem",
-              letterSpacing: "0.15em",
-              textTransform: "uppercase" as const,
-              color: "var(--color-text-muted)",
-              fontWeight: 400,
-              opacity: 0.5,
-            }}
-          >
-            Перетаскивайте для прокрутки
-          </span>
+            {/* ── Navigation dots ── */}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "0.5rem",
+              }}
+              role="tablist"
+              aria-label="Gallery navigation"
+            >
+              {GALLERY.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => goTo(i)}
+                  role="tab"
+                  aria-selected={activeIndex === i}
+                  aria-label={`Фото ${i + 1}: ${GALLERY[i].title}`}
+                  style={{
+                    width: activeIndex === i ? 28 : 8,
+                    height: 8,
+                    borderRadius: 4,
+                    background:
+                      activeIndex === i
+                        ? "linear-gradient(90deg, #B8860B, #D4A63E)"
+                        : "rgba(184,134,11,0.2)",
+                    border: "none",
+                    cursor: "pointer",
+                    transition:
+                      "width 0.35s cubic-bezier(0.16, 1, 0.3, 1), background 0.35s",
+                    minWidth: 8,
+                    minHeight: 44,
+                    padding: "18px 0",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                />
+              ))}
+            </div>
+
+            <button
+              onClick={goNext}
+              aria-label="Next image"
+              style={{
+                width: 44,
+                height: 44,
+                borderRadius: "50%",
+                border: "1px solid rgba(184,134,11,0.25)",
+                background: "rgba(184,134,11,0.05)",
+                color: "#D4A63E",
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                transition: "all 0.3s",
+              }}
+            >
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="m9 18 6-6-6-6" />
+              </svg>
+            </button>
+          </div>
         </motion.div>
       </div>
+
+      {/* Gold accent line below gallery */}
+      <div
+        style={{
+          width: "min(80px, 15vw)",
+          height: 1,
+          background:
+            "linear-gradient(90deg, transparent, rgba(184,134,11,0.4), transparent)",
+          margin: "2rem auto 0",
+        }}
+      />
+
+      {/* ── Mobile responsive overrides ── */}
+      <style>{`
+        @media (max-width: 767px) {
+          .gal-mobile-container {
+            height: 50vh !important;
+            max-height: 400px !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

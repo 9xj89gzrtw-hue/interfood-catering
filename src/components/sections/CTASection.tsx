@@ -5,73 +5,57 @@ import {
   motion,
   useMotionValue,
   useSpring,
+  useInView,
 } from "framer-motion";
+import Link from "next/link";
 import { useIsMobile } from "@/hooks/use-mobile";
 
-/* ═══════════════════════════════════════════════════════════════
-   CTASection — Dramatic Call-to-Action with Animated Mesh Gradient
-   Full-width dark section with animated mesh gradient background,
-   floating gold particles, magnetic button, and noise overlay.
+const EASE = [0.16, 1, 0.3, 1] as const;
 
-   FIX: Trust text font-size from 1.2vw to clamp(0.72rem, 3vw, 0.85rem).
-   Added onTouchStart feedback for magnetic button on mobile.
-   Using useIsMobile() hook instead of one-time window.innerWidth check.
-   ═══════════════════════════════════════════════════════════════ */
-
-const EASE_PREMIUM = [0.16, 1, 0.3, 1] as const;
-
-// ─── Floating Gold Particle ────────────────────────────────
-interface Particle {
-  id: number;
-  x: number;
-  size: number;
-  duration: number;
-  delay: number;
-  opacity: number;
-  drift: number;
-}
-
-function FloatingParticles({ count = 15, isMobile }: { count?: number; isMobile: boolean }) {
-  const particles: Particle[] = useMemo(() => {
-    const actualCount = isMobile ? Math.min(count, 7) : count;
-    return Array.from({ length: actualCount }, (_, i) => ({
+/* ─── Floating Gold Orbs ─── */
+function GoldOrbs({ count = 8, isMobile }: { count?: number; isMobile: boolean }) {
+  const orbs = useMemo(() => {
+    const n = isMobile ? Math.min(count, 4) : count;
+    return Array.from({ length: n }, (_, i) => ({
       id: i,
-      x: Math.random() * 100,
-      size: 2 + Math.random() * 3,
-      duration: 8 + Math.random() * 14,
+      x: 10 + Math.random() * 80,
+      y: 10 + Math.random() * 80,
+      size: 80 + Math.random() * 200,
+      duration: 15 + Math.random() * 20,
       delay: Math.random() * 10,
-      opacity: 0.2 + Math.random() * 0.4,
-      drift: (Math.random() - 0.5) * 60,
+      opacity: 0.03 + Math.random() * 0.05,
     }));
   }, [count, isMobile]);
 
   return (
     <>
-      {particles.map((p) => (
+      {orbs.map((o) => (
         <motion.div
-          key={p.id}
+          key={o.id}
           style={{
             position: "absolute",
-            left: `${p.x}%`,
-            bottom: "-5%",
-            width: p.size,
-            height: p.size,
+            left: `${o.x}%`,
+            top: `${o.y}%`,
+            width: o.size,
+            height: o.size,
             borderRadius: "50%",
-            background: "var(--color-brand)",
+            background: "radial-gradient(circle, rgba(184,134,11,0.15) 0%, transparent 70%)",
             opacity: 0,
             pointerEvents: "none",
             willChange: "transform, opacity",
+            transform: "translate(-50%, -50%)",
           }}
           animate={{
-            y: [0, -1200],
-            x: [0, p.drift],
-            opacity: [0, p.opacity, p.opacity, 0],
+            x: [0, (Math.random() - 0.5) * 60, 0],
+            y: [0, (Math.random() - 0.5) * 60, 0],
+            opacity: [0, o.opacity, o.opacity, 0],
+            scale: [0.8, 1, 0.8],
           }}
           transition={{
-            duration: p.duration,
-            delay: p.delay,
+            duration: o.duration,
+            delay: o.delay,
             repeat: Infinity,
-            ease: "linear",
+            ease: "easeInOut",
           }}
         />
       ))}
@@ -79,290 +63,257 @@ function FloatingParticles({ count = 15, isMobile }: { count?: number; isMobile:
   );
 }
 
-// ─── Magnetic Button with Spring Physics + Touch Feedback ───
-function MagneticButtonCTA({ isMobile }: { isMobile: boolean }) {
+/* ─── Magnetic Button ─── */
+function MagneticButton({
+  children,
+  href,
+  variant = "primary",
+  isMobile,
+}: {
+  children: React.ReactNode;
+  href: string;
+  variant?: "primary" | "secondary";
+  isMobile: boolean;
+}) {
   const ref = useRef<HTMLDivElement>(null);
-  const [isHovered, setIsHovered] = useState(false);
-  const [isTouched, setIsTouched] = useState(false);
-  const [clickState, setClickState] = useState<
-    "idle" | "pressed" | "bounced" | "settled"
-  >("idle");
+  const [hovered, setHovered] = useState(false);
+  const [ripples, setRipples] = useState<{ id: number; x: number; y: number }[]>([]);
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const springX = useSpring(x, { stiffness: 200, damping: 20 });
   const springY = useSpring(y, { stiffness: 200, damping: 20 });
 
-  const handleMouseMove = useCallback(
-    (e: React.MouseEvent) => {
-      if (!ref.current || isMobile) return;
-      const rect = ref.current.getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
-      // Magnetic effect: follow cursor within 8px
-      const deltaX = (e.clientX - centerX) * 0.15;
-      const deltaY = (e.clientY - centerY) * 0.15;
-      const maxDelta = 8;
-      x.set(Math.max(-maxDelta, Math.min(maxDelta, deltaX)));
-      y.set(Math.max(-maxDelta, Math.min(maxDelta, deltaY)));
-    },
-    [x, y, isMobile]
-  );
+  const handleMouseMove = useCallback((e: React.MouseEvent) => {
+    if (!ref.current || isMobile) return;
+    const rect = ref.current.getBoundingClientRect();
+    const dx = (e.clientX - rect.left - rect.width / 2) * 0.15;
+    const dy = (e.clientY - rect.top - rect.height / 2) * 0.15;
+    x.set(Math.max(-8, Math.min(8, dx)));
+    y.set(Math.max(-8, Math.min(8, dy)));
+  }, [x, y, isMobile]);
 
   const handleMouseLeave = useCallback(() => {
     x.set(0);
     y.set(0);
-    setIsHovered(false);
+    setHovered(false);
   }, [x, y]);
 
-  const handleTouchStart = useCallback(() => {
-    setIsTouched(true);
+  const handleClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (!ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    const rippleX = e.clientX - rect.left;
+    const rippleY = e.clientY - rect.top;
+    const id = Date.now();
+    setRipples((prev) => [...prev, { id, x: rippleX, y: rippleY }]);
+    setTimeout(() => setRipples((prev) => prev.filter((r) => r.id !== id)), 700);
   }, []);
 
-  const handleTouchEnd = useCallback(() => {
-    setIsTouched(false);
-  }, []);
-
-  const handleClick = useCallback(() => {
-    // Spring bounce: down (0.95) → up (1.05) → settle (1.0)
-    setClickState("pressed");
-    setTimeout(() => setClickState("bounced"), 120);
-    setTimeout(() => setClickState("settled"), 300);
-    setTimeout(() => setClickState("idle"), 500);
-  }, []);
-
-  const scaleValue =
-    clickState === "pressed"
-      ? 0.95
-      : clickState === "bounced"
-        ? 1.05
-        : clickState === "settled"
-          ? 1.0
-          : 1;
+  const isPrimary = variant === "primary";
 
   return (
     <motion.div
       ref={ref}
       onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
+      onMouseEnter={() => setHovered(true)}
       onMouseLeave={handleMouseLeave}
-      onTouchStart={handleTouchStart}
-      onTouchEnd={handleTouchEnd}
-      style={{
-        x: springX,
-        y: springY,
-        display: "inline-block",
-      }}
+      style={{ x: springX, y: springY, display: "inline-block", position: "relative" }}
     >
-      <motion.button
-        onClick={handleClick}
+      <motion.div
         animate={{
-          scale: scaleValue,
-          boxShadow: isHovered || isTouched
-            ? "0 8px 40px rgba(201,169,106,0.3), 0 0 80px rgba(201,169,106,0.15)"
-            : "0 4px 20px rgba(201,169,106,0.15)",
+          scale: hovered && !isMobile ? 1.03 : 1,
+          boxShadow: hovered
+            ? isPrimary
+              ? "0 8px 40px rgba(184,134,11,0.35), 0 0 80px rgba(184,134,11,0.15)"
+              : "0 4px 24px rgba(250,250,247,0.08)"
+            : isPrimary
+              ? "0 4px 20px rgba(184,134,11,0.15)"
+              : "0 0 0 rgba(0,0,0,0)",
         }}
-        transition={{
-          scale: { type: "spring", stiffness: 400, damping: 15 },
-          boxShadow: { duration: 0.4 },
-        }}
-        className="btn-gold"
-        style={{
-          minWidth: "44px",
-          minHeight: "44px",
-          padding: "1.1rem 2.5rem",
-          fontSize: "clamp(0.75rem, 2vw, 0.85rem)",
-          letterSpacing: "0.14em",
-        }}
+        transition={{ type: "spring", stiffness: 400, damping: 15 }}
+        style={{ position: "relative", overflow: "hidden", borderRadius: 14 }}
       >
-        Рассчитать мероприятие бесплатно
-      </motion.button>
+        <Link
+          href={href}
+          onClick={handleClick}
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "0.5rem",
+            padding: isMobile ? "1rem 1.5rem" : "1.1rem 2.5rem",
+            borderRadius: 14,
+            fontSize: "clamp(0.78rem, 1.8vw, 0.88rem)",
+            fontWeight: 500,
+            letterSpacing: "0.1em",
+            textDecoration: "none",
+            textTransform: "uppercase",
+            minHeight: 48,
+            background: isPrimary ? "linear-gradient(135deg, #B8860B, #D4A63E)" : "transparent",
+            color: isPrimary ? "#1A1714" : "#FAFAF7",
+            border: isPrimary ? "none" : "1px solid rgba(184,134,11,0.4)",
+            cursor: "pointer",
+            transition: "border-color 0.3s",
+            position: "relative",
+            overflow: "hidden",
+          }}
+        >
+          {ripples.map((r) => (
+            <motion.span
+              key={r.id}
+              initial={{ width: 0, height: 0, opacity: 0.5 }}
+              animate={{ width: 300, height: 300, opacity: 0 }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+              style={{
+                position: "absolute",
+                left: r.x,
+                top: r.y,
+                borderRadius: "50%",
+                background: isPrimary ? "rgba(26,23,20,0.2)" : "rgba(184,134,11,0.2)",
+                transform: "translate(-50%, -50%)",
+                pointerEvents: "none",
+              }}
+            />
+          ))}
+          {children}
+        </Link>
+      </motion.div>
     </motion.div>
   );
 }
 
-// ─── Main Component ────────────────────────────────────────
-export default function CTASection() {
-  const emptySubscribe = () => () => {};
-  const mounted = useSyncExternalStore(
-    emptySubscribe,
-    () => true,
-    () => false
-  );
+/* ─── Count-up number ─── */
+function CountUp({ target, suffix = "" }: { target: number; suffix?: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true });
+  const [count, setCount] = useState(0);
 
+  useEffect(() => {
+    if (!isInView) return;
+    let current = 0;
+    const step = () => {
+      current += 1;
+      setCount(current);
+      if (current < target) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }, [isInView, target]);
+
+  return <span ref={ref}>{count}{suffix}</span>;
+}
+
+export default function CTASection() {
+  const emptySub = () => () => {};
+  const mounted = useSyncExternalStore(emptySub, () => true, () => false);
   const isMobile = useIsMobile();
 
   return (
     <section
-      style={{
-        position: "relative",
-        padding: "clamp(4rem, 8vw, 8rem) 0",
-        overflow: "hidden",
-        background: "var(--color-surface-0)",
-      }}
-      aria-label="Создадим мероприятие вашей мечты"
+      style={{ position: "relative", padding: "clamp(4rem, 8vw, 8rem) 0", overflow: "hidden", background: "#1A1714" }}
+      aria-label="Рассчитайте ваше мероприятие"
     >
-      {/* ── Mesh Gradient Background ── */}
+      {/* Grain overlay */}
       <div
         style={{
-          position: "absolute",
-          inset: 0,
-          background: `
-            radial-gradient(ellipse 80% 60% at 20% 50%, rgba(139,58,74,0.15) 0%, transparent 60%),
-            radial-gradient(ellipse 70% 50% at 80% 30%, rgba(201,169,106,0.1) 0%, transparent 55%),
-            radial-gradient(ellipse 60% 80% at 50% 80%, rgba(201,169,106,0.08) 0%, transparent 50%),
-            radial-gradient(ellipse 90% 70% at 70% 70%, rgba(139,58,74,0.08) 0%, transparent 60%),
-            radial-gradient(ellipse 50% 40% at 30% 20%, rgba(201,169,106,0.06) 0%, transparent 45%)
-          `,
-          backgroundSize: "200% 200%",
-          animation: "mesh-shift 15s ease-in-out infinite",
-        }}
-      />
-
-      {/* ── Noise/Grain Overlay ── */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          pointerEvents: "none",
-          opacity: 0.035,
-          backgroundImage:
-            "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E\")",
-          backgroundSize: "256px 256px",
-          zIndex: 2,
+          position: "absolute", inset: 0, pointerEvents: "none", opacity: 0.04, zIndex: 2,
+          backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
+          backgroundSize: "200px 200px",
         }}
         aria-hidden="true"
       />
 
-      {/* ── Floating Gold Particles ── */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          zIndex: 1,
-          pointerEvents: "none",
-          overflow: "hidden",
-        }}
-        aria-hidden="true"
-      >
-        {mounted && <FloatingParticles count={15} isMobile={isMobile} />}
-      </div>
+      {/* Floating gold orbs */}
+      {mounted && (
+        <div style={{ position: "absolute", inset: 0, zIndex: 1, pointerEvents: "none", overflow: "hidden" }} aria-hidden="true">
+          <GoldOrbs count={8} isMobile={isMobile} />
+        </div>
+      )}
 
-      {/* ── Content ── */}
-      <div
-        style={{
-          position: "relative",
-          zIndex: 3,
-          maxWidth: "800px",
-          margin: "0 auto",
-          padding: "0 clamp(1.25rem, 3vw, 2rem)",
-          textAlign: "center",
-        }}
-      >
-        {/* ── Heading ── */}
+      {/* Content */}
+      <div style={{ position: "relative", zIndex: 3, maxWidth: 800, margin: "0 auto", padding: "0 clamp(1.25rem, 3vw, 2rem)", textAlign: "center" }}>
+        {/* Title with gold gradient */}
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 1, ease: EASE_PREMIUM }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 1, ease: EASE }}
           style={{
             fontFamily: "var(--font-serif)",
             fontSize: "clamp(2rem, 5vw, 3.5rem)",
             fontWeight: 300,
-            color: "var(--color-text-primary)",
             lineHeight: 1.15,
             letterSpacing: "-0.02em",
-            marginBottom: "1.25rem",
+            marginBottom: "1rem",
+            background: "linear-gradient(90deg, #B8860B, #D4A63E, #E5BF65, #D4A63E, #B8860B)",
+            backgroundSize: "200% 100%",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+            animation: "cta-gold-shift 6s ease-in-out infinite",
           }}
         >
-          Создадим мероприятие, которое запомнится навсегда
+          Рассчитайте ваше мероприятие
         </motion.h2>
 
-        {/* ── Subtitle ── */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 1, delay: 0.15, ease: EASE_PREMIUM }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 1, delay: 0.15, ease: EASE }}
           style={{
             fontSize: "clamp(0.9rem, 3vw, 1.1rem)",
-            color: "var(--color-text-secondary)",
+            color: "rgba(250,250,247,0.7)",
             lineHeight: 1.7,
             fontWeight: 300,
             marginBottom: "2.5rem",
-            maxWidth: "520px",
+            maxWidth: 520,
             marginLeft: "auto",
             marginRight: "auto",
           }}
         >
-          Бесплатная консультация и дегустация — мы ответим за 30 минут и подберём идеальное меню
+          Ответим в течение <CountUp target={30} suffix=" минут" /> с персональным предложением
         </motion.p>
 
-        {/* ── Magnetic Button ── */}
+        {/* Buttons */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 1, delay: 0.3, ease: EASE_PREMIUM }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 1, delay: 0.3, ease: EASE }}
+          style={{ display: "flex", flexDirection: isMobile ? "column" : "row", gap: "1rem", justifyContent: "center", alignItems: "center" }}
         >
-          <MagneticButtonCTA isMobile={isMobile} />
+          <MagneticButton href="/calculator" variant="primary" isMobile={isMobile}>
+            Рассчитать стоимость
+          </MagneticButton>
+          <MagneticButton href="https://wa.me/79119417205" variant="secondary" isMobile={isMobile}>
+            Обсудить с шеф-поваром
+          </MagneticButton>
         </motion.div>
 
-        {/* ── Trust Line ── */}
+        {/* Trust line */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 1.2, delay: 0.5, ease: EASE_PREMIUM }}
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: "0.75rem",
-            marginTop: "2.5rem",
-            flexWrap: "wrap",
-          }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 1.2, delay: 0.5, ease: EASE }}
+          style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "1rem", marginTop: "2.5rem", flexWrap: "wrap" }}
         >
-          <TrustItem text="Ответим за 30 минут" />
-          <TrustDot />
-          <TrustItem text="Бесплатная дегустация" />
-          <TrustDot />
-          <TrustItem text="3500+ мероприятий" />
+          {["Бесплатно", "Без обязательств", "За 30 минут"].map((text, i) => (
+            <span key={i} style={{ display: "flex", alignItems: "center", gap: "0.4rem", fontSize: "clamp(0.72rem, 2.5vw, 0.85rem)", color: "rgba(250,250,247,0.5)", fontWeight: 400, letterSpacing: "0.04em" }}>
+              <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="#B8860B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+              {text}
+            </span>
+          ))}
         </motion.div>
       </div>
+
+      {/* Gold gradient animation keyframes */}
+      <style>{`
+        @keyframes cta-gold-shift {
+          0%, 100% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+        }
+      `}</style>
     </section>
-  );
-}
-
-// ─── Trust Item ────────────────────────────────────────────
-function TrustItem({ text }: { text: string }) {
-  return (
-    <span
-      style={{
-        fontSize: "clamp(0.75rem, 3vw, 0.85rem)",
-        color: "var(--color-text-muted)",
-        fontWeight: 400,
-        letterSpacing: "0.04em",
-        whiteSpace: "nowrap",
-      }}
-    >
-      {text}
-    </span>
-  );
-}
-
-// ─── Trust Dot Separator ──────────────────────────────────
-function TrustDot() {
-  return (
-    <span
-      style={{
-        width: "3px",
-        height: "3px",
-        borderRadius: "50%",
-        background: "var(--color-brand-30)",
-        flexShrink: 0,
-      }}
-      aria-hidden="true"
-    />
   );
 }
