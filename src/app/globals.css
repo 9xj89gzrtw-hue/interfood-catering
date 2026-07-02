@@ -1,9 +1,11 @@
 @import "tailwindcss";
 
 /* ═══════════════════════════════════════════════════════════════
-   INTERFOOD CATERING — Light-First Premium Design v33
+   INTERFOOD CATERING — Light-First Premium Design v34
    Warm, bright, photo/video-forward aesthetic
    Scroll-Driven Animations • View Transitions • Touch UX
+   SECRET HACKS 2026: Speculation Rules, @starting-style,
+   Container Queries, CSS Nesting, Anchor Positioning
    ═══════════════════════════════════════════════════════════════ */
 
 @theme {
@@ -180,6 +182,119 @@ body {
     clip-path: none;
   }
 }
+
+/* ═══ SECRET HACK 2026: @starting-style — Pure CSS Entry Animations ═══ */
+@supports (animation: enter-starting-style 0.01s) {
+  /* Dialog/modal entry without JS — animates display:none → block */
+  [data-dialog], .modal-overlay {
+    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.25,1,0.5,1);
+    @starting-style { opacity: 0; transform: scale(0.95) translateY(10px); }
+  }
+  [data-dialog]:is([open]), .modal-overlay.active {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  /* Popover entry animation */
+  [popover]:popover-open {
+    @starting-style { opacity: 0; transform: translateY(-8px) scale(0.97); }
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.25,1,0.5,1);
+  }
+}
+
+/* ═══ SECRET HACK 2026: Container Queries ═══ */
+@supports (container-type: inline-size) {
+  .card-container { container-type: inline-size; container-name: card; }
+  @container card (min-width: 400px) {
+    .card-container .card-inner { flex-direction: row; gap: 1.5rem; }
+    .card-container .card-inner .card-image { width: 50%; }
+  }
+  @container card (max-width: 399px) {
+    .card-container .card-inner { flex-direction: column; }
+    .card-container .card-inner .card-image { width: 100%; }
+  }
+  .grid-container { container-type: inline-size; container-name: grid; }
+  @container grid (min-width: 768px) {
+    .grid-container .grid-auto { grid-template-columns: repeat(3, 1fr); }
+  }
+  @container grid (min-width: 480px) and (max-width: 767px) {
+    .grid-container .grid-auto { grid-template-columns: repeat(2, 1fr); }
+  }
+  @container grid (max-width: 479px) {
+    .grid-container .grid-auto { grid-template-columns: 1fr; }
+  }
+}
+
+/* ═══ SECRET HACK 2026: CSS Nesting ═══ */
+@supports (selector(&)) {
+  .nav {
+    & .nav-inner {
+      max-width: 1320px; margin: 0 auto; padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    &.scrolled {
+      padding: 0.6rem 0;
+      background: rgba(254,253,251,0.92);
+      backdrop-filter: blur(20px) saturate(1.4);
+      border-bottom: 1px solid rgba(184,149,90,0.12);
+    }
+  }
+  .btn-gold {
+    & { display: inline-block; padding: 1rem 2.5rem; background: var(--color-brand); color: #fff;
+        font-size: 0.8rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+        border: none; border-radius: 100px; cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.25,1,0.5,1); text-decoration: none; }
+    &:hover { background: var(--color-brand-dark); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(184,149,90,0.4); }
+    &:active { transform: translateY(0); }
+    &.outline { background: transparent; color: var(--color-brand); border: 1.5px solid var(--color-brand);
+      &:hover { background: var(--color-brand); color: #fff; } }
+  }
+  .section {
+    & { padding: 6rem 0; }
+    &-label { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+              color: var(--color-brand); margin-bottom: 0.75rem; font-weight: 500; }
+    &-title { font-family: var(--font-serif); font-size: clamp(2rem, 5vw, 3.2rem);
+              font-weight: 400; line-height: 1.15; color: var(--color-dark); margin-bottom: 1.5rem; }
+    &-desc { font-size: 1.05rem; line-height: 1.7; color: #555; max-width: 600px; }
+  }
+}
+
+/* ═══ SECRET HACK 2026: content-visibility for performance ═══ */
+.section, .gallery-item, .review-card {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
+}
+
+/* ═══ SECRET HACK 2026: Overscroll + safe area ═══ */
+html {
+  overscroll-behavior: none;
+}
+@supports (padding: env(safe-area-inset-top)) {
+  body {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+  .nav { padding-top: calc(1.2rem + env(safe-area-inset-top)); }
+  .nav.scrolled { padding-top: calc(0.6rem + env(safe-area-inset-top)); }
+  .sticky-bottom-cta { bottom: calc(1rem + env(safe-area-inset-bottom)); }
+  .whatsapp-float { bottom: calc(2rem + env(safe-area-inset-bottom)); }
+}
+
+/* ═══ SECRET HACK 2026: mix-blend-mode for premium overlays ═══ */
+.hero-overlay-blend {
+  mix-blend-mode: soft-light;
+}
+.text-blend-difference {
+  mix-blend-mode: difference;
+  color: #fff;
+}
+.duotone-image {
+  filter: grayscale(100%) contrast(1.2);
+  mix-blend-mode: multiply;
+}
 ::selection { background: var(--color-brand); color: #fff; }
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--color-cream); }
@@ -293,7 +408,7 @@ img { max-width: 100%; height: auto; }
 
 /* Mobile Menu */
 .mobile-menu {
-  position: fixed; inset: 0; z-index: 999;
+  position: fixed; inset: 0; z-index: 1002;
   background: rgba(254,253,251,0.98);
   backdrop-filter: blur(30px);
   display: flex; flex-direction: column;

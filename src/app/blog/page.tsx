@@ -753,7 +753,7 @@ export default function BlogPage() {
                   />
                 </motion.div>
 
-                <MagneticButton>
+                <MagneticButton as="div" className="" style={{ display: "inline-block" }}>
                   <button
                     type="submit"
                     className="btn-gold"

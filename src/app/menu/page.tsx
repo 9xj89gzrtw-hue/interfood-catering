@@ -323,6 +323,7 @@ function MenuCard({ item, index }: { item: MenuItem; index: number }) {
             target={item.price}
             duration={1.5}
             suffix=" ₽"
+            hideUntilInView
             className=""
             style={{
               fontSize: "1.15rem",

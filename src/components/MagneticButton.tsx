@@ -12,9 +12,9 @@ interface MagneticButtonProps {
   children: React.ReactNode;
   className?: string;
   strength?: number;
-  as?: "button" | "a";
+  as?: "button" | "a" | "div";
   href?: string;
-  onClick?: () => void;
+  onClick?: () => void | ((e: React.MouseEvent) => void);
   style?: React.CSSProperties;
 }
 
@@ -47,6 +47,21 @@ export default function MagneticButton({
     y.set(0);
   };
 
+  const inner =
+    Tag === "a" ? (
+      <a href={href} className={className} onClick={onClick as React.MouseEventHandler} style={style}>
+        {children}
+      </a>
+    ) : Tag === "div" ? (
+      <div className={className} onClick={onClick as React.MouseEventHandler} style={style}>
+        {children}
+      </div>
+    ) : (
+      <button className={className} onClick={onClick as React.MouseEventHandler} style={style}>
+        {children}
+      </button>
+    );
+
   return (
     <motion.div
       ref={ref as React.RefObject<HTMLDivElement>}
@@ -54,15 +69,7 @@ export default function MagneticButton({
       onMouseLeave={handleMouseLeave}
       style={{ x: springX, y: springY, display: "inline-block" }}
     >
-      {Tag === "a" ? (
-        <a href={href} className={className} onClick={onClick} style={style}>
-          {children}
-        </a>
-      ) : (
-        <button className={className} onClick={onClick} style={style}>
-          {children}
-        </button>
-      )}
+      {inner}
     </motion.div>
   );
 }

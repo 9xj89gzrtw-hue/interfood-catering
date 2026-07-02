@@ -108,6 +108,7 @@ export default function RootLayout({
       "Кейтеринг в Санкт-Петербурге. Ресторан выездного обслуживания. Авторская кухня.",
     url: "https://interfood-catering.ru",
     telephone: "+7 (812) 919-59-11",
+    email: "interfood-catering@yandex.ru",
     address: {
       "@type": "PostalAddress",
       streetAddress: "Невский проспект, д. 100",
@@ -115,9 +116,13 @@ export default function RootLayout({
       postalCode: "191186",
       addressCountry: "RU",
     },
-    priceRange: "$$",
     foundingDate: "2007",
     image: "https://interfood-catering.ru/images/hero.jpg",
+    priceRange: "от 2 450 ₽/чел",
+    areaServed: {
+      "@type": "City",
+      name: "Санкт-Петербург",
+    },
     sameAs: [
       "https://vk.com/nilovcatering",
       "https://instagram.com/nilov_catering",
@@ -322,6 +327,21 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://mc.yandex.ru" />
         <link rel="dns-prefetch" href="https://api-maps.yandex.ru" />
+
+        {/* ═══ SECRET HACK 2026: Speculation Rules API — Instant Navigation ═══ */}
+        <script
+          type="speculationrules"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              prefetch: [
+                { source: "list", urls: ["/menu", "/services", "/wedding", "/corporate", "/contacts", "/about", "/gallery", "/calculator"] },
+              ],
+              prerender: [
+                { source: "list", urls: ["/menu", "/services", "/contacts"] },
+              ],
+            }),
+          }}
+        />
 
         <script
           dangerouslySetInnerHTML={{

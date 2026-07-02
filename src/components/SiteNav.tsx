@@ -11,18 +11,34 @@ import ViewTransitionLink from "@/components/ViewTransitionLink";
 
 const NAV_LINKS = [
   { label: "Главная", href: "/" },
+  { label: "О компании", href: "/about" },
   { label: "Меню", href: "/menu" },
   { label: "Услуги", href: "/services" },
   { label: "Свадьбы", href: "/wedding" },
   { label: "Корпоратив", href: "/corporate" },
-  { label: "Площадки", href: "/venues" },
-  { label: "О нас", href: "/about" },
-  { label: "Команда", href: "/team" },
   { label: "Галерея", href: "/gallery" },
-  { label: "Блог", href: "/blog" },
   { label: "Отзывы", href: "/reviews" },
-  { label: "Калькулятор", href: "/calculator" },
   { label: "Контакты", href: "/contacts" },
+];
+
+const MENU_LINKS = [
+  { label: "Фуршет", href: "/menu#furshet" },
+  { label: "Банкет", href: "/menu#banket" },
+  { label: "Кофе-брейк", href: "/menu#coffee" },
+  { label: "Барбекю", href: "/menu#bbq" },
+  { label: "Доставка закусок", href: "/menu#delivery" },
+];
+
+const SERVICE_LINKS = [
+  { label: "Свадебный банкет", href: "/wedding" },
+  { label: "Выездная регистрация", href: "/wedding#registration" },
+  { label: "Выездной банкет", href: "/corporate" },
+  { label: "Выездной ресторан", href: "/corporate#restaurant" },
+  { label: "Аренда оборудования", href: "/services#equipment" },
+  { label: "Оформление зала", href: "/services#decor" },
+  { label: "Торты на заказ", href: "/services#cakes" },
+  { label: "Пирамиды из шампанского", href: "/services#champagne" },
+  { label: "Шоколадный фонтан", href: "/services#chocolate" },
 ];
 
 export default function SiteNav() {
@@ -53,6 +69,9 @@ export default function SiteNav() {
             ))}
             <li>
               <a href="tel:+78129195911" className="nav-phone">+7 (812) 919-59-11</a>
+            </li>
+            <li>
+              <a href="https://wa.me/79119417205" target="_blank" rel="noopener noreferrer" className="nav-phone" style={{color: '#25D366'}}>WhatsApp</a>
             </li>
             <li>
               <ViewTransitionLink href="/#contact" className="nav-cta">Заказать</ViewTransitionLink>
@@ -106,6 +125,26 @@ export default function SiteNav() {
               style={{ color: "var(--color-brand)", fontSize: "1.2rem" }}
             >
               +7 (812) 919-59-11
+            </motion.a>
+            <motion.a
+              href="https://wa.me/79119417205"
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 + NAV_LINKS.length * 0.04 + 0.15 }}
+              style={{ color: "#25D366", fontSize: "1rem" }}
+            >
+              WhatsApp: +7 (911) 941-72-05
+            </motion.a>
+            <motion.a
+              href="mailto:interfood-catering@yandex.ru"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 + NAV_LINKS.length * 0.04 + 0.2 }}
+              style={{ color: "#666", fontSize: "0.9rem" }}
+            >
+              interfood-catering@yandex.ru
             </motion.a>
             <motion.div
               initial={{ opacity: 0, y: 10 }}

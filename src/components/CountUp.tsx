@@ -16,6 +16,8 @@ interface CountUpProps {
   decimals?: number;
   className?: string;
   style?: React.CSSProperties;
+  /** Hide the element until it enters the viewport (avoids showing "0" for prices) */
+  hideUntilInView?: boolean;
 }
 
 export default function CountUp({
@@ -26,9 +28,10 @@ export default function CountUp({
   decimals = 0,
   className = "",
   style,
+  hideUntilInView = false,
 }: CountUpProps) {
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const inView = useInView(ref, { once: true, margin: "-50px" });
   const [count, setCount] = useState(0);
 
   useEffect(() => {
@@ -53,7 +56,10 @@ export default function CountUp({
     <motion.span
       ref={ref}
       className={className}
-      style={style}
+      style={{
+        ...style,
+        ...(hideUntilInView && !inView ? { visibility: "hidden" as const } : {}),
+      }}
       initial={{ opacity: 0, y: 20 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6 }}
