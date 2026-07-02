@@ -1,0 +1,1478 @@
+     1→"use client";
+     2→
+     3→import { useState, useEffect, useRef, useCallback } from "react";
+     4→import { motion, AnimatePresence, useInView, useScroll, useTransform } from "framer-motion";
+     5→import Link from "next/link";
+     6→import SiteNav from "@/components/SiteNav";
+     7→import TextReveal from "@/components/TextReveal";
+     8→import CountUp from "@/components/CountUp";
+     9→import MagneticButton from "@/components/MagneticButton";
+    10→import VideoBreak from "@/components/VideoBreak";
+    11→import ParallaxImage from "@/components/ParallaxImage";
+    12→import VideoCarousel from "@/components/VideoCarousel";
+    13→import BackToTop from "@/components/BackToTop";
+    14→import KineticText from "@/components/KineticText";
+    15→import ParticleField from "@/components/ParticleField";
+    16→import MorphingBlob from "@/components/MorphingBlob";
+    17→import ConfettiButton from "@/components/ConfettiButton";
+    18→import TextMarquee from "@/components/TextMarquee";
+    19→
+    20→/* ═══════════════════════════════════════════════════════════════
+    21→   ИНТЕРФУД КЕЙТЕРИНГ — Меню / Menu Page (LIGHT THEME)
+    22→   Maximum animation, warm white aesthetic
+    23→   ═══════════════════════════════════════════════════════════════ */
+    24→
+    25→const VID = {
+    26→  hero: "/videos/catering2.mp4",
+    27→  kitchen: "/videos/catering1.mp4",
+    28→  cooking: "/videos/catering1.mp4",
+    29→  food1: "/videos/catering2.mp4",
+    30→};
+    31→
+    32→const IMG = {
+    33→  furshet: "/images/real/furshet_real.jpg",
+    34→  banquet: "/images/real/furshet_serving.jpg",
+    35→  coffee: "/images/real/gallery_pro_3.jpg",
+    36→  bar: "/images/real/gallery_pro_7.jpg",
+    37→  dessert: "/images/real/gallery_pro_9.jpg",
+    38→  canape: "/images/real/furshet_canape.jpg",
+    39→  chef: "/images/real/chef_about.jpg",
+    40→  roses: "/images/real/gallery_pro_2.jpg",
+    41→  wedding: "/images/real/event_wedding.jpg",
+    42→};
+    43→
+    44→/* ─── Data ─── */
+    45→interface MenuItem {
+    46→  name: string;
+    47→  weight: string;
+    48→  price: number;
+    49→  tag?: string;
+    50→  desc?: string;
+    51→  dietary?: string[]; // e.g. ["vegan", "gluten-free", "halal"]
+    52→}
+    53→
+    54→const DIETARY_FILTERS = [
+    55→  { key: "vegan", label: "🌱 Веганское", short: "Веган" },
+    56→  { key: "vegetarian", label: "🥗 Вегетарианское", short: "Вегет." },
+    57→  { key: "gluten-free", label: "🌾 Без глютена", short: "Б/гл." },
+    58→  { key: "halal", label: "🕌 Халяль", short: "Халяль" },
+    59→] as const;
+    60→
+    61→type DietaryKey = (typeof DIETARY_FILTERS)[number]["key"];
+    62→
+    63→interface MenuCategory {
+    64→  key: string;
+    65→  label: string;
+    66→  priceFrom: string;
+    67→  desc: string;
+    68→  img: string;
+    69→  items: MenuItem[];
+    70→}
+    71→
+    72→const CATEGORIES: MenuCategory[] = [
+    73→  {
+    74→    key: "furshet-2450",
+    75→    label: "Фуршет",
+    76→    priceFrom: "2 450",
+    77→    desc: "Канапе, брускетты и закуски для свободного общения. Идеально для лёгких мероприятий.",
+    78→    img: IMG.furshet,
+    79→    items: [
+    80→      { name: "Канапе: Ломтик итальянского салями с сыром маскарпоне и миндалём", weight: "35г", price: 2450, desc: "Фуршетное меню на 1 гостя" },
+    81→      { name: "Канапе: Форель шеф-посол на тосте с лаймом, укропом и каперсами", weight: "35г", price: 0, desc: "" },
+    82→      { name: "Канапе: Королевская креветка в слайсе цукини с икрой летучей рыбы", weight: "35г", price: 0, desc: "" },
+    83→      { name: "Брускетты с овощами-гриль и соусом песто", weight: "75г", price: 0, desc: "" },
+    84→      { name: "Брускетты с моцареллой, томатом, рукколой и бальзамиком", weight: "75г", price: 0, desc: "" },
+    85→      { name: "Десерт: Мини пирожное в ассортименте", weight: "50г", price: 0, desc: "" },
+    86→      { name: "Напитки: Домашний клюквенный/брусничный морс", weight: "300мл", price: 0, desc: "" },
+    87→    ],
+    88→  },
+    89→  {
+    90→    key: "furshet-2950",
+    91→    label: "Фуршет",
+    92→    priceFrom: "2 950",
+    93→    desc: "Расширенное фуршетное меню с лососем, креветками и брускеттами с говяжьей вырезкой.",
+    94→    img: IMG.furshet,
+    95→    items: [
+    96→      { name: "Канапе: Копченый лосось с сыром рикотта в савойской капусте с красной икрой", weight: "35г", price: 2950, desc: "Фуршетное меню на 1 гостя" },
+    97→      { name: "Канапе: Масляная белая рыба холодного копчения с лаймом на бородинском хлебе", weight: "35г", price: 0, desc: "" },
+    98→      { name: "Канапе: Пряный сыр с вялеными томатами на шпажке", weight: "35г", price: 0, desc: "" },
+    99→      { name: "Канапе: Куриный рулет «Су-вид» с сегментами персика", weight: "35г", price: 0, desc: "" },
+   100→      { name: "Брускетты со слабосолёным лососем, творожным сыром", weight: "75г", price: 0, desc: "" },
+   101→      { name: "Брускетты с говяжьей вырезкой, рукколой и томатами", weight: "75г", price: 0, desc: "" },
+   102→      { name: "Салат в креманке с тигровыми креветками", weight: "50г", price: 0, desc: "" },
+   103→      { name: "Десерт: Мини-пирожное", weight: "50г", price: 0, desc: "" },
+   104→    ],
+   105→  },
+   106→  {
+   107→    key: "furshet-3950",
+   108→    label: "Фуршет",
+   109→    priceFrom: "3 950",
+   110→    desc: "Премиум-фуршет с лососем, тигровыми креветками, пармской ветчиной и горячими закусками.",
+   111→    img: IMG.furshet,
+   112→    items: [
+   113→      { name: "Канапе: Лосось шеф-посол с красной икрой", weight: "35г", price: 3950, desc: "Фуршетное меню на 1 гостя" },
+   114→      { name: "Канапе: Тигровая креветка с икрой летучей рыбы", weight: "35г", price: 0, desc: "" },
+   115→      { name: "Канапе: Пармская ветчина с персиком и пармезаном", weight: "35г", price: 0, desc: "" },
+   116→      { name: "Брускетта с коктейльными креветками, фетой и бальзамиком", weight: "65г", price: 0, desc: "" },
+   117→      { name: "Салат: С подкопчённым куриным филе и перепелиными яйцами", weight: "70г", price: 0, desc: "" },
+   118→      { name: "Салат: Цезарь с куриным бедром и пармезаном", weight: "60г", price: 0, desc: "" },
+   119→      { name: "Горячая закуска: Запечённая буженина / Шашлычок из куриного филе", weight: "", price: 0, desc: "" },
+   120→      { name: "Гарнир: Картофель бейби с беконом / Овощи-гриль с песто", weight: "", price: 0, desc: "" },
+   121→      { name: "Десерт: Мини-пирожное", weight: "", price: 0, desc: "" },
+   122→    ],
+   123→  },
+   124→  {
+   125→    key: "furshet-5350",
+   126→    label: "Фуршет",
+   127→    priceFrom: "5 350",
+   128→    desc: "Делюкс-фуршет с уткой Магре, морским гребешком, копчёным угрём и филе-миньоном.",
+   129→    img: IMG.furshet,
+   130→    items: [
+   131→      { name: "Канапе: Утиная грудка Магре с апельсином", weight: "35г", price: 5350, desc: "Фуршетное меню на 1 гостя" },
+   132→      { name: "Канапе: Пряный ростбиф с пармезаном и конфи из лука шалот", weight: "35г", price: 0, desc: "" },
+   133→      { name: "Канапе: Морской гребешок с вялеными томатами", weight: "35г", price: 0, desc: "" },
+   134→      { name: "Канапе: Копченый угорь с красной икрой", weight: "35г", price: 0, desc: "" },
+   135→      { name: "Мини-брускетты с тигровыми креветками и кедровыми орешками", weight: "", price: 0, desc: "" },
+   136→      { name: "Мини-брускетты с говяжьей вырезкой и сладкой паприкой", weight: "", price: 0, desc: "" },
+   137→      { name: "Салат: Нисуаз со свежим тунцом", weight: "", price: 0, desc: "" },
+   138→      { name: "Салат: Из говяжьего языка с раковыми шейками", weight: "", price: 0, desc: "" },
+   139→      { name: "Горячая закуска: Шашлычок из морепродуктов / Филе-миньон", weight: "", price: 0, desc: "" },
+   140→    ],
+   141→  },
+   142→  {
+   143→    key: "banquet",
+   144→    label: "Банкет",
+   145→    priceFrom: "4 470",
+   146→    desc: "5–7 курсов авторского банкетного меню. Холодные закуски, салаты, горячее и десерт.",
+   147→    img: IMG.banquet,
+   148→    items: [
+   149→      { name: "Холодные закуски: Речная форель, белая масляная рыба, королевские креветки", weight: "", price: 4470, desc: "Банкетное меню на 1 гостя" },
+   150→      { name: "Домашняя буженина, куриный рулет су-вид, свиная вырезка в беконе", weight: "", price: 0, desc: "" },
+   151→      { name: "Террин из овощей, брускетта с печёночным паштетом", weight: "", price: 0, desc: "" },
+   152→      { name: "Салат: Нисуаз с тунцом", weight: "", price: 0, desc: "" },
+   153→      { name: "Салат: Цезарь с куриным бедром", weight: "", price: 0, desc: "" },
+   154→      { name: "Горячее: Свинина с шампиньонами / Куриная грудка с горчичным соусом", weight: "", price: 0, desc: "" },
+   155→      { name: "Гарнир: Овощи-гриль + картофель Айдахо", weight: "", price: 0, desc: "" },
+   156→      { name: "Десерт: Мини-пирожное", weight: "", price: 0, desc: "" },
+   157→    ],
+   158→  },
+   159→  {
+   160→    key: "coffee-950",
+   161→    label: "Кофе-брейк",
+   162→    priceFrom: "950",
+   163→    desc: "Кофе, чай и лёгкие закуски для конференций и семинаров.",
+   164→    img: IMG.coffee,
+   165→    items: [
+   166→      { name: "Клаб-сэндвич", weight: "", price: 950, desc: "Кофе-брейк меню на 1 гостя" },
+   167→      { name: "Пирожок", weight: "", price: 0, desc: "" },
+   168→      { name: "Мини-пирожное", weight: "", price: 0, desc: "" },
+   169→      { name: "Печенье", weight: "", price: 0, desc: "" },
+   170→      { name: "Чай 300мл", weight: "300мл", price: 0, desc: "" },
+   171→      { name: "Кофе 300мл", weight: "300мл", price: 0, desc: "" },
+   172→    ],
+   173→  },
+   174→  {
+   175→    key: "coffee-1250",
+   176→    label: "Кофе-брейк",
+   177→    priceFrom: "1 250",
+   178→    desc: "Расширенный кофе-брейк с круассанами и брускеттами.",
+   179→    img: IMG.coffee,
+   180→    items: [
+   181→      { name: "Круассан с куриным филе", weight: "", price: 1250, desc: "Кофе-брейк меню на 1 гостя" },
+   182→      { name: "Брускетта с томатами", weight: "", price: 0, desc: "" },
+   183→      { name: "Мини-пирожное", weight: "", price: 0, desc: "" },
+   184→      { name: "Печенье с шоколадом", weight: "", price: 0, desc: "" },
+   185→    ],
+   186→  },
+   187→  {
+   188→    key: "coffee-1950",
+   189→    label: "Кофе-брейк",
+   190→    priceFrom: "1 950",
+   191→    desc: "Премиум кофе-брейк с мини-бургерами и бужениной.",
+   192→    img: IMG.coffee,
+   193→    items: [
+   194→      { name: "Мини-бургер с говядиной", weight: "", price: 1950, desc: "Кофе-брейк меню на 1 гостя" },
+   195→      { name: "Круассан с бужениной", weight: "", price: 0, desc: "" },
+   196→      { name: "Клаб-сэндвич с лососем", weight: "", price: 0, desc: "" },
+   197→    ],
+   198→  },
+   199→  {
+   200→    key: "coffee-2450",
+   201→    label: "Кофе-брейк",
+   202→    priceFrom: "2 450",
+   203→    desc: "Делюкс кофе-брейк с лососем и красной икрой.",
+   204→    img: IMG.coffee,
+   205→    items: [
+   206→      { name: "Клаб-сэндвич с бужениной", weight: "", price: 2450, desc: "Кофе-брейк меню на 1 гостя" },
+   207→      { name: "Круассан с лососем", weight: "", price: 0, desc: "" },
+   208→      { name: "Блинный ролл с красной икрой", weight: "", price: 0, desc: "" },
+   209→    ],
+   210→  },
+   211→];
+   212→
+   213→const GALLERY_IMAGES = [
+   214→  { src: IMG.furshet, alt: "Фуршетная подача" },
+   215→  { src: IMG.canape, alt: "Канапе ассорти" },
+   216→  { src: IMG.banquet, alt: "Банкетный стол" },
+   217→  { src: IMG.coffee, alt: "Кофе-брейк" },
+   218→  { src: IMG.bar, alt: "Барная стойка" },
+   219→  { src: IMG.dessert, alt: "Десертный стол" },
+   220→  { src: IMG.chef, alt: "Шеф-повар" },
+   221→  { src: IMG.roses, alt: "Декор мероприятия" },
+   222→  { src: IMG.wedding, alt: "Свадебный банкет" },
+   223→];
+   224→
+   225→/* ─── Animation Variants ─── */
+   226→const fadeUp = {
+   227→  hidden: { opacity: 0, y: 50 },
+   228→  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.25, 1, 0.5, 1] as const } },
+   229→};
+   230→
+   231→const cardVariants = {
+   232→  hidden: { opacity: 0, y: 40, scale: 0.95 },
+   233→  visible: (i: number) => ({
+   234→    opacity: 1,
+   235→    y: 0,
+   236→    scale: 1,
+   237→    transition: { duration: 0.5, delay: i * 0.06, ease: [0.25, 1, 0.5, 1] as const },
+   238→  }),
+   239→};
+   240→
+   241→const staggerContainer = {
+   242→  hidden: {},
+   243→  visible: { transition: { staggerChildren: 0.06 } },
+   244→};
+   245→
+   246→/* ─── Reveal on Scroll Helper ─── */
+   247→function Reveal({
+   248→  children,
+   249→  className = "",
+   250→  delay = 0,
+   251→}: {
+   252→  children: React.ReactNode;
+   253→  className?: string;
+   254→  delay?: number;
+   255→}) {
+   256→  const ref = useRef<HTMLDivElement>(null);
+   257→  const isInView = useInView(ref, { once: true, margin: "-60px" });
+   258→  return (
+   259→    <motion.div
+   260→      ref={ref}
+   261→      initial="hidden"
+   262→      animate={isInView ? "visible" : "hidden"}
+   263→      variants={fadeUp}
+   264→      transition={{ delay }}
+   265→      className={className}
+   266→    >
+   267→      {children}
+   268→    </motion.div>
+   269→  );
+   270→}
+   271→
+   272→/* ─── Tag Badge ─── */
+   273→function TagBadge({ tag }: { tag: string }) {
+   274→  const bg =
+   275→    tag === "Премиум"
+   276→      ? "rgba(184,149,90,0.12)"
+   277→      : tag === "Хит"
+   278→      ? "rgba(158,182,143,0.15)"
+   279→      : tag === "Вау-эффект"
+   280→      ? "rgba(232,196,184,0.25)"
+   281→      : "rgba(184,149,90,0.08)";
+   282→  const color =
+   283→    tag === "Премиум"
+   284→      ? "var(--color-brand-dark)"
+   285→      : tag === "Хит"
+   286→      ? "var(--color-sage)"
+   287→      : tag === "Вау-эффект"
+   288→      ? "var(--color-blush)"
+   289→      : "var(--color-brand)";
+   290→  return (
+   291→    <span
+   292→      style={{
+   293→        display: "inline-block",
+   294→        background: bg,
+   295→        color,
+   296→        fontSize: "0.6rem",
+   297→        fontWeight: 700,
+   298→        letterSpacing: "0.12em",
+   299→        textTransform: "uppercase",
+   300→        padding: "0.2rem 0.55rem",
+   301→        borderRadius: "6px",
+   302→        marginLeft: "0.5rem",
+   303→        verticalAlign: "middle",
+   304→      }}
+   305→    >
+   306→      {tag}
+   307→    </span>
+   308→  );
+   309→}
+   310→
+   311→/* ─── Menu Card ─── */
+   312→function MenuCard({ item, index, dietaryFilter }: { item: MenuItem; index: number; dietaryFilter?: DietaryKey | null }) {
+   313→  const ref = useRef<HTMLDivElement>(null);
+   314→  const isInView = useInView(ref, { once: true, margin: "-30px" });
+   315→
+   316→  return (
+   317→    <motion.div
+   318→      ref={ref}
+   319→      custom={index}
+   320→      variants={cardVariants}
+   321→      initial="hidden"
+   322→      animate={isInView ? "visible" : "hidden"}
+   323→      whileHover={{ y: -6, boxShadow: "0 20px 50px rgba(0,0,0,0.1)" }}
+   324→      style={{
+   325→        background: "#fff",
+   326→        borderRadius: "16px",
+   327→        padding: "1.5rem",
+   328→        border: "1px solid rgba(184,149,90,0.08)",
+   329→        transition: "box-shadow 0.4s cubic-bezier(0.25,1,0.5,1), transform 0.4s cubic-bezier(0.25,1,0.5,1)",
+   330→        cursor: "default",
+   331→        position: "relative",
+   332→        overflow: "hidden",
+   333→      }}
+   334→    >
+   335→      {/* Decorative corner accent */}
+   336→      <div
+   337→        style={{
+   338→          position: "absolute",
+   339→          top: 0,
+   340→          right: 0,
+   341→          width: 60,
+   342→          height: 60,
+   343→          background: "linear-gradient(135deg, transparent 50%, rgba(184,149,90,0.06) 50%)",
+   344→          borderRadius: "0 16px 0 0",
+   345→        }}
+   346→      />
+   347→
+   348→      {/* Name */}
+   349→      <div style={{ marginBottom: "0.4rem", paddingRight: "0.5rem" }}>
+   350→        <span
+   351→          style={{
+   352→            fontSize: "0.95rem",
+   353→            fontWeight: 500,
+   354→            color: "var(--color-dark)",
+   355→            lineHeight: 1.4,
+   356→          }}
+   357→        >
+   358→          {item.name}
+   359→        </span>
+   360→        {item.tag && <TagBadge tag={item.tag} />}
+   361→        {item.dietary && item.dietary.length > 0 && (
+   362→          <span style={{ marginLeft: "0.3rem" }}>
+   363→            {item.dietary.map((d) => {
+   364→              const filter = DIETARY_FILTERS.find((f) => f.key === d);
+   365→              return filter ? (
+   366→                <span
+   367→                  key={d}
+   368→                  style={{
+   369→                    display: "inline-block",
+   370→                    background: "rgba(158,182,143,0.12)",
+   371→                    color: "var(--color-sage)",
+   372→                    fontSize: "0.55rem",
+   373→                    fontWeight: 600,
+   374→                    letterSpacing: "0.08em",
+   375→                    textTransform: "uppercase",
+   376→                    padding: "0.15rem 0.4rem",
+   377→                    borderRadius: "4px",
+   378→                    marginLeft: "0.25rem",
+   379→                    verticalAlign: "middle",
+   380→                  }}
+   381→                >
+   382→                  {filter.short}
+   383→                </span>
+   384→              ) : null;
+   385→            })}
+   386→          </span>
+   387→        )}
+   388→      </div>
+   389→
+   390→      {/* Description */}
+   391→      {item.desc && (
+   392→        <p style={{ fontSize: "0.8rem", color: "var(--color-text-secondary)", lineHeight: 1.5, marginBottom: "0.5rem" }}>
+   393→          {item.desc}
+   394→        </p>
+   395→      )}
+   396→
+   397→      {/* Bottom: weight + price */}
+   398→      <div
+   399→        style={{
+   400→          display: "flex",
+   401→          justifyContent: "space-between",
+   402→          alignItems: "baseline",
+   403→          marginTop: "auto",
+   404→        }}
+   405→      >
+   406→        <span
+   407→          style={{
+   408→            fontSize: "0.78rem",
+   409→            color: "var(--color-text-muted)",
+   410→            letterSpacing: "0.02em",
+   411→          }}
+   412→        >
+   413→          {item.weight}
+   414→        </span>
+   415→        <div style={{ display: "flex", alignItems: "baseline", gap: "0.15rem" }}>
+   416→          <CountUp
+   417→            target={item.price}
+   418→            duration={1.5}
+   419→            suffix=" ₽"
+   420→            className=""
+   421→            style={{
+   422→              fontSize: "1.15rem",
+   423→              fontWeight: 600,
+   424→              color: "var(--color-brand-dark)",
+   425→              fontFamily: "var(--font-serif)",
+   426→            }}
+   427→          />
+   428→        </div>
+   429→      </div>
+   430→    </motion.div>
+   431→  );
+   432→}
+   433→
+   434→/* ═══════════════════════════════════════════════════════════════
+   435→   Main Page Component
+   436→   ═══════════════════════════════════════════════════════════════ */
+   437→export default function MenuPage() {
+   438→  const [activeCat, setActiveCat] = useState("furshet");
+   439→  const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
+   440→  const [dietaryFilter, setDietaryFilter] = useState<DietaryKey | null>(null);
+   441→  const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
+   442→
+   443→  // Escape closes lightbox
+   444→  useEffect(() => {
+   445→    const onKey = (e: KeyboardEvent) => {
+   446→      if (e.key === "Escape") setLightboxSrc(null);
+   447→    };
+   448→    document.addEventListener("keydown", onKey);
+   449→    return () => document.removeEventListener("keydown", onKey);
+   450→  }, []);
+   451→
+   452→  // Intersection Observer for active category tracking
+   453→  useEffect(() => {
+   454→    const observers: IntersectionObserver[] = [];
+   455→
+   456→    CATEGORIES.forEach((cat) => {
+   457→      const el = sectionRefs.current[cat.key];
+   458→      if (!el) return;
+   459→
+   460→      const observer = new IntersectionObserver(
+   461→        ([entry]) => {
+   462→          if (entry.isIntersecting) {
+   463→            setActiveCat(cat.key);
+   464→          }
+   465→        },
+   466→        { rootMargin: "-30% 0px -60% 0px" }
+   467→      );
+   468→      observer.observe(el);
+   469→      observers.push(observer);
+   470→    });
+   471→
+   472→    return () => observers.forEach((o) => o.disconnect());
+   473→  }, []);
+   474→
+   475→  // Smooth scroll to section
+   476→  const scrollToSection = useCallback((key: string) => {
+   477→    const el = sectionRefs.current[key];
+   478→    if (el) {
+   479→      const yOffset = -120; // account for sticky nav
+   480→      const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+   481→      window.scrollTo({ top: y, behavior: "smooth" });
+   482→    }
+   483→  }, []);
+   484→
+   485→  return (
+   486→    <>
+   487→      <SiteNav />
+   488→
+   489→      {/* ═════════════════════════════════════════════
+   490→          1. HERO — Video Background
+   491→          ═════════════════════════════════════════════ */}
+   492→      <section className="hero" aria-label="Меню кейтеринга">
+   493→        {/* Video Background */}
+   494→        <div className="hero-video">
+   495→          <video
+   496→            autoPlay
+   497→            muted
+   498→            loop
+   499→            playsInline
+   500→            preload="metadata"
+   501→            poster="/images/poster_kitchen.jpg"
+   502→            aria-hidden="true"
+   503→            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+   504→          >
+   505→            <source src="/videos/catering1.mp4" type="video/mp4" />
+   506→          </video>
+   507→        </div>
+   508→
+   509→        {/* Overlay */}
+   510→        <div className="hero-overlay" />
+   511→
+   512→        <ParticleField count={30} speed={0.2} style={{ opacity: 0.6 }} />
+   513→        <MorphingBlob
+   514→          size={300}
+   515→          color1="rgba(184,149,90,0.12)"
+   516→          color2="rgba(158,182,143,0.07)"
+   517→          opacity={0.5}
+   518→          speed={10}
+   519→          style={{ position: "absolute", top: "8%", right: "5%", zIndex: 0 }}
+   520→        />
+   521→        <MorphingBlob
+   522→          size={200}
+   523→          color1="rgba(232,196,184,0.08)"
+   524→          color2="rgba(184,149,90,0.05)"
+   525→          opacity={0.4}
+   526→          speed={14}
+   527→          style={{ position: "absolute", bottom: "15%", left: "8%", zIndex: 0 }}
+   528→        />
+   529→
+   530→        {/* Content */}
+   531→        <div className="hero-content">
+   532→          <motion.div
+   533→            initial={{ opacity: 0, y: 20 }}
+   534→            animate={{ opacity: 1, y: 0 }}
+   535→            transition={{ duration: 0.8, delay: 0.3 }}
+   536→          >
+   537→            <span
+   538→              style={{
+   539→                display: "inline-block",
+   540→                fontSize: "0.65rem",
+   541→                fontWeight: 600,
+   542→                letterSpacing: "0.3em",
+   543→                textTransform: "uppercase",
+   544→                color: "var(--color-brand)",
+   545→                marginBottom: "1.5rem",
+   546→                padding: "0.4rem 1.2rem",
+   547→                border: "1px solid rgba(184,149,90,0.3)",
+   548→                borderRadius: "100px",
+   549→                background: "rgba(254,253,251,0.6)",
+   550→                backdropFilter: "blur(10px)",
+   551→              }}
+   552→            >
+   553→              Гастрономия
+   554→            </span>
+   555→          </motion.div>
+   556→
+   557→          <KineticText
+   558→            text="Меню, которое гости вспоминают годами"
+   559→            as="h1"
+   560→            animation="wave"
+   561→            className="hero-title"
+   562→            stagger={0.05}
+   563→            duration={0.6}
+   564→            style={{
+   565→              fontFamily: "var(--font-serif)",
+   566→              fontSize: "clamp(2.5rem, 7vw, 5rem)",
+   567→              fontWeight: 300,
+   568→              color: "var(--color-dark)",
+   569→              lineHeight: 1.1,
+   570→              marginBottom: "1.5rem",
+   571→            }}
+   572→          />
+   573→
+   574→          <motion.p
+   575→            initial={{ opacity: 0, y: 30 }}
+   576→            animate={{ opacity: 1, y: 0 }}
+   577→            transition={{ duration: 0.8, delay: 0.8 }}
+   578→            style={{
+   579→              fontSize: "1.05rem",
+   580→              lineHeight: 1.7,
+   581→              color: "var(--color-text-subtle)",
+   582→              maxWidth: 560,
+   583→              margin: "0 auto 2.5rem",
+   584→            }}
+   585→          >
+   586→            Авторские блюда от шеф-повара Дмитрия Нилова. Каждое меню
+   587→            составляется индивидуально — с бесплатной дегустацией от 30 гостей.
+   588→          </motion.p>
+   589→
+   590→          <motion.div
+   591→            initial={{ opacity: 0, y: 20 }}
+   592→            animate={{ opacity: 1, y: 0 }}
+   593→            transition={{ duration: 0.8, delay: 1.1 }}
+   594→            style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}
+   595→          >
+   596→            <MagneticButton as="a" href="#furshet" className="btn-gold">
+   597→              Смотреть меню
+   598→            </MagneticButton>
+   599→            <MagneticButton as="a" href="/menu" className="btn-outline">
+   600→              Скачать PDF
+   601→            </MagneticButton>
+   602→          </motion.div>
+   603→        </div>
+   604→
+   605→        {/* Scroll indicator */}
+   606→        <motion.div
+   607→          initial={{ opacity: 0 }}
+   608→          animate={{ opacity: 1 }}
+   609→          transition={{ delay: 2 }}
+   610→          style={{
+   611→            position: "absolute",
+   612→            bottom: "2rem",
+   613→            left: "50%",
+   614→            transform: "translateX(-50%)",
+   615→            zIndex: 2,
+   616→          }}
+   617→        >
+   618→          <motion.div
+   619→            animate={{ y: [0, 8, 0] }}
+   620→            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+   621→            style={{
+   622→              width: 24,
+   623→              height: 40,
+   624→              borderRadius: 12,
+   625→              border: "1.5px solid rgba(184,149,90,0.4)",
+   626→              display: "flex",
+   627→              justifyContent: "center",
+   628→              paddingTop: 8,
+   629→            }}
+   630→          >
+   631→            <div
+   632→              style={{
+   633→                width: 3,
+   634→                height: 8,
+   635→                borderRadius: 2,
+   636→                background: "var(--color-brand)",
+   637→              }}
+   638→            />
+   639→          </motion.div>
+   640→        </motion.div>
+   641→      </section>
+   642→
+   643→      {/* ─── TextMarquee with dish names ─── */}
+   644→      <div style={{ background: "var(--color-cream)", padding: "1.2rem 0", overflow: "hidden" }}>
+   645→        <TextMarquee
+   646→          texts={[
+   647→            "Канапе с лососем", "Тарталетки с крем-сыром", "Брускетта с томатами",
+   648→            "Фуа-гра", "Ризотто с трюфелем", "Стейк рибай", "Тирамису",
+   649→            "Чизкейк", "Макаруны", "Панна-котта", "Карпаччо из говядины",
+   650→            "Севиче из тунца", "Крем-суп из тыквы", "Мини-бургеры",
+   651→          ]}
+   652→          speed={35}
+   653→          direction="left"
+   654→          style={{
+   655→            fontSize: "0.85rem",
+   656→            fontWeight: 500,
+   657→            color: "var(--color-brand)",
+   658→            letterSpacing: "0.1em",
+   659→            textTransform: "uppercase",
+   660→            opacity: 0.7,
+   661→          }}
+   662→        />
+   663→      </div>
+   664→
+   665→      {/* ═════════════════════════════════════════════
+   666→          2. CATEGORY NAVIGATION — Sticky Bar
+   667→          ═════════════════════════════════════════════ */}
+   668→      <div
+   669→        style={{
+   670→          position: "sticky",
+   671→          top: 0,
+   672→          zIndex: 100,
+   673→          background: "rgba(254,253,251,0.92)",
+   674→          backdropFilter: "blur(20px) saturate(1.4)",
+   675→          WebkitBackdropFilter: "blur(20px) saturate(1.4)",
+   676→          borderBottom: "1px solid rgba(184,149,90,0.1)",
+   677→          boxShadow: "0 4px 30px rgba(0,0,0,0.04)",
+   678→        }}
+   679→      >
+   680→        <div
+   681→          style={{
+   682→            maxWidth: 1320,
+   683→            margin: "0 auto",
+   684→            padding: "0 2rem",
+   685→            display: "flex",
+   686→            gap: "0.25rem",
+   687→            overflowX: "auto",
+   688→            scrollbarWidth: "none",
+   689→            justifyContent: "center",
+   690→          }}
+   691→        >
+   692→          {CATEGORIES.map((cat) => (
+   693→            <button
+   694→              key={cat.key}
+   695→              onClick={() => scrollToSection(cat.key)}
+   696→              aria-pressed={activeCat === cat.key}
+   697→              style={{
+   698→                position: "relative",
+   699→                flexShrink: 0,
+   700→                padding: "1rem 1.8rem",
+   701→                background: "none",
+   702→                border: "none",
+   703→                cursor: "pointer",
+   704→                fontSize: "0.78rem",
+   705→                fontWeight: activeCat === cat.key ? 600 : 400,
+   706→                letterSpacing: "0.12em",
+   707→                textTransform: "uppercase",
+   708→                color:
+   709→                  activeCat === cat.key
+   710→                    ? "var(--color-brand-dark)"
+   711→                    : "var(--color-text-muted)",
+   712→                transition: "color 0.3s, font-weight 0.3s",
+   713→                whiteSpace: "nowrap",
+   714→              }}
+   715→            >
+   716→              {cat.label}
+   717→              {/* Gold underline for active */}
+   718→              {activeCat === cat.key && (
+   719→                <motion.div
+   720→                  layoutId="activeCatUnderline"
+   721→                  style={{
+   722→                    position: "absolute",
+   723→                    bottom: 0,
+   724→                    left: "10%",
+   725→                    right: "10%",
+   726→                    height: 2.5,
+   727→                    background: "var(--color-brand)",
+   728→                    borderRadius: 2,
+   729→                  }}
+   730→                  transition={{
+   731→                    type: "spring",
+   732→                    stiffness: 400,
+   733→                    damping: 30,
+   734→                  }}
+   735→                />
+   736→              )}
+   737→            </button>
+   738→          ))}
+   739→        </div>
+   740→      </div>
+   741→
+   742→      {/* ═══ Dietary Filter Bar ═══ */}
+   743→      <div style={{
+   744→        background: "var(--color-warm-white)",
+   745→        borderBottom: "1px solid var(--color-cream-darker)",
+   746→        padding: "0.6rem 0",
+   747→      }}>
+   748→        <div style={{
+   749→          maxWidth: 1320, margin: "0 auto", padding: "0 2rem",
+   750→          display: "flex", alignItems: "center", gap: "0.5rem",
+   751→          overflowX: "auto", scrollbarWidth: "none",
+   752→        }}>
+   753→          <span style={{ fontSize: "0.7rem", color: "var(--color-text-muted)", whiteSpace: "nowrap", fontWeight: 500 }}>
+   754→            Фильтр:
+   755→          </span>
+   756→          <button
+   757→            onClick={() => setDietaryFilter(null)}
+   758→            style={{
+   759→              padding: "0.4rem 1rem",
+   760→              borderRadius: 100,
+   761→              border: dietaryFilter === null ? "1.5px solid var(--color-brand)" : "1px solid var(--color-cream-darker)",
+   762→              background: dietaryFilter === null ? "var(--color-brand-10)" : "transparent",
+   763→              color: dietaryFilter === null ? "var(--color-brand-dark)" : "var(--color-text-muted)",
+   764→              fontSize: "0.72rem", fontWeight: 500,
+   765→              cursor: "pointer", whiteSpace: "nowrap",
+   766→              transition: "all 0.2s", minHeight: 32,
+   767→            }}
+   768→          >
+   769→            Все блюда
+   770→          </button>
+   771→          {DIETARY_FILTERS.map((f) => (
+   772→            <button
+   773→              key={f.key}
+   774→              onClick={() => setDietaryFilter(dietaryFilter === f.key ? null : f.key)}
+   775→              style={{
+   776→                padding: "0.4rem 1rem",
+   777→                borderRadius: 100,
+   778→                border: dietaryFilter === f.key ? "1.5px solid var(--color-brand)" : "1px solid var(--color-cream-darker)",
+   779→                background: dietaryFilter === f.key ? "var(--color-brand-10)" : "transparent",
+   780→                color: dietaryFilter === f.key ? "var(--color-brand-dark)" : "var(--color-text-muted)",
+   781→                fontSize: "0.72rem", fontWeight: 500,
+   782→                cursor: "pointer", whiteSpace: "nowrap",
+   783→                transition: "all 0.2s", minHeight: 32,
+   784→              }}
+   785→            >
+   786→              {f.label}
+   787→            </button>
+   788→          ))}
+   789→        </div>
+   790→      </div>
+   791→
+   792→      {/* ═════════════════════════════════════════════
+   793→          3. MENU SECTIONS
+   794→          ═════════════════════════════════════════════ */}
+   795→      {CATEGORIES.map((cat, catIdx) => (
+   796→        <div key={cat.key}>
+   797→          <section
+   798→            ref={(el) => {
+   799→              sectionRefs.current[cat.key] = el;
+   800→            }}
+   801→            style={{
+   802→              padding: "5rem 2rem",
+   803→              background:
+   804→                catIdx % 2 === 0
+   805→                  ? "var(--color-warm-white)"
+   806→                  : "var(--color-cream)",
+   807→            }}
+   808→          >
+   809→            <div className="container">
+   810→              {/* Category Header — Image + Title */}
+   811→              <div
+   812→                style={{
+   813→                  display: "grid",
+   814→                  gridTemplateColumns: "1fr 1fr",
+   815→                  gap: "3rem",
+   816→                  alignItems: "center",
+   817→                  marginBottom: "3.5rem",
+   818→                }}
+   819→                className="tour-grid"
+   820→              >
+   821→                <div>
+   822→                  <motion.span
+   823→                    className="section-label"
+   824→                    initial={{ opacity: 0, x: -20 }}
+   825→                    whileInView={{ opacity: 1, x: 0 }}
+   826→                    viewport={{ once: true }}
+   827→                    transition={{ duration: 0.6 }}
+   828→                  >
+   829→                    от {cat.priceFrom} ₽/чел
+   830→                  </motion.span>
+   831→
+   832→                  <TextReveal
+   833→                    text={`${cat.label} кейтеринг`}
+   834→                    as="h2"
+   835→                    className="section-title"
+   836→                    style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)" }}
+   837→                  />
+   838→
+   839→                  <motion.p
+   840→                    initial={{ opacity: 0, y: 20 }}
+   841→                    whileInView={{ opacity: 1, y: 0 }}
+   842→                    viewport={{ once: true }}
+   843→                    transition={{ duration: 0.6, delay: 0.3 }}
+   844→                    style={{
+   845→                      fontSize: "1rem",
+   846→                      lineHeight: 1.7,
+   847→                      color: "var(--color-text-secondary)",
+   848→                      maxWidth: 480,
+   849→                      marginBottom: "1.5rem",
+   850→                    }}
+   851→                  >
+   852→                    {cat.desc}
+   853→                  </motion.p>
+   854→
+   855→                  <motion.div
+   856→                    initial={{ opacity: 0, y: 15 }}
+   857→                    whileInView={{ opacity: 1, y: 0 }}
+   858→                    viewport={{ once: true }}
+   859→                    transition={{ duration: 0.5, delay: 0.5 }}
+   860→                  >
+   861→                    <MagneticButton
+   862→                      as="a"
+   863→                      href="/#contact"
+   864→                      className="btn-outline"
+   865→                      style={{ fontSize: "0.7rem" }}
+   866→                    >
+   867→                      Заказать {cat.label.toLowerCase()}
+   868→                    </MagneticButton>
+   869→                  </motion.div>
+   870→                </div>
+   871→
+   872→                {/* Category Image */}
+   873→                <Reveal>
+   874→                  <div
+   875→                    style={{
+   876→                      borderRadius: "20px",
+   877→                      overflow: "hidden",
+   878→                      boxShadow: "0 20px 60px rgba(0,0,0,0.08)",
+   879→                      cursor: "pointer",
+   880→                      aspectRatio: "4/3",
+   881→                    }}
+   882→                    onClick={() => setLightboxSrc(cat.img)}
+   883→                  >
+   884→                    <ParallaxImage
+   885→                      src={cat.img}
+   886→                      alt={`${cat.label} кейтеринг`}
+   887→                      speed={0.15}
+   888→                      className="parallax-ken-burns"
+   889→                      style={{
+   890→                        width: "100%",
+   891→                        height: "100%",
+   892→                      }}
+   893→                    />
+   894→                  </div>
+   895→                </Reveal>
+   896→              </div>
+   897→
+   898→              {/* Menu Items Grid */}
+   899→              <motion.div
+   900→                variants={staggerContainer}
+   901→                initial="hidden"
+   902→                whileInView="visible"
+   903→                viewport={{ once: true, margin: "-40px" }}
+   904→                style={{
+   905→                  display: "grid",
+   906→                  gridTemplateColumns:
+   907→                    "repeat(auto-fill, minmax(280px, 1fr))",
+   908→                  gap: "1.25rem",
+   909→                }}
+   910→              >
+   911→                <AnimatePresence>
+   912→                  {cat.items
+   913→                    .filter((item) => !dietaryFilter || (item.dietary && item.dietary.includes(dietaryFilter)))
+   914→                    .map((item, i) => (
+   915→                    <MenuCard key={`${cat.key}-${i}`} item={item} index={i} dietaryFilter={dietaryFilter} />
+   916→                  ))}
+   917→                </AnimatePresence>
+   918→              </motion.div>
+   919→            </div>
+   920→          </section>
+   921→
+   922→          {/* Video Break after Фуршет and Кофе-брейк */}
+   923→          {cat.key === "furshet" && (
+   924→            <VideoBreak
+   925→              src={VID.kitchen}
+   926→              title="Искусство подачи"
+   927→              subtitle="Канапе, тарталетки и брускетта — 30+ позиций, которые исчезают со стола за минуту"
+   928→            />
+   929→          )}
+   930→          {cat.key === "coffee" && (
+   931→            <VideoBreak
+   932→              src={VID.cooking}
+   933→              title="Свежесть ингредиентов"
+   934→              subtitle="Утренние поставки с фермерских хозяйств Ленинградской области — ничего замороженного"
+   935→            />
+   936→          )}
+   937→        </div>
+   938→      ))}
+   939→
+   940→      {/* ═════════════════════════════════════════════
+   941→          4. CUSTOM MENU CTA
+   942→          ═════════════════════════════════════════════ */}
+   943→      <section
+   944→        style={{
+   945→          padding: "6rem 2rem",
+   946→          background:
+   947→            "linear-gradient(135deg, var(--color-brand) 0%, var(--color-brand-dark) 100%)",
+   948→          color: "#fff",
+   949→          position: "relative",
+   950→          overflow: "hidden",
+   951→        }}
+   952→      >
+   953→        {/* Decorative circles */}
+   954→        <MorphingBlob
+   955→          size={350}
+   956→          color1="rgba(255,255,255,0.06)"
+   957→          color2="rgba(255,255,255,0.03)"
+   958→          opacity={0.5}
+   959→          speed={10}
+   960→          style={{ position: "absolute", top: "-15%", right: "-8%", zIndex: 0 }}
+   961→        />
+   962→        <MorphingBlob
+   963→          size={280}
+   964→          color1="rgba(255,255,255,0.04)"
+   965→          color2="rgba(255,255,255,0.02)"
+   966→          opacity={0.4}
+   967→          speed={14}
+   968→          style={{ position: "absolute", bottom: "-20%", left: "-10%", zIndex: 0 }}
+   969→        />
+   970→        <div
+   971→          style={{
+   972→            position: "absolute",
+   973→            top: "-20%",
+   974→            right: "-10%",
+   975→            width: "50vw",
+   976→            height: "50vw",
+   977→            borderRadius: "50%",
+   978→            border: "1px solid rgba(255,255,255,0.08)",
+   979→          }}
+   980→        />
+   981→        <div
+   982→          style={{
+   983→            position: "absolute",
+   984→            bottom: "-30%",
+   985→            left: "-15%",
+   986→            width: "60vw",
+   987→            height: "60vw",
+   988→            borderRadius: "50%",
+   989→            border: "1px solid rgba(255,255,255,0.06)",
+   990→          }}
+   991→        />
+   992→
+   993→        <div
+   994→          className="container"
+   995→          style={{ position: "relative", zIndex: 1, textAlign: "center" }}
+   996→        >
+   997→          <Reveal>
+   998→            <span
+   999→              style={{
+  1000→                display: "inline-block",
+  1001→                fontSize: "0.65rem",
+  1002→                fontWeight: 600,
+  1003→                letterSpacing: "0.3em",
+  1004→                textTransform: "uppercase",
+  1005→                color: "rgba(255,255,255,0.6)",
+  1006→                marginBottom: "1.5rem",
+  1007→              }}
+  1008→            >
+  1009→              Индивидуальный подход
+  1010→            </span>
+  1011→          </Reveal>
+  1012→
+  1013→          <TextReveal
+  1014→            text="Хотите индивидуальное меню? Создадим за 48 часов"
+  1015→            as="h2"
+  1016→            className="section-title section-title-light"
+  1017→            style={{
+  1018→              fontSize: "clamp(2rem, 5vw, 3.5rem)",
+  1019→              maxWidth: 700,
+  1020→              margin: "0 auto 1.5rem",
+  1021→            }}
+  1022→          />
+  1023→
+  1024→          <motion.p
+  1025→            initial={{ opacity: 0, y: 20 }}
+  1026→            whileInView={{ opacity: 1, y: 0 }}
+  1027→            viewport={{ once: true }}
+  1028→            transition={{ duration: 0.6, delay: 0.3 }}
+  1029→            style={{
+  1030→              fontSize: "1.05rem",
+  1031→              lineHeight: 1.7,
+  1032→              color: "rgba(255,255,255,0.75)",
+  1033→              maxWidth: 550,
+  1034→              margin: "0 auto 2.5rem",
+  1035→            }}
+  1036→          >
+  1037→            Каждое меню разрабатывается персонально. Мы учтём ваши предпочтения,
+  1038→            диетические ограничения и бюджет. Бесплатная дегустация от 30
+  1039→            гостей — попробуйте перед заказом.
+  1040→          </motion.p>
+  1041→
+  1042→          <motion.div
+  1043→            initial={{ opacity: 0, y: 20 }}
+  1044→            whileInView={{ opacity: 1, y: 0 }}
+  1045→            viewport={{ once: true }}
+  1046→            transition={{ duration: 0.6, delay: 0.5 }}
+  1047→            style={{
+  1048→              display: "flex",
+  1049→              gap: "1rem",
+  1050→              justifyContent: "center",
+  1051→              flexWrap: "wrap",
+  1052→            }}
+  1053→          >
+  1054→            <ConfettiButton
+  1055→              className="btn-gold"
+  1056→              style={{
+  1057→                background: "#fff",
+  1058→                color: "var(--color-brand-dark)",
+  1059→                padding: "1rem 2.5rem",
+  1060→                borderRadius: "100px",
+  1061→                fontSize: "0.85rem",
+  1062→                fontWeight: 600,
+  1063→                letterSpacing: "0.05em",
+  1064→                border: "none",
+  1065→                cursor: "pointer",
+  1066→              }}
+  1067→              onClick={() => { window.location.href = "/#contact"; }}
+  1068→            >
+  1069→              Заказать меню — расчёт за 30 мин
+  1070→            </ConfettiButton>
+  1071→            <MagneticButton
+  1072→              as="a"
+  1073→              href="/calculator"
+  1074→              className="btn-outline btn-outline-light"
+  1075→            >
+  1076→              Рассчитать стоимость за 60 сек
+  1077→            </MagneticButton>
+  1078→          </motion.div>
+  1079→        </div>
+  1080→      </section>
+  1081→
+  1082→      {/* ═════════════════════════════════════════════
+  1083→          5. GALLERY STRIP — Horizontal Scroll
+  1084→          ═════════════════════════════════════════════ */}
+  1085→      <section
+  1086→        style={{
+  1087→          padding: "5rem 0",
+  1088→          background: "var(--color-cream)",
+  1089→        }}
+  1090→      >
+  1091→        <div className="container">
+  1092→          <Reveal>
+  1093→            <span className="section-label">Галерея</span>
+  1094→          </Reveal>
+  1095→          <TextReveal
+  1096→            text="Примеры подачи"
+  1097→            as="h2"
+  1098→            className="section-title"
+  1099→            style={{ fontSize: "clamp(1.8rem, 4vw, 2.5rem)", marginBottom: "2rem" }}
+  1100→          />
+  1101→        </div>
+  1102→
+  1103→        <div className="horizontal-scroll" style={{ padding: "0 2rem" }}>
+  1104→          {GALLERY_IMAGES.map((img, i) => (
+  1105→            <motion.div
+  1106→              key={i}
+  1107→              initial={{ opacity: 0, scale: 0.9 }}
+  1108→              whileInView={{ opacity: 1, scale: 1 }}
+  1109→              viewport={{ once: true }}
+  1110→              transition={{ duration: 0.5, delay: i * 0.08 }}
+  1111→              whileHover={{ scale: 1.03 }}
+  1112→              role="button"
+  1113→              tabIndex={0}
+  1114→              aria-label={`Открыть фото: ${img.alt}`}
+  1115→              style={{
+  1116→                flexShrink: 0,
+  1117→                width: 320,
+  1118→                borderRadius: "16px",
+  1119→                overflow: "hidden",
+  1120→                cursor: "pointer",
+  1121→                boxShadow: "0 8px 30px rgba(0,0,0,0.08)",
+  1122→              }}
+  1123→              onClick={() => setLightboxSrc(img.src)}
+  1124→              onKeyDown={(e) => {
+  1125→                if (e.key === "Enter" || e.key === " ") {
+  1126→                  e.preventDefault();
+  1127→                  setLightboxSrc(img.src);
+  1128→                }
+  1129→              }}
+  1130→            >
+  1131→              <img
+  1132→                src={img.src}
+  1133→                alt={img.alt}
+  1134→                loading="lazy"
+  1135→                style={{
+  1136→                  width: "100%",
+  1137→                  height: 220,
+  1138→                  objectFit: "cover",
+  1139→                  display: "block",
+  1140→                  transition: "transform 0.6s cubic-bezier(0.25,1,0.5,1)",
+  1141→                }}
+  1142→              />
+  1143→            </motion.div>
+  1144→          ))}
+  1145→        </div>
+  1146→      </section>
+  1147→
+  1148→      {/* ═════════════════════════════════════════════
+  1149→          6. VIDEO CAROUSEL — Kitchen in motion
+  1150→          ═════════════════════════════════════════════ */}
+  1151→      <section
+  1152→        style={{
+  1153→          padding: "5rem 2rem",
+  1154→          background: "var(--color-warm-white)",
+  1155→        }}
+  1156→      >
+  1157→        <div className="container">
+  1158→          <Reveal>
+  1159→            <span className="section-label">Видео</span>
+  1160→          </Reveal>
+  1161→          <TextReveal
+  1162→            text="Наша кухня в движении"
+  1163→            as="h2"
+  1164→            className="section-title"
+  1165→            style={{ fontSize: "clamp(1.6rem, 3.5vw, 2.5rem)", marginBottom: "2rem" }}
+  1166→          />
+  1167→          <VideoCarousel
+  1168→            slides={[
+  1169→              {
+  1170→                src: VID.food1,
+  1171→                title: "Сервировка авторских блюд",
+  1172→                subtitle: "Хрусталь, фарфор и цветочная композиция — как в мишленовском ресторане",
+  1173→              },
+  1174→              {
+  1175→                src: VID.kitchen,
+  1176→                title: "Работа шеф-повара",
+  1177→                subtitle: "Шеф-стол: стейк рибай и ризотто с трюфелем прямо при гостях",
+  1178→              },
+  1179→              {
+  1180→                src: VID.cooking,
+  1181→                title: "Приготовление в slow motion",
+  1182→                subtitle: "Шампанская пирамида и 5 перемен блюд — по таймлайну до секунды",
+  1183→              },
+  1184→            ]}
+  1185→          />
+  1186→        </div>
+  1187→      </section>
+  1188→
+  1189→      {/* ═════════════════════════════════════════════
+  1190→          7. FOOTER
+  1191→          ═════════════════════════════════════════════ */}
+  1192→      <footer className="footer" role="contentinfo">
+  1193→        <div className="container">
+  1194→          <div
+  1195→            className="footer-grid"
+  1196→            style={{
+  1197→              display: "grid",
+  1198→              gridTemplateColumns: "2fr 1fr 1fr 1fr",
+  1199→              gap: "3rem",
+  1200→              marginBottom: "3rem",
+  1201→            }}
+  1202→          >
+  1203→            {/* Brand */}
+  1204→            <div>
+  1205→              <Link
+  1206→                href="/"
+  1207→                style={{
+  1208→                  fontFamily: "var(--font-serif)",
+  1209→                  fontSize: "1.5rem",
+  1210→                  fontWeight: 500,
+  1211→                  color: "#fff",
+  1212→                  textDecoration: "none",
+  1213→                  letterSpacing: "0.15em",
+  1214→                  display: "inline-block",
+  1215→                  marginBottom: "1rem",
+  1216→                }}
+  1217→              >
+  1218→                ИНТЕРФУД
+  1219→              </Link>
+  1220→              <p
+  1221→                style={{
+  1222→                  fontSize: "0.85rem",
+  1223→                  lineHeight: 1.7,
+  1224→                  color: "rgba(255,255,255,0.5)",
+  1225→                  maxWidth: 300,
+  1226→                }}
+  1227→              >
+  1228→                Премиальный кейтеринг в Санкт-Петербурге с 2007 года.
+  1229→                Авторская кухня, безупречный сервис.
+  1230→              </p>
+  1231→            </div>
+  1232→
+  1233→            {/* Меню */}
+  1234→            <div>
+  1235→              <h4
+  1236→                style={{
+  1237→                  fontSize: "0.7rem",
+  1238→                  fontWeight: 600,
+  1239→                  letterSpacing: "0.15em",
+  1240→                  textTransform: "uppercase",
+  1241→                  color: "var(--color-brand-light)",
+  1242→                  marginBottom: "1.2rem",
+  1243→                }}
+  1244→              >
+  1245→                Меню
+  1246→              </h4>
+  1247→              {[
+  1248→                { label: "Фуршет", href: "#furshet" },
+  1249→                { label: "Банкет", href: "#banquet" },
+  1250→                { label: "Кофе-брейк", href: "#coffee" },
+  1251→                { label: "Бар", href: "#bar" },
+  1252→                { label: "Десерт", href: "#dessert" },
+  1253→              ].map((link) => (
+  1254→                <Link
+  1255→                  key={link.href}
+  1256→                  href={link.href}
+  1257→                  style={{
+  1258→                    display: "block",
+  1259→                    fontSize: "0.85rem",
+  1260→                    color: "rgba(255,255,255,0.5)",
+  1261→                    textDecoration: "none",
+  1262→                    marginBottom: "0.6rem",
+  1263→                    transition: "color 0.3s",
+  1264→                  }}
+  1265→                >
+  1266→                  {link.label}
+  1267→                </Link>
+  1268→              ))}
+  1269→            </div>
+  1270→
+  1271→            {/* Услуги */}
+  1272→            <div>
+  1273→              <h4
+  1274→                style={{
+  1275→                  fontSize: "0.7rem",
+  1276→                  fontWeight: 600,
+  1277→                  letterSpacing: "0.15em",
+  1278→                  textTransform: "uppercase",
+  1279→                  color: "var(--color-brand-light)",
+  1280→                  marginBottom: "1.2rem",
+  1281→                }}
+  1282→              >
+  1283→                Услуги
+  1284→              </h4>
+  1285→              {[
+  1286→                { label: "Свадьбы", href: "/wedding" },
+  1287→                { label: "Корпоратив", href: "/corporate" },
+  1288→                { label: "Галерея", href: "/gallery" },
+  1289→                { label: "Отзывы", href: "/reviews" },
+  1290→                { label: "Калькулятор", href: "/calculator" },
+  1291→              ].map((link) => (
+  1292→                <Link
+  1293→                  key={link.href}
+  1294→                  href={link.href}
+  1295→                  style={{
+  1296→                    display: "block",
+  1297→                    fontSize: "0.85rem",
+  1298→                    color: "rgba(255,255,255,0.5)",
+  1299→                    textDecoration: "none",
+  1300→                    marginBottom: "0.6rem",
+  1301→                    transition: "color 0.3s",
+  1302→                  }}
+  1303→                >
+  1304→                  {link.label}
+  1305→                </Link>
+  1306→              ))}
+  1307→            </div>
+  1308→
+  1309→            {/* Контакты */}
+  1310→            <div>
+  1311→              <h4
+  1312→                style={{
+  1313→                  fontSize: "0.7rem",
+  1314→                  fontWeight: 600,
+  1315→                  letterSpacing: "0.15em",
+  1316→                  textTransform: "uppercase",
+  1317→                  color: "var(--color-brand-light)",
+  1318→                  marginBottom: "1.2rem",
+  1319→                }}
+  1320→              >
+  1321→                Контакты
+  1322→              </h4>
+  1323→              <a
+  1324→                href="tel:+78129195911"
+  1325→                style={{
+  1326→                  display: "block",
+  1327→                  fontSize: "1rem",
+  1328→                  color: "#fff",
+  1329→                  textDecoration: "none",
+  1330→                  marginBottom: "0.5rem",
+  1331→                  fontWeight: 500,
+  1332→                }}
+  1333→              >
+  1334→                +7 (812) 919-59-11
+  1335→              </a>
+  1336→              <a
+  1337→                href="mailto:interfood-catering@yandex.ru"
+  1338→                style={{
+  1339→                  display: "block",
+  1340→                  fontSize: "0.85rem",
+  1341→                  color: "rgba(255,255,255,0.5)",
+  1342→                  textDecoration: "none",
+  1343→                  marginBottom: "1rem",
+  1344→                }}
+  1345→              >
+  1346→                interfood-catering@yandex.ru
+  1347→              </a>
+  1348→              <p
+  1349→                style={{
+  1350→                  fontSize: "0.8rem",
+  1351→                  color: "rgba(255,255,255,0.4)",
+  1352→                  lineHeight: 1.6,
+  1353→                }}
+  1354→              >
+  1355→                Санкт-Петербург
+  1356→                <br />
+  1357→               Ежедневно 9:00 — 21:00
+  1358→              </p>
+  1359→            </div>
+  1360→          </div>
+  1361→
+  1362→          {/* Bottom bar */}
+  1363→          <div
+  1364→            style={{
+  1365→              borderTop: "1px solid rgba(255,255,255,0.08)",
+  1366→              paddingTop: "1.5rem",
+  1367→              display: "flex",
+  1368→              justifyContent: "space-between",
+  1369→              alignItems: "center",
+  1370→              flexWrap: "wrap",
+  1371→              gap: "1rem",
+  1372→            }}
+  1373→          >
+  1374→            <span
+  1375→              style={{
+  1376→                fontSize: "0.75rem",
+  1377→                color: "rgba(255,255,255,0.3)",
+  1378→              }}
+  1379→            >
+  1380→              &copy; 2007–2026 Интерфуд Кейтеринг. Все права защищены.
+  1381→            </span>
+  1382→            <div style={{ display: "flex", gap: "1.5rem" }}>
+  1383→              <Link
+  1384→                href="/about"
+  1385→                style={{
+  1386→                  fontSize: "0.75rem",
+  1387→                  color: "rgba(255,255,255,0.3)",
+  1388→                  textDecoration: "none",
+  1389→                  transition: "color 0.3s",
+  1390→                }}
+  1391→              >
+  1392→                О нас
+  1393→              </Link>
+  1394→              <Link
+  1395→                href="/contacts"
+  1396→                style={{
+  1397→                  fontSize: "0.75rem",
+  1398→                  color: "rgba(255,255,255,0.3)",
+  1399→                  textDecoration: "none",
+  1400→                  transition: "color 0.3s",
+  1401→                }}
+  1402→              >
+  1403→                Контакты
+  1404→              </Link>
+  1405→            </div>
+  1406→          </div>
+  1407→        </div>
+  1408→      </footer>
+  1409→
+  1410→      {/* ═════════════════════════════════════════════
+  1411→          LIGHTBOX
+  1412→          ═════════════════════════════════════════════ */}
+  1413→      <AnimatePresence>
+  1414→        {lightboxSrc && (
+  1415→          <motion.div
+  1416→            className="lightbox"
+  1417→            role="dialog"
+  1418→            aria-modal="true"
+  1419→            aria-label="Увеличенное изображение"
+  1420→            initial={{ opacity: 0 }}
+  1421→            animate={{ opacity: 1 }}
+  1422→            exit={{ opacity: 0 }}
+  1423→            onClick={() => setLightboxSrc(null)}
+  1424→            onKeyDown={(e) => {
+  1425→              if (e.key === "Escape") setLightboxSrc(null);
+  1426→            }}
+  1427→          >
+  1428→            <motion.img
+  1429→              src={lightboxSrc}
+  1430→              alt="Увеличенное фото блюда"
+  1431→              initial={{ scale: 0.85, opacity: 0 }}
+  1432→              animate={{ scale: 1, opacity: 1 }}
+  1433→              exit={{ scale: 0.85, opacity: 0 }}
+  1434→              transition={{ duration: 0.3 }}
+  1435→            />
+  1436→            <button
+  1437→              onClick={() => setLightboxSrc(null)}
+  1438→              aria-label="Закрыть"
+  1439→              style={{
+  1440→                position: "absolute",
+  1441→                top: "1.5rem",
+  1442→                right: "1.5rem",
+  1443→                width: 44,
+  1444→                height: 44,
+  1445→                borderRadius: "50%",
+  1446→                background: "rgba(255,255,255,0.9)",
+  1447→                border: "none",
+  1448→                cursor: "pointer",
+  1449→                fontSize: "1.2rem",
+  1450→                display: "flex",
+  1451→                alignItems: "center",
+  1452→                justifyContent: "center",
+  1453→                boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
+  1454→              }}
+  1455→            >
+  1456→              ✕
+  1457→            </button>
+  1458→          </motion.div>
+  1459→        )}
+  1460→      </AnimatePresence>
+  1461→
+  1462→      {/* WhatsApp Float */}
+  1463→      <a
+  1464→        href="https://wa.me/79119417205?text=Здравствуйте! Хочу заказать кейтеринг."
+  1465→        className="wa-float"
+  1466→        target="_blank"
+  1467→        rel="noopener noreferrer"
+  1468→        aria-label="WhatsApp"
+  1469→      >
+  1470→        &#9742;
+  1471→      </a>
+  1472→
+  1473→      {/* Back to Top */}
+  1474→      <BackToTop />
+  1475→    </>
+  1476→  );
+  1477→}
+  1478→

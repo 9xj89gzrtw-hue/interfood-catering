@@ -34,10 +34,17 @@ const IMG = {
 const CONTACT_CARDS = [
   {
     icon: "☎",
-    title: "Телефон",
+    title: "Телефон (городской)",
     value: "+7 (812) 919-59-11",
     href: "tel:+78129195911",
     desc: "Звоните пн–вс с 9:00 до 22:00",
+  },
+  {
+    icon: "📱",
+    title: "Мобильный",
+    value: "+7 (911) 941-72-05",
+    href: "tel:+79119417205",
+    desc: "Также Telegram и WhatsApp",
   },
   {
     icon: "✉",
@@ -54,32 +61,22 @@ const CONTACT_CARDS = [
     desc: "Санкт-Петербург",
   },
   {
-    icon: "◷",
-    title: "Часы работы",
-    value: "Пн–Вс: 9:00–22:00",
-    href: null,
-    desc: "Без выходных и праздников",
-  },
-  {
     icon: "💬",
     title: "WhatsApp / Telegram",
     value: "+7 (911) 941-72-05",
     href: "https://wa.me/79119417205?text=Здравствуйте! Хочу узнать подробнее о кейтеринге.",
     desc: "Пишите — отвечаем за 5 минут",
   },
+  {
+    icon: "🔧",
+    title: "Аренда оборудования",
+    value: "nilov.rent",
+    href: "https://nilov.rent/",
+    desc: "Посуда, мебель, текстиль",
+  },
 ];
 
-const EVENT_TYPES = [
-  { value: "wedding", label: "Свадьба" },
-  { value: "corporate", label: "Корпоратив" },
-  { value: "furshet", label: "Фуршет" },
-  { value: "coffee", label: "Кофе-брейк" },
-  { value: "jubilee", label: "Юбилей" },
-  { value: "birthday", label: "День рождения" },
-  { value: "newyear", label: "Новый год" },
-  { value: "outdoor", label: "Выездное мероприятие" },
-  { value: "other", label: "Другое" },
-];
+
 
 const SOCIAL_LINKS = [
   {
@@ -162,28 +159,23 @@ function Reveal({
 interface FormState {
   name: string;
   phone: string;
-  email: string;
-  eventType: string;
   date: string;
   guests: string;
-  message: string;
+  venue: string;
 }
 
 interface FormErrors {
   name?: string;
   phone?: string;
-  email?: string;
   guests?: string;
 }
 
 const INITIAL_FORM: FormState = {
   name: "",
   phone: "",
-  email: "",
-  eventType: "",
   date: "",
   guests: "",
-  message: "",
+  venue: "",
 };
 
 /* ═══════════════════════════════════════════════════════════════ */
@@ -214,12 +206,9 @@ export default function ContactsPage() {
         errs.phone = "Формат: +7 (XXX) XXX-XX-XX";
       }
     }
-    if (form.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
-      errs.email = "Введите корректный email";
-    }
     if (form.guests) {
       const n = parseInt(form.guests, 10);
-      if (isNaN(n) || n < 1) errs.guests = "Введите количество гостей";
+      if (isNaN(n) || n < 1) errs.guests = "Введите количество персон";
     }
     return errs;
   }
@@ -244,17 +233,10 @@ export default function ContactsPage() {
         }
       }
     }
-    if (name === "email" && form.email) {
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
-        newErrors.email = "Введите корректный email";
-      } else {
-        delete newErrors.email;
-      }
-    }
     if (name === "guests" && form.guests) {
       const n = parseInt(form.guests, 10);
       if (isNaN(n) || n < 1) {
-        newErrors.guests = "Введите количество гостей";
+        newErrors.guests = "Введите количество персон";
       } else {
         delete newErrors.guests;
       }
@@ -316,11 +298,9 @@ export default function ContactsPage() {
         body: JSON.stringify({
           name: form.name.trim(),
           phone: form.phone.trim(),
-          email: form.email.trim() || undefined,
-          eventType: form.eventType || undefined,
           date: form.date || undefined,
           guests: form.guests ? parseInt(form.guests, 10) : undefined,
-          message: form.message.trim() || undefined,
+          venue: form.venue.trim() || undefined,
           source: "website",
         }),
       });
@@ -377,7 +357,7 @@ export default function ContactsPage() {
           className="hero-overlay"
           style={{
             background:
-              "linear-gradient(135deg, rgba(12,11,11,0.82) 0%, rgba(27,42,74,0.6) 50%, rgba(12,11,11,0.78) 100%)",
+              "linear-gradient(135deg, rgba(250,250,247,0.88) 0%, rgba(245,243,238,0.85) 50%, rgba(250,250,247,0.88) 100%)",
           }}
         />
         <div className="hero-grain" />
@@ -758,7 +738,7 @@ export default function ContactsPage() {
                             marginBottom: "0.5rem",
                           }}
                         >
-                          Имя *
+                          Ваше имя *
                         </label>
                         <input
                           id="name"
@@ -827,7 +807,7 @@ export default function ContactsPage() {
                             marginBottom: "0.5rem",
                           }}
                         >
-                          Телефон *
+                          Телефон для связи *
                         </label>
                         <input
                           id="phone"
@@ -882,134 +862,7 @@ export default function ContactsPage() {
                         )}
                       </div>
 
-                      {/* Email */}
-                      <div>
-                        <label
-                          htmlFor="email"
-                          style={{
-                            display: "block",
-                            fontSize: "0.7rem",
-                            fontWeight: 600,
-                            letterSpacing: "0.15em",
-                            textTransform: "uppercase",
-                            color: "var(--color-dark)",
-                            marginBottom: "0.5rem",
-                          }}
-                        >
-                          Email
-                        </label>
-                        <input
-                          id="email"
-                          name="email"
-                          type="email"
-                          value={form.email}
-                          onChange={handleChange}
-                          placeholder="your@email.com"
-                          autoComplete="email"
-                          style={{
-                            width: "100%",
-                            padding: "0.85rem 1rem",
-                            border: `1.5px solid ${
-                              errors.email
-                                ? "#e53e3e"
-                                : "var(--color-cream-darker)"
-                            }`,
-                            borderRadius: "12px",
-                            fontSize: "0.9rem",
-                            fontFamily: "var(--font-sans)",
-                            background: errors.email
-                              ? "rgba(229,62,62,0.04)"
-                              : "var(--color-warm-white)",
-                            outline: "none",
-                            transition: "border-color 0.3s, background 0.3s",
-                          }}
-                          onFocus={(e) => {
-                            if (!errors.email)
-                              e.target.style.borderColor =
-                                "var(--color-brand)";
-                          }}
-                          onBlur={(e) => {
-                            if (!errors.email)
-                              e.target.style.borderColor =
-                                "var(--color-cream-darker)";
-                            validateField("email");
-                          }}
-                        />
-                        {errors.email && (
-                          <motion.span
-                            initial={{ opacity: 0, y: -4 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            style={{
-                              color: "#e53e3e",
-                              fontSize: "0.75rem",
-                              marginTop: "0.35rem",
-                              display: "block",
-                            }}
-                          >
-                            {errors.email}
-                          </motion.span>
-                        )}
-                      </div>
 
-                      {/* Event Type */}
-                      <div>
-                        <label
-                          htmlFor="eventType"
-                          style={{
-                            display: "block",
-                            fontSize: "0.7rem",
-                            fontWeight: 600,
-                            letterSpacing: "0.15em",
-                            textTransform: "uppercase",
-                            color: "var(--color-dark)",
-                            marginBottom: "0.5rem",
-                          }}
-                        >
-                          Тип мероприятия
-                        </label>
-                        <select
-                          id="eventType"
-                          name="eventType"
-                          value={form.eventType}
-                          onChange={handleChange}
-                          style={{
-                            width: "100%",
-                            padding: "0.85rem 1rem",
-                            border: "1.5px solid var(--color-cream-darker)",
-                            borderRadius: "12px",
-                            fontSize: "0.9rem",
-                            fontFamily: "var(--font-sans)",
-                            background: "var(--color-warm-white)",
-                            outline: "none",
-                            color: form.eventType
-                              ? "var(--color-dark)"
-                              : "var(--color-text-muted)",
-                            cursor: "pointer",
-                            transition: "border-color 0.3s",
-                            appearance: "none",
-                            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")`,
-                            backgroundRepeat: "no-repeat",
-                            backgroundPosition: "right 1rem center",
-                          }}
-                          onFocus={(e) =>
-                            (e.target.style.borderColor =
-                              "var(--color-brand)")
-                          }
-                          onBlur={(e) =>
-                            (e.target.style.borderColor =
-                              "var(--color-cream-darker)")
-                          }
-                        >
-                          <option value="" disabled>
-                            Выберите тип
-                          </option>
-                          {EVENT_TYPES.map((type) => (
-                            <option key={type.value} value={type.value}>
-                              {type.label}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
 
                       {/* Date */}
                       <div>
@@ -1072,7 +925,7 @@ export default function ContactsPage() {
                             marginBottom: "0.5rem",
                           }}
                         >
-                          Количество гостей
+                          Количество персон
                         </label>
                         <input
                           id="guests"
@@ -1081,7 +934,7 @@ export default function ContactsPage() {
                           min="1"
                           value={form.guests}
                           onChange={handleChange}
-                          placeholder="Например, 100"
+                          placeholder="Количество персон"
                           autoComplete="off"
                           style={{
                             width: "100%",
@@ -1127,51 +980,50 @@ export default function ContactsPage() {
                           </motion.span>
                         )}
                       </div>
-                    </div>
-
-                    {/* Message */}
-                    <div style={{ marginTop: "1.25rem" }}>
-                      <label
-                        htmlFor="message"
-                        style={{
-                          display: "block",
-                          fontSize: "0.7rem",
-                          fontWeight: 600,
-                          letterSpacing: "0.15em",
-                          textTransform: "uppercase",
-                          color: "var(--color-dark)",
-                          marginBottom: "0.5rem",
-                        }}
-                      >
-                        Сообщение
-                      </label>
-                      <textarea
-                        id="message"
-                        name="message"
-                        rows={4}
-                        value={form.message}
-                        onChange={handleChange}
-                        placeholder="Расскажите подробнее о вашем мероприятии, пожеланиях к меню, бюджете..."
-                        style={{
-                          width: "100%",
-                          padding: "0.85rem 1rem",
-                          border: "1.5px solid var(--color-cream-darker)",
-                          borderRadius: "12px",
-                          fontSize: "0.9rem",
-                          fontFamily: "var(--font-sans)",
-                          background: "var(--color-warm-white)",
-                          outline: "none",
-                          resize: "vertical",
-                          transition: "border-color 0.3s",
-                        }}
-                        onFocus={(e) =>
-                          (e.target.style.borderColor = "var(--color-brand)")
-                        }
-                        onBlur={(e) =>
-                          (e.target.style.borderColor =
-                            "var(--color-cream-darker)")
-                        }
-                      />
+                      {/* Venue / Место */}
+                      <div>
+                        <label
+                          htmlFor="venue"
+                          style={{
+                            display: "block",
+                            fontSize: "0.7rem",
+                            fontWeight: 600,
+                            letterSpacing: "0.15em",
+                            textTransform: "uppercase",
+                            color: "var(--color-dark)",
+                            marginBottom: "0.5rem",
+                          }}
+                        >
+                          Место
+                        </label>
+                        <input
+                          id="venue"
+                          name="venue"
+                          type="text"
+                          value={form.venue}
+                          onChange={handleChange}
+                          placeholder="Место проведения"
+                          autoComplete="off"
+                          style={{
+                            width: "100%",
+                            padding: "0.85rem 1rem",
+                            border: "1.5px solid var(--color-cream-darker)",
+                            borderRadius: "12px",
+                            fontSize: "0.9rem",
+                            fontFamily: "var(--font-sans)",
+                            background: "var(--color-warm-white)",
+                            outline: "none",
+                            transition: "border-color 0.3s",
+                          }}
+                          onFocus={(e) =>
+                            (e.target.style.borderColor = "var(--color-brand)")
+                          }
+                          onBlur={(e) =>
+                            (e.target.style.borderColor =
+                              "var(--color-cream-darker)")
+                          }
+                        />
+                      </div>
                     </div>
 
                     {/* Submit */}
@@ -1355,21 +1207,21 @@ export default function ContactsPage() {
 
       {/* ═══════════════ Social Media ═══════════════ */}
       <section
-        className="section section-dark"
+        className="section section-cream"
         aria-label="Социальные сети"
       >
         <div className="container" style={{ textAlign: "center" }}>
           <Reveal>
-            <span className="section-label" style={{ color: "var(--color-brand-light)" }}>
+            <span className="section-label">
               Мы в соцсетях
             </span>
             <TextReveal
               text="Подписывайтесь и вдохновляйтесь"
               as="h2"
-              className="section-title section-title-light"
+              className="section-title"
             />
             <p
-              className="section-subtitle section-subtitle-light"
+              className="section-subtitle"
               style={{ margin: "0 auto" }}
             >
               Следите за нашими мероприятиями, новыми блюдами и закулисьем
@@ -1404,7 +1256,7 @@ export default function ContactsPage() {
                       gap: "1rem",
                       padding: "2.5rem 3rem",
                       background:
-                        "rgba(255,255,255,0.03)",
+                        "#FFFFFF",
                       border: "1px solid rgba(184,149,90,0.12)",
                       borderRadius: "20px",
                       textDecoration: "none",
@@ -1416,33 +1268,33 @@ export default function ContactsPage() {
                       e.currentTarget.style.borderColor =
                         "rgba(184,149,90,0.35)";
                       e.currentTarget.style.boxShadow =
-                        "0 20px 50px rgba(0,0,0,0.25)";
+                        "0 8px 24px rgba(184,149,90,0.15)";
                       e.currentTarget.style.background =
-                        "rgba(184,149,90,0.06)";
+                        "rgba(184,149,90,0.05)";
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.borderColor =
                         "rgba(184,149,90,0.12)";
                       e.currentTarget.style.boxShadow = "none";
                       e.currentTarget.style.background =
-                        "rgba(255,255,255,0.03)";
+                        "#FFFFFF";
                     }}
                     aria-label={social.name}
                   >
                     <div
                       style={{
-                        color: "rgba(255,255,255,0.7)",
+                        color: "var(--color-text-secondary)",
                         transition: "color 0.3s, transform 0.3s",
                       }}
                       onMouseEnter={(e) => {
                         (e.currentTarget as HTMLElement).style.color =
-                          "var(--color-brand-light)";
+                          "var(--color-brand)";
                         (e.currentTarget as HTMLElement).style.transform =
                           "scale(1.15)";
                       }}
                       onMouseLeave={(e) => {
                         (e.currentTarget as HTMLElement).style.color =
-                          "rgba(255,255,255,0.7)";
+                          "var(--color-text-secondary)";
                         (e.currentTarget as HTMLElement).style.transform =
                           "scale(1)";
                       }}
@@ -1455,7 +1307,7 @@ export default function ContactsPage() {
                         fontWeight: 600,
                         letterSpacing: "0.15em",
                         textTransform: "uppercase",
-                        color: "rgba(255,255,255,0.6)",
+                        color: "var(--color-text-muted)",
                         transition: "color 0.3s",
                       }}
                     >
@@ -1494,7 +1346,7 @@ export default function ContactsPage() {
               <Link
                 href="/menu"
                 style={{
-                  color: "rgba(255,255,255,0.45)",
+                  color: "var(--color-text-muted)",
                   textDecoration: "none",
                   fontSize: "0.85rem",
                 }}
@@ -1504,7 +1356,7 @@ export default function ContactsPage() {
               <Link
                 href="/wedding"
                 style={{
-                  color: "rgba(255,255,255,0.45)",
+                  color: "var(--color-text-muted)",
                   textDecoration: "none",
                   fontSize: "0.85rem",
                 }}
@@ -1514,7 +1366,7 @@ export default function ContactsPage() {
               <Link
                 href="/corporate"
                 style={{
-                  color: "rgba(255,255,255,0.45)",
+                  color: "var(--color-text-muted)",
                   textDecoration: "none",
                   fontSize: "0.85rem",
                 }}
@@ -1524,7 +1376,7 @@ export default function ContactsPage() {
               <Link
                 href="/about"
                 style={{
-                  color: "rgba(255,255,255,0.45)",
+                  color: "var(--color-text-muted)",
                   textDecoration: "none",
                   fontSize: "0.85rem",
                 }}
@@ -1534,7 +1386,7 @@ export default function ContactsPage() {
               <Link
                 href="/reviews"
                 style={{
-                  color: "rgba(255,255,255,0.45)",
+                  color: "var(--color-text-muted)",
                   textDecoration: "none",
                   fontSize: "0.85rem",
                 }}
@@ -1544,7 +1396,7 @@ export default function ContactsPage() {
               <Link
                 href="/contacts"
                 style={{
-                  color: "rgba(255,255,255,0.45)",
+                  color: "var(--color-text-muted)",
                   textDecoration: "none",
                   fontSize: "0.85rem",
                 }}
@@ -1554,7 +1406,7 @@ export default function ContactsPage() {
               <Link
                 href="/"
                 style={{
-                  color: "rgba(255,255,255,0.45)",
+                  color: "var(--color-text-muted)",
                   textDecoration: "none",
                   fontSize: "0.85rem",
                 }}

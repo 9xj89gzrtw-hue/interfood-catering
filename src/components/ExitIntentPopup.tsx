@@ -201,7 +201,7 @@ export default function ExitIntentPopup() {
                 {/* Premium header */}
                 <div
                   style={{
-                    background: "linear-gradient(135deg, #1A1A1A 0%, #2A2520 100%)",
+                    background: "linear-gradient(135deg, #FFFFFF 0%, #F5F3EE 100%)",
                     padding: "2rem 2rem 1.5rem",
                     textAlign: "center",
                   }}

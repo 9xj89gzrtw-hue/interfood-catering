@@ -1,14 +1,14 @@
 # 🧠 MEMORY.md — Файл памяти проекта Интерфуд Кейтеринг
 
 > **Создан:** 2026-07-02  
-> **Обновлён:** 2026-07-02 (сессия 3 — восстановление тёмной темы v35)  
+> **Обновлён:** 2026-07-02 (сессия 4 — Light Premium v70 + View Transitions + SDA + Mobile Touch)  
 > **Проект:** Сайт кейтеринговой компании «Интерфуд» (interfood-catering.ru)  
 > **Репозиторий:** https://github.com/9xj89gzrtw-hue/interfood-catering  
 > **Vercel:** ✅ Токен получен от пользователя  
 > **Vercel проект:** interfood-catering (дубли удалены)  
 > **Vercel URL:** https://interfood-catering.vercel.app  
 > **GitHub Pages:** https://9xj89gzrtw-hue.github.io/interfood-catering/  
-> **Текущая версия:** v35 — Dark Premium Theme (2026-07-02)
+> **Текущая версия:** v70 — Light Premium + View Transitions + Scroll-Driven Animations
 
 ---
 
@@ -16,7 +16,7 @@
 
 | Технология | Версия | Назначение |
 |-----------|--------|-----------|
-| Next.js | 16.1.1 | React фреймворк (App Router) |
+| Next.js | 16.2.10 | React фреймворк (App Router) |
 | React | 19.0.0 | UI библиотека |
 | TypeScript | 5.x | Типизация |
 | Tailwind CSS | 4.x | Utility-first CSS |
@@ -27,27 +27,56 @@
 
 ---
 
-## 🎨 Дизайн-система — Dark Premium v35
+## 🎨 Дизайн-система — Light Premium v70
 
-- **Палитра:** Тёмный фон (#0A0A0A), золотой акцент (#B8955A), тёплый белый текст (#FAFAF8)
+- **Палитра:** Светлый фон (#FAFAF7), золотой акцент (#B8860B), тёмный текст (#1A1714)
 - **Шрифты:** Cormorant Garamond (заголовки, serif) + Inter (текст, sans)
-- **Стиль:** Dark Premium, кинематографический, фото/видео-forward
-- **Текстура:** Grain overlay (opacity 0.03)
-- **Подробная палитра:** См. VERSION.md
+- **Стиль:** Light Premium, элегантный, воздушный
+- **Текстура:** Grain overlay (opacity 0.02, очень тонкий)
 
 ### Цветовая палитра:
 
 | Элемент | Цвет |
 |---------|------|
-| Фон основной | #0A0A0A |
-| Фон секции light | #0F0F0F |
-| Фон секции cream | #111111 |
-| Фон секции warm-gray | #161616 |
-| Карточки | #1A1A1A |
-| Навигация скролл | rgba(10,10,10,0.92) |
-| Текст основной | #FAFAF8 |
-| Текст вторичный | rgba(255,255,255,0.6) |
-| Акцент | #B8955A |
+| Фон основной | #FAFAF7 |
+| Фон секции light | #F5F3EE |
+| Фон секции cream | #EDE9E1 |
+| Фон секции warm | #E4DFD5 |
+| Карточки | #FFFFFF |
+| Навигация скролл | rgba(250,250,247,0.88) |
+| Текст основной | #1A1714 |
+| Текст вторичный | #5C564D |
+| Акцент | #B8860B |
+
+---
+
+## 🆕 Новые функции v70
+
+### View Transitions API
+- Next.js 16 built-in (`experimental.viewTransition: true`)
+- CSS-only стилизация в globals.css (`::view-transition-old/new(root)`)
+- ViewTransitionLink переделан: только трекинг мыши, без ручного `startViewTransition()`
+- Исправлен баг двойного вызова (nested transitions)
+
+### Scroll-Driven Animations (CSS)
+- 12 CSS классов: `.sda-reveal`, `.sda-scale`, `.sda-clip`, `.sda-ken-burns`, `.sda-slide-left/right`, `.sda-parallax-slow`, `.sda-blur-reveal`, `.sda-stagger`, `.sda-counter-rotate`, `.sda-text-reveal`
+- `animation-timeline: view()` (работает с Lenis!)
+- `animation-range: entry/exit` для точного контроля
+- Progressive enhancement: `@supports (animation-timeline: view())`
+
+### Mobile Touch Enhancement
+- iOS Taptic Engine hack (hidden range input value toggle)
+- Edge-swipe-back detection (left edge → back navigation)
+- Haptic feedback: light/medium/heavy/selection
+- Double-tap, long-press, swipe gesture detection
+- Safe area insets for notched phones
+- Touch-optimized active states in CSS
+
+### Контент синхронизирован с interfood-catering.ru
+- Цены меню: Фуршет (2,450-5,350₽), Банкет (4,470-6,970₽), Кофе-брейк (950-2,450₽)
+- Контакты: +7 (812) 919-59-11, +7 (911) 941-72-05 (WhatsApp/Telegram)
+- About: Текст Дмитрия Нилова с оригинального сайта
+- Форма: 5 полей (имя, телефон, дата, кол-во персон, место)
 
 ---
 
@@ -55,7 +84,7 @@
 
 - **VERSION.md** — полная история версий с номерами и датами
 - **MEMORY.md** — этот файл, состояние проекта
-- Каждый коммит должен содержать версию в формате `v35`, `v35.1`, etc.
+- Каждый коммит должен содержать версию в формате `v70`, `v70.1`, etc.
 
 ---
 
@@ -86,9 +115,9 @@
 ## 🎬 Анимации и WOW-эффекты (40+ компонентов)
 
 ### Реализованные компоненты:
-- **ViewTransitionLink** — нативные View Transitions API (2026) с circle-clip анимацией
-- **TouchInteractionProvider** — swipe, haptic feedback, double-tap, long-press
-- **Scroll-Driven Animations** — 8 CSS-классов (sda-reveal, sda-scale, sda-clip, sda-ken-burns, etc.)
+- **ViewTransitionLink** — CSS-only View Transitions с трекингом позиции мыши
+- **TouchInteractionProvider** — iOS Taptic hack, swipe, haptic, double-tap, long-press
+- **Scroll-Driven Animations** — 12 CSS-классов (sda-reveal, sda-scale, sda-clip, etc.)
 - **CustomCursor** — trailing ring (Aesop/Bottega Veneta стиль)
 - **ParticleField** — частицы на canvas
 - **WebGLShaderBG** — шейдерный фон
@@ -137,11 +166,13 @@
 ## 📞 Контактные данные (из оригинального сайта)
 
 - **Телефон:** +7 (812) 919-59-11
-- **WhatsApp:** +7 (911) 941-72-05
-- **Адрес:** Санкт-Петербург, Невский проспект, д. 100
+- **Мобильный/WhatsApp:** +7 (911) 941-72-05
+- **Email:** interfood-catering@yandex.ru
 - **Сайт:** interfood-catering.ru
 - **VK:** vk.com/nilovcatering
 - **Instagram:** instagram.com/nilov_catering
+- **Facebook:** facebook.com/furshetspb
+- **Аренда:** nilov.rent
 
 ---
 
@@ -163,31 +194,9 @@
 
 ## ⚠️ Известные проблемы
 
-1. **Vercel деплои** — были проблемы, но токен теперь есть
-2. **Некоторые компоненты-заглушки** — могут быть stub-реализации
-3. **SEO** — Яндекс верификация placeholder
-
----
-
-## 🎯 ТЕКУЩИЕ ЗАДАЧИ (приоритет)
-
-### 🔴 Критические
-- [x] Получить Vercel токен ✅
-- [x] Почистить Vercel проекты ✅ (оставлен 1 проект)
-- [x] Переключить на тёмную тему ✅ (v35)
-- [ ] Деплой v35 на Vercel
-
-### 🟡 Важные  
-- [ ] Секретные хаки — найти инновационные решения 2026 года
-- [ ] Мобильная оптимизация — проверить все тач-взаимодействия
-- [ ] Производительность — Core Web Vitals
-- [ ] Синхронизировать контент с interfood-catering.ru
-
-### 🟢 Желательные
-- [ ] Видео-hero с реальным видео (не Pexels сток)
-- [ ] Реальные фото с мероприятий
-- [ ] Яндекс.Метрика полная интеграция
-- [ ] A/B тесты CTA
+1. **iOS Safari** — `navigator.vibrate` не работает, используется Taptic Engine hack
+2. **Scroll-Driven Animations** — работают только в Chrome 115+, Edge 115+ (graceful degradation)
+3. **View Transitions** — Chrome 111+, Edge 111+ (graceful degradation)
 
 ---
 
@@ -196,7 +205,7 @@
 | Сервис | Статус | Где искать |
 |--------|--------|-----------|
 | GitHub | ✅ Встроен в remote URL | `git remote get-url origin` |
-| Vercel | ✅ ТОКЕН ПОЛУЧЕН | Предоставлен пользователем в сессии 3 |
+| Vercel | ✅ ТОКЕН ПОЛУЧЕН | Предоставлен пользователем |
 | Yandex Metrica | ✅ ID 99073454 | В layout.tsx |
 
 ---
@@ -205,9 +214,9 @@
 
 1. **App Router** — все страницы через app/ директорию
 2. **CSS-first анимации** — Scroll-Driven Animations где возможно, framer-motion для сложных
-3. **View Transitions** — нативный API для переходов между страницами
-4. **Dark Premium дизайн** — тёмный фон, золотые акценты, кинематографический стиль
-5. **Mobile-first** — touch-оптимизированные взаимодействия
+3. **View Transitions** — Next.js 16 built-in + CSS-only styling
+4. **Light Premium дизайн** — светлый фон, золотые акценты, элегантный стиль
+5. **Mobile-first** — touch-оптимизированные взаимодействия, iOS Taptic
 6. **SSG/SSR** — Next.js hybrid rendering
 7. **PWA** — офлайн поддержка, installable
 
@@ -218,30 +227,6 @@
 - **ВСЕГДА** делай git commit + push после изменений
 - **ВСЕГДА** обновляй VERSION.md и MEMORY.md при изменении архитектуры
 - **ВСЕГДА** указывай номер версии и дату в коммитах
-- **НИКОГДА** не восстанавливай старые версии без проверки VERSION.md
 - Используй множество агентов для параллельной работы
-- Реверс-инжиниринг конкурентов — ключ к инновациям
 - Проверяй на реальных устройствах (iOS Safari особенно)
-
----
-
-## 🎉 Сессия 3 — Восстановление тёмной темы v35 (2026-07-02)
-
-### Проблема:
-Светлая тема v34 (Light-First) была случайно залита вместо тёмной.
-Пользователь подтвердил: сайт должен быть в тёмном стиле.
-
-### Исправление:
-- Переключены ВСЕ цвета на тёмную тему в globals.css (v35)
-- Обновлён layout.tsx — inline стили на тёмную тему
-- Обновлён page.tsx — inline стили на тёмную тему
-- Массовая замена во всех 25+ файлах (103 замены)
-- Создан VERSION.md для отслеживания версий
-- Создан скрипт dark_theme_switch.py для будущих переключений
-
-### Цветовая схема Dark Premium v35:
-- Фон: #0A0A0A (почти чёрный)
-- Секции: #0F0F0F / #111111 / #161616
-- Карточки: #1A1A1A с полупрозрачной рамкой
-- Текст: #FAFAF8 (тёплый белый)
-- Акцент: #B8955A (золото)
+- Scroll-Driven Animations: используй `view()` timeline, не `scroll()` (последний ломается с Lenis)

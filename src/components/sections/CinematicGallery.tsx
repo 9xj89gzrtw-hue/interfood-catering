@@ -199,7 +199,7 @@ function GalleryCard({
                   position: "absolute",
                   inset: 0,
                   background:
-                    "linear-gradient(to top, rgba(6,6,7,0.8) 0%, transparent 50%, rgba(6,6,7,0.2) 100%)",
+                    "linear-gradient(to top, rgba(250, 250, 247, 0.8) 0%, transparent 50%, rgba(250, 250, 247, 0.2) 100%)",
                   pointerEvents: "none",
                 }}
               />

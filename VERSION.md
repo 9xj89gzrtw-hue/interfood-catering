@@ -5,6 +5,22 @@
 
 ---
 
+## v70 — 2026-07-02 — Light Premium + View Transitions + Scroll-Driven + Mobile Touch
+- **Тема**: Светлая (Light Premium)
+- **Фон**: #FAFAF7 (warm white)
+- **Текст**: #1A1714 (dark warm) / #5C564D (secondary)
+- **Акцент**: Gold система (B8860B, D4A63E, E5BF65) — золотая палитра на светлом фоне
+- **CSS**: globals.css "Light Premium Design System v70"
+- **Компоненты**: 40+ анимированных компонентов, 17 страниц
+- **Новые функции**:
+  - ✅ View Transitions API — CSS-only, Next.js 16 built-in (исправлен баг двойного вызова)
+  - ✅ Scroll-Driven Animations — 12 CSS классов (sda-reveal, sda-scale, sda-clip, sda-ken-burns, etc.)
+  - ✅ Mobile Touch — iOS Taptic Engine hack, edge-swipe-back, haptic feedback
+  - ✅ Контент синхронизирован с interfood-catering.ru (цены, контакты, about)
+- **Surface System**: Light (#FAFAF7 → #F5F3EE → #EDE9E1 → #E4DFD5)
+- **Карточки**: #FFFFFF с золотой рамкой
+- **Навигация**: rgba(250,250,247,0.88) с blur
+
 ## v60 — 2026-07-02 — Dark Cinematic WOW (ВОССТАНОВЛЕНА)
 - **Тема**: Тёмная (Dark Cinematic)
 - **Фон**: #060607 (deep black)
@@ -27,26 +43,28 @@
 
 ---
 
-## Цветовая палитра — Dark Cinematic v60
+## Цветовая палитра — Light Premium v70
 
 | Элемент | Цвет | CSS Variable / Значение |
 |---------|------|------------------------|
-| Фон основной | #060607 | `#060607` |
-| Gold-500 (brand) | #C9A96A | `var(--color-brand)` |
-| Gold-300 (light) | #E5BF65 | `var(--color-brand-light)` |
-| Gold-600 | #B8860B | `var(--color-gold-600)` |
-| Текст основной | белый | `#fff` |
-| Текст вторичный | rgba(255,255,255,0.6) | inline |
+| Фон основной | #FAFAF7 | `var(--color-surface-0)` |
+| Фон секции | #F5F3EE | `var(--color-surface-1)` |
+| Карточки | #FFFFFF | inline |
+| Gold-500 (brand) | #B8860B | `var(--color-brand)` |
+| Gold-300 (light) | #D4A63E | `var(--color-brand-light)` |
+| Gold-400 | #D4A63E | `var(--color-gold-400)` |
+| Текст основной | #1A1714 | `var(--color-text-primary)` |
+| Текст вторичный | #5C564D | `var(--color-text-secondary)` |
+| Текст muted | #8A8578 | `var(--color-text-muted)` |
 
 ---
 
 ## Правила версионирования
 
-1. Каждое изменение темы (dark/light) → новый major номер (v60, v61, ...)
-2. Мелкие фиксы → patch (v60.1, v60.2, ...)
-3. Новый функционал → minor (v60.1, v60.2, ...)
+1. Каждое изменение темы (dark/light) → новый major номер (v60, v70, ...)
+2. Мелкие фиксы → patch (v70.1, v70.2, ...)
+3. Новый функционал → minor (v70.1, v70.2, ...)
 4. **ВСЕГДА** обновлять этот файл при каждом изменении
 5. **ВСЕГДА** указывать дату в формате YYYY-MM-DD
 6. **НИКОГДА** не удалять историю версий
 7. При деплое на Vercel указывать версию в коммите
-8. **НИКОГДА** не делать простую конвертацию цветов — всегда использовать оригинальные тёмные дизайн-системы

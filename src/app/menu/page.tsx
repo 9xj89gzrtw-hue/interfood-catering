@@ -74,10 +74,10 @@ const CATEGORIES: MenuCategory[] = [
     key: "furshet-2450",
     label: "Фуршет",
     priceFrom: "2 450",
-    desc: "Канапе, брускетты и закуски для свободного общения. Идеально для лёгких мероприятий.",
+    desc: "3 канапе, 2 брускетты, десерт, морс — 390\u2009г на гостя. Входит: обслуживание официантами, фарфоровая посуда, приборы, лёгкий цветочный декор, доставка в пределах КАД.",
     img: IMG.furshet,
     items: [
-      { name: "Канапе: Ломтик итальянского салями с сыром маскарпоне и миндалём", weight: "35г", price: 2450, desc: "Фуршетное меню на 1 гостя" },
+      { name: "Канапе: Ломтик итальянского салями с сыром маскарпоне и миндалём", weight: "35г", price: 2450, desc: "Фуршетное меню №1 · 390г/гость" },
       { name: "Канапе: Форель шеф-посол на тосте с лаймом, укропом и каперсами", weight: "35г", price: 0, desc: "" },
       { name: "Канапе: Королевская креветка в слайсе цукини с икрой летучей рыбы", weight: "35г", price: 0, desc: "" },
       { name: "Брускетты с овощами-гриль и соусом песто", weight: "75г", price: 0, desc: "" },
@@ -90,27 +90,28 @@ const CATEGORIES: MenuCategory[] = [
     key: "furshet-2950",
     label: "Фуршет",
     priceFrom: "2 950",
-    desc: "Расширенное фуршетное меню с лососем, креветками и брускеттами с говяжьей вырезкой.",
+    desc: "4 канапе, 2 брускетты, салат, десерт, чай/кофе/морс — 540\u2009г на гостя. Входит: обслуживание официантами, фарфоровая посуда, приборы, лёгкий цветочный декор, доставка в пределах КАД.",
     img: IMG.furshet,
     items: [
-      { name: "Канапе: Копченый лосось с сыром рикотта в савойской капусте с красной икрой", weight: "35г", price: 2950, desc: "Фуршетное меню на 1 гостя" },
+      { name: "Канапе: Копченый лосось с сыром рикотта в савойской капусте с красной икрой", weight: "35г", price: 2950, desc: "Фуршетное меню №2 · 540г/гость" },
       { name: "Канапе: Масляная белая рыба холодного копчения с лаймом на бородинском хлебе", weight: "35г", price: 0, desc: "" },
       { name: "Канапе: Пряный сыр с вялеными томатами на шпажке", weight: "35г", price: 0, desc: "" },
-      { name: "Канапе: Куриный рулет «Су-вид» с сегментами персика", weight: "35г", price: 0, desc: "" },
+      { name: "Канапе: Куриный рулет \u00abСу-вид\u00bb с сегментами персика", weight: "35г", price: 0, desc: "" },
       { name: "Брускетты со слабосолёным лососем, творожным сыром", weight: "75г", price: 0, desc: "" },
       { name: "Брускетты с говяжьей вырезкой, рукколой и томатами", weight: "75г", price: 0, desc: "" },
       { name: "Салат в креманке с тигровыми креветками", weight: "50г", price: 0, desc: "" },
       { name: "Десерт: Мини-пирожное", weight: "50г", price: 0, desc: "" },
+      { name: "Напитки: Чай, кофе, морс", weight: "", price: 0, desc: "" },
     ],
   },
   {
     key: "furshet-3950",
     label: "Фуршет",
     priceFrom: "3 950",
-    desc: "Премиум-фуршет с лососем, тигровыми креветками, пармской ветчиной и горячими закусками.",
+    desc: "3 канапе, брускетта, 2 салата, горячая закуска, гарнир, десерт, напитки — 700\u2009г на гостя. Входит: обслуживание официантами, фарфоровая посуда, приборы, лёгкий цветочный декор, доставка в пределах КАД.",
     img: IMG.furshet,
     items: [
-      { name: "Канапе: Лосось шеф-посол с красной икрой", weight: "35г", price: 3950, desc: "Фуршетное меню на 1 гостя" },
+      { name: "Канапе: Лосось шеф-посол с красной икрой", weight: "35г", price: 3950, desc: "Фуршетное меню №3 · 700г/гость" },
       { name: "Канапе: Тигровая креветка с икрой летучей рыбы", weight: "35г", price: 0, desc: "" },
       { name: "Канапе: Пармская ветчина с персиком и пармезаном", weight: "35г", price: 0, desc: "" },
       { name: "Брускетта с коктейльными креветками, фетой и бальзамиком", weight: "65г", price: 0, desc: "" },
@@ -119,16 +120,17 @@ const CATEGORIES: MenuCategory[] = [
       { name: "Горячая закуска: Запечённая буженина / Шашлычок из куриного филе", weight: "", price: 0, desc: "" },
       { name: "Гарнир: Картофель бейби с беконом / Овощи-гриль с песто", weight: "", price: 0, desc: "" },
       { name: "Десерт: Мини-пирожное", weight: "", price: 0, desc: "" },
+      { name: "Напитки: Чай, кофе, морс", weight: "", price: 0, desc: "" },
     ],
   },
   {
     key: "furshet-5350",
     label: "Фуршет",
     priceFrom: "5 350",
-    desc: "Делюкс-фуршет с уткой Магре, морским гребешком, копчёным угрём и филе-миньоном.",
+    desc: "Премиум канапе (утка Магре, морской гребешок, копчёный угорь), 2 мини-брускетты, 2 премиум-салата, горячая закуска, гарнир, десерт, напитки — 750\u2009г на гостя.",
     img: IMG.furshet,
     items: [
-      { name: "Канапе: Утиная грудка Магре с апельсином", weight: "35г", price: 5350, desc: "Фуршетное меню на 1 гостя" },
+      { name: "Канапе: Утиная грудка Магре с апельсином", weight: "35г", price: 5350, desc: "Фуршетное меню №4 Премиум · 750г/гость", tag: "Премиум" },
       { name: "Канапе: Пряный ростбиф с пармезаном и конфи из лука шалот", weight: "35г", price: 0, desc: "" },
       { name: "Канапе: Морской гребешок с вялеными томатами", weight: "35г", price: 0, desc: "" },
       { name: "Канапе: Копченый угорь с красной икрой", weight: "35г", price: 0, desc: "" },
@@ -137,23 +139,59 @@ const CATEGORIES: MenuCategory[] = [
       { name: "Салат: Нисуаз со свежим тунцом", weight: "", price: 0, desc: "" },
       { name: "Салат: Из говяжьего языка с раковыми шейками", weight: "", price: 0, desc: "" },
       { name: "Горячая закуска: Шашлычок из морепродуктов / Филе-миньон", weight: "", price: 0, desc: "" },
+      { name: "Гарнир: Картофель бейби с трюфельным маслом / Овощи-гриль", weight: "", price: 0, desc: "" },
+      { name: "Десерт: Мини-пирожное премиум", weight: "", price: 0, desc: "" },
+      { name: "Напитки: Чай, кофе, морс", weight: "", price: 0, desc: "" },
     ],
   },
   {
-    key: "banquet",
+    key: "banquet-4470",
     label: "Банкет",
     priceFrom: "4 470",
-    desc: "5–7 курсов авторского банкетного меню. Холодные закуски, салаты, горячее и десерт.",
+    desc: "Холодные закуски, салат, горячее, гарнир, десерт — 1\u202f130\u2009г на гостя. Рассадка и обслуживание официантами.",
     img: IMG.banquet,
     items: [
-      { name: "Холодные закуски: Речная форель, белая масляная рыба, королевские креветки", weight: "", price: 4470, desc: "Банкетное меню на 1 гостя" },
+      { name: "Холодные закуски: Речная форель, белая масляная рыба, королевские креветки", weight: "", price: 4470, desc: "Банкетное меню №1 · 1 130г/гость" },
       { name: "Домашняя буженина, куриный рулет су-вид, свиная вырезка в беконе", weight: "", price: 0, desc: "" },
       { name: "Террин из овощей, брускетта с печёночным паштетом", weight: "", price: 0, desc: "" },
-      { name: "Салат: Нисуаз с тунцом", weight: "", price: 0, desc: "" },
       { name: "Салат: Цезарь с куриным бедром", weight: "", price: 0, desc: "" },
       { name: "Горячее: Свинина с шампиньонами / Куриная грудка с горчичным соусом", weight: "", price: 0, desc: "" },
       { name: "Гарнир: Овощи-гриль + картофель Айдахо", weight: "", price: 0, desc: "" },
       { name: "Десерт: Мини-пирожное", weight: "", price: 0, desc: "" },
+    ],
+  },
+  {
+    key: "banquet-4970",
+    label: "Банкет",
+    priceFrom: "4 970",
+    desc: "Расширенные закуски, 2 салата, горячее, гарнир, десерт — 1\u202f340\u2009г на гостя. Рассадка и обслуживание официантами.",
+    img: IMG.banquet,
+    items: [
+      { name: "Холодные закуски: Лосось шеф-посол, масляная рыба, тигровые креветки", weight: "", price: 4970, desc: "Банкетное меню №2 · 1 340г/гость" },
+      { name: "Буженина, пармская ветчина, куриный рулет су-вид", weight: "", price: 0, desc: "" },
+      { name: "Брускетта с печёночным паштетом, тарталетки с крем-сыром", weight: "", price: 0, desc: "" },
+      { name: "Салат: Нисуаз с тунцом", weight: "", price: 0, desc: "" },
+      { name: "Салат: Цезарь с куриным бедром и пармезаном", weight: "", price: 0, desc: "" },
+      { name: "Горячее: Говяжья вырезка с соусом из зелёного перца / Свинина с грибами", weight: "", price: 0, desc: "" },
+      { name: "Гарнир: Овощи-гриль + картофель Айдахо", weight: "", price: 0, desc: "" },
+      { name: "Десерт: Мини-пирожное", weight: "", price: 0, desc: "" },
+    ],
+  },
+  {
+    key: "banquet-6970",
+    label: "Банкет",
+    priceFrom: "6 970",
+    desc: "Премиум банкет с деликатесами, 2 премиум-салата, горячее, гарнир, десерт — 1\u202f430\u2009г на гостя.",
+    img: IMG.banquet,
+    items: [
+      { name: "Холодные закуски: Лосось шеф-посол с икрой, угорь копчёный, тигровые креветки", weight: "", price: 6970, desc: "Банкетное меню №3 Премиум · 1 430г/гость", tag: "Премиум" },
+      { name: "Карпаччо из говядины, пармская ветчина, утка Магре", weight: "", price: 0, desc: "" },
+      { name: "Тарталетки с красной икрой, брускетта с фуа-гра", weight: "", price: 0, desc: "" },
+      { name: "Салат: Нисуаз со свежим тунцом и перепелиным яйцом", weight: "", price: 0, desc: "" },
+      { name: "Салат: Из говяжьего языка с раковыми шейками", weight: "", price: 0, desc: "" },
+      { name: "Горячее: Филе-миньон с трюфельным соусом / Морской гребешок с пюре", weight: "", price: 0, desc: "" },
+      { name: "Гарнир: Картофель бейби с трюфельным маслом / Овощи-гриль", weight: "", price: 0, desc: "" },
+      { name: "Десерт: Мини-пирожное премиум", weight: "", price: 0, desc: "" },
     ],
   },
   {
@@ -163,7 +201,7 @@ const CATEGORIES: MenuCategory[] = [
     desc: "Кофе, чай и лёгкие закуски для конференций и семинаров.",
     img: IMG.coffee,
     items: [
-      { name: "Клаб-сэндвич", weight: "", price: 950, desc: "Кофе-брейк меню на 1 гостя" },
+      { name: "Клаб-сэндвич", weight: "", price: 950, desc: "Кофе-брейк меню №1 на 1 гостя" },
       { name: "Пирожок", weight: "", price: 0, desc: "" },
       { name: "Мини-пирожное", weight: "", price: 0, desc: "" },
       { name: "Печенье", weight: "", price: 0, desc: "" },
@@ -178,7 +216,7 @@ const CATEGORIES: MenuCategory[] = [
     desc: "Расширенный кофе-брейк с круассанами и брускеттами.",
     img: IMG.coffee,
     items: [
-      { name: "Круассан с куриным филе", weight: "", price: 1250, desc: "Кофе-брейк меню на 1 гостя" },
+      { name: "Круассан с куриным филе", weight: "", price: 1250, desc: "Кофе-брейк меню №2 на 1 гостя" },
       { name: "Брускетта с томатами", weight: "", price: 0, desc: "" },
       { name: "Мини-пирожное", weight: "", price: 0, desc: "" },
       { name: "Печенье с шоколадом", weight: "", price: 0, desc: "" },
@@ -191,7 +229,7 @@ const CATEGORIES: MenuCategory[] = [
     desc: "Премиум кофе-брейк с мини-бургерами и бужениной.",
     img: IMG.coffee,
     items: [
-      { name: "Мини-бургер с говядиной", weight: "", price: 1950, desc: "Кофе-брейк меню на 1 гостя" },
+      { name: "Мини-бургер с говядиной", weight: "", price: 1950, desc: "Кофе-брейк меню №3 на 1 гостя" },
       { name: "Круассан с бужениной", weight: "", price: 0, desc: "" },
       { name: "Клаб-сэндвич с лососем", weight: "", price: 0, desc: "" },
     ],
@@ -203,9 +241,20 @@ const CATEGORIES: MenuCategory[] = [
     desc: "Делюкс кофе-брейк с лососем и красной икрой.",
     img: IMG.coffee,
     items: [
-      { name: "Клаб-сэндвич с бужениной", weight: "", price: 2450, desc: "Кофе-брейк меню на 1 гостя" },
+      { name: "Клаб-сэндвич с бужениной", weight: "", price: 2450, desc: "Кофе-брейк меню №4 на 1 гостя" },
       { name: "Круассан с лососем", weight: "", price: 0, desc: "" },
       { name: "Блинный ролл с красной икрой", weight: "", price: 0, desc: "" },
+    ],
+  },
+  {
+    key: "delivery",
+    label: "Доставка закусок",
+    priceFrom: "660",
+    desc: "Канапе и брускетты с доставкой. Минимальный заказ 19\u202f000\u2009₽, за 48 часов. Бесплатная доставка по городу.",
+    img: IMG.canape,
+    items: [
+      { name: "Канапе ассорти — 6 штук", weight: "6 шт", price: 780, desc: "Минимальный заказ от 19 000 ₽" },
+      { name: "Брускетты ассорти — 3 штуки", weight: "3 шт", price: 660, desc: "Доставка за 48 часов · Бесплатно по городу" },
     ],
   },
 ];
@@ -322,7 +371,7 @@ function MenuCard({ item, index, dietaryFilter }: { item: MenuItem; index: numbe
       animate={isInView ? "visible" : "hidden"}
       whileHover={{ y: -6, boxShadow: "0 20px 50px rgba(0,0,0,0.1)" }}
       style={{
-        background: "#fff",
+        background: "#FFFFFF",
         borderRadius: "16px",
         padding: "1.5rem",
         border: "1px solid rgba(184,149,90,0.08)",
@@ -435,7 +484,7 @@ function MenuCard({ item, index, dietaryFilter }: { item: MenuItem; index: numbe
    Main Page Component
    ═══════════════════════════════════════════════════════════════ */
 export default function MenuPage() {
-  const [activeCat, setActiveCat] = useState("furshet");
+  const [activeCat, setActiveCat] = useState("furshet-2450");
   const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
   const [dietaryFilter, setDietaryFilter] = useState<DietaryKey | null>(null);
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
@@ -641,7 +690,7 @@ export default function MenuPage() {
       </section>
 
       {/* ─── TextMarquee with dish names ─── */}
-      <div style={{ background: "var(--color-cream)", padding: "1.2rem 0", overflow: "hidden" }}>
+      <div style={{ background: "#F5F3EE", padding: "1.2rem 0", overflow: "hidden" }}>
         <TextMarquee
           texts={[
             "Канапе с лососем", "Тарталетки с крем-сыром", "Брускетта с томатами",
@@ -670,7 +719,7 @@ export default function MenuPage() {
           position: "sticky",
           top: 0,
           zIndex: 100,
-          background: "rgba(254,253,251,0.92)",
+          background: "rgba(250,250,247,0.92)",
           backdropFilter: "blur(20px) saturate(1.4)",
           WebkitBackdropFilter: "blur(20px) saturate(1.4)",
           borderBottom: "1px solid rgba(184,149,90,0.1)",
@@ -741,7 +790,7 @@ export default function MenuPage() {
 
       {/* ═══ Dietary Filter Bar ═══ */}
       <div style={{
-        background: "var(--color-warm-white)",
+        background: "#FAFAF7",
         borderBottom: "1px solid var(--color-cream-darker)",
         padding: "0.6rem 0",
       }}>
@@ -802,8 +851,8 @@ export default function MenuPage() {
               padding: "5rem 2rem",
               background:
                 catIdx % 2 === 0
-                  ? "var(--color-warm-white)"
-                  : "var(--color-cream)",
+                  ? "#FAFAF7"
+                  : "#F5F3EE",
             }}
           >
             <div className="container">
@@ -920,14 +969,14 @@ export default function MenuPage() {
           </section>
 
           {/* Video Break after Фуршет and Кофе-брейк */}
-          {cat.key === "furshet" && (
+          {cat.key === "furshet-5350" && (
             <VideoBreak
               src={VID.kitchen}
               title="Искусство подачи"
               subtitle="Канапе, тарталетки и брускетта — 30+ позиций, которые исчезают со стола за минуту"
             />
           )}
-          {cat.key === "coffee" && (
+          {cat.key === "coffee-2450" && (
             <VideoBreak
               src={VID.cooking}
               title="Свежесть ингредиентов"
@@ -1085,7 +1134,7 @@ export default function MenuPage() {
       <section
         style={{
           padding: "5rem 0",
-          background: "var(--color-cream)",
+          background: "#F5F3EE",
         }}
       >
         <div className="container">
@@ -1151,7 +1200,7 @@ export default function MenuPage() {
       <section
         style={{
           padding: "5rem 2rem",
-          background: "var(--color-warm-white)",
+          background: "#FAFAF7",
         }}
       >
         <div className="container">

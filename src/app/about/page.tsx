@@ -252,7 +252,15 @@ export default function AboutPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1 }}
           >
-            Для нас организация кейтеринга — не просто работа, а увлечение, которое стало стилем жизни. С 2007 года мы виртуозно подбираем меню для любого события, завоевывая сердца даже самых искушённых гурманов. Профессионализм команды, использование только качественных продуктов, оперативное обслуживание, сотрудничество с лучшими площадками и безупречная подача блюд — философия, которая отражается в каждом моменте нашей работы.
+            Для нас организация кейтеринга – не просто работа, а увлечение, которое стало стилем жизни. С 2007 года мы виртуозно подбираем меню для любого события, завоевывая сердца даже самых искушенных гурманов. Профессионализм команды, использование только качественных продуктов, оперативное обслуживание, сотрудничество с лучшими площадками и безупречная подача блюд – философия, которая отражается в каждом моменте нашей работы.
+          </motion.p>
+          <motion.p
+            style={{ marginTop: "0.75rem", fontSize: "0.9rem", fontStyle: "italic", lineHeight: 1.7, color: "#B8955A", maxWidth: 600, marginLeft: "auto", marginRight: "auto" }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.1 }}
+          >
+            Дмитрий Нилов. Основатель компании
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -509,7 +517,7 @@ export default function AboutPage() {
       {/* ────────────────────────────────────────────
           5b. NOTABLE CLIENTS — Carousel / Grid
           ──────────────────────────────────────────── */}
-      <section aria-label="Наши клиенты" style={{ padding: "6rem 2rem", background: "#1A1A1A", position: "relative", overflow: "hidden" }}>
+      <section aria-label="Наши клиенты" style={{ padding: "6rem 2rem", background: "#FFFFFF", position: "relative", overflow: "hidden" }}>
         <MorphingBlob
           size={400}
           color1="rgba(184,149,90,0.08)"
@@ -526,11 +534,11 @@ export default function AboutPage() {
             text="Клиенты, которые выбрали Интерфуд"
             as="h2"
             className="section-title"
-            style={{ color: "#fff" }}
+            style={{ color: "#1A1A1A" }}
             stagger={0.03}
           />
           <Reveal delay={0.1}>
-            <p className="section-subtitle" style={{ marginBottom: "2.5rem", color: "rgba(255,255,255,0.5)" }}>
+            <p className="section-subtitle" style={{ marginBottom: "2.5rem", color: "var(--color-text-muted)" }}>
               Крупнейшие компании и культовые мероприятия Санкт-Петербурга
             </p>
           </Reveal>
@@ -539,7 +547,7 @@ export default function AboutPage() {
             {CLIENTS.map((client, i) => (
               <Reveal key={i} delay={i * 0.08}>
                 <div style={{
-                  background: "rgba(255,255,255,0.04)",
+                  background: "var(--color-warm-white)",
                   border: "1px solid rgba(184,149,90,0.15)",
                   borderRadius: 16,
                   padding: "2rem",
@@ -550,8 +558,8 @@ export default function AboutPage() {
                   onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.borderColor = "rgba(184,149,90,0.15)"; }}
                 >
                   <div style={{ fontSize: "2rem", marginBottom: "0.75rem" }}>{client.icon}</div>
-                  <h3 style={{ fontFamily: "var(--font-serif)", fontSize: "1.2rem", fontWeight: 400, color: "#fff", marginBottom: "0.5rem" }}>{client.name}</h3>
-                  <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.88rem", lineHeight: 1.6 }}>{client.event}</p>
+                  <h3 style={{ fontFamily: "var(--font-serif)", fontSize: "1.2rem", fontWeight: 400, color: "#1A1A1A", marginBottom: "0.5rem" }}>{client.name}</h3>
+                  <p style={{ color: "var(--color-text-muted)", fontSize: "0.88rem", lineHeight: 1.6 }}>{client.event}</p>
                 </div>
               </Reveal>
             ))}
@@ -633,11 +641,11 @@ export default function AboutPage() {
               <Reveal key={i} delay={i * 0.05}>
                 <div className="gallery-item">
                   <img src={item.img} alt={item.alt} loading="lazy" />
-                  <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", opacity: 0, transition: "opacity 0.4s", background: "linear-gradient(to top, rgba(26,26,26,0.5) 0%, transparent 50%)" }}
+                  <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", opacity: 0, transition: "opacity 0.4s", background: "linear-gradient(to top, rgba(250,250,247,0.85) 0%, transparent 50%)" }}
                     onMouseEnter={(e) => { (e.currentTarget as HTMLDivElement).style.opacity = "1"; }}
                     onMouseLeave={(e) => { (e.currentTarget as HTMLDivElement).style.opacity = "0"; }}
                   >
-                    <span style={{ color: "#fff", fontSize: "1.5rem", fontWeight: 300 }}>+</span>
+                    <span style={{ color: "#1A1A1A", fontSize: "1.5rem", fontWeight: 300 }}>+</span>
                   </div>
                 </div>
               </Reveal>
@@ -653,13 +661,13 @@ export default function AboutPage() {
         <div style={{ position: "absolute", inset: 0 }}>
           <img src={IMG.hall} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} loading="lazy" />
         </div>
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(26,26,26,0.82) 0%, rgba(27,42,74,0.72) 100%)" }} />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(250,250,247,0.88) 0%, rgba(254,253,251,0.92) 100%)" }} />
         <div style={{ position: "relative", zIndex: 2, padding: "6rem 2rem", textAlign: "center", maxWidth: 700, margin: "0 auto" }}>
           <Reveal>
-            <h2 style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(2rem, 5vw, 3.5rem)", fontWeight: 400, color: "#fff", lineHeight: 1.15, marginBottom: "1.5rem" }}>
+            <h2 style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(2rem, 5vw, 3.5rem)", fontWeight: 400, color: "#1A1A1A", lineHeight: 1.15, marginBottom: "1.5rem" }}>
               Станьте частью нашей <em style={{ color: "#D4B87C", fontStyle: "italic" }}>истории</em>
             </h2>
-            <p style={{ color: "rgba(255,255,255,0.7)", fontSize: "1rem", lineHeight: 1.7, marginBottom: "2rem" }}>
+            <p style={{ color: "var(--color-text-subtle)", fontSize: "1rem", lineHeight: 1.7, marginBottom: "2rem" }}>
               Оставьте заявку — и наш кейтеринг-консьерж свяжется с вами в течение 30 минут. Бесплатная консультация, расчёт и подбор меню.
             </p>
             <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap", alignItems: "center" }}>
@@ -683,8 +691,8 @@ export default function AboutPage() {
               <MagneticButton as="a" href="tel:+78129195911" className="btn-outline btn-outline-light">+7 (812) 919-59-11</MagneticButton>
               <MagneticButton as="a" href="https://wa.me/79119417205?text=Здравствуйте! Хочу узнать подробнее о кейтеринге." className="btn-outline btn-outline-light" target="_blank" rel="noopener noreferrer">WhatsApp</MagneticButton>
             </div>
-            <div style={{ display: "flex", gap: "2rem", justifyContent: "center", flexWrap: "wrap", marginTop: "1.5rem", color: "rgba(255,255,255,0.5)", fontSize: "0.85rem" }}>
-              <a href="mailto:interfood-catering@yandex.ru" style={{ color: "rgba(255,255,255,0.6)", textDecoration: "none", transition: "color 0.3s" }} onMouseEnter={(e) => { e.currentTarget.style.color = "#D4B87C"; }} onMouseLeave={(e) => { e.currentTarget.style.color = "rgba(255,255,255,0.6)"; }}>interfood-catering@yandex.ru</a>
+            <div style={{ display: "flex", gap: "2rem", justifyContent: "center", flexWrap: "wrap", marginTop: "1.5rem", color: "var(--color-text-muted)", fontSize: "0.85rem" }}>
+              <a href="mailto:interfood-catering@yandex.ru" style={{ color: "var(--color-text-muted)", textDecoration: "none", transition: "color 0.3s" }} onMouseEnter={(e) => { e.currentTarget.style.color = "#D4B87C"; }} onMouseLeave={(e) => { e.currentTarget.style.color = "var(--color-text-muted)"; }}>interfood-catering@yandex.ru</a>
               <span>Новолитовская ул., 15</span>
             </div>
           </Reveal>
@@ -694,23 +702,23 @@ export default function AboutPage() {
       {/* ────────────────────────────────────────────
           9. FOOTER
           ──────────────────────────────────────────── */}
-      <footer className="footer" role="contentinfo">
+      <footer className="footer" role="contentinfo" style={{ background: "#FAFAF7", borderTop: "1px solid rgba(184,149,90,0.12)" }}>
         <div className="container" style={{ padding: "5rem 2rem 2rem" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem" }}>
-            <Link href="/" style={{ fontFamily: "var(--font-serif)", fontSize: "1.5rem", fontWeight: 500, color: "#fff", textDecoration: "none", letterSpacing: "0.15em" }}>
+            <Link href="/" style={{ fontFamily: "var(--font-serif)", fontSize: "1.5rem", fontWeight: 500, color: "#1A1A1A", textDecoration: "none", letterSpacing: "0.15em" }}>
               ИНТЕРФУД
             </Link>
             <div style={{ display: "flex", gap: "1.5rem", flexWrap: "wrap" }}>
-              <Link href="/menu" style={{ color: "rgba(255,255,255,0.45)", textDecoration: "none", fontSize: "0.85rem" }}>Меню</Link>
-              <Link href="/wedding" style={{ color: "rgba(255,255,255,0.45)", textDecoration: "none", fontSize: "0.85rem" }}>Свадьбы</Link>
-              <Link href="/corporate" style={{ color: "rgba(255,255,255,0.45)", textDecoration: "none", fontSize: "0.85rem" }}>Корпоратив</Link>
-              <Link href="/about" style={{ color: "rgba(255,255,255,0.45)", textDecoration: "none", fontSize: "0.85rem" }}>О нас</Link>
-              <Link href="/reviews" style={{ color: "rgba(255,255,255,0.45)", textDecoration: "none", fontSize: "0.85rem" }}>Отзывы</Link>
-              <Link href="/" style={{ color: "rgba(255,255,255,0.45)", textDecoration: "none", fontSize: "0.85rem" }}>Главная</Link>
+              <Link href="/menu" style={{ color: "var(--color-text-muted)", textDecoration: "none", fontSize: "0.85rem" }}>Меню</Link>
+              <Link href="/wedding" style={{ color: "var(--color-text-muted)", textDecoration: "none", fontSize: "0.85rem" }}>Свадьбы</Link>
+              <Link href="/corporate" style={{ color: "var(--color-text-muted)", textDecoration: "none", fontSize: "0.85rem" }}>Корпоратив</Link>
+              <Link href="/about" style={{ color: "var(--color-text-muted)", textDecoration: "none", fontSize: "0.85rem" }}>О нас</Link>
+              <Link href="/reviews" style={{ color: "var(--color-text-muted)", textDecoration: "none", fontSize: "0.85rem" }}>Отзывы</Link>
+              <Link href="/" style={{ color: "var(--color-text-muted)", textDecoration: "none", fontSize: "0.85rem" }}>Главная</Link>
             </div>
-            <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "0.25rem", color: "rgba(255,255,255,0.35)", fontSize: "0.8rem" }}>
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "0.25rem", color: "var(--color-text-muted)", fontSize: "0.8rem" }}>
               <span>&copy; 2007–2026 Интерфуд Кейтеринг</span>
-              <span>Новолитовская ул., 15 · <a href="mailto:interfood-catering@yandex.ru" style={{ color: "rgba(255,255,255,0.45)", textDecoration: "none" }}>interfood-catering@yandex.ru</a></span>
+              <span>Новолитовская ул., 15 · <a href="mailto:interfood-catering@yandex.ru" style={{ color: "var(--color-text-muted)", textDecoration: "none" }}>interfood-catering@yandex.ru</a></span>
               <span>WhatsApp: +7 (911) 941-72-05</span>
             </div>
           </div>

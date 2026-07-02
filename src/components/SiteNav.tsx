@@ -289,7 +289,7 @@ export default function SiteNav() {
                       {link.highlight && (
                         <span style={{
                           marginLeft: "0.5rem", fontSize: "0.55rem",
-                          background: "var(--color-brand)", color: "#060607",
+                          background: "var(--color-brand)", color: "#FFFFFF",
                           padding: "0.15rem 0.4rem", borderRadius: "4px",
                           fontWeight: 700, textTransform: "uppercase",
                         }}>

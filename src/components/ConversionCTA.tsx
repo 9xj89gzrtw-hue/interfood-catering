@@ -25,7 +25,7 @@ export default function ConversionCTA({
   primaryHref = "/contacts",
   secondaryLabel = "Рассчитать стоимость",
   secondaryHref = "/calculator",
-  variant = "dark",
+  variant = "light",
 }: ConversionCTAProps) {
   const isDark = variant === "dark";
 
@@ -37,8 +37,8 @@ export default function ConversionCTA({
         overflow: "hidden",
         padding: "5rem 2rem",
         background: isDark
-          ? "linear-gradient(135deg, #1A1A1A 0%, #2A2520 100%)"
-          : "linear-gradient(135deg, #FEFCF9 0%, #FBF9F6 100%)",
+          ? "linear-gradient(135deg, #1A1714 0%, #2C2720 100%)"
+          : "linear-gradient(135deg, #FFFFFF 0%, #F5F3EE 100%)",
       }}
     >
       {/* Decorative elements */}

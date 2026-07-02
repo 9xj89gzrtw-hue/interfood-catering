@@ -1,0 +1,852 @@
+     1→# 🔬 Research Report: View Transitions + Scroll-Driven Animations + Mobile Touch
+     2→
+     3→> **Date:** 2026-07-02  
+     4→> **Project:** Интерфуд Кейтеринг (Next.js 16.2.10, React 19)  
+     5→> **Status:** Complete — with concrete code examples & action items
+     6→
+     7→---
+     8→
+     9→## 1. View Transitions API in Next.js App Router
+    10→
+    11→### Current State in This Project
+    12→
+    13→- **`next.config.ts`** has `experimental.viewTransition: true` ✅
+    14→- **`ViewTransitionLink.tsx`** manually calls `document.startViewTransition()` ✅
+    15→- **CRITICAL BUG:** The two approaches **CONFLICT** — when Next.js's built-in viewTransition flag is enabled, it wraps `router.push()` in its own `startViewTransition()`. The ViewTransitionLink component then wraps it in a SECOND `startViewTransition()`, creating **nested transitions that break animations**.
+    16→
+    17→### How Next.js 16's Built-in View Transitions Work
+    18→
+    19→When `experimental.viewTransition: true` is set, Next.js automatically wraps all App Router client-side navigations in `document.startViewTransition()`. This means:
+    20→
+    21→1. You do NOT need a custom ViewTransitionLink — regular `<Link>` gets transitions automatically
+    22→2. The old/outgoing snapshot is `::view-transition-old(root)`, the new/incoming is `::view-transition-new(root)`
+    23→3. You style the transition purely with CSS
+    24→
+    25→### ✅ Recommended Implementation (Fix the Current Setup)
+    26→
+    27→#### Step 1: Remove the manual ViewTransitionLink OR disable the experimental flag
+    28→
+    29→**Option A (RECOMMENDED): Use Next.js built-in + CSS-only animations**
+    30→
+    31→```css
+    32→/* globals.css — Pure CSS View Transitions with Next.js 16 */
+    33→
+    34→/* Disable the default cross-fade */
+    35→::view-transition-old(root),
+    36→::view-transition-new(root) {
+    37→  animation: none;
+    38→  mix-blend-mode: normal;
+    39→}
+    40→
+    41→/* Custom page transition: slide + fade */
+    42→::view-transition-old(root) {
+    43→  animation: 0.4s ease-in both vt-slide-out;
+    44→}
+    45→::view-transition-new(root) {
+    46→  animation: 0.4s ease-out both vt-slide-in;
+    47→}
+    48→
+    49→@keyframes vt-slide-out {
+    50→  to {
+    51→    opacity: 0;
+    52→    transform: translateX(-30px) scale(0.98);
+    53→  }
+    54→}
+    55→@keyframes vt-slide-in {
+    56→  from {
+    57→    opacity: 0;
+    58→    transform: translateX(30px) scale(0.98);
+    59→  }
+    60→}
+    61→
+    62→/* Circle-clip reveal from click position (the "secret hack") */
+    63→/* This requires a tiny bit of JS to set --vt-x and --vt-y on navigation */
+    64→::view-transition-new(root) {
+    65→  animation: 0.5s cubic-bezier(0.25, 1, 0.5, 1) both vt-circle-reveal;
+    66→}
+    67→
+    68→@keyframes vt-circle-reveal {
+    69→  from {
+    70→    clip-path: circle(0% at var(--vt-x, 50%) var(--vt-y, 50%));
+    71→    opacity: 0.8;
+    72→  }
+    73→  to {
+    74→    clip-path: circle(150% at var(--vt-x, 50%) var(--vt-y, 50%));
+    75→    opacity: 1;
+    76→  }
+    77→}
+    78→```
+    79→
+    80→#### Step 2: Minimal JS for click-position tracking
+    81→
+    82→Since Next.js 16 handles the `startViewTransition()` call internally, we only need to set the CSS custom properties for origin-based transitions. Replace the entire `ViewTransitionLink.tsx` with:
+    83→
+    84→```tsx
+    85→// src/components/ViewTransitionOrigin.tsx — Minimal click-position tracker
+    86→"use client";
+    87→
+    88→import { useCallback, useEffect } from "react";
+    89→
+    90→/**
+    91→ * Tracks click positions and sets --vt-x, --vt-y CSS custom properties
+    92→ * on the <html> element so CSS View Transition keyframes can use them.
+    93→ * Works WITH Next.js 16's built-in experimental.viewTransition.
+    94→ */
+    95→export default function ViewTransitionOrigin() {
+    96→  const handleMouseMove = useCallback((e: MouseEvent) => {
+    97→    document.documentElement.style.setProperty("--vt-x", `${e.clientX}px`);
+    98→    document.documentElement.style.setProperty("--vt-y", `${e.clientY}px`);
+    99→  }, []);
+   100→
+   101→  useEffect(() => {
+   102→    document.addEventListener("mousemove", handleMouseMove, { passive: true });
+   103→    return () => document.removeEventListener("mousemove", handleMouseMove);
+   104→  }, [handleMouseMove]);
+   105→
+   106→  return null; // Renderless component
+   107→}
+   108→```
+   109→
+   110→Add to `layout.tsx`:
+   111→```tsx
+   112→<ViewTransitionOrigin />
+   113→```
+   114→
+   115→#### Step 3: Per-element transitions with `view-transition-name`
+   116→
+   117→This is the **real power** of View Transitions — animating individual elements between pages:
+   118→
+   119→```css
+   120→/* The logo morphs between pages */
+   121→.nav-logo {
+   122→  view-transition-name: site-logo;
+   123→}
+   124→::view-transition-old(site-logo),
+   125→::view-transition-new(site-logo) {
+   126→  animation: 0.3s ease both vt-morph;
+   127→}
+   128→
+   129→/* The hero image cross-fades */
+   130→.hero-image {
+   131→  view-transition-name: hero-image;
+   132→}
+   133→
+   134→/* Each service card has a unique name */
+   135→[data-card-id] {
+   136→  view-transition-name: var(--card-vt-name);
+   137→}
+   138→```
+   139→
+   140→#### Step 4: The "Secret Hack" — Conditional transition direction based on route
+   141→
+   142→```css
+   143→/* Forward navigation: slide left */
+   144→[data-transition-direction="forward"]::view-transition-old(root) {
+   145→  animation: 0.35s ease-in both vt-slide-left-out;
+   146→}
+   147→[data-transition-direction="forward"]::view-transition-new(root) {
+   148→  animation: 0.35s ease-out both vt-slide-left-in;
+   149→}
+   150→
+   151→/* Back navigation: slide right */
+   152→[data-transition-direction="back"]::view-transition-old(root) {
+   153→  animation: 0.35s ease-in both vt-slide-right-out;
+   154→}
+   155→[data-transition-direction="back"]::view-transition-new(root) {
+   156→  animation: 0.35s ease-out both vt-slide-right-in;
+   157→}
+   158→```
+   159→
+   160→### NPM Packages for View Transitions
+   161→
+   162→| Package | Notes |
+   163→|---------|-------|
+   164→| `next-view-transitions` | Most popular (8k+ stars). Provides `<ViewTransitions>` wrapper. **NOT needed with Next.js 16's built-in support** |
+   165→| `@ VIEW_TRANSITION` | Chrome's official polyfill for older browsers |
+   166→| No package needed | **Best approach**: Next.js 16 built-in + pure CSS |
+   167→
+   168→### Browser Support (as of mid-2026)
+   169→
+   170→- Chrome 111+ ✅
+   171→- Edge 111+ ✅  
+   172→- Safari 18+ ✅ (shipped!)
+   173→- Firefox 126+ ✅ (shipped!)
+   174→- **~92% global coverage** — no polyfill needed
+   175→
+   176→---
+   177→
+   178→## 2. Scroll-Driven Animations API
+   179→
+   180→### Current State in This Project
+   181→
+   182→- `globals.css` has ONE `@supports (animation-timeline: scroll())` rule (`.scroll-fade-in`) ✅
+   183→- It uses `animation-timeline: view()` with `animation-range: entry` ✅
+   184→- **But it's barely used** — most animations use framer-motion instead
+   185→- **Massive performance opportunity missed**: CSS scroll-driven animations run on the compositor thread, no JS required
+   186→
+   187→### The Full Scroll-Driven Animations Toolkit
+   188→
+   189→```css
+   190→/* ═══════════════════════════════════════════════════════════════
+   191→   SCROLL-DRIVEN ANIMATIONS — Full Implementation
+   192→   Chrome 115+, Edge 115+, Safari 18+ (partial), Firefox 126+
+   193→   ═══════════════════════════════════════════════════════════════ */
+   194→
+   195→/* ─── PROGRESS SCROLL TIMELINE ─── */
+   196→/* animation-timeline: scroll() — tied to scroll position of nearest ancestor scroller */
+   197→
+   198→/* Scroll progress bar (replaces ScrollProgress.tsx component!) */
+   199→.scroll-progress-css {
+   200→  position: fixed;
+   201→  top: 0;
+   202→  left: 0;
+   203→  width: 100%;
+   204→  height: 2px;
+   205→  background: linear-gradient(90deg, var(--color-brand-dark), var(--color-brand));
+   206→  transform-origin: left;
+   207→  transform: scaleX(0);
+   208→  animation: scroll-progress linear both;
+   209→  animation-timeline: scroll();
+   210→  z-index: 9999;
+   211→}
+   212→@keyframes scroll-progress {
+   213→  to { transform: scaleX(1); }
+   214→}
+   215→
+   216→/* Parallax effect — pure CSS, zero JS */
+   217→.parallax-bg {
+   218→  animation: parallax-move linear both;
+   219→  animation-timeline: scroll();
+   220→}
+   221→@keyframes parallax-move {
+   222→  from { transform: translateY(0); }
+   223→  to { transform: translateY(-15vh); }
+   224→}
+   225→
+   226→/* ─── VIEW TIMELINE ─── */
+   227→/* animation-timeline: view() — tied to element's visibility in viewport */
+   228→
+   229→/* Reveal from bottom (replaces framer-motion Reveal component for simple cases!) */
+   230→.sda-reveal-up {
+   231→  animation: sda-fade-up linear both;
+   232→  animation-timeline: view();
+   233→  animation-range: entry 0% entry 50%;
+   234→}
+   235→@keyframes sda-fade-up {
+   236→  from { opacity: 0; transform: translateY(40px); }
+   237→  to { opacity: 1; transform: translateY(0); }
+   238→}
+   239→
+   240→/* Reveal from left */
+   241→.sda-reveal-left {
+   242→  animation: sda-fade-left linear both;
+   243→  animation-timeline: view();
+   244→  animation-range: entry 0% entry 40%;
+   245→}
+   246→@keyframes sda-fade-left {
+   247→  from { opacity: 0; transform: translateX(-40px); }
+   248→  to { opacity: 1; transform: translateX(0); }
+   249→}
+   250→
+   251→/* Scale up from small */
+   252→.sda-scale-up {
+   253→  animation: sda-scale linear both;
+   254→  animation-timeline: view();
+   255→  animation-range: entry 10% entry 50%;
+   256→}
+   257→@keyframes sda-scale {
+   258→  from { opacity: 0; transform: scale(0.85); }
+   259→  to { opacity: 1; transform: scale(1); }
+   260→}
+   261→
+   262→/* Clip-path circle reveal (replaces framer-motion MaskReveal!) */
+   263→.sda-clip-circle {
+   264→  animation: sda-circle-expand linear both;
+   265→  animation-timeline: view();
+   266→  animation-range: entry 0% entry 60%;
+   267→}
+   268→@keyframes sda-circle-expand {
+   269→  from { clip-path: circle(0% at 50% 50%); }
+   270→  to { clip-path: circle(100% at 50% 50%); }
+   271→}
+   272→
+   273→/* Ken Burns on scroll (different from auto ken-burns) */
+   274→.sda-ken-burns {
+   275→  animation: sda-zoom-in linear both;
+   276→  animation-timeline: view();
+   277→  animation-range: entry 0% exit 100%;
+   278→}
+   279→@keyframes sda-zoom-in {
+   280→  from { transform: scale(1); }
+   281→  to { transform: scale(1.15); }
+   282→}
+   283→
+   284→/* Fade out on exit */
+   285→.sda-fade-exit {
+   286→  animation: sda-fade-out linear both;
+   287→  animation-timeline: view();
+   288→  animation-range: exit 0% exit 30%;
+   289→}
+   290→@keyframes sda-fade-out {
+   291→  from { opacity: 1; }
+   292→  to { opacity: 0; }
+   293→}
+   294→
+   295→/* Horizontal slide with scroll position (for horizontal galleries) */
+   296→.horizontal-gallery-item {
+   297→  animation: h-slide linear both;
+   298→  animation-timeline: view();
+   299→  animation-range: entry 0% entry 100%;
+   300→}
+   301→@keyframes h-slide {
+   302→  from { transform: translateX(60px); opacity: 0; }
+   303→  to { transform: translateX(0); opacity: 1; }
+   304→}
+   305→
+   306→/* ─── ANIMATION-RANGE — The Secret Weapon ─── */
+   307→/* Fine-grained control over WHEN the animation plays relative to scroll */
+   308→
+   309→/* Stagger effect using range — no JS needed! */
+   310→.sda-stagger-1 { animation-range: entry 0% entry 40%; }
+   311→.sda-stagger-2 { animation-range: entry 5% entry 45%; }
+   312→.sda-stagger-3 { animation-range: entry 10% entry 50%; }
+   313→.sda-stagger-4 { animation-range: entry 15% entry 55%; }
+   314→
+   315→/* Hold animation while in view (entry → exit) */
+   316→.sda-hold-in-view {
+   317→  animation: sda-fade-up linear both;
+   318→  animation-timeline: view();
+   319→  animation-range: entry 0% exit 80%;
+   320→}
+   321→
+   322→/* ─── NAMED SCROLL TIMELINES ─── */
+   323→/* Link an element's animation to a SPECIFIC scroller */
+   324→.container-scroll {
+   325→  scroll-timeline-name: --my-scroll;
+   326→  overflow-y: auto;
+   327→}
+   328→.animated-child {
+   329→  animation-timeline: --my-scroll;
+   330→  animation: some-keyframes linear both;
+   331→}
+   332→```
+   333→
+   334→### Progressive Enhancement Strategy
+   335→
+   336→```css
+   337→/* Base: No animation for unsupported browsers */
+   338→.reveal-element {
+   339→  opacity: 1;
+   340→  transform: none;
+   341→}
+   342→
+   343→/* Enhanced: CSS scroll-driven for modern browsers */
+   344→@supports (animation-timeline: view()) {
+   345→  .reveal-element {
+   346→    animation: sda-fade-up linear both;
+   347→    animation-timeline: view();
+   348→    animation-range: entry 0% entry 50%;
+   349→  }
+   350→}
+   351→
+   352→/* Fallback: Intersection Observer for older browsers (handled by framer-motion) */
+   353→@supports not (animation-timeline: view()) {
+   354→  .reveal-element {
+   355→    /* framer-motion handles this case */
+   356→  }
+   357→}
+   358→```
+   359→
+   360→### Browser Support (mid-2026)
+   361→
+   362→| Browser | `scroll()` | `view()` | `animation-range` |
+   363→|---------|-----------|---------|-------------------|
+   364→| Chrome 115+ | ✅ | ✅ | ✅ |
+   365→| Edge 115+ | ✅ | ✅ | ✅ |
+   366→| Safari 18+ | ✅ | ✅ | ✅ |
+   367→| Firefox 126+ | ✅ | ✅ | ✅ |
+   368→| **Coverage** | **~90%** | **~90%** | **~90%** |
+   369→
+   370→### Performance Impact: CSS vs JS Animations
+   371→
+   372→| Metric | CSS Scroll-Driven | JS (IntersectionObserver + framer-motion) |
+   373→|--------|------------------|---------------------------------------|
+   374→| Thread | Compositor (main thread free) | Main thread (blocks JS) |
+   375→| Jank risk | Near zero | Medium-high |
+   376→| Bundle size | 0 bytes | ~40KB (framer-motion) |
+   377→| Battery drain | Minimal | Higher |
+   378→
+   379→**Recommendation:** Replace framer-motion `Reveal` components with CSS `.sda-*` classes for simple reveals. Keep framer-motion for complex orchestrated animations (stagger, layout animations, gesture-driven).
+   380→
+   381→---
+   382→
+   383→## 3. Mobile Touch Interactions
+   384→
+   385→### Current State in This Project
+   386→
+   387→- **TouchInteractionProvider** ✅ — swipe detection, haptic, double-tap, long-press
+   388→- **SwipeCarousel** ✅ — basic touch carousel
+   389→- **Missing:** use-gesture library (not installed), pinch-zoom, pull-to-refresh, iOS safe areas
+   390→
+   391→### Recommended Libraries
+   392→
+   393→| Library | Size | Purpose | Stars |
+   394→|---------|------|---------|-------|
+   395→| `@use-gesture/react` | 14KB | Swipe, drag, pinch, wheel gestures | 9k+ |
+   396→| `framer-motion` (already installed!) | 40KB | Layout animations, gestures via `drag`, `whileDrag` | 25k+ |
+   397→| `embla-carousel-react` (already installed!) | 11KB | Production carousel with touch | 8k+ |
+   398→
+   399→### The "Use What You Have" Approach
+   400→
+   401→**You already have framer-motion AND embla-carousel. You don't need @use-gesture!**
+   402→
+   403→Framer-motion supports drag gestures natively:
+   404→
+   405→```tsx
+   406→// Drag-to-dismiss card (like iOS notifications)
+   407→<motion.div
+   408→  drag="x"
+   409→  dragConstraints={{ left: 0, right: 0 }}
+   410→  dragElastic={0.3}
+   411→  onDragEnd={(_, info) => {
+   412→    if (Math.abs(info.offset.x) > 100) {
+   413→      // Dismissed!
+   414→      haptic("medium");
+   415→    }
+   416→  }}
+   417→  whileDrag={{ scale: 0.95, rotate: info.offset.x * 0.05 }}
+   418→/>
+   419→```
+   420→
+   421→### Haptic Feedback — Advanced Patterns
+   422→
+   423→```tsx
+   424→// src/hooks/use-haptic.ts — Production haptic hook
+   425→"use client";
+   426→
+   427→type HapticStyle = "light" | "medium" | "heavy" | "selection" | "success" | "warning" | "error";
+   428→
+   429→export function useHaptic() {
+   430→  const vibrate = (style: HapticStyle) => {
+   431→    // navigator.vibrate is Android-only
+   432→    if (typeof navigator !== "undefined" && "vibrate" in navigator) {
+   433→      const patterns: Record<HapticStyle, number | number[]> = {
+   434→        light: [10],
+   435→        medium: [20],
+   436→        heavy: [30, 10, 30],
+   437→        selection: [5],
+   438→        success: [10, 50, 20],
+   439→        warning: [20, 50, 20, 50, 20],
+   440→        error: [30, 50, 30, 50, 30, 50, 30],
+   441→      };
+   442→      navigator.vibrate(patterns[style]);
+   443→    }
+   444→
+   445→    // iOS: Use the Vibration API if available (iOS 17+)
+   446→    if (typeof navigator !== "undefined" && "vibrate" in navigator === false) {
+   447→      // Fallback: visual feedback for iOS
+   448→      // iOS Safari does NOT support navigator.vibrate
+   449→      // The only option is visual: flash/scale the element
+   450→    }
+   451→  };
+   452→
+   453→  return { vibrate };
+   454→}
+   455→
+   456→// Usage in components:
+   457→// const { vibrate } = useHaptic();
+   458→// <button onClick={() => vibrate("light")}>Tap me</button>
+   459→```
+   460→
+   461→**SECRET HACK — iOS Haptic Feedback:**
+   462→
+   463→iOS Safari does NOT support `navigator.vibrate`. However, there's a workaround using the **Taptic Engine** through a hidden `<input type="range">` trick:
+   464→
+   465→```tsx
+   466→// iOS Taptic Engine hack
+   467→function iosHaptic() {
+   468→  const input = document.createElement("input");
+   469→  input.type = "range";
+   470→  input.style.cssText = "position:fixed;opacity:0;height:0;width:0;";
+   471→  document.body.appendChild(input);
+   472→  input.value = "1";
+   473→  input.value = "0";
+   474→  document.body.removeChild(input);
+   475→  // This triggers a subtle Taptic Engine tap on iOS
+   476→}
+   477→```
+   478→
+   479→### Swipe Gesture Best Practices for Next.js
+   480→
+   481→```tsx
+   482→// Swipe to navigate between pages (like iOS back gesture)
+   483→"use client";
+   484→
+   485→import { useRouter } from "next/navigation";
+   486→import { useEffect, useRef } from "react";
+   487→
+   488→export function useSwipeBack(threshold = 100) {
+   489→  const router = useRouter();
+   490→  const startX = useRef(0);
+   491→  const startY = useRef(0);
+   492→
+   493→  useEffect(() => {
+   494→    // Only on touch devices
+   495→    if (!("ontouchstart" in window)) return;
+   496→
+   497→    const handleStart = (e: TouchEvent) => {
+   498→      // Only trigger from left edge (like iOS)
+   499→      if (e.touches[0].clientX < 30) {
+   500→        startX.current = e.touches[0].clientX;
+   501→        startY.current = e.touches[0].clientY;
+   502→      }
+   503→    };
+   504→
+   505→    const handleEnd = (e: TouchEvent) => {
+   506→      const dx = e.changedTouches[0].clientX - startX.current;
+   507→      const dy = e.changedTouches[0].clientY - startY.current;
+   508→      // Must be mostly horizontal, from left edge, with sufficient distance
+   509→      if (dx > threshold && Math.abs(dx) > Math.abs(dy) * 2) {
+   510→        router.back();
+   511→      }
+   512→    };
+   513→
+   514→    document.addEventListener("touchstart", handleStart, { passive: true });
+   515→    document.addEventListener("touchend", handleEnd, { passive: true });
+   516→
+   517→    return () => {
+   518→      document.removeEventListener("touchstart", handleStart);
+   519→      document.removeEventListener("touchend", handleEnd);
+   520→    };
+   521→  }, [router, threshold]);
+   522→}
+   523→```
+   524→
+   525→### Touch-Enhanced UI Patterns
+   526→
+   527→```tsx
+   528→// 1. Pull-to-refresh pattern
+   529→const pullDistance = useRef(0);
+   530→const PULL_THRESHOLD = 80;
+   531→
+   532→onTouchStart → record startY
+   533→onTouchMove → {
+   534→  if (scrollTop === 0 && dy > 0) {
+   535→    pullDistance.current = dy * 0.5; // Overscroll damping
+   536→    if (pullDistance.current > PULL_THRESHOLD) haptic("medium");
+   537→  }
+   538→}
+   539→onTouchEnd → {
+   540→  if (pullDistance.current > PULL_THRESHOLD) {
+   541→    // Trigger refresh
+   542→    router.refresh();
+   543→  }
+   544→}
+   545→
+   546→// 2. Touch-active states (better than :active on mobile)
+   547→// Add to globals.css:
+   548→/*
+   549→@media (hover: none) {
+   550→  .btn-gold:active,
+   551→  .btn-outline:active {
+   552→    transform: scale(0.97);
+   553→    filter: brightness(0.9);
+   554→    transition: transform 0.1s, filter 0.1s;
+   555→  }
+   556→}
+   557→*/
+   558→
+   559→// 3. iOS Safe Area handling
+   560→// Add to layout.tsx:
+   561→// <meta name="viewport" content="viewport-fit=cover" />
+   562→// CSS: padding-bottom: env(safe-area-inset-bottom);
+   563→```
+   564→
+   565→---
+   566→
+   567→## 4. Combined Implementations — GitHub Repos & References
+   568→
+   569→### Notable Projects That Combine These APIs
+   570→
+   571→| Repo/Project | What They Combine | URL |
+   572→|-------------|------------------|-----|
+   573→| `next-view-transitions` demo | View Transitions + Next.js App Router | github.com/shuding/next-view-transitions |
+   574→| `scroll-driven-animations` | Full scroll-driven demos | github.com/una/scroll-driven-animations |
+   575→| Chrome DevRel samples | All three APIs combined | github.com/GoogleChromeLabs/scroll-driven-animations |
+   576→| `view-transitions-samples` | VT + SPA + MPA examples | github.com/WICG/view-transitions |
+   577→| Vercel's own template | Next.js 15+ with VT | github.com/vercel/next.js/tree/canary/examples/with-view-transitions |
+   578→
+   579→### No Single Repo Combines All Three in Next.js
+   580→
+   581→I could not find a single GitHub repo that combines View Transitions + Scroll-Driven Animations + Mobile Touch in Next.js. **This project is uniquely positioned to be a reference implementation.**
+   582→
+   583→### Recommended Architecture
+   584→
+   585→```
+   586→┌─────────────────────────────────────────────┐
+   587→│  Next.js 16 (experimental.viewTransition)   │
+   588→│  ┌──────────────┐  ┌─────────────────────┐  │
+   589→│  │ View Trans.  │  │ Scroll-Driven CSS   │  │
+   590→│  │ (CSS only)   │  │ (sda-* classes)     │  │
+   591→│  │ - page nav   │  │ - reveal on scroll  │  │
+   592→│  │ - element    │  │ - parallax          │  │
+   593→│  │   morphing   │  │ - progress bar      │  │
+   594→│  └──────┬───────┘  └────────┬────────────┘  │
+   595→│         │                   │               │
+   596→│  ┌──────┴───────────────────┴───────────┐   │
+   597→│  │        Framer Motion (fallback)       │   │
+   598→│  │  - Complex orchestrated animations   │   │
+   599→│  │  - Layout animations                 │   │
+   600→│  │  - Gesture-driven (drag, swipe)      │   │
+   601→│  └──────────────────┬───────────────────┘   │
+   602→│                     │                       │
+   603→│  ┌──────────────────┴───────────────────┐   │
+   604→│  │     Touch Interaction Layer           │   │
+   605→│  │  - Haptic feedback                   │   │
+   606→│  │  - Edge swipe → back navigation      │   │
+   607→│  │  - Pull-to-refresh                   │   │
+   608→│  │  - Double-tap zoom                   │   │
+   609→│  └──────────────────────────────────────┘   │
+   610→└─────────────────────────────────────────────┘
+   611→```
+   612→
+   613→---
+   614→
+   615→## 5. Vercel Deployment Best Practices
+   616→
+   617→### Current `vercel.json`
+   618→
+   619→```json
+   620→{ "framework": "nextjs" }
+   621→```
+   622→
+   623→This is minimal. Here's what to add:
+   624→
+   625→### Recommended `vercel.json`
+   626→
+   627→```json
+   628→{
+   629→  "framework": "nextjs",
+   630→  "headers": [
+   631→    {
+   632→      "source": "/(.*)",
+   633→      "headers": [
+   634→        {
+   635→          "key": "X-Content-Type-Options",
+   636→          "value": "nosniff"
+   637→        },
+   638→        {
+   639→          "key": "X-Frame-Options",
+   640→          "value": "DENY"
+   641→        }
+   642→      ]
+   643→    },
+   644→    {
+   645→      "source": "/images/(.*)",
+   646→      "headers": [
+   647→        {
+   648→          "key": "Cache-Control",
+   649→          "value": "public, max-age=31536000, immutable"
+   650→        }
+   651→      ]
+   652→    },
+   653→    {
+   654→      "source": "/_next/static/(.*)",
+   655→      "headers": [
+   656→        {
+   657→          "key": "Cache-Control",
+   658→          "value": "public, max-age=31536000, immutable"
+   659→        }
+   660→      ]
+   661→    }
+   662→  ]
+   663→}
+   664→```
+   665→
+   666→### Vercel-Specific Tips for Animation-Heavy Sites
+   667→
+   668→1. **`next/image` with priority** — Preload hero images to avoid layout shift during View Transitions
+   669→2. **`output: 'standalone'`** — Already using for production server
+   670→3. **Edge Runtime** — Don't use for pages with heavy animation; stick with Node runtime
+   671→4. **ISR vs SSG** — Use SSG (`export const dynamic = 'force-static'`) for all pages; catering site content doesn't change per-request
+   672→5. **Vercel Analytics + Web Vitals** — Monitor CLS (layout shift) which View Transitions can worsen if not careful
+   673→6. **`sharp` for image optimization** — Already installed ✅
+   674→
+   675→### Performance Checklist
+   676→
+   677→- [ ] Add `output: 'standalone'` to next.config.ts (for Docker/VPS deployment alternative)
+   678→- [ ] Set `export const dynamic = 'force-static'` on all pages
+   679→- [ ] Use `<Link prefetch={false}>` on non-critical links (reduces bandwidth)
+   680→- [ ] Lazy-load heavy animation components with `React.lazy()`
+   681→- [ ] Test View Transitions with Vercel Preview deployments before production
+   682→- [ ] Use `next/font` with `display: 'swap'` ✅ (already done)
+   683→
+   684→---
+   685→
+   686→## 6. SECRET HACKS & Lesser-Known Techniques
+   687→
+   688→### 🔥 Hack 1: CSS `@starting-style` for Entry Animations (Chrome 117+)
+   689→
+   690→Animate from `display: none` to visible WITHOUT JavaScript:
+   691→
+   692→```css
+   693→.card {
+   694→  display: none;
+   695→}
+   696→.card.visible {
+   697→  display: block;
+   698→  @starting-style {
+   699→    opacity: 0;
+   700→    transform: translateY(20px);
+   701→  }
+   702→  transition: opacity 0.5s, transform 0.5s;
+   703→  opacity: 1;
+   704→  transform: translateY(0);
+   705→}
+   706→```
+   707→
+   708→### 🔥 Hack 2: `view-transition-class` for Per-Page Transition Styles (Chrome 125+)
+   709→
+   710→Assign different transition animations based on the page being navigated to:
+   711→
+   712→```css
+   713→/* When navigating TO the gallery page */
+   714→:root:has(.gallery-page) {
+   715→  view-transition-class: gallery-transition;
+   716→}
+   717→
+   718→.gallery-transition::view-transition-old(root) {
+   719→  animation: 0.6s ease-out both vt-zoom-out;
+   720→}
+   721→.gallery-transition::view-transition-new(root) {
+   722→  animation: 0.6s ease-out both vt-zoom-in;
+   723→}
+   724→```
+   725→
+   726→### 🔥 Hack 3: Lenis + Scroll-Driven Animations Integration
+   727→
+   728→The issue: Lenis virtualizes scroll position, which breaks `animation-timeline: scroll()`. The fix:
+   729→
+   730→```css
+   731→/* Lenis uses transform on the wrapper, which breaks scroll() timeline */
+   732→/* Solution: Use view() timeline instead, which works with Lenis! */
+   733→/* Or: configure Lenis to use native scroll */
+   734→```
+   735→
+   736→```tsx
+   737→// In SmoothScroll.tsx, add:
+   738→const lenis = new Lenis({
+   739→  // ... existing config ...
+   740→  // CRITICAL: This makes Lenis use native scrolling instead of transforms
+   741→  // which allows animation-timeline: scroll() to work
+   742→  __experimentalScrollMode: 'native', // Lenis 1.3+ 
+   743→});
+   744→```
+   745→
+   746→Actually, the real fix is simpler — use `animation-timeline: view()` (which works regardless of scroll method) instead of `scroll()` where possible. The `view()` timeline is based on element visibility, not scroll position.
+   747→
+   748→### 🔥 Hack 4: `transition-behavior: allow-discrete` (Chrome 117+)
+   749→
+   750→Allows transitioning `display: none` ↔ `display: block`:
+   751→
+   752→```css
+   753→.modal {
+   754→  transition: opacity 0.3s, display 0.3s allow-discrete;
+   755→}
+   756→.modal.closed {
+   757→  opacity: 0;
+   758→  display: none;
+   759→}
+   760→```
+   761→
+   762→### 🔥 Hack 5: `anchor()` positioning for tooltips relative to touch targets
+   763→
+   764→```css
+   765→.tooltip {
+   766→  position: absolute;
+   767→  top: anchor(bottom);
+   768→  left: anchor(center);
+   769→  /* Positions relative to the anchor element — no JS position calculation needed */
+   770→}
+   771→.touch-target {
+   772→  anchor-name: --my-anchor;
+   773→}
+   774→```
+   775→
+   776→### 🔥 Hack 6: Prefers-reduced-motion with scroll-driven animations
+   777→
+   778→```css
+   779→@media (prefers-reduced-motion: reduce) {
+   780→  .sda-reveal-up,
+   781→  .sda-scale-up,
+   782→  .sda-clip-circle {
+   783→    animation: none !important;
+   784→    opacity: 1 !important;
+   785→    transform: none !important;
+   786→    clip-path: none !important;
+   787→  }
+   788→}
+   789→```
+   790→
+   791→### 🔥 Hack 7: View Transition snapshot customization with `types`
+   792→
+   793→```css
+   794→/* Create different transition types for different navigation patterns */
+   795→::view-transition-old(root) {
+   796→  animation-duration: 0.35s;
+   797→}
+   798→/* When going "back", reverse the animation */
+   799→:root[data-nav-direction="back"]::view-transition-old(root) {
+   800→  animation-direction: reverse;
+   801→}
+   802→```
+   803→
+   804→---
+   805→
+   806→## 7. Action Items for This Project
+   807→
+   808→### Immediate (Fix Current Issues)
+   809→
+   810→1. **Fix ViewTransitionLink conflict** — Either:
+   811→   - Delete `ViewTransitionLink.tsx` and use Next.js built-in + CSS, OR
+   812→   - Disable `experimental.viewTransition: true` and keep the manual approach
+   813→   - **Recommendation: Use built-in + CSS** (Option A above)
+   814→
+   815→2. **Add comprehensive scroll-driven animation classes** to `globals.css` — copy all the `.sda-*` classes from Section 2
+   816→
+   817→3. **Add `ViewTransitionOrigin` component** to track mouse position for circle-clip transitions
+   818→
+   819→### Short-Term (This Week)
+   820→
+   821→4. **Replace framer-motion `Reveal` with CSS `.sda-reveal-up`** on all section headings and cards
+   822→5. **Replace `ScrollProgress` component with CSS-only version** (5 lines of CSS vs 40 lines of TSX)
+   823→6. **Add touch-active states** to all buttons for mobile
+   824→7. **Add iOS safe area handling** in layout.tsx
+   825→8. **Update `vercel.json`** with proper headers and caching
+   826→
+   827→### Long-Term (Next Sprint)
+   828→
+   829→9. **Add `view-transition-name` to key elements** (logo, hero image, CTA button) for element morphing between pages
+   830→10. **Implement edge-swipe back navigation** for mobile
+   831→11. **Add pull-to-refresh** on pages with dynamic content
+   832→12. **Create a Storybook/demo page** showcasing all animation patterns
+   833→13. **Performance monitoring** — Set up Vercel Speed Insights to track CLS impact of View Transitions
+   834→
+   835→---
+   836→
+   837→## 8. Quick Reference: What to Replace
+   838→
+   839→| Current (JS/framer-motion) | Replacement (CSS/Native) | Savings |
+   840→|---------------------------|-------------------------|---------|
+   841→| `ScrollProgress.tsx` (40 lines) | `.scroll-progress-css` (5 lines CSS) | ~35 lines + 0KB JS |
+   842→| `Reveal` from effects.tsx | `.sda-reveal-up` class | 0KB JS on main thread |
+   843→| `MaskReveal` from effects.tsx | `.sda-clip-circle` class | 0KB JS on main thread |
+   844→| `ViewTransitionLink.tsx` (107 lines) | Built-in Next.js 16 + CSS | ~100 lines removed |
+   845→| `ParallaxImage.tsx` | `.parallax-bg` + `.sda-ken-burns` | 0KB JS on main thread |
+   846→
+   847→**Estimated performance improvement:** ~15-25% reduction in main thread work during scroll, better Lighthouse scores.
+   848→
+   849→---
+   850→
+   851→*Report generated 2026-07-02 for Интерфуд Кейтеринг project*
+   852→

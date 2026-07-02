@@ -70,7 +70,7 @@ export default function KineticFontSection() {
         alignItems: "center",
         justifyContent: "center",
         overflow: "hidden",
-        background: "linear-gradient(180deg, #0D0B08 0%, #1A1714 30%, #1E1B16 70%, #0D0B08 100%)",
+        background: "linear-gradient(180deg, #FAFAF7 0%, #F5F3EE 30%, #EDE9E1 70%, #FAFAF7 100%)",
       }}
     >
       {/* Radial glow that follows mouse */}

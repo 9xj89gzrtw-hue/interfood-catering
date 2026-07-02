@@ -45,7 +45,7 @@ export default class ErrorBoundary extends Component<Props, State> {
             margin: "4rem auto",
           }}
         >
-          <h2 style={{ fontFamily: "var(--font-serif)", fontSize: "1.5rem", marginBottom: "1rem", color: "var(--color-dark, #1A1A1A)" }}>
+          <h2 style={{ fontFamily: "var(--font-serif)", fontSize: "1.5rem", marginBottom: "1rem", color: "var(--color-dark, #1A1714)" }}>
             Что-то пошло не так
           </h2>
           <p style={{ marginBottom: "1.5rem", lineHeight: 1.6 }}>

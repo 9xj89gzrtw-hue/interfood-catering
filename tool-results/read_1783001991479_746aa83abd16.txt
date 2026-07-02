@@ -1,0 +1,1585 @@
+     1→     1→"use client";
+     2→     2→
+     3→     3→import { useState, useRef } from "react";
+     4→     4→import {
+     5→     5→  motion,
+     6→     6→  AnimatePresence,
+     7→     7→  useInView,
+     8→     8→  useScroll,
+     9→     9→  useTransform,
+    10→    10→} from "framer-motion";
+    11→    11→import Link from "next/link";
+    12→    12→import SiteNav from "@/components/SiteNav";
+    13→    13→import TextReveal from "@/components/TextReveal";
+    14→    14→import MagneticButton from "@/components/MagneticButton";
+    15→    15→import TiltCard from "@/components/TiltCard";
+    16→    16→import ImageReveal from "@/components/ImageReveal";
+    17→    17→import FluidBackground from "@/components/FluidBackground";
+    18→    18→import KineticText from "@/components/KineticText";
+    19→    19→import MorphingBlob from "@/components/MorphingBlob";
+    20→    20→import ConfettiButton from "@/components/ConfettiButton";
+    21→    21→import ParticleField from "@/components/ParticleField";
+    22→    22→import LottiePlaceholder from "@/components/LottiePlaceholder";
+    23→    23→
+    24→    24→/* ═══════════════════════════════════════════════════════════════
+    25→    25→   ИНТЕРФУД КЕЙТЕРИНГ — Контакты / Contacts Page
+    26→    26→   ═══════════════════════════════════════════════════════════════ */
+    27→    27→
+    28→    28→const IMG = {
+    29→    29→  hero: "/images/31ca0a361dc4.jpg",
+    30→    30→  office: "/images/5a35d18ab4c2.jpg",
+    31→    31→  kitchen: "/images/a2fbd3b8447b.jpg",
+    32→    32→};
+    33→    33→
+    34→    34→const CONTACT_CARDS = [
+    35→    35→  {
+    36→    36→    icon: "☎",
+    37→    37→    title: "Телефон",
+    38→    38→    value: "+7 (812) 919-59-11",
+    39→    39→    href: "tel:+78129195911",
+    40→    40→    desc: "Звоните пн–вс с 9:00 до 22:00",
+    41→    41→  },
+    42→    42→  {
+    43→    43→    icon: "✉",
+    44→    44→    title: "Email",
+    45→    45→    value: "interfood-catering@yandex.ru",
+    46→    46→    href: "mailto:interfood-catering@yandex.ru",
+    47→    47→    desc: "Ответим в течение 30 минут",
+    48→    48→  },
+    49→    49→  {
+    50→    50→    icon: "◉",
+    51→    51→    title: "Адрес",
+    52→    52→    value: "Новолитовская ул., 15",
+    53→    53→    href: "https://yandex.ru/maps/org/interfud/165615375458",
+    54→    54→    desc: "Санкт-Петербург",
+    55→    55→  },
+    56→    56→  {
+    57→    57→    icon: "◷",
+    58→    58→    title: "Часы работы",
+    59→    59→    value: "Пн–Вс: 9:00–22:00",
+    60→    60→    href: null,
+    61→    61→    desc: "Без выходных и праздников",
+    62→    62→  },
+    63→    63→  {
+    64→    64→    icon: "💬",
+    65→    65→    title: "WhatsApp / Telegram",
+    66→    66→    value: "+7 (911) 941-72-05",
+    67→    67→    href: "https://wa.me/79119417205?text=Здравствуйте! Хочу узнать подробнее о кейтеринге.",
+    68→    68→    desc: "Пишите — отвечаем за 5 минут",
+    69→    69→  },
+    70→    70→];
+    71→    71→
+    72→    72→const EVENT_TYPES = [
+    73→    73→  { value: "wedding", label: "Свадьба" },
+    74→    74→  { value: "corporate", label: "Корпоратив" },
+    75→    75→  { value: "furshet", label: "Фуршет" },
+    76→    76→  { value: "coffee", label: "Кофе-брейк" },
+    77→    77→  { value: "jubilee", label: "Юбилей" },
+    78→    78→  { value: "birthday", label: "День рождения" },
+    79→    79→  { value: "newyear", label: "Новый год" },
+    80→    80→  { value: "outdoor", label: "Выездное мероприятие" },
+    81→    81→  { value: "other", label: "Другое" },
+    82→    82→];
+    83→    83→
+    84→    84→const SOCIAL_LINKS = [
+    85→    85→  {
+    86→    86→    name: "ВКонтакте",
+    87→    87→    href: "https://vk.com/nilovcatering",
+    88→    88→    icon: (
+    89→    89→      <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28">
+    90→    90→        <path d="M15.07 2H8.93C3.33 2 2 3.33 2 8.93v6.14C2 20.67 3.33 22 8.93 22h6.14C20.67 22 22 20.67 22 15.07V8.93C22 3.33 20.67 2 15.07 2zm3.08 14.27h-1.57c-.6 0-.78-.48-1.86-1.56-1-.93-1.39-1.05-1.63-1.05-.34 0-.44.1-.44.57v1.43c0 .41-.13.65-1.2.65-1.77 0-3.74-1.07-5.12-3.07-2.08-2.92-2.65-5.12-2.65-5.56 0-.25.1-.48.57-.48h1.57c.42 0 .58.19.74.64.81 2.36 2.18 4.43 2.74 4.43.21 0 .31-.1.31-.65V8.71c-.06-1.16-.68-1.26-.68-1.67 0-.19.16-.39.42-.39h2.47c.35 0 .48.19.48.62v3.34c0 .35.16.48.26.48.21 0 .38-.13.77-.52 1.2-1.34 2.05-3.41 2.05-3.41.11-.24.3-.48.71-.48h1.57c.48 0 .58.25.48.59-.2.94-2.16 3.71-2.16 3.71-.17.28-.23.41 0 .72.17.21.72.71 1.09 1.14.68.77 1.2 1.42 1.34 1.87.15.44-.06.67-.51.67z" />
+    91→    91→      </svg>
+    92→    92→    ),
+    93→    93→  },
+    94→    94→  {
+    95→    95→    name: "Instagram",
+    96→    96→    href: "https://www.instagram.com/nilov_catering/",
+    97→    97→    icon: (
+    98→    98→      <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28">
+    99→    99→        <path d="M12 2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.217 2.428.465.66.254 1.216.598 1.772 1.153a4.908 4.908 0 011.153 1.772c.247.637.415 1.363.465 2.428.047 1.066.06 1.405.06 4.122 0 2.717-.01 3.056-.06 4.122-.05 1.065-.218 1.79-.465 2.428a4.883 4.883 0 01-1.153 1.772 4.915 4.915 0 01-1.772 1.153c-.637.247-1.363.415-2.428.465-1.066.047-1.405.06-4.122.06-2.717 0-3.056-.01-4.122-.06-1.065-.05-1.79-.218-2.428-.465a4.89 4.89 0 01-1.772-1.153 4.904 4.904 0 01-1.153-1.772c-.248-.637-.415-1.363-.465-2.428C2.013 15.056 2 14.717 2 12c0-2.717.01-3.056.06-4.122.05-1.066.217-1.79.465-2.428a4.88 4.88 0 011.153-1.772A4.897 4.897 0 015.45 2.525c.638-.248 1.362-.415 2.428-.465C8.944 2.013 9.283 2 12 2zm0 1.802c-2.67 0-2.986.01-4.04.059-.976.045-1.505.207-1.858.344-.466.182-.8.398-1.15.748-.35.35-.566.684-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.055-.058 1.37-.058 4.04 0 2.67.01 2.986.058 4.04.045.977.207 1.505.344 1.858.182.466.399.8.748 1.15.35.35.684.566 1.15.748.353.137.882.3 1.857.344 1.055.048 1.37.058 4.04.058 2.67 0 2.987-.01 4.04-.058.977-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.684.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.04 0-2.67-.01-2.986-.058-4.04-.045-.977-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.054-.047-1.37-.058-4.04-.058zm0 3.063a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 8.468a3.333 3.333 0 100-6.666 3.333 3.333 0 000 6.666zm6.538-8.671a1.2 1.2 0 11-2.4 0 1.2 1.2 0 012.4 0z" />
+   100→   100→      </svg>
+   101→   101→    ),
+   102→   102→  },
+   103→   103→  {
+   104→   104→    name: "Facebook",
+   105→   105→    href: "https://www.facebook.com/furshetspb/",
+   106→   106→    icon: (
+   107→   107→      <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28">
+   108→   108→        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+   109→   109→      </svg>
+   110→   110→    ),
+   111→   111→  },
+   112→   112→];
+   113→   113→
+   114→   114→/* ─── Animation helpers ─── */
+   115→   115→const fadeUp = {
+   116→   116→  hidden: { opacity: 0, y: 60 },
+   117→   117→  visible: {
+   118→   118→    opacity: 1,
+   119→   119→    y: 0,
+   120→   120→    transition: { duration: 0.8, ease: [0.4, 0, 0.2, 1] as const },
+   121→   121→  },
+   122→   122→};
+   123→   123→const staggerContainer = {
+   124→   124→  hidden: {},
+   125→   125→  visible: { transition: { staggerChildren: 0.1 } },
+   126→   126→};
+   127→   127→const staggerItem = {
+   128→   128→  hidden: { opacity: 0, y: 40 },
+   129→   129→  visible: {
+   130→   130→    opacity: 1,
+   131→   131→    y: 0,
+   132→   132→    transition: { duration: 0.6, ease: [0.4, 0, 0.2, 1] as const },
+   133→   133→  },
+   134→   134→};
+   135→   135→
+   136→   136→function Reveal({
+   137→   137→  children,
+   138→   138→  className = "",
+   139→   139→  delay = 0,
+   140→   140→}: {
+   141→   141→  children: React.ReactNode;
+   142→   142→  className?: string;
+   143→   143→  delay?: number;
+   144→   144→}) {
+   145→   145→  const ref = useRef<HTMLDivElement>(null);
+   146→   146→  const isInView = useInView(ref, { once: true, margin: "-60px" });
+   147→   147→  return (
+   148→   148→    <motion.div
+   149→   149→      ref={ref}
+   150→   150→      initial="hidden"
+   151→   151→      animate={isInView ? "visible" : "hidden"}
+   152→   152→      variants={fadeUp}
+   153→   153→      transition={{ delay }}
+   154→   154→      className={className}
+   155→   155→    >
+   156→   156→      {children}
+   157→   157→    </motion.div>
+   158→   158→  );
+   159→   159→}
+   160→   160→
+   161→   161→/* ─── Form types ─── */
+   162→   162→interface FormState {
+   163→   163→  name: string;
+   164→   164→  phone: string;
+   165→   165→  email: string;
+   166→   166→  eventType: string;
+   167→   167→  date: string;
+   168→   168→  guests: string;
+   169→   169→  message: string;
+   170→   170→}
+   171→   171→
+   172→   172→interface FormErrors {
+   173→   173→  name?: string;
+   174→   174→  phone?: string;
+   175→   175→  email?: string;
+   176→   176→  guests?: string;
+   177→   177→}
+   178→   178→
+   179→   179→const INITIAL_FORM: FormState = {
+   180→   180→  name: "",
+   181→   181→  phone: "",
+   182→   182→  email: "",
+   183→   183→  eventType: "",
+   184→   184→  date: "",
+   185→   185→  guests: "",
+   186→   186→  message: "",
+   187→   187→};
+   188→   188→
+   189→   189→/* ═══════════════════════════════════════════════════════════════ */
+   190→   190→export default function ContactsPage() {
+   191→   191→  const [form, setForm] = useState<FormState>(INITIAL_FORM);
+   192→   192→  const [errors, setErrors] = useState<FormErrors>({});
+   193→   193→  const [submitted, setSubmitted] = useState(false);
+   194→   194→  const [submitting, setSubmitting] = useState(false);
+   195→   195→
+   196→   196→  /* Hero parallax */
+   197→   197→  const heroRef = useRef<HTMLDivElement>(null);
+   198→   198→  const { scrollYProgress } = useScroll({
+   199→   199→    target: heroRef,
+   200→   200→    offset: ["start start", "end start"],
+   201→   201→  });
+   202→   202→  const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+   203→   203→  const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+   204→   204→
+   205→   205→  /* ─── Validation ─── */
+   206→   206→  function validate(): FormErrors {
+   207→   207→    const errs: FormErrors = {};
+   208→   208→    if (!form.name.trim()) errs.name = "Введите ваше имя";
+   209→   209→    if (!form.phone.trim()) {
+   210→   210→      errs.phone = "Введите номер телефона";
+   211→   211→    } else {
+   212→   212→      const phoneClean = form.phone.replace(/[\s\-\(\)]/g, "");
+   213→   213→      if (!/^(\+7|7|8)\d{10}$/.test(phoneClean)) {
+   214→   214→        errs.phone = "Формат: +7 (XXX) XXX-XX-XX";
+   215→   215→      }
+   216→   216→    }
+   217→   217→    if (form.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
+   218→   218→      errs.email = "Введите корректный email";
+   219→   219→    }
+   220→   220→    if (form.guests) {
+   221→   221→      const n = parseInt(form.guests, 10);
+   222→   222→      if (isNaN(n) || n < 1) errs.guests = "Введите количество гостей";
+   223→   223→    }
+   224→   224→    return errs;
+   225→   225→  }
+   226→   226→
+   227→   227→  /* ─── Inline validation on blur ─── */
+   228→   228→  function validateField(name: keyof FormErrors) {
+   229→   229→    const newErrors = { ...errors };
+   230→   230→    if (name === "name" && !form.name.trim()) {
+   231→   231→      newErrors.name = "Введите ваше имя";
+   232→   232→    } else if (name === "name") {
+   233→   233→      delete newErrors.name;
+   234→   234→    }
+   235→   235→    if (name === "phone") {
+   236→   236→      if (!form.phone.trim()) {
+   237→   237→        newErrors.phone = "Введите номер телефона";
+   238→   238→      } else {
+   239→   239→        const phoneClean = form.phone.replace(/[\s\-\(\)]/g, "");
+   240→   240→        if (!/^(\+7|7|8)\d{10}$/.test(phoneClean)) {
+   241→   241→          newErrors.phone = "Формат: +7 (XXX) XXX-XX-XX";
+   242→   242→        } else {
+   243→   243→          delete newErrors.phone;
+   244→   244→        }
+   245→   245→      }
+   246→   246→    }
+   247→   247→    if (name === "email" && form.email) {
+   248→   248→      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
+   249→   249→        newErrors.email = "Введите корректный email";
+   250→   250→      } else {
+   251→   251→        delete newErrors.email;
+   252→   252→      }
+   253→   253→    }
+   254→   254→    if (name === "guests" && form.guests) {
+   255→   255→      const n = parseInt(form.guests, 10);
+   256→   256→      if (isNaN(n) || n < 1) {
+   257→   257→        newErrors.guests = "Введите количество гостей";
+   258→   258→      } else {
+   259→   259→        delete newErrors.guests;
+   260→   260→      }
+   261→   261→    }
+   262→   262→    setErrors(newErrors);
+   263→   263→  }
+   264→   264→
+   265→   265→  /* ─── Phone number masking ─── */
+   266→   266→  function formatPhone(value: string): string {
+   267→   267→    const digits = value.replace(/\D/g, "");
+   268→   268→    if (!digits) return "";
+   269→   269→    let result = "";
+   270→   270→    if (digits.startsWith("8")) {
+   271→   271→      result = "+7";
+   272→   272→    } else if (digits.startsWith("7")) {
+   273→   273→      result = "+7";
+   274→   274→    } else if (digits.startsWith("9") || digits.startsWith("3")) {
+   275→   275→      result = "+7" + digits[0];
+   276→   276→    } else {
+   277→   277→      return value; // let them type whatever
+   278→   278→    }
+   279→   279→
+   280→   280→    const rest = digits.startsWith("8") || digits.startsWith("7")
+   281→   281→      ? digits.slice(1)
+   282→   282→      : digits;
+   283→   283→
+   284→   284→    if (rest.length > 0) result += " (" + rest.slice(0, 3);
+   285→   285→    if (rest.length >= 3) result += ") ";
+   286→   286→    if (rest.length > 3) result += rest.slice(3, 6);
+   287→   287→    if (rest.length > 6) result += "-" + rest.slice(6, 8);
+   288→   288→    if (rest.length > 8) result += "-" + rest.slice(8, 10);
+   289→   289→
+   290→   290→    return result;
+   291→   291→  }
+   292→   292→
+   293→   293→  function handlePhoneChange(e: React.ChangeEvent<HTMLInputElement>) {
+   294→   294→    const formatted = formatPhone(e.target.value);
+   295→   295→    setForm((prev) => ({ ...prev, phone: formatted }));
+   296→   296→    if (errors.phone) {
+   297→   297→      const phoneClean = formatted.replace(/[\s\-\(\)]/g, "");
+   298→   298→      if (/^(\+7|7|8)\d{10}$/.test(phoneClean)) {
+   299→   299→        setErrors((prev) => ({ ...prev, phone: undefined }));
+   300→   300→      }
+   301→   301→    }
+   302→   302→  }
+   303→   303→
+   304→   304→  /* ─── Submit ─── */
+   305→   305→  async function handleSubmit(e: React.FormEvent) {
+   306→   306→    e.preventDefault();
+   307→   307→    const errs = validate();
+   308→   308→    setErrors(errs);
+   309→   309→    if (Object.keys(errs).length > 0) return;
+   310→   310→
+   311→   311→    setSubmitting(true);
+   312→   312→    try {
+   313→   313→      const res = await fetch("/api/contact", {
+   314→   314→        method: "POST",
+   315→   315→        headers: { "Content-Type": "application/json" },
+   316→   316→        body: JSON.stringify({
+   317→   317→          name: form.name.trim(),
+   318→   318→          phone: form.phone.trim(),
+   319→   319→          email: form.email.trim() || undefined,
+   320→   320→          eventType: form.eventType || undefined,
+   321→   321→          date: form.date || undefined,
+   322→   322→          guests: form.guests ? parseInt(form.guests, 10) : undefined,
+   323→   323→          message: form.message.trim() || undefined,
+   324→   324→          source: "website",
+   325→   325→        }),
+   326→   326→      });
+   327→   327→
+   328→   328→      const data = await res.json();
+   329→   329→
+   330→   330→      if (!res.ok || !data.success) {
+   331→   331→        // Show server-side validation error if any
+   332→   332→        const serverError = data.error || "Произошла ошибка при отправке. Попробуйте позже.";
+   333→   333→        setErrors({ name: serverError });
+   334→   334→        setSubmitting(false);
+   335→   335→        return;
+   336→   336→      }
+   337→   337→
+   338→   338→      setSubmitted(true);
+   339→   339→      setForm(INITIAL_FORM);
+   340→   340→      setErrors({});
+   341→   341→    } catch {
+   342→   342→      setErrors({ name: "Не удалось подключиться к серверу. Проверьте интернет и попробуйте снова." });
+   343→   343→    } finally {
+   344→   344→      setSubmitting(false);
+   345→   345→    }
+   346→   346→  }
+   347→   347→
+   348→   348→  function handleChange(
+   349→   349→    e: React.ChangeEvent<
+   350→   350→      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+   351→   351→    >
+   352→   352→  ) {
+   353→   353→    const { name, value } = e.target;
+   354→   354→    setForm((prev) => ({ ...prev, [name]: value }));
+   355→   355→    // Clear error on change
+   356→   356→    if (errors[name as keyof FormErrors]) {
+   357→   357→      setErrors((prev) => ({ ...prev, [name]: undefined }));
+   358→   358→    }
+   359→   359→  }
+   360→   360→
+   361→   361→  return (
+   362→   362→    <>
+   363→   363→      <SiteNav />
+   364→   364→
+   365→   365→      {/* ═══════════════ Hero ═══════════════ */}
+   366→   366→      <section className="hero" ref={heroRef} aria-label="Контакты">
+   367→   367→        <motion.div
+   368→   368→          className="hero-bg"
+   369→   369→          style={{
+   370→   370→            y: heroY,
+   371→   371→            backgroundImage: `url(${IMG.hero})`,
+   372→   372→            backgroundSize: "cover",
+   373→   373→            backgroundPosition: "center",
+   374→   374→          }}
+   375→   375→        />
+   376→   376→        <div
+   377→   377→          className="hero-overlay"
+   378→   378→          style={{
+   379→   379→            background:
+   380→   380→              "linear-gradient(135deg, rgba(12,11,11,0.82) 0%, rgba(27,42,74,0.6) 50%, rgba(12,11,11,0.78) 100%)",
+   381→   381→          }}
+   382→   382→        />
+   383→   383→        <div className="hero-grain" />
+   384→   384→        <motion.div
+   385→   385→          className="hero-content"
+   386→   386→          style={{ opacity: heroOpacity }}
+   387→   387→          initial={{ opacity: 0, y: 40 }}
+   388→   388→          animate={{ opacity: 1, y: 0 }}
+   389→   389→          transition={{ duration: 1.2, delay: 0.3 }}
+   390→   390→        >
+   391→   391→          <motion.div
+   392→   392→            className="hero-tag"
+   393→   393→            initial={{ opacity: 0, y: 20 }}
+   394→   394→            animate={{ opacity: 1, y: 0 }}
+   395→   395→            transition={{ duration: 0.8, delay: 0.6 }}
+   396→   396→          >
+   397→   397→            Контакты
+   398→   398→          </motion.div>
+   399→   399→          <h1 className="sr-only">Свяжитесь с нами — получите расчёт за 30 минут</h1>
+   400→   400→          <KineticText
+   401→   401→            text="Свяжитесь с нами — получите расчёт за 30 минут"
+   402→   402→            as="h2"
+   403→   403→            animation="fadeUp"
+   404→   404→            className="hero-title"
+   405→   405→            stagger={0.04}
+   406→   406→            duration={0.6}
+   407→   407→          />
+   408→   408→          <p className="hero-sub">
+   409→   409→            Мы всегда рады ответить на ваши вопросы и обсудить детали будущего
+   410→   410→            мероприятия. Оставьте заявку или позвоните — ответим за 30 минут, или дегустация за наш счёт.
+   411→   411→          </p>
+   412→   412→        </motion.div>
+   413→   413→      </section>
+   414→   414→
+   415→   415→      {/* ═══════════════ Contact Cards ═══════════════ */}
+   416→   416→      <section
+   417→   417→        className="section section-cream"
+   418→   418→        aria-label="Контактная информация"
+   419→   419→      >
+   420→   420→        <div className="container">
+   421→   421→          <Reveal>
+   422→   422→            <span className="section-label">Как нас найти</span>
+   423→   423→            <TextReveal
+   424→   424→              text="Мы на связи 7 дней в неделю — с 9 до 22"
+   425→   425→              as="h2"
+   426→   426→              className="section-title"
+   427→   427→            />
+   428→   428→            <p className="section-subtitle">
+   429→   429→              Выберите удобный способ связаться с нами — по телефону, email или
+   430→   430→              посетите наш офис. Первая консультация бесплатна.
+   431→   431→            </p>
+   432→   432→          </Reveal>
+   433→   433→
+   434→   434→          <motion.div
+   435→   435→            className="contact-cards-grid"
+   436→   436→            variants={staggerContainer}
+   437→   437→            initial="hidden"
+   438→   438→            whileInView="visible"
+   439→   439→            viewport={{ once: true }}
+   440→   440→          >
+   441→   441→            {CONTACT_CARDS.map((card, i) => (
+   442→   442→              <motion.div key={i} variants={staggerItem}>
+   443→   443→                <TiltCard>
+   444→   444→                  <div
+   445→   445→                    className="card"
+   446→   446→                    style={{
+   447→   447→                      padding: "2rem",
+   448→   448→                      textAlign: "center",
+   449→   449→                      height: "100%",
+   450→   450→                      display: "flex",
+   451→   451→                      flexDirection: "column",
+   452→   452→                      alignItems: "center",
+   453→   453→                      justifyContent: "center",
+   454→   454→                      cursor: card.href ? "pointer" : "default",
+   455→   455→                    }}
+   456→   456→                    onClick={() => card.href && window.open(card.href, "_blank")}
+   457→   457→                  >
+   458→   458→                    <div
+   459→   459→                      style={{
+   460→   460→                        position: "relative",
+   461→   461→                        width: 56,
+   462→   462→                        height: 56,
+   463→   463→                        marginBottom: "1.25rem",
+   464→   464→                      }}
+   465→   465→                    >
+   466→   466→                      <div
+   467→   467→                        style={{
+   468→   468→                          width: 56,
+   469→   469→                          height: 56,
+   470→   470→                          borderRadius: "50%",
+   471→   471→                          background: "var(--color-brand-10)",
+   472→   472→                          display: "flex",
+   473→   473→                          alignItems: "center",
+   474→   474→                          justifyContent: "center",
+   475→   475→                          fontSize: "1.5rem",
+   476→   476→                          color: "var(--color-brand)",
+   477→   477→                        }}
+   478→   478→                      >
+   479→   479→                        {card.icon}
+   480→   480→                      </div>
+   481→   481→                      <div style={{ position: "absolute", top: -8, right: -12 }}>
+   482→   482→                        <LottiePlaceholder
+   483→   483→                          type={i === 0 ? "star" : i === 1 ? "utensils" : i === 2 ? "heart" : "glass"}
+   484→   484→                          size={28}
+   485→   485→                          color="#B8955A"
+   486→   486→                        />
+   487→   487→                      </div>
+   488→   488→                    </div>
+   489→   489→                    <div
+   490→   490→                      style={{
+   491→   491→                        fontSize: "0.65rem",
+   492→   492→                        fontWeight: 600,
+   493→   493→                        letterSpacing: "0.2em",
+   494→   494→                        textTransform: "uppercase",
+   495→   495→                        color: "var(--color-brand)",
+   496→   496→                        marginBottom: "0.75rem",
+   497→   497→                      }}
+   498→   498→                    >
+   499→   499→                      {card.title}
+   500→   500→                    </div>
+   501→   501→                    <div
+   502→   502→                      style={{
+   503→   503→                        fontFamily: "var(--font-serif)",
+   504→   504→                        fontSize: "1.15rem",
+   505→   505→                        fontWeight: 400,
+   506→   506→                        color: "var(--color-dark)",
+   507→   507→                        marginBottom: "0.5rem",
+   508→   508→                        lineHeight: 1.3,
+   509→   509→                      }}
+   510→   510→                    >
+   511→   511→                      {card.href ? (
+   512→   512→                        <a
+   513→   513→                          href={card.href}
+   514→   514→                          style={{
+   515→   515→                            color: "inherit",
+   516→   516→                            textDecoration: "none",
+   517→   517→                            transition: "color 0.3s",
+   518→   518→                          }}
+   519→   519→                          onMouseEnter={(e) =>
+   520→   520→                            ((e.target as HTMLElement).style.color =
+   521→   521→                              "var(--color-brand)")
+   522→   522→                          }
+   523→   523→                          onMouseLeave={(e) =>
+   524→   524→                            ((e.target as HTMLElement).style.color =
+   525→   525→                              "var(--color-dark)")
+   526→   526→                          }
+   527→   527→                          onClick={(e) => e.stopPropagation()}
+   528→   528→                        >
+   529→   529→                          {card.value}
+   530→   530→                        </a>
+   531→   531→                      ) : (
+   532→   532→                        card.value
+   533→   533→                      )}
+   534→   534→                    </div>
+   535→   535→                    <div
+   536→   536→                      style={{
+   537→   537→                        fontSize: "0.82rem",
+   538→   538→                        color: "var(--color-text-muted)",
+   539→   539→                        lineHeight: 1.5,
+   540→   540→                      }}
+   541→   541→                    >
+   542→   542→                      {card.desc}
+   543→   543→                    </div>
+   544→   544→                  </div>
+   545→   545→                </TiltCard>
+   546→   546→              </motion.div>
+   547→   547→            ))}
+   548→   548→          </motion.div>
+   549→   549→        </div>
+   550→   550→      </section>
+   551→   551→
+   552→   552→      {/* ═══════════════ Contact Form + Image ═══════════════ */}
+   553→   553→      <section className="section section-light" aria-label="Форма заявки" style={{ position: "relative", overflow: "hidden" }}>
+   554→   554→        <FluidBackground
+   555→   555→          color1="rgba(184,149,90,0.05)"
+   556→   556→          color2="rgba(158,182,143,0.03)"
+   557→   557→          color3="rgba(232,196,184,0.02)"
+   558→   558→          speed={5}
+   559→   559→        />
+   560→   560→        <MorphingBlob
+   561→   561→          size={300}
+   562→   562→          color1="rgba(184,149,90,0.08)"
+   563→   563→          color2="rgba(158,182,143,0.05)"
+   564→   564→          opacity={0.4}
+   565→   565→          speed={10}
+   566→   566→          style={{ position: "absolute", top: "5%", right: "8%", zIndex: 0 }}
+   567→   567→        />
+   568→   568→        <MorphingBlob
+   569→   569→          size={220}
+   570→   570→          color1="rgba(232,196,184,0.06)"
+   571→   571→          color2="rgba(184,149,90,0.04)"
+   572→   572→          opacity={0.35}
+   573→   573→          speed={12}
+   574→   574→          style={{ position: "absolute", bottom: "10%", left: "5%", zIndex: 0 }}
+   575→   575→        />
+   576→   576→        <div className="container" style={{ position: "relative", zIndex: 2 }}>
+   577→   577→          <Reveal>
+   578→   578→            <span className="section-label">Оставить заявку</span>
+   579→   579→            <TextReveal
+   580→   580→              text="Расскажите о вашем мероприятии — получите расчёт и меню за 30 минут"
+   581→   581→              as="h2"
+   582→   582→              className="section-title"
+   583→   583→            />
+   584→   584→            <p className="section-subtitle">
+   585→   585→              Заполните форму, и наш кейтеринг-консьерж свяжется с вами в
+   586→   586→              течение 30 минут. Бесплатная консультация, расчёт и подбор меню — без обязательств.
+   587→   587→            </p>
+   588→   588→          </Reveal>
+   589→   589→
+   590→   590→          {/* ─── Trust Badges ─── */}
+   591→   591→          <Reveal>
+   592→   592→            <div
+   593→   593→              style={{
+   594→   594→                display: "flex",
+   595→   595→                justifyContent: "center",
+   596→   596→                gap: "2rem",
+   597→   597→                flexWrap: "wrap",
+   598→   598→                margin: "2rem 0 2.5rem",
+   599→   599→                padding: "1.25rem 1.5rem",
+   600→   600→                background: "rgba(184,149,90,0.06)",
+   601→   601→                borderRadius: "16px",
+   602→   602→                border: "1px solid rgba(184,149,90,0.12)",
+   603→   603→              }}
+   604→   604→            >
+   605→   605→              {[
+   606→   606→                { icon: "⭐", value: "4.55", label: "на CaterMe" },
+   607→   607→                { icon: "⭐", value: "10/10", label: "на Restoclub" },
+   608→   608→                { icon: "🎉", value: "3 500+", label: "Мероприятий" },
+   609→   609→                { icon: "🏆", value: "18+ лет", label: "На рынке с 2007" },
+   610→   610→                { icon: "⚡", value: "30 мин", label: "Время ответа" },
+   611→   611→                { icon: "🔒", value: "Гарантия", label: "ФЗ-152 защита данных" },
+   612→   612→              ].map((badge) => (
+   613→   613→                <div
+   614→   614→                  key={badge.label}
+   615→   615→                  style={{
+   616→   616→                    display: "flex",
+   617→   617→                    alignItems: "center",
+   618→   618→                    gap: "0.5rem",
+   619→   619→                  }}
+   620→   620→                >
+   621→   621→                  <span style={{ fontSize: "1.2rem" }}>{badge.icon}</span>
+   622→   622→                  <div>
+   623→   623→                    <div
+   624→   624→                      style={{
+   625→   625→                        fontSize: "0.85rem",
+   626→   626→                        fontWeight: 700,
+   627→   627→                        color: "var(--color-dark)",
+   628→   628→                        lineHeight: 1.2,
+   629→   629→                      }}
+   630→   630→                    >
+   631→   631→                      {badge.value}
+   632→   632→                    </div>
+   633→   633→                    <div
+   634→   634→                      style={{
+   635→   635→                        fontSize: "0.65rem",
+   636→   636→                        color: "var(--color-text-muted)",
+   637→   637→                        letterSpacing: "0.03em",
+   638→   638→                      }}
+   639→   639→                    >
+   640→   640→                      {badge.label}
+   641→   641→                    </div>
+   642→   642→                  </div>
+   643→   643→                </div>
+   644→   644→              ))}
+   645→   645→            </div>
+   646→   646→          </Reveal>
+   647→   647→
+   648→   648→          <div
+   649→   649→            className="contact-form-grid"
+   650→   650→          >
+   651→   651→            {/* ─── Form ─── */}
+   652→   652→            <motion.div
+   653→   653→              initial={{ opacity: 0, x: -40 }}
+   654→   654→              whileInView={{ opacity: 1, x: 0 }}
+   655→   655→              viewport={{ once: true }}
+   656→   656→              transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] as const }}
+   657→   657→            >
+   658→   658→              <AnimatePresence mode="wait">
+   659→   659→                {submitted ? (
+   660→   660→                  <motion.div
+   661→   661→                    key="success"
+   662→   662→                    initial={{ opacity: 0, scale: 0.95 }}
+   663→   663→                    animate={{ opacity: 1, scale: 1 }}
+   664→   664→                    exit={{ opacity: 0, scale: 0.95 }}
+   665→   665→                    transition={{ duration: 0.5 }}
+   666→   666→                    style={{
+   667→   667→                      background: "var(--color-warm-white)",
+   668→   668→                      borderRadius: "20px",
+   669→   669→                      padding: "3rem 2rem",
+   670→   670→                      textAlign: "center",
+   671→   671→                      boxShadow: "0 4px 30px rgba(0,0,0,0.06)",
+   672→   672→                    }}
+   673→   673→                  >
+   674→   674→                    <motion.div
+   675→   675→                      initial={{ scale: 0 }}
+   676→   676→                      animate={{ scale: 1 }}
+   677→   677→                      transition={{
+   678→   678→                        type: "spring",
+   679→   679→                        stiffness: 200,
+   680→   680→                        damping: 15,
+   681→   681→                        delay: 0.2,
+   682→   682→                      }}
+   683→   683→                      style={{
+   684→   684→                        width: 72,
+   685→   685→                        height: 72,
+   686→   686→                        borderRadius: "50%",
+   687→   687→                        background:
+   688→   688→                          "linear-gradient(135deg, var(--color-brand) 0%, var(--color-brand-dark) 100%)",
+   689→   689→                        display: "flex",
+   690→   690→                        alignItems: "center",
+   691→   691→                        justifyContent: "center",
+   692→   692→                        margin: "0 auto 1.5rem",
+   693→   693→                        fontSize: "2rem",
+   694→   694→                        color: "#fff",
+   695→   695→                      }}
+   696→   696→                    >
+   697→   697→                      ✓
+   698→   698→                    </motion.div>
+   699→   699→                    <h3
+   700→   700→                      style={{
+   701→   701→                        fontFamily: "var(--font-serif)",
+   702→   702→                        fontSize: "1.5rem",
+   703→   703→                        fontWeight: 400,
+   704→   704→                        color: "var(--color-dark)",
+   705→   705→                        marginBottom: "0.75rem",
+   706→   706→                      }}
+   707→   707→                    >
+   708→   708→                      Заявка отправлена!
+   709→   709→                    </h3>
+   710→   710→                    <p
+   711→   711→                      style={{
+   712→   712→                        color: "var(--color-text-secondary)",
+   713→   713→                        fontSize: "0.95rem",
+   714→   714→                        lineHeight: 1.7,
+   715→   715→                        marginBottom: "1.5rem",
+   716→   716→                      }}
+   717→   717→                    >
+   718→   718→                      Мы свяжемся с вами в течение 30 минут.
+   719→   719→                      <br />
+   720→   720→                      Спасибо за доверие!
+   721→   721→                    </p>
+   722→   722→                    <MagneticButton
+   723→   723→                      className="btn-outline"
+   724→   724→                      as="button"
+   725→   725→                      onClick={() => setSubmitted(false)}
+   726→   726→                    >
+   727→   727→                      Отправить ещё
+   728→   728→                    </MagneticButton>
+   729→   729→                  </motion.div>
+   730→   730→                ) : (
+   731→   731→                  <motion.form
+   732→   732→                    key="form"
+   733→   733→                    initial={{ opacity: 0 }}
+   734→   734→                    animate={{ opacity: 1 }}
+   735→   735→                    exit={{ opacity: 0 }}
+   736→   736→                    onSubmit={handleSubmit}
+   737→   737→                    style={{
+   738→   738→                      background: "var(--color-warm-white)",
+   739→   739→                      borderRadius: "20px",
+   740→   740→                      padding: "2.5rem",
+   741→   741→                      boxShadow: "0 4px 30px rgba(0,0,0,0.06)",
+   742→   742→                    }}
+   743→   743→                  >
+   744→   744→                    <div
+   745→   745→                      className="contact-fields-grid"
+   746→   746→                    >
+   747→   747→                      {/* Name */}
+   748→   748→                      <div>
+   749→   749→                        <label
+   750→   750→                          htmlFor="name"
+   751→   751→                          style={{
+   752→   752→                            display: "block",
+   753→   753→                            fontSize: "0.7rem",
+   754→   754→                            fontWeight: 600,
+   755→   755→                            letterSpacing: "0.15em",
+   756→   756→                            textTransform: "uppercase",
+   757→   757→                            color: "var(--color-dark)",
+   758→   758→                            marginBottom: "0.5rem",
+   759→   759→                          }}
+   760→   760→                        >
+   761→   761→                          Имя *
+   762→   762→                        </label>
+   763→   763→                        <input
+   764→   764→                          id="name"
+   765→   765→                          name="name"
+   766→   766→                          type="text"
+   767→   767→                          value={form.name}
+   768→   768→                          onChange={handleChange}
+   769→   769→                          placeholder="Ваше имя"
+   770→   770→                          autoComplete="name"
+   771→   771→                          style={{
+   772→   772→                            width: "100%",
+   773→   773→                            padding: "0.85rem 1rem",
+   774→   774→                            border: `1.5px solid ${
+   775→   775→                              errors.name
+   776→   776→                                ? "#e53e3e"
+   777→   777→                                : "var(--color-cream-darker)"
+   778→   778→                            }`,
+   779→   779→                            borderRadius: "12px",
+   780→   780→                            fontSize: "0.9rem",
+   781→   781→                            fontFamily: "var(--font-sans)",
+   782→   782→                            background: errors.name
+   783→   783→                              ? "rgba(229,62,62,0.04)"
+   784→   784→                              : "var(--color-warm-white)",
+   785→   785→                            outline: "none",
+   786→   786→                            transition: "border-color 0.3s, background 0.3s",
+   787→   787→                          }}
+   788→   788→                          onFocus={(e) => {
+   789→   789→                            if (!errors.name)
+   790→   790→                              e.target.style.borderColor =
+   791→   791→                                "var(--color-brand)";
+   792→   792→                          }}
+   793→   793→                          onBlur={(e) => {
+   794→   794→                            if (!errors.name)
+   795→   795→                              e.target.style.borderColor =
+   796→   796→                                "var(--color-cream-darker)";
+   797→   797→                            validateField("name");
+   798→   798→                          }}
+   799→   799→                        />
+   800→   800→                        {errors.name && (
+   801→   801→                          <motion.span
+   802→   802→                            initial={{ opacity: 0, y: -4 }}
+   803→   803→                            animate={{ opacity: 1, y: 0 }}
+   804→   804→                            style={{
+   805→   805→                              color: "#e53e3e",
+   806→   806→                              fontSize: "0.75rem",
+   807→   807→                              marginTop: "0.35rem",
+   808→   808→                              display: "block",
+   809→   809→                            }}
+   810→   810→                          >
+   811→   811→                            {errors.name}
+   812→   812→                          </motion.span>
+   813→   813→                        )}
+   814→   814→                      </div>
+   815→   815→
+   816→   816→                      {/* Phone */}
+   817→   817→                      <div>
+   818→   818→                        <label
+   819→   819→                          htmlFor="phone"
+   820→   820→                          style={{
+   821→   821→                            display: "block",
+   822→   822→                            fontSize: "0.7rem",
+   823→   823→                            fontWeight: 600,
+   824→   824→                            letterSpacing: "0.15em",
+   825→   825→                            textTransform: "uppercase",
+   826→   826→                            color: "var(--color-dark)",
+   827→   827→                            marginBottom: "0.5rem",
+   828→   828→                          }}
+   829→   829→                        >
+   830→   830→                          Телефон *
+   831→   831→                        </label>
+   832→   832→                        <input
+   833→   833→                          id="phone"
+   834→   834→                          name="phone"
+   835→   835→                          type="tel"
+   836→   836→                          value={form.phone}
+   837→   837→                          onChange={handlePhoneChange}
+   838→   838→                          placeholder="+7 (___) ___-__-__"
+   839→   839→                          autoComplete="tel"
+   840→   840→                          style={{
+   841→   841→                            width: "100%",
+   842→   842→                            padding: "0.85rem 1rem",
+   843→   843→                            border: `1.5px solid ${
+   844→   844→                              errors.phone
+   845→   845→                                ? "#e53e3e"
+   846→   846→                                : "var(--color-cream-darker)"
+   847→   847→                            }`,
+   848→   848→                            borderRadius: "12px",
+   849→   849→                            fontSize: "0.9rem",
+   850→   850→                            fontFamily: "var(--font-sans)",
+   851→   851→                            background: errors.phone
+   852→   852→                              ? "rgba(229,62,62,0.04)"
+   853→   853→                              : "var(--color-warm-white)",
+   854→   854→                            outline: "none",
+   855→   855→                            transition: "border-color 0.3s, background 0.3s",
+   856→   856→                          }}
+   857→   857→                          onFocus={(e) => {
+   858→   858→                            if (!errors.phone)
+   859→   859→                              e.target.style.borderColor =
+   860→   860→                                "var(--color-brand)";
+   861→   861→                          }}
+   862→   862→                          onBlur={(e) => {
+   863→   863→                            if (!errors.phone)
+   864→   864→                              e.target.style.borderColor =
+   865→   865→                                "var(--color-cream-darker)";
+   866→   866→                            validateField("phone");
+   867→   867→                          }}
+   868→   868→                        />
+   869→   869→                        {errors.phone && (
+   870→   870→                          <motion.span
+   871→   871→                            initial={{ opacity: 0, y: -4 }}
+   872→   872→                            animate={{ opacity: 1, y: 0 }}
+   873→   873→                            style={{
+   874→   874→                              color: "#e53e3e",
+   875→   875→                              fontSize: "0.75rem",
+   876→   876→                              marginTop: "0.35rem",
+   877→   877→                              display: "block",
+   878→   878→                            }}
+   879→   879→                          >
+   880→   880→                            {errors.phone}
+   881→   881→                          </motion.span>
+   882→   882→                        )}
+   883→   883→                      </div>
+   884→   884→
+   885→   885→                      {/* Email */}
+   886→   886→                      <div>
+   887→   887→                        <label
+   888→   888→                          htmlFor="email"
+   889→   889→                          style={{
+   890→   890→                            display: "block",
+   891→   891→                            fontSize: "0.7rem",
+   892→   892→                            fontWeight: 600,
+   893→   893→                            letterSpacing: "0.15em",
+   894→   894→                            textTransform: "uppercase",
+   895→   895→                            color: "var(--color-dark)",
+   896→   896→                            marginBottom: "0.5rem",
+   897→   897→                          }}
+   898→   898→                        >
+   899→   899→                          Email
+   900→   900→                        </label>
+   901→   901→                        <input
+   902→   902→                          id="email"
+   903→   903→                          name="email"
+   904→   904→                          type="email"
+   905→   905→                          value={form.email}
+   906→   906→                          onChange={handleChange}
+   907→   907→                          placeholder="your@email.com"
+   908→   908→                          autoComplete="email"
+   909→   909→                          style={{
+   910→   910→                            width: "100%",
+   911→   911→                            padding: "0.85rem 1rem",
+   912→   912→                            border: `1.5px solid ${
+   913→   913→                              errors.email
+   914→   914→                                ? "#e53e3e"
+   915→   915→                                : "var(--color-cream-darker)"
+   916→   916→                            }`,
+   917→   917→                            borderRadius: "12px",
+   918→   918→                            fontSize: "0.9rem",
+   919→   919→                            fontFamily: "var(--font-sans)",
+   920→   920→                            background: errors.email
+   921→   921→                              ? "rgba(229,62,62,0.04)"
+   922→   922→                              : "var(--color-warm-white)",
+   923→   923→                            outline: "none",
+   924→   924→                            transition: "border-color 0.3s, background 0.3s",
+   925→   925→                          }}
+   926→   926→                          onFocus={(e) => {
+   927→   927→                            if (!errors.email)
+   928→   928→                              e.target.style.borderColor =
+   929→   929→                                "var(--color-brand)";
+   930→   930→                          }}
+   931→   931→                          onBlur={(e) => {
+   932→   932→                            if (!errors.email)
+   933→   933→                              e.target.style.borderColor =
+   934→   934→                                "var(--color-cream-darker)";
+   935→   935→                            validateField("email");
+   936→   936→                          }}
+   937→   937→                        />
+   938→   938→                        {errors.email && (
+   939→   939→                          <motion.span
+   940→   940→                            initial={{ opacity: 0, y: -4 }}
+   941→   941→                            animate={{ opacity: 1, y: 0 }}
+   942→   942→                            style={{
+   943→   943→                              color: "#e53e3e",
+   944→   944→                              fontSize: "0.75rem",
+   945→   945→                              marginTop: "0.35rem",
+   946→   946→                              display: "block",
+   947→   947→                            }}
+   948→   948→                          >
+   949→   949→                            {errors.email}
+   950→   950→                          </motion.span>
+   951→   951→                        )}
+   952→   952→                      </div>
+   953→   953→
+   954→   954→                      {/* Event Type */}
+   955→   955→                      <div>
+   956→   956→                        <label
+   957→   957→                          htmlFor="eventType"
+   958→   958→                          style={{
+   959→   959→                            display: "block",
+   960→   960→                            fontSize: "0.7rem",
+   961→   961→                            fontWeight: 600,
+   962→   962→                            letterSpacing: "0.15em",
+   963→   963→                            textTransform: "uppercase",
+   964→   964→                            color: "var(--color-dark)",
+   965→   965→                            marginBottom: "0.5rem",
+   966→   966→                          }}
+   967→   967→                        >
+   968→   968→                          Тип мероприятия
+   969→   969→                        </label>
+   970→   970→                        <select
+   971→   971→                          id="eventType"
+   972→   972→                          name="eventType"
+   973→   973→                          value={form.eventType}
+   974→   974→                          onChange={handleChange}
+   975→   975→                          style={{
+   976→   976→                            width: "100%",
+   977→   977→                            padding: "0.85rem 1rem",
+   978→   978→                            border: "1.5px solid var(--color-cream-darker)",
+   979→   979→                            borderRadius: "12px",
+   980→   980→                            fontSize: "0.9rem",
+   981→   981→                            fontFamily: "var(--font-sans)",
+   982→   982→                            background: "var(--color-warm-white)",
+   983→   983→                            outline: "none",
+   984→   984→                            color: form.eventType
+   985→   985→                              ? "var(--color-dark)"
+   986→   986→                              : "var(--color-text-muted)",
+   987→   987→                            cursor: "pointer",
+   988→   988→                            transition: "border-color 0.3s",
+   989→   989→                            appearance: "none",
+   990→   990→                            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")`,
+   991→   991→                            backgroundRepeat: "no-repeat",
+   992→   992→                            backgroundPosition: "right 1rem center",
+   993→   993→                          }}
+   994→   994→                          onFocus={(e) =>
+   995→   995→                            (e.target.style.borderColor =
+   996→   996→                              "var(--color-brand)")
+   997→   997→                          }
+   998→   998→                          onBlur={(e) =>
+   999→   999→                            (e.target.style.borderColor =
+  1000→  1000→                              "var(--color-cream-darker)")
+  1001→  1001→                          }
+  1002→  1002→                        >
+  1003→  1003→                          <option value="" disabled>
+  1004→  1004→                            Выберите тип
+  1005→  1005→                          </option>
+  1006→  1006→                          {EVENT_TYPES.map((type) => (
+  1007→  1007→                            <option key={type.value} value={type.value}>
+  1008→  1008→                              {type.label}
+  1009→  1009→                            </option>
+  1010→  1010→                          ))}
+  1011→  1011→                        </select>
+  1012→  1012→                      </div>
+  1013→  1013→
+  1014→  1014→                      {/* Date */}
+  1015→  1015→                      <div>
+  1016→  1016→                        <label
+  1017→  1017→                          htmlFor="date"
+  1018→  1018→                          style={{
+  1019→  1019→                            display: "block",
+  1020→  1020→                            fontSize: "0.7rem",
+  1021→  1021→                            fontWeight: 600,
+  1022→  1022→                            letterSpacing: "0.15em",
+  1023→  1023→                            textTransform: "uppercase",
+  1024→  1024→                            color: "var(--color-dark)",
+  1025→  1025→                            marginBottom: "0.5rem",
+  1026→  1026→                          }}
+  1027→  1027→                        >
+  1028→  1028→                          Дата мероприятия
+  1029→  1029→                        </label>
+  1030→  1030→                        <input
+  1031→  1031→                          id="date"
+  1032→  1032→                          name="date"
+  1033→  1033→                          type="date"
+  1034→  1034→                          value={form.date}
+  1035→  1035→                          onChange={handleChange}
+  1036→  1036→                          style={{
+  1037→  1037→                            width: "100%",
+  1038→  1038→                            padding: "0.85rem 1rem",
+  1039→  1039→                            border: "1.5px solid var(--color-cream-darker)",
+  1040→  1040→                            borderRadius: "12px",
+  1041→  1041→                            fontSize: "0.9rem",
+  1042→  1042→                            fontFamily: "var(--font-sans)",
+  1043→  1043→                            background: "var(--color-warm-white)",
+  1044→  1044→                            outline: "none",
+  1045→  1045→                            color: form.date
+  1046→  1046→                              ? "var(--color-dark)"
+  1047→  1047→                              : "var(--color-text-muted)",
+  1048→  1048→                            transition: "border-color 0.3s",
+  1049→  1049→                          }}
+  1050→  1050→                          onFocus={(e) =>
+  1051→  1051→                            (e.target.style.borderColor =
+  1052→  1052→                              "var(--color-brand)")
+  1053→  1053→                          }
+  1054→  1054→                          onBlur={(e) =>
+  1055→  1055→                            (e.target.style.borderColor =
+  1056→  1056→                              "var(--color-cream-darker)")
+  1057→  1057→                          }
+  1058→  1058→                        />
+  1059→  1059→                      </div>
+  1060→  1060→
+  1061→  1061→                      {/* Guests */}
+  1062→  1062→                      <div>
+  1063→  1063→                        <label
+  1064→  1064→                          htmlFor="guests"
+  1065→  1065→                          style={{
+  1066→  1066→                            display: "block",
+  1067→  1067→                            fontSize: "0.7rem",
+  1068→  1068→                            fontWeight: 600,
+  1069→  1069→                            letterSpacing: "0.15em",
+  1070→  1070→                            textTransform: "uppercase",
+  1071→  1071→                            color: "var(--color-dark)",
+  1072→  1072→                            marginBottom: "0.5rem",
+  1073→  1073→                          }}
+  1074→  1074→                        >
+  1075→  1075→                          Количество гостей
+  1076→  1076→                        </label>
+  1077→  1077→                        <input
+  1078→  1078→                          id="guests"
+  1079→  1079→                          name="guests"
+  1080→  1080→                          type="number"
+  1081→  1081→                          min="1"
+  1082→  1082→                          value={form.guests}
+  1083→  1083→                          onChange={handleChange}
+  1084→  1084→                          placeholder="Например, 100"
+  1085→  1085→                          autoComplete="off"
+  1086→  1086→                          style={{
+  1087→  1087→                            width: "100%",
+  1088→  1088→                            padding: "0.85rem 1rem",
+  1089→  1089→                            border: `1.5px solid ${
+  1090→  1090→                              errors.guests
+  1091→  1091→                                ? "#e53e3e"
+  1092→  1092→                                : "var(--color-cream-darker)"
+  1093→  1093→                            }`,
+  1094→  1094→                            borderRadius: "12px",
+  1095→  1095→                            fontSize: "0.9rem",
+  1096→  1096→                            fontFamily: "var(--font-sans)",
+  1097→  1097→                            background: errors.guests
+  1098→  1098→                              ? "rgba(229,62,62,0.04)"
+  1099→  1099→                              : "var(--color-warm-white)",
+  1100→  1100→                            outline: "none",
+  1101→  1101→                            transition: "border-color 0.3s, background 0.3s",
+  1102→  1102→                          }}
+  1103→  1103→                          onFocus={(e) => {
+  1104→  1104→                            if (!errors.guests)
+  1105→  1105→                              e.target.style.borderColor =
+  1106→  1106→                                "var(--color-brand)";
+  1107→  1107→                          }}
+  1108→  1108→                          onBlur={(e) => {
+  1109→  1109→                            if (!errors.guests)
+  1110→  1110→                              e.target.style.borderColor =
+  1111→  1111→                                "var(--color-cream-darker)";
+  1112→  1112→                            validateField("guests");
+  1113→  1113→                          }}
+  1114→  1114→                        />
+  1115→  1115→                        {errors.guests && (
+  1116→  1116→                          <motion.span
+  1117→  1117→                            initial={{ opacity: 0, y: -4 }}
+  1118→  1118→                            animate={{ opacity: 1, y: 0 }}
+  1119→  1119→                            style={{
+  1120→  1120→                              color: "#e53e3e",
+  1121→  1121→                              fontSize: "0.75rem",
+  1122→  1122→                              marginTop: "0.35rem",
+  1123→  1123→                              display: "block",
+  1124→  1124→                            }}
+  1125→  1125→                          >
+  1126→  1126→                            {errors.guests}
+  1127→  1127→                          </motion.span>
+  1128→  1128→                        )}
+  1129→  1129→                      </div>
+  1130→  1130→                    </div>
+  1131→  1131→
+  1132→  1132→                    {/* Message */}
+  1133→  1133→                    <div style={{ marginTop: "1.25rem" }}>
+  1134→  1134→                      <label
+  1135→  1135→                        htmlFor="message"
+  1136→  1136→                        style={{
+  1137→  1137→                          display: "block",
+  1138→  1138→                          fontSize: "0.7rem",
+  1139→  1139→                          fontWeight: 600,
+  1140→  1140→                          letterSpacing: "0.15em",
+  1141→  1141→                          textTransform: "uppercase",
+  1142→  1142→                          color: "var(--color-dark)",
+  1143→  1143→                          marginBottom: "0.5rem",
+  1144→  1144→                        }}
+  1145→  1145→                      >
+  1146→  1146→                        Сообщение
+  1147→  1147→                      </label>
+  1148→  1148→                      <textarea
+  1149→  1149→                        id="message"
+  1150→  1150→                        name="message"
+  1151→  1151→                        rows={4}
+  1152→  1152→                        value={form.message}
+  1153→  1153→                        onChange={handleChange}
+  1154→  1154→                        placeholder="Расскажите подробнее о вашем мероприятии, пожеланиях к меню, бюджете..."
+  1155→  1155→                        style={{
+  1156→  1156→                          width: "100%",
+  1157→  1157→                          padding: "0.85rem 1rem",
+  1158→  1158→                          border: "1.5px solid var(--color-cream-darker)",
+  1159→  1159→                          borderRadius: "12px",
+  1160→  1160→                          fontSize: "0.9rem",
+  1161→  1161→                          fontFamily: "var(--font-sans)",
+  1162→  1162→                          background: "var(--color-warm-white)",
+  1163→  1163→                          outline: "none",
+  1164→  1164→                          resize: "vertical",
+  1165→  1165→                          transition: "border-color 0.3s",
+  1166→  1166→                        }}
+  1167→  1167→                        onFocus={(e) =>
+  1168→  1168→                          (e.target.style.borderColor = "var(--color-brand)")
+  1169→  1169→                        }
+  1170→  1170→                        onBlur={(e) =>
+  1171→  1171→                          (e.target.style.borderColor =
+  1172→  1172→                            "var(--color-cream-darker)")
+  1173→  1173→                        }
+  1174→  1174→                      />
+  1175→  1175→                    </div>
+  1176→  1176→
+  1177→  1177→                    {/* Submit */}
+  1178→  1178→                    <div
+  1179→  1179→                      style={{
+  1180→  1180→                        marginTop: "1.75rem",
+  1181→  1181→                        display: "flex",
+  1182→  1182→                        alignItems: "center",
+  1183→  1183→                        gap: "1rem",
+  1184→  1184→                      }}
+  1185→  1185→                    >
+  1186→  1186→                      <ConfettiButton
+  1187→  1187→                        className="btn-gold"
+  1188→  1188→                        onClick={() => {}}
+  1189→  1189→                        style={{
+  1190→  1190→                          width: "100%",
+  1191→  1191→                          opacity: submitting ? 0.7 : 1,
+  1192→  1192→                          pointerEvents: submitting ? "none" : "auto",
+  1193→  1193→                          padding: "1rem 2rem",
+  1194→  1194→                          borderRadius: "100px",
+  1195→  1195→                          fontSize: "0.85rem",
+  1196→  1196→                          fontWeight: 600,
+  1197→  1197→                          letterSpacing: "0.05em",
+  1198→  1198→                          border: "none",
+  1199→  1199→                          cursor: "pointer",
+  1200→  1200→                        }}
+  1201→  1201→                      >
+  1202→  1202→                        {submitting ? (
+  1203→  1203→                          <span
+  1204→  1204→                            style={{
+  1205→  1205→                              display: "inline-flex",
+  1206→  1206→                              alignItems: "center",
+  1207→  1207→                              gap: "0.5rem",
+  1208→  1208→                            }}
+  1209→  1209→                          >
+  1210→  1210→                            <motion.span
+  1211→  1211→                              animate={{ rotate: 360 }}
+  1212→  1212→                              transition={{
+  1213→  1213→                                duration: 1,
+  1214→  1214→                                repeat: Infinity,
+  1215→  1215→                                ease: "linear",
+  1216→  1216→                              }}
+  1217→  1217→                              style={{ display: "inline-block" }}
+  1218→  1218→                            >
+  1219→  1219→                              ⟳
+  1220→  1220→                            </motion.span>
+  1221→  1221→                            Отправляем...
+  1222→  1222→                          </span>
+  1223→  1223→                        ) : (
+  1224→  1224→                          "Отправить заявку"
+  1225→  1225→                        )}
+  1226→  1226→                      </ConfettiButton>
+  1227→  1227→                    </div>
+  1228→  1228→
+  1229→  1229→                    <p
+  1230→  1230→                      style={{
+  1231→  1231→                        fontSize: "0.72rem",
+  1232→  1232→                        color: "var(--color-text-muted)",
+  1233→  1233→                        marginTop: "1rem",
+  1234→  1234→                        lineHeight: 1.5,
+  1235→  1235→                      }}
+  1236→  1236→                    >
+  1237→  1237→                      Нажимая кнопку, вы соглашаетесь с обработкой персональных
+  1238→  1238→                      данных в соответствии с ФЗ-152.
+  1239→  1239→                    </p>
+  1240→  1240→                  </motion.form>
+  1241→  1241→                )}
+  1242→  1242→              </AnimatePresence>
+  1243→  1243→            </motion.div>
+  1244→  1244→
+  1245→  1245→            {/* ─── Right side image ─── */}
+  1246→  1246→            <motion.div
+  1247→  1247→              initial={{ opacity: 0, x: 40 }}
+  1248→  1248→              whileInView={{ opacity: 1, x: 0 }}
+  1249→  1249→              viewport={{ once: true }}
+  1250→  1250→              transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] as const }}
+  1251→  1251→              style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}
+  1252→  1252→            >
+  1253→  1253→              <ImageReveal
+  1254→  1254→                src={IMG.office}
+  1255→  1255→                alt="Офис Интерфуд Кейтеринг"
+  1256→  1256→                direction="right"
+  1257→  1257→                style={{ borderRadius: "20px", height: 280 }}
+  1258→  1258→              />
+  1259→  1259→              <ImageReveal
+  1260→  1260→                src={IMG.kitchen}
+  1261→  1261→                alt="Производственная кухня Интерфуд"
+  1262→  1262→                direction="right"
+  1263→  1263→                delay={0.15}
+  1264→  1264→                style={{ borderRadius: "20px", height: 280 }}
+  1265→  1265→              />
+  1266→  1266→              <div
+  1267→  1267→                style={{
+  1268→  1268→                  background: "var(--color-warm-white)",
+  1269→  1269→                  borderRadius: "20px",
+  1270→  1270→                  padding: "2rem",
+  1271→  1271→                  boxShadow: "0 4px 30px rgba(0,0,0,0.06)",
+  1272→  1272→                }}
+  1273→  1273→              >
+  1274→  1274→                <div
+  1275→  1275→                  style={{
+  1276→  1276→                    fontSize: "0.65rem",
+  1277→  1277→                    fontWeight: 600,
+  1278→  1278→                    letterSpacing: "0.2em",
+  1279→  1279→                    textTransform: "uppercase",
+  1280→  1280→                    color: "var(--color-brand)",
+  1281→  1281→                    marginBottom: "1rem",
+  1282→  1282→                  }}
+  1283→  1283→                >
+  1284→  1284→                  Быстрая связь
+  1285→  1285→                </div>
+  1286→  1286→                <p
+  1287→  1287→                  style={{
+  1288→  1288→                    color: "var(--color-text-secondary)",
+  1289→  1289→                    fontSize: "0.9rem",
+  1290→  1290→                    lineHeight: 1.7,
+  1291→  1291→                    marginBottom: "1.25rem",
+  1292→  1292→                  }}
+  1293→  1293→                >
+  1294→  1294→                  Для срочных вопросов или быстрого расчёта — напишите нам в
+  1295→  1295→                  мессенджер. Отвечаем за 5 минут, без выходных.
+  1296→  1296→                </p>
+  1297→  1297→                <div style={{ display: "flex", gap: "0.75rem" }}>
+  1298→  1298→                  <MagneticButton
+  1299→  1299→                    as="a"
+  1300→  1300→                    href="https://wa.me/79119417205?text=Здравствуйте! Хочу узнать подробнее о кейтеринге."
+  1301→  1301→                    className="btn-gold"
+  1302→  1302→                    style={{ fontSize: "0.7rem", padding: "0.75rem 1.5rem" }}
+  1303→  1303→                  >
+  1304→  1304→                    WhatsApp
+  1305→  1305→                  </MagneticButton>
+  1306→  1306→                  <MagneticButton
+  1307→  1307→                    as="a"
+  1308→  1308→                    href="https://t.me/+79119417205"
+  1309→  1309→                    className="btn-outline"
+  1310→  1310→                    style={{ fontSize: "0.7rem", padding: "0.75rem 1.5rem" }}
+  1311→  1311→                  >
+  1312→  1312→                    Telegram
+  1313→  1313→                  </MagneticButton>
+  1314→  1314→                </div>
+  1315→  1315→              </div>
+  1316→  1316→            </motion.div>
+  1317→  1317→          </div>
+  1318→  1318→        </div>
+  1319→  1319→      </section>
+  1320→  1320→
+  1321→  1321→      {/* ═══════════════ Map ═══════════════ */}
+  1322→  1322→      <section className="section-wide" aria-label="Карта" style={{ position: "relative", overflow: "hidden" }}>
+  1323→  1323→        <ParticleField count={20} speed={0.15} style={{ opacity: 0.4 }} />
+  1324→  1324→        <div style={{ width: "100%", position: "relative", zIndex: 2 }}>
+  1325→  1325→          <Reveal>
+  1326→  1326→            <div style={{ textAlign: "center", marginBottom: "2rem" }}>
+  1327→  1327→              <span className="section-label">Мы на карте</span>
+  1328→  1328→              <TextReveal
+  1329→  1329→                text="Наш офис в Санкт-Петербурге"
+  1330→  1330→                as="h2"
+  1331→  1331→                className="section-title"
+  1332→  1332→              />
+  1333→  1333→            </div>
+  1334→  1334→          </Reveal>
+  1335→  1335→          <div
+  1336→  1336→            className="contact-map"
+  1337→  1337→            style={{
+  1338→  1338→              height: "450px",
+  1339→  1339→              maxWidth: "1320px",
+  1340→  1340→              margin: "0 auto",
+  1341→  1341→              padding: "0 2rem",
+  1342→  1342→            }}
+  1343→  1343→          >
+  1344→  1344→            <iframe
+  1345→  1345→              src="https://yandex.ru/map-widget/v1/?ll=30.324896%2C59.968582&z=15&text=Интерфуд%20Кейтеринг"
+  1346→  1346→              width="100%"
+  1347→  1347→              height="100%"
+  1348→  1348→              frameBorder="0"
+  1349→  1349→              style={{ borderRadius: "20px" }}
+  1350→  1350→              title="Карта — Интерфуд Кейтеринг, Новолитовская ул., 15"
+  1351→  1351→            />
+  1352→  1352→          </div>
+  1353→  1353→        </div>
+  1354→  1354→      </section>
+  1355→  1355→
+  1356→  1356→      {/* ═══════════════ Social Media ═══════════════ */}
+  1357→  1357→      <section
+  1358→  1358→        className="section section-dark"
+  1359→  1359→        aria-label="Социальные сети"
+  1360→  1360→      >
+  1361→  1361→        <div className="container" style={{ textAlign: "center" }}>
+  1362→  1362→          <Reveal>
+  1363→  1363→            <span className="section-label" style={{ color: "var(--color-brand-light)" }}>
+  1364→  1364→              Мы в соцсетях
+  1365→  1365→            </span>
+  1366→  1366→            <TextReveal
+  1367→  1367→              text="Подписывайтесь и вдохновляйтесь"
+  1368→  1368→              as="h2"
+  1369→  1369→              className="section-title section-title-light"
+  1370→  1370→            />
+  1371→  1371→            <p
+  1372→  1372→              className="section-subtitle section-subtitle-light"
+  1373→  1373→              style={{ margin: "0 auto" }}
+  1374→  1374→            >
+  1375→  1375→              Следите за нашими мероприятиями, новыми блюдами и закулисьем
+  1376→  1376→              кейтеринга в социальных сетях.
+  1377→  1377→            </p>
+  1378→  1378→          </Reveal>
+  1379→  1379→
+  1380→  1380→          <motion.div
+  1381→  1381→            style={{
+  1382→  1382→              display: "flex",
+  1383→  1383→              justifyContent: "center",
+  1384→  1384→              gap: "2rem",
+  1385→  1385→              marginTop: "2.5rem",
+  1386→  1386→            }}
+  1387→  1387→            variants={staggerContainer}
+  1388→  1388→            initial="hidden"
+  1389→  1389→            whileInView="visible"
+  1390→  1390→            viewport={{ once: true }}
+  1391→  1391→          >
+  1392→  1392→            {SOCIAL_LINKS.map((social, i) => (
+  1393→  1393→              <motion.div key={i} variants={staggerItem}>
+  1394→  1394→                <TiltCard maxTilt={6}>
+  1395→  1395→                  <a
+  1396→  1396→                    href={social.href}
+  1397→  1397→                    target="_blank"
+  1398→  1398→                    rel="noopener noreferrer"
+  1399→  1399→                    style={{
+  1400→  1400→                      display: "flex",
+  1401→  1401→                      flexDirection: "column",
+  1402→  1402→                      alignItems: "center",
+  1403→  1403→                      justifyContent: "center",
+  1404→  1404→                      gap: "1rem",
+  1405→  1405→                      padding: "2.5rem 3rem",
+  1406→  1406→                      background:
+  1407→  1407→                        "rgba(255,255,255,0.03)",
+  1408→  1408→                      border: "1px solid rgba(184,149,90,0.12)",
+  1409→  1409→                      borderRadius: "20px",
+  1410→  1410→                      textDecoration: "none",
+  1411→  1411→                      transition:
+  1412→  1412→                        "border-color 0.4s, box-shadow 0.4s, background 0.4s",
+  1413→  1413→                      minWidth: 180,
+  1414→  1414→                    }}
+  1415→  1415→                    onMouseEnter={(e) => {
+  1416→  1416→                      e.currentTarget.style.borderColor =
+  1417→  1417→                        "rgba(184,149,90,0.35)";
+  1418→  1418→                      e.currentTarget.style.boxShadow =
+  1419→  1419→                        "0 20px 50px rgba(0,0,0,0.25)";
+  1420→  1420→                      e.currentTarget.style.background =
+  1421→  1421→                        "rgba(184,149,90,0.06)";
+  1422→  1422→                    }}
+  1423→  1423→                    onMouseLeave={(e) => {
+  1424→  1424→                      e.currentTarget.style.borderColor =
+  1425→  1425→                        "rgba(184,149,90,0.12)";
+  1426→  1426→                      e.currentTarget.style.boxShadow = "none";
+  1427→  1427→                      e.currentTarget.style.background =
+  1428→  1428→                        "rgba(255,255,255,0.03)";
+  1429→  1429→                    }}
+  1430→  1430→                    aria-label={social.name}
+  1431→  1431→                  >
+  1432→  1432→                    <div
+  1433→  1433→                      style={{
+  1434→  1434→                        color: "rgba(255,255,255,0.7)",
+  1435→  1435→                        transition: "color 0.3s, transform 0.3s",
+  1436→  1436→                      }}
+  1437→  1437→                      onMouseEnter={(e) => {
+  1438→  1438→                        (e.currentTarget as HTMLElement).style.color =
+  1439→  1439→                          "var(--color-brand-light)";
+  1440→  1440→                        (e.currentTarget as HTMLElement).style.transform =
+  1441→  1441→                          "scale(1.15)";
+  1442→  1442→                      }}
+  1443→  1443→                      onMouseLeave={(e) => {
+  1444→  1444→                        (e.currentTarget as HTMLElement).style.color =
+  1445→  1445→                          "rgba(255,255,255,0.7)";
+  1446→  1446→                        (e.currentTarget as HTMLElement).style.transform =
+  1447→  1447→                          "scale(1)";
+  1448→  1448→                      }}
+  1449→  1449→                    >
+  1450→  1450→                      {social.icon}
+  1451→  1451→                    </div>
+  1452→  1452→                    <span
+  1453→  1453→                      style={{
+  1454→  1454→                        fontSize: "0.7rem",
+  1455→  1455→                        fontWeight: 600,
+  1456→  1456→                        letterSpacing: "0.15em",
+  1457→  1457→                        textTransform: "uppercase",
+  1458→  1458→                        color: "rgba(255,255,255,0.6)",
+  1459→  1459→                        transition: "color 0.3s",
+  1460→  1460→                      }}
+  1461→  1461→                    >
+  1462→  1462→                      {social.name}
+  1463→  1463→                    </span>
+  1464→  1464→                  </a>
+  1465→  1465→                </TiltCard>
+  1466→  1466→              </motion.div>
+  1467→  1467→            ))}
+  1468→  1468→          </motion.div>
+  1469→  1469→        </div>
+  1470→  1470→      </section>
+  1471→  1471→
+  1472→  1472→      {/* ═══════════════ Footer ═══════════════ */}
+  1473→  1473→      <footer className="footer" role="contentinfo">
+  1474→  1474→        <div className="footer-inner">
+  1475→  1475→          <div
+  1476→  1476→            style={{
+  1477→  1477→              display: "flex",
+  1478→  1478→              justifyContent: "space-between",
+  1479→  1479→              alignItems: "center",
+  1480→  1480→              flexWrap: "wrap",
+  1481→  1481→              gap: "1rem",
+  1482→  1482→            }}
+  1483→  1483→          >
+  1484→  1484→            <Link
+  1485→  1485→              href="/"
+  1486→  1486→              className="footer-brand"
+  1487→  1487→              style={{ textDecoration: "none" }}
+  1488→  1488→            >
+  1489→  1489→              ИНТЕРФУД
+  1490→  1490→            </Link>
+  1491→  1491→            <div
+  1492→  1492→              style={{ display: "flex", gap: "1.5rem", flexWrap: "wrap" }}
+  1493→  1493→            >
+  1494→  1494→              <Link
+  1495→  1495→                href="/menu"
+  1496→  1496→                style={{
+  1497→  1497→                  color: "rgba(255,255,255,0.45)",
+  1498→  1498→                  textDecoration: "none",
+  1499→  1499→                  fontSize: "0.85rem",
+  1500→  1500→                }}
+  1501→  1501→              >
+  1502→  1502→                Меню
+  1503→  1503→              </Link>
+  1504→  1504→              <Link
+  1505→  1505→                href="/wedding"
+  1506→  1506→                style={{
+  1507→  1507→                  color: "rgba(255,255,255,0.45)",
+  1508→  1508→                  textDecoration: "none",
+  1509→  1509→                  fontSize: "0.85rem",
+  1510→  1510→                }}
+  1511→  1511→              >
+  1512→  1512→                Свадьбы
+  1513→  1513→              </Link>
+  1514→  1514→              <Link
+  1515→  1515→                href="/corporate"
+  1516→  1516→                style={{
+  1517→  1517→                  color: "rgba(255,255,255,0.45)",
+  1518→  1518→                  textDecoration: "none",
+  1519→  1519→                  fontSize: "0.85rem",
+  1520→  1520→                }}
+  1521→  1521→              >
+  1522→  1522→                Корпоратив
+  1523→  1523→              </Link>
+  1524→  1524→              <Link
+  1525→  1525→                href="/about"
+  1526→  1526→                style={{
+  1527→  1527→                  color: "rgba(255,255,255,0.45)",
+  1528→  1528→                  textDecoration: "none",
+  1529→  1529→                  fontSize: "0.85rem",
+  1530→  1530→                }}
+  1531→  1531→              >
+  1532→  1532→                О нас
+  1533→  1533→              </Link>
+  1534→  1534→              <Link
+  1535→  1535→                href="/reviews"
+  1536→  1536→                style={{
+  1537→  1537→                  color: "rgba(255,255,255,0.45)",
+  1538→  1538→                  textDecoration: "none",
+  1539→  1539→                  fontSize: "0.85rem",
+  1540→  1540→                }}
+  1541→  1541→              >
+  1542→  1542→                Отзывы
+  1543→  1543→              </Link>
+  1544→  1544→              <Link
+  1545→  1545→                href="/contacts"
+  1546→  1546→                style={{
+  1547→  1547→                  color: "rgba(255,255,255,0.45)",
+  1548→  1548→                  textDecoration: "none",
+  1549→  1549→                  fontSize: "0.85rem",
+  1550→  1550→                }}
+  1551→  1551→              >
+  1552→  1552→                Контакты
+  1553→  1553→              </Link>
+  1554→  1554→              <Link
+  1555→  1555→                href="/"
+  1556→  1556→                style={{
+  1557→  1557→                  color: "rgba(255,255,255,0.45)",
+  1558→  1558→                  textDecoration: "none",
+  1559→  1559→                  fontSize: "0.85rem",
+  1560→  1560→                }}
+  1561→  1561→              >
+  1562→  1562→                Главная
+  1563→  1563→              </Link>
+  1564→  1564→            </div>
+  1565→  1565→            <div className="footer-copy">
+  1566→  1566→              &copy; 2007–2026 Интерфуд Кейтеринг
+  1567→  1567→            </div>
+  1568→  1568→          </div>
+  1569→  1569→        </div>
+  1570→  1570→      </footer>
+  1571→  1571→
+  1572→  1572→      {/* WhatsApp Float */}
+  1573→  1573→      <a
+  1574→  1574→        href="https://wa.me/79119417205?text=Здравствуйте! Хочу узнать подробнее о компании."
+  1575→  1575→        className="wa-float"
+  1576→  1576→        target="_blank"
+  1577→  1577→        rel="noopener noreferrer"
+  1578→  1578→        aria-label="WhatsApp"
+  1579→  1579→      >
+  1580→  1580→        &#9742;
+  1581→  1581→      </a>
+  1582→  1582→    </>
+  1583→  1583→  );
+  1584→  1584→}
+  1585→  1585→

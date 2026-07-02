@@ -335,7 +335,7 @@ export default function CinematicHero() {
         height: "100vh",
         minHeight: "600px",
         overflow: "hidden",
-        background: "#060607",
+        background: "#FAFAF7",
       }}
       aria-label="Hero section"
     >
@@ -374,10 +374,10 @@ export default function CinematicHero() {
           background: `
             linear-gradient(
               to bottom,
-              rgba(6,6,7,0.3) 0%,
-              rgba(6,6,7,0.2) 40%,
-              rgba(6,6,7,0.65) 70%,
-              rgba(6,6,7,0.95) 100%
+              rgba(250, 250, 247, 0.3) 0%,
+              rgba(250, 250, 247, 0.2) 40%,
+              rgba(250, 250, 247, 0.65) 70%,
+              rgba(250, 250, 247, 0.95) 100%
             )
           `,
           opacity: overlayOpacity,
@@ -391,7 +391,7 @@ export default function CinematicHero() {
           inset: 0,
           zIndex: 1,
           background:
-            "radial-gradient(ellipse at 50% 0%, transparent 40%, rgba(6,6,7,0.6) 100%)",
+            "radial-gradient(ellipse at 50% 0%, transparent 40%, rgba(250, 250, 247, 0.6) 100%)",
           pointerEvents: "none",
         }}
       />

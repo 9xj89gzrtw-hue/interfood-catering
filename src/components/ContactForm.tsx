@@ -311,7 +311,7 @@ export default function ContactForm({
       {/* Header with urgency + social proof */}
       <div
         style={{
-          background: "linear-gradient(135deg, #1A1A1A 0%, #2A2520 100%)",
+          background: "linear-gradient(135deg, #FFFFFF 0%, #F5F3EE 100%)",
           padding: compact ? "1.25rem 1.5rem" : "1.75rem 2rem",
           textAlign: "center",
         }}

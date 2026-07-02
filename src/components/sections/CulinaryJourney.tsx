@@ -214,9 +214,9 @@ export default function CulinaryJourney() {
           inset: 0;
           background: linear-gradient(
             135deg,
-            rgba(6,6,7,0.15) 0%,
+            rgba(250, 250, 247, 0.15) 0%,
             transparent 50%,
-            rgba(6,6,7,0.25) 100%
+            rgba(250, 250, 247, 0.25) 100%
           );
           pointer-events: none;
         }

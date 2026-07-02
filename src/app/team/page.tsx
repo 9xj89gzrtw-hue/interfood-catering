@@ -1023,7 +1023,7 @@ export default function TeamPage() {
         aria-label="Присоединяйтесь к команде"
         style={{
           padding: "6rem 2rem",
-          background: "linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #1a1a2e 100%)",
+          background: "linear-gradient(135deg, #F5F3EE 0%, #EDE9E1 50%, #F5F3EE 100%)",
           color: "#fff",
           textAlign: "center",
           position: "relative",
@@ -1141,7 +1141,7 @@ export default function TeamPage() {
       {/* ═══ FOOTER ═══ */}
       <footer
         style={{
-          background: "#0d0d1a",
+          background: "#F5F3EE",
           color: "#fff",
           padding: "4rem 2rem 2rem",
         }}

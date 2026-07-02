@@ -400,7 +400,7 @@ export function AnimatedGradientBorder({
           position: "relative",
           zIndex: 1,
           borderRadius: Math.max(0, borderRadius - borderWidth),
-          background: "var(--color-bg-primary, #0A0A0A)",
+          background: "var(--color-bg-primary, #FAFAF7)",
         }}
       >
         {children}

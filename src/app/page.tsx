@@ -15,7 +15,7 @@ import ContactShowcase from "@/components/sections/ContactShowcase";
 
 export default function Home() {
   return (
-    <main style={{ background: "#060607", minHeight: "100vh" }}>
+    <main style={{ background: "#FAFAF7", minHeight: "100vh" }}>
       <CinematicHero />
       <KineticTypography />
       <StatsOdometer />

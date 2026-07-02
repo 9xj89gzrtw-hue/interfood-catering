@@ -51,7 +51,7 @@ export default function UrgencyBanner() {
   return (
     <div
       style={{
-        background: "linear-gradient(90deg, #1A1A1A 0%, #2A2520 100%)",
+        background: "linear-gradient(90deg, #FFFFFF 0%, #F5F3EE 100%)",
         borderBottom: "1px solid rgba(184,149,90,0.2)",
         position: "relative",
         zIndex: 1001,

@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
 /* ═══════════════════════════════════════════════════════════════
-   INTERFOOD CATERING — Dark Cinematic WOW Design System v60
+   INTERFOOD CATERING — Light Premium Design System v70
    
-   MOTION DIRECTOR PHILOSOPHY:
-   - Dark cinematic canvas — every color glows against darkness
-   - Gold light emerges from shadow
-   - Scroll IS the animation controller
-   - Every element breathes, floats, responds
-   - Mobile = native experience, not simplified desktop
+   PHILOSOPHY:
+   - Light, airy canvas — gold accents sing against white
+   - Elegance through restraint, sophistication through detail
+   - Scroll IS the animation controller (CSS Scroll-Driven)
+   - View Transitions API — seamless page morphing
+   - Mobile = first-class native experience with haptics
    
    ═══════════════════════════════════════════════════════════════ */
 
@@ -26,50 +26,50 @@
   --color-gold-900: #5C4210;
 
   /* ─── Brand ─── */
-  --color-brand: #C9A96A;
-  --color-brand-light: #E5BF65;
-  --color-brand-lighter: #F0D89E;
-  --color-brand-dark: #9A7B40;
+  --color-brand: #B8860B;
+  --color-brand-light: #D4A63E;
+  --color-brand-lighter: #E5BF65;
+  --color-brand-dark: #9A6F0A;
   --color-brand-darker: #7D5A0D;
-  --color-brand-5: rgba(201,169,106,0.05);
-  --color-brand-8: rgba(201,169,106,0.08);
-  --color-brand-12: rgba(201,169,106,0.12);
-  --color-brand-16: rgba(201,169,106,0.16);
-  --color-brand-20: rgba(201,169,106,0.20);
-  --color-brand-30: rgba(201,169,106,0.30);
-  --color-brand-40: rgba(201,169,106,0.40);
+  --color-brand-5: rgba(184,134,11,0.05);
+  --color-brand-8: rgba(184,134,11,0.08);
+  --color-brand-12: rgba(184,134,11,0.12);
+  --color-brand-16: rgba(184,134,11,0.16);
+  --color-brand-20: rgba(184,134,11,0.20);
+  --color-brand-30: rgba(184,134,11,0.30);
+  --color-brand-40: rgba(184,134,11,0.40);
 
-  /* ─── Dark Surface System ─── */
-  --color-surface-0: #060607;
-  --color-surface-1: #0A0A0C;
-  --color-surface-2: #111114;
-  --color-surface-3: #18181C;
-  --color-surface-4: #1F1F24;
-  --color-surface-5: #28282E;
-  --color-surface-6: #33333A;
+  /* ─── Light Surface System ─── */
+  --color-surface-0: #FAFAF7;
+  --color-surface-1: #F5F3EE;
+  --color-surface-2: #EDE9E1;
+  --color-surface-3: #E4DFD5;
+  --color-surface-4: #D9D3C7;
+  --color-surface-5: #CBC4B6;
+  --color-surface-6: #B8B0A0;
 
-  /* ─── Text System on Dark ─── */
-  --color-text-primary: #F0EBE1;
-  --color-text-secondary: #A69F91;
-  --color-text-muted: #6B655A;
-  --color-text-subtle: #4A453D;
+  /* ─── Text System on Light ─── */
+  --color-text-primary: #1A1714;
+  --color-text-secondary: #5C564D;
+  --color-text-muted: #8A8578;
+  --color-text-subtle: #B0A99E;
 
   /* ─── Accent Colors ─── */
   --color-burgundy: #8B3A4A;
   --color-burgundy-light: #A8505F;
-  --color-sage: #6B916E;
-  --color-sage-light: #8FAF91;
+  --color-sage: #5B8A5E;
+  --color-sage-light: #7BA67E;
 
-  /* ─── Legacy Compat ─── */
-  --color-dark: #0A0A0C;
-  --color-dark-800: #18181C;
-  --color-dark-700: #28282E;
-  --color-dark-600: #3A3A42;
-  --color-dark-500: #52525C;
-  --color-ivory: #0A0A0C;
-  --color-cream: #111114;
+  /* ─── Legacy Compat (now light values) ─── */
+  --color-dark: #1A1714;
+  --color-dark-800: #2C2720;
+  --color-dark-700: #4A453D;
+  --color-dark-600: #6B655A;
+  --color-dark-500: #8A8578;
+  --color-ivory: #FAFAF7;
+  --color-cream: #F5F3EE;
   --color-warm-400: #8A8578;
-  --color-warm-300: #A69F91;
+  --color-warm-300: #5C564D;
 
   /* ─── Typography ─── */
   --font-serif: var(--font-serif);
@@ -83,12 +83,12 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-  background: #060607;
+  background: #FAFAF7;
 }
 html, body { max-width: 100vw; }
 body {
   font-family: "Inter", system-ui, -apple-system, sans-serif;
-  background: #060607;
+  background: #FAFAF7;
   color: var(--color-text-primary);
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
@@ -99,11 +99,204 @@ body {
   clip: rect(0,0,0,0); border: 0;
 }
 
-/* ═══ GRAIN OVERLAY ═══ */
+/* ═══ VIEW TRANSITIONS API ═══ */
+/* Next.js 16 built-in viewTransition: true handles startViewTransition() automatically.
+   We style the transitions purely with CSS. No manual ViewTransitionLink needed. */
+
+/* Default: smooth cross-fade */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* Custom transition types via view-transition-class */
+::view-transition-old(root) {
+  animation: vt-fade-out 0.25s ease-out both;
+}
+::view-transition-new(root) {
+  animation: vt-fade-in 0.3s ease-in both;
+}
+
+@keyframes vt-fade-out {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(0.98); }
+}
+@keyframes vt-fade-in {
+  from { opacity: 0; transform: scale(1.02); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Per-page transition classes — apply via style prop on route wrappers */
+.page-transition-hero ::view-transition-old(root) {
+  animation: vt-hero-out 0.4s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+.page-transition-hero ::view-transition-new(root) {
+  animation: vt-hero-in 0.4s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+@keyframes vt-hero-out {
+  to { opacity: 0; filter: blur(8px); transform: scale(1.05); }
+}
+@keyframes vt-hero-in {
+  from { opacity: 0; filter: blur(8px); transform: scale(0.95); }
+}
+
+/* View transition name for shared elements */
+.vt-hero-image { view-transition-name: hero-image; }
+.vt-nav-logo { view-transition-name: nav-logo; }
+
+::view-transition-old(hero-image) {
+  animation: vt-shared-out 0.4s ease both;
+}
+::view-transition-new(hero-image) {
+  animation: vt-shared-in 0.4s ease both;
+}
+@keyframes vt-shared-out {
+  to { opacity: 0; transform: scale(0.95); }
+}
+@keyframes vt-shared-in {
+  from { opacity: 0; transform: scale(1.05); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ═══ SCROLL-DRIVEN ANIMATIONS ═══ */
+/* Native CSS — Chrome 115+, Edge 115+, Opera 101+
+   Falls back gracefully to no animation in unsupported browsers.
+   Uses animation-timeline: view() (works with Lenis!) */
+
+@supports (animation-timeline: view()) {
+  /* Fade up on scroll entry */
+  .sda-reveal {
+    animation: sda-fade-up 1s linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 50%;
+  }
+  @keyframes sda-fade-up {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Scale in from slightly smaller */
+  .sda-scale {
+    animation: sda-scale-in 1s linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 50%;
+  }
+  @keyframes sda-scale-in {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  /* Clip-path reveal from center */
+  .sda-clip {
+    animation: sda-clip-in 1s linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 45%;
+  }
+  @keyframes sda-clip-in {
+    from { clip-path: inset(10% 10% 10% 10%); opacity: 0; }
+    to { clip-path: inset(0 0 0 0); opacity: 1; }
+  }
+
+  /* Ken Burns slow zoom driven by scroll position */
+  .sda-ken-burns {
+    animation: sda-kb 1s linear both;
+    animation-timeline: view();
+    animation-range: entry 0% exit 100%;
+  }
+  @keyframes sda-kb {
+    from { transform: scale(1); }
+    to { transform: scale(1.15); }
+  }
+
+  /* Slide in from left */
+  .sda-slide-left {
+    animation: sda-slide-l 1s linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 50%;
+  }
+  @keyframes sda-slide-l {
+    from { opacity: 0; transform: translateX(-60px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  /* Slide in from right */
+  .sda-slide-right {
+    animation: sda-slide-r 1s linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 50%;
+  }
+  @keyframes sda-slide-r {
+    from { opacity: 0; transform: translateX(60px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  /* Parallax - element moves slower than scroll */
+  .sda-parallax-slow {
+    animation: sda-parallax-up 1s linear both;
+    animation-timeline: view();
+    animation-range: entry 0% exit 100%;
+  }
+  @keyframes sda-parallax-up {
+    from { transform: translateY(30px); }
+    to { transform: translateY(-30px); }
+  }
+
+  /* Blur reveal */
+  .sda-blur-reveal {
+    animation: sda-blur-in 1s linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 45%;
+  }
+  @keyframes sda-blur-in {
+    from { filter: blur(12px); opacity: 0; transform: scale(0.95); }
+    to { filter: blur(0); opacity: 1; transform: scale(1); }
+  }
+
+  /* Staggered children — apply .sda-stagger to parent */
+  .sda-stagger > * {
+    animation: sda-fade-up 0.8s linear both;
+    animation-timeline: view();
+    animation-range: entry 10% entry 55%;
+  }
+  .sda-stagger > *:nth-child(1) { animation-range: entry 5% entry 40%; }
+  .sda-stagger > *:nth-child(2) { animation-range: entry 10% entry 45%; }
+  .sda-stagger > *:nth-child(3) { animation-range: entry 15% entry 50%; }
+  .sda-stagger > *:nth-child(4) { animation-range: entry 20% entry 55%; }
+  .sda-stagger > *:nth-child(5) { animation-range: entry 25% entry 60%; }
+  .sda-stagger > *:nth-child(6) { animation-range: entry 30% entry 65%; }
+
+  /* Counter rotate - element stays upright while parent rotates */
+  .sda-counter-rotate {
+    animation: sda-counter-spin 1s linear both;
+    animation-timeline: view();
+    animation-range: entry 0% exit 100%;
+  }
+  @keyframes sda-counter-spin {
+    from { transform: rotate(-3deg); }
+    to { transform: rotate(3deg); }
+  }
+
+  /* Text character stagger */
+  .sda-text-reveal {
+    animation: sda-blur-in 1.2s linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 55%;
+  }
+
+  /* Legacy class — kept for compatibility */
+  .scroll-fade-in {
+    animation: sda-fade-up 1s linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 40%;
+  }
+}
+
+/* ═══ GRAIN OVERLAY (subtle for light theme) ═══ */
 .grain-overlay {
   position: fixed; inset: 0;
   pointer-events: none; z-index: 9998;
-  opacity: 0.035;
+  opacity: 0.02;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   background-size: 256px 256px;
 }
@@ -161,7 +354,7 @@ body {
   justify-content: center;
   padding: 0.9rem 2rem;
   background: linear-gradient(135deg, var(--color-brand-dark), var(--color-brand));
-  color: #060607;
+  color: #FFFFFF;
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.14em;
@@ -176,13 +369,13 @@ body {
 }
 .btn-gold:hover {
   transform: scale(1.04);
-  box-shadow: 0 8px 40px rgba(201,169,106,0.3), 0 0 80px rgba(201,169,106,0.15);
+  box-shadow: 0 8px 40px rgba(184,134,11,0.25), 0 0 80px rgba(184,134,11,0.1);
 }
 .btn-gold::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, transparent 30%, rgba(255,255,255,0.15) 50%, transparent 70%);
+  background: linear-gradient(135deg, transparent 30%, rgba(255,255,255,0.2) 50%, transparent 70%);
   transform: translateX(-100%);
   transition: transform 0.6s;
 }
@@ -225,10 +418,11 @@ body {
 }
 .nav.scrolled {
   padding: 0.75rem 0;
-  background: rgba(6,6,7,0.85);
+  background: rgba(250,250,247,0.88);
   backdrop-filter: blur(24px) saturate(180%);
   -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border-bottom: 1px solid var(--color-brand-8);
+  border-bottom: 1px solid var(--color-brand-12);
+  box-shadow: 0 1px 20px rgba(0,0,0,0.04);
 }
 .nav-inner {
   max-width: 1320px;
@@ -286,7 +480,7 @@ body {
   align-items: center;
   padding: 0.55rem 1.3rem;
   background: var(--color-brand);
-  color: #060607 !important;
+  color: #FFFFFF !important;
   border-radius: 60px;
   font-weight: 600 !important;
   font-size: 0.65rem !important;
@@ -295,7 +489,7 @@ body {
 }
 .nav-cta:hover {
   transform: scale(1.06);
-  box-shadow: 0 4px 20px rgba(201,169,106,0.3);
+  box-shadow: 0 4px 20px rgba(184,134,11,0.25);
 }
 
 /* ─── Burger ─── */
@@ -325,7 +519,7 @@ body {
 .mobile-menu {
   position: fixed;
   inset: 0;
-  background: rgba(6,6,7,0.97);
+  background: rgba(250,250,247,0.97);
   backdrop-filter: blur(40px);
   -webkit-backdrop-filter: blur(40px);
   z-index: 1001;
@@ -340,7 +534,7 @@ body {
   font-size: 1.5rem;
   font-weight: 300;
   padding: 0.75rem 0;
-  border-bottom: 1px solid var(--color-brand-8);
+  border-bottom: 1px solid var(--color-brand-12);
   transition: color 0.3s, padding-left 0.3s;
 }
 .mobile-menu a:hover {
@@ -438,29 +632,18 @@ body {
   100% { clip-path: circle(100% at 50% 50%); }
 }
 
-/* ═══ SCROLL-DRIVEN ANIMATION UTILITIES ═══ */
-/* Modern CSS Scroll-Driven Animations — Chrome 115+, Edge 115+ */
-
-@supports (animation-timeline: scroll()) {
-  .scroll-fade-in {
-    animation: fade-up 1s linear both;
-    animation-timeline: view();
-    animation-range: entry 0% entry 40%;
-  }
-}
-
 /* ═══ SERVICE CARD STYLES ═══ */
 .service-card {
   position: relative;
   border-radius: 20px;
   overflow: hidden;
-  background: var(--color-surface-2);
-  border: 1px solid var(--color-brand-8);
+  background: #FFFFFF;
+  border: 1px solid var(--color-brand-12);
   transition: border-color 0.5s, box-shadow 0.5s, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .service-card:hover {
   border-color: var(--color-brand-20);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(201,169,106,0.08);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.08), 0 0 40px rgba(184,134,11,0.06);
   transform: translateY(-4px);
 }
 .service-card-img {
@@ -468,13 +651,13 @@ body {
 }
 .service-card:hover .service-card-img {
   transform: scale(1.08);
-  filter: brightness(1.1);
+  filter: brightness(1.05);
 }
 
 /* ─── Animated gradient border ─── */
 .gradient-border {
   position: relative;
-  background: var(--color-surface-2);
+  background: #FFFFFF;
   border-radius: 20px;
 }
 .gradient-border::before {
@@ -497,7 +680,7 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.03) 45%, rgba(255,255,255,0.06) 50%, rgba(255,255,255,0.03) 55%, transparent 60%);
+  background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.5) 45%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0.5) 55%, transparent 60%);
   animation: shimmer-sweep 5s ease-in-out infinite;
   pointer-events: none;
   z-index: 2;
@@ -545,14 +728,14 @@ body {
 .step-card {
   padding: 2.5rem 1.5rem;
   border-radius: 20px;
-  background: var(--color-surface-2);
-  border: 1px solid var(--color-brand-8);
+  background: #FFFFFF;
+  border: 1px solid var(--color-brand-12);
   text-align: center;
   transition: border-color 0.5s, box-shadow 0.5s, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .step-card:hover {
   border-color: var(--color-brand-20);
-  box-shadow: 0 12px 40px rgba(0,0,0,0.3), 0 0 30px rgba(201,169,106,0.06);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.06), 0 0 30px rgba(184,134,11,0.04);
   transform: translateY(-4px);
 }
 .glow-effect {
@@ -577,19 +760,19 @@ body {
 .review-card {
   padding: 2rem;
   border-radius: 20px;
-  background: var(--color-surface-2);
-  border: 1px solid var(--color-brand-8);
+  background: #FFFFFF;
+  border: 1px solid var(--color-brand-12);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .review-card:hover {
   border-color: var(--color-brand-16);
-  box-shadow: 0 16px 48px rgba(0,0,0,0.3);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.06);
 }
 
 /* ═══ FOOTER ═══ */
 .site-footer {
-  background: var(--color-surface-0);
-  border-top: 1px solid var(--color-brand-8);
+  background: var(--color-surface-1);
+  border-top: 1px solid var(--color-brand-12);
   padding: 4rem 2rem 2rem;
   color: var(--color-text-muted);
 }
@@ -628,7 +811,7 @@ body {
   width: 50px;
   height: 50px;
   border-color: var(--color-brand);
-  background: rgba(201,169,106,0.08);
+  background: rgba(184,134,11,0.08);
 }
 @media (max-width: 900px) {
   .custom-cursor { display: none; }
@@ -660,7 +843,7 @@ body {
   position: fixed;
   inset: 0;
   z-index: 9990;
-  background: rgba(6,6,7,0.95);
+  background: rgba(250,250,247,0.95);
   backdrop-filter: blur(20px);
   display: flex;
   align-items: center;
@@ -673,7 +856,7 @@ body {
   max-height: 85vh;
   object-fit: contain;
   border-radius: 12px;
-  box-shadow: 0 20px 80px rgba(0,0,0,0.5);
+  box-shadow: 0 20px 80px rgba(0,0,0,0.12);
 }
 
 /* ═══ BACK TO TOP ═══ */
@@ -684,7 +867,7 @@ body {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: var(--color-surface-3);
+  background: #FFFFFF;
   border: 1px solid var(--color-brand-12);
   display: flex;
   align-items: center;
@@ -695,13 +878,14 @@ body {
   transform: translateY(20px);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   color: var(--color-brand);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
 }
 .back-to-top.visible {
   opacity: 1;
   transform: translateY(0);
 }
 .back-to-top:hover {
-  background: var(--color-brand-12);
+  background: var(--color-brand-8);
   transform: translateY(-2px);
 }
 
@@ -709,7 +893,7 @@ body {
 .form-input {
   width: 100%;
   padding: 1rem 1.25rem;
-  background: var(--color-surface-3);
+  background: #FFFFFF;
   border: 1px solid var(--color-brand-12);
   border-radius: 14px;
   color: var(--color-text-primary);
@@ -721,10 +905,10 @@ body {
 .form-input:focus {
   border-color: var(--color-brand-30);
   box-shadow: 0 0 0 3px var(--color-brand-8);
-  background: var(--color-surface-4);
+  background: #FFFFFF;
 }
 .form-input::placeholder {
-  color: var(--color-text-muted);
+  color: var(--color-text-subtle);
 }
 .form-label {
   display: block;
@@ -741,7 +925,7 @@ body {
   position: fixed;
   inset: 0;
   z-index: 10000;
-  background: #060607;
+  background: #FAFAF7;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -846,7 +1030,7 @@ body {
   left: 1rem;
   z-index: 10000;
   background: var(--color-brand);
-  color: #060607;
+  color: #FFFFFF;
   padding: 0.75rem 1.5rem;
   border-radius: 0 0 8px 8px;
   font-size: 0.9rem;
@@ -854,6 +1038,51 @@ body {
   transition: top 0.2s;
 }
 .skip-to-content:focus { top: 0; }
+
+/* ═══ MOBILE TOUCH ENHANCEMENTS ═══ */
+
+/* Active press state for touch */
+@media (hover: none) and (pointer: coarse) {
+  .btn-gold:active,
+  .btn-outline:active {
+    transform: scale(0.97);
+    transition-duration: 0.1s;
+  }
+  .service-card:active {
+    transform: scale(0.98);
+    transition-duration: 0.1s;
+  }
+  .nav-cta:active {
+    transform: scale(0.95);
+  }
+  /* Disable custom cursor on touch devices */
+  .custom-cursor { display: none !important; }
+  /* Disable grain overlay for performance on mobile */
+  .grain-overlay { display: none; }
+}
+
+/* Safe area insets for notched phones */
+@supports (padding: env(safe-area-inset-bottom)) {
+  .whatsapp-float {
+    bottom: calc(2rem + env(safe-area-inset-bottom));
+  }
+  .back-to-top {
+    bottom: calc(2rem + env(safe-area-inset-bottom));
+  }
+  .mobile-menu {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* Swipe hint animation for carousels */
+.swipe-hint {
+  animation: swipe-hint 2s ease-in-out 1s 2;
+}
+@keyframes swipe-hint {
+  0%, 100% { transform: translateX(0); }
+  30% { transform: translateX(-20px); }
+  60% { transform: translateX(10px); }
+}
 
 /* ═══ REDUCED MOTION ═══ */
 @media (prefers-reduced-motion: reduce) {

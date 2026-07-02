@@ -28,7 +28,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 5,
   userScalable: true,
-  themeColor: "#0A0A0C",
+  themeColor: "#FAFAF7",
 };
 
 export const metadata: Metadata = {
@@ -163,7 +163,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrg) }} />
       </head>
-      <body className={`${cormorant.variable} ${inter.variable} antialiased min-h-screen flex flex-col`} style={{ background: "#060607", color: "#F0EBE1" }}>
+      <body className={`${cormorant.variable} ${inter.variable} antialiased min-h-screen flex flex-col`} style={{ background: "#FAFAF7", color: "#FAFAF7" }}>
         <a href="#main-content" className="skip-to-content">
           Перейти к основному содержанию
         </a>

@@ -49,7 +49,7 @@ export default function PageLoader() {
               fontFamily: "var(--font-serif)",
               fontSize: "2.5rem",
               fontWeight: 400,
-              color: "var(--color-text-primary, #1E1B16)",
+              color: "var(--color-text-primary, #1A1714)",
               letterSpacing: "0.3em",
             }}
           >
