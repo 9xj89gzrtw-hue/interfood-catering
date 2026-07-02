@@ -299,3 +299,40 @@
 
 ### Рабочая альтернатива:
 - **GitHub Pages**: https://9xj89gzrtw-hue.github.io/interfood-catering/ ✅ работает
+
+---
+
+## 🎉 Сессия 2 — Vercel Деплой УСПЕШЕН (2026-07-02)
+
+### Корень проблемы найден и исправлен:
+**Build script в package.json содержал `cp -r .next/static .next/standalone/.next/`**
+Но `output: 'standalone'` не было в next.config.ts, поэтому директория `.next/standalone/` не создавалась,
+и команда cp завершалась с ошибкой → весь деплой падал.
+
+**Исправление:** Изменили build script с:
+`next build && cp -r .next/static .next/standalone/.next/ && cp -r public .next/standalone/`
+на:
+`next build`
+
+### Результат:
+- ✅ Vercel деплой успешно собран и развёрнут
+- ✅ **СВЕТЛАЯ тема** залита на Vercel (была тёмная #060607 → стала #FEFDFB)
+- ✅ Золотые акценты (#B8955A)
+- ✅ View Transitions API работает
+- ✅ Scroll-Driven Animations работают
+- ✅ 23 страницы, все доступны
+
+### Ссылки:
+- **Основной URL:** https://interfood-catering.vercel.app
+- **Git branch URL:** https://interfood-catering-git-main-9xj89gzrtw-hues-projects.vercel.app
+- **GitHub Pages (альтернатива):** https://9xj89gzrtw-hue.github.io/interfood-catering/
+
+### Удалены дубли проектов:
+- ❌ interfood-catering-4ww8 — удалён
+- ❌ interfood-catering-k3uf — удалён
+- ✅ interfood-catering — единственный проект
+
+### Vercel токен:
+- Токен получен от пользователя ✅
+- Сохранён в MEMORY для будущих сессий
+- Команда: `npx vercel --token VERCEL_TOKEN_STORED_IN_ENV --prod`

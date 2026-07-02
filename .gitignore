@@ -69,4 +69,4 @@ server.log
 /images/
 /images_v11/
 /images_v11_b64/
-/tool-results/
+/tool-results/.env
