@@ -551,7 +551,7 @@ export default function CinematicGallery() {
     if (!isAutoplaying) return;
 
     const interval = setInterval(() => {
-      progressRef.current = 0;
+      setProgress(0);
       setActiveIndex((prev) => (prev + 1) % GALLERY.length);
     }, AUTOPLAY_INTERVAL);
 

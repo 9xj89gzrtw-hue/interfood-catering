@@ -569,7 +569,7 @@ export default function SiteNav() {
             ))}
 
             {/* ─── "Ещё" Dropdown ─────────────────────────────── */}
-            <li ref={dropdownRef} style={{ position: "relative" }}>
+            <li ref={dropdownRef as React.Ref<HTMLLIElement>} style={{ position: "relative" }}>
               <button
                 onClick={() => setDropdownOpen(!dropdownOpen)}
                 aria-expanded={dropdownOpen}

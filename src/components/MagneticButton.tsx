@@ -16,6 +16,8 @@ interface MagneticButtonProps {
   href?: string;
   onClick?: () => void;
   style?: React.CSSProperties;
+  target?: string;
+  rel?: string;
 }
 
 export default function MagneticButton({
@@ -26,6 +28,8 @@ export default function MagneticButton({
   href,
   onClick,
   style,
+  target,
+  rel,
 }: MagneticButtonProps) {
   const ref = useRef<HTMLElement>(null);
   const x = useMotionValue(0);
@@ -55,7 +59,7 @@ export default function MagneticButton({
       style={{ x: springX, y: springY, display: "inline-block" }}
     >
       {Tag === "a" ? (
-        <a href={href} className={className} onClick={onClick} style={style}>
+        <a href={href} className={className} onClick={onClick} style={style} target={target} rel={rel}>
           {children}
         </a>
       ) : (

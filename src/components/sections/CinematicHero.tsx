@@ -591,7 +591,7 @@ function GoldenLineTransition({ scrollProgress }: { scrollProgress: ReturnType<t
 export default function CinematicHero() {
   const isMounted = useIsMounted();
   const isMobile = useIsMobile();
-  const prefersReduced = useReducedMotion();
+  const prefersReduced = useReducedMotion() ?? false;
 
   // ─── Scroll & Parallax ───
   const containerRef = useRef<HTMLElement>(null);

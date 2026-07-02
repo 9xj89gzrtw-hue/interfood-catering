@@ -164,13 +164,12 @@ export default function SiteFooter() {
           <a
             href="https://wa.me/79119417205"
             style={{
-              display: "block",
+              display: "flex",
               color: "rgba(255,255,255,0.45)",
               textDecoration: "none",
               fontSize: "clamp(0.82rem, 2.5vw, 0.85rem)",
               marginBottom: "0.5rem",
               minHeight: 44,
-              display: "flex",
               alignItems: "center",
             }}
           >
@@ -179,7 +178,7 @@ export default function SiteFooter() {
           <a
             href="tel:+78129195911"
             style={{
-              display: "block",
+              display: "flex",
               color: "var(--color-brand-light)",
               textDecoration: "none",
               fontSize: "clamp(1rem, 3vw, 1.05rem)",
@@ -187,7 +186,6 @@ export default function SiteFooter() {
               marginBottom: "0.5rem",
               letterSpacing: "0.02em",
               minHeight: 44,
-              display: "flex",
               alignItems: "center",
             }}
           >
@@ -196,12 +194,11 @@ export default function SiteFooter() {
           <a
             href="mailto:interfood-catering@yandex.ru"
             style={{
-              display: "block",
+              display: "flex",
               color: "rgba(255,255,255,0.45)",
               textDecoration: "none",
               fontSize: "clamp(0.82rem, 2.5vw, 0.85rem)",
               minHeight: 44,
-              display: "flex",
               alignItems: "center",
             }}
           >

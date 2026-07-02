@@ -66,7 +66,7 @@ function ContactItem({ item, index, isMobile }: { item: typeof CONTACTS[number];
 
   return (
     <motion.a
-      ref={ref}
+      ref={ref as React.Ref<HTMLAnchorElement>}
       href={item.href}
       target={item.href.startsWith("http") ? "_blank" : undefined}
       rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}

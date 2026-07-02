@@ -1,0 +1,711 @@
+From https://github.com/9xj89gzrtw-hue/interfood-catering
+ * branch            main       -> FETCH_HEAD
+Updating 7fd8520..4509321
+Fast-forward
+ .gitignore                                         |    3 +-
+ .node-version                                      |    1 +
+ .zscripts/dev.pid                                  |    2 +-
+ MEMORY.md                                          |  257 +
+ VERSION.md                                         |  345 ++
+ agent-ctx/fix1-menubuilder-globals-agent.md        |   73 +
+ agent-ctx/kinetic-stats-rebuild-main.md            |   31 +
+ agent-ctx/mobile-hero-nav-improvements.md          |   49 +
+ agent-ctx/task-wow-effects-agent.md                |   46 +
+ agent-ctx/wow-effects-v81-main.md                  |   38 +
+ bun.lock                                           |   71 +-
+ download/original-site-about.json                  |   86 +
+ download/original-site-banket.json                 |   86 +
+ download/original-site-contacts.json               |   72 +
+ download/original-site-furshet.json                |   86 +
+ download/original-site-kontakty.json               |   86 +
+ download/original-site-main.json                   |   80 +
+ download/original-site-menu.json                   |   72 +
+ download/original-site-okompanii.json              |   72 +
+ download/original-site-reviews.json                |   72 +
+ download/original-site-services.json               |   72 +
+ download/original-site-uslugi.json                 |   77 +
+ download/original-site-wedding.json                |   72 +
+ download/original-site.json                        |   80 +
+ next.config.ts                                     |   21 +-
+ package-lock.json                                  |  312 +-
+ package.json                                       |    5 +-
+ public/images/hero-poster.jpg                      |  Bin 0 -> 80310 bytes
+ public/images/original/1.jpg                       |  Bin 0 -> 173828 bytes
+ public/images/original/10.jpg                      |  Bin 0 -> 139751 bytes
+ public/images/original/141.jpg                     |  Bin 0 -> 139283 bytes
+ public/images/original/1581520128-0-2.jpg          |  Bin 0 -> 159685 bytes
+ public/images/original/20190418-551a0918.jpg       |  Bin 0 -> 889594 bytes
+ .../original/2025-10-04-12-09-53-2-scaled.jpeg     |  Bin 0 -> 886891 bytes
+ .../original/2025-10-04-12-09-53-6-scaled.jpeg     |  Bin 0 -> 1070824 bytes
+ public/images/original/314.jpg                     |  Bin 0 -> 295363 bytes
+ .../original/4b67ea3c12bae7701c19263a79b3660c.jpg  |  Bin 0 -> 113469 bytes
+ .../original/66453827e8cffcf14352d79d30cdd3e1.jpg  |  Bin 0 -> 98379 bytes
+ ...-8bbf-4bc4-b992-d47bdb5d0b6e-e1603646754262.jpg |  Bin 0 -> 54830 bytes
+ .../original/9b6f3c1f4edd9fa2419843c234f48ea1.jpg  |  Bin 0 -> 84543 bytes
+ ...0d20-d0da-490c-9899-ff7aecee970c-1200x800-1.jpg |  Bin 0 -> 73188 bytes
+ public/images/original/DSC02168-1024x768.jpg       |  Bin 0 -> 341563 bytes
+ public/images/original/DSC02168.jpg                |  Bin 0 -> 6763394 bytes
+ public/images/original/DSC02179-1024x768.jpg       |  Bin 0 -> 219277 bytes
+ public/images/original/DSC02179.jpg                |  Bin 0 -> 4964184 bytes
+ public/images/original/DSC02258-1024x768.jpg       |  Bin 0 -> 227196 bytes
+ public/images/original/DSC02258.jpg                |  Bin 0 -> 5752216 bytes
+ public/images/original/Foto-1.png                  |  Bin 0 -> 311271 bytes
+ public/images/original/Foto-3-1.png                |  Bin 0 -> 317040 bytes
+ public/images/original/Foto-3.png                  |  Bin 0 -> 320104 bytes
+ public/images/original/Foto-5.png                  |  Bin 0 -> 290190 bytes
+ public/images/original/Foto-6-1.png                |  Bin 0 -> 187901 bytes
+ public/images/original/Foto-6.png                  |  Bin 0 -> 310255 bytes
+ .../images/original/FullSizeRender-3-1024x768.jpg  |  Bin 0 -> 127544 bytes
+ public/images/original/FullSizeRender-3.jpg        |  Bin 0 -> 330503 bytes
+ .../images/original/FullSizeRender2-3-768x1024.jpg |  Bin 0 -> 144089 bytes
+ .../images/original/FullSizeRender3-3-768x1024.jpg |  Bin 0 -> 103711 bytes
+ public/images/original/Group-1-1.png               |  Bin 0 -> 163188 bytes
+ public/images/original/IMG_0034.jpeg               |  Bin 0 -> 879844 bytes
+ public/images/original/IMG_0037.jpeg               |  Bin 0 -> 453379 bytes
+ public/images/original/IMG_0167-scaled.jpg         |  Bin 0 -> 461643 bytes
+ public/images/original/IMG_0168-scaled.jpg         |  Bin 0 -> 584980 bytes
+ public/images/original/IMG_0172-scaled.jpg         |  Bin 0 -> 730009 bytes
+ public/images/original/IMG_0591-1024x682.jpg       |  Bin 0 -> 318129 bytes
+ public/images/original/IMG_0591.jpg                |  Bin 0 -> 1784463 bytes
+ public/images/original/IMG_0604.jpg                |  Bin 0 -> 97600 bytes
+ public/images/original/IMG_0921-1024x768.jpg       |  Bin 0 -> 111572 bytes
+ public/images/original/IMG_0979-1024x768.jpg       |  Bin 0 -> 118790 bytes
+ public/images/original/IMG_0979.jpg                |  Bin 0 -> 377576 bytes
+ public/images/original/IMG_0983-1024x768.jpg       |  Bin 0 -> 166337 bytes
+ public/images/original/IMG_0983.jpg                |  Bin 0 -> 504317 bytes
+ public/images/original/IMG_2995-768x1024.jpg       |  Bin 0 -> 197448 bytes
+ public/images/original/IMG_2995.jpg                |  Bin 0 -> 259281 bytes
+ .../images/original/J49A2260_1_2-kv-1024x1024.jpg  |  Bin 0 -> 124216 bytes
+ .../images/original/J49A2291_2_3-kv-1024x1024.jpg  |  Bin 0 -> 124398 bytes
+ .../images/original/J49A2345_6_9-kv-1024x1024.jpg  |  Bin 0 -> 121723 bytes
+ .../images/original/J49A2385_6_7-kv-1024x1024.jpg  |  Bin 0 -> 104930 bytes
+ .../images/original/J49A2440_1_2-kv-1024x1024.jpg  |  Bin 0 -> 133431 bytes
+ .../images/original/J49A2480_1_2-kv-1024x1024.jpg  |  Bin 0 -> 129689 bytes
+ .../original/J49A2530_1_2-kv-1-1024x1024.jpg       |  Bin 0 -> 123498 bytes
+ .../original/J49A2760_1_2_3-6-kv-1024x1024.jpg     |  Bin 0 -> 248090 bytes
+ .../original/J49A2785_6_7_9-6-kv-1024x1024.jpg     |  Bin 0 -> 301373 bytes
+ .../images/original/J49A2800_1_2-kv-1024x1024.jpg  |  Bin 0 -> 164627 bytes
+ .../images/original/J49A2815_6_7-kv-1024x1024.jpg  |  Bin 0 -> 139740 bytes
+ .../images/original/J49A2835_6_7-kv-1024x1024.jpg  |  Bin 0 -> 151816 bytes
+ .../images/original/J49A2855_6_7-kv-1024x1024.jpg  |  Bin 0 -> 170663 bytes
+ .../original/J49A2875_6_7_8-kv-1024x1024.jpg       |  Bin 0 -> 139212 bytes
+ .../images/original/J49A2934_5_6-kv-1024x1024.jpg  |  Bin 0 -> 135835 bytes
+ .../original/J49A2989_90_91-kv-1024x1024.jpg       |  Bin 0 -> 127702 bytes
+ .../images/original/J49A3024_5_6-kv-1024x1024.jpg  |  Bin 0 -> 131526 bytes
+ .../original/J49A3049_50_51-kv-1024x1024.jpg       |  Bin 0 -> 133694 bytes
+ .../original/J49A3059_60_61_62-kv-1024x1024.jpg    |  Bin 0 -> 165722 bytes
+ .../original/J49A3084_5_6_7-kv-1024x1024.jpg       |  Bin 0 -> 156947 bytes
+ .../images/original/J49A3124_5_6-kv-1024x1024.jpg  |  Bin 0 -> 110889 bytes
+ .../original/J49A3149_50_51_52-kv-1024x1024.jpg    |  Bin 0 -> 152404 bytes
+ .../original/J49A3169_70_71_72-kv-1024x1024.jpg    |  Bin 0 -> 140662 bytes
+ .../original/J49A3199_200_201_202-kv-1024x1024.jpg |  Bin 0 -> 120506 bytes
+ .../Shrimp-and-Scallop-Kabobs-3-700x1050-1.jpg     |  Bin 0 -> 254429 bytes
+ public/images/original/about-225x300.jpg           |  Bin 0 -> 13104 bytes
+ public/images/original/barbecue_menu.pdf           |  Bin 0 -> 1626092 bytes
+ ...8dcee6e6f73b3fb67743d29fbc4e6bb403013927f04.jpg |  Bin 0 -> 123865 bytes
+ public/images/original/bliny-rolly-losos-ikra.jpg  |  Bin 0 -> 484557 bytes
+ public/images/original/bzk6q-10-eda-na-banket.jpg  |  Bin 0 -> 77157 bytes
+ .../c74ad4e9-520a-4400-bf5d-e4e453956af6.jpg       |  Bin 0 -> 98313 bytes
+ ...sitphotos_23481139-stock-photo-caesar-salad.jpg |  Bin 0 -> 121456 bytes
+ .../e4992817-4f66-4a94-8cb8-6c07db946e6d.jpg       |  Bin 0 -> 139676 bytes
+ public/images/original/eb95c8aab7.jpg              |  Bin 0 -> 72370 bytes
+ .../original/fullsizerender-03-08-18-11-31-1.jpg   |  Bin 0 -> 768774 bytes
+ public/images/original/kartofelniy-graten-02.jpg   |  Bin 0 -> 508444 bytes
+ public/images/original/otziv.jpg                   |  Bin 0 -> 135512 bytes
+ public/images/original/otzyv-sporting.jpg          |  Bin 0 -> 22072 bytes
+ public/images/original/pLpunIRsxh0.jpg             |  Bin 0 -> 134220 bytes
+ public/images/original/photo-mod.jpg               |  Bin 0 -> 40723 bytes
+ public/images/original/resize.jpg                  |  Bin 0 -> 94148 bytes
+ public/images/original/slider1.jpg                 |  Bin 0 -> 217408 bytes
+ public/images/original/slider3.jpg                 |  Bin 0 -> 275347 bytes
+ .../utinye-grudki-recepty-prigotovleniya_15.jpg    |  Bin 0 -> 50399 bytes
+ public/images/original/vegetarian_menu.pdf         |  Bin 0 -> 5152634 bytes
+ public/videos/hero-catering-mobile.mp4             |  Bin 0 -> 151416 bytes
+ public/videos/hero-catering.mp4                    |  Bin 0 -> 4802869 bytes
+ scripts/dark_theme_switch.py                       |   77 +
+ scripts/fix_broken_media.py                        |  153 +
+ scripts/light_theme_migrate.py                     |  108 +
+ scripts/original_site_full_content.json            | 5242 ++++++++++++++++++++
+ scripts/scrape_original_site.py                    |  630 +++
+ src/app/about/layout.tsx                           |   49 +-
+ src/app/about/page.tsx                             |  267 +-
+ src/app/api/contact/route.ts                       |   12 +-
+ src/app/api/health/route.ts                        |   53 +
+ src/app/api/route.ts                               |    2 +
+ src/app/apple-icon.png                             |  Bin 0 -> 2833 bytes
+ src/app/blog/layout.tsx                            |   50 +-
+ src/app/blog/page.tsx                              |  434 +-
+ src/app/calculator/layout.tsx                      |   31 +-
+ src/app/calculator/page.tsx                        |   91 +-
+ src/app/contacts/layout.tsx                        |   31 +-
+ src/app/contacts/page.tsx                          |  593 +--
+ src/app/corporate/layout.tsx                       |   43 +-
+ src/app/corporate/page.tsx                         |  210 +-
+ src/app/faq/layout.tsx                             |   95 +-
+ src/app/faq/page.tsx                               |  101 +-
+ src/app/favicon.ico                                |  Bin 0 -> 357 bytes
+ src/app/gallery/layout.tsx                         |   43 +-
+ src/app/gallery/page.tsx                           |  928 ++--
+ src/app/globals.css                                | 2901 ++++++-----
+ src/app/icon.svg                                   |   12 +
+ src/app/layout.tsx                                 |  175 +-
+ src/app/loading.tsx                                |   43 +
+ src/app/menu/layout.tsx                            |   41 +-
+ src/app/menu/page.tsx                              | 1421 +-----
+ src/app/page.tsx                                   |  980 +---
+ src/app/privacy/layout.tsx                         |   23 +-
+ src/app/privacy/page.tsx                           |  121 +-
+ src/app/quiz/layout.tsx                            |   39 +-
+ src/app/quiz/page.tsx                              |   65 +-
+ src/app/reviews/layout.tsx                         |   49 +-
+ src/app/reviews/page.tsx                           |  453 +-
+ src/app/robots.ts                                  |    2 +
+ src/app/services/layout.tsx                        |   41 +-
+ src/app/services/page.tsx                          |  270 +-
+ src/app/sitemap.ts                                 |   96 +-
+ src/app/team/layout.tsx                            |   46 +-
+ src/app/team/page.tsx                              |  225 +-
+ src/app/terms/layout.tsx                           |   23 +-
+ src/app/terms/page.tsx                             |  123 +-
+ src/app/venues/layout.tsx                          |   40 +-
+ src/app/venues/page.tsx                            |  188 +-
+ src/app/wedding/layout.tsx                         |   50 +-
+ src/app/wedding/page.tsx                           |  213 +-
+ src/components/AIChatAssistant.tsx                 |  443 ++
+ src/components/AnimatedTypewriter.tsx              |    4 +-
+ src/components/BackToTop.tsx                       |   40 +-
+ src/components/BentoGrid.tsx                       |    2 +-
+ src/components/ClientMarquee.tsx                   |  120 +-
+ src/components/ConfettiButton.tsx                  |   43 +-
+ src/components/ContactForm.tsx                     |  726 ++-
+ src/components/ConversionCTA.tsx                   |  169 +
+ src/components/CountUp.tsx                         |   13 +-
+ src/components/CountdownTimer.tsx                  |  138 +-
+ src/components/CulinaryJourney.tsx                 |  371 ++
+ src/components/CursorTrail.tsx                     |   22 +-
+ src/components/DrawPath.tsx                        |    2 +-
+ src/components/ErrorBoundary.tsx                   |   77 +
+ src/components/ExitIntentPopup.tsx                 |  300 ++
+ src/components/FlipCard3D.tsx                      |   10 +-
+ src/components/FluidBackground.tsx                 |   44 +-
+ src/components/HorizontalScroll.tsx                |   12 +-
+ src/components/HorizontalScrollGallery.tsx         |  129 +-
+ src/components/HorizontalVideoScroll.tsx           |    3 +-
+ src/components/ImageCompare.tsx                    |   27 +-
+ src/components/ImageReveal.tsx                     |   28 +-
+ src/components/KineticFontSection.tsx              |  311 ++
+ src/components/KineticText.tsx                     |    8 +-
+ src/components/LottiePlaceholder.tsx               |    4 +-
+ src/components/MenuBuilder.tsx                     | 1688 ++++++-
+ src/components/MorphingBlob.tsx                    |   17 +-
+ src/components/MorphingText.tsx                    |  218 +-
+ src/components/PageLoader.tsx                      |   39 +-
+ src/components/ParallaxImage.tsx                   |   12 +-
+ src/components/ParticleField.tsx                   |   33 +-
+ src/components/RippleButton.tsx                    |   31 +-
+ src/components/ScrollVideo.tsx                     |    2 +-
+ src/components/ServiceWorkerRegistrar.tsx          |   14 +-
+ src/components/SiteFooter.tsx                      |  461 ++
+ src/components/SiteNav.tsx                         | 1298 ++++-
+ src/components/SmoothScroll.tsx                    |   32 +-
+ src/components/SplitText.tsx                       |    2 +-
+ src/components/SpotlightCard.tsx                   |    8 +-
+ src/components/StaggerReveal.tsx                   |    2 +-
+ src/components/StickyBottomCTA.tsx                 |  148 +-
+ src/components/SwipeCarousel.tsx                   |    2 +-
+ src/components/TextReveal.tsx                      |    2 +-
+ src/components/ThemeToggle.tsx                     |  140 +
+ src/components/TiltCard.tsx                        |   21 +-
+ src/components/TouchInteractionProvider.tsx        |  231 +
+ src/components/UrgencyBanner.tsx                   |  143 +
+ src/components/VideoBreak.tsx                      |   15 +-
+ src/components/VideoCarousel.tsx                   |   41 +-
+ src/components/ViewTransitionLink.tsx              |   55 +
+ src/components/WebGLShaderBG.tsx                   |   65 +-
+ src/components/WhatsAppFloat.tsx                   |   93 +-
+ src/components/sections/CTASection.tsx             |  363 ++
+ src/components/sections/CinematicGallery.tsx       | 1009 ++++
+ src/components/sections/CinematicHero.tsx          | 1316 +++++
+ src/components/sections/ClientMarquee.tsx          |  188 +
+ src/components/sections/ContactShowcase.tsx        |  432 ++
+ src/components/sections/CulinaryJourney.tsx        |  330 ++
+ src/components/sections/HowItWorks.tsx             |  392 ++
+ src/components/sections/KineticTypography.tsx      |  612 +++
+ src/components/sections/MarqueeStrip.tsx           |  139 +
+ src/components/sections/ReviewsStack.tsx           |  365 ++
+ src/components/sections/ServicesShowcase.tsx       |  733 +++
+ src/components/sections/StatsOdometer.tsx          |  543 ++
+ src/lib/data.ts                                    |   89 +
+ src/lib/effects.tsx                                |  706 +++
+ src/types/global.d.ts                              |    7 +
+ tool-results/bash_1783000953298_dfcbae406b40.txt   | 1057 ++++
+ tool-results/bash_1783002668607_a9d979df0478.txt   |   53 +
+ tool-results/bash_1783006962423_c975eecf19ec.txt   |  740 +++
+ tool-results/bash_1783006981149_c975eecf19ec.txt   |  740 +++
+ tool-results/bash_1783010687444_b3e3e966f8b7.txt   |    2 +
+ tool-results/bash_1783014193455_f9d1479a2899.txt   |    2 +
+ tool-results/bash_1783017760071_3ad4880502c9.txt   |  547 ++
+ tool-results/bash_1783017778328_8d10467e1a65.txt   |  615 +++
+ tool-results/bash_1783021446628_b9622cf6187d.txt   |    2 +
+ tool-results/bash_1783022171142_13fb09612886.txt   |    3 +
+ tool-results/bash_1783023310478_57ac71d84422.txt   |    1 +
+ tool-results/read_1782999385944_9d46eb6ef825.txt   |  958 ++++
+ tool-results/read_1782999386285_751988819238.txt   | 1887 +++++++
+ tool-results/read_1782999397965_96e30148229d.txt   |  958 ++++
+ tool-results/read_1782999398286_fe5fe0056244.txt   | 1887 +++++++
+ tool-results/read_1783000964945_0f82deabcea4.txt   | 1057 ++++
+ tool-results/read_1783000967230_90ec074bf21c.txt   |  302 ++
+ tool-results/read_1783001347654_2fa208f6a36c.txt   |  852 ++++
+ tool-results/read_1783001355314_0ddeebfb2096.txt   |  852 ++++
+ tool-results/read_1783001988349_1478d63290e6.txt   |  733 +++
+ tool-results/read_1783001988647_2e056f9a0087.txt   | 1478 ++++++
+ tool-results/read_1783001989070_bab8d2e5ca7a.txt   | 1585 ++++++
+ tool-results/read_1783001990471_e7cb512fc9d4.txt   |  733 +++
+ tool-results/read_1783001990805_c58c9a3c7a2b.txt   | 1478 ++++++
+ tool-results/read_1783001991479_746aa83abd16.txt   | 1585 ++++++
+ tool-results/read_1783004826393_65fedd4ddc01.txt   |  832 ++++
+ tool-results/read_1783006647223_65fedd4ddc01.txt   |  832 ++++
+ tool-results/read_1783006648608_c531f348743d.txt   | 1115 +++++
+ tool-results/read_1783006660363_2ea7645ca5a9.txt   | 1115 +++++
+ tool-results/read_1783006660671_a76586f4d08f.txt   |  832 ++++
+ tool-results/read_1783006673111_267c8f33efec.txt   |  620 +++
+ tool-results/read_1783006673430_31fdbfbd9516.txt   | 1292 +++++
+ tool-results/read_1783006673747_69e777ef1403.txt   | 1124 +++++
+ tool-results/read_1783006674090_86a10c98c8fe.txt   | 1274 +++++
+ tool-results/read_1783006674409_49ad08c5e7b3.txt   |  620 +++
+ tool-results/read_1783006674742_81f2cfe9caf9.txt   |  841 ++++
+ tool-results/read_1783006675063_7e9ecd06271e.txt   | 1483 ++++++
+ tool-results/read_1783006675458_e630169f5efa.txt   |  840 ++++
+ tool-results/read_1783006675762_138ac1448251.txt   | 1078 ++++
+ tool-results/read_1783006682706_c78e2c2bcf68.txt   |  877 ++++
+ tool-results/read_1783006683030_9de258550b94.txt   | 1456 ++++++
+ tool-results/read_1783006683341_48edef0e7d62.txt   |  741 +++
+ tool-results/read_1783006683660_6813228dad2e.txt   |  835 ++++
+ tool-results/read_1783006683990_d1f703584118.txt   |  988 ++++
+ tool-results/read_1783006684329_14c89f53f524.txt   | 1437 ++++++
+ tool-results/read_1783006684648_012f9e63be7d.txt   | 1527 ++++++
+ tool-results/read_1783006920506_81f2cfe9caf9.txt   |  841 ++++
+ tool-results/read_1783006921065_e630169f5efa.txt   |  840 ++++
+ tool-results/read_1783006921604_69e777ef1403.txt   | 1124 +++++
+ tool-results/read_1783006922192_31fdbfbd9516.txt   | 1292 +++++
+ tool-results/read_1783006922485_65fedd4ddc01.txt   |  832 ++++
+ tool-results/read_1783006922765_d1f703584118.txt   |  988 ++++
+ tool-results/read_1783006923300_48edef0e7d62.txt   |  741 +++
+ tool-results/read_1783006923827_012f9e63be7d.txt   | 1527 ++++++
+ tool-results/read_1783006924369_14c89f53f524.txt   | 1437 ++++++
+ tool-results/read_1783006924929_9de258550b94.txt   | 1456 ++++++
+ tool-results/read_1783006925476_7e9ecd06271e.txt   | 1483 ++++++
+ tool-results/read_1783006926029_6813228dad2e.txt   |  835 ++++
+ tool-results/read_1783006926345_138ac1448251.txt   | 1078 ++++
+ tool-results/read_1783006926686_c78e2c2bcf68.txt   |  877 ++++
+ tool-results/read_1783006930385_a76586f4d08f.txt   |  832 ++++
+ tool-results/read_1783006935463_280c7b7f5eeb.txt   | 1292 +++++
+ tool-results/read_1783006935767_1c09ba000d52.txt   |  841 ++++
+ tool-results/read_1783006936303_d258c09345b8.txt   | 1483 ++++++
+ tool-results/read_1783006936641_11c10e692d3c.txt   |  988 ++++
+ tool-results/read_1783006936968_62e7f83b5388.txt   | 1437 ++++++
+ tool-results/read_1783006937283_b215fea2092d.txt   |  741 +++
+ tool-results/read_1783006937601_654cc78eae40.txt   | 1124 +++++
+ tool-results/read_1783006937897_5f83096c9d28.txt   | 1527 ++++++
+ tool-results/read_1783006938456_6c077cf0eed8.txt   |  835 ++++
+ tool-results/read_1783006938801_34a8a5d810e7.txt   |  840 ++++
+ tool-results/read_1783006939126_3415fe39469d.txt   | 1078 ++++
+ tool-results/read_1783006939445_ee962b20a916.txt   |  877 ++++
+ tool-results/read_1783006939748_0e3c269b767c.txt   | 1456 ++++++
+ tool-results/read_1783010083238_65fedd4ddc01.txt   |  832 ++++
+ tool-results/read_1783010087888_a76586f4d08f.txt   |  832 ++++
+ tool-results/read_1783010091606_2fb846befdb9.txt   |  832 ++++
+ tool-results/read_1783010094696_65fedd4ddc01.txt   |  832 ++++
+ tool-results/read_1783010433551_65fedd4ddc01.txt   |  832 ++++
+ tool-results/read_1783010434158_f89cbb481a95.txt   | 1121 +++++
+ tool-results/read_1783010438952_78e22707084e.txt   | 1121 +++++
+ tool-results/read_1783010439273_a76586f4d08f.txt   |  832 ++++
+ tool-results/read_1783011574405_c87485e45202.txt   | 1894 +++++++
+ tool-results/read_1783011935344_9b4053fe48ee.txt   | 1121 +++++
+ tool-results/read_1783012311224_0daa9108af55.txt   | 1217 +++++
+ tool-results/read_1783012312011_65fedd4ddc01.txt   |  832 ++++
+ tool-results/read_1783012315641_756560358f8a.txt   | 1217 +++++
+ tool-results/read_1783012316817_a76586f4d08f.txt   |  832 ++++
+ tool-results/read_1783013861329_58a72eacbc57.txt   | 1217 +++++
+ tool-results/read_1783013861649_96d8d27560f1.txt   | 1527 ++++++
+ tool-results/read_1783013982514_58a72eacbc57.txt   | 1217 +++++
+ tool-results/read_1783013986194_7087937d59fd.txt   | 1217 +++++
+ tool-results/read_1783013987172_96d8d27560f1.txt   | 1527 ++++++
+ tool-results/read_1783013987756_58a72eacbc57.txt   | 1217 +++++
+ tool-results/read_1783013988306_3d15994001f7.txt   |  741 +++
+ tool-results/read_1783013989599_02bcd6e0f784.txt   |  877 ++++
+ tool-results/read_1783013990118_a2b444d85fa1.txt   | 1456 ++++++
+ tool-results/read_1783013995027_a5d303c19b8e.txt   |  835 ++++
+ tool-results/read_1783013995559_e335be2954df.txt   | 1483 ++++++
+ tool-results/read_1783013996082_72248f97bf58.txt   |  840 ++++
+ tool-results/read_1783013996429_f487344d57a3.txt   | 1437 ++++++
+ tool-results/read_1783013996776_8586b4af8a9e.txt   | 1124 +++++
+ tool-results/read_1783014001182_3754bc7798de.txt   | 1078 ++++
+ tool-results/read_1783014001486_35f8c51690f7.txt   | 1292 +++++
+ tool-results/read_1783014001972_4765cb3d470b.txt   |  841 ++++
+ tool-results/read_1783014002311_86a10c98c8fe.txt   | 1274 +++++
+ tool-results/read_1783014002615_6b2fbe46c7ea.txt   |  988 ++++
+ tool-results/read_1783014002921_96d8d27560f1.txt   | 1527 ++++++
+ tool-results/read_1783017597480_5eb702f4985e.txt   |  802 +++
+ tool-results/read_1783017598070_3d15994001f7.txt   |  741 +++
+ tool-results/read_1783017599090_65fedd4ddc01.txt   |  832 ++++
+ tool-results/read_1783017599422_970ab1d6601d.txt   | 1883 +++++++
+ tool-results/read_1783017604008_ed5139367a46.txt   |  802 +++
+ tool-results/read_1783017604349_bf60c7b8046d.txt   |  741 +++
+ tool-results/read_1783017604679_a76586f4d08f.txt   |  832 ++++
+ tool-results/read_1783017605019_a31892029d7c.txt   | 1883 +++++++
+ tool-results/read_1783017762047_39a34b673517.txt   |  547 ++
+ tool-results/read_1783017764178_1664f8fa4203.txt   |  502 ++
+ tool-results/read_1783018140827_5eb702f4985e.txt   |  802 +++
+ tool-results/read_1783018141147_970ab1d6601d.txt   | 1883 +++++++
+ tool-results/read_1783018142812_f4b977d9bb36.txt   | 2002 ++++++++
+ tool-results/read_1783018144129_ed5139367a46.txt   |  802 +++
+ tool-results/read_1783018144446_a31892029d7c.txt   | 1883 +++++++
+ tool-results/read_1783018146768_43027f3c265d.txt   | 2002 ++++++++
+ tool-results/read_1783018148939_f6c561f45665.txt   |  502 ++
+ tool-results/read_1783018166455_02bcd6e0f784.txt   |  877 ++++
+ tool-results/read_1783018166819_3d15994001f7.txt   |  741 +++
+ tool-results/read_1783018167124_f487344d57a3.txt   | 1437 ++++++
+ tool-results/read_1783018167424_8586b4af8a9e.txt   | 1124 +++++
+ tool-results/read_1783018167735_a5d303c19b8e.txt   |  835 ++++
+ tool-results/read_1783018168069_a2b444d85fa1.txt   | 1456 ++++++
+ tool-results/read_1783018171331_3754bc7798de.txt   | 1078 ++++
+ tool-results/read_1783018171637_5eb702f4985e.txt   |  802 +++
+ tool-results/read_1783018171972_6b2fbe46c7ea.txt   |  988 ++++
+ tool-results/read_1783018945064_65fedd4ddc01.txt   |  832 ++++
+ tool-results/read_1783018945679_06442ebf305f.txt   |  741 +++
+ tool-results/read_1783018948178_16441049320c.txt   |  741 +++
+ tool-results/read_1783018948501_a76586f4d08f.txt   |  832 ++++
+ tool-results/read_1783020589372_87e45a57315a.txt   | 1048 ++++
+ tool-results/read_1783020698927_d1685f4e0817.txt   | 1900 +++++++
+ tool-results/read_1783020699228_dcea3c0483e5.txt   |  719 +++
+ tool-results/read_1783020701996_d5039fe22dd5.txt   |  719 +++
+ tool-results/read_1783021188364_d1685f4e0817.txt   | 1900 +++++++
+ tool-results/read_1783021194448_87e45a57315a.txt   | 1048 ++++
+ tool-results/read_1783021650777_f857ce1ac8d2.txt   |  834 ++++
+ tool-results/read_1783021651966_671c1e1d322b.txt   | 1900 +++++++
+ tool-results/read_1783021652952_671c1e1d322b.txt   | 1900 +++++++
+ tool-results/read_1783021655044_0d5326da9890.txt   |  834 ++++
+ tool-results/read_1783023281262_377a0164cd2a.txt   |  990 ++++
+ tool-results/read_1783023392098_377a0164cd2a.txt   |  990 ++++
+ tool-results/read_1783023392702_a6ba268fcbf3.txt   | 1605 ++++++
+ tool-results/read_1783023397224_377a0164cd2a.txt   |  990 ++++
+ tool-results/read_1783023400563_2716cf6b84b4.txt   |  990 ++++
+ tool-results/read_1783023790252_4e3e01a03eb2.txt   |  953 ++++
+ tool-results/read_1783023790894_3ffa97d88ee2.txt   | 1017 ++++
+ tool-results/read_1783023793933_5c1aff627991.txt   |  953 ++++
+ tool-results/read_1783023794238_a2a386943745.txt   | 1017 ++++
+ tool-results/read_1783023796957_f702a0fb1e87.txt   | 1902 +++++++
+ vercel.json                                        |    3 +
+ worklog.md                                         |  364 +-
+ 396 files changed, 195197 insertions(+), 6167 deletions(-)
+ create mode 100644 .node-version
+ create mode 100644 MEMORY.md
+ create mode 100644 VERSION.md
+ create mode 100644 agent-ctx/fix1-menubuilder-globals-agent.md
+ create mode 100644 agent-ctx/kinetic-stats-rebuild-main.md
+ create mode 100644 agent-ctx/mobile-hero-nav-improvements.md
+ create mode 100644 agent-ctx/task-wow-effects-agent.md
+ create mode 100644 agent-ctx/wow-effects-v81-main.md
+ mode change 100755 => 100644 bun.lock
+ create mode 100644 download/original-site-about.json
+ create mode 100644 download/original-site-banket.json
+ create mode 100644 download/original-site-contacts.json
+ create mode 100644 download/original-site-furshet.json
+ create mode 100644 download/original-site-kontakty.json
+ create mode 100644 download/original-site-main.json
+ create mode 100644 download/original-site-menu.json
+ create mode 100644 download/original-site-okompanii.json
+ create mode 100644 download/original-site-reviews.json
+ create mode 100644 download/original-site-services.json
+ create mode 100644 download/original-site-uslugi.json
+ create mode 100644 download/original-site-wedding.json
+ create mode 100644 download/original-site.json
+ create mode 100644 public/images/hero-poster.jpg
+ create mode 100644 public/images/original/1.jpg
+ create mode 100644 public/images/original/10.jpg
+ create mode 100644 public/images/original/141.jpg
+ create mode 100644 public/images/original/1581520128-0-2.jpg
+ create mode 100644 public/images/original/20190418-551a0918.jpg
+ create mode 100644 public/images/original/2025-10-04-12-09-53-2-scaled.jpeg
+ create mode 100644 public/images/original/2025-10-04-12-09-53-6-scaled.jpeg
+ create mode 100644 public/images/original/314.jpg
+ create mode 100644 public/images/original/4b67ea3c12bae7701c19263a79b3660c.jpg
+ create mode 100644 public/images/original/66453827e8cffcf14352d79d30cdd3e1.jpg
+ create mode 100644 public/images/original/7a892968-8bbf-4bc4-b992-d47bdb5d0b6e-e1603646754262.jpg
+ create mode 100644 public/images/original/9b6f3c1f4edd9fa2419843c234f48ea1.jpg
+ create mode 100644 public/images/original/9f070d20-d0da-490c-9899-ff7aecee970c-1200x800-1.jpg
+ create mode 100644 public/images/original/DSC02168-1024x768.jpg
+ create mode 100644 public/images/original/DSC02168.jpg
+ create mode 100644 public/images/original/DSC02179-1024x768.jpg
+ create mode 100644 public/images/original/DSC02179.jpg
+ create mode 100644 public/images/original/DSC02258-1024x768.jpg
+ create mode 100644 public/images/original/DSC02258.jpg
+ create mode 100644 public/images/original/Foto-1.png
+ create mode 100644 public/images/original/Foto-3-1.png
+ create mode 100644 public/images/original/Foto-3.png
+ create mode 100644 public/images/original/Foto-5.png
+ create mode 100644 public/images/original/Foto-6-1.png
+ create mode 100644 public/images/original/Foto-6.png
+ create mode 100644 public/images/original/FullSizeRender-3-1024x768.jpg
+ create mode 100644 public/images/original/FullSizeRender-3.jpg
+ create mode 100644 public/images/original/FullSizeRender2-3-768x1024.jpg
+ create mode 100644 public/images/original/FullSizeRender3-3-768x1024.jpg
+ create mode 100644 public/images/original/Group-1-1.png
+ create mode 100644 public/images/original/IMG_0034.jpeg
+ create mode 100644 public/images/original/IMG_0037.jpeg
+ create mode 100644 public/images/original/IMG_0167-scaled.jpg
+ create mode 100644 public/images/original/IMG_0168-scaled.jpg
+ create mode 100644 public/images/original/IMG_0172-scaled.jpg
+ create mode 100644 public/images/original/IMG_0591-1024x682.jpg
+ create mode 100644 public/images/original/IMG_0591.jpg
+ create mode 100644 public/images/original/IMG_0604.jpg
+ create mode 100644 public/images/original/IMG_0921-1024x768.jpg
+ create mode 100644 public/images/original/IMG_0979-1024x768.jpg
+ create mode 100644 public/images/original/IMG_0979.jpg
+ create mode 100644 public/images/original/IMG_0983-1024x768.jpg
+ create mode 100644 public/images/original/IMG_0983.jpg
+ create mode 100644 public/images/original/IMG_2995-768x1024.jpg
+ create mode 100644 public/images/original/IMG_2995.jpg
+ create mode 100644 public/images/original/J49A2260_1_2-kv-1024x1024.jpg
+ create mode 100644 public/images/original/J49A2291_2_3-kv-1024x1024.jpg
+ create mode 100644 public/images/original/J49A2345_6_9-kv-1024x1024.jpg
+ create mode 100644 public/images/original/J49A2385_6_7-kv-1024x1024.jpg
+ create mode 100644 public/images/original/J49A2440_1_2-kv-1024x1024.jpg
+ create mode 100644 public/images/original/J49A2480_1_2-kv-1024x1024.jpg
+ create mode 100644 public/images/original/J49A2530_1_2-kv-1-1024x1024.jpg
+ create mode 100644 public/images/original/J49A2760_1_2_3-6-kv-1024x1024.jpg
+ create mode 100644 public/images/original/J49A2785_6_7_9-6-kv-1024x1024.jpg
+ create mode 100644 public/images/original/J49A2800_1_2-kv-1024x1024.jpg
+ create mode 100644 public/images/original/J49A2815_6_7-kv-1024x1024.jpg
+ create mode 100644 public/images/original/J49A2835_6_7-kv-1024x1024.jpg
+ create mode 100644 public/images/original/J49A2855_6_7-kv-1024x1024.jpg
+ create mode 100644 public/images/original/J49A2875_6_7_8-kv-1024x1024.jpg
+ create mode 100644 public/images/original/J49A2934_5_6-kv-1024x1024.jpg
+ create mode 100644 public/images/original/J49A2989_90_91-kv-1024x1024.jpg
+ create mode 100644 public/images/original/J49A3024_5_6-kv-1024x1024.jpg
+ create mode 100644 public/images/original/J49A3049_50_51-kv-1024x1024.jpg
+ create mode 100644 public/images/original/J49A3059_60_61_62-kv-1024x1024.jpg
+ create mode 100644 public/images/original/J49A3084_5_6_7-kv-1024x1024.jpg
+ create mode 100644 public/images/original/J49A3124_5_6-kv-1024x1024.jpg
+ create mode 100644 public/images/original/J49A3149_50_51_52-kv-1024x1024.jpg
+ create mode 100644 public/images/original/J49A3169_70_71_72-kv-1024x1024.jpg
+ create mode 100644 public/images/original/J49A3199_200_201_202-kv-1024x1024.jpg
+ create mode 100644 public/images/original/Shrimp-and-Scallop-Kabobs-3-700x1050-1.jpg
+ create mode 100644 public/images/original/about-225x300.jpg
+ create mode 100644 public/images/original/barbecue_menu.pdf
+ create mode 100644 public/images/original/bb0bbfcfd869f4549c3848dcee6e6f73b3fb67743d29fbc4e6bb403013927f04.jpg
+ create mode 100644 public/images/original/bliny-rolly-losos-ikra.jpg
+ create mode 100644 public/images/original/bzk6q-10-eda-na-banket.jpg
+ create mode 100644 public/images/original/c74ad4e9-520a-4400-bf5d-e4e453956af6.jpg
+ create mode 100644 public/images/original/depositphotos_23481139-stock-photo-caesar-salad.jpg
+ create mode 100644 public/images/original/e4992817-4f66-4a94-8cb8-6c07db946e6d.jpg
+ create mode 100644 public/images/original/eb95c8aab7.jpg
+ create mode 100644 public/images/original/fullsizerender-03-08-18-11-31-1.jpg
+ create mode 100644 public/images/original/kartofelniy-graten-02.jpg
+ create mode 100644 public/images/original/otziv.jpg
+ create mode 100644 public/images/original/otzyv-sporting.jpg
+ create mode 100644 public/images/original/pLpunIRsxh0.jpg
+ create mode 100644 public/images/original/photo-mod.jpg
+ create mode 100644 public/images/original/resize.jpg
+ create mode 100644 public/images/original/slider1.jpg
+ create mode 100644 public/images/original/slider3.jpg
+ create mode 100644 public/images/original/utinye-grudki-recepty-prigotovleniya_15.jpg
+ create mode 100644 public/images/original/vegetarian_menu.pdf
+ create mode 100644 public/videos/hero-catering-mobile.mp4
+ create mode 100644 public/videos/hero-catering.mp4
+ create mode 100644 scripts/dark_theme_switch.py
+ create mode 100644 scripts/fix_broken_media.py
+ create mode 100644 scripts/light_theme_migrate.py
+ create mode 100644 scripts/original_site_full_content.json
+ create mode 100644 scripts/scrape_original_site.py
+ create mode 100644 src/app/api/health/route.ts
+ create mode 100755 src/app/apple-icon.png
+ create mode 100644 src/app/favicon.ico
+ create mode 100755 src/app/icon.svg
+ create mode 100644 src/app/loading.tsx
+ create mode 100644 src/components/AIChatAssistant.tsx
+ create mode 100644 src/components/ConversionCTA.tsx
+ create mode 100644 src/components/CulinaryJourney.tsx
+ create mode 100644 src/components/ErrorBoundary.tsx
+ create mode 100644 src/components/ExitIntentPopup.tsx
+ create mode 100644 src/components/KineticFontSection.tsx
+ create mode 100644 src/components/SiteFooter.tsx
+ create mode 100644 src/components/ThemeToggle.tsx
+ create mode 100644 src/components/TouchInteractionProvider.tsx
+ create mode 100644 src/components/UrgencyBanner.tsx
+ create mode 100644 src/components/ViewTransitionLink.tsx
+ create mode 100644 src/components/sections/CTASection.tsx
+ create mode 100644 src/components/sections/CinematicGallery.tsx
+ create mode 100644 src/components/sections/CinematicHero.tsx
+ create mode 100644 src/components/sections/ClientMarquee.tsx
+ create mode 100644 src/components/sections/ContactShowcase.tsx
+ create mode 100644 src/components/sections/CulinaryJourney.tsx
+ create mode 100644 src/components/sections/HowItWorks.tsx
+ create mode 100644 src/components/sections/KineticTypography.tsx
+ create mode 100644 src/components/sections/MarqueeStrip.tsx
+ create mode 100644 src/components/sections/ReviewsStack.tsx
+ create mode 100644 src/components/sections/ServicesShowcase.tsx
+ create mode 100644 src/components/sections/StatsOdometer.tsx
+ create mode 100644 src/lib/data.ts
+ create mode 100644 src/lib/effects.tsx
+ create mode 100644 src/types/global.d.ts
+ create mode 100644 tool-results/bash_1783000953298_dfcbae406b40.txt
+ create mode 100644 tool-results/bash_1783002668607_a9d979df0478.txt
+ create mode 100644 tool-results/bash_1783006962423_c975eecf19ec.txt
+ create mode 100644 tool-results/bash_1783006981149_c975eecf19ec.txt
+ create mode 100644 tool-results/bash_1783010687444_b3e3e966f8b7.txt
+ create mode 100644 tool-results/bash_1783014193455_f9d1479a2899.txt
+ create mode 100644 tool-results/bash_1783017760071_3ad4880502c9.txt
+ create mode 100644 tool-results/bash_1783017778328_8d10467e1a65.txt
+ create mode 100644 tool-results/bash_1783021446628_b9622cf6187d.txt
+ create mode 100644 tool-results/bash_1783022171142_13fb09612886.txt
+ create mode 100644 tool-results/bash_1783023310478_57ac71d84422.txt
+ create mode 100644 tool-results/read_1782999385944_9d46eb6ef825.txt
+ create mode 100644 tool-results/read_1782999386285_751988819238.txt
+ create mode 100644 tool-results/read_1782999397965_96e30148229d.txt
+ create mode 100644 tool-results/read_1782999398286_fe5fe0056244.txt
+ create mode 100644 tool-results/read_1783000964945_0f82deabcea4.txt
+ create mode 100644 tool-results/read_1783000967230_90ec074bf21c.txt
+ create mode 100644 tool-results/read_1783001347654_2fa208f6a36c.txt
+ create mode 100644 tool-results/read_1783001355314_0ddeebfb2096.txt
+ create mode 100644 tool-results/read_1783001988349_1478d63290e6.txt
+ create mode 100644 tool-results/read_1783001988647_2e056f9a0087.txt
+ create mode 100644 tool-results/read_1783001989070_bab8d2e5ca7a.txt
+ create mode 100644 tool-results/read_1783001990471_e7cb512fc9d4.txt
+ create mode 100644 tool-results/read_1783001990805_c58c9a3c7a2b.txt
+ create mode 100644 tool-results/read_1783001991479_746aa83abd16.txt
+ create mode 100644 tool-results/read_1783004826393_65fedd4ddc01.txt
+ create mode 100644 tool-results/read_1783006647223_65fedd4ddc01.txt
+ create mode 100644 tool-results/read_1783006648608_c531f348743d.txt
+ create mode 100644 tool-results/read_1783006660363_2ea7645ca5a9.txt
+ create mode 100644 tool-results/read_1783006660671_a76586f4d08f.txt
+ create mode 100644 tool-results/read_1783006673111_267c8f33efec.txt
+ create mode 100644 tool-results/read_1783006673430_31fdbfbd9516.txt
+ create mode 100644 tool-results/read_1783006673747_69e777ef1403.txt
+ create mode 100644 tool-results/read_1783006674090_86a10c98c8fe.txt
+ create mode 100644 tool-results/read_1783006674409_49ad08c5e7b3.txt
+ create mode 100644 tool-results/read_1783006674742_81f2cfe9caf9.txt
+ create mode 100644 tool-results/read_1783006675063_7e9ecd06271e.txt
+ create mode 100644 tool-results/read_1783006675458_e630169f5efa.txt
+ create mode 100644 tool-results/read_1783006675762_138ac1448251.txt
+ create mode 100644 tool-results/read_1783006682706_c78e2c2bcf68.txt
+ create mode 100644 tool-results/read_1783006683030_9de258550b94.txt
+ create mode 100644 tool-results/read_1783006683341_48edef0e7d62.txt
+ create mode 100644 tool-results/read_1783006683660_6813228dad2e.txt
+ create mode 100644 tool-results/read_1783006683990_d1f703584118.txt
+ create mode 100644 tool-results/read_1783006684329_14c89f53f524.txt
+ create mode 100644 tool-results/read_1783006684648_012f9e63be7d.txt
+ create mode 100644 tool-results/read_1783006920506_81f2cfe9caf9.txt
+ create mode 100644 tool-results/read_1783006921065_e630169f5efa.txt
+ create mode 100644 tool-results/read_1783006921604_69e777ef1403.txt
+ create mode 100644 tool-results/read_1783006922192_31fdbfbd9516.txt
+ create mode 100644 tool-results/read_1783006922485_65fedd4ddc01.txt
+ create mode 100644 tool-results/read_1783006922765_d1f703584118.txt
+ create mode 100644 tool-results/read_1783006923300_48edef0e7d62.txt
+ create mode 100644 tool-results/read_1783006923827_012f9e63be7d.txt
+ create mode 100644 tool-results/read_1783006924369_14c89f53f524.txt
+ create mode 100644 tool-results/read_1783006924929_9de258550b94.txt
+ create mode 100644 tool-results/read_1783006925476_7e9ecd06271e.txt
+ create mode 100644 tool-results/read_1783006926029_6813228dad2e.txt
+ create mode 100644 tool-results/read_1783006926345_138ac1448251.txt
+ create mode 100644 tool-results/read_1783006926686_c78e2c2bcf68.txt
+ create mode 100644 tool-results/read_1783006930385_a76586f4d08f.txt
+ create mode 100644 tool-results/read_1783006935463_280c7b7f5eeb.txt
+ create mode 100644 tool-results/read_1783006935767_1c09ba000d52.txt
+ create mode 100644 tool-results/read_1783006936303_d258c09345b8.txt
+ create mode 100644 tool-results/read_1783006936641_11c10e692d3c.txt
+ create mode 100644 tool-results/read_1783006936968_62e7f83b5388.txt
+ create mode 100644 tool-results/read_1783006937283_b215fea2092d.txt
+ create mode 100644 tool-results/read_1783006937601_654cc78eae40.txt
+ create mode 100644 tool-results/read_1783006937897_5f83096c9d28.txt
+ create mode 100644 tool-results/read_1783006938456_6c077cf0eed8.txt
+ create mode 100644 tool-results/read_1783006938801_34a8a5d810e7.txt
+ create mode 100644 tool-results/read_1783006939126_3415fe39469d.txt
+ create mode 100644 tool-results/read_1783006939445_ee962b20a916.txt
+ create mode 100644 tool-results/read_1783006939748_0e3c269b767c.txt
+ create mode 100644 tool-results/read_1783010083238_65fedd4ddc01.txt
+ create mode 100644 tool-results/read_1783010087888_a76586f4d08f.txt
+ create mode 100644 tool-results/read_1783010091606_2fb846befdb9.txt
+ create mode 100644 tool-results/read_1783010094696_65fedd4ddc01.txt
+ create mode 100644 tool-results/read_1783010433551_65fedd4ddc01.txt
+ create mode 100644 tool-results/read_1783010434158_f89cbb481a95.txt
+ create mode 100644 tool-results/read_1783010438952_78e22707084e.txt
+ create mode 100644 tool-results/read_1783010439273_a76586f4d08f.txt
+ create mode 100644 tool-results/read_1783011574405_c87485e45202.txt
+ create mode 100644 tool-results/read_1783011935344_9b4053fe48ee.txt
+ create mode 100644 tool-results/read_1783012311224_0daa9108af55.txt
+ create mode 100644 tool-results/read_1783012312011_65fedd4ddc01.txt
+ create mode 100644 tool-results/read_1783012315641_756560358f8a.txt
+ create mode 100644 tool-results/read_1783012316817_a76586f4d08f.txt
+ create mode 100644 tool-results/read_1783013861329_58a72eacbc57.txt
+ create mode 100644 tool-results/read_1783013861649_96d8d27560f1.txt
+ create mode 100644 tool-results/read_1783013982514_58a72eacbc57.txt
+ create mode 100644 tool-results/read_1783013986194_7087937d59fd.txt
+ create mode 100644 tool-results/read_1783013987172_96d8d27560f1.txt
+ create mode 100644 tool-results/read_1783013987756_58a72eacbc57.txt
+ create mode 100644 tool-results/read_1783013988306_3d15994001f7.txt
+ create mode 100644 tool-results/read_1783013989599_02bcd6e0f784.txt
+ create mode 100644 tool-results/read_1783013990118_a2b444d85fa1.txt
+ create mode 100644 tool-results/read_1783013995027_a5d303c19b8e.txt
+ create mode 100644 tool-results/read_1783013995559_e335be2954df.txt
+ create mode 100644 tool-results/read_1783013996082_72248f97bf58.txt
+ create mode 100644 tool-results/read_1783013996429_f487344d57a3.txt
+ create mode 100644 tool-results/read_1783013996776_8586b4af8a9e.txt
+ create mode 100644 tool-results/read_1783014001182_3754bc7798de.txt
+ create mode 100644 tool-results/read_1783014001486_35f8c51690f7.txt
+ create mode 100644 tool-results/read_1783014001972_4765cb3d470b.txt
+ create mode 100644 tool-results/read_1783014002311_86a10c98c8fe.txt
+ create mode 100644 tool-results/read_1783014002615_6b2fbe46c7ea.txt
+ create mode 100644 tool-results/read_1783014002921_96d8d27560f1.txt
+ create mode 100644 tool-results/read_1783017597480_5eb702f4985e.txt
+ create mode 100644 tool-results/read_1783017598070_3d15994001f7.txt
+ create mode 100644 tool-results/read_1783017599090_65fedd4ddc01.txt
+ create mode 100644 tool-results/read_1783017599422_970ab1d6601d.txt
+ create mode 100644 tool-results/read_1783017604008_ed5139367a46.txt
+ create mode 100644 tool-results/read_1783017604349_bf60c7b8046d.txt
+ create mode 100644 tool-results/read_1783017604679_a76586f4d08f.txt
+ create mode 100644 tool-results/read_1783017605019_a31892029d7c.txt
+ create mode 100644 tool-results/read_1783017762047_39a34b673517.txt
+ create mode 100644 tool-results/read_1783017764178_1664f8fa4203.txt
+ create mode 100644 tool-results/read_1783018140827_5eb702f4985e.txt
+ create mode 100644 tool-results/read_1783018141147_970ab1d6601d.txt
+ create mode 100644 tool-results/read_1783018142812_f4b977d9bb36.txt
+ create mode 100644 tool-results/read_1783018144129_ed5139367a46.txt
+ create mode 100644 tool-results/read_1783018144446_a31892029d7c.txt
+ create mode 100644 tool-results/read_1783018146768_43027f3c265d.txt
+ create mode 100644 tool-results/read_1783018148939_f6c561f45665.txt
+ create mode 100644 tool-results/read_1783018166455_02bcd6e0f784.txt
+ create mode 100644 tool-results/read_1783018166819_3d15994001f7.txt
+ create mode 100644 tool-results/read_1783018167124_f487344d57a3.txt
+ create mode 100644 tool-results/read_1783018167424_8586b4af8a9e.txt
+ create mode 100644 tool-results/read_1783018167735_a5d303c19b8e.txt
+ create mode 100644 tool-results/read_1783018168069_a2b444d85fa1.txt
+ create mode 100644 tool-results/read_1783018171331_3754bc7798de.txt
+ create mode 100644 tool-results/read_1783018171637_5eb702f4985e.txt
+ create mode 100644 tool-results/read_1783018171972_6b2fbe46c7ea.txt
+ create mode 100644 tool-results/read_1783018945064_65fedd4ddc01.txt
+ create mode 100644 tool-results/read_1783018945679_06442ebf305f.txt
+ create mode 100644 tool-results/read_1783018948178_16441049320c.txt
+ create mode 100644 tool-results/read_1783018948501_a76586f4d08f.txt
+ create mode 100644 tool-results/read_1783020589372_87e45a57315a.txt
+ create mode 100644 tool-results/read_1783020698927_d1685f4e0817.txt
+ create mode 100644 tool-results/read_1783020699228_dcea3c0483e5.txt
+ create mode 100644 tool-results/read_1783020701996_d5039fe22dd5.txt
+ create mode 100644 tool-results/read_1783021188364_d1685f4e0817.txt
+ create mode 100644 tool-results/read_1783021194448_87e45a57315a.txt
+ create mode 100644 tool-results/read_1783021650777_f857ce1ac8d2.txt
+ create mode 100644 tool-results/read_1783021651966_671c1e1d322b.txt
+ create mode 100644 tool-results/read_1783021652952_671c1e1d322b.txt
+ create mode 100644 tool-results/read_1783021655044_0d5326da9890.txt
+ create mode 100644 tool-results/read_1783023281262_377a0164cd2a.txt
+ create mode 100644 tool-results/read_1783023392098_377a0164cd2a.txt
+ create mode 100644 tool-results/read_1783023392702_a6ba268fcbf3.txt
+ create mode 100644 tool-results/read_1783023397224_377a0164cd2a.txt
+ create mode 100644 tool-results/read_1783023400563_2716cf6b84b4.txt
+ create mode 100644 tool-results/read_1783023790252_4e3e01a03eb2.txt
+ create mode 100644 tool-results/read_1783023790894_3ffa97d88ee2.txt
+ create mode 100644 tool-results/read_1783023793933_5c1aff627991.txt
+ create mode 100644 tool-results/read_1783023794238_a2a386943745.txt
+ create mode 100644 tool-results/read_1783023796957_f702a0fb1e87.txt
+ create mode 100644 vercel.json
