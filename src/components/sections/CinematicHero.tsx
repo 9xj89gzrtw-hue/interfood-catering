@@ -311,7 +311,7 @@ export default function CinematicHero() {
           <span style={{ width: "32px", height: "1px", background: "linear-gradient(90deg, transparent, rgba(184,134,11,0.6))" }} />
           <span
             style={{
-              fontSize: "clamp(0.5rem, 1.1vw, 0.65rem)",
+              fontSize: "clamp(0.7rem, 1.4vw, 0.75rem)",
               letterSpacing: "0.3em",
               textTransform: "uppercase" as const,
               color: "rgba(255,255,255,0.85)",
@@ -392,11 +392,11 @@ export default function CinematicHero() {
               textDecoration: "none",
               width: mounted && isMobile ? "100%" : "auto",
               textAlign: "center",
-              fontSize: mounted && isMobile ? "0.72rem" : undefined,
+              fontSize: mounted && isMobile ? "0.82rem" : undefined,
               padding: mounted && isMobile ? "1rem 1.5rem" : undefined,
             }}
           >
-            Получить меню и расчёт
+            Рассчитать моё мероприятие
           </a>
           {!isMobile && (
             <span style={{ fontSize: "0.7rem", color: "rgba(255,255,255,0.5)", letterSpacing: "0.05em", textShadow: "0 1px 4px rgba(0,0,0,0.5)" }}>
@@ -414,11 +414,11 @@ export default function CinematicHero() {
               color: "#FFFFFF",
               width: mounted && isMobile ? "100%" : "auto",
               textAlign: "center",
-              fontSize: mounted && isMobile ? "0.72rem" : undefined,
+              fontSize: mounted && isMobile ? "0.82rem" : undefined,
               padding: mounted && isMobile ? "1rem 1.5rem" : undefined,
             }}
           >
-            Рассчитать стоимость
+            Калькулятор цены
           </a>
         </motion.div>
 
@@ -436,11 +436,11 @@ export default function CinematicHero() {
             justifyContent: "center",
           }}
         >
-          <span style={{ fontSize: "clamp(0.6rem, 1vw, 0.75rem)", letterSpacing: "0.08em", color: "rgba(255,255,255,0.8)", fontWeight: 400, whiteSpace: "nowrap", textShadow: "0 1px 6px rgba(0,0,0,0.5)" }}>От 950 ₽/чел</span>
+          <span style={{ fontSize: "clamp(0.72rem, 1.3vw, 0.8rem)", letterSpacing: "0.08em", color: "rgba(255,255,255,0.85)", fontWeight: 400, whiteSpace: "nowrap", textShadow: "0 1px 6px rgba(0,0,0,0.5)" }}>От 950 ₽/чел</span>
           <span style={{ width: "3px", height: "3px", borderRadius: "50%", background: "rgba(201,169,106,0.5)", flexShrink: 0 }} />
-          <span style={{ fontSize: "clamp(0.6rem, 1vw, 0.75rem)", letterSpacing: "0.08em", color: "rgba(255,255,255,0.8)", fontWeight: 400, whiteSpace: "nowrap", textShadow: "0 1px 6px rgba(0,0,0,0.5)" }}>4.55 на CaterMe</span>
+          <a href="tel:+78129195911" style={{ fontSize: "clamp(0.72rem, 1.3vw, 0.8rem)", letterSpacing: "0.04em", color: "rgba(255,255,255,0.9)", fontWeight: 500, whiteSpace: "nowrap", textShadow: "0 1px 6px rgba(0,0,0,0.5)", textDecoration: "none" }}>+7 (812) 919-59-11</a>
           <span style={{ width: "3px", height: "3px", borderRadius: "50%", background: "rgba(201,169,106,0.5)", flexShrink: 0 }} />
-          <span style={{ fontSize: "clamp(0.6rem, 1vw, 0.75rem)", letterSpacing: "0.08em", color: "rgba(255,255,255,0.8)", fontWeight: 400, whiteSpace: "nowrap", textShadow: "0 1px 6px rgba(0,0,0,0.5)" }}>30+ отзывов</span>
+          <span style={{ fontSize: "clamp(0.72rem, 1.3vw, 0.8rem)", letterSpacing: "0.08em", color: "rgba(255,255,255,0.85)", fontWeight: 400, whiteSpace: "nowrap", textShadow: "0 1px 6px rgba(0,0,0,0.5)" }}>3 500+ мероприятий</span>
         </motion.div>
 
         {/* Mobile: "Ответим за 30 минут" below CTAs */}
@@ -450,8 +450,8 @@ export default function CinematicHero() {
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1.6 }}
             style={{
-              fontSize: "0.65rem",
-              color: "rgba(255,255,255,0.45)",
+              fontSize: "0.72rem",
+              color: "rgba(255,255,255,0.65)",
               letterSpacing: "0.05em",
               marginTop: "0.5rem",
               textShadow: "0 1px 4px rgba(0,0,0,0.5)",
@@ -481,7 +481,7 @@ export default function CinematicHero() {
       >
         <motion.span
           style={{
-            fontSize: "0.55rem",
+            fontSize: "0.7rem",
             letterSpacing: "0.2em",
             textTransform: "uppercase" as const,
             color: "rgba(255,255,255,0.5)",

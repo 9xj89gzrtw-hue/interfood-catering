@@ -214,7 +214,7 @@ export default function SiteNav() {
 
             <li>
               <Link href="/contacts" className="nav-cta">
-                Заказать
+                Расчёт за 30 мин
               </Link>
             </li>
           </ul>

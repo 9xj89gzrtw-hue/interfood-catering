@@ -160,7 +160,7 @@ function MagneticButtonCTA() {
           letterSpacing: "0.14em",
         }}
       >
-        Получить расчёт и меню
+        Рассчитать мероприятие бесплатно
       </motion.button>
     </motion.div>
   );
