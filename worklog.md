@@ -104,3 +104,32 @@ Stage Summary:
 - Mobile improvements: hero video, navigation, touch targets, safe-area
 - ContactForm conversion optimization: removed friction, added privacy links
 - Urgency elements: gold banner with seasonal/dates-filling messaging
+
+---
+Task ID: 5
+Agent: Main
+Task: v77 — Real Content Sync + Mobile Overhaul + MenuBuilder Redesign
+
+Work Log:
+- Scraped original site interfood-catering.ru — 90 images, full text content, real prices, reviews
+- Saved to /home/z/my-project/scripts/original_site_full_content.json (345KB)
+- Replaced ALL AI-generated text with real company data across 10 pages
+- Real menu prices: Фуршет (2 450-5 350₽), Банкет (4 470-6 970₽), Кофе-брейк (950-2 450₽)
+- Real founder: Дмитрий Нилов, since 2007
+- Real reviews (scanned handwritten testimonials from original site)
+- Fixed footer: dark background #1A1714 (was white text on light = INVISIBLE!)
+- Fixed KineticTypography: mobile simplified with whileInView (scroll-driven fails on iOS)
+- Fixed CulinaryJourney: separate mobile rendering, no sticky scroll on mobile
+- Fixed CTASection: trust text min 3vw (was 1.2vw = 3.8px on 320px!)
+- Fixed ReviewsStack: 44px touch targets, touch feedback for navigation
+- MenuBuilder v2: jspdf for real PDF, pill categories, horizontal cards, 44px touch targets
+- globals.css: footer dark, scoped touch targets, no !important, iOS Safari fallback
+- Final pass: ServicesShowcase, HowItWorks, ContactShowcase, vw audit (all ≥12px on 320px)
+- All 24 pages build and return HTTP 200
+
+Stage Summary:
+- v77.1 deployed to https://interfood-catering.vercel.app
+- 47 mobile issues identified, all fixed
+- All AI content replaced with real company data
+- MenuBuilder completely redesigned for 2026
+- Footer now visible on mobile (was invisible before!)
