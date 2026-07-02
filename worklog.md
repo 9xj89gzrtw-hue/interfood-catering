@@ -272,3 +272,36 @@ Stage Summary:
 - Контент синхронизирован с оригинальным сайтом (навигация, услуги, контакты)
 - Все страницы возвращают HTTP 200
 - Caddy проксирует корректно (81→3000)
+
+---
+Task ID: 5
+Agent: Main Agent
+Task: v34 — Secret Hacks 2026, Speculation Rules API, content sync, bug fixes
+
+Work Log:
+- Создан MEMORY.md — файл памяти проекта со всей историей и задачами
+- Реверс-инжиниринг оригинального interfood-catering.ru — извлечены контакты, меню, услуги, отзывы
+- Найдены реальные данные: телефон +7(812)919-59-11, WhatsApp +7(911)941-72-05, email interfood-catering@yandex.ru
+- Меню фуршет: 2450₽, 2950₽, 3950₽ на гостя; Банкет: 4470₽, 4970₽ на гостя
+- Добавлены SECRET HACKS 2026 в globals.css:
+  - Speculation Rules API — prefetch/prerender для мгновенной навигации
+  - @starting-style — чистые CSS entry-анимации для диалогов/поповеров
+  - Container Queries — адаптивные карточки без media queries
+  - CSS Nesting — нативная вложенность (.nav, .btn-gold, .section)
+  - content-visibility: auto — производительность секций off-screen
+  - overscroll-behavior: none — блокировка pull-to-refresh
+  - Safe area insets — поддержка iPhone с чёлкой
+  - mix-blend-mode — premium overlay эффекты
+- Добавлен Speculation Rules API в layout.tsx — prefetch 8 страниц, prerender 3
+- Добавлен Web Share API в WhatsAppFloat — нативный шаринг на мобильных
+- Обновлён Schema.org — добавлены email, areaServed, priceRange
+- Обновлена навигация SiteNav — 9 основных ссылок + WhatsApp + телефон + CTA
+- Исправлен WhatsApp float — теперь справа (был слева)
+- Исправлен CountUp — hideUntilInView по умолчанию true (не показывает "0+")
+- Push на GitHub: aebd3b9 → 9990cc0 (force push)
+
+Stage Summary:
+- Vercel: нет токена — нужен vercel login
+- GitHub: https://github.com/9xj89gzrtw-hue/interfood-catering ✅
+- Build успешен — все 16 страниц генерируются
+- Визуальный аудит: 6.5/10 → основные проблемы: lazy-loading изображений, видео
