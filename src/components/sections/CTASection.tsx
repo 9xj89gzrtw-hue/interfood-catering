@@ -238,7 +238,7 @@ export default function CTASection() {
           zIndex: 3,
           maxWidth: "800px",
           margin: "0 auto",
-          padding: "0 2rem",
+          padding: "0 clamp(1.25rem, 3vw, 2rem)",
           textAlign: "center",
         }}
       >

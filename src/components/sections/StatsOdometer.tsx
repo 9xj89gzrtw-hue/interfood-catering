@@ -118,7 +118,19 @@ export default function StatsOdometer() {
         </motion.div>
 
         {/* Stats grid — responsive, centered */}
+        <style>{`
+          @media (max-width: 768px) {
+            .stats-odometer-grid {
+              grid-template-columns: repeat(2, 1fr) !important;
+              gap: 0.75rem !important;
+            }
+            .stats-odometer-grid > div {
+              padding: 1.25rem 0.75rem !important;
+            }
+          }
+        `}</style>
         <div
+          className="stats-odometer-grid"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(4, 1fr)",
@@ -127,23 +139,9 @@ export default function StatsOdometer() {
             margin: "0 auto",
           }}
         >
-          {/* Mobile override */}
-          <style>{`
-            @media (max-width: 768px) {
-              .stats-odometer-grid {
-                grid-template-columns: repeat(2, 1fr) !important;
-                gap: 0.75rem !important;
-              }
-              .stats-odometer-grid > div {
-                padding: 1.25rem 1rem !important;
-              }
-            }
-          `}</style>
-          <div className="stats-odometer-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1.5rem", width: "100%" }}>
-            {STATS.map((stat, i) => (
-              <StatCard key={i} stat={stat} index={i} isInView={isInView} />
-            ))}
-          </div>
+          {STATS.map((stat, i) => (
+            <StatCard key={i} stat={stat} index={i} isInView={isInView} />
+          ))}
         </div>
       </div>
     </section>

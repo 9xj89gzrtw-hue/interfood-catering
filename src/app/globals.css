@@ -1114,7 +1114,103 @@ body {
     font-size: clamp(1.6rem, 7vw, 2.5rem);
   }
   .btn-gold, .btn-outline {
-    padding: 0.8rem 1.5rem;
+    padding: 0.85rem 1.5rem;
     font-size: 0.7rem;
+    min-height: 48px;
+  }
+  .nav-inner {
+    padding: 0 1rem;
+  }
+  .nav-logo {
+    font-size: 0.95rem;
+    letter-spacing: 0.12em;
+  }
+}
+
+/* ═══ COMPREHENSIVE MOBILE FIXES ═══ */
+@media (max-width: 768px) {
+  /* Container tighter on mobile */
+  .container {
+    padding: 0 1.25rem;
+  }
+
+  /* Section spacing */
+  section {
+    padding-top: clamp(3rem, 8vw, 5rem) !important;
+    padding-bottom: clamp(3rem, 8vw, 5rem) !important;
+  }
+
+  /* Mobile menu: better typography */
+  .mobile-menu a {
+    font-size: 1.25rem;
+    padding: 0.65rem 0;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Service cards: single column on very small screens */
+  .svc-grid-mobile {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Gallery: smaller cards on mobile */
+  .gallery-card {
+    width: clamp(260px, 82vw, 340px) !important;
+  }
+
+  /* Footer: tighter layout */
+  .site-footer {
+    padding: 3rem 1.25rem 1.5rem;
+  }
+
+  /* Stats: tighter grid */
+  .trust-bar {
+    gap: 0.75rem;
+  }
+  .stat-item h3 {
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+  }
+  .stat-item p {
+    font-size: 0.7rem;
+  }
+
+  /* Review cards: full width on mobile */
+  .review-stack-mobile {
+    max-width: 100% !important;
+  }
+
+  /* Step cards: better mobile spacing */
+  .step-card {
+    padding: 1.75rem 1.25rem;
+  }
+
+  /* Buttons: ensure 48px touch target */
+  .btn-gold, .btn-outline {
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Better scrolling in gallery */
+  .gal-scroll-container {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  /* Nav: ensure no overflow */
+  .nav {
+    padding: 0.75rem 0;
+  }
+  .nav.scrolled {
+    padding: 0.5rem 0;
+  }
+}
+
+/* ═══ TABLET FIXES ═══ */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    padding: 0 1.75rem;
   }
 }

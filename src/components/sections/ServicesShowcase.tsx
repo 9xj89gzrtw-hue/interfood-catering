@@ -228,7 +228,7 @@ function ServiceCard({
               {/* ── Image area with Ken Burns ── */}
               <div
                 style={{
-                  height: 280,
+                  height: "clamp(200px, 40vw, 280px)",
                   overflow: "hidden",
                   position: "relative",
                 }}
@@ -440,8 +440,8 @@ export default function ServicesShowcase() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-            gap: "1.5rem",
+            gridTemplateColumns: "repeat(auto-fit, minmax(min(300px, 100%), 1fr))",
+            gap: "clamp(1rem, 2vw, 1.5rem)",
           }}
         >
           {SERVICES.map((service, i) => (

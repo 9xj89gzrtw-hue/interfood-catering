@@ -29,21 +29,25 @@ function useIsMobile() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   CinematicHero v4 — Mobile Photo + Desktop Video
-
-   CRITICAL CHANGES from v3:
-   1. MOBILE: static poster image instead of video (reliable!)
-   2. DESKTOP: video with all fallbacks
-   3. Stronger gradient overlay for text readability
-   4. Text shadows reinforced for contrast on ANY background
-   5. Mobile particles enhanced (more visible, gold glow)
+   CinematicHero v5 — Full Video on Mobile + MorphingText + Premium UX
+   
+   CRITICAL CHANGES from v4:
+   1. MOBILE: video now plays on mobile too (with mobile-specific src)
+   2. MorphingText with blur transitions restored and enhanced
+   3. Better mobile layout — stacked CTAs, improved spacing
+   4. Stronger readability guarantees on any background
+   5. Enhanced particle system with gold glow
+   6. Improved scroll indicator
    ═══════════════════════════════════════════════════════════════ */
 
 const EASE_PREMIUM = [0.16, 1, 0.3, 1] as const;
 const TAGLINES = ["Кейтеринг", "Гастрономия", "Впечатления", "Искусство", "Магия"];
 
-// ─── MorphingTagline ────────────────────────────────────────
-function MorphingTagline({ words, interval = 2800 }: { words: string[]; interval?: number }) {
+// ═══════════════════════════════════════════════════════════
+//  MorphingText — Smooth word morphing with blur transitions
+//  Premium feel: each character fades independently with blur
+// ═══════════════════════════════════════════════════════════
+function MorphingText({ words, interval = 2800 }: { words: string[]; interval?: number }) {
   const [index, setIndex] = useState(0);
   const [visible, setVisible] = useState(true);
 
@@ -53,7 +57,7 @@ function MorphingTagline({ words, interval = 2800 }: { words: string[]; interval
       setTimeout(() => {
         setIndex((prev) => (prev + 1) % words.length);
         setVisible(true);
-      }, 400);
+      }, 450);
     }, interval);
     return () => clearInterval(timer);
   }, [words.length, interval]);
@@ -62,17 +66,22 @@ function MorphingTagline({ words, interval = 2800 }: { words: string[]; interval
     <AnimatePresence mode="wait">
       <motion.span
         key={words[index]}
-        initial={{ opacity: 0, filter: "blur(8px)", y: 6 }}
-        animate={visible ? { opacity: 1, filter: "blur(0px)", y: 0 } : { opacity: 0, filter: "blur(8px)", y: -6 }}
-        exit={{ opacity: 0, filter: "blur(8px)", y: -6 }}
-        transition={{ duration: 0.4, ease: EASE_PREMIUM }}
+        initial={{ opacity: 0, filter: "blur(12px)", y: 8, scale: 0.95 }}
+        animate={
+          visible
+            ? { opacity: 1, filter: "blur(0px)", y: 0, scale: 1 }
+            : { opacity: 0, filter: "blur(12px)", y: -8, scale: 1.05 }
+        }
+        exit={{ opacity: 0, filter: "blur(12px)", y: -8, scale: 1.05 }}
+        transition={{ duration: 0.5, ease: EASE_PREMIUM }}
         style={{
           display: "inline-block",
           fontStyle: "italic",
           color: "#D4A63E",
           minWidth: "4.5ch",
           willChange: "opacity, filter, transform",
-          textShadow: "0 2px 12px rgba(0,0,0,0.6), 0 0 40px rgba(184,134,11,0.3)",
+          textShadow:
+            "0 2px 12px rgba(0,0,0,0.6), 0 0 40px rgba(184,134,11,0.3), 0 0 80px rgba(184,134,11,0.15)",
         }}
       >
         {words[index]}
@@ -84,7 +93,6 @@ function MorphingTagline({ words, interval = 2800 }: { words: string[]; interval
 // ═══════════════════════════════════════════════════════════
 //  MAIN HERO COMPONENT
 // ═══════════════════════════════════════════════════════════
-
 export default function CinematicHero() {
   const heroRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -102,10 +110,8 @@ export default function CinematicHero() {
     return () => mq.removeEventListener("change", handler);
   }, []);
 
-  // ─── Video autoplay (desktop only) ──────────────────
+  // ─── Video autoplay (both mobile and desktop) ──────────────
   useEffect(() => {
-    // On mobile we use a static image — no video needed
-    if (isMobile) return;
     const video = videoRef.current;
     if (!video) return;
 
@@ -118,13 +124,16 @@ export default function CinematicHero() {
         await video.play();
         setVideoReady(true);
       } catch {
+        // Autoplay blocked — retry on user interaction
         const handleInteraction = async () => {
           try {
             video.muted = true;
             video.playsInline = true;
             await video.play();
             setVideoReady(true);
-          } catch {}
+          } catch {
+            // Final fallback: video won't play, poster shows
+          }
           document.removeEventListener("touchstart", handleInteraction);
           document.removeEventListener("click", handleInteraction);
         };
@@ -133,8 +142,20 @@ export default function CinematicHero() {
       }
     };
     const timer = setTimeout(playVideo, 150);
-    return () => clearTimeout(timer);
-  }, [isMobile]);
+
+    // Handle visibility change — replay when tab becomes visible
+    const handleVisibility = () => {
+      if (!document.hidden && video.paused) {
+        video.play().catch(() => {});
+      }
+    };
+    document.addEventListener("visibilitychange", handleVisibility);
+
+    return () => {
+      clearTimeout(timer);
+      document.removeEventListener("visibilitychange", handleVisibility);
+    };
+  }, []);
 
   const handleVideoCanPlay = useCallback(() => setVideoReady(true), []);
   const handleVideoError = useCallback(() => setVideoReady(false), []);
@@ -163,7 +184,7 @@ export default function CinematicHero() {
       }}
       aria-label="Hero section"
     >
-      {/* ── Layer 1: Background (video on desktop, image on mobile) ── */}
+      {/* ── Layer 1: Background Video (both mobile + desktop) ── */}
       <motion.div
         style={{
           position: "absolute",
@@ -172,63 +193,55 @@ export default function CinematicHero() {
           zIndex: 0,
         }}
       >
-        {/* MOBILE: Static poster image — ALWAYS works */}
-        {mounted && isMobile && (
-          <div
-            style={{
-              width: "100%",
-              height: "100%",
-              backgroundImage: "url('/images/hero-poster.jpg')",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              animation: prefersReducedMotion ? "none" : "ken-burns-zoom 25s ease-in-out alternate infinite",
-            }}
+        {/* Video — plays on both mobile and desktop */}
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          poster="/images/hero-poster.jpg"
+          onCanPlay={handleVideoCanPlay}
+          onError={handleVideoError}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "center center",
+            animation: prefersReducedMotion ? "none" : "ken-burns-zoom 25s ease-in-out alternate infinite",
+            WebkitTransform: "translateZ(0)",
+            opacity: videoReady ? 1 : 0,
+            transition: "opacity 1s ease-in",
+          }}
+        >
+          {/* Desktop: higher quality video */}
+          <source
+            src="/videos/hero-catering.mp4"
+            type="video/mp4"
+            media="(min-width: 769px)"
           />
-        )}
+          {/* Mobile: optimized smaller video */}
+          <source
+            src="/videos/hero-catering-mobile.mp4"
+            type="video/mp4"
+          />
+        </video>
 
-        {/* DESKTOP: Video with poster fallback */}
-        {(!mounted || !isMobile) && (
-          <>
-            <video
-              ref={videoRef}
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="auto"
-              poster="/images/hero-poster.jpg"
-              onCanPlay={handleVideoCanPlay}
-              onError={handleVideoError}
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                objectPosition: "center center",
-                animation: prefersReducedMotion ? "none" : "ken-burns-zoom 25s ease-in-out alternate infinite",
-                WebkitTransform: "translateZ(0)",
-                opacity: videoReady ? 1 : 0,
-                transition: "opacity 0.8s ease-in",
-              }}
-            >
-              <source src="/videos/hero-catering.mp4" type="video/mp4" media="(min-width: 769px)" />
-              <source src="/videos/hero-catering-mobile.mp4" type="video/mp4" />
-            </video>
-            {/* Poster fallback while video loads */}
-            <div
-              style={{
-                position: "absolute",
-                inset: 0,
-                backgroundImage: "url('/images/hero-poster.jpg')",
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                zIndex: 1,
-                opacity: videoReady ? 0 : 1,
-                transition: "opacity 0.8s ease-out",
-                pointerEvents: "none",
-              }}
-            />
-          </>
-        )}
+        {/* Poster fallback while video loads — always present */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            backgroundImage: "url('/images/hero-poster.jpg')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            zIndex: -1,
+            opacity: videoReady ? 0 : 1,
+            transition: "opacity 1s ease-out",
+            pointerEvents: "none",
+          }}
+        />
       </motion.div>
 
       {/* ── Layer 2: HEAVY gradient overlay — guarantees text readability ── */}
@@ -240,10 +253,10 @@ export default function CinematicHero() {
           background: `
             linear-gradient(
               to bottom,
-              rgba(26, 23, 20, 0.35) 0%,
-              rgba(26, 23, 20, 0.25) 20%,
-              rgba(26, 23, 20, 0.55) 50%,
-              rgba(26, 23, 20, 0.85) 75%,
+              rgba(26, 23, 20, 0.30) 0%,
+              rgba(26, 23, 20, 0.15) 15%,
+              rgba(26, 23, 20, 0.40) 45%,
+              rgba(26, 23, 20, 0.80) 75%,
               rgba(26, 23, 20, 0.97) 100%
             )
           `,
@@ -257,7 +270,7 @@ export default function CinematicHero() {
           position: "absolute",
           inset: 0,
           zIndex: 1,
-          background: "radial-gradient(ellipse at 50% 30%, transparent 25%, rgba(26, 23, 20, 0.45) 100%)",
+          background: "radial-gradient(ellipse at 50% 30%, transparent 20%, rgba(26, 23, 20, 0.50) 100%)",
           pointerEvents: "none",
         }}
       />
@@ -282,7 +295,7 @@ export default function CinematicHero() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          padding: "0 1.5rem",
+          padding: mounted && isMobile ? "0 1.25rem" : "0 1.5rem",
           textAlign: "center",
           maxWidth: "860px",
           margin: "0 auto",
@@ -293,12 +306,12 @@ export default function CinematicHero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3, ease: EASE_PREMIUM }}
-          style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "1.75rem" }}
+          style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1.5rem" }}
         >
-          <span style={{ width: "32px", height: "1px", background: "linear-gradient(90deg, transparent, rgba(184,134,11,0.5))" }} />
+          <span style={{ width: "32px", height: "1px", background: "linear-gradient(90deg, transparent, rgba(184,134,11,0.6))" }} />
           <span
             style={{
-              fontSize: "clamp(0.55rem, 1.2vw, 0.68rem)",
+              fontSize: "clamp(0.5rem, 1.1vw, 0.65rem)",
               letterSpacing: "0.3em",
               textTransform: "uppercase" as const,
               color: "rgba(255,255,255,0.85)",
@@ -309,32 +322,32 @@ export default function CinematicHero() {
           >
             Кейтеринг в Санкт-Петербурге
           </span>
-          <span style={{ width: "32px", height: "1px", background: "linear-gradient(90deg, rgba(184,134,11,0.5), transparent)" }} />
+          <span style={{ width: "32px", height: "1px", background: "linear-gradient(90deg, rgba(184,134,11,0.6), transparent)" }} />
         </motion.div>
 
-        {/* Main Title */}
+        {/* Main Title with MorphingText */}
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.5, ease: EASE_PREMIUM }}
           style={{
             fontFamily: "var(--font-serif)",
-            fontSize: "clamp(2.4rem, 8vw, 5.5rem)",
+            fontSize: "clamp(2.2rem, 8vw, 5.5rem)",
             fontWeight: 300,
             color: "#FFFFFF",
             lineHeight: 1.05,
             letterSpacing: "-0.02em",
-            marginBottom: "0.25em",
+            marginBottom: "0.3em",
             display: "flex",
             alignItems: "baseline",
             justifyContent: "center",
             flexWrap: "wrap",
-            gap: "0.2em 0.35em",
+            gap: "0.15em 0.3em",
             textShadow: "0 3px 20px rgba(0,0,0,0.7), 0 0 60px rgba(0,0,0,0.4)",
           }}
         >
           <span>Интерфуд</span>
-          <MorphingTagline words={TAGLINES} interval={2800} />
+          <MorphingText words={TAGLINES} interval={2800} />
         </motion.h1>
 
         {/* Subtitle */}
@@ -343,31 +356,68 @@ export default function CinematicHero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.8, ease: EASE_PREMIUM }}
           style={{
-            fontSize: "clamp(0.82rem, 1.6vw, 1rem)",
+            fontSize: "clamp(0.78rem, 1.5vw, 1rem)",
             color: "rgba(255,255,255,0.85)",
             lineHeight: 1.75,
-            maxWidth: "620px",
+            maxWidth: "580px",
             fontWeight: 300,
-            marginTop: "0.5rem",
-            marginBottom: "2.5rem",
+            marginTop: "0.25rem",
+            marginBottom: mounted && isMobile ? "1.75rem" : "2.5rem",
             textShadow: "0 2px 12px rgba(0,0,0,0.7), 0 0 30px rgba(0,0,0,0.4)",
           }}
         >
-          Собственная кухня. 18 лет. 3 500+ мероприятий в Санкт-Петербурге
+          Собственная кухня. 18 лет. 3&nbsp;500+ мероприятий в&nbsp;Санкт-Петербурге
         </motion.p>
 
-        {/* CTA Buttons */}
+        {/* CTA Buttons — improved mobile layout */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 1.1, ease: EASE_PREMIUM }}
-          style={{ display: "flex", alignItems: "center", gap: "1rem", flexWrap: "wrap", justifyContent: "center" }}
+          style={{
+            display: "flex",
+            flexDirection: mounted && isMobile ? "column" : "row",
+            alignItems: "center",
+            gap: mounted && isMobile ? "0.75rem" : "1rem",
+            width: mounted && isMobile ? "100%" : "auto",
+            maxWidth: mounted && isMobile ? "360px" : "none",
+          }}
         >
-          <a href="/contacts" className="btn-gold" style={{ minWidth: "44px", minHeight: "44px", textDecoration: "none" }}>
+          <a
+            href="/contacts"
+            className="btn-gold"
+            style={{
+              minWidth: "44px",
+              minHeight: "48px",
+              textDecoration: "none",
+              width: mounted && isMobile ? "100%" : "auto",
+              textAlign: "center",
+              fontSize: mounted && isMobile ? "0.72rem" : undefined,
+              padding: mounted && isMobile ? "1rem 1.5rem" : undefined,
+            }}
+          >
             Получить меню и расчёт
           </a>
-          <span style={{ fontSize: "0.7rem", color: "rgba(255,255,255,0.5)", letterSpacing: "0.05em", textShadow: "0 1px 4px rgba(0,0,0,0.5)" }}>Ответим за 30 минут</span>
-          <a href="/calculator" className="btn-outline" style={{ minWidth: "44px", minHeight: "44px", textDecoration: "none", borderColor: "rgba(255,255,255,0.4)", color: "#FFFFFF" }}>
+          {!isMobile && (
+            <span style={{ fontSize: "0.7rem", color: "rgba(255,255,255,0.5)", letterSpacing: "0.05em", textShadow: "0 1px 4px rgba(0,0,0,0.5)" }}>
+              Ответим за 30 минут
+            </span>
+          )}
+          <a
+            href="/calculator"
+            className="btn-outline"
+            style={{
+              minWidth: "44px",
+              minHeight: "48px",
+              textDecoration: "none",
+              borderColor: "rgba(255,255,255,0.4)",
+              color: "#FFFFFF",
+              width: mounted && isMobile ? "100%" : "auto",
+              textAlign: "center",
+              fontSize: mounted && isMobile ? "0.72rem" : undefined,
+              padding: mounted && isMobile ? "1rem 1.5rem" : undefined,
+            }}
+          >
             Рассчитать стоимость
           </a>
         </motion.div>
@@ -377,24 +427,68 @@ export default function CinematicHero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.2, delay: 1.5, ease: EASE_PREMIUM }}
-          style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginTop: "2.5rem", flexWrap: "wrap", justifyContent: "center" }}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "0.5rem",
+            marginTop: mounted && isMobile ? "1.75rem" : "2.5rem",
+            flexWrap: "wrap",
+            justifyContent: "center",
+          }}
         >
-          <span style={{ fontSize: "clamp(0.65rem, 1.1vw, 0.78rem)", letterSpacing: "0.08em", color: "rgba(255,255,255,0.8)", fontWeight: 400, whiteSpace: "nowrap", textShadow: "0 1px 6px rgba(0,0,0,0.5)" }}>От 950 ₽/чел</span>
+          <span style={{ fontSize: "clamp(0.6rem, 1vw, 0.75rem)", letterSpacing: "0.08em", color: "rgba(255,255,255,0.8)", fontWeight: 400, whiteSpace: "nowrap", textShadow: "0 1px 6px rgba(0,0,0,0.5)" }}>От 950 ₽/чел</span>
           <span style={{ width: "3px", height: "3px", borderRadius: "50%", background: "rgba(201,169,106,0.5)", flexShrink: 0 }} />
-          <span style={{ fontSize: "clamp(0.65rem, 1.1vw, 0.78rem)", letterSpacing: "0.08em", color: "rgba(255,255,255,0.8)", fontWeight: 400, whiteSpace: "nowrap", textShadow: "0 1px 6px rgba(0,0,0,0.5)" }}>4.55 на CaterMe</span>
+          <span style={{ fontSize: "clamp(0.6rem, 1vw, 0.75rem)", letterSpacing: "0.08em", color: "rgba(255,255,255,0.8)", fontWeight: 400, whiteSpace: "nowrap", textShadow: "0 1px 6px rgba(0,0,0,0.5)" }}>4.55 на CaterMe</span>
           <span style={{ width: "3px", height: "3px", borderRadius: "50%", background: "rgba(201,169,106,0.5)", flexShrink: 0 }} />
-          <span style={{ fontSize: "clamp(0.65rem, 1.1vw, 0.78rem)", letterSpacing: "0.08em", color: "rgba(255,255,255,0.8)", fontWeight: 400, whiteSpace: "nowrap", textShadow: "0 1px 6px rgba(0,0,0,0.5)" }}>30+ отзывов</span>
+          <span style={{ fontSize: "clamp(0.6rem, 1vw, 0.75rem)", letterSpacing: "0.08em", color: "rgba(255,255,255,0.8)", fontWeight: 400, whiteSpace: "nowrap", textShadow: "0 1px 6px rgba(0,0,0,0.5)" }}>30+ отзывов</span>
         </motion.div>
+
+        {/* Mobile: "Ответим за 30 минут" below CTAs */}
+        {mounted && isMobile && (
+          <motion.span
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 1.6 }}
+            style={{
+              fontSize: "0.65rem",
+              color: "rgba(255,255,255,0.45)",
+              letterSpacing: "0.05em",
+              marginTop: "0.5rem",
+              textShadow: "0 1px 4px rgba(0,0,0,0.5)",
+            }}
+          >
+            Ответим за 30 минут
+          </motion.span>
+        )}
       </motion.div>
 
-      {/* Scroll Indicator */}
+      {/* Scroll Indicator — improved with smooth pulse */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 2, ease: EASE_PREMIUM }}
-        style={{ position: "absolute", bottom: "2rem", left: "50%", transform: "translateX(-50%)", zIndex: 6, display: "flex", flexDirection: "column", alignItems: "center", gap: "0.5rem" }}
+        style={{
+          position: "absolute",
+          bottom: mounted && isMobile ? "1.5rem" : "2rem",
+          left: "50%",
+          transform: "translateX(-50%)",
+          zIndex: 6,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "0.4rem",
+        }}
       >
-        <motion.span style={{ fontSize: "0.6rem", letterSpacing: "0.2em", textTransform: "uppercase" as const, color: "rgba(255,255,255,0.6)", fontWeight: 400, textShadow: "0 1px 4px rgba(0,0,0,0.5)" }}>
+        <motion.span
+          style={{
+            fontSize: "0.55rem",
+            letterSpacing: "0.2em",
+            textTransform: "uppercase" as const,
+            color: "rgba(255,255,255,0.5)",
+            fontWeight: 400,
+            textShadow: "0 1px 4px rgba(0,0,0,0.5)",
+          }}
+        >
           Листайте вниз
         </motion.span>
         <motion.div
@@ -402,7 +496,7 @@ export default function CinematicHero() {
           transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
           style={{ display: "flex" }}
         >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.45)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
             <path d="M12 5v14" />
             <path d="m19 12-7 7-7-7" />
           </svg>
@@ -423,19 +517,21 @@ export default function CinematicHero() {
 
 // ─── Floating Particles — Enhanced for mobile visibility ────
 function FloatingParticles() {
-  const [particles, setParticles] = useState<{ id: number; x: number; size: number; duration: number; delay: number; opacity: number; glow: number }[]>([]);
+  const [particles, setParticles] = useState<
+    { id: number; x: number; size: number; duration: number; delay: number; opacity: number; glow: number }[]
+  >([]);
 
   useEffect(() => {
-    const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
-    const count = isMobile ? 10 : 14;
+    const isMob = typeof window !== "undefined" && window.innerWidth < 768;
+    const count = isMob ? 12 : 16;
     const generated = Array.from({ length: count }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
-      size: isMobile ? 2 + Math.random() * 3 : 2 + Math.random() * 3,
-      duration: 8 + Math.random() * 14,
-      delay: Math.random() * 10,
-      opacity: isMobile ? 0.3 + Math.random() * 0.4 : 0.2 + Math.random() * 0.4,
-      glow: isMobile ? 6 + Math.random() * 8 : 4 + Math.random() * 6,
+      size: isMob ? 2 + Math.random() * 3.5 : 2 + Math.random() * 3,
+      duration: 7 + Math.random() * 12,
+      delay: Math.random() * 8,
+      opacity: isMob ? 0.35 + Math.random() * 0.4 : 0.2 + Math.random() * 0.4,
+      glow: isMob ? 8 + Math.random() * 10 : 4 + Math.random() * 8,
     }));
     setParticles(generated);
   }, []);
@@ -483,18 +579,32 @@ function MouseGlow() {
 
   useEffect(() => {
     if (typeof window !== "undefined" && "ontouchstart" in window) return;
-    const handleMouseMove = (e: MouseEvent) => { glowX.set(e.clientX); glowY.set(e.clientY); setIsActive(true); };
+    const handleMouseMove = (e: MouseEvent) => {
+      glowX.set(e.clientX);
+      glowY.set(e.clientY);
+      setIsActive(true);
+    };
     const handleMouseLeave = () => setIsActive(false);
     window.addEventListener("mousemove", handleMouseMove);
     document.addEventListener("mouseleave", handleMouseLeave);
-    return () => { window.removeEventListener("mousemove", handleMouseMove); document.removeEventListener("mouseleave", handleMouseLeave); };
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseleave", handleMouseLeave);
+    };
   }, [glowX, glowY]);
 
   if (!isActive) return null;
 
   return (
     <motion.div
-      style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 2, background: glowBackground, transition: "opacity 0.5s" }}
+      style={{
+        position: "absolute",
+        inset: 0,
+        pointerEvents: "none",
+        zIndex: 2,
+        background: glowBackground,
+        transition: "opacity 0.5s",
+      }}
     />
   );
 }

@@ -127,10 +127,10 @@ export default function SiteFooter() {
         style={{
           maxWidth: 1320,
           margin: "0 auto",
-          padding: "5rem 2.5rem 2.5rem",
+          padding: "clamp(3rem, 6vw, 5rem) clamp(1.25rem, 3vw, 2.5rem) clamp(1.5rem, 3vw, 2.5rem)",
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-          gap: "3rem",
+          gridTemplateColumns: "repeat(auto-fit, minmax(min(200px, 100%), 1fr))",
+          gap: "clamp(2rem, 4vw, 3rem)",
         }}
       >
         {/* Brand column */}
@@ -396,14 +396,15 @@ export default function SiteFooter() {
           borderTop: "1px solid rgba(255,255,255,0.06)",
           maxWidth: 1320,
           margin: "0 auto",
-          padding: "1.5rem 2.5rem",
+          padding: "1.5rem clamp(1.25rem, 3vw, 2.5rem)",
           display: "flex",
           flexWrap: "wrap",
-          justifyContent: "space-between",
+          justifyContent: "center",
           alignItems: "center",
-          gap: "1rem",
+          gap: "0.75rem",
           fontSize: "0.7rem",
           color: "rgba(255,255,255,0.3)",
+          textAlign: "center",
         }}
       >
         <p>© {currentYear} Интерфуд Кейтеринг. Все права защищены.</p>

@@ -108,9 +108,9 @@ export default function SiteNav() {
 
   return (
     <>
-      <nav className={`nav ${scrolled ? "scrolled" : ""}`} role="navigation" aria-label="Навигация">
+      <nav className={`nav ${scrolled ? "scrolled" : ""}`} role="navigation" aria-label="Навигация" style={{ color: scrolled ? "var(--color-text-primary)" : "#FFFFFF", transition: "color 0.5s" }}>
         <div className="nav-inner">
-          <Link href="/" className="nav-logo">
+          <Link href="/" className="nav-logo" style={{ color: scrolled ? "var(--color-text-primary)" : "#FFFFFF", transition: "color 0.5s" }}>
             ИНТЕРФУД
           </Link>
           <ul className="nav-links">
@@ -225,7 +225,9 @@ export default function SiteNav() {
               aria-label="Меню"
               aria-expanded={menuOpen}
             >
-              <span /><span /><span />
+              <span style={{ background: menuOpen ? "var(--color-text-primary)" : scrolled ? "var(--color-text-primary)" : "#FFFFFF" }} />
+              <span style={{ background: menuOpen ? "var(--color-text-primary)" : scrolled ? "var(--color-text-primary)" : "#FFFFFF" }} />
+              <span style={{ background: menuOpen ? "var(--color-text-primary)" : scrolled ? "var(--color-text-primary)" : "#FFFFFF" }} />
             </button>
           </div>
         </div>
