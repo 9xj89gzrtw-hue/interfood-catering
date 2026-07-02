@@ -4,8 +4,9 @@
 > **Обновлён:** 2026-07-02  
 > **Проект:** Сайт кейтеринговой компании «Интерфуд» (interfood-catering.ru)  
 > **Репозиторий:** https://github.com/9xj89gzrtw-hue/interfood-catering  
-> **GitHub push:** ✅ aebd3b9 (force push, v34)  
-> **Vercel:** ❌ нет токена — нужен `vercel login` или `--token`
+> **GitHub push:** ✅ 0c52231 (v34, latest)  
+> **Vercel:** ❌ нет токена — нужен `vercel login` или `--token`  
+> **Локальный сайт:** ✅ http://localhost:3000 (Next.js) и http://localhost:81 (Caddy)
 
 ---
 
