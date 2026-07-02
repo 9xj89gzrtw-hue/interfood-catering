@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 import { motion } from "framer-motion";
 
 /* ═══════════════════════════════════════════════════════════════
@@ -32,21 +32,34 @@ export default function RippleButton({
   as = "button",
 }: RippleButtonProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const ripplesRef = useRef<Ripple[]>([]);
+  const timeoutsRef = useRef<ReturnType<typeof setTimeout>[]>([]);
+  const [ripples, setRipples] = useState<Ripple[]>([]);
 
-  const handleClick = (e: React.MouseEvent) => {
+  // Clean up all timeouts on unmount
+  useEffect(() => {
+    return () => {
+      timeoutsRef.current.forEach((t) => clearTimeout(t));
+    };
+  }, []);
+
+  const handleClick = useCallback((e: React.MouseEvent) => {
     if (!ref.current) return;
     const rect = ref.current.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     const id = Date.now();
-    ripplesRef.current = [...ripplesRef.current, { x, y, id }];
+
+    setRipples((prev) => [...prev, { x, y, id }]);
+
     // Clean up ripple after animation
-    setTimeout(() => {
-      ripplesRef.current = ripplesRef.current.filter((r) => r.id !== id);
+    const timeout = setTimeout(() => {
+      setRipples((prev) => prev.filter((r) => r.id !== id));
+      timeoutsRef.current = timeoutsRef.current.filter((t) => t !== timeout);
     }, 800);
+    timeoutsRef.current.push(timeout);
+
     onClick?.();
-  };
+  }, [onClick]);
 
   return (
     <div ref={ref} style={{ position: "relative", overflow: "hidden", display: "inline-block", borderRadius: "inherit" }}>
@@ -61,7 +74,7 @@ export default function RippleButton({
       )}
       {/* Ripple effects rendered on top */}
       <div style={{ position: "absolute", inset: 0, pointerEvents: "none", overflow: "hidden", borderRadius: "inherit" }}>
-        {ripplesRef.current.map((ripple) => (
+        {ripples.map((ripple) => (
           <motion.span
             key={ripple.id}
             initial={{ scale: 0, opacity: 0.4 }}
@@ -76,7 +89,7 @@ export default function RippleButton({
               marginLeft: -10,
               marginTop: -10,
               borderRadius: "50%",
-              background: "rgba(255,255,255,0.4)",
+              background: "rgba(255,255,255,0.3)",
               transformOrigin: "center",
             }}
           />

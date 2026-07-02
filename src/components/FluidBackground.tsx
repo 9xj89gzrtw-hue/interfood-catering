@@ -17,9 +17,9 @@ interface FluidBackgroundProps {
 
 export default function FluidBackground({
   style,
-  color1 = "rgba(184, 149, 90, 0.08)",
-  color2 = "rgba(158, 182, 143, 0.06)",
-  color3 = "rgba(232, 196, 184, 0.05)",
+  color1 = "rgba(160, 125, 63, 0.08)",
+  color2 = "rgba(143, 168, 126, 0.06)",
+  color3 = "rgba(223, 181, 167, 0.05)",
   speed = 8,
 }: FluidBackgroundProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);

@@ -29,22 +29,22 @@ import ConfettiButton from "@/components/ConfettiButton";
    ═══════════════════════════════════════════════════════════════ */
 
 const VID = {
-  hero: "https://videos.pexels.com/video-files/2759750/2759750-uhd_2560_1440_25fps.mp4",
-  corporate1: "https://videos.pexels.com/video-files/3195394/3195394-uhd_2560_1440_25fps.mp4",
-  corporate2: "https://videos.pexels.com/video-files/4761433/4761433-uhd_2560_1440_25fps.mp4",
-  corporate3: "https://videos.pexels.com/video-files/5377703/5377703-uhd_2560_1440_25fps.mp4",
-  corporate4: "https://videos.pexels.com/video-files/4763824/4763824-uhd_2560_1440_24fps.mp4",
+  hero: "/videos/catering2.mp4",
+  corporate1: "/videos/catering2.mp4",
+  corporate2: "/videos/catering1.mp4",
+  corporate3: "/videos/catering2.mp4",
+  corporate4: "/videos/catering1.mp4",
 };
 
 const IMG = {
-  corporate: "https://sfile.chatglm.cn/images-ppt/b26bc8017630.png",
-  conference: "https://sfile.chatglm.cn/images-ppt/31ca0a361dc4.jpg",
-  teambuilding: "https://sfile.chatglm.cn/images-ppt/a2fbd3b8447b.jpg",
-  presentation: "https://sfile.chatglm.cn/images-ppt/4f51d25798b0.jpg",
-  buffet: "https://sfile.chatglm.cn/images-ppt/b0afca3cdeee.jpg",
-  bar: "https://sfile.chatglm.cn/images-ppt/c73dc40e41d4.jpg",
-  dessert: "https://sfile.chatglm.cn/images-ppt/cf9ca554baf6.jpg",
-  hero: "https://sfile.chatglm.cn/images-ppt/3a442a2e6e71.jpg",
+  corporate: "/images/b26bc8017630.png",
+  conference: "/images/31ca0a361dc4.jpg",
+  teambuilding: "/images/a2fbd3b8447b.jpg",
+  presentation: "/images/4f51d25798b0.jpg",
+  buffet: "/images/b0afca3cdeee.jpg",
+  bar: "/images/c73dc40e41d4.jpg",
+  dessert: "/images/cf9ca554baf6.jpg",
+  hero: "/images/3a442a2e6e71.jpg",
 };
 
 /* ─── Data ─── */
@@ -91,34 +91,34 @@ const ADVANTAGES = [
 
 const CASES = [
   {
-    client: "Газпром",
+    client: "Крупная энергетическая компания",
     title: "Ежегодный корпоративный форум",
     guests: 500,
     duration: "3 дня",
     result: "1 500+ кофе-брейков",
-    desc: "Обеспечили полное питание на 3-дневном форуме: утренние кофе-брейки, бизнес-ланчи и вечерние приёмы. 12 станций, 40 официантов, 0 задержек.",
+    desc: "Обеспечили полное питание на 3-дневном форуме: утренние кофе-брейки, бизнес-ланчи и вечерние приёмы. 12 станций, 40 официантов, подача строго по расписанию.",
     quote: "Интерфуд безупречно справился с масштабом нашего форума. Всё по расписанию, качество на высоте.",
     quoteAuthor: "Руководитель протокола",
     img: IMG.conference,
   },
   {
-    client: "Яндекс",
+    client: "IT-компания (топ-3 в РФ)",
     title: "Презентация нового продукта",
     guests: 200,
     duration: "Полный день",
     result: "4.9 / 5.0 рейтинг",
-    desc: "Фуршетный формат с интерактивными станциями и авторскими коктейлями для презентации нового продукта Яндекс. Шеф-стол с живой готовкой позволил гостям наблюдать за приготовлением блюд в реальном времени, а десертная зона с шоколадным фонтаном стала главной фотозоной вечера. Был подготовлен брендированный сет-меню в корпоративных цветах компании. Рейтинг мероприятия — 4.9 из 5 по результатам опроса участников.",
+    desc: "Фуршетный формат с интерактивными станциями и авторскими коктейлями для продуктовой презентации. Шеф-стол с живой готовкой позволил гостям наблюдать за приготовлением блюд в реальном времени, а десертная зона с шоколадным фонтаном стала главной фотозоной вечера. Брендированный сет-меню в корпоративных цветах компании. Рейтинг мероприятия — 4.9 из 5 по опросу участников.",
     quote: "Стильно, вкусно, профессионально. Наши сотрудники были в восторге от формата и качества.",
     quoteAuthor: "HR-директор",
     img: IMG.dessert,
   },
   {
-    client: "Сбербанк",
+    client: "Финансовая корпорация",
     title: "Корпоративный тимбилдинг",
     guests: 300,
     duration: "Outdoor BBQ",
     result: "Безупречное исполнение",
-    desc: "Outdoor BBQ на 300 участников для корпоративного тимбилдинга Сбербанка на природе. Мы развернули гриль-станции с мраморной говядиной и стейками, полевую кухню с пловом на костре, кальянную зону и бар с авторскими лимонадами. Непогода не помешала — команда оперативно установила шатры с обогревом за 2 часа, а горячие блюда и глинтвейн согрели гостей. Мероприятие получило высшую оценку от участников.",
+    desc: "Outdoor BBQ на 300 участников для корпоративного тимбилдинга на природе. Мы развернули гриль-станции с мраморной говядиной и стейками, полевую кухню с пловом на костре, кальянную зону и бар с авторскими лимонадами. Непогода не помешала — команда оперативно установила шатры с обогревом за 2 часа, а горячие блюда и глинтвейн согрели гостей. Мероприятие получило высшую оценку от участников.",
     quote: "Даже дождь не испортил мероприятие — команда Интерфуда оперативно установила шатры. Всё прошло идеально.",
     quoteAuthor: "Организатор мероприятия",
     img: IMG.teambuilding,
@@ -129,13 +129,13 @@ const CASES = [
 
 const fadeUp = {
   hidden: { opacity: 0, y: 60 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.4, 0, 0.2, 1] } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.4, 0, 0.2, 1] as const } },
 };
 
 const staggerContainer = { hidden: {}, visible: { transition: { staggerChildren: 0.1 } } };
 const staggerItem = {
   hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.4, 0, 0.2, 1] } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.4, 0, 0.2, 1] as const } },
 };
 
 function Reveal({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
@@ -172,6 +172,8 @@ export default function CorporatePage() {
             muted
             loop
             playsInline
+            preload="metadata"
+            aria-hidden="true"
             poster={IMG.hero}
             style={{ width: "100%", height: "100%", objectFit: "cover" }}
           >
@@ -180,7 +182,7 @@ export default function CorporatePage() {
         </motion.div>
         {/* Light overlay — warm gradient */}
         <div className="hero-overlay" style={{
-          background: "linear-gradient(to bottom, rgba(10,10,10,0.3) 0%, rgba(254,253,251,0.25) 40%, rgba(254,253,251,0.75) 80%, rgba(10,10,10,0.95) 100%)",
+          background: "linear-gradient(to bottom, rgba(254,253,251,0.15) 0%, rgba(254,253,251,0.25) 40%, rgba(254,253,251,0.75) 80%, rgba(254,253,251,0.95) 100%)",
         }} />
         {/* ParticleField */}
         <ParticleField count={45} speed={0.2} />
@@ -210,7 +212,7 @@ export default function CorporatePage() {
 
           {/* KineticText with "scale" animation */}
           <KineticText
-            text="Кейтеринг для бизнеса"
+            text="Кейтеринг, который работает на ваш результат"
             as="h1"
             animation="scale"
             stagger={0.04}
@@ -235,7 +237,7 @@ export default function CorporatePage() {
             transition={{ duration: 0.8, delay: 0.9 }}
           >
             Профессиональное питание для мероприятий любого масштаба.
-            Конференции, форумы, тимбилдинги — с документами и НДС.
+            Конференции, форумы, тимбилдинги — с документами, НДС и гарантией по договору.
           </motion.p>
 
           <motion.div
@@ -245,7 +247,7 @@ export default function CorporatePage() {
             transition={{ duration: 0.8, delay: 1.1 }}
           >
             <MagneticButton as="a" href="/#contact" className="btn-gold" strength={0.2}>
-              Запросить КП →
+              Запросить КП — ответим за 2 часа
             </MagneticButton>
             <MagneticButton as="a" href="#formats" className="btn-outline" strength={0.2}>
               Форматы
@@ -256,7 +258,7 @@ export default function CorporatePage() {
 
       {/* ─── Stats Bar ─── */}
       <section style={{
-        background: "#111111",
+        background: "var(--color-cream)",
         borderBottom: "1px solid rgba(184,149,90,0.12)",
         padding: "3rem 2rem",
       }}>
@@ -288,7 +290,7 @@ export default function CorporatePage() {
                   fontSize: "0.7rem",
                   letterSpacing: "0.2em",
                   textTransform: "uppercase",
-                  color: "rgba(255,255,255,0.4)",
+                  color: "var(--color-text-muted)",
                   marginTop: "0.5rem",
                 }}>
                   {stat.label}
@@ -317,7 +319,7 @@ export default function CorporatePage() {
       {/* ═══════════════════════════════════════════════════════
           2. FORMATS — 4 format cards + FluidBackground
           ═══════════════════════════════════════════════════════ */}
-      <section id="formats" style={{ padding: "6rem 0", background: "#0F0F0F", position: "relative", overflow: "hidden" }} aria-label="Форматы">
+      <section id="formats" style={{ padding: "6rem 0", background: "var(--color-warm-white)", position: "relative", overflow: "hidden" }} aria-label="Форматы">
         {/* FluidBackground behind packages */}
         <FluidBackground
           color1="rgba(184, 149, 90, 0.07)"
@@ -338,6 +340,7 @@ export default function CorporatePage() {
           </Reveal>
 
           <motion.div
+            className="corporate-formats-grid"
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(4, 1fr)",
@@ -377,7 +380,7 @@ export default function CorporatePage() {
                       </h3>
                       <p style={{
                         fontSize: "0.88rem", lineHeight: 1.6,
-                        color: "rgba(255,255,255,0.5)", marginBottom: "1rem", flex: 1,
+                        color: "var(--color-text-secondary)", marginBottom: "1rem", flex: 1,
                       }}>
                         {fmt.desc}
                       </p>
@@ -407,18 +410,18 @@ export default function CorporatePage() {
       <VideoBreak
         src={VID.corporate1}
         title="Организация конференций"
-        subtitle="Профессиональная команда для вашего бизнеса"
+        subtitle="Питание, которое не отвлекает от деловой программы"
       />
 
       {/* ═══════════════════════════════════════════════════════
           3. ADVANTAGES — 6 cards with LottiePlaceholder icons
           ═══════════════════════════════════════════════════════ */}
-      <section style={{ padding: "6rem 0", background: "#111111" }} aria-label="Преимущества">
+      <section style={{ padding: "6rem 0", background: "var(--color-cream)" }} aria-label="Преимущества">
         <div className="container">
           <Reveal>
             <span className="section-label">Преимущества</span>
             <h2 className="section-title">
-              Почему <em style={{ fontFamily: "var(--font-serif)", fontStyle: "italic", color: "var(--color-brand)" }}>компании</em> выбирают нас
+              Почему <em style={{ fontFamily: "var(--font-serif)", fontStyle: "italic", color: "var(--color-brand)" }}>компании</em> возвращаются к нам
             </h2>
           </Reveal>
 
@@ -460,7 +463,7 @@ export default function CorporatePage() {
                   </div>
                   <p style={{
                     fontSize: "0.88rem", lineHeight: 1.7,
-                    color: "#777", flex: 1,
+                    color: "var(--color-text-muted)", flex: 1,
                   }}>
                     {item.desc}
                   </p>
@@ -475,7 +478,7 @@ export default function CorporatePage() {
       <VideoBreak
         src={VID.corporate2}
         title="Сервировка для форумов"
-        subtitle="Быстрая подача, безупречный вид"
+        subtitle="Подача с точностью до 5 минут — без задержек"
       />
 
       {/* ═══════════════════════════════════════════════════════
@@ -493,7 +496,7 @@ export default function CorporatePage() {
           />
           <Reveal delay={0.15}>
             <p className="section-subtitle" style={{ margin: "0 auto 3rem" }}>
-              Более 85 корпоративных клиентов выбирают Интерфуд для своих мероприятий. Среди наших партнёров — крупнейшие компании России.
+              Более 85 корпоративных клиентов доверяют нам своё реноме. 98% обращаются повторно — потому что мы не подводим.
             </p>
           </Reveal>
           <div style={{
@@ -503,16 +506,16 @@ export default function CorporatePage() {
             textAlign: "center",
           }}>
             {[
-              { name: "Газпром", sector: "Энергетика" },
-              { name: "Сбербанк", sector: "Финансы" },
-              { name: "Яндекс", sector: "Технологии" },
-              { name: "VK", sector: "IT и медиа" },
-              { name: "Тинькофф", sector: "Финтех" },
-              { name: "Росатом", sector: "Атомная энергетика" },
-              { name: "Лукойл", sector: "Нефтегаз" },
-              { name: "МТС", sector: "Телекоммуникации" },
-              { name: "Ростелеком", sector: "Телекоммуникации" },
-              { name: "СИБУР", sector: "Нефтехимия" },
+              { name: "Ведущая энергетическая компания", sector: "Энергетика" },
+              { name: "Топ-3 банк РФ", sector: "Финансы" },
+              { name: "IT-гигант", sector: "Технологии" },
+              { name: "Крупнейшая соцсеть", sector: "IT и медиа" },
+              { name: "Финтех-лидер", sector: "Финтех" },
+              { name: "Госкорпорация", sector: "Атомная энергетика" },
+              { name: "Нефтегазовый холдинг", sector: "Нефтегаз" },
+              { name: "Телеком-оператор №1", sector: "Телекоммуникации" },
+              { name: "Федеральный оператор связи", sector: "Телекоммуникации" },
+              { name: "Нефтехимический концерн", sector: "Нефтехимия" },
             ].map((client, i) => (
               <Reveal key={client.name} delay={i * 0.05}>
                 <div className="review-card" style={{
@@ -549,7 +552,7 @@ export default function CorporatePage() {
       {/* ═══════════════════════════════════════════════════════
           5. CASE STUDIES — 3 real cases
           ═══════════════════════════════════════════════════════ */}
-      <section style={{ padding: "6rem 0", background: "#0F0F0F" }} aria-label="Кейсы">
+      <section style={{ padding: "6rem 0", background: "var(--color-warm-white)" }} aria-label="Кейсы">
         <div className="container">
           <Reveal>
             <span className="section-label">Кейсы</span>
@@ -561,7 +564,7 @@ export default function CorporatePage() {
           <div style={{ display: "flex", flexDirection: "column", gap: "2.5rem", marginTop: "2.5rem" }}>
             {CASES.map((cs, i) => (
               <Reveal key={i} delay={i * 0.1}>
-                <div className="card" style={{
+                <div className="card corporate-case-card" style={{
                   display: "grid",
                   gridTemplateColumns: "1fr 1.5fr",
                   overflow: "hidden",
@@ -584,7 +587,7 @@ export default function CorporatePage() {
                       }}>
                         {cs.client}
                       </span>
-                      <span style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.4)" }}>
+                      <span style={{ fontSize: "0.75rem", color: "var(--color-text-muted)" }}>
                         {cs.guests} гостей · {cs.duration}
                       </span>
                     </div>
@@ -597,7 +600,7 @@ export default function CorporatePage() {
                     </h3>
                     <p style={{
                       fontSize: "0.9rem", lineHeight: 1.7,
-                      color: "rgba(255,255,255,0.5)", marginBottom: "1.25rem",
+                      color: "var(--color-text-secondary)", marginBottom: "1.25rem",
                     }}>
                       {cs.desc}
                     </p>
@@ -617,7 +620,7 @@ export default function CorporatePage() {
                       fontStyle: "italic",
                       fontSize: "0.85rem",
                       lineHeight: 1.6,
-                      color: "rgba(255,255,255,0.4)",
+                      color: "var(--color-text-muted)",
                     }}>
                       &ldquo;{cs.quote}&rdquo;
                       <span style={{ display: "block", marginTop: "0.5rem", fontStyle: "normal", fontSize: "0.75rem", color: "var(--color-brand-dark)" }}>
@@ -642,7 +645,7 @@ export default function CorporatePage() {
       {/* ═══════════════════════════════════════════════════════
           6. VIDEO CAROUSEL — 4 corporate videos
           ═══════════════════════════════════════════════════════ */}
-      <section style={{ padding: "6rem 0", background: "#111111" }} aria-label="Видео">
+      <section style={{ padding: "6rem 0", background: "var(--color-cream)" }} aria-label="Видео">
         <div className="container">
           <Reveal>
             <span className="section-label">Видео</span>
@@ -652,10 +655,10 @@ export default function CorporatePage() {
           </Reveal>
           <VideoCarousel
             slides={[
-              { src: VID.corporate1, title: "Организация конференций", subtitle: "Профессиональная команда для вашего бизнеса" },
-              { src: VID.corporate2, title: "Сервировка для форумов", subtitle: "Быстрая подача, безупречный вид" },
-              { src: VID.corporate3, title: "Тимбилдинг на природе", subtitle: "BBQ и гриль под открытым небом" },
-              { src: VID.corporate4, title: "Шеф-повар за работой", subtitle: "Контроль качества на каждом этапе" },
+              { src: VID.corporate1, title: "Организация конференций", subtitle: "500 гостей, 12 станций — ни один участник не ждал дольше 3 минут" },
+              { src: VID.corporate2, title: "Сервировка для форумов", subtitle: "Подача с точностью до 5 минут — координация с вашим таймлайном" },
+              { src: VID.corporate3, title: "Тимбилдинг на природе", subtitle: "BBQ с мраморной говядиной, полевая кухня и бар под открытым небом" },
+              { src: VID.corporate4, title: "Шеф-повар за работой", subtitle: "Живая готовка на шеф-столе — шоу, которое запоминается" },
             ]}
           />
         </div>
@@ -671,6 +674,7 @@ export default function CorporatePage() {
         style={{ height: "40vh", minHeight: 250 }}
         overlay
         overlayOpacity={0.4}
+        className="parallax-ken-burns"
       />
 
       {/* ═══════════════════════════════════════════════════════
@@ -695,14 +699,14 @@ export default function CorporatePage() {
                 fontWeight: 400, color: "#fff",
                 lineHeight: 1.2, marginBottom: "1.5rem",
               }}>
-                Заказать <em style={{ fontStyle: "italic" }}>корпоративное</em> питание
+                Заказать <em style={{ fontStyle: "italic" }}>корпоративное</em> питание — с гарантией по договору
               </h2>
               <p style={{
                 fontSize: "1.05rem", lineHeight: 1.7,
                 color: "rgba(255,255,255,0.8)",
                 maxWidth: 560, margin: "0 auto 2.5rem",
               }}>
-                Подготовим КП за 2 часа. Полный пакет документов, расчёт по вашему бюджету, бесплатная дегустация.
+                Подготовим КП за 2 часа. Полный пакет документов, расчёт по вашему бюджету, бесплатная дегустация от 30 человек.
               </p>
               <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap", alignItems: "center" }}>
                 <ConfettiButton
@@ -710,7 +714,7 @@ export default function CorporatePage() {
                   style={{
                     display: "inline-flex", alignItems: "center", justifyContent: "center",
                     padding: "1rem 2.5rem",
-                    background: "#1A1A1A", color: "var(--color-brand-dark)",
+                    background: "var(--color-warm-white)", color: "var(--color-brand-dark)",
                     fontSize: "0.75rem", fontWeight: 600,
                     letterSpacing: "0.15em", textTransform: "uppercase",
                     borderRadius: "100px", border: "none", cursor: "pointer",
@@ -790,11 +794,41 @@ export default function CorporatePage() {
         className="wa-float"
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="WhatsApp"
-        style={{ fontSize: "1.4rem", color: "#fff", textDecoration: "none" }}
+        aria-label="Написать в WhatsApp"
       >
-        &#9742;
+        <svg
+          width="28"
+          height="28"
+          fill="#fff"
+          viewBox="0 0 24 24"
+        >
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+        </svg>
       </a>
+
+      {/* ═══ Responsive overrides for corporate grids ═══ */}
+      <style jsx global>{`
+        @media (max-width: 1024px) {
+          .corporate-formats-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+        }
+        @media (max-width: 640px) {
+          .corporate-formats-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .corporate-case-card {
+            grid-template-columns: 1fr !important;
+          }
+          .corporate-case-card > div:first-child {
+            height: 200px !important;
+          }
+          .trust-bar-grid {
+            grid-template-columns: 1fr !important;
+            gap: 1rem !important;
+          }
+        }
+      `}</style>
     </>
   );
 }

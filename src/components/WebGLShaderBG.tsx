@@ -71,9 +71,9 @@ void main() {
   
   /* Warm gold/cream palette for light theme */
   vec3 color1 = vec3(0.976, 0.969, 0.945); /* #F9F7F1 warm white */
-  vec3 color2 = vec3(0.722, 0.584, 0.353); /* #B8955A gold */
-  vec3 color3 = vec3(0.620, 0.714, 0.560); /* #9EB68F sage */
-  vec3 color4 = vec3(0.910, 0.769, 0.722); /* #E8C4B8 blush */
+  vec3 color2 = vec3(0.722, 0.529, 0.043); /* #B8860B rich gold */
+  vec3 color3 = vec3(0.560, 0.659, 0.494); /* #8FA87E sage */
+  vec3 color4 = vec3(0.875, 0.710, 0.655); /* #DFB5A7 blush */
   
   /* Blend colors based on noise */
   float t = noise * 0.5 + 0.5;

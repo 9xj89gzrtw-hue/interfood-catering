@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { motion, useScroll, useTransform, useInView, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import SiteNav from "@/components/SiteNav";
+import ConversionCTA from "@/components/ConversionCTA";
 import TextReveal from "@/components/TextReveal";
 import MorphingText from "@/components/MorphingText";
 import MagneticButton from "@/components/MagneticButton";
@@ -13,7 +14,6 @@ import ParticleField from "@/components/ParticleField";
 import KineticText from "@/components/KineticText";
 import MorphingBlob from "@/components/MorphingBlob";
 import FluidBackground from "@/components/FluidBackground";
-import ConfettiButton from "@/components/ConfettiButton";
 import VideoBreak from "@/components/VideoBreak";
 
 /* ═══════════════════════════════════════════════════════════════
@@ -22,21 +22,21 @@ import VideoBreak from "@/components/VideoBreak";
 
 /* ─── Media ─── */
 const VID = {
-  hero: "https://videos.pexels.com/video-files/4761433/4761433-uhd_2560_1440_25fps.mp4",
-  cooking: "https://videos.pexels.com/video-files/4763824/4763824-uhd_2560_1440_24fps.mp4",
+  hero: "/videos/catering1.mp4",
+  cooking: "/videos/catering1.mp4",
 };
 
 const IMG = {
-  hero: "https://sfile.chatglm.cn/images-ppt/3a442a2e6e71.jpg",
-  chef: "https://sfile.chatglm.cn/images-ppt/7d1938ffb3e1.jpg",
-  furshet: "https://sfile.chatglm.cn/images-ppt/a2fbd3b8447b.jpg",
-  banquet: "https://sfile.chatglm.cn/images-ppt/b0afca3cdeee.jpg",
-  coffee: "https://sfile.chatglm.cn/images-ppt/4f51d25798b0.jpg",
-  wedding: "https://sfile.chatglm.cn/images-ppt/b77fad9eff9e.jpg",
-  dessert: "https://sfile.chatglm.cn/images-ppt/cf9ca554baf6.jpg",
-  bar: "https://sfile.chatglm.cn/images-ppt/c73dc40e41d4.jpg",
-  canape: "https://sfile.chatglm.cn/images-ppt/2585575d2db2.jpg",
-  decor: "https://sfile.chatglm.cn/images-ppt/99f244d30b4d.jpg",
+  hero: "/images/3a442a2e6e71.jpg",
+  chef: "/images/7d1938ffb3e1.jpg",
+  furshet: "/images/a2fbd3b8447b.jpg",
+  banquet: "/images/b0afca3cdeee.jpg",
+  coffee: "/images/4f51d25798b0.jpg",
+  wedding: "/images/b77fad9eff9e.jpg",
+  dessert: "/images/cf9ca554baf6.jpg",
+  bar: "/images/c73dc40e41d4.jpg",
+  canape: "/images/2585575d2db2.jpg",
+  decor: "/images/99f244d30b4d.jpg",
 };
 
 /* ─── Category types ─── */
@@ -46,6 +46,7 @@ interface Article {
   id: number;
   title: string;
   description: string;
+  body: string[];
   image: string;
   category: Category;
   categoryLabel: string;
@@ -66,118 +67,100 @@ const CATEGORIES: { key: Category; label: string }[] = [
 const ARTICLES: Article[] = [
   {
     id: 1,
-    title: "Тартар из тунца с авокадо",
-    description: "Пошаговый рецепт от шефа — нежный тунец, спелое авокадо и цитрусовая заправка создают идеальный баланс вкуса.",
-    image: IMG.canape,
-    category: "recipes",
-    categoryLabel: "Рецепт",
-    categoryColor: "#9EB68F",
-    author: "Дмитрий Нилов",
-    date: "15 июня 2026",
-    readTime: "15 мин",
-  },
-  {
-    id: 2,
     title: "Как выбрать формат мероприятия",
-    description: "Гайд по форматам кейтеринга: фуршет, банкет, коктейль — что подойдёт именно вам, исходя из количества гостей и бюджета.",
+    description: "Разбираем основные форматы кейтеринга — фуршет, банкет, кофе-брейк и доставка закусок — с актуальными ценами и рекомендациями по количеству гостей.",
+    body: [
+      "Выбор формата — первое и самое важное решение при организации мероприятия. От него зависят меню, логистика, количество персонала и итоговая стоимость. Interfood Catering работает с четырьмя основными форматами, и каждый из них решает свои задачи.",
+      "Фуршет (от 2 450 ₽/чел) — идеален для свободного общения. Гости перемещаются между станциями, выбирая закуски по вкусу. Подходит для 30–500 гостей, особенно на презентациях, юбилеях и корпоративных вечеринках. Банкет (от 4 470 ₽/чел) — классическая посадка для 20–300 гостей с полным ужином, обслуживанием официантами и винной картой. Лучший выбор для торжественных случаев, когда важна церемониальность.",
+      "Кофе-брейк (от 950 ₽/чел) — формат для деловых мероприятий на 15–1 000 человек. Кофе, чай, выпечка и лёгкие закуски поддерживают работоспособность участников конференций и семинаров. Доставка закусок (от 8 580 ₽/набор, минимальный заказ 19 000 ₽) — когда нужен стильный фуршет без выезда команды: готовые наборы канапе, брускетт и салатов с доставкой за 48 часов.",
+      "Не уверены, какой формат подойдёт? Позвоните нам по телефону +7(812)919-59-11 или напишите в WhatsApp +7(911)941-72-05 — мы поможем подобрать оптимальное решение под ваш бюджет и количество гостей.",
+    ],
     image: IMG.furshet,
     category: "tips",
     categoryLabel: "Советы",
     categoryColor: "#B8955A",
-    author: "Елена Соколова",
-    date: "10 июня 2026",
-    readTime: "8 мин",
+    author: "Interfood Catering",
+    date: "1 июля 2026",
+    readTime: "5 мин",
+  },
+  {
+    id: 2,
+    title: "Свадебный кейтеринг: полное руководство",
+    description: "Всё о свадебном кейтеринге от Interfood: форматы площадок, подарок при заказе — флористическое сопровождение, и гибкая система составления меню.",
+    body: [
+      "Свадьба — один из самых важных дней в жизни, и кейтеринг играет в нём главную роль. Interfood Catering организует свадебное питание с 2007 года, и за это время мы провели тысячи торжеств в самых разных форматах и локациях.",
+      "При заказе свадебного банкета или фуршета мы дарим флористическое сопровождение — живые цветы, подобранные к стилистике вашего праздника. Это наш подарок молодожёнам, который создаёт цельную атмосферу торжества. Гибкая система составления меню позволяет учесть любые предпочтения: от вегетарианских опций до халяль-меню, от сигнатурных коктейлей до торта на заказ.",
+      "Мы работаем с любыми площадками: свадьба в лофте для современных пар, на корабле с видом на невские набережные, во дворце для классического торжества, в загородном коттедже для камерного праздника, или в шатре на природе для тех, кто мечтает о единении с природой. Каждый формат требует своей логистики, и наш опыт гарантирует безупречную организацию в любой локации.",
+      "Свяжитесь с нами для персональной консультации: телефон +7(812)919-59-11, WhatsApp +7(911)941-72-05. Мы обсудим ваши пожелания, предложим варианты меню и рассчитаем стоимость — бесплатно и без обязательств.",
+    ],
+    image: IMG.wedding,
+    category: "tips",
+    categoryLabel: "Советы",
+    categoryColor: "#B8955A",
+    author: "Дмитрий Нилов",
+    date: "25 июня 2026",
+    readTime: "6 мин",
   },
   {
     id: 3,
-    title: "Тренды кейтеринга 2026",
-    description: "Что актуально в этом году: plant-based станции, интерактивные зоны, азиатские стрит-фуд барки и персонализация меню.",
+    title: "Пирамиды из шампанского и шоколадные фонтаны",
+    description: "Яркие акценты вашего праздника: шампанские пирамиды от 7 000 ₽, шоколадные фонтаны трёх размеров и бармен-шоу — цены и подробности.",
+    body: [
+      "Пирамида из шампанского — эффектный момент любого торжества. Когда 84 бокала выстраиваются в каскад и шампанское переливается сверху вниз, это становится одним из самых ярких воспоминаний вечера. В Interfood Catering мы предлагаем три формата: 35 бокалов за 7 000 ₽ для камерных праздников, 56 бокалов за 8 000 ₽ для средних мероприятий и 84 бокала за 9 000 ₽ для масштабных торжеств.",
+      "Шоколадный фонтан — ещё один зрелищный элемент, который объединяет гостей вокруг. Мы предоставляем фонтаны высотой от 30 см до 1,4 м с тремя видами шоколада: молочным, тёмным и белым. К фонтану подаётся ассортимент фруктов и выпечки для обмакивания — клубника, бананы, маршмеллоу и профитроли.",
+      "Бармен-шоу (от 6 000 ₽) превратит подачу напитков в настоящее представление. Наши бармены владеют флейрингом — искусством жонглирования бутылками и шейкером, которое неизменно собирает публику. Это не просто напитки — это развлечение, которое задаёт тон всему вечеру.",
+      "Все эти услуги можно заказать как по отдельности, так и в комплексе с основным кейтерингом. Узнайте подробности по телефону +7(812)919-59-11 или в WhatsApp +7(911)941-72-05.",
+    ],
     image: IMG.bar,
     category: "trends",
     categoryLabel: "Тренды",
     categoryColor: "#6B8FB5",
-    author: "Артём Волков",
-    date: "5 июня 2026",
-    readTime: "6 мин",
+    author: "Interfood Catering",
+    date: "18 июня 2026",
+    readTime: "5 мин",
   },
   {
     id: 4,
-    title: "Подготовка банкета на 500 гостей",
-    description: "Фотоотчёт за кулисами: от разработки меню до финальной подачи. 48 часов работы команды для одного идеального вечера.",
+    title: "Доставка закусок на дом и в офис",
+    description: "Готовые наборы канапе, брускетт и салатов с доставкой за 48 часов. Актуальные цены, условия заказа и состав наборов.",
+    body: [
+      "Не всегда нужен полный выездной кейтеринг — иногда достаточно стильных закусок для домашнего праздника или офисного мероприятия. Служба доставки закусок Interfood предлагает готовые наборы, которые выглядят и вкусят на уровне ресторанного кейтеринга.",
+      "Ассортимент и цены: канапе — 780 ₽ за 6 штук, брускетты — 660 ₽ за 3 штуки, салаты — 690 ₽ за 3 вида. Один из самых популярных вариантов — набор из 66 канапе за 8 580 ₽, которого хватает на 10–15 гостей. Все закуски готовятся в день доставки из свежих продуктов.",
+      "Условия заказа: минимальная сумма заказа — 19 000 ₽. Доставка осуществляется за 48 часов с момента подтверждения. Предоплата составляет 50% от суммы заказа, остаток — при получении. Мы привозим закуски в фирменной упаковке с лёд-пакетами, чтобы сохранить свежесть и температуру подачи.",
+      "Для заказа свяжитесь с нами по телефону +7(812)919-59-11 или WhatsApp +7(911)941-72-05. Менеджер поможет подобрать набор под количество гостей и бюджет, а также согласует время и адрес доставки.",
+    ],
+    image: IMG.canape,
+    category: "tips",
+    categoryLabel: "Советы",
+    categoryColor: "#B8955A",
+    author: "Interfood Catering",
+    date: "10 июня 2026",
+    readTime: "4 мин",
+  },
+  {
+    id: 5,
+    title: "Корпоративный кейтеринг: новогодний формат",
+    description: "Всё включено за 1 970 ₽/персона: доставка, обслуживание, посуда, текстиль и уборка. Форматы от офиса до спортивной площадки.",
+    body: [
+      "Новогодний корпоративный — один из самых частых запросов в нашем кейтеринге. Interfood Catering предлагает формат «всё включено» по цене 1 970 ₽ за персону, в который входят доставка, профессиональное обслуживание, фарфоровая посуда, текстиль и уборка после мероприятия. Никаких скрытых доплат — вы знаете стоимость заранее.",
+      "Форматы проведения могут быть любыми: праздник прямо в офисе — удобно и без логистических расходов; в банкетном зале — для торжественной атмосферы с программой и танцами; в лофте — для креативных команд, которым нужен стильный неформальный формат; на спортивной площадке — для активного корпоратива с соревнованиями и фуршетом.",
+      "Меню формируется индивидуально под бюджет и предпочтения команды. Мы учитываем всё: от вегетарианских и диетических опций до национальных особенностей кухни. Доступны дополнения: шоколадный фонтан, бармен-шоу, пирамида из шампанского и торты на заказ с фирменной символикой компании.",
+      "Бронируйте новогодний кейтеринг заранее — декабрь — самый загруженный месяц в году. Звоните +7(812)919-59-11 или пишите в WhatsApp +7(911)941-72-05 для расчёта стоимости и бронирования даты.",
+    ],
     image: IMG.banquet,
     category: "behind",
     categoryLabel: "За кулисами",
     categoryColor: "#C47A7A",
-    author: "Мария Белова",
-    date: "1 июня 2026",
+    author: "Interfood Catering",
+    date: "5 июня 2026",
     readTime: "5 мин",
-  },
-  {
-    id: 5,
-    title: "Десерт шоколадный фондан",
-    description: "Секрет приготовления идеального фондана — хрустящая корочка и жидкая шоколадная сердцевина. Температура и время решают всё.",
-    image: IMG.dessert,
-    category: "recipes",
-    categoryLabel: "Рецепт",
-    categoryColor: "#9EB68F",
-    author: "Дмитрий Нилов",
-    date: "28 мая 2026",
-    readTime: "10 мин",
-  },
-  {
-    id: 6,
-    title: "5 ошибок при организации фуршета",
-    description: "Как их избежать: от неправильного расчёта порций до отсутствия вегетарианских опций. Опыт 2000+ мероприятий.",
-    image: IMG.coffee,
-    category: "tips",
-    categoryLabel: "Советы",
-    categoryColor: "#B8955A",
-    author: "Елена Соколова",
-    date: "22 мая 2026",
-    readTime: "7 мин",
-  },
-  {
-    id: 7,
-    title: "Зелёный кейтеринг",
-    description: "Экологичные решения: биоразлагаемая посуда, локальные продукты, zero-waste меню и углеродная нейтральность мероприятий.",
-    image: IMG.decor,
-    category: "trends",
-    categoryLabel: "Тренды",
-    categoryColor: "#6B8FB5",
-    author: "Артём Волков",
-    date: "18 мая 2026",
-    readTime: "6 мин",
-  },
-  {
-    id: 8,
-    title: "Свадебный сезон 2025",
-    description: "Лучшие моменты: от выездных церемоний на природе до роскошных банкетов в исторических особняках. Фоторепортаж.",
-    image: IMG.wedding,
-    category: "behind",
-    categoryLabel: "За кулисами",
-    categoryColor: "#C47A7A",
-    author: "Мария Белова",
-    date: "12 мая 2026",
-    readTime: "4 мин",
-  },
-  {
-    id: 9,
-    title: "Брускетта 5 способов",
-    description: "Быстрые закуски для любого повода: классическая томатная, с рикоттой и мёдом, с лососем, с грибами и с прошутто.",
-    image: IMG.hero,
-    category: "recipes",
-    categoryLabel: "Рецепт",
-    categoryColor: "#9EB68F",
-    author: "Дмитрий Нилов",
-    date: "8 мая 2026",
-    readTime: "12 мин",
   },
 ];
 
 /* ─── Animation helpers ─── */
 const fadeUp = {
   hidden: { opacity: 0, y: 60 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.4, 0, 0.2, 1] } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.4, 0, 0.2, 1] as const } },
 };
 
 function Reveal({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
@@ -199,124 +182,147 @@ function Reveal({ children, className = "", delay = 0 }: { children: React.React
 
 /* ─── Article Card ─── */
 function ArticleCard({ article, index }: { article: Article; index: number }) {
+  const [expanded, setExpanded] = useState(false);
   return (
     <Reveal delay={index * 0.07}>
-      <a href="#" style={{ textDecoration: "none", color: "inherit", display: "block" }}>
-        <TiltCard className="card" glare maxTilt={6}>
-          {/* Image */}
-          <div style={{ position: "relative", overflow: "hidden", aspectRatio: "16/9" }}>
-            <img
-              src={article.image}
-              alt={article.title}
-              loading="lazy"
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                transition: "transform 0.7s cubic-bezier(0.25,1,0.5,1)",
-              }}
-              onMouseEnter={(e) => { (e.target as HTMLImageElement).style.transform = "scale(1.08)"; }}
-              onMouseLeave={(e) => { (e.target as HTMLImageElement).style.transform = "scale(1)"; }}
-            />
-            {/* Category badge */}
-            <div style={{
-              position: "absolute",
-              top: 16,
-              left: 16,
-              padding: "0.3rem 0.85rem",
-              borderRadius: 100,
-              background: article.categoryColor,
-              color: "#fff",
-              fontSize: "0.65rem",
-              fontWeight: 600,
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-            }}>
-              {article.categoryLabel}
-            </div>
+      <TiltCard className="card" glare maxTilt={6}>
+        {/* Image */}
+        <div style={{ position: "relative", overflow: "hidden", aspectRatio: "16/9" }}>
+          <img
+            src={article.image}
+            alt={article.title}
+            loading="lazy"
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              transition: "transform 0.7s cubic-bezier(0.25,1,0.5,1)",
+            }}
+            onMouseEnter={(e) => { (e.target as HTMLImageElement).style.transform = "scale(1.08)"; }}
+            onMouseLeave={(e) => { (e.target as HTMLImageElement).style.transform = "scale(1)"; }}
+          />
+          {/* Category badge */}
+          <div style={{
+            position: "absolute",
+            top: 16,
+            left: 16,
+            padding: "0.3rem 0.85rem",
+            borderRadius: 100,
+            background: article.categoryColor,
+            color: "#fff",
+            fontSize: "0.65rem",
+            fontWeight: 600,
+            letterSpacing: "0.1em",
+            textTransform: "uppercase",
+          }}>
+            {article.categoryLabel}
           </div>
+        </div>
 
-          {/* Content */}
-          <div style={{ padding: "1.5rem" }}>
-            <h3 style={{
-              fontFamily: "var(--font-serif)",
-              fontSize: "1.25rem",
-              fontWeight: 400,
-              color: "#1A1A1A",
-              lineHeight: 1.3,
-              marginBottom: "0.75rem",
-              transition: "color 0.3s",
-            }}>
-              {article.title}
-            </h3>
-            <p style={{
-              color: "#777",
-              fontSize: "0.88rem",
-              lineHeight: 1.65,
-              marginBottom: "1.25rem",
-              display: "-webkit-box",
-              WebkitLineClamp: 3,
-              WebkitBoxOrient: "vertical",
-              overflow: "hidden",
-            }}>
-              {article.description}
-            </p>
-            <div style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              borderTop: "1px solid rgba(0,0,0,0.06)",
-              paddingTop: "1rem",
-            }}>
-              <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                <div style={{
-                  width: 28,
-                  height: 28,
-                  borderRadius: "50%",
-                  background: "var(--color-brand-10)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: "0.65rem",
-                  color: "var(--color-brand-dark)",
-                  fontWeight: 700,
-                }}>
-                  {article.author.charAt(0)}
-                </div>
-                <span style={{ fontSize: "0.78rem", color: "rgba(255,255,255,0.4)" }}>{article.author}</span>
-              </div>
-              <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-                <span style={{ fontSize: "0.75rem", color: "#aaa" }}>{article.date}</span>
-                <span style={{
-                  fontSize: "0.7rem",
-                  color: "var(--color-brand)",
-                  fontWeight: 600,
-                  letterSpacing: "0.05em",
-                }}>
-                  {article.readTime}
-                </span>
-              </div>
-              <ConfettiButton
-                className="btn-gold"
-                style={{
-                  padding: "0.5rem 1.2rem",
-                  borderRadius: "100px",
-                  fontSize: "0.72rem",
-                  fontWeight: 600,
-                  letterSpacing: "0.05em",
-                  border: "1.5px solid var(--color-brand)",
-                  background: "transparent",
-                  color: "var(--color-brand)",
-                  cursor: "pointer",
-                }}
-                onClick={() => {}}
+        {/* Content */}
+        <div style={{ padding: "1.5rem" }}>
+          <h3 style={{
+            fontFamily: "var(--font-serif)",
+            fontSize: "1.25rem",
+            fontWeight: 400,
+            color: "#1A1A1A",
+            lineHeight: 1.3,
+            marginBottom: "0.75rem",
+          }}>
+            {article.title}
+          </h3>
+          <p style={{
+            color: "var(--color-text-muted)",
+            fontSize: "0.88rem",
+            lineHeight: 1.65,
+            marginBottom: "1rem",
+          }}>
+            {article.description}
+          </p>
+          {/* Expandable body */}
+          <AnimatePresence>
+            {expanded && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+                style={{ overflow: "hidden" }}
               >
-                Читать далее
-              </ConfettiButton>
+                <div style={{
+                  borderTop: "1px solid rgba(184,149,90,0.15)",
+                  paddingTop: "1rem",
+                  marginBottom: "1rem",
+                }}>
+                  {article.body.map((paragraph, pi) => (
+                    <p key={pi} style={{
+                      color: "var(--color-text-secondary)",
+                      fontSize: "0.88rem",
+                      lineHeight: 1.75,
+                      marginBottom: pi < article.body.length - 1 ? "0.75rem" : 0,
+                    }}>
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+          <div style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            borderTop: "1px solid rgba(0,0,0,0.06)",
+            paddingTop: "1rem",
+          }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+              <div style={{
+                width: 28,
+                height: 28,
+                borderRadius: "50%",
+                background: "var(--color-brand-10)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: "0.65rem",
+                color: "var(--color-brand-dark)",
+                fontWeight: 700,
+              }}>
+                {article.author.charAt(0)}
+              </div>
+              <span style={{ fontSize: "0.78rem", color: "var(--color-text-muted)" }}>{article.author}</span>
             </div>
+            <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+              <span style={{ fontSize: "0.75rem", color: "var(--color-text-muted)" }}>{article.date}</span>
+              <span style={{
+                fontSize: "0.7rem",
+                color: "var(--color-brand)",
+                fontWeight: 600,
+                letterSpacing: "0.05em",
+              }}>
+                {article.readTime}
+              </span>
+            </div>
+            <button
+              style={{
+                padding: "0.5rem 1.2rem",
+                borderRadius: "100px",
+                fontSize: "0.72rem",
+                fontWeight: 600,
+                letterSpacing: "0.05em",
+                border: "1.5px solid var(--color-brand)",
+                background: expanded ? "var(--color-brand)" : "transparent",
+                color: expanded ? "#fff" : "var(--color-brand)",
+                cursor: "pointer",
+                transition: "all 0.3s",
+              }}
+              onClick={() => setExpanded(!expanded)}
+            >
+              {expanded ? "Свернуть ↑" : "Читать далее →"}
+            </button>
           </div>
-        </TiltCard>
-      </a>
+        </div>
+      </TiltCard>
     </Reveal>
   );
 }
@@ -374,7 +380,7 @@ export default function BlogPage() {
         </motion.div>
 
         <div className="hero-overlay" style={{
-          background: "linear-gradient(to bottom, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.15) 30%, rgba(254,253,251,0.25) 60%, rgba(254,253,251,0.92) 100%)",
+          background: "linear-gradient(to bottom, rgba(254,253,251,0.15) 0%, rgba(254,253,251,0.05) 30%, rgba(254,253,251,0.25) 60%, rgba(254,253,251,0.92) 100%)",
         }} />
 
         <ParticleField count={30} speed={0.2} style={{ opacity: 0.6 }} />
@@ -403,7 +409,7 @@ export default function BlogPage() {
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: [0.25, 1, 0.5, 1] }}
+            transition={{ duration: 1, ease: [0.25, 1, 0.5, 1] as const }}
           >
             <span className="section-label" style={{ display: "block", marginBottom: "1.5rem" }}>
               Интерфуд Блог
@@ -436,7 +442,7 @@ export default function BlogPage() {
             <p style={{
               fontSize: "1.1rem",
               lineHeight: 1.7,
-              color: "rgba(255,255,255,0.5)",
+              color: "var(--color-text-secondary)",
               maxWidth: 560,
               margin: "0 auto",
             }}>
@@ -457,7 +463,7 @@ export default function BlogPage() {
           ──────────────────────────────────────────── */}
       <section id="articles" aria-label="Фильтр статей" style={{
         padding: "3rem 2rem 0",
-        background: "#0F0F0F",
+        background: "var(--color-warm-white)",
       }}>
         <div className="container">
           <div style={{
@@ -476,9 +482,9 @@ export default function BlogPage() {
                   padding: "0.7rem 1.6rem",
                   borderRadius: 100,
                   border: "1.5px solid",
-                  borderColor: activeCategory === cat.key ? "var(--color-brand)" : "#2D2D2D",
+                  borderColor: activeCategory === cat.key ? "var(--color-brand)" : "var(--color-cream-darker)",
                   background: activeCategory === cat.key ? "var(--color-brand)" : "#fff",
-                  color: activeCategory === cat.key ? "#fff" : "#555",
+                  color: activeCategory === cat.key ? "#fff" : "var(--color-text-subtle)",
                   fontSize: "0.75rem",
                   fontWeight: 600,
                   letterSpacing: "0.1em",
@@ -501,13 +507,13 @@ export default function BlogPage() {
           3. BLOG GRID
           ──────────────────────────────────────────── */}
       <VideoBreak
-        src="https://videos.pexels.com/video-files/4763824/4763824-uhd_2560_1440_24fps.mp4"
+        src="/videos/catering1.mp4"
         title="Кулинарное вдохновение"
         subtitle="Откройте для себя новые вкусы и идеи"
       />
       <section aria-label="Статьи" style={{
         padding: "3rem 2rem 6rem",
-        background: "#0F0F0F",
+        background: "var(--color-warm-white)",
       }}>
         <div className="container">
           <div style={{
@@ -542,7 +548,7 @@ export default function BlogPage() {
             <div style={{
               textAlign: "center",
               padding: "4rem 0",
-              color: "rgba(255,255,255,0.4)",
+              color: "var(--color-text-muted)",
               fontSize: "1.1rem",
             }}>
               Статьи не найдены
@@ -686,7 +692,7 @@ export default function BlogPage() {
           ──────────────────────────────────────────── */}
       <section aria-label="Подписка" style={{
         padding: "6rem 2rem",
-        background: "#111111",
+        background: "var(--color-cream)",
         position: "relative",
         overflow: "hidden",
       }}>
@@ -724,7 +730,7 @@ export default function BlogPage() {
               }}>
                 <motion.div
                   style={{ flex: 1, position: "relative" }}
-                  whileFocus={{ scale: 1.01 }}
+                  whileHover={{ scale: 1.01 }}
                 >
                   <input
                     type="email"
@@ -737,7 +743,7 @@ export default function BlogPage() {
                       padding: "1rem 1.5rem",
                       borderRadius: 100,
                       border: "1.5px solid var(--color-cream-darker)",
-                      background: "#1A1A1A",
+                      background: "var(--color-warm-white)",
                       fontSize: "0.9rem",
                       outline: "none",
                       transition: "border-color 0.3s, box-shadow 0.3s",
@@ -747,13 +753,13 @@ export default function BlogPage() {
                       e.target.style.boxShadow = "0 0 0 3px rgba(184,149,90,0.12)";
                     }}
                     onBlur={(e) => {
-                      e.target.style.borderColor = "#2D2D2D";
+                      e.target.style.borderColor = "var(--color-cream-darker)";
                       e.target.style.boxShadow = "none";
                     }}
                   />
                 </motion.div>
 
-                <MagneticButton as="div" className="" style={{ display: "inline-block" }}>
+                <MagneticButton>
                   <button
                     type="submit"
                     className="btn-gold"
@@ -785,6 +791,14 @@ export default function BlogPage() {
           </div>
         </div>
       </section>
+
+      <ConversionCTA
+        headline="Вдохновились? Создадим меню, которое гости будут вспоминать с восторгом!"
+        subtitle="Наш шеф-повар приготовит меню, которое гости будут вспоминать с восторгом. Гарантия по договору."
+        primaryLabel="Обсудить меню"
+        secondaryLabel="Квиз-подбор"
+        secondaryHref="/quiz"
+      />
 
       {/* ────────────────────────────────────────────
           6. FOOTER

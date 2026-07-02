@@ -45,7 +45,7 @@ export default function DrawPath({
         initial={{ pathLength: 0, opacity: 0 }}
         animate={{ pathLength: 1, opacity: 1 }}
         transition={{
-          pathLength: { duration, delay, ease: [0.25, 1, 0.5, 1] },
+          pathLength: { duration, delay, ease: [0.25, 1, 0.5, 1] as const },
           opacity: { duration: 0.3, delay },
         }}
       />

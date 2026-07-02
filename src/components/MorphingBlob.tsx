@@ -20,8 +20,8 @@ interface MorphingBlobProps {
 
 export default function MorphingBlob({
   size = 400,
-  color1 = "rgba(184,149,90,0.15)",
-  color2 = "rgba(158,182,143,0.10)",
+  color1 = "rgba(160,125,63,0.15)",
+  color2 = "rgba(143,168,126,0.10)",
   opacity = 0.6,
   speed = 8,
   className = "",

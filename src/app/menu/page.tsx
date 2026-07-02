@@ -23,22 +23,22 @@ import TextMarquee from "@/components/TextMarquee";
    ═══════════════════════════════════════════════════════════════ */
 
 const VID = {
-  hero: "https://videos.pexels.com/video-files/3195394/3195394-uhd_2560_1440_25fps.mp4",
-  kitchen: "https://videos.pexels.com/video-files/4761433/4761433-uhd_2560_1440_25fps.mp4",
-  cooking: "https://videos.pexels.com/video-files/4763824/4763824-uhd_2560_1440_24fps.mp4",
-  food1: "https://videos.pexels.com/video-files/5377703/5377703-uhd_2560_1440_25fps.mp4",
+  hero: "/videos/catering2.mp4",
+  kitchen: "/videos/catering1.mp4",
+  cooking: "/videos/catering1.mp4",
+  food1: "/videos/catering2.mp4",
 };
 
 const IMG = {
-  furshet: "https://sfile.chatglm.cn/images-ppt/a2fbd3b8447b.jpg",
-  banquet: "https://sfile.chatglm.cn/images-ppt/b0afca3cdeee.jpg",
-  coffee: "https://sfile.chatglm.cn/images-ppt/4f51d25798b0.jpg",
-  bar: "https://sfile.chatglm.cn/images-ppt/c73dc40e41d4.jpg",
-  dessert: "https://sfile.chatglm.cn/images-ppt/cf9ca554baf6.jpg",
-  canape: "https://sfile.chatglm.cn/images-ppt/2585575d2db2.jpg",
-  chef: "https://sfile.chatglm.cn/images-ppt/7d1938ffb3e1.jpg",
-  roses: "https://sfile.chatglm.cn/images-ppt/85381eb37c45.jpg",
-  wedding: "https://sfile.chatglm.cn/images-ppt/b77fad9eff9e.jpg",
+  furshet: "/images/real/furshet_real.jpg",
+  banquet: "/images/real/furshet_serving.jpg",
+  coffee: "/images/real/gallery_pro_3.jpg",
+  bar: "/images/real/gallery_pro_7.jpg",
+  dessert: "/images/real/gallery_pro_9.jpg",
+  canape: "/images/real/furshet_canape.jpg",
+  chef: "/images/real/chef_about.jpg",
+  roses: "/images/real/gallery_pro_2.jpg",
+  wedding: "/images/real/event_wedding.jpg",
 };
 
 /* ─── Data ─── */
@@ -47,7 +47,18 @@ interface MenuItem {
   weight: string;
   price: number;
   tag?: string;
+  desc?: string;
+  dietary?: string[]; // e.g. ["vegan", "gluten-free", "halal"]
 }
+
+const DIETARY_FILTERS = [
+  { key: "vegan", label: "🌱 Веганское", short: "Веган" },
+  { key: "vegetarian", label: "🥗 Вегетарианское", short: "Вегет." },
+  { key: "gluten-free", label: "🌾 Без глютена", short: "Б/гл." },
+  { key: "halal", label: "🕌 Халяль", short: "Халяль" },
+] as const;
+
+type DietaryKey = (typeof DIETARY_FILTERS)[number]["key"];
 
 interface MenuCategory {
   key: string;
@@ -60,92 +71,141 @@ interface MenuCategory {
 
 const CATEGORIES: MenuCategory[] = [
   {
-    key: "furshet",
+    key: "furshet-2450",
     label: "Фуршет",
     priceFrom: "2 450",
-    desc: "Элегантные канапе, тарталетки и закуски для свободного общения. Идеально для приёмов и презентаций.",
+    desc: "Канапе, брускетты и закуски для свободного общения. Идеально для лёгких мероприятий.",
     img: IMG.furshet,
     items: [
-      { name: "Канапе с сёмгой и сливочным сыром", weight: "40г", price: 320 },
-      { name: "Тарталетка с тунцом и авокадо", weight: "35г", price: 290, tag: "Хит" },
-      { name: "Брускетта с томатами и моцареллой", weight: "45г", price: 270 },
-      { name: "Мини-бургер с вагю", weight: "60г", price: 450, tag: "Премиум" },
-      { name: "Ролл с креветкой и манго", weight: "40г", price: 380 },
-      { name: "Шпажка с дыней и прошутто", weight: "35г", price: 310 },
-      { name: "Канапе с красной икрой", weight: "30г", price: 520, tag: "Премиум" },
-      { name: "Тарталетка с грибным паштетом", weight: "35г", price: 250 },
-      { name: "Мини-пирожок с лососем", weight: "50г", price: 280 },
-      { name: "Капрезе на шпажке", weight: "40г", price: 260 },
+      { name: "Канапе: Ломтик итальянского салями с сыром маскарпоне и миндалём", weight: "35г", price: 2450, desc: "Фуршетное меню на 1 гостя" },
+      { name: "Канапе: Форель шеф-посол на тосте с лаймом, укропом и каперсами", weight: "35г", price: 0, desc: "" },
+      { name: "Канапе: Королевская креветка в слайсе цукини с икрой летучей рыбы", weight: "35г", price: 0, desc: "" },
+      { name: "Брускетты с овощами-гриль и соусом песто", weight: "75г", price: 0, desc: "" },
+      { name: "Брускетты с моцареллой, томатом, рукколой и бальзамиком", weight: "75г", price: 0, desc: "" },
+      { name: "Десерт: Мини пирожное в ассортименте", weight: "50г", price: 0, desc: "" },
+      { name: "Напитки: Домашний клюквенный/брусничный морс", weight: "300мл", price: 0, desc: "" },
+    ],
+  },
+  {
+    key: "furshet-2950",
+    label: "Фуршет",
+    priceFrom: "2 950",
+    desc: "Расширенное фуршетное меню с лососем, креветками и брускеттами с говяжьей вырезкой.",
+    img: IMG.furshet,
+    items: [
+      { name: "Канапе: Копченый лосось с сыром рикотта в савойской капусте с красной икрой", weight: "35г", price: 2950, desc: "Фуршетное меню на 1 гостя" },
+      { name: "Канапе: Масляная белая рыба холодного копчения с лаймом на бородинском хлебе", weight: "35г", price: 0, desc: "" },
+      { name: "Канапе: Пряный сыр с вялеными томатами на шпажке", weight: "35г", price: 0, desc: "" },
+      { name: "Канапе: Куриный рулет «Су-вид» с сегментами персика", weight: "35г", price: 0, desc: "" },
+      { name: "Брускетты со слабосолёным лососем, творожным сыром", weight: "75г", price: 0, desc: "" },
+      { name: "Брускетты с говяжьей вырезкой, рукколой и томатами", weight: "75г", price: 0, desc: "" },
+      { name: "Салат в креманке с тигровыми креветками", weight: "50г", price: 0, desc: "" },
+      { name: "Десерт: Мини-пирожное", weight: "50г", price: 0, desc: "" },
+    ],
+  },
+  {
+    key: "furshet-3950",
+    label: "Фуршет",
+    priceFrom: "3 950",
+    desc: "Премиум-фуршет с лососем, тигровыми креветками, пармской ветчиной и горячими закусками.",
+    img: IMG.furshet,
+    items: [
+      { name: "Канапе: Лосось шеф-посол с красной икрой", weight: "35г", price: 3950, desc: "Фуршетное меню на 1 гостя" },
+      { name: "Канапе: Тигровая креветка с икрой летучей рыбы", weight: "35г", price: 0, desc: "" },
+      { name: "Канапе: Пармская ветчина с персиком и пармезаном", weight: "35г", price: 0, desc: "" },
+      { name: "Брускетта с коктейльными креветками, фетой и бальзамиком", weight: "65г", price: 0, desc: "" },
+      { name: "Салат: С подкопчённым куриным филе и перепелиными яйцами", weight: "70г", price: 0, desc: "" },
+      { name: "Салат: Цезарь с куриным бедром и пармезаном", weight: "60г", price: 0, desc: "" },
+      { name: "Горячая закуска: Запечённая буженина / Шашлычок из куриного филе", weight: "", price: 0, desc: "" },
+      { name: "Гарнир: Картофель бейби с беконом / Овощи-гриль с песто", weight: "", price: 0, desc: "" },
+      { name: "Десерт: Мини-пирожное", weight: "", price: 0, desc: "" },
+    ],
+  },
+  {
+    key: "furshet-5350",
+    label: "Фуршет",
+    priceFrom: "5 350",
+    desc: "Делюкс-фуршет с уткой Магре, морским гребешком, копчёным угрём и филе-миньоном.",
+    img: IMG.furshet,
+    items: [
+      { name: "Канапе: Утиная грудка Магре с апельсином", weight: "35г", price: 5350, desc: "Фуршетное меню на 1 гостя" },
+      { name: "Канапе: Пряный ростбиф с пармезаном и конфи из лука шалот", weight: "35г", price: 0, desc: "" },
+      { name: "Канапе: Морской гребешок с вялеными томатами", weight: "35г", price: 0, desc: "" },
+      { name: "Канапе: Копченый угорь с красной икрой", weight: "35г", price: 0, desc: "" },
+      { name: "Мини-брускетты с тигровыми креветками и кедровыми орешками", weight: "", price: 0, desc: "" },
+      { name: "Мини-брускетты с говяжьей вырезкой и сладкой паприкой", weight: "", price: 0, desc: "" },
+      { name: "Салат: Нисуаз со свежим тунцом", weight: "", price: 0, desc: "" },
+      { name: "Салат: Из говяжьего языка с раковыми шейками", weight: "", price: 0, desc: "" },
+      { name: "Горячая закуска: Шашлычок из морепродуктов / Филе-миньон", weight: "", price: 0, desc: "" },
     ],
   },
   {
     key: "banquet",
     label: "Банкет",
     priceFrom: "4 470",
-    desc: "Многокурсный ужин с авторскими блюдами шеф-повара, винным сопровождением и безупречной подачей.",
+    desc: "5–7 курсов авторского банкетного меню. Холодные закуски, салаты, горячее и десерт.",
     img: IMG.banquet,
     items: [
-      { name: "Салат с уткой и ягодным соусом", weight: "150г", price: 680 },
-      { name: "Крем-суп из белых грибов", weight: "250мл", price: 520 },
-      { name: "Стейк рибай с овощами гриль", weight: "250/100г", price: 1450, tag: "Премиум" },
-      { name: "Дорадо на пару с лимонным соусом", weight: "200/50г", price: 890 },
-      { name: "Филе миньон с трюфельным пюре", weight: "180/120г", price: 1200, tag: "Премиум" },
-      { name: "Ризотто с белыми грибами", weight: "250г", price: 650 },
-      { name: "Телятина с ягодным соусом", weight: "200/50г", price: 980, tag: "Хит" },
-      { name: "Десерт тирамису", weight: "120г", price: 420 },
-      { name: "Сырная тарелка", weight: "200г", price: 750 },
-      { name: "Фруктовая тарелка", weight: "300г", price: 600 },
+      { name: "Холодные закуски: Речная форель, белая масляная рыба, королевские креветки", weight: "", price: 4470, desc: "Банкетное меню на 1 гостя" },
+      { name: "Домашняя буженина, куриный рулет су-вид, свиная вырезка в беконе", weight: "", price: 0, desc: "" },
+      { name: "Террин из овощей, брускетта с печёночным паштетом", weight: "", price: 0, desc: "" },
+      { name: "Салат: Нисуаз с тунцом", weight: "", price: 0, desc: "" },
+      { name: "Салат: Цезарь с куриным бедром", weight: "", price: 0, desc: "" },
+      { name: "Горячее: Свинина с шампиньонами / Куриная грудка с горчичным соусом", weight: "", price: 0, desc: "" },
+      { name: "Гарнир: Овощи-гриль + картофель Айдахо", weight: "", price: 0, desc: "" },
+      { name: "Десерт: Мини-пирожное", weight: "", price: 0, desc: "" },
     ],
   },
   {
-    key: "coffee",
+    key: "coffee-950",
     label: "Кофе-брейк",
     priceFrom: "950",
-    desc: "Кофе, чай, выпечка и лёгкие закуски для деловых встреч, конференций и семинаров.",
+    desc: "Кофе, чай и лёгкие закуски для конференций и семинаров.",
     img: IMG.coffee,
     items: [
-      { name: "Кофе зерновой (эспрессо, американо)", weight: "150мл", price: 180 },
-      { name: "Чай листовой (5 видов)", weight: "200мл", price: 150 },
-      { name: "Круассан с миндалём", weight: "80г", price: 220 },
-      { name: "Маффин шоколадный", weight: "90г", price: 200 },
-      { name: "Сконы с джемом и сливками", weight: "100г", price: 250, tag: "Хит" },
-      { name: "Сэндвич с куриной грудкой", weight: "120г", price: 280 },
-      { name: "Фруктовая нарезка", weight: "150г", price: 300 },
-      { name: "Йогурт с гранолой", weight: "150г", price: 220 },
+      { name: "Клаб-сэндвич", weight: "", price: 950, desc: "Кофе-брейк меню на 1 гостя" },
+      { name: "Пирожок", weight: "", price: 0, desc: "" },
+      { name: "Мини-пирожное", weight: "", price: 0, desc: "" },
+      { name: "Печенье", weight: "", price: 0, desc: "" },
+      { name: "Чай 300мл", weight: "300мл", price: 0, desc: "" },
+      { name: "Кофе 300мл", weight: "300мл", price: 0, desc: "" },
     ],
   },
   {
-    key: "bar",
-    label: "Бар",
-    priceFrom: "1 800",
-    desc: "Профессиональные бармены, авторские коктейли и премиальный алкоголь для вашего мероприятия.",
-    img: IMG.bar,
+    key: "coffee-1250",
+    label: "Кофе-брейк",
+    priceFrom: "1 250",
+    desc: "Расширенный кофе-брейк с круассанами и брускеттами.",
+    img: IMG.coffee,
     items: [
-      { name: "Коктейль Мохито", weight: "300мл", price: 450, tag: "Хит" },
-      { name: "Коктейль Апероль Шприц", weight: "300мл", price: 480, tag: "Хит" },
-      { name: "Вино белое (бокал)", weight: "150мл", price: 550 },
-      { name: "Вино красное (бокал)", weight: "150мл", price: 550 },
-      { name: "Шампанское (бокал)", weight: "150мл", price: 650, tag: "Премиум" },
-      { name: "Коктейль Олд Фешен", weight: "200мл", price: 520 },
-      { name: "Безалкогольный коктейль", weight: "300мл", price: 320 },
-      { name: "Сок свежевыжатый", weight: "200мл", price: 280 },
+      { name: "Круассан с куриным филе", weight: "", price: 1250, desc: "Кофе-брейк меню на 1 гостя" },
+      { name: "Брускетта с томатами", weight: "", price: 0, desc: "" },
+      { name: "Мини-пирожное", weight: "", price: 0, desc: "" },
+      { name: "Печенье с шоколадом", weight: "", price: 0, desc: "" },
     ],
   },
   {
-    key: "dessert",
-    label: "Десерт",
-    priceFrom: "1 200",
-    desc: "Изысканные десерты, макаруны, шоколадные фонданы. Визуальный и гастрономический восторг.",
-    img: IMG.dessert,
+    key: "coffee-1950",
+    label: "Кофе-брейк",
+    priceFrom: "1 950",
+    desc: "Премиум кофе-брейк с мини-бургерами и бужениной.",
+    img: IMG.coffee,
     items: [
-      { name: "Макарон (ассорти 6 шт)", weight: "90г", price: 450, tag: "Хит" },
-      { name: "Чизкейк Нью-Йорк", weight: "120г", price: 380 },
-      { name: "Шоколадный фондан", weight: "100г", price: 420, tag: "Вау-эффект" },
-      { name: "Панна-котта с ягодами", weight: "120г", price: 340 },
-      { name: "Крем-брюле", weight: "120г", price: 360 },
-      { name: "Тирамису", weight: "130г", price: 400 },
-      { name: "Эклеры (3 шт)", weight: "90г", price: 350, tag: "Вау-эффект" },
-      { name: "Фруктовое шоу", weight: "300г", price: 580, tag: "Вау-эффект" },
+      { name: "Мини-бургер с говядиной", weight: "", price: 1950, desc: "Кофе-брейк меню на 1 гостя" },
+      { name: "Круассан с бужениной", weight: "", price: 0, desc: "" },
+      { name: "Клаб-сэндвич с лососем", weight: "", price: 0, desc: "" },
+    ],
+  },
+  {
+    key: "coffee-2450",
+    label: "Кофе-брейк",
+    priceFrom: "2 450",
+    desc: "Делюкс кофе-брейк с лососем и красной икрой.",
+    img: IMG.coffee,
+    items: [
+      { name: "Клаб-сэндвич с бужениной", weight: "", price: 2450, desc: "Кофе-брейк меню на 1 гостя" },
+      { name: "Круассан с лососем", weight: "", price: 0, desc: "" },
+      { name: "Блинный ролл с красной икрой", weight: "", price: 0, desc: "" },
     ],
   },
 ];
@@ -165,7 +225,7 @@ const GALLERY_IMAGES = [
 /* ─── Animation Variants ─── */
 const fadeUp = {
   hidden: { opacity: 0, y: 50 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.25, 1, 0.5, 1] } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.25, 1, 0.5, 1] as const } },
 };
 
 const cardVariants = {
@@ -174,7 +234,7 @@ const cardVariants = {
     opacity: 1,
     y: 0,
     scale: 1,
-    transition: { duration: 0.5, delay: i * 0.06, ease: [0.25, 1, 0.5, 1] },
+    transition: { duration: 0.5, delay: i * 0.06, ease: [0.25, 1, 0.5, 1] as const },
   }),
 };
 
@@ -249,7 +309,7 @@ function TagBadge({ tag }: { tag: string }) {
 }
 
 /* ─── Menu Card ─── */
-function MenuCard({ item, index }: { item: MenuItem; index: number }) {
+function MenuCard({ item, index, dietaryFilter }: { item: MenuItem; index: number; dietaryFilter?: DietaryKey | null }) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-30px" });
 
@@ -262,7 +322,7 @@ function MenuCard({ item, index }: { item: MenuItem; index: number }) {
       animate={isInView ? "visible" : "hidden"}
       whileHover={{ y: -6, boxShadow: "0 20px 50px rgba(0,0,0,0.1)" }}
       style={{
-        background: "#1A1A1A",
+        background: "#fff",
         borderRadius: "16px",
         padding: "1.5rem",
         border: "1px solid rgba(184,149,90,0.08)",
@@ -286,7 +346,7 @@ function MenuCard({ item, index }: { item: MenuItem; index: number }) {
       />
 
       {/* Name */}
-      <div style={{ marginBottom: "0.75rem", paddingRight: "0.5rem" }}>
+      <div style={{ marginBottom: "0.4rem", paddingRight: "0.5rem" }}>
         <span
           style={{
             fontSize: "0.95rem",
@@ -298,7 +358,41 @@ function MenuCard({ item, index }: { item: MenuItem; index: number }) {
           {item.name}
         </span>
         {item.tag && <TagBadge tag={item.tag} />}
+        {item.dietary && item.dietary.length > 0 && (
+          <span style={{ marginLeft: "0.3rem" }}>
+            {item.dietary.map((d) => {
+              const filter = DIETARY_FILTERS.find((f) => f.key === d);
+              return filter ? (
+                <span
+                  key={d}
+                  style={{
+                    display: "inline-block",
+                    background: "rgba(158,182,143,0.12)",
+                    color: "var(--color-sage)",
+                    fontSize: "0.55rem",
+                    fontWeight: 600,
+                    letterSpacing: "0.08em",
+                    textTransform: "uppercase",
+                    padding: "0.15rem 0.4rem",
+                    borderRadius: "4px",
+                    marginLeft: "0.25rem",
+                    verticalAlign: "middle",
+                  }}
+                >
+                  {filter.short}
+                </span>
+              ) : null;
+            })}
+          </span>
+        )}
       </div>
+
+      {/* Description */}
+      {item.desc && (
+        <p style={{ fontSize: "0.8rem", color: "var(--color-text-secondary)", lineHeight: 1.5, marginBottom: "0.5rem" }}>
+          {item.desc}
+        </p>
+      )}
 
       {/* Bottom: weight + price */}
       <div
@@ -312,7 +406,7 @@ function MenuCard({ item, index }: { item: MenuItem; index: number }) {
         <span
           style={{
             fontSize: "0.78rem",
-            color: "rgba(255,255,255,0.4)",
+            color: "var(--color-text-muted)",
             letterSpacing: "0.02em",
           }}
         >
@@ -323,7 +417,6 @@ function MenuCard({ item, index }: { item: MenuItem; index: number }) {
             target={item.price}
             duration={1.5}
             suffix=" ₽"
-            hideUntilInView
             className=""
             style={{
               fontSize: "1.15rem",
@@ -344,7 +437,8 @@ function MenuCard({ item, index }: { item: MenuItem; index: number }) {
 export default function MenuPage() {
   const [activeCat, setActiveCat] = useState("furshet");
   const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
-  const sectionRefs = useRef<Record<string, HTMLDivElement | null>>({});
+  const [dietaryFilter, setDietaryFilter] = useState<DietaryKey | null>(null);
+  const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
 
   // Escape closes lightbox
   useEffect(() => {
@@ -403,9 +497,12 @@ export default function MenuPage() {
             muted
             loop
             playsInline
+            preload="metadata"
+            poster="/images/poster_kitchen.jpg"
+            aria-hidden="true"
             style={{ width: "100%", height: "100%", objectFit: "cover" }}
           >
-            <source src="https://videos.pexels.com/video-files/4763824/4763824-uhd_2560_1440_24fps.mp4" type="video/mp4" />
+            <source src="/videos/catering1.mp4" type="video/mp4" />
           </video>
         </div>
 
@@ -458,7 +555,7 @@ export default function MenuPage() {
           </motion.div>
 
           <KineticText
-            text="Наше меню"
+            text="Меню, которое гости вспоминают годами"
             as="h1"
             animation="wave"
             className="hero-title"
@@ -481,13 +578,13 @@ export default function MenuPage() {
             style={{
               fontSize: "1.05rem",
               lineHeight: 1.7,
-              color: "rgba(255,255,255,0.6)",
+              color: "var(--color-text-subtle)",
               maxWidth: 560,
               margin: "0 auto 2.5rem",
             }}
           >
             Авторские блюда от шеф-повара Дмитрия Нилова. Каждое меню
-            составляется индивидуально под ваше мероприятие.
+            составляется индивидуально — с бесплатной дегустацией от 30 гостей.
           </motion.p>
 
           <motion.div
@@ -499,7 +596,7 @@ export default function MenuPage() {
             <MagneticButton as="a" href="#furshet" className="btn-gold">
               Смотреть меню
             </MagneticButton>
-            <MagneticButton as="a" href="#" className="btn-outline">
+            <MagneticButton as="a" href="/menu" className="btn-outline">
               Скачать PDF
             </MagneticButton>
           </motion.div>
@@ -544,7 +641,7 @@ export default function MenuPage() {
       </section>
 
       {/* ─── TextMarquee with dish names ─── */}
-      <div style={{ background: "#111111", padding: "1.2rem 0", overflow: "hidden" }}>
+      <div style={{ background: "var(--color-cream)", padding: "1.2rem 0", overflow: "hidden" }}>
         <TextMarquee
           texts={[
             "Канапе с лососем", "Тарталетки с крем-сыром", "Брускетта с томатами",
@@ -596,6 +693,7 @@ export default function MenuPage() {
             <button
               key={cat.key}
               onClick={() => scrollToSection(cat.key)}
+              aria-pressed={activeCat === cat.key}
               style={{
                 position: "relative",
                 flexShrink: 0,
@@ -610,7 +708,7 @@ export default function MenuPage() {
                 color:
                   activeCat === cat.key
                     ? "var(--color-brand-dark)"
-                    : "#999",
+                    : "var(--color-text-muted)",
                 transition: "color 0.3s, font-weight 0.3s",
                 whiteSpace: "nowrap",
               }}
@@ -641,6 +739,56 @@ export default function MenuPage() {
         </div>
       </div>
 
+      {/* ═══ Dietary Filter Bar ═══ */}
+      <div style={{
+        background: "var(--color-warm-white)",
+        borderBottom: "1px solid var(--color-cream-darker)",
+        padding: "0.6rem 0",
+      }}>
+        <div style={{
+          maxWidth: 1320, margin: "0 auto", padding: "0 2rem",
+          display: "flex", alignItems: "center", gap: "0.5rem",
+          overflowX: "auto", scrollbarWidth: "none",
+        }}>
+          <span style={{ fontSize: "0.7rem", color: "var(--color-text-muted)", whiteSpace: "nowrap", fontWeight: 500 }}>
+            Фильтр:
+          </span>
+          <button
+            onClick={() => setDietaryFilter(null)}
+            style={{
+              padding: "0.4rem 1rem",
+              borderRadius: 100,
+              border: dietaryFilter === null ? "1.5px solid var(--color-brand)" : "1px solid var(--color-cream-darker)",
+              background: dietaryFilter === null ? "var(--color-brand-10)" : "transparent",
+              color: dietaryFilter === null ? "var(--color-brand-dark)" : "var(--color-text-muted)",
+              fontSize: "0.72rem", fontWeight: 500,
+              cursor: "pointer", whiteSpace: "nowrap",
+              transition: "all 0.2s", minHeight: 32,
+            }}
+          >
+            Все блюда
+          </button>
+          {DIETARY_FILTERS.map((f) => (
+            <button
+              key={f.key}
+              onClick={() => setDietaryFilter(dietaryFilter === f.key ? null : f.key)}
+              style={{
+                padding: "0.4rem 1rem",
+                borderRadius: 100,
+                border: dietaryFilter === f.key ? "1.5px solid var(--color-brand)" : "1px solid var(--color-cream-darker)",
+                background: dietaryFilter === f.key ? "var(--color-brand-10)" : "transparent",
+                color: dietaryFilter === f.key ? "var(--color-brand-dark)" : "var(--color-text-muted)",
+                fontSize: "0.72rem", fontWeight: 500,
+                cursor: "pointer", whiteSpace: "nowrap",
+                transition: "all 0.2s", minHeight: 32,
+              }}
+            >
+              {f.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
       {/* ═════════════════════════════════════════════
           3. MENU SECTIONS
           ═════════════════════════════════════════════ */}
@@ -654,8 +802,8 @@ export default function MenuPage() {
               padding: "5rem 2rem",
               background:
                 catIdx % 2 === 0
-                  ? "#0F0F0F"
-                  : "#111111",
+                  ? "var(--color-warm-white)"
+                  : "var(--color-cream)",
             }}
           >
             <div className="container">
@@ -696,7 +844,7 @@ export default function MenuPage() {
                     style={{
                       fontSize: "1rem",
                       lineHeight: 1.7,
-                      color: "rgba(255,255,255,0.5)",
+                      color: "var(--color-text-secondary)",
                       maxWidth: 480,
                       marginBottom: "1.5rem",
                     }}
@@ -737,6 +885,7 @@ export default function MenuPage() {
                       src={cat.img}
                       alt={`${cat.label} кейтеринг`}
                       speed={0.15}
+                      className="parallax-ken-burns"
                       style={{
                         width: "100%",
                         height: "100%",
@@ -760,8 +909,10 @@ export default function MenuPage() {
                 }}
               >
                 <AnimatePresence>
-                  {cat.items.map((item, i) => (
-                    <MenuCard key={`${cat.key}-${i}`} item={item} index={i} />
+                  {cat.items
+                    .filter((item) => !dietaryFilter || (item.dietary && item.dietary.includes(dietaryFilter)))
+                    .map((item, i) => (
+                    <MenuCard key={`${cat.key}-${i}`} item={item} index={i} dietaryFilter={dietaryFilter} />
                   ))}
                 </AnimatePresence>
               </motion.div>
@@ -773,14 +924,14 @@ export default function MenuPage() {
             <VideoBreak
               src={VID.kitchen}
               title="Искусство подачи"
-              subtitle="Каждое блюдо — маленький шедевр"
+              subtitle="Канапе, тарталетки и брускетта — 30+ позиций, которые исчезают со стола за минуту"
             />
           )}
           {cat.key === "coffee" && (
             <VideoBreak
               src={VID.cooking}
               title="Свежесть ингредиентов"
-              subtitle="Только лучшие продукты от проверенных поставщиков"
+              subtitle="Утренние поставки с фермерских хозяйств Ленинградской области — ничего замороженного"
             />
           )}
         </div>
@@ -860,7 +1011,7 @@ export default function MenuPage() {
           </Reveal>
 
           <TextReveal
-            text="Хотите индивидуальное меню?"
+            text="Хотите индивидуальное меню? Создадим за 48 часов"
             as="h2"
             className="section-title section-title-light"
             style={{
@@ -884,8 +1035,8 @@ export default function MenuPage() {
             }}
           >
             Каждое меню разрабатывается персонально. Мы учтём ваши предпочтения,
-            диетические ограничения и бюджет. Бесплатная дегустация от 50
-            гостей.
+            диетические ограничения и бюджет. Бесплатная дегустация от 30
+            гостей — попробуйте перед заказом.
           </motion.p>
 
           <motion.div
@@ -903,7 +1054,7 @@ export default function MenuPage() {
             <ConfettiButton
               className="btn-gold"
               style={{
-                background: "#1A1A1A",
+                background: "#fff",
                 color: "var(--color-brand-dark)",
                 padding: "1rem 2.5rem",
                 borderRadius: "100px",
@@ -915,14 +1066,14 @@ export default function MenuPage() {
               }}
               onClick={() => { window.location.href = "/#contact"; }}
             >
-              Заказать меню
+              Заказать меню — расчёт за 30 мин
             </ConfettiButton>
             <MagneticButton
               as="a"
               href="/calculator"
               className="btn-outline btn-outline-light"
             >
-              Рассчитать стоимость
+              Рассчитать стоимость за 60 сек
             </MagneticButton>
           </motion.div>
         </div>
@@ -934,7 +1085,7 @@ export default function MenuPage() {
       <section
         style={{
           padding: "5rem 0",
-          background: "#111111",
+          background: "var(--color-cream)",
         }}
       >
         <div className="container">
@@ -958,6 +1109,9 @@ export default function MenuPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
               whileHover={{ scale: 1.03 }}
+              role="button"
+              tabIndex={0}
+              aria-label={`Открыть фото: ${img.alt}`}
               style={{
                 flexShrink: 0,
                 width: 320,
@@ -967,6 +1121,12 @@ export default function MenuPage() {
                 boxShadow: "0 8px 30px rgba(0,0,0,0.08)",
               }}
               onClick={() => setLightboxSrc(img.src)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  setLightboxSrc(img.src);
+                }
+              }}
             >
               <img
                 src={img.src}
@@ -991,7 +1151,7 @@ export default function MenuPage() {
       <section
         style={{
           padding: "5rem 2rem",
-          background: "#0F0F0F",
+          background: "var(--color-warm-white)",
         }}
       >
         <div className="container">
@@ -1009,17 +1169,17 @@ export default function MenuPage() {
               {
                 src: VID.food1,
                 title: "Сервировка авторских блюд",
-                subtitle: "Каждое блюдо — произведение искусства",
+                subtitle: "Хрусталь, фарфор и цветочная композиция — как в мишленовском ресторане",
               },
               {
                 src: VID.kitchen,
                 title: "Работа шеф-повара",
-                subtitle: "Команда профессионалов на вашей кухне",
+                subtitle: "Шеф-стол: стейк рибай и ризотто с трюфелем прямо при гостях",
               },
               {
                 src: VID.cooking,
                 title: "Приготовление в slow motion",
-                subtitle: "Кинематографичная подача",
+                subtitle: "Шампанская пирамида и 5 перемен блюд — по таймлайну до секунды",
               },
             ]}
           />
@@ -1174,7 +1334,7 @@ export default function MenuPage() {
                 +7 (812) 919-59-11
               </a>
               <a
-                href="mailto:info@interfood-catering.ru"
+                href="mailto:interfood-catering@yandex.ru"
                 style={{
                   display: "block",
                   fontSize: "0.85rem",
@@ -1183,7 +1343,7 @@ export default function MenuPage() {
                   marginBottom: "1rem",
                 }}
               >
-                info@interfood-catering.ru
+                interfood-catering@yandex.ru
               </a>
               <p
                 style={{
@@ -1254,19 +1414,47 @@ export default function MenuPage() {
         {lightboxSrc && (
           <motion.div
             className="lightbox"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Увеличенное изображение"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setLightboxSrc(null)}
+            onKeyDown={(e) => {
+              if (e.key === "Escape") setLightboxSrc(null);
+            }}
           >
             <motion.img
               src={lightboxSrc}
-              alt="Увеличенное фото"
+              alt="Увеличенное фото блюда"
               initial={{ scale: 0.85, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.85, opacity: 0 }}
               transition={{ duration: 0.3 }}
             />
+            <button
+              onClick={() => setLightboxSrc(null)}
+              aria-label="Закрыть"
+              style={{
+                position: "absolute",
+                top: "1.5rem",
+                right: "1.5rem",
+                width: 44,
+                height: 44,
+                borderRadius: "50%",
+                background: "rgba(255,255,255,0.9)",
+                border: "none",
+                cursor: "pointer",
+                fontSize: "1.2rem",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
+              }}
+            >
+              ✕
+            </button>
           </motion.div>
         )}
       </AnimatePresence>

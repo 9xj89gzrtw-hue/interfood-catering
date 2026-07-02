@@ -4,6 +4,7 @@ import { useRef, useState, useCallback } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import Link from "next/link";
 import SiteNav from "@/components/SiteNav";
+import ConversionCTA from "@/components/ConversionCTA";
 import TiltCard from "@/components/TiltCard";
 import FlipCard3D from "@/components/FlipCard3D";
 import ParticleField from "@/components/ParticleField";
@@ -23,25 +24,25 @@ import CountUp from "@/components/CountUp";
    ═══════════════════════════════════════════════════════════════ */
 
 const VID = {
-  hero: "https://videos.pexels.com/video-files/4761433/4761433-uhd_2560_1440_25fps.mp4",
-  kitchen: "https://videos.pexels.com/video-files/4763824/4763824-uhd_2560_1440_24fps.mp4",
-  team: "https://videos.pexels.com/video-files/3252005/3252005-uhd_2560_1440_30fps.mp4",
+  hero: "/videos/catering1.mp4",
+  kitchen: "/videos/catering1.mp4",
+  team: "/videos/catering1.mp4",
 };
 
 const IMG = {
-  hero: "https://sfile.chatglm.cn/images-ppt/3a442a2e6e71.jpg",
-  chef: "https://sfile.chatglm.cn/images-ppt/7d1938ffb3e1.jpg",
-  team1: "https://sfile.chatglm.cn/images-ppt/a2fbd3b8447b.jpg",
-  team2: "https://sfile.chatglm.cn/images-ppt/4f51d25798b0.jpg",
-  team3: "https://sfile.chatglm.cn/images-ppt/b77fad9eff9e.jpg",
-  team4: "https://sfile.chatglm.cn/images-ppt/b26bc8017630.png",
-  serving: "https://sfile.chatglm.cn/images-ppt/b0afca3cdeee.jpg",
-  bar: "https://sfile.chatglm.cn/images-ppt/c73dc40e41d4.jpg",
-  dessert: "https://sfile.chatglm.cn/images-ppt/cf9ca554baf6.jpg",
-  canape: "https://sfile.chatglm.cn/images-ppt/2585575d2db2.jpg",
-  decor: "https://sfile.chatglm.cn/images-ppt/99f244d30b4d.jpg",
-  roses: "https://sfile.chatglm.cn/images-ppt/85381eb37c45.jpg",
-  hall: "https://sfile.chatglm.cn/images-ppt/31ca0a361dc4.jpg",
+  hero: "/images/real/event_hero_full.jpg",
+  chef: "/images/real/chef_about.jpg",
+  team1: "/images/real/gallery_pro_1.jpg",
+  team2: "/images/real/gallery_pro_3.jpg",
+  team3: "/images/real/gallery_pro_4.jpg",
+  team4: "/images/real/gallery_pro_6.jpg",
+  serving: "/images/real/furshet_serving.jpg",
+  bar: "/images/real/gallery_pro_7.jpg",
+  dessert: "/images/real/gallery_pro_9.jpg",
+  canape: "/images/real/furshet_canape.jpg",
+  decor: "/images/real/event_decor.jpg",
+  roses: "/images/real/gallery_pro_2.jpg",
+  hall: "/images/real/event_loft.jpg",
 };
 
 /* ─── Team Data (8 members per spec) ─── */
@@ -63,98 +64,65 @@ const TEAM: TeamMember[] = [
     name: "Дмитрий Нилов",
     role: "Основатель и шеф-повар",
     photo: IMG.chef,
-    bio: "Более 20 лет на профессиональной кухне. Обучался в Le Cordon Bleu (Париж), стажировался в ресторанах Мишлен. Создал Интерфуд в 2007 году с миссией — приносить ресторанный уровень на любые площадки.",
-    achievements: ["Le Cordon Bleu", "3 500+ мероприятий", "Федерация шеф-поваров России"],
-    signature: "Кухня — это эмоция, которую можно попробовать",
+    bio: "Основатель Interfood Catering с 2007 года. Для нас организация кейтеринга — не просто работа, а увлечение, которое стало стилем жизни. С 2007 года мы виртуозно подбираем меню для любого события, завоевывая сердца даже самых искушённых гурманов. Профессионализм команды, использование только качественных продуктов, оперативное обслуживание, сотрудничество с лучшими площадками и безупречная подача блюд — философия, которая отражается в каждом моменте нашей работы.",
+    achievements: ["Основатель Interfood Catering", "3 500+ мероприятий", "С 2007 года"],
+    signature: "Для нас кейтеринг — не просто работа, а увлечение, которое стало стилем жизни",
     glowColor: "#B8955A",
     glowRgb: "184,149,90",
   },
   {
     id: 2,
-    name: "Елена Соколова",
-    role: "Директор по развитию",
-    photo: IMG.team1,
-    bio: "Стратег с 15-летним опытом в HoReCa. Развивает направление корпоративного и социального кейтеринга, выстраивает партнёрства с ведущими площадками города. Под её руководством компания выросла в 3 раза.",
-    achievements: ["15 лет в HoReCa", "Рост компании ×3", "50+ партнёрств"],
-    signature: "Развитие — это движение без остановки",
-    glowColor: "#5AB89E",
-    glowRgb: "90,184,158",
-  },
-  {
-    id: 3,
-    name: "Максим Петров",
-    role: "Шеф-кондитер",
+    name: "Шеф-повара и кухня",
+    role: "12 шеф-поваров · 150+ сотрудников",
     photo: IMG.team2,
-    bio: "Мастер сахарного искусства, обучался в Valrhona (Франция) и Ecole Grégoire-Ferrandi. Создаёт десертные концепции, которые становятся кульминацией каждого мероприятия. Автор свадебного торта года 2024.",
-    achievements: ["Valrhona", "Торт года 2024", "Ecole Ferrandi"],
-    signature: "Десерт — финальный аккорд, который запоминается навсегда",
+    bio: "Собственная кухня на Новолитовской ул., 15. Авторское меню, свежие продукты, контроль качества на каждом этапе.",
+    achievements: ["12 шеф-поваров", "Собственная кухня", "Контроль качества"],
+    signature: "Авторское меню и свежие продукты — основа каждого блюда",
     glowColor: "#B85A8E",
     glowRgb: "184,90,142",
   },
   {
-    id: 4,
-    name: "Анна Волкова",
-    role: "Арт-директор",
-    photo: IMG.team3,
-    bio: "Художественное образование (Мухина) и 12 лет в ивент-дизайне. Создаёт визуальные концепции, в которых еда становится искусством. От сервировки до цветочных композиций — всё продумано до миллиметра.",
-    achievements: ["12 лет в дизайне", "Dom Pérignon", "Tiffany & Co."],
-    signature: "Детали создают атмосферу, атмосфера создаёт воспоминания",
-    glowColor: "#8E6AB8",
-    glowRgb: "142,106,184",
+    id: 3,
+    name: "Сервис и обслуживание",
+    role: "80+ официантов",
+    photo: IMG.serving,
+    bio: "Профессиональное обслуживание по стандартам лучших ресторанов. Обучение и аттестация каждого сотрудника.",
+    achievements: ["80+ официантов", "Ресторанные стандарты", "Обучение персонала"],
+    signature: "Профессиональный сервис — лицо каждого мероприятия",
+    glowColor: "#5AB89E",
+    glowRgb: "90,184,158",
   },
   {
-    id: 5,
-    name: "Сергей Козлов",
-    role: "Управляющий банкетами",
+    id: 4,
+    name: "Логистика и координация",
+    role: "8 менеджеров",
     photo: IMG.team4,
-    bio: "Организовал более 800 банкетов за 10 лет. Знает каждый аспект — от рассадки до тайминга подачи. Координирует команду из 60+ официантов. Каждый торжественный момент под его контролем.",
-    achievements: ["800+ банкетов", "60+ официантов", "10 лет опыта"],
-    signature: "Организация — невидимый фундамент любого успеха",
+    bio: "Персональный менеджер на каждое мероприятие. Температурный контроль при транспортировке, точное время доставки.",
+    achievements: ["8 менеджеров", "Персональный менеджер", "Температурный контроль"],
+    signature: "Точная логистика — невидимый фундамент любого мероприятия",
     glowColor: "#B8855A",
     glowRgb: "184,133,90",
   },
   {
-    id: 6,
-    name: "Мария Белова",
-    role: "Сомелье",
-    photo: IMG.serving,
-    bio: "Сертифицированный сомелье WSET Level 3. 15 лет работы с винными картами ведущих ресторанов. Подбирает паринги для каждого меню, создаёт авторские коктейльные карты. Лауреат Российского Сомелье Конкурса 2022.",
-    achievements: ["WSET Level 3", "Конкурс сомелье 2022", "1 500+ винных карт"],
-    signature: "Вино — жидкая поэзия, которая дополняет каждое блюдо",
-    glowColor: "#9E5A5A",
-    glowRgb: "158,90,90",
-  },
-  {
-    id: 7,
-    name: "Игорь Чернов",
-    role: "Шеф-гриль",
-    photo: IMG.bar,
-    bio: "Мастер огня и дыма с 12-летним стажем. Специализируется на live-cooking станциях, авторских гриль-меню и молекулярных шоу. Каждый стейк — это произведение искусства с идеальной степенью прожарки.",
-    achievements: ["12 лет на гриле", "Live-cooking эксперт", "200+ авторских блюд"],
-    signature: "Огонь — главный ингредиент любого шедевра",
-    glowColor: "#B85A5A",
-    glowRgb: "184,90,90",
-  },
-  {
-    id: 8,
-    name: "Ольга Романова",
-    role: "Координатор мероприятий",
-    photo: IMG.dessert,
-    bio: "Ex-координатор мероприятий в ведущих отелях. Привносит уровень пятизвёздочных стандартов в каждый проект. Разработала систему HACCP для кейтеринга и внедрила цифровой контроль качества.",
-    achievements: ["HACCP сертификация", "5-звёздочный стандарт", "Нулевой компромисс"],
-    signature: "Идеально не только на сцене, но и за кулисами",
-    glowColor: "#5AB878",
-    glowRgb: "90,184,120",
+    id: 5,
+    name: "Дизайн и декор",
+    role: "Флористика и оформление",
+    photo: IMG.decor,
+    bio: "Флористическое сопровождение, оформление зала, сервировка. От концепции до реализации — всё продумано до мелочей.",
+    achievements: ["Флористика", "Оформление залов", "Сервировка"],
+    signature: "Атмосфера рождается в деталях — от цветка до салфетки",
+    glowColor: "#8E6AB8",
+    glowRgb: "142,106,184",
   },
 ];
 
 const STATS = [
   { target: 150, suffix: "+", label: "сотрудников" },
   { target: 12, suffix: "", label: "шеф-поваров" },
-  { target: 45, suffix: "+", label: "сомелье и барменов" },
   { target: 80, suffix: "+", label: "официантов" },
   { target: 8, suffix: "", label: "менеджеров" },
-  { target: 98, suffix: "%", label: "проходят обучение ежегодно" },
+  { target: 3500, suffix: "+", label: "мероприятий" },
+  { target: 2007, suffix: "", label: "год основания" },
 ];
 
 const BEHIND_SCENES = [
@@ -169,11 +137,11 @@ const BEHIND_SCENES = [
 ];
 
 const TYPEWRITER_PHRASES = [
-  "Создаём волшебство вместе",
+  "Для нас кейтеринг — не просто работа, а увлечение, которое стало стилем жизни",
   "150+ профессионалов одной командой",
-  "Страсть к безупречности",
-  "Ресторанный уровень повсюду",
-  "Каждое мероприятие — шедевр",
+  "С 2007 года — виртуозно подбираем меню для любого события",
+  "Профессионализм, качество продуктов, безупречная подача",
+  "Завоёвываем сердца даже самых искушённых гурманов",
 ];
 
 /* ─── Holographic Team Card (TiltCard + FlipCard3D pattern combined) ─── */
@@ -210,7 +178,7 @@ function HolographicTeamCard({ member, index }: { member: TeamMember; index: num
       ref={ref}
       initial={{ opacity: 0, y: 60, rotateX: 10 }}
       animate={inView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
-      transition={{ duration: 0.8, delay: index * 0.1, ease: [0.25, 1, 0.5, 1] }}
+      transition={{ duration: 0.8, delay: index * 0.1, ease: [0.25, 1, 0.5, 1] as const }}
       style={{ height: 480 }}
     >
       <TiltCard glare maxTilt={12} style={{ height: "100%" }}>
@@ -228,7 +196,7 @@ function HolographicTeamCard({ member, index }: { member: TeamMember; index: num
         >
           <motion.div
             animate={{ rotateY: flipped ? 180 : 0 }}
-            transition={{ duration: 0.65, ease: [0.25, 1, 0.5, 1] }}
+            transition={{ duration: 0.65, ease: [0.25, 1, 0.5, 1] as const }}
             style={{
               position: "relative",
               width: "100%",
@@ -457,7 +425,7 @@ function HolographicTeamCard({ member, index }: { member: TeamMember; index: num
                     fontSize: "0.7rem",
                     textTransform: "uppercase",
                     letterSpacing: "0.12em",
-                    color: "rgba(255,255,255,0.4)",
+                    color: "var(--color-text-muted)",
                     marginBottom: "0.5rem",
                     fontWeight: 600,
                   }}
@@ -500,7 +468,7 @@ function HolographicTeamCard({ member, index }: { member: TeamMember; index: num
                   borderLeft: `3px solid ${member.glowColor}`,
                   fontStyle: "italic",
                   fontSize: "0.82rem",
-                  color: "rgba(255,255,255,0.6)",
+                  color: "var(--color-text-subtle)",
                   lineHeight: 1.5,
                 }}
               >
@@ -541,16 +509,14 @@ function HolographicTeamCard({ member, index }: { member: TeamMember; index: num
 
 /* ─── Department Card with SpotlightCard ─── */
 const DEPARTMENTS = [
-  { title: "Кухня", icon: "🍳", count: 35, desc: "Шеф-повара, су-шефы, кондитеры, пекари. Все с профессиональным образованием и опытом от 5 лет." },
-  { title: "Сервис", icon: "🥂", count: 65, desc: "Официанты, бармены, хостес. Обучены по стандартам пятизвёздочных отелей." },
-  { title: "Логистика", icon: "🚛", count: 25, desc: "12 собственных автомобилей с рефрижераторами. Температурный контроль от кухни до площадки." },
-  { title: "Менеджмент", icon: "📋", count: 8, desc: "Управляющие проектами, арт-директора, координаторы. Персональный менеджер на каждое мероприятие." },
-  { title: "Дизайн", icon: "🎨", count: 12, desc: "Флористы, декораторы, визуализаторы. Создают атмосферу от концепции до реализации." },
-  { title: "Контроль качества", icon: "✅", count: 5, desc: "Технологи, бракеражная комиссия, HACCP-специалисты. Нулевой компромисс с качеством." },
+  { title: "Кухня", icon: "🍳", count: 12, desc: "Шеф-повара, су-шефы, кондитеры, пекари. Собственная кухня на Новолитовской ул., 15. Контроль качества на каждом этапе." },
+  { title: "Сервис", icon: "🥂", count: 80, desc: "Официанты, бармены, хостес. Профессиональное обучение и аттестация каждого сотрудника." },
+  { title: "Логистика", icon: "🚛", count: 8, desc: "Менеджеры-координаторы. Персональный менеджер на каждое мероприятие, температурный контроль при транспортировке." },
+  { title: "Дизайн", icon: "🎨", count: 10, desc: "Флористы, декораторы, визуализаторы. Оформление зала, сервировка — от концепции до реализации." },
 ];
 
 function DepartmentCard({ dept, index }: { dept: typeof DEPARTMENTS[0]; index: number }) {
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-50px" });
 
   return (
@@ -586,7 +552,7 @@ function DepartmentCard({ dept, index }: { dept: typeof DEPARTMENTS[0]; index: n
         >
           {inView ? <CountUp target={dept.count} suffix=" чел." /> : "0"}
         </div>
-        <p style={{ fontSize: "0.85rem", color: "rgba(255,255,255,0.5)", lineHeight: 1.7 }}>{dept.desc}</p>
+        <p style={{ fontSize: "0.85rem", color: "var(--color-text-secondary)", lineHeight: 1.7 }}>{dept.desc}</p>
       </SpotlightCard>
     </motion.div>
   );
@@ -594,7 +560,7 @@ function DepartmentCard({ dept, index }: { dept: typeof DEPARTMENTS[0]; index: n
 
 /* ═══════════════ MAIN PAGE ═══════════════ */
 export default function TeamPage() {
-  const heroRef = useRef(null);
+  const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
@@ -607,6 +573,7 @@ export default function TeamPage() {
       {/* ═══ HERO with ParticleField + MorphingBlob + AnimatedTypewriter ═══ */}
       <section
         ref={heroRef}
+        aria-label="Команда Интерфуд"
         style={{
           position: "relative",
           minHeight: "90vh",
@@ -630,7 +597,7 @@ export default function TeamPage() {
           style={{
             position: "absolute",
             inset: 0,
-            background: "linear-gradient(135deg, rgba(254,253,251,0.88) 0%, rgba(250,250,248,0.92) 50%, rgba(10,10,10,0.9) 100%)",
+            background: "linear-gradient(135deg, rgba(254,253,251,0.88) 0%, rgba(250,250,248,0.92) 50%, rgba(254,253,251,0.85) 100%)",
             zIndex: 1,
           }}
         />
@@ -689,7 +656,7 @@ export default function TeamPage() {
           </motion.p>
 
           <KineticText
-            text="Люди, которые создают волшебство"
+            text="Команда профессионалов, объединённых страстью к кейтерингу"
             as="h1"
             animation="fadeUp"
             className=""
@@ -729,18 +696,18 @@ export default function TeamPage() {
           </motion.div>
 
           <motion.p
-            style={{ fontSize: "1.05rem", color: "rgba(255,255,255,0.5)", maxWidth: 550, margin: "0 auto", lineHeight: 1.7 }}
+            style={{ fontSize: "1.05rem", color: "var(--color-text-secondary)", maxWidth: 550, margin: "0 auto", lineHeight: 1.7 }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.3 }}
           >
-            150+ профессионалов, объединённых одной страстью — делать каждое мероприятие незабываемым
+            150+ профессионалов, объединённых одной целью — делать каждое мероприятие безупречным. С 2007 года.
           </motion.p>
         </motion.div>
       </section>
 
       {/* ═══ STATS BAR ═══ */}
-      <section style={{ padding: "3rem 2rem", background: "#FAFAF8" }}>
+      <section aria-label="Статистика команды" style={{ padding: "3rem 2rem", background: "#FAFAF8" }}>
         <div style={{ maxWidth: 1320, margin: "0 auto" }}>
           <div
             style={{
@@ -761,7 +728,7 @@ export default function TeamPage() {
                 <h3 style={{ fontSize: "2.2rem", fontWeight: 700, color: "#B8955A", fontFamily: "var(--font-serif)" }}>
                   <CountUp target={s.target} suffix={s.suffix} decimals={s.target % 1 !== 0 ? 1 : 0} />
                 </h3>
-                <p style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.4)", marginTop: "0.3rem" }}>{s.label}</p>
+                <p style={{ fontSize: "0.8rem", color: "var(--color-text-muted)", marginTop: "0.3rem" }}>{s.label}</p>
               </motion.div>
             ))}
           </div>
@@ -769,7 +736,7 @@ export default function TeamPage() {
       </section>
 
       {/* ═══ CORE TEAM — 3D HOLOGRAPHIC CARDS ═══ */}
-      <section style={{ padding: "6rem 2rem", position: "relative", overflow: "hidden" }}>
+      <section aria-label="Руководство компании" style={{ padding: "6rem 2rem", position: "relative", overflow: "hidden" }}>
         {/* Background MorphingBlob */}
         <div style={{ position: "absolute", top: "20%", left: "-10%", zIndex: 0 }}>
           <MorphingBlob
@@ -795,11 +762,11 @@ export default function TeamPage() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
           >
-            Руководство компании
+            Лица компании
           </motion.p>
 
           <KineticText
-            text="Лица, за которыми стоит Интерфуд"
+            text="Основатель и команда, которым доверяют"
             as="h2"
             animation="wave"
             stagger={0.03}
@@ -813,8 +780,8 @@ export default function TeamPage() {
             }}
           />
 
-          <p style={{ color: "rgba(255,255,255,0.5)", maxWidth: 600, marginBottom: "3rem", fontSize: "1.05rem", lineHeight: 1.7 }}>
-            Наведите на карточку для 3D-эффекта и голографического сияния. Нажмите, чтобы узнать подробности о каждом члене команды.
+          <p style={{ color: "var(--color-text-secondary)", maxWidth: 600, marginBottom: "3rem", fontSize: "1.05rem", lineHeight: 1.7 }}>
+            Наведите на карточку для 3D-эффекта и голографического сияния. Нажмите, чтобы узнать подробности.
           </p>
 
           <div
@@ -838,11 +805,12 @@ export default function TeamPage() {
         speed={0.4}
         overlay
         overlayOpacity={0.5}
+        className="parallax-ken-burns"
         style={{ height: "35vh" }}
       />
 
       {/* ═══ DEPARTMENTS with SpotlightCards ═══ */}
-      <section style={{ padding: "6rem 2rem", background: "#FAFAF8" }}>
+      <section aria-label="Структура компании" style={{ padding: "6rem 2rem", background: "#FAFAF8" }}>
         <div style={{ maxWidth: 1320, margin: "0 auto" }}>
           <motion.p
             style={{
@@ -890,7 +858,7 @@ export default function TeamPage() {
       </section>
 
       {/* ═══ BEHIND THE SCENES — Horizontal Scroll ═══ */}
-      <section style={{ padding: "6rem 0", overflow: "hidden" }}>
+      <section aria-label="За кулисами" style={{ padding: "6rem 0", overflow: "hidden" }}>
         <div style={{ maxWidth: 1320, margin: "0 auto", paddingLeft: "2rem", paddingRight: "2rem" }}>
           <motion.p
             style={{
@@ -927,6 +895,7 @@ export default function TeamPage() {
         {/* Horizontal scroll container */}
         <div
           ref={scrollRef}
+          className="team-behind-scroll"
           style={{
             display: "flex",
             gap: "1.5rem",
@@ -1020,7 +989,7 @@ export default function TeamPage() {
                     >
                       {item.label}
                     </h4>
-                    <p style={{ fontSize: "0.85rem", color: "rgba(255,255,255,0.5)", lineHeight: 1.6 }}>
+                    <p style={{ fontSize: "0.85rem", color: "var(--color-text-secondary)", lineHeight: 1.6 }}>
                       Моменты, которые создают нашу команду. Каждый день мы превращаем идеи в реальность.
                     </p>
                   </div>
@@ -1033,17 +1002,17 @@ export default function TeamPage() {
 
         {/* Custom scrollbar styling */}
         <style>{`
-          div[ref="${scrollRef}"]::-webkit-scrollbar {
+          .team-behind-scroll::-webkit-scrollbar {
             height: 6px;
           }
-          div::-webkit-scrollbar-track {
+          .team-behind-scroll::-webkit-scrollbar-track {
             background: transparent;
           }
-          div::-webkit-scrollbar-thumb {
+          .team-behind-scroll::-webkit-scrollbar-thumb {
             background: rgba(184,149,90,0.3);
             border-radius: 3px;
           }
-          div::-webkit-scrollbar-thumb:hover {
+          .team-behind-scroll::-webkit-scrollbar-thumb:hover {
             background: rgba(184,149,90,0.5);
           }
         `}</style>
@@ -1051,6 +1020,7 @@ export default function TeamPage() {
 
       {/* ═══ JOIN OUR TEAM CTA with ConfettiButton ═══ */}
       <section
+        aria-label="Присоединяйтесь к команде"
         style={{
           padding: "6rem 2rem",
           background: "linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #1a1a2e 100%)",
@@ -1101,7 +1071,7 @@ export default function TeamPage() {
           </motion.p>
 
           <KineticText
-            text="Хотите стать частью команды?"
+            text="Хотите стать частью команды, которой доверяют?"
             as="h2"
             animation="scale"
             stagger={0.03}
@@ -1123,7 +1093,7 @@ export default function TeamPage() {
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
           >
-            Мы всегда ищем талантливых и страстных профессионалов. Если вы любите создавать незабываемые впечатления — отправьте нам заявку, и мы обязательно свяжемся с вами.
+            Мы всегда ищем талантливых и страстных профессионалов. Если вы хотите создавать безупречные впечатления — отправьте нам заявку, и мы обязательно свяжемся с вами.
           </motion.p>
 
           <motion.div
@@ -1163,7 +1133,7 @@ export default function TeamPage() {
             viewport={{ once: true }}
             transition={{ delay: 0.6 }}
           >
-            Или напишите нам на info@interfood-catering.ru
+            Или напишите нам на interfood-catering@yandex.ru
           </motion.p>
         </div>
       </section>
@@ -1254,8 +1224,8 @@ export default function TeamPage() {
               </h4>
               <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
                 <a href="tel:+78129195911" style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.9rem", textDecoration: "none" }}>+7 (812) 919-59-11</a>
-                <a href="mailto:info@interfood-catering.ru" style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.9rem", textDecoration: "none" }}>info@interfood-catering.ru</a>
-                <span style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.9rem" }}>Невский пр., д. 100</span>
+                <a href="mailto:interfood-catering@yandex.ru" style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.9rem", textDecoration: "none" }}>interfood-catering@yandex.ru</a>
+                <span style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.9rem" }}>Новолитовская ул., 15</span>
                 <span style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.9rem" }}>Санкт-Петербург</span>
               </div>
             </div>
@@ -1309,6 +1279,13 @@ export default function TeamPage() {
           <path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.12 1.52 5.855L0 24l6.335-1.652A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.82c-1.968 0-3.825-.534-5.44-1.47l-.39-.232-3.866 1.008 1.033-3.78-.254-.404A9.79 9.79 0 012.18 12c0-5.422 4.398-9.82 9.82-9.82 5.422 0 9.82 4.398 9.82 9.82 0 5.422-4.398 9.82-9.82 9.82z" />
         </svg>
       </a>
+      <ConversionCTA
+        headline="Доверьте праздник профессионалам — с гарантией по договору"
+        subtitle="Наша команда создаст безупречное мероприятие — от идеи до последней детали"
+        primaryLabel="Обсудить мероприятие"
+        secondaryLabel="Калькулятор стоимости"
+        secondaryHref="/calculator"
+      />
     </main>
   );
 }

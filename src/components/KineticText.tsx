@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
-import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
+import { motion, useInView, type TargetAndTransition } from "framer-motion";
 
 /* ═══════════════════════════════════════════════════════════════
    KineticText — каждая буква анимируется отдельно
@@ -32,7 +32,7 @@ export default function KineticText({
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-50px" });
 
-  const animations: Record<string, { initial: object; animate: object }> = {
+  const animations: Record<string, { initial: TargetAndTransition; animate: TargetAndTransition }> = {
     fadeUp: {
       initial: { opacity: 0, y: 40 },
       animate: { opacity: 1, y: 0 },
@@ -68,7 +68,7 @@ export default function KineticText({
             transition={{
               duration,
               delay: delay + i * stagger,
-              ease: [0.25, 1, 0.5, 1],
+              ease: [0.25, 1, 0.5, 1] as const,
             }}
             style={{
               display: "inline-block",

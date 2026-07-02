@@ -79,7 +79,7 @@ function VideoCard({ video, index }: { video: VideoItem; index: number }) {
       ref={ref}
       initial={{ opacity: 0, scale: 0.85 }}
       animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.85 }}
-      transition={{ duration: 0.7, ease: [0.25, 1, 0.5, 1] }}
+      transition={{ duration: 0.7, ease: [0.25, 1, 0.5, 1] as const }}
       style={{
         flex: "0 0 70vw",
         maxWidth: 900,
@@ -95,6 +95,7 @@ function VideoCard({ video, index }: { video: VideoItem; index: number }) {
         muted
         loop
         playsInline
+        preload="metadata"
         style={{
           width: "100%",
           height: "100%",

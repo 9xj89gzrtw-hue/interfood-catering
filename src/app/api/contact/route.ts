@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { Resend } from "resend";
+
+export const dynamic = "force-dynamic";
 
 interface ContactFormData {
   name: string;
@@ -10,6 +11,10 @@ interface ContactFormData {
   guests?: number;
   message?: string;
   source?: string;
+}
+
+export async function GET() {
+  return NextResponse.json({ endpoint: "contact", method: "POST" });
 }
 
 export async function POST(request: NextRequest) {
@@ -48,6 +53,7 @@ export async function POST(request: NextRequest) {
 
     if (resendApiKey) {
       try {
+        const { Resend } = await import("resend");
         const resend = new Resend(resendApiKey);
 
         const eventTypeMap: Record<string, string> = {
@@ -56,6 +62,10 @@ export async function POST(request: NextRequest) {
           banquet: "Банкет",
           furshet: "Фуршет",
           coffee: "Кофе-брейк",
+          jubilee: "Юбилей",
+          birthday: "День рождения",
+          newyear: "Новый год",
+          outdoor: "Выездное мероприятие",
           other: "Другое",
         };
 

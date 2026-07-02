@@ -30,32 +30,32 @@ import ConfettiButton from "@/components/ConfettiButton";
    ═══════════════════════════════════════════════════════════════ */
 
 const VID = {
-  hero: "https://videos.pexels.com/video-files/3742004/3742004-uhd_2560_1440_24fps.mp4",
-  decor: "https://videos.pexels.com/video-files/2759750/2759750-uhd_2560_1440_25fps.mp4",
-  wedding1: "https://videos.pexels.com/video-files/3195394/3195394-uhd_2560_1440_25fps.mp4",
-  wedding2: "https://videos.pexels.com/video-files/4761433/4761433-uhd_2560_1440_25fps.mp4",
-  wedding3: "https://videos.pexels.com/video-files/5377703/5377703-uhd_2560_1440_25fps.mp4",
-  wedding4: "https://videos.pexels.com/video-files/4763824/4763824-uhd_2560_1440_24fps.mp4",
+  hero: "/videos/catering1.mp4",
+  decor: "/videos/catering2.mp4",
+  wedding1: "/videos/catering2.mp4",
+  wedding2: "/videos/catering1.mp4",
+  wedding3: "/videos/catering2.mp4",
+  wedding4: "/videos/catering1.mp4",
 };
 
 const IMG = {
-  hero: "https://sfile.chatglm.cn/images-ppt/b77fad9eff9e.jpg",
-  decor: "https://sfile.chatglm.cn/images-ppt/99f244d30b4d.jpg",
-  roses: "https://sfile.chatglm.cn/images-ppt/85381eb37c45.jpg",
-  cake: "https://sfile.chatglm.cn/images-ppt/cf9ca554baf6.jpg",
-  flowers: "https://sfile.chatglm.cn/images-ppt/85381eb37c45.jpg",
-  pair: "https://sfile.chatglm.cn/images-ppt/b77fad9eff9e.jpg",
-  champagne: "https://sfile.chatglm.cn/images-ppt/c73dc40e41d4.jpg",
-  terrace: "https://sfile.chatglm.cn/images-ppt/31ca0a361dc4.jpg",
-  banquet: "https://sfile.chatglm.cn/images-ppt/b0afca3cdeee.jpg",
-  dessert: "https://sfile.chatglm.cn/images-ppt/cf9ca554baf6.jpg",
+  hero: "/images/real/event_wedding.jpg",
+  decor: "/images/real/event_decor.jpg",
+  roses: "/images/real/gallery_pro_5.jpg",
+  cake: "/images/real/gallery_pro_10.jpg",
+  flowers: "/images/real/gallery_pro_2.jpg",
+  pair: "/images/real/event_wedding.jpg",
+  champagne: "/images/real/gallery_pro_7.jpg",
+  terrace: "/images/real/event_loft.jpg",
+  banquet: "/images/real/furshet_serving.jpg",
+  dessert: "/images/real/gallery_pro_9.jpg",
 };
 
 /* ─── Packages ─── */
 const PACKAGES = [
   {
     name: "Классика",
-    price: "от 5 900 ₽/чел",
+    price: "от 4 470 ₽/чел",
     desc: "Идеальный выбор для уютной свадьбы",
     features: [
       "Меню из 8–12 позиций",
@@ -63,7 +63,7 @@ const PACKAGES = [
       "Welcome-дринк при встрече",
       "Стандартная сервировка и текстиль",
       "Координация по таймлайну",
-      "Меню для аллергиков и вегетарианцев",
+      "Флористическое сопровождение в подарок при заказе банкета или фуршета",
     ],
   },
   {
@@ -114,25 +114,25 @@ const GALLERY = [
 /* ─── Reviews ─── */
 const REVIEWS = [
   {
-    name: "Анна и Алексей",
-    date: "Июнь 2025",
-    guests: 120,
+    name: "Марианна Кадырлеева",
+    date: "Апрель 2023",
+    guests: 25,
     stars: 5,
-    text: "Интерфуд сделал наш день незабываемым! Внимание к деталям потрясающее — от сервировки до подачи блюд. Гости до сих пор вспоминают стейк и тирамису. Мы бесконечно благодарны команде за этот волшебный вечер!",
+    text: "Заказывала фуршет на 25 человек для диссертационного совета в ВМА. Все было выполнено на высоком профессиональном уровне, тайминг был соблюден на 150%, еда выше всяческих похвал. Большое спасибо Дмитрию!",
   },
   {
-    name: "Екатерина и Пётр",
-    date: "Сентябрь 2024",
-    guests: 85,
+    name: "Ксения Халова",
+    date: "Декабрь 2022",
+    guests: 35,
     stars: 5,
-    text: "Выбрали пакет «Премиум» и ни разу не пожалели. Шампанская пирамида стала настоящим хитом вечера, а десертный стол был произведением искусства. Персонал — профессионалы высшего класса.",
+    text: "Ребята обслуживали наш новогодний корпоратив на 35 человек, еда очень вкусная, официанты внимательные. Очень рекомендую!",
   },
   {
-    name: "Мария и Дмитрий",
-    date: "Август 2024",
-    guests: 200,
+    name: "Светлана Геннади",
+    date: "Декабрь 2020",
+    guests: 12,
     stars: 5,
-    text: "Организовать свадьбу на 200 человек — это вызов, но Интерфуд справился безупречно. Каждый гость получил внимание, каждое блюдо было подано вовремя. Гранд-пакет превзошёл все наши ожидания!",
+    text: "Дмитрий гибко и внимательно подошёл к нашему заказу. Каждое блюдо выглядело как произведение искусства.",
   },
 ];
 
@@ -143,7 +143,7 @@ const FEATURES = [
   { icon: "❋", title: "Бесплатная дегустация", desc: "Приходите на бесплатную дегустацию и выберите идеальное меню для вашего торжества. Мы подберём блюда под ваш вкус, бюджет и концепцию свадьбы, предложим варианты для гостей с пищевыми ограничениями. Дегустация проходит в уютной атмосфере с бокалом вина и вниманием шеф-повара." },
   { icon: "✿", title: "Декор и сервировка", desc: "Цветочные композиции, текстиль, свечи и сервировка столов в едином стиле, гармонирующем с оформлением зала. Мы работаем с лучшими флористами и декораторами города, создавая атмосферу от классической роскоши до минималистичной элегантности. Каждая деталь продумана до мелочей." },
   { icon: "❖", title: "Собственная кухня", desc: "Все блюда готовятся на собственной производственной кухне в день события из свежих продуктов. Никаких замороженных заготовок и полуфабрикатов — только натуральные ингредиенты от проверенных поставщиков. Собственная кухня позволяет гарантировать вкус и качество каждого блюда." },
-  { icon: "✧", title: "Гарантия качества", desc: "Более 850 свадеб за 18 лет без единого нарекания — наша лучшая рекомендация. Если что-то вас не устроит, мы вернём деньги без лишних вопросов. Ваш покой и уверенность в безупречном проведении самого важного дня — наш абсолютный приоритет." },
+  { icon: "✧", title: "Гарантия по договору", desc: "Фиксируем меню, таймлайн и стоимость в договоре. Если нарушим тайминг — возвращаем 100% стоимости обслуживания. За 18 лет и 850+ свадеб менее 2% клиентов обращались по гарантии — и каждый случай был решён в их пользу. Ваш покой и уверенность — наш приоритет." },
 ];
 
 /* ─── Love Story Timeline ─── */
@@ -157,12 +157,12 @@ const LOVE_STORY = [
 /* ─── Animation helpers ─── */
 const fadeUp = {
   hidden: { opacity: 0, y: 60 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.4, 0, 0.2, 1] } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.4, 0, 0.2, 1] as const } },
 };
 const staggerContainer = { hidden: {}, visible: { transition: { staggerChildren: 0.12 } } };
 const staggerItem = {
   hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.4, 0, 0.2, 1] } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.4, 0, 0.2, 1] as const } },
 };
 
 function Reveal({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
@@ -200,6 +200,7 @@ export default function WeddingPage() {
   return (
     <>
       <SiteNav />
+      <main id="main-content">
 
       {/* ═══════════════════════════════════════════
          1. HERO — Video background + ParticleField + SplitText + AnimatedTypewriter
@@ -212,7 +213,9 @@ export default function WeddingPage() {
             muted
             loop
             playsInline
+            preload="metadata"
             poster={IMG.hero}
+            aria-label="Видео свадебного кейтеринга"
             style={{ width: "100%", height: "100%", objectFit: "cover" }}
           >
             <source src={VID.hero} type="video/mp4" />
@@ -228,7 +231,7 @@ export default function WeddingPage() {
         />
 
         {/* Light overlay for romantic feel */}
-        <div style={{ position: "absolute", inset: 0, zIndex: 2, background: "linear-gradient(to bottom, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.2) 40%, rgba(254,253,251,0.4) 70%, rgba(254,253,251,0.92) 100%)" }} />
+        <div style={{ position: "absolute", inset: 0, zIndex: 2, background: "linear-gradient(to bottom, rgba(254,253,251,0.2) 0%, rgba(254,253,251,0.1) 40%, rgba(254,253,251,0.4) 70%, rgba(254,253,251,0.92) 100%)" }} />
 
         {/* Content */}
         <motion.div style={{ position: "relative", zIndex: 3, textAlign: "center", padding: "2rem", maxWidth: 900, opacity: heroOpacity }}>
@@ -237,7 +240,7 @@ export default function WeddingPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <span style={{ display: "inline-block", fontSize: "0.65rem", fontWeight: 600, letterSpacing: "0.3em", textTransform: "uppercase", color: "#B8955A", marginBottom: "1.5rem", padding: "0.4rem 1.2rem", border: "1px solid rgba(184,149,90,0.4)", borderRadius: "100px", background: "rgba(10,10,10,0.8)" }}>
+            <span style={{ display: "inline-block", fontSize: "0.65rem", fontWeight: 600, letterSpacing: "0.3em", textTransform: "uppercase", color: "#B8955A", marginBottom: "1.5rem", padding: "0.4rem 1.2rem", border: "1px solid rgba(184,149,90,0.4)", borderRadius: "100px", background: "rgba(254,253,251,0.7)" }}>
               Интерфуд Кейтеринг
             </span>
           </motion.div>
@@ -248,16 +251,17 @@ export default function WeddingPage() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.5 }}
           >
+            <h1 className="sr-only">Свадебный кейтеринг</h1>
             <SplitText
-              text="Свадебный кейтеринг"
-              as="h1"
+            text="Свадебный кейтеринг, которому доверяют 850+ пар"
+              as="h2"
               className="section-title"
               delay={0.6}
               stagger={0.06}
             />
             <div style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(2.5rem, 7vw, 5rem)", fontWeight: 300, lineHeight: 1.1, color: "#B8955A", fontStyle: "italic", marginBottom: "1.5rem" }}>
               <AnimatedTypewriter
-                texts={["Ваш идеальный день", "Мечта становится реальностью", "Незабываемые моменты"]}
+                texts={["850+ свадеб за 18 лет", "Бесплатная дегустация", "Гарантия по договору"]}
                 speed={70}
                 deleteSpeed={35}
                 pauseDuration={2500}
@@ -273,7 +277,7 @@ export default function WeddingPage() {
             transition={{ duration: 0.8, delay: 1.0 }}
             style={{ fontSize: "clamp(1rem, 2.2vw, 1.15rem)", lineHeight: 1.7, color: "rgba(26,26,26,0.65)", maxWidth: 580, margin: "0 auto 2.5rem" }}
           >
-            Более 850 свадеб за 18 лет. Авторское меню, изысканная сервировка и безупречный сервис для вашего идеального дня.
+            Более 850 свадеб за 18 лет. Бесплатная дегустация, персональный менеджер 24/7 и гарантия по договору — если нарушим тайминг, вернём деньги.
           </motion.p>
 
           <motion.div
@@ -283,7 +287,7 @@ export default function WeddingPage() {
             style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}
           >
             <MagneticButton as="a" href="/#contact" className="btn-gold" strength={0.2}>
-              Заказать свадьбу →
+              Заказать свадьбу — расчёт за 30 мин
             </MagneticButton>
             <MagneticButton as="a" href="#packages" className="btn-outline" strength={0.2}>
               Смотреть пакеты
@@ -295,12 +299,13 @@ export default function WeddingPage() {
       {/* ═══════════════════════════════════════════
          STATS BAR — CountUp with KineticText
          ═══════════════════════════════════════════ */}
-      <section style={{ background: "#FAFAF8", padding: "4rem 2rem", borderBottom: "1px solid rgba(184,149,90,0.1)" }}>
+      <section style={{ background: "#FAFAF8", padding: "4rem 2rem", borderBottom: "1px solid rgba(184,149,90,0.1)" }} aria-label="Статистика">
         <div className="trust-bar container">
           {[
             { value: 850, suffix: "+", label: "свадеб проведено" },
-            { value: 4.9, suffix: "", label: "средний рейтинг", decimals: 1 },
-            { value: 12, suffix: " лет", label: "опыта в кейтеринге" },
+            { value: 10, suffix: "/10", label: "Restoclub", decimals: 0 },
+            { value: 4.55, suffix: "/5", label: "CaterMe", decimals: 2 },
+            { value: 18, suffix: " лет", label: "на рынке СПб" },
           ].map((stat, i) => (
             <div key={i} className="stat-item">
               <h3>
@@ -321,7 +326,7 @@ export default function WeddingPage() {
           <Reveal>
             <span className="section-label">Наши преимущества</span>
             <KineticText
-              text="Почему выбирают Интерфуд"
+            text="Почему 850+ пар выбрали Интерфуд"
               as="h2"
               animation="wave"
               className="section-title"
@@ -329,12 +334,12 @@ export default function WeddingPage() {
               duration={0.6}
             />
             <p className="section-subtitle" style={{ margin: "0 auto" }}>
-              Мы понимаем, что свадьба — самый важный день. Наша команда обеспечивает безупречный сервис, чтобы вы наслаждались каждым моментом.
+              Мы понимаем, что свадьба — самый важный день. Наша команда обеспечивает безупречный сервис, чтобы вы наслаждались каждым моментом, а не волновались о подаче.
             </p>
           </Reveal>
 
           <motion.div
-            style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1.5rem", marginTop: "3rem" }}
+            style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "1.5rem", marginTop: "3rem" }}
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
@@ -346,7 +351,7 @@ export default function WeddingPage() {
                   <div className="card" style={{ padding: "2rem", textAlign: "center", height: "100%" }}>
                     <div style={{ fontSize: "2rem", color: "#B8955A", marginBottom: "1rem", lineHeight: 1 }}>{feat.icon}</div>
                     <h3 style={{ fontFamily: "var(--font-serif)", fontSize: "1.2rem", fontWeight: 400, color: "#1A1A1A", marginBottom: "0.75rem" }}>{feat.title}</h3>
-                    <p style={{ color: "#777", fontSize: "0.9rem", lineHeight: 1.65 }}>{feat.desc}</p>
+                    <p style={{ color: "var(--color-text-muted)", fontSize: "0.9rem", lineHeight: 1.65 }}>{feat.desc}</p>
                   </div>
                 </TiltCard>
               </motion.div>
@@ -390,7 +395,7 @@ export default function WeddingPage() {
           <Reveal>
             <span className="section-label">Ваш путь к идеальной свадьбе</span>
             <KineticText
-              text="История вашей любви"
+            text="История вашей любви — в каждом блюде"
               as="h2"
               animation="wave"
               className="section-title"
@@ -431,7 +436,7 @@ export default function WeddingPage() {
                     <h3 style={{ fontFamily: "var(--font-serif)", fontSize: "1.5rem", fontWeight: 400, color: "#1A1A1A", marginBottom: "0.5rem" }}>
                       {item.title}
                     </h3>
-                    <p style={{ color: "#777", fontSize: "0.95rem", lineHeight: 1.7, maxWidth: 360, marginLeft: i % 2 !== 0 ? 0 : "auto", marginRight: i % 2 === 0 ? 0 : "auto" }}>
+                    <p style={{ color: "var(--color-text-muted)", fontSize: "0.95rem", lineHeight: 1.7, maxWidth: 360, marginLeft: i % 2 !== 0 ? 0 : "auto", marginRight: i % 2 === 0 ? 0 : "auto" }}>
                       {item.desc}
                     </p>
                   </div>
@@ -472,6 +477,7 @@ export default function WeddingPage() {
         style={{ height: "45vh", minHeight: 280 }}
         overlay
         overlayOpacity={0.2}
+        className="parallax-ken-burns"
       />
 
       {/* ═══════════════════════════════════════════
@@ -488,7 +494,7 @@ export default function WeddingPage() {
           <Reveal>
             <span className="section-label">Свадебные пакеты</span>
             <KineticText
-              text="Выберите свой идеальный пакет"
+              text="Выберите свой идеальный пакет — или создадим индивидуальный"
               as="h2"
               animation="wave"
               className="section-title"
@@ -496,12 +502,12 @@ export default function WeddingPage() {
               duration={0.5}
             />
             <p className="section-subtitle" style={{ margin: "0 auto" }}>
-              Три уровня сервиса для свадьбы вашей мечты. Или обсудим индивидуальные условия.
+              Три уровня сервиса для свадьбы вашей мечты. Бесплатная дегустация и гарантия по договору.
             </p>
           </Reveal>
 
           <motion.div
-            style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "2rem", marginTop: "3rem", alignItems: "start" }}
+            style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: "2rem", marginTop: "3rem", alignItems: "start" }}
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
@@ -534,7 +540,7 @@ export default function WeddingPage() {
                       <h3 style={{ fontFamily: "var(--font-serif)", fontSize: "1.6rem", fontWeight: 400, color: "#1A1A1A", marginBottom: "0.4rem" }}>
                         {pkg.name}
                       </h3>
-                      <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.85rem", marginBottom: "1.5rem" }}>{pkg.desc}</p>
+                      <p style={{ color: "var(--color-text-muted)", fontSize: "0.85rem", marginBottom: "1.5rem" }}>{pkg.desc}</p>
                       <div style={{ marginBottom: "2rem", paddingBottom: "1.5rem", borderBottom: "1px solid rgba(184,149,90,0.12)" }}>
                         <span style={{ fontFamily: "var(--font-serif)", fontSize: "2rem", fontWeight: 300, color: "#B8955A" }}>
                           {pkg.price}
@@ -542,7 +548,7 @@ export default function WeddingPage() {
                       </div>
                       <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.65rem", marginBottom: "2rem", textAlign: "left" }}>
                         {pkg.features.map((f, j) => (
-                          <li key={j} style={{ display: "flex", gap: "0.6rem", alignItems: "flex-start", fontSize: "0.9rem", color: "rgba(255,255,255,0.6)", lineHeight: 1.5 }}>
+                          <li key={j} style={{ display: "flex", gap: "0.6rem", alignItems: "flex-start", fontSize: "0.9rem", color: "var(--color-text-subtle)", lineHeight: 1.5 }}>
                             <span style={{ color: "#B8955A", flexShrink: 0, marginTop: "2px" }}>
                               {j === 0 && pkg.name !== "Классика" ? "✦" : "✓"}
                             </span>
@@ -590,10 +596,10 @@ export default function WeddingPage() {
           <div style={{ marginTop: "2rem" }}>
             <VideoCarousel
               slides={[
-                { src: VID.wedding1, title: "Подача блюд на свадьбе", subtitle: "Безупречный сервис для вашего дня" },
-                { src: VID.wedding2, title: "Приготовление авторских блюд", subtitle: "Шеф-повар лично контролирует каждое блюдо" },
-                { src: VID.wedding3, title: "Кинематографичная подача", subtitle: "Каждый момент — как в кино" },
-                { src: VID.wedding4, title: "Романтика и эстетика", subtitle: "Декор, который вдохновляет" },
+                { src: VID.wedding1, title: "Подача блюд на свадьбе", subtitle: "5 перемен блюд по таймлайну — ни одна тарелка не опоздала" },
+                { src: VID.wedding2, title: "Приготовление авторских блюд", subtitle: "Шеф-стол: стейк и ризотто готовят прямо при гостях" },
+                { src: VID.wedding3, title: "Кинематографичная подача", subtitle: "Шампанская пирамида — фирменный момент вашего вечера" },
+                { src: VID.wedding4, title: "Романтика и эстетика", subtitle: "Хрусталь, свечи и цветы в палитре вашей свадьбы" },
               ]}
             />
           </div>
@@ -610,6 +616,7 @@ export default function WeddingPage() {
         style={{ height: "40vh", minHeight: 260 }}
         overlay
         overlayOpacity={0.25}
+        className="parallax-ken-burns"
       />
 
       {/* ═══════════════════════════════════════════
@@ -631,7 +638,7 @@ export default function WeddingPage() {
 
           <div style={{
             display: "grid",
-            gridTemplateColumns: "repeat(4, 1fr)",
+            gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))",
             gap: "1rem",
             marginTop: "2.5rem",
           }}>
@@ -639,8 +646,12 @@ export default function WeddingPage() {
               <Reveal key={i} delay={i * 0.06}>
                 <div
                   className="gallery-item"
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`Открыть фото: ${item.alt}`}
                   style={{ borderRadius: "16px", overflow: "hidden", cursor: "pointer", aspectRatio: i % 3 === 0 ? "3/4" : "4/3" }}
                   onClick={() => { setLightboxSrc(item.img); setLightboxAlt(item.alt); }}
+                  onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setLightboxSrc(item.img); setLightboxAlt(item.alt); } }}
                 >
                   <ImageReveal
                     src={item.img}
@@ -675,6 +686,7 @@ export default function WeddingPage() {
         style={{ height: "35vh", minHeight: 220 }}
         overlay
         overlayOpacity={0.15}
+        className="parallax-ken-burns"
       />
 
       {/* ═══════════════════════════════════════════
@@ -693,7 +705,7 @@ export default function WeddingPage() {
           <Reveal>
             <span className="section-label">Отзывы</span>
             <KineticText
-              text="Что говорят наши молодожёны"
+            text="Что говорят наши молодожёны — и почему 98% рекомендуют"
               as="h2"
               animation="wave"
               className="section-title"
@@ -703,7 +715,7 @@ export default function WeddingPage() {
           </Reveal>
 
           <motion.div
-            style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1.5rem", marginTop: "3rem" }}
+            style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "1.5rem", marginTop: "3rem" }}
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
@@ -712,7 +724,7 @@ export default function WeddingPage() {
             {REVIEWS.map((rev, i) => (
               <motion.div key={i} variants={staggerItem}>
                 <div className="review-card" style={{ padding: "2rem", textAlign: "left", height: "100%" }}>
-                  <div style={{ color: "#B8955A", fontSize: "0.9rem", letterSpacing: "0.1em", marginBottom: "1.25rem" }}>
+                  <div role="img" aria-label={`${rev.stars} из 5 звёзд`} style={{ color: "#B8955A", fontSize: "0.9rem", letterSpacing: "0.1em", marginBottom: "1.25rem" }}>
                     {"★".repeat(rev.stars)}
                   </div>
                   <p style={{ color: "#444", fontSize: "0.95rem", lineHeight: 1.75, marginBottom: "1.5rem", fontStyle: "italic" }}>
@@ -722,7 +734,7 @@ export default function WeddingPage() {
                     <div style={{ fontFamily: "var(--font-serif)", fontSize: "1.1rem", color: "#1A1A1A", marginBottom: "0.2rem" }}>
                       {rev.name}
                     </div>
-                    <div style={{ fontSize: "0.78rem", color: "rgba(255,255,255,0.4)" }}>
+                    <div style={{ fontSize: "0.78rem", color: "var(--color-text-muted)" }}>
                       {rev.date} · {rev.guests} гостей
                     </div>
                   </div>
@@ -744,6 +756,7 @@ export default function WeddingPage() {
           style={{ position: "absolute", inset: 0, minHeight: "100%" }}
           overlay
           overlayOpacity={0.55}
+          className="parallax-ken-burns"
         />
         <ParticleField
           count={30}
@@ -758,13 +771,13 @@ export default function WeddingPage() {
         }}>
           <Reveal>
             <span style={{ fontSize: "0.65rem", fontWeight: 600, letterSpacing: "0.3em", textTransform: "uppercase", color: "#B8955A", display: "block", marginBottom: "1rem" }}>
-              Начните планировать
+              Начните планировать идеальный день
             </span>
             <h2 style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(2rem, 5vw, 3.5rem)", fontWeight: 300, color: "#1A1A1A", lineHeight: 1.15, marginBottom: "1.5rem" }}>
-              Создайте свою<br /><em style={{ color: "#B8955A", fontStyle: "italic" }}>идеальную</em> свадьбу
+              Создайте свою<br /><em style={{ color: "#B8955A", fontStyle: "italic" }}>идеальную</em> свадьбу — без стресса и забот
             </h2>
-            <p style={{ fontSize: "1.05rem", lineHeight: 1.7, color: "rgba(255,255,255,0.5)", maxWidth: 520, margin: "0 auto 2.5rem" }}>
-              Оставьте заявку — и наш кейтеринг-консьерж свяжется с вами в течение 30 минут для обсуждения деталей вашего дня.
+            <p style={{ fontSize: "1.05rem", lineHeight: 1.7, color: "var(--color-text-secondary)", maxWidth: 520, margin: "0 auto 2.5rem" }}>
+              Оставьте заявку — и наш кейтеринг-консьерж свяжется с вами в течение 30 минут. Бесплатная дегустация, индивидуальное меню и гарантия по договору.
             </p>
             <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap", alignItems: "center" }}>
               <ConfettiButton
@@ -772,7 +785,7 @@ export default function WeddingPage() {
                 style={{ fontSize: "0.95rem", fontWeight: 600, letterSpacing: "0.05em", padding: "1rem 2.5rem", borderRadius: "100px", cursor: "pointer", border: "none" }}
                 onClick={() => window.location.href = "/#contact"}
               >
-                🥂 Заказать свадьбу
+                🥂 Заказать свадьбу — расчёт за 30 мин
               </ConfettiButton>
               <MagneticButton as="a" href="tel:+78129195911" className="btn-outline" strength={0.2}>
                 +7 (812) 919-59-11
@@ -781,6 +794,7 @@ export default function WeddingPage() {
           </Reveal>
         </div>
       </section>
+      </main>
 
       {/* ═══════════════════════════════════════════
          9. FOOTER
@@ -806,7 +820,7 @@ export default function WeddingPage() {
               ))}
             </nav>
             <div style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.3)" }}>
-              &copy; 2007–2026 Интерфуд Кейтеринг
+              &copy; 2007–2025 Интерфуд Кейтеринг
             </div>
           </div>
         </div>
@@ -819,11 +833,21 @@ export default function WeddingPage() {
         {lightboxSrc && (
           <motion.div
             className="lightbox"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Увеличенное изображение"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setLightboxSrc(null)}
           >
+            <button
+              aria-label="Закрыть"
+              onClick={() => setLightboxSrc(null)}
+              style={{ position: "absolute", top: "1.5rem", right: "1.5rem", background: "rgba(255,255,255,0.15)", border: "none", color: "#fff", width: 48, height: 48, borderRadius: "50%", fontSize: "1.5rem", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 10, transition: "background 0.3s" }}
+            >
+              ✕
+            </button>
             <motion.img
               src={lightboxSrc}
               alt={lightboxAlt}
@@ -831,6 +855,7 @@ export default function WeddingPage() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.85, opacity: 0 }}
               transition={{ duration: 0.35 }}
+              onClick={(e) => e.stopPropagation()}
             />
           </motion.div>
         )}
@@ -842,7 +867,7 @@ export default function WeddingPage() {
         className="wa-float"
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="WhatsApp"
+        aria-label="Написать в WhatsApp"
       >
         📱
       </a>

@@ -1,11 +1,13 @@
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 /* ═══════════════════════════════════════════════════════════════
    ParallaxImage — scroll-driven parallax for images
    Image moves at different speed than scroll
+   Uses Next.js Image for automatic optimization
    ═══════════════════════════════════════════════════════════════ */
 
 interface ParallaxImageProps {
@@ -16,6 +18,7 @@ interface ParallaxImageProps {
   style?: React.CSSProperties;
   overlay?: boolean;
   overlayOpacity?: number;
+  priority?: boolean;
 }
 
 export default function ParallaxImage({
@@ -26,6 +29,7 @@ export default function ParallaxImage({
   style,
   overlay = false,
   overlayOpacity = 0.3,
+  priority = false,
 }: ParallaxImageProps) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -47,11 +51,13 @@ export default function ParallaxImage({
           y,
         }}
       >
-        <img
+        <Image
           src={src}
           alt={alt}
-          loading="lazy"
-          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          fill
+          sizes="100vw"
+          priority={priority}
+          style={{ objectFit: "cover" }}
         />
       </motion.div>
       {overlay && (

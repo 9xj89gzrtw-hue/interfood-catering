@@ -26,26 +26,28 @@ import ConfettiButton from "@/components/ConfettiButton";
 
 /* ─── Media ─── */
 const VID = {
-  hero: "https://videos.pexels.com/video-files/4761433/4761433-uhd_2560_1440_25fps.mp4",
-  kitchen: "https://videos.pexels.com/video-files/4763824/4763824-uhd_2560_1440_24fps.mp4",
-  serving: "https://videos.pexels.com/video-files/5377703/5377703-uhd_2560_1440_25fps.mp4",
+  hero: "/videos/catering1.mp4",
+  kitchen: "/videos/catering1.mp4",
+  serving: "/videos/catering2.mp4",
 };
 
 const IMG = {
-  hero: "https://sfile.chatglm.cn/images-ppt/3a442a2e6e71.jpg",
-  chef: "https://sfile.chatglm.cn/images-ppt/7d1938ffb3e1.jpg",
-  team: "https://sfile.chatglm.cn/images-ppt/7d1938ffb3e1.jpg",
-  kitchen: "https://sfile.chatglm.cn/images-ppt/a2fbd3b8447b.jpg",
-  serving: "https://sfile.chatglm.cn/images-ppt/4f51d25798b0.jpg",
-  wedding: "https://sfile.chatglm.cn/images-ppt/b77fad9eff9e.jpg",
-  corporate: "https://sfile.chatglm.cn/images-ppt/b26bc8017630.png",
-  banquet: "https://sfile.chatglm.cn/images-ppt/b0afca3cdeee.jpg",
-  decor: "https://sfile.chatglm.cn/images-ppt/99f244d30b4d.jpg",
-  bar: "https://sfile.chatglm.cn/images-ppt/c73dc40e41d4.jpg",
-  dessert: "https://sfile.chatglm.cn/images-ppt/cf9ca554baf6.jpg",
-  canape: "https://sfile.chatglm.cn/images-ppt/2585575d2db2.jpg",
-  roses: "https://sfile.chatglm.cn/images-ppt/85381eb37c45.jpg",
-  hall: "https://sfile.chatglm.cn/images-ppt/31ca0a361dc4.jpg",
+  hero: "/images/real/event_hero_full.jpg",
+  chef: "/images/real/chef_about.jpg",
+  team: "/images/real/team.png",
+  kitchen: "/images/real/kitchen_1.jpg",
+  kitchen2: "/images/real/kitchen_2.jpg",
+  kitchen3: "/images/real/kitchen_3.jpg",
+  serving: "/images/real/furshet_serving.jpg",
+  wedding: "/images/real/event_wedding.jpg",
+  corporate: "/images/real/event_loft.jpg",
+  banquet: "/images/real/furshet_table.jpg",
+  decor: "/images/real/event_decor.jpg",
+  bar: "/images/real/furshet_canape2.jpg",
+  dessert: "/images/real/gallery_pro_1.jpg",
+  canape: "/images/real/furshet_canape.jpg",
+  roses: "/images/real/event_rooftop.jpg",
+  hall: "/images/real/event_loft.jpg",
 };
 
 /* ─── Data ─── */
@@ -53,9 +55,8 @@ const ACHIEVEMENTS = [
   { target: 18, suffix: "+", label: "лет на рынке" },
   { target: 3500, suffix: "+", label: "мероприятий" },
   { target: 250000, suffix: "+", label: "гостей" },
-  { target: 150, suffix: "+", label: "сотрудников" },
-  { target: 4.9, suffix: "", label: "рейтинг", decimals: 1 },
-  { target: 800, suffix: " м²", label: "кухня" },
+  { target: 10, suffix: "/10", label: "Restoclub · 14 отзывов" },
+  { target: 4.55, suffix: "/5", label: "CaterMe · 30 отзывов", decimals: 2 },
 ];
 
 const TIMELINE = [
@@ -63,31 +64,31 @@ const TIMELINE = [
   { year: "2010", title: "Первая собственная кухня", desc: "Открыта первая производственная кухня. Инвестиции в собственное оборудование и мобильные кухни позволили контролировать качество на каждом этапе." },
   { year: "2013", title: "1 000-е мероприятие", desc: "Юбилейное тысячное мероприятие — масштабный корпоратив на 1 000 гостей. Компания расширила команду до 45 человек и приобрела первых постоянных корпоративных клиентов." },
   { year: "2016", title: "Расширение команды до 100 человек", desc: "Интерфуд стал одним из лидеров свадебного кейтеринга Санкт-Петербурга. Разработаны три свадебных пакета, проведено более 300 свадеб за сезон." },
-  { year: "2019", title: "Открытие новой кухни 800 м²", desc: "Запущена кухня площадью 800 м² на Васильевском острове. Новые возможности для создания блюд любой сложности, включая шоу-станции с живой готовкой." },
+  { year: "2019", title: "Новая производственная кухня", desc: "Запущена новая собственная производственная кухня. Новые возможности для создания блюд любой сложности, включая шоу-станции с живой готовкой." },
   { year: "2022", title: "3 000-е мероприятие", desc: "Внедрена собственная система управления мероприятиями и контроль качества HACCP. Клиенты получили личный кабинет для отслеживания заказов." },
-  { year: "2025", title: "Новые форматы и цифровые сервисы", desc: "Шеф-столы с молекулярной кухней, VR-дегустации, ИИ-подбор меню. Активное развитие цифровых сервисов для персонализации каждого мероприятия." },
+  { year: "2025", title: "Новые форматы и цифровизация", desc: "Расширяем форматы мероприятий, запускаем онлайн-расчёт стоимости и цифровое меню. Продолжаем расти и совершенствовать сервис." },
 ];
 
 const VALUES = [
   {
     icon: "✦",
-    title: "Качество",
-    desc: "Только свежие сезонные продукты от проверенных поставщиков. Тройной контроль качества — на кухне, при упаковке и перед подачей. Никаких полуфабрикатов.",
+    title: "Качество без компромиссов",
+    desc: "Только свежие сезонные продукты от проверенных поставщиков. Тройной контроль качества — на кухне, при упаковке и перед подачей. Никаких полуфабрикатов. За 18 лет — ни одного возврата по качеству.",
   },
   {
     icon: "◆",
     title: "Индивидуальный подход",
-    desc: "Два одинаковых мероприятия не существует — и два одинаковых меню тоже. Каждое меню разрабатывается персонально с учётом формата и бюджета.",
+    desc: "Два одинаковых мероприятия не существует — и два одинаковых меню тоже. Каждое меню разрабатывается персонально под ваш формат, бюджет и предпочтения гостей. Бесплатная дегустация — от 30 человек.",
   },
   {
     icon: "❖",
     title: "Невидимый сервис",
-    desc: "Лучший сервис — тот, который не замечают. Наши официанты рядом ровно в нужный момент и исчезают, когда не нужны.",
+    desc: "Лучший сервис — тот, который не замечают. Наши официанты рядом ровно в нужный момент и исчезают, когда не нужны. 1 официант на 8–10 гостей — подача ±3 мин от таймлайна.",
   },
   {
     icon: "⬡",
-    title: "Ответственность",
-    desc: "18 лет без единого срыва мероприятия. Резерв блюд на 10%, план Б на случай непогоды, полное документальное оформление.",
+    title: "Ответственность по договору",
+    desc: "Фиксируем бюджет и таймлайн в договоре. Резерв блюд на 10%, план Б на случай непогоды, полное документальное оформление. Если нарушим тайминг — вернём 100% стоимости обслуживания. 98% клиентов возвращаются.",
   },
 ];
 
@@ -95,36 +96,46 @@ const TEAM = [
   {
     name: "Дмитрий Нилов",
     role: "Шеф-повар и основатель",
-    desc: "Более 20 лет в гастрономии. Обучался в Le Cordon Bleu (Париж). Создатель концепции «Гастрономическое путешествие».",
+    desc: "Более 20 лет в гастрономии. Основатель компании «Интерфуд», создатель концепции «Гастрономическое путешествие».",
     img: IMG.chef,
   },
+];
+
+const CLIENTS = [
   {
-    name: "Елена Соколова",
-    role: "Директор по развитию",
-    desc: "15 лет в премиальном гостиничном бизнесе (Four Seasons, Belmond). Отвечает за стратегическое развитие и партнёрства.",
-    img: IMG.team,
+    name: "Pepsico",
+    event: "Кофе-брейк на 300 персон",
+    icon: "☕",
   },
   {
-    name: "Артём Волков",
-    role: "Шеф-повар",
-    desc: "Работал в ресторанах с мишленовскими звёздами. Отвечает за меню и качество блюд, проводит дегустации для клиентов.",
-    img: IMG.kitchen,
+    name: "Ростелеком",
+    event: "Выездное барбекю",
+    icon: "🔥",
   },
   {
-    name: "Мария Белова",
-    role: "Руководитель сервиса",
-    desc: "За 12 лет реализовала более 2 000 мероприятий. Эксперт по координации сложных логистических проектов и работе с VIP-клиентами.",
-    img: IMG.serving,
+    name: "Emporio Armani",
+    event: "Выездной фуршет для презентации",
+    icon: "👔",
+  },
+  {
+    name: "Aurora Concert Hall",
+    event: "Корпоратив на 250 персон, 20 официантов, 5 шеф-поваров",
+    icon: "🎵",
+  },
+  {
+    name: "Harley Days",
+    event: "260 байкеров в день",
+    icon: "🏍",
   },
 ];
 
 const GALLERY = [
   { img: IMG.canape, alt: "Канапе-станция" },
   { img: IMG.wedding, alt: "Свадебная сервировка" },
-  { img: IMG.hall, alt: "Банкетный зал" },
+  { img: IMG.kitchen2, alt: "Наша кухня" },
   { img: IMG.dessert, alt: "Десертный стол" },
-  { img: IMG.roses, alt: "Цветочный декор" },
-  { img: IMG.bar, alt: "Коктейльная зона" },
+  { img: IMG.roses, alt: "Выездное мероприятие" },
+  { img: IMG.kitchen3, alt: "Производственная кухня" },
   { img: IMG.decor, alt: "Праздничный декор" },
   { img: IMG.banquet, alt: "Банкетная подача" },
 ];
@@ -132,7 +143,8 @@ const GALLERY = [
 /* ─── Typewriter phrases ─── */
 const VALUE_PHRASES = [
   "Страсть к гастрономии",
-  "Качество без компромиссов",
+  "18 лет без единого срыва",
+  "Контроль качества HACCP",
   "Индивидуальный подход",
   "Невидимый сервис",
   "Ответственность за результат",
@@ -141,7 +153,7 @@ const VALUE_PHRASES = [
 /* ─── Animation helpers ─── */
 const fadeUp = {
   hidden: { opacity: 0, y: 60 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.4, 0, 0.2, 1] } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.4, 0, 0.2, 1] as const } },
 };
 
 function Reveal({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
@@ -171,7 +183,7 @@ export default function AboutPage() {
   const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   return (
-    <>
+    <main>
       <SiteNav />
 
       {/* ────────────────────────────────────────────
@@ -185,13 +197,15 @@ export default function AboutPage() {
             muted
             loop
             playsInline
+            preload="metadata"
+            poster="/images/poster_hero.jpg"
             style={{ width: "100%", height: "100%", objectFit: "cover" }}
           >
             <source src={VID.hero} type="video/mp4" />
           </video>
         </motion.div>
         {/* Light overlay */}
-        <div style={{ position: "absolute", inset: 0, zIndex: 1, background: "linear-gradient(to bottom, rgba(254,253,251,0.25) 0%, rgba(10,10,10,0.3) 30%, rgba(254,253,251,0.4) 60%, rgba(254,253,251,0.92) 100%)" }} />
+        <div style={{ position: "absolute", inset: 0, zIndex: 1, background: "linear-gradient(to bottom, rgba(254,253,251,0.25) 0%, rgba(254,253,251,0.15) 30%, rgba(254,253,251,0.4) 60%, rgba(254,253,251,0.92) 100%)" }} />
         {/* ParticleField overlay */}
         <ParticleField count={50} speed={0.25} style={{ zIndex: 2 }} />
         {/* Content */}
@@ -211,7 +225,7 @@ export default function AboutPage() {
           </motion.div>
           {/* KineticText with fadeUp animation */}
           <KineticText
-            text="Нас объединяет страсть к гастрономии"
+            text="18 лет без единого срыва — потому что мы отвечаем за каждое блюдо"
             as="h1"
             animation="fadeUp"
             className="section-title"
@@ -238,7 +252,7 @@ export default function AboutPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1 }}
           >
-            С 2007 года мы создаём гастрономические впечатления, которые запоминаются на всю жизнь. 18+ лет совершенства в каждом блюде.
+            Для нас организация кейтеринга — не просто работа, а увлечение, которое стало стилем жизни. С 2007 года мы виртуозно подбираем меню для любого события, завоевывая сердца даже самых искушённых гурманов. Профессионализм команды, использование только качественных продуктов, оперативное обслуживание, сотрудничество с лучшими площадками и безупречная подача блюд — философия, которая отражается в каждом моменте нашей работы.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -273,7 +287,7 @@ export default function AboutPage() {
                     duration={2.5}
                   />
                 </h3>
-                <p style={{ fontSize: "0.7rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", marginTop: "0.25rem" }}>
+                <p style={{ fontSize: "0.7rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--color-text-muted)", marginTop: "0.25rem" }}>
                   {item.label}
                 </p>
               </div>
@@ -316,13 +330,13 @@ export default function AboutPage() {
                 stagger={0.03}
               />
               <Reveal delay={0.15}>
-                <p style={{ fontSize: "1rem", lineHeight: 1.8, color: "rgba(255,255,255,0.6)", maxWidth: 520 }}>
-                  Всё началось с одной мечты — показать, что кейтеринг может быть искусством. Дмитрий Нилов, обучившись кулинарному мастерству, пройдя школу <strong style={{ color: "#1A1A1A" }}>Le Cordon Bleu</strong> в Париже и поработав в ресторанах с мишленовскими звёздами, вернулся в Санкт-Петербург с убеждением: каждое мероприятие заслуживает гастрономии ресторанного уровня.
+                <p style={{ fontSize: "1rem", lineHeight: 1.8, color: "var(--color-text-subtle)", maxWidth: 520 }}>
+                  Всё началось с одной мечты — показать, что кейтеринг может быть искусством. Дмитрий Нилов, посвятивший себя кулинарному мастерству и оттачивавший своё мастерство в лучших традициях гастрономии, вернулся в Санкт-Петербург с убеждением: каждое мероприятие заслуживает гастрономии ресторанного уровня.
                 </p>
               </Reveal>
               <Reveal delay={0.25}>
-                <p style={{ fontSize: "0.95rem", lineHeight: 1.8, color: "#777", marginTop: "1.25rem", maxWidth: 520 }}>
-                  За 18 лет Интерфуд прошёл путь от команды из 5 человек до 150+ профессионалов. Мы построили собственную кухню, создали уникальные стандарты сервиса и обслужили более 250 000 гостей. Но главное — мы сохранили тот самый подход: каждое блюдо — с душой, каждое мероприятие — как собственное.
+                <p style={{ fontSize: "0.95rem", lineHeight: 1.8, color: "var(--color-text-muted)", marginTop: "1.25rem", maxWidth: 520 }}>
+                  За 18 лет Интерфуд прошёл путь от команды из 5 человек до команды профессионалов. Мы построили собственную кухню, создали уникальные стандарты сервиса и обслужили более 250 000 гостей. Но главное — за 18 лет ни одного срыва мероприятия. Каждое блюдо — с душой, каждое мероприятие — как собственное.
                 </p>
               </Reveal>
               <Reveal delay={0.35}>
@@ -374,7 +388,7 @@ export default function AboutPage() {
                       {isLeft ? (
                         <>
                           <h3 style={{ fontFamily: "var(--font-serif)", fontSize: "1.3rem", fontWeight: 400, color: "#1A1A1A", marginBottom: "0.5rem" }}>{item.title}</h3>
-                          <p style={{ color: "#777", fontSize: "0.88rem", lineHeight: 1.7 }}>{item.desc}</p>
+                          <p style={{ color: "var(--color-text-muted)", fontSize: "0.88rem", lineHeight: 1.7 }}>{item.desc}</p>
                         </>
                       ) : (
                         <div style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(2.5rem, 7vw, 4.5rem)", fontWeight: 300, color: "rgba(184,149,90,0.12)", lineHeight: 1 }}>{item.year}</div>
@@ -398,7 +412,7 @@ export default function AboutPage() {
                       ) : (
                         <>
                           <h3 style={{ fontFamily: "var(--font-serif)", fontSize: "1.3rem", fontWeight: 400, color: "#1A1A1A", marginBottom: "0.5rem" }}>{item.title}</h3>
-                          <p style={{ color: "#777", fontSize: "0.88rem", lineHeight: 1.7 }}>{item.desc}</p>
+                          <p style={{ color: "var(--color-text-muted)", fontSize: "0.88rem", lineHeight: 1.7 }}>{item.desc}</p>
                         </>
                       )}
                     </div>
@@ -429,6 +443,7 @@ export default function AboutPage() {
         style={{ height: "45vh", minHeight: 280 }}
         overlay
         overlayOpacity={0.35}
+        className="parallax-ken-burns"
       />
 
       {/* ────────────────────────────────────────────
@@ -454,17 +469,17 @@ export default function AboutPage() {
         />
         <div className="container" style={{ position: "relative", zIndex: 1 }}>
           <Reveal>
-            <span className="section-label">Ценности</span>
+            <span className="section-label">Во что мы верим</span>
           </Reveal>
           <TextReveal
-            text="Во что мы верим"
+            text="Принципы, которые защищают ваш праздник"
             as="h2"
             className="section-title"
             stagger={0.03}
           />
           <Reveal delay={0.1}>
             <p className="section-subtitle" style={{ marginBottom: "2.5rem" }}>
-              Наши ценности — не слова на стене, а принципы, которые определяют каждое решение.
+              Наши ценности — не слова на стене, а гарантии, которые вы получаете по договору.
             </p>
           </Reveal>
 
@@ -472,7 +487,7 @@ export default function AboutPage() {
             {VALUES.map((val, i) => (
               <TiltCard key={i} glare maxTilt={8}>
                 <div style={{
-                  background: "#1A1A1A",
+                  background: "var(--color-warm-white)",
                   border: "1px solid rgba(184,149,90,0.12)",
                   borderRadius: 20,
                   padding: "2.5rem",
@@ -483,7 +498,7 @@ export default function AboutPage() {
                   <div style={{ position: "absolute", top: 0, right: 0, width: 80, height: 80, background: "linear-gradient(135deg, transparent 50%, rgba(184,149,90,0.06) 50%)", borderRadius: "0 20px 0 0" }} />
                   <div style={{ fontSize: "1.5rem", color: "#B8955A", marginBottom: "1rem" }}>{val.icon}</div>
                   <h3 style={{ fontFamily: "var(--font-serif)", fontSize: "1.25rem", fontWeight: 400, color: "#1A1A1A", marginBottom: "0.75rem" }}>{val.title}</h3>
-                  <p style={{ color: "#777", fontSize: "0.9rem", lineHeight: 1.7 }}>{val.desc}</p>
+                  <p style={{ color: "var(--color-text-muted)", fontSize: "0.9rem", lineHeight: 1.7 }}>{val.desc}</p>
                 </div>
               </TiltCard>
             ))}
@@ -492,7 +507,60 @@ export default function AboutPage() {
       </section>
 
       {/* ────────────────────────────────────────────
-          6. TEAM — 4 members
+          5b. NOTABLE CLIENTS — Carousel / Grid
+          ──────────────────────────────────────────── */}
+      <section aria-label="Наши клиенты" style={{ padding: "6rem 2rem", background: "#1A1A1A", position: "relative", overflow: "hidden" }}>
+        <MorphingBlob
+          size={400}
+          color1="rgba(184,149,90,0.08)"
+          color2="rgba(212,184,124,0.04)"
+          opacity={0.4}
+          speed={14}
+          style={{ position: "absolute", top: "-15%", left: "-10%", zIndex: 0 }}
+        />
+        <div className="container" style={{ position: "relative", zIndex: 1 }}>
+          <Reveal>
+            <span className="section-label" style={{ color: "#B8955A" }}>Нам доверяют</span>
+          </Reveal>
+          <TextReveal
+            text="Клиенты, которые выбрали Интерфуд"
+            as="h2"
+            className="section-title"
+            style={{ color: "#fff" }}
+            stagger={0.03}
+          />
+          <Reveal delay={0.1}>
+            <p className="section-subtitle" style={{ marginBottom: "2.5rem", color: "rgba(255,255,255,0.5)" }}>
+              Крупнейшие компании и культовые мероприятия Санкт-Петербурга
+            </p>
+          </Reveal>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.5rem", maxWidth: 1100, margin: "0 auto" }}>
+            {CLIENTS.map((client, i) => (
+              <Reveal key={i} delay={i * 0.08}>
+                <div style={{
+                  background: "rgba(255,255,255,0.04)",
+                  border: "1px solid rgba(184,149,90,0.15)",
+                  borderRadius: 16,
+                  padding: "2rem",
+                  transition: "transform 0.4s cubic-bezier(0.25,1,0.5,1), border-color 0.4s",
+                  cursor: "default",
+                }}
+                  onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.borderColor = "rgba(184,149,90,0.35)"; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.borderColor = "rgba(184,149,90,0.15)"; }}
+                >
+                  <div style={{ fontSize: "2rem", marginBottom: "0.75rem" }}>{client.icon}</div>
+                  <h3 style={{ fontFamily: "var(--font-serif)", fontSize: "1.2rem", fontWeight: 400, color: "#fff", marginBottom: "0.5rem" }}>{client.name}</h3>
+                  <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.88rem", lineHeight: 1.6 }}>{client.event}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ────────────────────────────────────────────
+          6. TEAM — founder
           ──────────────────────────────────────────── */}
       <section aria-label="Команда" style={{ padding: "6rem 2rem", background: "#FAFAF8" }}>
         <div className="container">
@@ -500,14 +568,14 @@ export default function AboutPage() {
             <span className="section-label">Команда</span>
           </Reveal>
           <TextReveal
-            text="Люди, которые создают магию"
+            text="Профессионалы, которым доверяют 98% клиентов"
             as="h2"
             className="section-title"
             stagger={0.03}
           />
           <Reveal delay={0.1}>
             <p className="section-subtitle" style={{ marginBottom: "2.5rem" }}>
-              За каждым безупречным мероприятием стоят профессионалы, которые любят своё дело.
+              За каждым безупречным мероприятием стоят профессионалы, которые любят своё дело и несут личную ответственность за результат.
             </p>
           </Reveal>
 
@@ -528,7 +596,7 @@ export default function AboutPage() {
                   <div style={{ padding: "1.5rem" }}>
                     <h3 style={{ fontFamily: "var(--font-serif)", fontSize: "1.15rem", fontWeight: 400, color: "#1A1A1A", marginBottom: "0.25rem" }}>{member.name}</h3>
                     <div style={{ fontSize: "0.7rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "#B8955A", fontWeight: 600, marginBottom: "0.75rem" }}>{member.role}</div>
-                    <p style={{ color: "#777", fontSize: "0.82rem", lineHeight: 1.65 }}>{member.desc}</p>
+                    <p style={{ color: "var(--color-text-muted)", fontSize: "0.82rem", lineHeight: 1.65 }}>{member.desc}</p>
                   </div>
                 </div>
               </Reveal>
@@ -554,7 +622,7 @@ export default function AboutPage() {
             <span className="section-label">Галерея</span>
           </Reveal>
           <TextReveal
-            text="Моменты, которые мы создаём"
+            text="Моменты, которые мы создаём для вас"
             as="h2"
             className="section-title"
             stagger={0.03}
@@ -592,7 +660,7 @@ export default function AboutPage() {
               Станьте частью нашей <em style={{ color: "#D4B87C", fontStyle: "italic" }}>истории</em>
             </h2>
             <p style={{ color: "rgba(255,255,255,0.7)", fontSize: "1rem", lineHeight: 1.7, marginBottom: "2rem" }}>
-              Оставьте заявку — и наш кейтеринг-консьерж свяжется с вами в течение 30 минут для обсуждения деталей.
+              Оставьте заявку — и наш кейтеринг-консьерж свяжется с вами в течение 30 минут. Бесплатная консультация, расчёт и подбор меню.
             </p>
             <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap", alignItems: "center" }}>
               <ConfettiButton
@@ -613,6 +681,11 @@ export default function AboutPage() {
                 Заказать кейтеринг
               </ConfettiButton>
               <MagneticButton as="a" href="tel:+78129195911" className="btn-outline btn-outline-light">+7 (812) 919-59-11</MagneticButton>
+              <MagneticButton as="a" href="https://wa.me/79119417205?text=Здравствуйте! Хочу узнать подробнее о кейтеринге." className="btn-outline btn-outline-light" target="_blank" rel="noopener noreferrer">WhatsApp</MagneticButton>
+            </div>
+            <div style={{ display: "flex", gap: "2rem", justifyContent: "center", flexWrap: "wrap", marginTop: "1.5rem", color: "rgba(255,255,255,0.5)", fontSize: "0.85rem" }}>
+              <a href="mailto:interfood-catering@yandex.ru" style={{ color: "rgba(255,255,255,0.6)", textDecoration: "none", transition: "color 0.3s" }} onMouseEnter={(e) => { e.currentTarget.style.color = "#D4B87C"; }} onMouseLeave={(e) => { e.currentTarget.style.color = "rgba(255,255,255,0.6)"; }}>interfood-catering@yandex.ru</a>
+              <span>Новолитовская ул., 15</span>
             </div>
           </Reveal>
         </div>
@@ -635,8 +708,10 @@ export default function AboutPage() {
               <Link href="/reviews" style={{ color: "rgba(255,255,255,0.45)", textDecoration: "none", fontSize: "0.85rem" }}>Отзывы</Link>
               <Link href="/" style={{ color: "rgba(255,255,255,0.45)", textDecoration: "none", fontSize: "0.85rem" }}>Главная</Link>
             </div>
-            <div style={{ color: "rgba(255,255,255,0.35)", fontSize: "0.8rem" }}>
-              &copy; 2007–2026 Интерфуд Кейтеринг
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "0.25rem", color: "rgba(255,255,255,0.35)", fontSize: "0.8rem" }}>
+              <span>&copy; 2007–2026 Интерфуд Кейтеринг</span>
+              <span>Новолитовская ул., 15 · <a href="mailto:interfood-catering@yandex.ru" style={{ color: "rgba(255,255,255,0.45)", textDecoration: "none" }}>interfood-catering@yandex.ru</a></span>
+              <span>WhatsApp: +7 (911) 941-72-05</span>
             </div>
           </div>
         </div>
@@ -652,6 +727,6 @@ export default function AboutPage() {
       >
         &#9742;
       </a>
-    </>
+    </main>
   );
 }

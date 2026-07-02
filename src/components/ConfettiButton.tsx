@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, useCallback } from "react";
 
 /* ═══════════════════════════════════════════════════════════════
    ConfettiButton — кнопка с конфетти при клике
@@ -23,7 +23,7 @@ interface Particle {
   color: string;
   size: number;
   rotation: number;
-  rotationSpeed: number;
+  round: boolean;
 }
 
 export default function ConfettiButton({
@@ -34,10 +34,18 @@ export default function ConfettiButton({
 }: ConfettiButtonProps) {
   const [particles, setParticles] = useState<Particle[]>([]);
   const btnRef = useRef<HTMLButtonElement>(null);
+  const timeoutsRef = useRef<ReturnType<typeof setTimeout>[]>([]);
 
-  const colors = ["#B8955A", "#9EB68F", "#E8C4B8", "#D4AF37", "#F5DEB3"];
+  const colors = ["#B8860B", "#8FA87E", "#DFB5A7", "#D4A63E", "#F5DEB3"];
 
-  const handleClick = (e: React.MouseEvent) => {
+  // Clean up all timeouts on unmount
+  useEffect(() => {
+    return () => {
+      timeoutsRef.current.forEach((t) => clearTimeout(t));
+    };
+  }, []);
+
+  const handleClick = useCallback((e: React.MouseEvent) => {
     const rect = btnRef.current?.getBoundingClientRect();
     if (!rect) return;
 
@@ -53,18 +61,20 @@ export default function ConfettiButton({
       color: colors[Math.floor(Math.random() * colors.length)],
       size: Math.random() * 6 + 3,
       rotation: Math.random() * 360,
-      rotationSpeed: (Math.random() - 0.5) * 15,
+      round: Math.random() > 0.5,
     }));
 
     setParticles((prev) => [...prev, ...newParticles]);
 
     // Clean up after animation
-    setTimeout(() => {
+    const timeout = setTimeout(() => {
       setParticles((prev) => prev.filter((p) => !newParticles.includes(p)));
+      timeoutsRef.current = timeoutsRef.current.filter((t) => t !== timeout);
     }, 1000);
+    timeoutsRef.current.push(timeout);
 
     onClick?.();
-  };
+  }, [onClick, colors]);
 
   return (
     <div style={{ position: "relative", display: "inline-block" }}>
@@ -86,20 +96,23 @@ export default function ConfettiButton({
             width: p.size,
             height: p.size,
             background: p.color,
-            borderRadius: Math.random() > 0.5 ? "50%" : "2px",
+            borderRadius: p.round ? "50%" : "2px",
             pointerEvents: "none",
             zIndex: 2,
-            animation: `confetti-fly 0.8s ease-out forwards`,
+            animation: `confetti-fly-${p.id} 0.8s ease-out forwards`,
             transform: `rotate(${p.rotation}deg)`,
           }}
         />
       ))}
-      <style>{`
-        @keyframes confetti-fly {
-          0% { opacity: 1; transform: translate(0, 0) rotate(0deg) scale(1); }
-          100% { opacity: 0; transform: translate(var(--vx), var(--vy)) rotate(720deg) scale(0); }
-        }
-      `}</style>
+      <style>{particles
+        .map(
+          (p) => `
+          @keyframes confetti-fly-${p.id} {
+            0% { opacity: 1; transform: translate(0, 0) rotate(0deg) scale(1); }
+            100% { opacity: 0; transform: translate(${p.vx * 8}px, ${p.vy * 8}px) rotate(720deg) scale(0); }
+          }`
+        )
+        .join("\n")}</style>
     </div>
   );
 }

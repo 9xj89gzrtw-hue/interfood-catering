@@ -62,7 +62,7 @@ export default function StaggerReveal({
           transition={{
             duration,
             delay: i * staggerDelay,
-            ease: [0.25, 1, 0.5, 1],
+            ease: [0.25, 1, 0.5, 1] as const,
           }}
         >
           {child}

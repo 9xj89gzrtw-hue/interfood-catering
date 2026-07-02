@@ -10,6 +10,7 @@ import {
 } from "framer-motion";
 import Link from "next/link";
 import SiteNav from "@/components/SiteNav";
+import ConversionCTA from "@/components/ConversionCTA";
 import ParallaxImage from "@/components/ParallaxImage";
 import TextReveal from "@/components/TextReveal";
 import CountUp from "@/components/CountUp";
@@ -28,167 +29,98 @@ import FloatingElements from "@/components/FloatingElements";
    ═══════════════════════════════════════════════════════════════ */
 
 const IMG = {
-  wedding: "https://sfile.chatglm.cn/images-ppt/b77fad9eff9e.jpg",
-  corporate: "https://sfile.chatglm.cn/images-ppt/b26bc8017630.png",
-  banquet: "https://sfile.chatglm.cn/images-ppt/b0afca3cdeee.jpg",
-  furshet: "https://sfile.chatglm.cn/images-ppt/a2fbd3b8447b.jpg",
-  coffee: "https://sfile.chatglm.cn/images-ppt/4f51d25798b0.jpg",
-  bar: "https://sfile.chatglm.cn/images-ppt/c73dc40e41d4.jpg",
-  dessert: "https://sfile.chatglm.cn/images-ppt/cf9ca554baf6.jpg",
-  roses: "https://sfile.chatglm.cn/images-ppt/85381eb37c45.jpg",
-  hero: "https://sfile.chatglm.cn/images-ppt/3a442a2e6e71.jpg",
+  wedding: "/images/b77fad9eff9e.jpg",
+  corporate: "/images/b26bc8017630.png",
+  banquet: "/images/b0afca3cdeee.jpg",
+  furshet: "/images/a2fbd3b8447b.jpg",
+  coffee: "/images/4f51d25798b0.jpg",
+  bar: "/images/c73dc40e41d4.jpg",
+  dessert: "/images/cf9ca554baf6.jpg",
+  roses: "/images/85381eb37c45.jpg",
+  hero: "/images/3a442a2e6e71.jpg",
 };
 
 type Category = "all" | "wedding" | "corporate" | "private";
 
-/* ─── 12 reviews ─── */
+/* ─── 5 real reviews ─── */
+const REVIEW_AVATARS: Record<number, { initials: string; gradient: string }> = {
+  1: { initials: "МК", gradient: "linear-gradient(135deg, #E8C4B8, #D4A63E)" },
+  2: { initials: "КХ", gradient: "linear-gradient(135deg, #D4A63E, #E5BF65)" },
+  3: { initials: "КВ", gradient: "linear-gradient(135deg, #C07A93, #D9AABB)" },
+  4: { initials: "СГ", gradient: "linear-gradient(135deg, #8FAF91, #B8CCB9)" },
+  5: { initials: "ВЛ", gradient: "linear-gradient(135deg, #5C7A5E, #8FAF91)" },
+};
+
 const REVIEWS = [
-  // Wedding (4)
   {
     id: 1,
-    name: "Анна и Дмитрий",
-    event: "Свадьба 120 гостей",
-    date: "Июнь 2025",
-    guests: 120,
+    name: "Марианна Кадырлеева",
+    event: "Фуршет 25 гостей, ВМА",
+    date: "Апрель 2023",
+    guests: 25,
     rating: 5,
-    category: "wedding" as Category,
-    title: "Невероятный вечер! Гости до сих пор вспоминают",
-    text: "Невероятный вечер! Гости до сих пор вспоминают каждое блюдо и атмосферу праздника. Мы выбрали пакет «Премиум» — шампанская пирамида стала настоящей жемчужиной торжества. Официанты работали безупречно, ненавязчиво, но всегда были рядом. Сервировка столов выглядела как произведение искусства. Отдельное спасибо менеджеру Марии за терпение и внимание к каждой детали — от цветов до тайминга подачи.",
-    img: IMG.wedding,
+    category: "corporate" as Category,
+    title: "Выполнено на высоком профессиональном уровне",
+    text: "Заказывала фуршет на 25 человек для диссертационного совета в ВМА. Все было выполнено на высоком профессиональном уровне, тайминг был соблюден на 150%, еда выше всяческих похвал. Большое спасибо Дмитрию!",
+    img: IMG.furshet,
+    ratingLabel: "10/10",
+    source: "Restoclub",
   },
   {
     id: 2,
-    name: "Ольга и Сергей",
-    event: "Свадьба 80 гостей",
-    date: "Сентябрь 2024",
-    guests: 80,
+    name: "Ксения Халова",
+    event: "Новогодний корпоратив 35 гостей",
+    date: "Декабрь 2022",
+    guests: 35,
     rating: 5,
-    category: "wedding" as Category,
-    title: "Интерфуд сделал наш день идеальным",
-    text: "Интерфуд сделал наш день идеальным. Мы переживали за организацию, но с первой встречи поняли — в надёжных руках. Дегустация перед свадьбой полностью сняла все сомнения: каждое блюдо — шедевр. На самом торжестве всё шло как по маслу: подача вовремя, бокалы никогда не пустовали, десертный стол вызвал овации. Рекомендуем от всей души!",
-    img: IMG.roses,
+    category: "corporate" as Category,
+    title: "Еда очень вкусная, официанты внимательные",
+    text: "Ребята обслуживали наш новогодний корпоратив на 35 человек, еда очень вкусная, официанты внимательные. Очень рекомендую!",
+    img: IMG.bar,
+    ratingLabel: "10/10",
+    source: "Restoclub",
   },
   {
     id: 3,
-    name: "Екатерина и Павел",
-    event: "Свадьба 200 гостей",
-    date: "Август 2024",
-    guests: 200,
+    name: "Ксения Волкова",
+    event: "Корпоративное мероприятие",
+    date: "Сентябрь 2022",
+    guests: 30,
     rating: 5,
-    category: "wedding" as Category,
-    title: "Грандиозная свадьба, безупречная организация",
-    text: "Грандиозная свадьба, безупречная организация. 200 гостей — это серьёзный вызов, но Интерфуд справился блестяще. 8 фуршетных станций, шеф-стол с живой готовкой, винное сопровождение от сомелье. Ни один гость не ждал блюда дольше 5 минут. Когда начался дождь, команда за 10 минут переместила всё под шатёр — гости даже не заметили. Настоящие профи!",
-    img: IMG.banquet,
+    category: "corporate" as Category,
+    title: "Очень профессиональная команда!",
+    text: "Очень профессиональная команда! Корпоративное мероприятие... приехали вовремя, идеально соблюден тайминг...",
+    img: IMG.corporate,
+    ratingLabel: "10/10",
+    source: "Restoclub",
   },
   {
     id: 4,
-    name: "Марина и Алексей",
-    event: "Свадьба 60 гостей",
-    date: "Май 2025",
-    guests: 60,
-    rating: 4,
-    category: "wedding" as Category,
-    title: "Камерная свадьба в загородном доме",
-    text: "Камерная свадьба в загородном доме на 60 человек. Уютная атмосфера, индивидуальное меню с учётом всех предпочтений. Каждое блюдо было оформлено как ресторанная подача. Единственный нюанс — хотелось бы больше вариантов вегетарианских закусок. Но в целом организация на высоте, персонал вежлив и внимателен.",
+    name: "Светлана Геннади",
+    event: "День рождения 12 гостей в коттедже",
+    date: "Декабрь 2020",
+    guests: 12,
+    rating: 5,
+    category: "private" as Category,
+    title: "Каждое блюдо — произведение искусства",
+    text: "Дмитрий гибко и внимательно подошёл к нашему заказу. Каждое блюдо выглядело как произведение искусства.",
     img: IMG.dessert,
+    ratingLabel: "10/10",
+    source: "Restoclub",
   },
-  // Corporate (4)
   {
     id: 5,
-    name: "ОАО «ТехноПром»",
-    event: "Конференция 500 гостей",
-    date: "Март 2025",
-    guests: 500,
-    rating: 5,
-    category: "corporate" as Category,
-    title: "Третий год сотрудничаем — и каждый раз лучше",
-    text: "Третий год сотрудничаем с Интерфудом — и каждый раз уровень сервиса только растёт. Организовали ежегодную конференцию на 500 участников: кофе-брейки, обеденные фуршеты, гала-ужин. 12 станций, 40 официантов, 0 задержек. Все счета и акты предоставлены вовремя, что критично для бухгалтерии. Выделенный менеджер был доступен 24/7. Лучший корпоративный партнёр!",
-    img: IMG.corporate,
-  },
-  {
-    id: 6,
-    name: "IT-компания «ВебСфера»",
-    event: "Форум 300 гостей",
-    date: "Апрель 2025",
-    guests: 300,
-    rating: 5,
-    category: "corporate" as Category,
-    title: "Организовали двухдневный форум безупречно",
-    text: "Организовали двухдневный форум на 300 человек. Кофе-брейки каждые 2 часа, полноценные обеды, вечерний приём с авторскими коктейлями. Шеф-стол с живой готовкой стал главным развлечением в перерывах между докладами. Отдельный плюс за экологичную посуду и сортировку отходов — для IT-компании это важно. Быстро согласовали КП, привезли всё вовремя.",
-    img: IMG.furshet,
-  },
-  {
-    id: 7,
-    name: "Банк «Развитие»",
-    event: "Презентация 150 гостей",
-    date: "Февраль 2025",
-    guests: 150,
-    rating: 5,
-    category: "corporate" as Category,
-    title: "Презентация нового продукта на высшем уровне",
-    text: "Презентация нового продукта на 150 VIP-гостей. Фуршетный формат с канапе-станциями и шампанским — идеально для делового мероприятия. Персонал работал как швейцарские часы: каждая тарелка, каждый бокал — на месте. Полное документальное оформление, работа с НДС. Для банковской сферы это критично. Интерфуд — наш постоянный партнёр на 5 лет вперёд.",
-    img: IMG.bar,
-  },
-  {
-    id: 8,
-    name: "«СтройИнвест»",
-    event: "Тимбилдинг 200 гостей",
-    date: "Июль 2024",
-    guests: 200,
+    name: "Владимир",
+    event: "CaterMe",
+    date: "CaterMe",
+    guests: 20,
     rating: 4,
-    category: "corporate" as Category,
-    title: "Отличный тимбилдинг на природе",
-    text: "Отличный тимбилдинг на природе для 200 сотрудников. BBQ-станции, салат-бар, десертная зона — всё на свежем воздухе. Команда привезла шатры, мебель, посуду. Единственный момент — в план было включить больше спортивных напитков для активной части, но оперативно докупили. В целом — компания справилась на отлично, сотрудники в восторге!",
-    img: IMG.coffee,
-  },
-  // Private (4)
-  {
-    id: 9,
-    name: "Мария Соколова",
-    event: "Юбилей 80 гостей",
-    date: "Январь 2025",
-    guests: 80,
-    rating: 5,
     category: "private" as Category,
-    title: "Организовали юбилей мужа — превзошли ожидания",
-    text: "Организовали юбилей мужа на 80 человек в ресторане. Меню разработали индивидуально, учли все аллергии и предпочтения гостей. Подача была ресторанного уровня — каждое блюдо выглядело как произведение искусства. Персонал был незаметен, но всегда рядом. Муж и гости были в полном восторге! Шоколадный фонтан стал главной фотозоной вечера.",
+    title: "Всё отлично",
+    text: "Всё отлично. Единственное, заправки для салатов желательно подписывать, чтобы не перепутать куда какой добавлять. Спасибо!!!",
     img: IMG.banquet,
-  },
-  {
-    id: 10,
-    name: "Игорь Петров",
-    event: "День рождения 40 гостей",
-    date: "Декабрь 2024",
-    guests: 40,
-    rating: 5,
-    category: "private" as Category,
-    title: "Не первый раз заказываю — и всегда на высоте",
-    text: "Не первый раз заказываю кейтеринг у Интерфуда — и каждый раз результат превосходит ожидания. На этот раз день рождения дома на 40 человек. Команда привезла всё с собой: посуду, текстиль, оборудование. Меню из 15 позиций, каждое — маленький шедевр. Убрали за собой так, что квартира была чище, чем до мероприятия. Настоящие профессионалы!",
-    img: IMG.dessert,
-  },
-  {
-    id: 11,
-    name: "Семья Волковых",
-    event: "Крестины 50 гостей",
-    date: "Октябрь 2024",
-    guests: 50,
-    rating: 5,
-    category: "private" as Category,
-    title: "Тёплое семейное торжество благодаря Интерфуду",
-    text: "Тёплое семейное торжество — крестины младшего сына на 50 человек. Интерфуд предложил идеальный формат: лёгкий фуршет с канапе, детский стол с любимыми блюдами, десертная зона с пирожными. Официанты были заботливы и внимательны к детям. Отдельное спасибо за красивую подачу именинного каравая — трогательно до слёз!",
-    img: IMG.roses,
-  },
-  {
-    id: 12,
-    name: "Татьяна Белова",
-    event: "Новый год 100 гостей",
-    date: "Декабрь 2024",
-    guests: 100,
-    rating: 4,
-    category: "private" as Category,
-    title: "Корпоративный Новый год в загородном доме",
-    text: "Корпоративный Новый год на 100 человек в арендованном загородном доме. Интерфуд создал настоящую зимнюю сказку: горячие станции с глинтвейном, шеф-стол с ростбифом, десертная зона с имбирными домиками. Подача каждые 15 минут по таймлайну. Единственное — хотелось бы больше вариантов безалкогольных коктейлей. Но вечер был волшебным!",
-    img: IMG.wedding,
+    ratingLabel: "4.55/5",
+    source: "CaterMe",
   },
 ];
 
@@ -201,25 +133,18 @@ const CATEGORIES: { key: Category; label: string }[] = [
 
 const PLATFORMS = [
   {
-    name: "Яндекс.Карты",
-    rating: 4.9,
-    reviews: 340,
-    color: "#FC3F1D",
-    icon: "Я",
+    name: "Restoclub",
+    rating: 10,
+    reviews: 14,
+    color: "#E74C3C",
+    icon: "R",
   },
   {
-    name: "2GIS",
-    rating: 5.0,
-    reviews: 185,
-    color: "#00B8E0",
-    icon: "2",
-  },
-  {
-    name: "Google",
-    rating: 4.8,
-    reviews: 120,
-    color: "#34A853",
-    icon: "G",
+    name: "CaterMe",
+    rating: 4.55,
+    reviews: 30,
+    color: "#2ECC71",
+    icon: "C",
   },
 ];
 
@@ -230,7 +155,7 @@ const VIDEO_TESTIMONIALS = [
     thumbnail: IMG.wedding,
   },
   {
-    name: "ОАО «ТехноПром»",
+    name: "ООО «ТехноПром»",
     event: "Конференция",
     thumbnail: IMG.corporate,
   },
@@ -247,7 +172,7 @@ const fadeUp = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, ease: [0.4, 0, 0.2, 1] },
+    transition: { duration: 0.8, ease: [0.4, 0, 0.2, 1] as const },
   },
 };
 
@@ -276,12 +201,15 @@ function Reveal({
   );
 }
 
-/* ─── Star rating component ─── */
+/* ─── Star rating component — SVG stars ─── */
 function Stars({ rating, size = 14 }: { rating: number; size?: number }) {
   return (
-    <span style={{ color: "#B8955A", fontSize: size, letterSpacing: 2, lineHeight: 1 }}>
-      {"★".repeat(rating)}
-      {"☆".repeat(5 - rating)}
+    <span role="img" aria-label={`${rating} из 5 звёзд`} style={{ display: "inline-flex", gap: "0.1rem", lineHeight: 1 }}>
+      {Array.from({ length: 5 }).map((_, i) => (
+        <svg key={i} width={size} height={size} viewBox="0 0 24 24" fill={i < rating ? "#B8955A" : "none"} stroke="#B8955A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+        </svg>
+      ))}
     </span>
   );
 }
@@ -308,6 +236,7 @@ export default function ReviewsPage() {
   return (
     <>
       <SiteNav />
+      <main id="main-content">
 
       {/* ═══════════════════════════════════════════════════════════
           1. HERO — Parallax background, title, subtitle
@@ -346,7 +275,7 @@ export default function ReviewsPage() {
             inset: 0,
             zIndex: 1,
             background:
-              "linear-gradient(to bottom, rgba(254,253,251,0.35) 0%, rgba(10,10,10,0.3) 40%, rgba(254,253,251,0.6) 70%, rgba(10,10,10,0.95) 100%)",
+              "linear-gradient(to bottom, rgba(254,253,251,0.35) 0%, rgba(254,253,251,0.15) 40%, rgba(254,253,251,0.6) 70%, rgba(254,253,251,0.95) 100%)",
           }}
         />
 
@@ -388,7 +317,7 @@ export default function ReviewsPage() {
           </motion.div>
 
           <KineticText
-            text="Что говорят о нас клиенты"
+            text="Что говорят о нас клиенты — и почему 98% возвращаются"
             as="h1"
             animation="blur"
             className="section-title"
@@ -409,14 +338,14 @@ export default function ReviewsPage() {
             style={{
               fontSize: "1.05rem",
               lineHeight: 1.7,
-              color: "rgba(255,255,255,0.6)",
+              color: "var(--color-text-subtle)",
               maxWidth: 580,
               margin: "0 auto",
               textAlign: "center",
             }}
           >
-            Более 850 отзывов от реальных клиентов. Свадьбы, корпоративы,
-            юбилеи — каждая история уникальна, и каждая — о безупречном сервисе.
+            Реальные отзывы от наших клиентов. Свадьбы, корпоративы,
+            юбилеи — каждая история подтверждает: мы не подводим.
           </motion.p>
 
           {/* Inline average rating */}
@@ -441,10 +370,10 @@ export default function ReviewsPage() {
                 fontWeight: 400,
               }}
             >
-              4.9
+              10/10
             </span>
-            <span style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.85rem" }}>
-              средний рейтинг
+            <span style={{ color: "var(--color-text-muted)", fontSize: "0.85rem" }}>
+              Restoclub · 4.55/5 CaterMe
             </span>
           </motion.div>
         </motion.div>
@@ -557,7 +486,7 @@ export default function ReviewsPage() {
 
                     <div
                       style={{
-                        color: "rgba(255,255,255,0.4)",
+                        color: "var(--color-text-muted)",
                         fontSize: "0.85rem",
                         marginTop: "0.75rem",
                       }}
@@ -606,6 +535,7 @@ export default function ReviewsPage() {
               onClick={() => setActiveCategory(cat.key)}
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
+              aria-pressed={activeCategory === cat.key}
               style={{
                 padding: "0.65rem 1.6rem",
                 fontSize: "0.78rem",
@@ -735,7 +665,7 @@ export default function ReviewsPage() {
                             fontWeight: 600,
                           }}
                         >
-                          {review.rating}.0
+                          {review.ratingLabel || `${review.rating}.0`}
                         </span>
                       </div>
 
@@ -756,7 +686,7 @@ export default function ReviewsPage() {
                       {/* Review text (expandable) */}
                       <p
                         style={{
-                          color: "rgba(255,255,255,0.6)",
+                          color: "var(--color-text-subtle)",
                           fontSize: "0.88rem",
                           lineHeight: 1.7,
                           display:
@@ -813,24 +743,68 @@ export default function ReviewsPage() {
                           borderTop: "1px solid rgba(184,149,90,0.1)",
                         }}
                       >
-                        <div>
-                          <div
-                            style={{
-                              color: "#1A1A1A",
-                              fontSize: "0.9rem",
-                              fontWeight: 500,
-                            }}
-                          >
-                            {review.name}
+                        <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+                          {/* Avatar with decorative gradient */}
+                          <div style={{
+                            width: 40,
+                            height: 40,
+                            borderRadius: "50%",
+                            background: REVIEW_AVATARS[review.id]?.gradient || "var(--color-brand-8)",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            fontFamily: "var(--font-serif)",
+                            fontSize: "0.7rem",
+                            color: "#fff",
+                            fontWeight: 500,
+                            boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+                            flexShrink: 0,
+                          }}>
+                            {REVIEW_AVATARS[review.id]?.initials || review.name.charAt(0)}
                           </div>
-                          <div
-                            style={{
-                              color: "rgba(255,255,255,0.4)",
-                              fontSize: "0.78rem",
-                              marginTop: "0.15rem",
-                            }}
-                          >
-                            {review.date} · {review.guests} гостей
+                          <div>
+                            <div
+                              style={{
+                                color: "#1A1A1A",
+                                fontSize: "0.9rem",
+                                fontWeight: 500,
+                                display: "flex",
+                                alignItems: "center",
+                                gap: "0.35rem",
+                              }}
+                            >
+                              {review.name}
+                              {/* Verified purchase badge */}
+                              <span style={{
+                                display: "inline-flex",
+                                alignItems: "center",
+                                gap: "0.15rem",
+                                background: "rgba(92,122,94,0.1)",
+                                color: "var(--color-sage-500, #5C7A5E)",
+                                fontSize: "0.5rem",
+                                fontWeight: 700,
+                                letterSpacing: "0.06em",
+                                textTransform: "uppercase",
+                                padding: "0.15rem 0.4rem",
+                                borderRadius: "3px",
+                                border: "1px solid rgba(92,122,94,0.15)",
+                                whiteSpace: "nowrap",
+                              }}>
+                                <svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Проверен
+                              </span>
+                            </div>
+                            <div
+                              style={{
+                                color: "var(--color-text-muted)",
+                                fontSize: "0.78rem",
+                                marginTop: "0.15rem",
+                              }}
+                            >
+                              {review.date} · {review.guests} гостей
+                            </div>
                           </div>
                         </div>
                         {review.rating === 5 && (
@@ -918,9 +892,10 @@ export default function ReviewsPage() {
                     />
 
                     {/* Play button overlay */}
-                    <motion.div
+                    <motion.button
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}
+                      aria-label={`Воспроизвести видеоотзыв: ${video.name}`}
                       style={{
                         position: "absolute",
                         top: "50%",
@@ -936,6 +911,7 @@ export default function ReviewsPage() {
                         cursor: "pointer",
                         boxShadow: "0 8px 30px rgba(184,149,90,0.4)",
                         transition: "background 0.3s",
+                        border: "none",
                       }}
                     >
                       <svg
@@ -953,7 +929,7 @@ export default function ReviewsPage() {
                           strokeLinejoin="round"
                         />
                       </svg>
-                    </motion.div>
+                    </motion.button>
                   </div>
 
                   {/* Info */}
@@ -970,7 +946,7 @@ export default function ReviewsPage() {
                     </div>
                     <div
                       style={{
-                        color: "rgba(255,255,255,0.4)",
+                        color: "var(--color-text-muted)",
                         fontSize: "0.8rem",
                         marginTop: "0.25rem",
                       }}
@@ -995,6 +971,7 @@ export default function ReviewsPage() {
         style={{ height: "40vh", minHeight: 280 }}
         overlay
         overlayOpacity={0.55}
+        className="parallax-ken-burns"
       />
 
       {/* ═══════════════════════════════════════════════════════════
@@ -1013,7 +990,7 @@ export default function ReviewsPage() {
             <span className="section-label">Ваше мнение важно</span>
             <h2 className="section-title">
               Станьте нашим <em style={{ color: "#B8955A" }}>счастливым</em>{" "}
-              клиентом
+              клиентом — с бесплатной дегустацией
             </h2>
             <p
               className="section-subtitle"
@@ -1023,7 +1000,7 @@ export default function ReviewsPage() {
               }}
             >
               Присоединяйтесь к 850+ клиентам, которые уже оценили безупречный
-              сервис Интерфуд. Бесплатная дегустация — от 50 гостей.
+              сервис Интерфуд. Бесплатная дегустация — от 30 гостей, гарантия по договору.
             </p>
 
             <div
@@ -1037,7 +1014,7 @@ export default function ReviewsPage() {
               <ConfettiButton
                 className="btn-gold"
                 style={{ padding: "1rem 2.5rem", borderRadius: "100px", fontSize: "0.85rem", fontWeight: 600, letterSpacing: "0.05em", border: "none", cursor: "pointer" }}
-                onClick={() => {}}
+                onClick={() => { window.location.href = "/#contact"; }}
               >
                 Оставить отзыв
               </ConfettiButton>
@@ -1054,6 +1031,14 @@ export default function ReviewsPage() {
           </Reveal>
         </div>
       </section>
+      <ConversionCTA
+        headline="Присоединяйтесь к 3 500+ клиентам, которые нам доверяют"
+        subtitle="Оставьте заявку — и мы создадим мероприятие, которое вы оцените на 5 из 5. Гарантия по договору."
+        primaryLabel="Заказать кейтеринг"
+        secondaryLabel="Квиз-подбор"
+        secondaryHref="/quiz"
+      />
+      </main>
 
       {/* ═══════════════════════════════════════════════════════════
           8. FOOTER
@@ -1088,13 +1073,7 @@ export default function ReviewsPage() {
               ИНТЕРФУД
             </Link>
 
-            <div
-              style={{
-                display: "flex",
-                gap: "1.5rem",
-                flexWrap: "wrap",
-              }}
-            >
+              <nav aria-label="Навигация подвала" style={{ display: "flex", gap: "1.5rem", flexWrap: "wrap" }}>
               {[
                 { label: "Меню", href: "/menu" },
                 { label: "Свадьбы", href: "/wedding" },
@@ -1115,7 +1094,7 @@ export default function ReviewsPage() {
                   {link.label}
                 </Link>
               ))}
-            </div>
+              </nav>
 
             <div
               style={{
@@ -1123,7 +1102,7 @@ export default function ReviewsPage() {
                 fontSize: "0.8rem",
               }}
             >
-              &copy; 2007–2026 Интерфуд Кейтеринг
+              &copy; 2007–2025 Интерфуд Кейтеринг
             </div>
           </div>
         </div>
@@ -1135,7 +1114,7 @@ export default function ReviewsPage() {
         className="wa-float"
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="WhatsApp"
+        aria-label="Написать в WhatsApp"
       >
         &#9742;
       </a>

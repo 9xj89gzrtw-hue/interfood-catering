@@ -26,9 +26,9 @@ import LottiePlaceholder from "@/components/LottiePlaceholder";
    ═══════════════════════════════════════════════════════════════ */
 
 const IMG = {
-  hero: "https://sfile.chatglm.cn/images-ppt/31ca0a361dc4.jpg",
-  office: "https://sfile.chatglm.cn/images-ppt/5a35d18ab4c2.jpg",
-  kitchen: "https://sfile.chatglm.cn/images-ppt/a2fbd3b8447b.jpg",
+  hero: "/images/31ca0a361dc4.jpg",
+  office: "/images/5a35d18ab4c2.jpg",
+  kitchen: "/images/a2fbd3b8447b.jpg",
 };
 
 const CONTACT_CARDS = [
@@ -42,15 +42,15 @@ const CONTACT_CARDS = [
   {
     icon: "✉",
     title: "Email",
-    value: "info@interfood-catering.ru",
-    href: "mailto:info@interfood-catering.ru",
-    desc: "Ответим в течение 2 часов",
+    value: "interfood-catering@yandex.ru",
+    href: "mailto:interfood-catering@yandex.ru",
+    desc: "Ответим в течение 30 минут",
   },
   {
     icon: "◉",
     title: "Адрес",
-    value: "Невский проспект, д. 100",
-    href: "https://yandex.ru/maps/-/CDaZiE~P",
+    value: "Новолитовская ул., 15",
+    href: "https://yandex.ru/maps/org/interfud/165615375458",
     desc: "Санкт-Петербург",
   },
   {
@@ -60,18 +60,25 @@ const CONTACT_CARDS = [
     href: null,
     desc: "Без выходных и праздников",
   },
+  {
+    icon: "💬",
+    title: "WhatsApp / Telegram",
+    value: "+7 (911) 941-72-05",
+    href: "https://wa.me/79119417205?text=Здравствуйте! Хочу узнать подробнее о кейтеринге.",
+    desc: "Пишите — отвечаем за 5 минут",
+  },
 ];
 
 const EVENT_TYPES = [
-  "Свадьба",
-  "Корпоратив",
-  "Фуршет",
-  "Кофе-брейк",
-  "Юбилей",
-  "День рождения",
-  "Новый год",
-  "Выездное мероприятие",
-  "Другое",
+  { value: "wedding", label: "Свадьба" },
+  { value: "corporate", label: "Корпоратив" },
+  { value: "furshet", label: "Фуршет" },
+  { value: "coffee", label: "Кофе-брейк" },
+  { value: "jubilee", label: "Юбилей" },
+  { value: "birthday", label: "День рождения" },
+  { value: "newyear", label: "Новый год" },
+  { value: "outdoor", label: "Выездное мероприятие" },
+  { value: "other", label: "Другое" },
 ];
 
 const SOCIAL_LINKS = [
@@ -86,7 +93,7 @@ const SOCIAL_LINKS = [
   },
   {
     name: "Instagram",
-    href: "https://instagram.com/nilov_catering",
+    href: "https://www.instagram.com/nilov_catering/",
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28">
         <path d="M12 2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.217 2.428.465.66.254 1.216.598 1.772 1.153a4.908 4.908 0 011.153 1.772c.247.637.415 1.363.465 2.428.047 1.066.06 1.405.06 4.122 0 2.717-.01 3.056-.06 4.122-.05 1.065-.218 1.79-.465 2.428a4.883 4.883 0 01-1.153 1.772 4.915 4.915 0 01-1.772 1.153c-.637.247-1.363.415-2.428.465-1.066.047-1.405.06-4.122.06-2.717 0-3.056-.01-4.122-.06-1.065-.05-1.79-.218-2.428-.465a4.89 4.89 0 01-1.772-1.153 4.904 4.904 0 01-1.153-1.772c-.248-.637-.415-1.363-.465-2.428C2.013 15.056 2 14.717 2 12c0-2.717.01-3.056.06-4.122.05-1.066.217-1.79.465-2.428a4.88 4.88 0 011.153-1.772A4.897 4.897 0 015.45 2.525c.638-.248 1.362-.415 2.428-.465C8.944 2.013 9.283 2 12 2zm0 1.802c-2.67 0-2.986.01-4.04.059-.976.045-1.505.207-1.858.344-.466.182-.8.398-1.15.748-.35.35-.566.684-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.055-.058 1.37-.058 4.04 0 2.67.01 2.986.058 4.04.045.977.207 1.505.344 1.858.182.466.399.8.748 1.15.35.35.684.566 1.15.748.353.137.882.3 1.857.344 1.055.048 1.37.058 4.04.058 2.67 0 2.987-.01 4.04-.058.977-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.684.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.04 0-2.67-.01-2.986-.058-4.04-.045-.977-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.054-.047-1.37-.058-4.04-.058zm0 3.063a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 8.468a3.333 3.333 0 100-6.666 3.333 3.333 0 000 6.666zm6.538-8.671a1.2 1.2 0 11-2.4 0 1.2 1.2 0 012.4 0z" />
@@ -94,11 +101,11 @@ const SOCIAL_LINKS = [
     ),
   },
   {
-    name: "Telegram",
-    href: "https://t.me/nilov_catering",
+    name: "Facebook",
+    href: "https://www.facebook.com/furshetspb/",
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28">
-        <path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
+        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
       </svg>
     ),
   },
@@ -110,7 +117,7 @@ const fadeUp = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, ease: [0.4, 0, 0.2, 1] },
+    transition: { duration: 0.8, ease: [0.4, 0, 0.2, 1] as const },
   },
 };
 const staggerContainer = {
@@ -122,7 +129,7 @@ const staggerItem = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: [0.4, 0, 0.2, 1] },
+    transition: { duration: 0.6, ease: [0.4, 0, 0.2, 1] as const },
   },
 };
 
@@ -204,7 +211,7 @@ export default function ContactsPage() {
     } else {
       const phoneClean = form.phone.replace(/[\s\-\(\)]/g, "");
       if (!/^(\+7|7|8)\d{10}$/.test(phoneClean)) {
-        errs.phone = "Введите корректный номер телефона";
+        errs.phone = "Формат: +7 (XXX) XXX-XX-XX";
       }
     }
     if (form.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
@@ -217,6 +224,83 @@ export default function ContactsPage() {
     return errs;
   }
 
+  /* ─── Inline validation on blur ─── */
+  function validateField(name: keyof FormErrors) {
+    const newErrors = { ...errors };
+    if (name === "name" && !form.name.trim()) {
+      newErrors.name = "Введите ваше имя";
+    } else if (name === "name") {
+      delete newErrors.name;
+    }
+    if (name === "phone") {
+      if (!form.phone.trim()) {
+        newErrors.phone = "Введите номер телефона";
+      } else {
+        const phoneClean = form.phone.replace(/[\s\-\(\)]/g, "");
+        if (!/^(\+7|7|8)\d{10}$/.test(phoneClean)) {
+          newErrors.phone = "Формат: +7 (XXX) XXX-XX-XX";
+        } else {
+          delete newErrors.phone;
+        }
+      }
+    }
+    if (name === "email" && form.email) {
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
+        newErrors.email = "Введите корректный email";
+      } else {
+        delete newErrors.email;
+      }
+    }
+    if (name === "guests" && form.guests) {
+      const n = parseInt(form.guests, 10);
+      if (isNaN(n) || n < 1) {
+        newErrors.guests = "Введите количество гостей";
+      } else {
+        delete newErrors.guests;
+      }
+    }
+    setErrors(newErrors);
+  }
+
+  /* ─── Phone number masking ─── */
+  function formatPhone(value: string): string {
+    const digits = value.replace(/\D/g, "");
+    if (!digits) return "";
+    let result = "";
+    if (digits.startsWith("8")) {
+      result = "+7";
+    } else if (digits.startsWith("7")) {
+      result = "+7";
+    } else if (digits.startsWith("9") || digits.startsWith("3")) {
+      result = "+7" + digits[0];
+    } else {
+      return value; // let them type whatever
+    }
+
+    const rest = digits.startsWith("8") || digits.startsWith("7")
+      ? digits.slice(1)
+      : digits;
+
+    if (rest.length > 0) result += " (" + rest.slice(0, 3);
+    if (rest.length >= 3) result += ") ";
+    if (rest.length > 3) result += rest.slice(3, 6);
+    if (rest.length > 6) result += "-" + rest.slice(6, 8);
+    if (rest.length > 8) result += "-" + rest.slice(8, 10);
+
+    return result;
+  }
+
+  function handlePhoneChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const formatted = formatPhone(e.target.value);
+    setForm((prev) => ({ ...prev, phone: formatted }));
+    if (errors.phone) {
+      const phoneClean = formatted.replace(/[\s\-\(\)]/g, "");
+      if (/^(\+7|7|8)\d{10}$/.test(phoneClean)) {
+        setErrors((prev) => ({ ...prev, phone: undefined }));
+      }
+    }
+  }
+
   /* ─── Submit ─── */
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -225,12 +309,40 @@ export default function ContactsPage() {
     if (Object.keys(errs).length > 0) return;
 
     setSubmitting(true);
-    // Simulate network delay
-    await new Promise((r) => setTimeout(r, 1200));
-    setSubmitting(false);
-    setSubmitted(true);
-    setForm(INITIAL_FORM);
-    setErrors({});
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: form.name.trim(),
+          phone: form.phone.trim(),
+          email: form.email.trim() || undefined,
+          eventType: form.eventType || undefined,
+          date: form.date || undefined,
+          guests: form.guests ? parseInt(form.guests, 10) : undefined,
+          message: form.message.trim() || undefined,
+          source: "website",
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok || !data.success) {
+        // Show server-side validation error if any
+        const serverError = data.error || "Произошла ошибка при отправке. Попробуйте позже.";
+        setErrors({ name: serverError });
+        setSubmitting(false);
+        return;
+      }
+
+      setSubmitted(true);
+      setForm(INITIAL_FORM);
+      setErrors({});
+    } catch {
+      setErrors({ name: "Не удалось подключиться к серверу. Проверьте интернет и попробуйте снова." });
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   function handleChange(
@@ -284,9 +396,10 @@ export default function ContactsPage() {
           >
             Контакты
           </motion.div>
+          <h1 className="sr-only">Свяжитесь с нами — получите расчёт за 30 минут</h1>
           <KineticText
-            text="Свяжитесь с нами"
-            as="h1"
+            text="Свяжитесь с нами — получите расчёт за 30 минут"
+            as="h2"
             animation="fadeUp"
             className="hero-title"
             stagger={0.04}
@@ -294,8 +407,7 @@ export default function ContactsPage() {
           />
           <p className="hero-sub">
             Мы всегда рады ответить на ваши вопросы и обсудить детали будущего
-            мероприятия. Оставьте заявку или позвоните — ответим в течение 30
-            минут.
+            мероприятия. Оставьте заявку или позвоните — ответим за 30 минут, или дегустация за наш счёт.
           </p>
         </motion.div>
       </section>
@@ -309,23 +421,18 @@ export default function ContactsPage() {
           <Reveal>
             <span className="section-label">Как нас найти</span>
             <TextReveal
-              text="Мы всегда на связи"
+              text="Мы на связи 7 дней в неделю — с 9 до 22"
               as="h2"
               className="section-title"
             />
             <p className="section-subtitle">
               Выберите удобный способ связаться с нами — по телефону, email или
-              посетите наш офис лично.
+              посетите наш офис. Первая консультация бесплатна.
             </p>
           </Reveal>
 
           <motion.div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(4, 1fr)",
-              gap: "1.5rem",
-              marginTop: "2.5rem",
-            }}
+            className="contact-cards-grid"
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
@@ -428,7 +535,7 @@ export default function ContactsPage() {
                     <div
                       style={{
                         fontSize: "0.82rem",
-                        color: "rgba(255,255,255,0.4)",
+                        color: "var(--color-text-muted)",
                         lineHeight: 1.5,
                       }}
                     >
@@ -470,31 +577,83 @@ export default function ContactsPage() {
           <Reveal>
             <span className="section-label">Оставить заявку</span>
             <TextReveal
-              text="Расскажите о вашем мероприятии"
+              text="Расскажите о вашем мероприятии — получите расчёт и меню за 30 минут"
               as="h2"
               className="section-title"
             />
             <p className="section-subtitle">
               Заполните форму, и наш кейтеринг-консьерж свяжется с вами в
-              течение 30 минут для обсуждения деталей.
+              течение 30 минут. Бесплатная консультация, расчёт и подбор меню — без обязательств.
             </p>
           </Reveal>
 
+          {/* ─── Trust Badges ─── */}
+          <Reveal>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                gap: "2rem",
+                flexWrap: "wrap",
+                margin: "2rem 0 2.5rem",
+                padding: "1.25rem 1.5rem",
+                background: "rgba(184,149,90,0.06)",
+                borderRadius: "16px",
+                border: "1px solid rgba(184,149,90,0.12)",
+              }}
+            >
+              {[
+                { icon: "⭐", value: "4.55", label: "на CaterMe" },
+                { icon: "⭐", value: "10/10", label: "на Restoclub" },
+                { icon: "🎉", value: "3 500+", label: "Мероприятий" },
+                { icon: "🏆", value: "18+ лет", label: "На рынке с 2007" },
+                { icon: "⚡", value: "30 мин", label: "Время ответа" },
+                { icon: "🔒", value: "Гарантия", label: "ФЗ-152 защита данных" },
+              ].map((badge) => (
+                <div
+                  key={badge.label}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.5rem",
+                  }}
+                >
+                  <span style={{ fontSize: "1.2rem" }}>{badge.icon}</span>
+                  <div>
+                    <div
+                      style={{
+                        fontSize: "0.85rem",
+                        fontWeight: 700,
+                        color: "var(--color-dark)",
+                        lineHeight: 1.2,
+                      }}
+                    >
+                      {badge.value}
+                    </div>
+                    <div
+                      style={{
+                        fontSize: "0.65rem",
+                        color: "var(--color-text-muted)",
+                        letterSpacing: "0.03em",
+                      }}
+                    >
+                      {badge.label}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+
           <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: "3rem",
-              marginTop: "2.5rem",
-              alignItems: "start",
-            }}
+            className="contact-form-grid"
           >
             {/* ─── Form ─── */}
             <motion.div
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
+              transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] as const }}
             >
               <AnimatePresence mode="wait">
                 {submitted ? (
@@ -505,7 +664,7 @@ export default function ContactsPage() {
                     exit={{ opacity: 0, scale: 0.95 }}
                     transition={{ duration: 0.5 }}
                     style={{
-                      background: "#1A1A1A",
+                      background: "var(--color-warm-white)",
                       borderRadius: "20px",
                       padding: "3rem 2rem",
                       textAlign: "center",
@@ -550,7 +709,7 @@ export default function ContactsPage() {
                     </h3>
                     <p
                       style={{
-                        color: "rgba(255,255,255,0.5)",
+                        color: "var(--color-text-secondary)",
                         fontSize: "0.95rem",
                         lineHeight: 1.7,
                         marginBottom: "1.5rem",
@@ -560,7 +719,11 @@ export default function ContactsPage() {
                       <br />
                       Спасибо за доверие!
                     </p>
-                    <MagneticButton className="btn-outline" as="button">
+                    <MagneticButton
+                      className="btn-outline"
+                      as="button"
+                      onClick={() => setSubmitted(false)}
+                    >
                       Отправить ещё
                     </MagneticButton>
                   </motion.div>
@@ -572,18 +735,14 @@ export default function ContactsPage() {
                     exit={{ opacity: 0 }}
                     onSubmit={handleSubmit}
                     style={{
-                      background: "#1A1A1A",
+                      background: "var(--color-warm-white)",
                       borderRadius: "20px",
                       padding: "2.5rem",
                       boxShadow: "0 4px 30px rgba(0,0,0,0.06)",
                     }}
                   >
                     <div
-                      style={{
-                        display: "grid",
-                        gridTemplateColumns: "1fr 1fr",
-                        gap: "1.25rem",
-                      }}
+                      className="contact-fields-grid"
                     >
                       {/* Name */}
                       <div>
@@ -608,20 +767,21 @@ export default function ContactsPage() {
                           value={form.name}
                           onChange={handleChange}
                           placeholder="Ваше имя"
+                          autoComplete="name"
                           style={{
                             width: "100%",
                             padding: "0.85rem 1rem",
                             border: `1.5px solid ${
                               errors.name
                                 ? "#e53e3e"
-                                : "#2D2D2D"
+                                : "var(--color-cream-darker)"
                             }`,
                             borderRadius: "12px",
                             fontSize: "0.9rem",
                             fontFamily: "var(--font-sans)",
                             background: errors.name
                               ? "rgba(229,62,62,0.04)"
-                              : "#0F0F0F",
+                              : "var(--color-warm-white)",
                             outline: "none",
                             transition: "border-color 0.3s, background 0.3s",
                           }}
@@ -633,7 +793,8 @@ export default function ContactsPage() {
                           onBlur={(e) => {
                             if (!errors.name)
                               e.target.style.borderColor =
-                                "#2D2D2D";
+                                "var(--color-cream-darker)";
+                            validateField("name");
                           }}
                         />
                         {errors.name && (
@@ -673,22 +834,23 @@ export default function ContactsPage() {
                           name="phone"
                           type="tel"
                           value={form.phone}
-                          onChange={handleChange}
+                          onChange={handlePhoneChange}
                           placeholder="+7 (___) ___-__-__"
+                          autoComplete="tel"
                           style={{
                             width: "100%",
                             padding: "0.85rem 1rem",
                             border: `1.5px solid ${
                               errors.phone
                                 ? "#e53e3e"
-                                : "#2D2D2D"
+                                : "var(--color-cream-darker)"
                             }`,
                             borderRadius: "12px",
                             fontSize: "0.9rem",
                             fontFamily: "var(--font-sans)",
                             background: errors.phone
                               ? "rgba(229,62,62,0.04)"
-                              : "#0F0F0F",
+                              : "var(--color-warm-white)",
                             outline: "none",
                             transition: "border-color 0.3s, background 0.3s",
                           }}
@@ -700,7 +862,8 @@ export default function ContactsPage() {
                           onBlur={(e) => {
                             if (!errors.phone)
                               e.target.style.borderColor =
-                                "#2D2D2D";
+                                "var(--color-cream-darker)";
+                            validateField("phone");
                           }}
                         />
                         {errors.phone && (
@@ -742,20 +905,21 @@ export default function ContactsPage() {
                           value={form.email}
                           onChange={handleChange}
                           placeholder="your@email.com"
+                          autoComplete="email"
                           style={{
                             width: "100%",
                             padding: "0.85rem 1rem",
                             border: `1.5px solid ${
                               errors.email
                                 ? "#e53e3e"
-                                : "#2D2D2D"
+                                : "var(--color-cream-darker)"
                             }`,
                             borderRadius: "12px",
                             fontSize: "0.9rem",
                             fontFamily: "var(--font-sans)",
                             background: errors.email
                               ? "rgba(229,62,62,0.04)"
-                              : "#0F0F0F",
+                              : "var(--color-warm-white)",
                             outline: "none",
                             transition: "border-color 0.3s, background 0.3s",
                           }}
@@ -767,7 +931,8 @@ export default function ContactsPage() {
                           onBlur={(e) => {
                             if (!errors.email)
                               e.target.style.borderColor =
-                                "#2D2D2D";
+                                "var(--color-cream-darker)";
+                            validateField("email");
                           }}
                         />
                         {errors.email && (
@@ -814,11 +979,11 @@ export default function ContactsPage() {
                             borderRadius: "12px",
                             fontSize: "0.9rem",
                             fontFamily: "var(--font-sans)",
-                            background: "#0F0F0F",
+                            background: "var(--color-warm-white)",
                             outline: "none",
                             color: form.eventType
                               ? "var(--color-dark)"
-                              : "#aaa",
+                              : "var(--color-text-muted)",
                             cursor: "pointer",
                             transition: "border-color 0.3s",
                             appearance: "none",
@@ -832,15 +997,15 @@ export default function ContactsPage() {
                           }
                           onBlur={(e) =>
                             (e.target.style.borderColor =
-                              "#2D2D2D")
+                              "var(--color-cream-darker)")
                           }
                         >
                           <option value="" disabled>
                             Выберите тип
                           </option>
                           {EVENT_TYPES.map((type) => (
-                            <option key={type} value={type}>
-                              {type}
+                            <option key={type.value} value={type.value}>
+                              {type.label}
                             </option>
                           ))}
                         </select>
@@ -875,11 +1040,11 @@ export default function ContactsPage() {
                             borderRadius: "12px",
                             fontSize: "0.9rem",
                             fontFamily: "var(--font-sans)",
-                            background: "#0F0F0F",
+                            background: "var(--color-warm-white)",
                             outline: "none",
                             color: form.date
                               ? "var(--color-dark)"
-                              : "#aaa",
+                              : "var(--color-text-muted)",
                             transition: "border-color 0.3s",
                           }}
                           onFocus={(e) =>
@@ -888,7 +1053,7 @@ export default function ContactsPage() {
                           }
                           onBlur={(e) =>
                             (e.target.style.borderColor =
-                              "#2D2D2D")
+                              "var(--color-cream-darker)")
                           }
                         />
                       </div>
@@ -917,20 +1082,21 @@ export default function ContactsPage() {
                           value={form.guests}
                           onChange={handleChange}
                           placeholder="Например, 100"
+                          autoComplete="off"
                           style={{
                             width: "100%",
                             padding: "0.85rem 1rem",
                             border: `1.5px solid ${
                               errors.guests
                                 ? "#e53e3e"
-                                : "#2D2D2D"
+                                : "var(--color-cream-darker)"
                             }`,
                             borderRadius: "12px",
                             fontSize: "0.9rem",
                             fontFamily: "var(--font-sans)",
                             background: errors.guests
                               ? "rgba(229,62,62,0.04)"
-                              : "#0F0F0F",
+                              : "var(--color-warm-white)",
                             outline: "none",
                             transition: "border-color 0.3s, background 0.3s",
                           }}
@@ -942,7 +1108,8 @@ export default function ContactsPage() {
                           onBlur={(e) => {
                             if (!errors.guests)
                               e.target.style.borderColor =
-                                "#2D2D2D";
+                                "var(--color-cream-darker)";
+                            validateField("guests");
                           }}
                         />
                         {errors.guests && (
@@ -992,7 +1159,7 @@ export default function ContactsPage() {
                           borderRadius: "12px",
                           fontSize: "0.9rem",
                           fontFamily: "var(--font-sans)",
-                          background: "#0F0F0F",
+                          background: "var(--color-warm-white)",
                           outline: "none",
                           resize: "vertical",
                           transition: "border-color 0.3s",
@@ -1002,7 +1169,7 @@ export default function ContactsPage() {
                         }
                         onBlur={(e) =>
                           (e.target.style.borderColor =
-                            "#2D2D2D")
+                            "var(--color-cream-darker)")
                         }
                       />
                     </div>
@@ -1062,7 +1229,7 @@ export default function ContactsPage() {
                     <p
                       style={{
                         fontSize: "0.72rem",
-                        color: "rgba(255,255,255,0.4)",
+                        color: "var(--color-text-muted)",
                         marginTop: "1rem",
                         lineHeight: 1.5,
                       }}
@@ -1080,7 +1247,7 @@ export default function ContactsPage() {
               initial={{ opacity: 0, x: 40 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
+              transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] as const }}
               style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}
             >
               <ImageReveal
@@ -1098,7 +1265,7 @@ export default function ContactsPage() {
               />
               <div
                 style={{
-                  background: "#1A1A1A",
+                  background: "var(--color-warm-white)",
                   borderRadius: "20px",
                   padding: "2rem",
                   boxShadow: "0 4px 30px rgba(0,0,0,0.06)",
@@ -1118,14 +1285,14 @@ export default function ContactsPage() {
                 </div>
                 <p
                   style={{
-                    color: "rgba(255,255,255,0.5)",
+                    color: "var(--color-text-secondary)",
                     fontSize: "0.9rem",
                     lineHeight: 1.7,
                     marginBottom: "1.25rem",
                   }}
                 >
                   Для срочных вопросов или быстрого расчёта — напишите нам в
-                  мессенджер. Отвечаем за 5 минут.
+                  мессенджер. Отвечаем за 5 минут, без выходных.
                 </p>
                 <div style={{ display: "flex", gap: "0.75rem" }}>
                   <MagneticButton
@@ -1138,7 +1305,7 @@ export default function ContactsPage() {
                   </MagneticButton>
                   <MagneticButton
                     as="a"
-                    href="https://t.me/nilov_catering"
+                    href="https://t.me/+79119417205"
                     className="btn-outline"
                     style={{ fontSize: "0.7rem", padding: "0.75rem 1.5rem" }}
                   >
@@ -1159,7 +1326,7 @@ export default function ContactsPage() {
             <div style={{ textAlign: "center", marginBottom: "2rem" }}>
               <span className="section-label">Мы на карте</span>
               <TextReveal
-                text="Наш офис в центре Санкт-Петербурга"
+                text="Наш офис в Санкт-Петербурге"
                 as="h2"
                 className="section-title"
               />
@@ -1175,12 +1342,12 @@ export default function ContactsPage() {
             }}
           >
             <iframe
-              src="https://yandex.ru/map-widget/v1/?um=constructor%3A3cf8c4e6d4b4f5b5d4b4f5b5d4b4f5b5d4b4f5b5d4b4f5b5&source=constructor"
+              src="https://yandex.ru/map-widget/v1/?ll=30.324896%2C59.968582&z=15&text=Интерфуд%20Кейтеринг"
               width="100%"
               height="100%"
               frameBorder="0"
               style={{ borderRadius: "20px" }}
-              title="Карта — Интерфуд Кейтеринг, Невский проспект д. 100"
+              title="Карта — Интерфуд Кейтеринг, Новолитовская ул., 15"
             />
           </div>
         </div>

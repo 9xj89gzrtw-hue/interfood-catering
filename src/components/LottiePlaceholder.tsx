@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 
 /* ═══════════════════════════════════════════════════════════════
    LottiePlaceholder — SVG-based loading/animation placeholder
@@ -42,7 +42,7 @@ export default function LottiePlaceholder({
       <path
         d={paths[type] || paths.chef}
         fill="none"
-        stroke={color.startsWith("var(") ? "#B8955A" : color}
+        stroke={color.startsWith("var(") ? "#B8860B" : color}
         strokeWidth={2}
         strokeLinecap="round"
         strokeLinejoin="round"

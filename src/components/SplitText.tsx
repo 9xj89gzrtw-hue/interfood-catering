@@ -35,7 +35,7 @@ export default function SplitText({
             transition={{
               duration: 0.7,
               delay: delay + i * stagger,
-              ease: [0.4, 0, 0.2, 1],
+              ease: [0.4, 0, 0.2, 1] as const,
             }}
           >
             {word}

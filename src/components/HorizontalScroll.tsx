@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 /* ═══════════════════════════════════════════════════════════════
@@ -20,8 +20,16 @@ export default function HorizontalScroll({
   itemWidth = 400,
 }: HorizontalScrollProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const [viewportWidth, setViewportWidth] = useState(0);
   const childCount = React.Children.count(children);
   const scrollLength = childCount * itemWidth;
+
+  useEffect(() => {
+    const updateWidth = () => setViewportWidth(window.innerWidth);
+    updateWidth();
+    window.addEventListener("resize", updateWidth);
+    return () => window.removeEventListener("resize", updateWidth);
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -31,7 +39,7 @@ export default function HorizontalScroll({
   const x = useTransform(
     scrollYProgress,
     [0, 1],
-    ["0%", `-${Math.max(0, scrollLength - window.innerWidth)}px`]
+    ["0%", `-${Math.max(0, scrollLength - viewportWidth)}px`]
   );
 
   return (

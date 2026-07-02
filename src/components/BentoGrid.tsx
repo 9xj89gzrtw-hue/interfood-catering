@@ -28,7 +28,7 @@ function BentoTile({ item, index }: { item: BentoItem; index: number }) {
       ref={ref}
       initial={{ opacity: 0, y: 40, scale: 0.96 }}
       animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
-      transition={{ duration: 0.7, delay: index * 0.08, ease: [0.25, 1, 0.5, 1] }}
+      transition={{ duration: 0.7, delay: index * 0.08, ease: [0.25, 1, 0.5, 1] as const }}
       className={`bento-tile ${item.span || ""}`}
       data-cursor-hover
       onMouseEnter={() => setIsHovered(true)}

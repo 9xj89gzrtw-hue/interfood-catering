@@ -1,17 +1,18 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import SiteNav from "@/components/SiteNav";
 import MagneticButton from "@/components/MagneticButton";
 import CountUp from "@/components/CountUp";
-import FluidBackground from "@/components/FluidBackground";
-import MorphingBlob from "@/components/MorphingBlob";
-import KineticText from "@/components/KineticText";
-import ConfettiButton from "@/components/ConfettiButton";
-import ParticleField from "@/components/ParticleField";
-import LottiePlaceholder from "@/components/LottiePlaceholder";
+const FluidBackground = dynamic(() => import("@/components/FluidBackground"), { ssr: false });
+const MorphingBlob = dynamic(() => import("@/components/MorphingBlob"), { ssr: false });
+const KineticText = dynamic(() => import("@/components/KineticText"), { ssr: false });
+const ConfettiButton = dynamic(() => import("@/components/ConfettiButton"), { ssr: false });
+const ParticleField = dynamic(() => import("@/components/ParticleField"), { ssr: false });
+const LottiePlaceholder = dynamic(() => import("@/components/LottiePlaceholder"), { ssr: false });
 
 /* ═══════════════════════════════════════════════════════════════
    ИНТЕРФУД КЕЙТЕРИНГ — Interactive Quiz Page
@@ -231,7 +232,7 @@ const optionVariants = {
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: 0.15 + i * 0.06, duration: 0.45, ease: [0.4, 0, 0.2, 1] },
+    transition: { delay: 0.15 + i * 0.06, duration: 0.45, ease: [0.4, 0, 0.2, 1] as const },
   }),
 };
 
@@ -240,7 +241,7 @@ const resultVariants = {
   visible: {
     opacity: 1,
     scale: 1,
-    transition: { duration: 0.6, ease: [0.4, 0, 0.2, 1] },
+    transition: { duration: 0.6, ease: [0.4, 0, 0.2, 1] as const },
   },
 };
 
@@ -270,7 +271,14 @@ export default function QuizPage() {
     return () => clearTimeout(t);
   }, [toast]);
 
-  /* Focus trap & keyboard navigation */
+  const selectOption = useCallback(
+    (value: string) => {
+      setAnswers((prev) => ({ ...prev, [currentStep]: value }));
+    },
+    [currentStep]
+  );
+
+  /* Keyboard navigation */
   useEffect(() => {
     if (showResults) return;
 
@@ -289,20 +297,13 @@ export default function QuizPage() {
         e.preventDefault();
         selectOption(step.options[focusedIndex].value);
       } else if (e.key === "Tab") {
-        // Focus trap: keep Tab within quiz options
-        if (!e.shiftKey && focusedIndex === maxIdx) {
-          e.preventDefault();
-          setFocusedIndex(0);
-        } else if (e.shiftKey && focusedIndex === 0) {
-          e.preventDefault();
-          setFocusedIndex(maxIdx);
-        }
+        // Allow Tab to leave quiz options so users can reach nav/action buttons
       }
     };
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [currentStep, focusedIndex, showResults]);
+  }, [currentStep, focusedIndex, showResults, selectOption]);
 
   /* Focus the option button when focusedIndex changes */
   useEffect(() => {
@@ -317,13 +318,6 @@ export default function QuizPage() {
     setFocusedIndex(0);
     optionsRef.current = [];
   }, [currentStep]);
-
-  const selectOption = useCallback(
-    (value: string) => {
-      setAnswers((prev) => ({ ...prev, [currentStep]: value }));
-    },
-    [currentStep]
-  );
 
   const goNext = useCallback(() => {
     if (!hasAnswer) return;
@@ -393,7 +387,7 @@ export default function QuizPage() {
       <main
         style={{
           minHeight: "100vh",
-          background: "#0F0F0F",
+          background: "var(--color-warm-white)",
           display: "flex",
           flexDirection: "column",
         }}
@@ -404,7 +398,7 @@ export default function QuizPage() {
             paddingTop: "clamp(6rem, 12vh, 8rem)",
             paddingBottom: "2rem",
             textAlign: "center",
-            background: "#111111",
+            background: "var(--color-cream)",
             position: "relative",
             overflow: "hidden",
           }}
@@ -439,9 +433,10 @@ export default function QuizPage() {
               transition={{ duration: 0.8 }}
             >
               <span className="section-label">Подбор мероприятия</span>
+              <h1 className="sr-only">Подбор кейтеринга — Какой формат вам подходит?</h1>
               <KineticText
                 text="Какой формат кейтеринга вам подходит?"
-                as="h1"
+                as="h2"
                 animation="scale"
                 className="section-title"
                 stagger={0.03}
@@ -483,7 +478,7 @@ export default function QuizPage() {
                   initial="enter"
                   animate="center"
                   exit="exit"
-                  transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+                  transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] as const }}
                 >
                   {/* Progress bar */}
                   <div style={{ marginBottom: "2.5rem" }}>
@@ -509,7 +504,7 @@ export default function QuizPage() {
                       <span
                         style={{
                           fontSize: "0.75rem",
-                          color: "rgba(255,255,255,0.4)",
+                          color: "var(--color-text-muted)",
                         }}
                       >
                         {Math.round(((currentStep + 1) / totalSteps) * 100)}%
@@ -520,7 +515,7 @@ export default function QuizPage() {
                         width: "100%",
                         height: 4,
                         borderRadius: 2,
-                        background: "#2D2D2D",
+                        background: "var(--color-cream-darker)",
                         overflow: "hidden",
                       }}
                     >
@@ -531,7 +526,7 @@ export default function QuizPage() {
                         }}
                         transition={{
                           duration: 0.5,
-                          ease: [0.4, 0, 0.2, 1],
+                          ease: [0.4, 0, 0.2, 1] as const,
                         }}
                         style={{
                           height: "100%",
@@ -571,7 +566,7 @@ export default function QuizPage() {
                     <p
                       style={{
                         fontSize: "0.95rem",
-                        color: "#777",
+                        color: "var(--color-text-muted)",
                         lineHeight: 1.5,
                       }}
                     >
@@ -731,7 +726,7 @@ export default function QuizPage() {
                   {/* Result card */}
                   <div
                     style={{
-                      background: "#1A1A1A",
+                      background: "var(--color-warm-white)",
                       borderRadius: 24,
                       overflow: "hidden",
                       boxShadow: "0 8px 50px rgba(0,0,0,0.08)",
@@ -824,7 +819,7 @@ export default function QuizPage() {
                         style={{
                           fontSize: "1rem",
                           lineHeight: 1.7,
-                          color: "rgba(255,255,255,0.6)",
+                          color: "var(--color-text-subtle)",
                           marginBottom: "2rem",
                         }}
                       >
@@ -874,7 +869,7 @@ export default function QuizPage() {
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.8 }}
                         style={{
-                          background: "#111111",
+                          background: "var(--color-cream)",
                           borderRadius: 16,
                           padding: "1.25rem 1.5rem",
                           display: "flex",
@@ -952,7 +947,7 @@ export default function QuizPage() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.6, duration: 0.6 }}
                     style={{
-                      background: "#1A1A1A",
+                      background: "var(--color-warm-white)",
                       borderRadius: 24,
                       padding: "2rem",
                       boxShadow: "0 4px 30px rgba(0,0,0,0.05)",
@@ -974,7 +969,7 @@ export default function QuizPage() {
                       <p
                         style={{
                           fontSize: "0.9rem",
-                          color: "#777",
+                          color: "var(--color-text-muted)",
                           marginTop: "0.5rem",
                         }}
                       >
@@ -1010,7 +1005,7 @@ export default function QuizPage() {
                         >
                           Заявка отправлена!
                         </h4>
-                        <p style={{ color: "#777", fontSize: "0.9rem" }}>
+                        <p style={{ color: "var(--color-text-muted)", fontSize: "0.9rem" }}>
                           Мы свяжемся с вами в течение 30 минут
                         </p>
                       </motion.div>
@@ -1056,7 +1051,7 @@ export default function QuizPage() {
                               border: "1.5px solid var(--color-cream-darker)",
                               borderRadius: 12,
                               fontSize: "0.95rem",
-                              background: "#0F0F0F",
+                              background: "var(--color-warm-white)",
                               outline: "none",
                               transition: "border-color 0.3s",
                               fontFamily: "var(--font-sans)",
@@ -1067,7 +1062,7 @@ export default function QuizPage() {
                             }
                             onBlur={(e) =>
                               (e.target.style.borderColor =
-                                "#2D2D2D")
+                                "var(--color-cream-darker)")
                             }
                           />
                         </div>
@@ -1103,7 +1098,7 @@ export default function QuizPage() {
                               border: "1.5px solid var(--color-cream-darker)",
                               borderRadius: 12,
                               fontSize: "0.95rem",
-                              background: "#0F0F0F",
+                              background: "var(--color-warm-white)",
                               outline: "none",
                               transition: "border-color 0.3s",
                               fontFamily: "var(--font-sans)",
@@ -1114,7 +1109,7 @@ export default function QuizPage() {
                             }
                             onBlur={(e) =>
                               (e.target.style.borderColor =
-                                "#2D2D2D")
+                                "var(--color-cream-darker)")
                             }
                           />
                         </div>

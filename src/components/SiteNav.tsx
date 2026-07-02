@@ -1,49 +1,79 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import ViewTransitionLink from "@/components/ViewTransitionLink";
+import Link from "next/link";
 
 /* ═══════════════════════════════════════════════════════════════
-   Unified Site Navigation — v33
-   View Transitions, glass morphism, staggered mobile menu
+   Site Navigation — Dark Cinematic Premium
+   Transparent → Frosted glass on scroll
+   Fullscreen morphing menu on mobile
+   Staggered item animations
    ═══════════════════════════════════════════════════════════════ */
 
-const NAV_LINKS = [
-  { label: "Главная", href: "/" },
-  { label: "О компании", href: "/about" },
+const PRIMARY_LINKS = [
   { label: "Меню", href: "/menu" },
   { label: "Услуги", href: "/services" },
-  { label: "Свадьбы", href: "/wedding" },
-  { label: "Корпоратив", href: "/corporate" },
-  { label: "Галерея", href: "/gallery" },
+  { label: "О нас", href: "/about" },
+  { label: "Калькулятор", href: "/calculator", highlight: true },
   { label: "Отзывы", href: "/reviews" },
   { label: "Контакты", href: "/contacts" },
 ];
 
-const MENU_LINKS = [
-  { label: "Фуршет", href: "/menu#furshet" },
-  { label: "Банкет", href: "/menu#banket" },
-  { label: "Кофе-брейк", href: "/menu#coffee" },
-  { label: "Барбекю", href: "/menu#bbq" },
-  { label: "Доставка закусок", href: "/menu#delivery" },
-];
+const MORE_LINKS = {
+  "Форматы": [
+    { label: "Свадьбы", href: "/wedding" },
+    { label: "Корпоратив", href: "/corporate" },
+    { label: "Площадки", href: "/venues" },
+  ],
+  "Компания": [
+    { label: "Команда", href: "/team" },
+    { label: "Галерея", href: "/gallery" },
+    { label: "Блог", href: "/blog" },
+  ],
+  "Помощь": [
+    { label: "FAQ", href: "/faq" },
+    { label: "Квиз-подбор", href: "/quiz", highlight: true },
+  ],
+};
 
-const SERVICE_LINKS = [
-  { label: "Свадебный банкет", href: "/wedding" },
-  { label: "Выездная регистрация", href: "/wedding#registration" },
-  { label: "Выездной банкет", href: "/corporate" },
-  { label: "Выездной ресторан", href: "/corporate#restaurant" },
-  { label: "Аренда оборудования", href: "/services#equipment" },
-  { label: "Оформление зала", href: "/services#decor" },
-  { label: "Торты на заказ", href: "/services#cakes" },
-  { label: "Пирамиды из шампанского", href: "/services#champagne" },
-  { label: "Шоколадный фонтан", href: "/services#chocolate" },
+const MOBILE_GROUPS = [
+  {
+    title: "Услуги",
+    links: [
+      { label: "Меню", href: "/menu" },
+      { label: "Все услуги", href: "/services" },
+      { label: "Свадьбы", href: "/wedding" },
+      { label: "Корпоратив", href: "/corporate" },
+      { label: "Площадки", href: "/venues" },
+      { label: "Калькулятор", href: "/calculator", highlight: true },
+    ],
+  },
+  {
+    title: "О компании",
+    links: [
+      { label: "О нас", href: "/about" },
+      { label: "Команда", href: "/team" },
+      { label: "Галерея", href: "/gallery" },
+      { label: "Отзывы", href: "/reviews" },
+      { label: "Блог", href: "/blog" },
+    ],
+  },
+  {
+    title: "Связаться",
+    links: [
+      { label: "Контакты", href: "/contacts" },
+      { label: "FAQ", href: "/faq" },
+      { label: "Квиз-подбор", href: "/quiz", highlight: true },
+    ],
+  },
 ];
 
 export default function SiteNav() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -56,109 +86,253 @@ export default function SiteNav() {
     return () => { document.body.style.overflow = ""; };
   }, [menuOpen]);
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && menuOpen) setMenuOpen(false);
+      if (e.key === "Escape" && dropdownOpen) setDropdownOpen(false);
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [menuOpen, dropdownOpen]);
+
+  useEffect(() => {
+    if (!dropdownOpen) return;
+    const handleClick = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, [dropdownOpen]);
+
   return (
     <>
       <nav className={`nav ${scrolled ? "scrolled" : ""}`} role="navigation" aria-label="Навигация">
         <div className="nav-inner">
-          <ViewTransitionLink href="/" className="nav-logo">ИНТЕРФУД</ViewTransitionLink>
+          <Link href="/" className="nav-logo">
+            ИНТЕРФУД
+          </Link>
           <ul className="nav-links">
-            {NAV_LINKS.map((item) => (
-              <li key={item.href}>
-                <ViewTransitionLink href={item.href}>{item.label}</ViewTransitionLink>
-              </li>
+            {PRIMARY_LINKS.map((item, i) => (
+              <motion.li
+                key={item.href}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 + i * 0.05, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <Link
+                  href={item.href}
+                  className="animated-underline"
+                  style={item.highlight ? { color: "var(--color-brand)", fontWeight: 600 } : undefined}
+                >
+                  {item.label}
+                </Link>
+              </motion.li>
             ))}
-            <li>
-              <a href="tel:+78129195911" className="nav-phone">+7 (812) 919-59-11</a>
+
+            {/* More dropdown */}
+            <li ref={dropdownRef} style={{ position: "relative" }}>
+              <button
+                onClick={() => setDropdownOpen(!dropdownOpen)}
+                aria-expanded={dropdownOpen}
+                aria-haspopup="true"
+                style={{
+                  background: "none", border: "none", color: "inherit",
+                  fontFamily: "inherit", fontSize: "inherit", cursor: "pointer",
+                  display: "flex", alignItems: "center", gap: "0.3rem",
+                  padding: "0.5rem 0", letterSpacing: "0.14em",
+                  textTransform: "uppercase", fontWeight: 500, fontSize: "0.7rem",
+                }}
+              >
+                Ещё
+                <motion.span
+                  animate={{ rotate: dropdownOpen ? 180 : 0 }}
+                  transition={{ duration: 0.3 }}
+                  style={{ fontSize: "0.5rem", display: "inline-block" }}
+                >
+                  ▼
+                </motion.span>
+              </button>
+              <AnimatePresence>
+                {dropdownOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -8, scale: 0.96 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -8, scale: 0.96 }}
+                    transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                    style={{
+                      position: "absolute", top: "100%", right: 0,
+                      background: "rgba(10,10,12,0.95)",
+                      backdropFilter: "blur(24px)",
+                      borderRadius: "14px", padding: "1.25rem",
+                      minWidth: "220px",
+                      boxShadow: "0 16px 48px rgba(0,0,0,0.5)",
+                      border: "1px solid var(--color-brand-12)",
+                      zIndex: 100,
+                    }}
+                  >
+                    {Object.entries(MORE_LINKS).map(([groupTitle, links]) => (
+                      <div key={groupTitle} style={{ marginBottom: "0.75rem" }}>
+                        <div style={{
+                          fontSize: "0.55rem", textTransform: "uppercase",
+                          letterSpacing: "0.2em", color: "var(--color-brand)",
+                          marginBottom: "0.35rem", fontWeight: 600,
+                        }}>
+                          {groupTitle}
+                        </div>
+                        {links.map((link) => (
+                          <Link
+                            key={link.href}
+                            href={link.href}
+                            onClick={() => setDropdownOpen(false)}
+                            style={{
+                              display: "block", padding: "0.4rem 0.5rem",
+                              color: link.highlight ? "var(--color-brand-light)" : "rgba(240,235,225,0.75)",
+                              textDecoration: "none", fontSize: "0.85rem",
+                              borderRadius: "8px", transition: "background 0.2s, color 0.2s",
+                              fontWeight: link.highlight ? 600 : 400,
+                            }}
+                            onMouseEnter={(e) => { e.currentTarget.style.background = "var(--color-brand-8)"; }}
+                            onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; }}
+                          >
+                            {link.label}
+                          </Link>
+                        ))}
+                      </div>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </li>
+
             <li>
-              <a href="https://wa.me/79119417205" target="_blank" rel="noopener noreferrer" className="nav-phone" style={{color: '#25D366'}}>WhatsApp</a>
+              <a href="tel:+78129195911" className="nav-phone">
+                +7 (812) 919-59-11
+              </a>
             </li>
+
             <li>
-              <ViewTransitionLink href="/#contact" className="nav-cta">Заказать</ViewTransitionLink>
+              <Link href="/contacts" className="nav-cta">
+                Заказать
+              </Link>
             </li>
           </ul>
-          <button
-            className={`burger ${menuOpen ? "open" : ""}`}
-            onClick={() => {
-              setMenuOpen(!menuOpen);
-              // Haptic feedback on mobile
-              if (typeof navigator !== "undefined" && "vibrate" in navigator) {
-                navigator.vibrate(10);
-              }
-            }}
-            aria-label="Меню"
-            aria-expanded={menuOpen}
-          >
-            <span /><span /><span />
-          </button>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+            <button
+              className={`burger ${menuOpen ? "open" : ""}`}
+              onClick={() => setMenuOpen(!menuOpen)}
+              aria-label="Меню"
+              aria-expanded={menuOpen}
+            >
+              <span /><span /><span />
+            </button>
+          </div>
         </div>
       </nav>
 
-      {/* Fullscreen Mobile Menu with staggered animations */}
+      {/* Fullscreen Mobile Menu */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            className="mobile-menu open"
-            initial={{ opacity: 0, clipPath: "circle(0% at calc(100% - 2rem) 2rem)" }}
-            animate={{ opacity: 1, clipPath: "circle(150% at calc(100% - 2rem) 2rem)" }}
-            exit={{ opacity: 0, clipPath: "circle(0% at calc(100% - 2rem) 2rem)" }}
-            transition={{ duration: 0.5, ease: [0.25, 1, 0.5, 1] }}
+            className="mobile-menu"
+            initial={{ clipPath: "circle(0% at calc(100% - 2.5rem) 2.5rem)" }}
+            animate={{ clipPath: "circle(150% at calc(100% - 2.5rem) 2.5rem)" }}
+            exit={{ clipPath: "circle(0% at calc(100% - 2.5rem) 2.5rem)" }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            style={{ overflowY: "auto", WebkitOverflowScrolling: "touch" }}
           >
-            {NAV_LINKS.map((item, i) => (
-              <motion.div
-                key={item.href}
-                initial={{ opacity: 0, x: 30 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ delay: 0.1 + i * 0.04, duration: 0.4, ease: [0.25, 1, 0.5, 1] }}
-              >
-                <ViewTransitionLink href={item.href} onClick={() => setMenuOpen(false)}>
-                  {item.label}
-                </ViewTransitionLink>
-              </motion.div>
-            ))}
-            <motion.a
-              href="tel:+78129195911"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 + NAV_LINKS.length * 0.04 + 0.1 }}
-              style={{ color: "var(--color-brand)", fontSize: "1.2rem" }}
-            >
-              +7 (812) 919-59-11
-            </motion.a>
-            <motion.a
-              href="https://wa.me/79119417205"
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 + NAV_LINKS.length * 0.04 + 0.15 }}
-              style={{ color: "#25D366", fontSize: "1rem" }}
-            >
-              WhatsApp: +7 (911) 941-72-05
-            </motion.a>
-            <motion.a
-              href="mailto:interfood-catering@yandex.ru"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 + NAV_LINKS.length * 0.04 + 0.2 }}
-              style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.9rem" }}
-            >
-              interfood-catering@yandex.ru
-            </motion.a>
+            {/* Home link */}
             <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 + NAV_LINKS.length * 0.04 + 0.2 }}
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.2, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             >
-              <ViewTransitionLink
-                href="/#contact"
+              <Link href="/" onClick={() => setMenuOpen(false)} style={{ fontWeight: 500, fontSize: "1.1rem" }}>
+                Главная
+              </Link>
+            </motion.div>
+
+            {MOBILE_GROUPS.map((group, gi) => (
+              <div key={group.title} style={{ marginTop: "0.75rem" }}>
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.25 + gi * 0.08, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                  style={{
+                    fontSize: "0.6rem", textTransform: "uppercase",
+                    letterSpacing: "0.2em", color: "var(--color-brand)",
+                    marginBottom: "0.3rem", fontWeight: 600, paddingLeft: "0.25rem",
+                  }}
+                >
+                  {group.title}
+                </motion.div>
+                {group.links.map((link, li) => (
+                  <motion.div
+                    key={link.href}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.3 + gi * 0.08 + li * 0.04, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    <Link
+                      href={link.href}
+                      onClick={() => setMenuOpen(false)}
+                      style={{
+                        display: "flex", alignItems: "center",
+                        padding: "0.6rem 0.5rem",
+                        color: link.highlight ? "var(--color-brand)" : "inherit",
+                        fontWeight: link.highlight ? 600 : 400,
+                        fontSize: "0.95rem", minHeight: "44px",
+                      }}
+                    >
+                      {link.label}
+                      {link.highlight && (
+                        <span style={{
+                          marginLeft: "0.5rem", fontSize: "0.55rem",
+                          background: "var(--color-brand)", color: "#060607",
+                          padding: "0.15rem 0.4rem", borderRadius: "4px",
+                          fontWeight: 700, textTransform: "uppercase",
+                        }}>
+                          new
+                        </span>
+                      )}
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+            ))}
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              style={{
+                marginTop: "1.5rem", paddingTop: "1rem",
+                borderTop: "1px solid var(--color-brand-8)",
+              }}
+            >
+              <a
+                href="tel:+78129195911"
+                style={{
+                  color: "var(--color-brand)", fontSize: "1.1rem",
+                  display: "flex", padding: "0.5rem 0.25rem",
+                  minHeight: "44px", alignItems: "center",
+                  gap: "0.5rem", textDecoration: "none",
+                }}
+              >
+                +7 (812) 919-59-11
+              </a>
+              <Link
+                href="/contacts"
                 className="btn-gold"
                 onClick={() => setMenuOpen(false)}
-                style={{ marginTop: "1rem" }}
+                style={{
+                  marginTop: "0.75rem", display: "block",
+                  textAlign: "center", padding: "0.85rem", minHeight: "48px",
+                }}
               >
-                Заказать
-              </ViewTransitionLink>
+                Заказать кейтеринг
+              </Link>
             </motion.div>
           </motion.div>
         )}

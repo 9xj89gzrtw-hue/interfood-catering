@@ -86,7 +86,7 @@ export default function ScrollVideo({ src, className = "", title, subtitle }: Sc
             <motion.div
               style={{
                 position: "absolute", inset: 0,
-                background: "linear-gradient(to top, rgba(10,10,10,0.85) 0%, transparent 50%)",
+                background: "linear-gradient(to top, rgba(254,253,251,0.8) 0%, transparent 50%)",
                 display: "flex", flexDirection: "column",
                 justifyContent: "flex-end", padding: "2rem",
                 opacity,
@@ -102,7 +102,7 @@ export default function ScrollVideo({ src, className = "", title, subtitle }: Sc
                 {title}
               </h3>
               {subtitle && (
-                <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "clamp(0.8rem, 2vw, 1rem)" }}>
+                <p style={{ color: "var(--color-text-secondary)", fontSize: "clamp(0.8rem, 2vw, 1rem)" }}>
                   {subtitle}
                 </p>
               )}

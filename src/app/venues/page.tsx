@@ -34,23 +34,23 @@ import ConfettiButton from "@/components/ConfettiButton";
 
 // ─── MEDIA DATA ───
 const VID = {
-  hero: "https://videos.pexels.com/video-files/3195394/3195394-uhd_2560_1440_25fps.mp4",
-  venue1: "https://videos.pexels.com/video-files/4761433/4761433-uhd_2560_1440_25fps.mp4",
-  venue2: "https://videos.pexels.com/video-files/2759750/2759750-uhd_2560_1440_25fps.mp4",
-  venue3: "https://videos.pexels.com/video-files/5377703/5377703-uhd_2560_1440_25fps.mp4",
+  hero: "/videos/catering2.mp4",
+  venue1: "/videos/catering1.mp4",
+  venue2: "/videos/catering2.mp4",
+  venue3: "/videos/catering2.mp4",
 };
 
 const IMG = {
-  venue1: "https://sfile.chatglm.cn/images-ppt/31ca0a361dc4.jpg",
-  venue2: "https://sfile.chatglm.cn/images-ppt/3a442a2e6e71.jpg",
-  venue3: "https://sfile.chatglm.cn/images-ppt/b77fad9eff9e.jpg",
-  venue4: "https://sfile.chatglm.cn/images-ppt/99f244d30b4d.jpg",
-  venue5: "https://sfile.chatglm.cn/images-ppt/85381eb37c45.jpg",
-  venue6: "https://sfile.chatglm.cn/images-ppt/b0afca3cdeee.jpg",
-  hero: "https://sfile.chatglm.cn/images-ppt/3a442a2e6e71.jpg",
-  roses: "https://sfile.chatglm.cn/images-ppt/85381eb37c45.jpg",
-  banquet: "https://sfile.chatglm.cn/images-ppt/b0afca3cdeee.jpg",
-  decor: "https://sfile.chatglm.cn/images-ppt/99f244d30b4d.jpg",
+  venue1: "/images/31ca0a361dc4.jpg",
+  venue2: "/images/3a442a2e6e71.jpg",
+  venue3: "/images/b77fad9eff9e.jpg",
+  venue4: "/images/99f244d30b4d.jpg",
+  venue5: "/images/85381eb37c45.jpg",
+  venue6: "/images/b0afca3cdeee.jpg",
+  hero: "/images/3a442a2e6e71.jpg",
+  roses: "/images/85381eb37c45.jpg",
+  banquet: "/images/b0afca3cdeee.jpg",
+  decor: "/images/99f244d30b4d.jpg",
 };
 
 // ─── VENUE DATA ───
@@ -73,81 +73,81 @@ interface Venue {
 const VENUES: Venue[] = [
   {
     id: 1,
-    name: "Усадьба «Марфино»",
-    type: "Загородный клуб",
-    category: "Загородные",
-    capacity: "до 300 гостей",
-    price: "от 3 500 ₽/чел",
-    image: IMG.venue1,
-    beforeImage: IMG.venue1,
-    afterImage: IMG.decor,
-    features: ["Открытая терраса", "Парковая зона", "Банкетный зал", "Сцена"],
-    description: "Роскошная загородная усадьба с панорамными видами, идеальна для свадеб и крупных торжеств. Просторная территория с парком и открытой террасой.",
-  },
-  {
-    id: 2,
-    name: "Лофт «Формат»",
-    type: "Лофт",
+    name: "Лофты и арт-пространства",
+    type: "Современные пространства",
     category: "Лофты",
-    capacity: "до 150 гостей",
+    capacity: "20–300 гостей",
     price: "от 4 200 ₽/чел",
     image: IMG.venue2,
     beforeImage: IMG.venue2,
-    afterImage: IMG.banquet,
-    features: ["Индустриальный стиль", "Вторая свет", "Профсвет", "Кухня"],
-    description: "Стильный лофт с кирпичными стенами и высокими потолками. Современное пространство для корпоративов, выставок и творческих мероприятий.",
+    afterImage: IMG.venue2,
+    features: ["Индустриальный дизайн", "Вторая свет", "Гибкая планировка", "Профессиональный свет"],
+    description: "Стильные лофты с кирпичными стенами и высокими потолками — идеальное пространство для современных мероприятий. Мы сотрудничаем с лучшими лофт-площадками Санкт-Петербурга.",
+  },
+  {
+    id: 2,
+    name: "Загородные площадки",
+    type: "Усадьбы и парки",
+    category: "Загородные",
+    capacity: "30–500 гостей",
+    price: "от 3 500 ₽/чел",
+    image: IMG.venue1,
+    beforeImage: IMG.venue1,
+    afterImage: IMG.venue1,
+    features: ["Парковая зона", "Открытая терраса", "Банкетный зал", "Шатры"],
+    description: "Роскошные загородные усадьбы и парковые зоны с панорамными видами. Идеальны для свадеб, юбилеев и летних торжеств на природе.",
   },
   {
     id: 3,
-    name: "Ресторан «Нева»",
-    type: "На воде",
+    name: "На воде",
+    type: "Яхты и теплоходы",
     category: "На воде",
-    capacity: "до 200 гостей",
+    capacity: "20–250 гостей",
     price: "от 5 800 ₽/чел",
     image: IMG.venue3,
     beforeImage: IMG.venue3,
-    afterImage: IMG.roses,
-    features: ["Вид на реку", "Веранда", "VIP-зона", "Парковка"],
-    description: "Элегантный ресторан на берегу Невы с панорамным видом. Уникальная атмосфера для свадеб, юбилеев и корпоративных приёмов.",
+    afterImage: IMG.venue3,
+    features: ["Вид на реку", "Веранда", "VIP-каюта", "Открытая палуба"],
+    description: "Уникальная атмосфера мероприятий на воде — от камерных ужинов на яхте до масштабных банкетов на теплоходе. Незабываемый вид на Неву и мосты.",
   },
   {
     id: 4,
-    name: "Дворец «Белосельских»",
-    type: "Городской дворец",
+    name: "Исторические залы",
+    type: "Дворцы и особняки",
     category: "Городские",
-    capacity: "до 250 гостей",
+    capacity: "30–300 гостей",
     price: "от 6 500 ₽/чел",
     image: IMG.venue4,
     beforeImage: IMG.venue4,
-    afterImage: IMG.decor,
-    features: ["Исторический интерьер", "Зеркальный зал", "Парадная лестница", "Гардероб"],
-    description: "Величественный дворец в центре города с потрясающей архитектурой. Роскошные залы для самых изысканных мероприятий.",
+    afterImage: IMG.venue4,
+    features: ["Исторический интерьер", "Зеркальный зал", "Парадная лестница", "Роскошная атмосфера"],
+    description: "Величественные дворцы и особняки в центре Петербурга с потрясающей архитектурой. Роскошные залы для самых изысканных мероприятий.",
   },
   {
     id: 5,
-    name: "Терраса «Летний сад»",
-    type: "На воде",
-    category: "На воде",
-    capacity: "до 100 гостей",
-    price: "от 3 800 ₽/чел",
+    name: "Офис и конференц-залы",
+    type: "Бизнес-формат",
+    category: "Городские",
+    capacity: "15–500 гостей",
+    price: "от 950 ₽/чел",
     image: IMG.venue5,
     beforeImage: IMG.venue5,
-    afterImage: IMG.roses,
-    features: ["Открытая терраса", "Вид на сад", "Уютная атмосфера", "Летний формат"],
-    description: "Уютная летняя терраса с видом на сад, идеальна для камерных торжеств и семейных праздников. Свежий воздух и природная красота.",
+    afterImage: IMG.venue5,
+    features: ["Проектор и экран", "Звуковое оборудование", "Кофе-брейк зона", "Wi-Fi"],
+    description: "Организация кофе-брейков, фуршетов и обедов прямо в вашем офисе или конференц-зале. Минимум логистики — максимум удобства.",
   },
   {
     id: 6,
-    name: "Галерея «Новый свет»",
-    type: "Лофт",
-    category: "Лофты",
-    capacity: "до 180 гостей",
-    price: "от 4 500 ₽/чел",
+    name: "Шатры и открытые площадки",
+    type: "Под открытым небом",
+    category: "Загородные",
+    capacity: "50–1000 гостей",
+    price: "от 2 450 ₽/чел",
     image: IMG.venue6,
     beforeImage: IMG.venue6,
-    afterImage: IMG.banquet,
-    features: ["Арт-пространство", "Минимализм", "Гибкая планировка", "Естественный свет", "Профессиональный свет", "Звуковое оборудование", "Кейтеринг-зона"],
-    description: "Современное арт-пространство с минималистичным дизайном в стиле индустриального шика. Высокие потолки 5 метров, панорамные окна с естественным освещением и гибкая планировка позволяют реализовать любой формат — от фуршетов на 150 гостей до камерных ужинов на 30 персон. Отдельная зона для кейтеринга с прямым доступом для загрузки.",
+    afterImage: IMG.venue6,
+    features: ["Прозрачный шатёр", "Открытая площадка", "Сцена", "Парковка"],
+    description: "Масштабные мероприятия под открытым небом — от пикников до фестивалей. Устанавливаем шатры любой конфигурации с полным оснащением.",
   },
 ];
 
@@ -181,7 +181,7 @@ function Reveal({
       transition={{
         duration: 0.8,
         delay,
-        ease: [0.25, 1, 0.5, 1],
+        ease: [0.25, 1, 0.5, 1] as const,
       }}
     >
       {children}
@@ -275,7 +275,7 @@ function VenueFlipCard({ venue, onTour }: { venue: Venue; onTour: (venue: Venue)
             height: "100%",
             display: "flex",
             flexDirection: "column",
-            background: "#0F0F0F",
+            background: "var(--color-warm-white)",
             justifyContent: "center",
           }}>
             <h3 style={{
@@ -301,7 +301,7 @@ function VenueFlipCard({ venue, onTour }: { venue: Venue; onTour: (venue: Venue)
             <p style={{
               fontSize: "0.85rem",
               lineHeight: 1.7,
-              color: "rgba(255,255,255,0.5)",
+              color: "var(--color-text-secondary)",
               marginBottom: "1rem",
               flex: 1,
             }}>
@@ -327,7 +327,7 @@ function VenueFlipCard({ venue, onTour }: { venue: Venue; onTour: (venue: Venue)
               alignItems: "center",
               marginBottom: "1rem",
             }}>
-              <span style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.5)" }}>{venue.capacity}</span>
+              <span style={{ fontSize: "0.8rem", color: "var(--color-text-secondary)" }}>{venue.capacity}</span>
               <span style={{
                 fontSize: "0.9rem",
                 fontWeight: 600,
@@ -371,7 +371,7 @@ function TourModalInner({
   const lastX = useRef(0);
 
   const handlePointerDown = useCallback(
-    (e: React.PointerEvent | React.TouchEvent) => {
+    (e: React.MouseEvent | React.TouchEvent) => {
       setIsDragging(true);
       const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
       lastX.current = clientX;
@@ -380,7 +380,7 @@ function TourModalInner({
   );
 
   const handlePointerMove = useCallback(
-    (e: React.PointerEvent | React.TouchEvent) => {
+    (e: React.MouseEvent | React.TouchEvent) => {
       if (!isDragging) return;
       const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
       const delta = clientX - lastX.current;
@@ -577,12 +577,12 @@ export default function VenuesPage() {
   }, []);
 
   return (
-    <main style={{ background: "#0F0F0F", overflow: "hidden" }}>
+    <main style={{ background: "var(--color-warm-white)", overflow: "hidden" }}>
       {/* ═══ NAVIGATION ═══ */}
       <SiteNav />
 
       {/* ═══ 1. HERO SECTION — Video + ParticleField + KineticText wave ═══ */}
-      <section ref={heroRef} style={{ minHeight: "100vh", position: "relative", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
+      <section ref={heroRef} style={{ minHeight: "100vh", position: "relative", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }} aria-label="Площадки для мероприятий">
         {/* Video BG */}
         <motion.div style={{ position: "absolute", inset: 0, y: heroY, zIndex: 0 }}>
           <video
@@ -590,7 +590,9 @@ export default function VenuesPage() {
             muted
             loop
             playsInline
+            preload="metadata"
             poster={IMG.hero}
+            aria-label="Видео площадок для мероприятий"
             style={{ width: "100%", height: "100%", objectFit: "cover" }}
           >
             <source src={VID.hero} type="video/mp4" />
@@ -599,7 +601,7 @@ export default function VenuesPage() {
         {/* Light overlay */}
         <div style={{
           position: "absolute", inset: 0, zIndex: 1,
-          background: "linear-gradient(to bottom, rgba(10,10,10,0.3) 0%, rgba(254,253,251,0.25) 40%, rgba(254,253,251,0.75) 80%, rgba(10,10,10,0.95) 100%)",
+          background: "linear-gradient(to bottom, rgba(254,253,251,0.15) 0%, rgba(254,253,251,0.25) 40%, rgba(254,253,251,0.75) 80%, rgba(254,253,251,0.95) 100%)",
         }} />
         {/* ParticleField overlay */}
         <ParticleField count={55} speed={0.2} style={{ zIndex: 2 }} />
@@ -622,7 +624,7 @@ export default function VenuesPage() {
 
           {/* KineticText with "wave" animation */}
           <KineticText
-            text="Площадки для мероприятий"
+            text="Площадки, которые делают праздник незабываемым"
             as="h1"
             animation="wave"
             stagger={0.04}
@@ -644,7 +646,7 @@ export default function VenuesPage() {
             style={{
               fontSize: "1.1rem",
               lineHeight: 1.7,
-              color: "rgba(255,255,255,0.6)",
+              color: "var(--color-text-subtle)",
               maxWidth: 550,
               margin: "0 auto 2rem",
             }}
@@ -688,7 +690,7 @@ export default function VenuesPage() {
             transition={{ delay: 1.5, duration: 0.8 }}
             style={{ marginTop: "3rem", display: "flex", flexDirection: "column", alignItems: "center", gap: "0.5rem" }}
           >
-            <span style={{ fontSize: "0.6rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)" }}>
+            <span style={{ fontSize: "0.6rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--color-text-muted)" }}>
               Прокрутите вниз
             </span>
             <motion.div
@@ -703,7 +705,8 @@ export default function VenuesPage() {
       {/* ═══ 2. VENUE FILTER + FLIP CARDS with MorphingBlob ═══ */}
       <section
         id="venues"
-        style={{ background: "#0F0F0F", padding: "6rem 0", position: "relative", overflow: "hidden" }}
+        style={{ background: "var(--color-warm-white)", padding: "6rem 0", position: "relative", overflow: "hidden" }}
+        aria-label="Список площадок"
       >
         {/* MorphingBlob behind venue cards */}
         <MorphingBlob
@@ -728,14 +731,14 @@ export default function VenuesPage() {
             <div className="section-label">Наши площадки</div>
           </Reveal>
           <TextReveal
-            text="Найдите ваше идеальное пространство"
+            text="Найдите пространство, которое впечатлит ваших гостей"
             as="h2"
             className="section-title"
             style={{ marginBottom: "1rem" }}
           />
           <Reveal delay={0.15}>
             <p className="section-subtitle" style={{ margin: "0 auto 3rem" }}>
-              От загородных усадеб до стильных лофтов — каждая площадка уникальна и готова стать сценой вашего события.
+              От загородных усадеб до стильных лофтов — каждая площадка проверена нами лично и готова стать сценой вашего события.
             </p>
           </Reveal>
 
@@ -748,6 +751,7 @@ export default function VenuesPage() {
                   onClick={() => setFilter(f.value)}
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
+                  aria-pressed={filter === f.value}
                   style={{
                     padding: "0.65rem 1.5rem",
                     borderRadius: 100,
@@ -775,7 +779,7 @@ export default function VenuesPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.5, ease: [0.25, 1, 0.5, 1] }}
+              transition={{ duration: 0.5, ease: [0.25, 1, 0.5, 1] as const }}
               style={{
                 display: "grid",
                 gridTemplateColumns: "repeat(auto-fill, minmax(360px, 1fr))",
@@ -787,7 +791,7 @@ export default function VenuesPage() {
                   key={venue.id}
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: i * 0.08, ease: [0.25, 1, 0.5, 1] }}
+                  transition={{ duration: 0.6, delay: i * 0.08, ease: [0.25, 1, 0.5, 1] as const }}
                 >
                   <VenueFlipCard venue={venue} onTour={openTour} />
                 </motion.div>
@@ -796,7 +800,7 @@ export default function VenuesPage() {
           </AnimatePresence>
 
           {filteredVenues.length === 0 && (
-            <div style={{ textAlign: "center", padding: "4rem 2rem", color: "rgba(255,255,255,0.4)" }}>
+            <div style={{ textAlign: "center", padding: "4rem 2rem", color: "var(--color-text-muted)" }}>
               <p style={{ fontFamily: "var(--font-serif)", fontSize: "1.3rem" }}>Площадки не найдены</p>
               <p style={{ fontSize: "0.85rem", marginTop: "0.5rem" }}>Попробуйте другой фильтр</p>
             </div>
@@ -805,7 +809,7 @@ export default function VenuesPage() {
       </section>
 
       {/* ═══ 3. HORIZONTAL VIDEO SCROLL ═══ */}
-      <section style={{ background: "#111111", overflow: "hidden" }}>
+      <section style={{ background: "var(--color-cream)", overflow: "hidden" }} aria-label="Видео площадок">
         <HorizontalVideoScroll
           videos={[
             { src: VID.venue1, title: "Усадьба «Марфино»", subtitle: "Загородный клуб для роскошных торжеств" },
@@ -816,7 +820,7 @@ export default function VenuesPage() {
       </section>
 
       {/* ═══ 4. SWIPE CAROUSEL PREVIEW ═══ */}
-      <section style={{ background: "#111111", padding: "6rem 0" }}>
+      <section style={{ background: "var(--color-cream)", padding: "6rem 0" }} aria-label="Превью площадок">
         <div className="container" style={{ textAlign: "center" }}>
           <Reveal>
             <div className="section-label">Превью</div>
@@ -859,7 +863,7 @@ export default function VenuesPage() {
       </section>
 
       {/* ═══ 5. COMPARISON SECTION ═══ */}
-      <section id="compare" style={{ background: "#0F0F0F", padding: "6rem 0" }}>
+      <section id="compare" style={{ background: "var(--color-warm-white)", padding: "6rem 0" }} aria-label="Сравнение площадок">
         <div className="container">
           <Reveal>
             <div className="section-label">Сравнение</div>
@@ -888,8 +892,8 @@ export default function VenuesPage() {
                     style={{ borderRadius: 20, marginBottom: "1rem" }}
                   />
                   <h3 style={{ fontFamily: "var(--font-serif)", fontSize: "1.2rem", marginBottom: "0.3rem" }}>{venue.name}</h3>
-                  <p style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.4)", marginBottom: "0.5rem" }}>{venue.type} · {venue.capacity}</p>
-                  <p style={{ fontSize: "0.82rem", color: "rgba(255,255,255,0.5)", lineHeight: 1.6 }}>{
+                  <p style={{ fontSize: "0.8rem", color: "var(--color-text-muted)", marginBottom: "0.5rem" }}>{venue.type} · {venue.capacity}</p>
+                  <p style={{ fontSize: "0.82rem", color: "var(--color-text-secondary)", lineHeight: 1.6 }}>{
                     i === 0
                       ? "Пустая усадьба преображается в роскошное свадебное пространство: цветочные арки, подсветка деревьев, элегантная сервировка и свечи создают атмосферу волшебства."
                       : i === 1
@@ -904,7 +908,7 @@ export default function VenuesPage() {
       </section>
 
       {/* ═══ 6. STATS TRUST BAR ═══ */}
-      <section style={{ background: "#111111", padding: "4rem 0", position: "relative", overflow: "hidden" }}>
+      <section style={{ background: "var(--color-cream)", padding: "4rem 0", position: "relative", overflow: "hidden" }} aria-label="Статистика">
         {/* FluidBackground behind stats */}
         <FluidBackground
           color1="rgba(184, 149, 90, 0.06)"
@@ -926,7 +930,7 @@ export default function VenuesPage() {
                   <div style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 400, color: "var(--color-brand)" }}>
                     {stat.value}
                   </div>
-                  <div style={{ fontSize: "0.7rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", marginTop: "0.3rem" }}>
+                  <div style={{ fontSize: "0.7rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--color-text-muted)", marginTop: "0.3rem" }}>
                     {stat.label}
                   </div>
                 </div>
@@ -937,7 +941,7 @@ export default function VenuesPage() {
       </section>
 
       {/* ═══ 7. CTA SECTION with ConfettiButton ═══ */}
-      <section className="section-brand section-wide" style={{ padding: "6rem 0" }}>
+      <section className="section-brand section-wide" style={{ padding: "6rem 0" }} aria-label="Забронировать площадку">
         <div className="container" style={{ textAlign: "center" }}>
           <Reveal>
             <div className="section-label" style={{ color: "rgba(255,255,255,0.6)" }}>
@@ -945,23 +949,23 @@ export default function VenuesPage() {
             </div>
           </Reveal>
           <TextReveal
-            text="Забронировать площадку"
+            text="Забронируйте площадку — бесплатно организуем просмотр"
             as="h2"
             className="section-title section-title-light"
             style={{ marginBottom: "1rem" }}
           />
           <Reveal delay={0.2}>
             <p className="section-subtitle section-subtitle-light" style={{ margin: "0 auto 2.5rem", maxWidth: 500 }}>
-              Свяжитесь с нами для бронирования площадки и обсуждения деталей. Первая консультация и просмотр — бесплатно.
+              Свяжитесь с нами для бронирования площадки и обсуждения деталей. Первая консультация, просмотр и подбор меню — бесплатно.
             </p>
           </Reveal>
           <Reveal delay={0.3}>
             <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap", alignItems: "center" }}>
               <ConfettiButton
-                onClick={() => {}}
+                onClick={() => { window.location.href = "/#contact"; }}
                 style={{
                   padding: "1rem 2.5rem",
-                  background: "#1A1A1A",
+                  background: "var(--color-warm-white)",
                   color: "var(--color-brand-dark)",
                   fontSize: "0.75rem",
                   fontWeight: 600,
@@ -983,7 +987,7 @@ export default function VenuesPage() {
       </section>
 
       {/* ═══ 8. FOOTER ═══ */}
-      <footer className="footer">
+      <footer className="footer" role="contentinfo">
         <div style={{ maxWidth: 1320, margin: "0 auto" }}>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "2rem", marginBottom: "3rem" }}>
             <div>
@@ -998,7 +1002,7 @@ export default function VenuesPage() {
               <div style={{ fontSize: "0.7rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--color-brand-light)", marginBottom: "1rem" }}>
                 Услуги
               </div>
-              <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+              <nav aria-label="Услуги" style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
                 {[
                   { label: "Фуршет", href: "/services#furshet" },
                   { label: "Банкет", href: "/services#banquet" },
@@ -1010,13 +1014,13 @@ export default function VenuesPage() {
                     {link.label}
                   </Link>
                 ))}
-              </div>
+              </nav>
             </div>
             <div>
               <div style={{ fontSize: "0.7rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--color-brand-light)", marginBottom: "1rem" }}>
                 Компания
               </div>
-              <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+              <nav aria-label="Компания" style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
                 {[
                   { label: "О нас", href: "/about" },
                   { label: "Меню", href: "/menu" },
@@ -1029,7 +1033,7 @@ export default function VenuesPage() {
                     {link.label}
                   </Link>
                 ))}
-              </div>
+              </nav>
             </div>
             <div>
               <div style={{ fontSize: "0.7rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--color-brand-light)", marginBottom: "1rem" }}>
@@ -1047,7 +1051,7 @@ export default function VenuesPage() {
             </div>
           </div>
           <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: "1.5rem", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem" }}>
-            <span style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.3)" }}>© 2007–2026 Интерфуд Кейтеринг</span>
+            <span style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.3)" }}>© 2007–2025 Интерфуд Кейтеринг</span>
             <span style={{ fontSize: "0.7rem", color: "rgba(255,255,255,0.2)" }}>Дизайн и разработка — Интерфуд Digital</span>
           </div>
         </div>

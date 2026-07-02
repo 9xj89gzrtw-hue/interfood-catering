@@ -16,8 +16,6 @@ interface CountUpProps {
   decimals?: number;
   className?: string;
   style?: React.CSSProperties;
-  /** Hide the element until it enters the viewport (avoids showing "0" for prices) */
-  hideUntilInView?: boolean;
 }
 
 export default function CountUp({
@@ -28,11 +26,11 @@ export default function CountUp({
   decimals = 0,
   className = "",
   style,
-  hideUntilInView = true,
 }: CountUpProps) {
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-50px" });
+  const inView = useInView(ref, { once: true, margin: "-100px" });
   const [count, setCount] = useState(0);
+  const rafRef = useRef<number>(0);
 
   useEffect(() => {
     if (!inView) return;
@@ -43,9 +41,17 @@ export default function CountUp({
       // Ease out cubic
       const eased = 1 - Math.pow(1 - progress, 3);
       setCount(eased * target);
-      if (progress < 1) requestAnimationFrame(step);
+      if (progress < 1) {
+        rafRef.current = requestAnimationFrame(step);
+      }
     };
-    requestAnimationFrame(step);
+    rafRef.current = requestAnimationFrame(step);
+
+    return () => {
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+      }
+    };
   }, [inView, target, duration]);
 
   const formatted = decimals > 0
@@ -56,10 +62,7 @@ export default function CountUp({
     <motion.span
       ref={ref}
       className={className}
-      style={{
-        ...style,
-        ...(hideUntilInView && !inView ? { visibility: "hidden" as const } : {}),
-      }}
+      style={style}
       initial={{ opacity: 0, y: 20 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6 }}

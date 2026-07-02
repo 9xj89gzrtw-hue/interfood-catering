@@ -27,12 +27,12 @@ import VideoBreak from "@/components/VideoBreak";
    ═══════════════════════════════════════════════════════════════ */
 
 const IMG = {
-  furshet: "https://sfile.chatglm.cn/images-ppt/a2fbd3b8447b.jpg",
-  banquet: "https://sfile.chatglm.cn/images-ppt/b0afca3cdeee.jpg",
-  coffee: "https://sfile.chatglm.cn/images-ppt/4f51d25798b0.jpg",
-  wedding: "https://sfile.chatglm.cn/images-ppt/b77fad9eff9e.jpg",
-  corporate: "https://sfile.chatglm.cn/images-ppt/b26bc8017630.png",
-  bar: "https://sfile.chatglm.cn/images-ppt/c73dc40e41d4.jpg",
+  furshet: "/images/a2fbd3b8447b.jpg",
+  banquet: "/images/b0afca3cdeee.jpg",
+  coffee: "/images/4f51d25798b0.jpg",
+  wedding: "/images/b77fad9eff9e.jpg",
+  corporate: "/images/b26bc8017630.png",
+  bar: "/images/c73dc40e41d4.jpg",
 };
 
 /* ─── Data ─── */
@@ -197,7 +197,7 @@ function useAnimatedCount(target: number) {
 
 const fadeUp = {
   hidden: { opacity: 0, y: 60 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.4, 0, 0.2, 1] } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.4, 0, 0.2, 1] as const } },
 };
 
 function Reveal({
@@ -282,11 +282,11 @@ function FaqItem({ q, a }: { q: string; a: string }) {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+            transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] as const }}
           >
             <p
               style={{
-                color: "rgba(255,255,255,0.5)",
+                color: "var(--color-text-secondary)",
                 fontSize: "0.95rem",
                 lineHeight: 1.7,
                 paddingBottom: "1.5rem",
@@ -324,7 +324,9 @@ export default function CalculatorPage() {
 
   const calculatePrice = useCallback(() => {
     const type = getEventTypeData();
-    const baseTotal = type.basePrice * guests;
+    /* Duration multiplier: base rate covers 4 h; each extra hour adds 15% */
+    const durationFactor = 1 + Math.max(0, duration - 4) * 0.15;
+    const baseTotal = Math.round(type.basePrice * guests * durationFactor);
 
     let addonsTotal = 0;
     selectedAddons.forEach((addonId) => {
@@ -333,13 +335,13 @@ export default function CalculatorPage() {
         if (addon.isFlat) {
           addonsTotal += addon.pricePerPerson;
         } else {
-          addonsTotal += addon.pricePerPerson * guests;
+          addonsTotal += Math.round(addon.pricePerPerson * guests * durationFactor);
         }
       }
     });
 
     return { baseTotal, addonsTotal, total: baseTotal + addonsTotal };
-  }, [getEventTypeData, guests, selectedAddons]);
+  }, [getEventTypeData, guests, duration, selectedAddons]);
 
   const priceData = calculatePrice();
   const animatedTotal = useAnimatedPrice(priceData.total);
@@ -365,7 +367,7 @@ export default function CalculatorPage() {
       {/* ─── Hero ─── */}
       <section
         className="hero"
-        style={{ minHeight: "60vh", background: "#111111", position: "relative", overflow: "hidden" }}
+        style={{ minHeight: "60vh", background: "var(--color-cream)", position: "relative", overflow: "hidden" }}
         aria-label="Калькулятор стоимости"
       >
         <div
@@ -383,7 +385,7 @@ export default function CalculatorPage() {
             position: "absolute",
             inset: 0,
             background:
-              "linear-gradient(to bottom, rgba(10,10,10,0.7) 0%, rgba(10,10,10,0.9) 70%, var(--color-warm-white) 100%)",
+              "linear-gradient(to bottom, rgba(254,253,251,0.5) 0%, rgba(254,253,251,0.9) 70%, var(--color-warm-white) 100%)",
           }}
         />
         <FluidBackground
@@ -424,9 +426,10 @@ export default function CalculatorPage() {
           >
             Онлайн-расчёт
           </motion.div>
+          <h1 className="sr-only">Калькулятор стоимости</h1>
           <KineticText
-            text="Калькулятор стоимости"
-            as="h1"
+            text="Калькулятор стоимости кейтеринга — с гарантией по договору"
+            as="h2"
             animation="scale"
             className="hero-title"
             stagger={0.04}
@@ -439,16 +442,16 @@ export default function CalculatorPage() {
             transition={{ duration: 0.8, delay: 1 }}
           >
             Рассчитайте предварительную стоимость кейтеринга за минуту.
-            Выберите формат, укажите количество гостей — и получите цену мгновенно.
+            Выберите формат, укажите количество гостей — и получите цену мгновенно. Никаких скрытых доплат.
           </motion.p>
         </motion.div>
       </section>
 
       {/* ─── Video Break ─── */}
       <VideoBreak
-        src="https://videos.pexels.com/video-files/4763824/4763824-uhd_2560_1440_24fps.mp4"
+        src="/videos/catering1.mp4"
         title="Рассчитайте ваш праздник"
-        subtitle="Точная стоимость за 60 секунд"
+        subtitle="Точная стоимость за 60 секунд — без скрытых доплат"
       />
 
       {/* ─── Calculator Section ─── */}
@@ -468,7 +471,7 @@ export default function CalculatorPage() {
           <Reveal>
             <span className="section-label">Настройте мероприятие</span>
             <h2 className="section-title">
-              Выберите <em>формат</em>
+            text="Найдите <em>формат</em>, который покорит ваших гостей"
             </h2>
           </Reveal>
 
@@ -583,7 +586,7 @@ export default function CalculatorPage() {
                       <p
                         style={{
                           fontSize: "0.8rem",
-                          color: "rgba(255,255,255,0.4)",
+                          color: "var(--color-text-muted)",
                           marginBottom: "0.5rem",
                         }}
                       >
@@ -611,7 +614,7 @@ export default function CalculatorPage() {
             <motion.div
               layout
               style={{
-                background: "#1A1A1A",
+                background: "var(--color-warm-white)",
                 borderRadius: 20,
                 padding: "2rem",
                 boxShadow: "0 4px 30px rgba(0,0,0,0.06)",
@@ -666,7 +669,7 @@ export default function CalculatorPage() {
                   justifyContent: "space-between",
                   marginTop: "0.5rem",
                   fontSize: "0.75rem",
-                  color: "rgba(255,255,255,0.4)",
+                  color: "var(--color-text-muted)",
                 }}
               >
                 <span>20</span>
@@ -678,7 +681,7 @@ export default function CalculatorPage() {
             <motion.div
               layout
               style={{
-                background: "#1A1A1A",
+                background: "var(--color-warm-white)",
                 borderRadius: 20,
                 padding: "2rem",
                 boxShadow: "0 4px 30px rgba(0,0,0,0.06)",
@@ -717,7 +720,7 @@ export default function CalculatorPage() {
                   <span
                     style={{
                       fontSize: "1rem",
-                      color: "rgba(255,255,255,0.4)",
+                      color: "var(--color-text-muted)",
                       marginLeft: "0.3rem",
                     }}
                   >
@@ -742,7 +745,7 @@ export default function CalculatorPage() {
                   justifyContent: "space-between",
                   marginTop: "0.5rem",
                   fontSize: "0.75rem",
-                  color: "rgba(255,255,255,0.4)",
+                  color: "var(--color-text-muted)",
                 }}
               >
                 <span>2 ч</span>
@@ -850,7 +853,7 @@ export default function CalculatorPage() {
                         <div
                           style={{
                             fontSize: "0.75rem",
-                            color: "rgba(255,255,255,0.4)",
+                            color: "var(--color-text-muted)",
                             marginTop: 2,
                           }}
                         >
@@ -941,7 +944,7 @@ export default function CalculatorPage() {
                       }}
                     >
                       <span style={{ color: "rgba(255,255,255,0.6)", fontSize: "0.9rem" }}>
-                        {selectedType.label} × {guests} гостей
+                        {selectedType.label} × {guests} гостей × {duration} ч
                       </span>
                       <span style={{ color: "#fff", fontWeight: 500, fontSize: "1rem" }}>
                         {animatedBase} ₽
@@ -1076,6 +1079,18 @@ export default function CalculatorPage() {
                     ).toLocaleString("ru-RU")}{" "}
                     ₽/чел
                   </div>
+                  <div
+                    style={{
+                      fontSize: "0.7rem",
+                      color: "rgba(255,255,255,0.3)",
+                      marginTop: "0.75rem",
+                      lineHeight: 1.5,
+                      maxWidth: 220,
+                      marginLeft: "auto",
+                    }}
+                  >
+                    В базу: меню, готовка, доставка, сервировка, официанты (1 на 10–15 гостей), уборка
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -1092,11 +1107,11 @@ export default function CalculatorPage() {
           <Reveal>
             <span className="section-label">Сравнение форматов</span>
             <h2 className="section-title">
-              Найдите <em>идеальный</em> формат
+            text="Сравните форматы и цены — выберите лучший для вашего мероприятия"
             </h2>
             <p className="section-subtitle">
-              Каждый формат имеет свои преимущества. Сравните, чтобы выбрать
-              подходящий вариант для вашего мероприятия.
+              Каждый формат имеет свои преимущества. Сравните цены и возможности,
+              чтобы выбрать лучший вариант для вашего мероприятия.
             </p>
           </Reveal>
 
@@ -1113,7 +1128,7 @@ export default function CalculatorPage() {
                 style={{
                   width: "100%",
                   borderCollapse: "collapse",
-                  background: "#1A1A1A",
+                  background: "var(--color-warm-white)",
                   borderRadius: 20,
                   overflow: "hidden",
                   minWidth: 700,
@@ -1237,7 +1252,7 @@ export default function CalculatorPage() {
                         style={{
                           padding: "1.25rem 1.5rem",
                           textAlign: "center",
-                          color: "rgba(255,255,255,0.5)",
+                          color: "var(--color-text-secondary)",
                           fontSize: "0.9rem",
                         }}
                       >
@@ -1247,7 +1262,7 @@ export default function CalculatorPage() {
                         style={{
                           padding: "1.25rem 1.5rem",
                           textAlign: "center",
-                          color: "rgba(255,255,255,0.5)",
+                          color: "var(--color-text-secondary)",
                           fontSize: "0.9rem",
                         }}
                       >
@@ -1271,10 +1286,10 @@ export default function CalculatorPage() {
                               style={{
                                 display: "inline-block",
                                 padding: "0.25rem 0.6rem",
-                                background: "#111111",
+                                background: "var(--color-cream)",
                                 borderRadius: 100,
                                 fontSize: "0.72rem",
-                                color: "rgba(255,255,255,0.5)",
+                                color: "var(--color-text-secondary)",
                               }}
                             >
                               {f}
@@ -1300,10 +1315,10 @@ export default function CalculatorPage() {
           <Reveal>
             <span className="section-label">Вопросы и ответы</span>
             <h2 className="section-title">
-              Часто задаваемые <em>вопросы</em>
+            text="Часто задаваемые <em>вопросы</em> о стоимости и гарантиях"
             </h2>
             <p className="section-subtitle">
-              Узнайте больше о формировании стоимости и условиях работы.
+              Узнайте больше о формировании стоимости, гарантиях и условиях работы.
             </p>
           </Reveal>
           <Reveal delay={0.15}>
@@ -1347,7 +1362,7 @@ export default function CalculatorPage() {
                 marginBottom: "1.5rem",
               }}
             >
-              Получите <em>точный</em> расчёт
+            text="Получите <em>точный</em> расчёт — с гарантией по договору"
             </h2>
             <p
               style={{
@@ -1360,7 +1375,7 @@ export default function CalculatorPage() {
             >
               Онлайн-калькулятор показывает предварительную стоимость. Для
               точного расчёта свяжитесь с нами — мы учтём все нюансы вашего
-              мероприятия.
+              мероприятия и зафиксируем цену в договоре.
             </p>
             <div
               style={{
@@ -1372,7 +1387,7 @@ export default function CalculatorPage() {
             >
               <ConfettiButton
                 className="btn-gold"
-                style={{ background: "#1A1A1A", color: "var(--color-brand-dark)", padding: "1rem 2.5rem", borderRadius: "100px", fontSize: "0.85rem", fontWeight: 600, letterSpacing: "0.05em", border: "none", cursor: "pointer" }}
+                style={{ background: "var(--color-warm-white)", color: "var(--color-brand-dark)", padding: "1rem 2.5rem", borderRadius: "100px", fontSize: "0.85rem", fontWeight: 600, letterSpacing: "0.05em", border: "none", cursor: "pointer" }}
                 onClick={() => { window.location.href = "/#contact"; }}
               >
                 Рассчитать

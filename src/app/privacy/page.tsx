@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
+import { ChevronRight, Home } from "lucide-react";
 import SiteNav from "@/components/SiteNav";
 
 /* ═══════════════════════════════════════════════════════════════
@@ -27,7 +28,7 @@ function RevealSection({
       ref={ref}
       initial={{ opacity: 0, y: 40 }}
       animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-      transition={{ duration: 0.7, delay, ease: [0.25, 1, 0.5, 1] }}
+      transition={{ duration: 0.7, delay, ease: [0.25, 1, 0.5, 1] as const }}
       className={className}
     >
       {children}
@@ -156,17 +157,101 @@ const SECTIONS = [
 
 /* ═══════════════════════════════════════════════════════════════ */
 
+/* ─── JSON-LD Structured Data for Privacy Page ─── */
+const jsonLdBreadcrumb = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://interfood-catering.ru" },
+    { "@type": "ListItem", "position": 2, "name": "Политика конфиденциальности" },
+  ],
+};
+
+const jsonLdWebPage = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Политика конфиденциальности",
+  "description": "Политика конфиденциальности сайта Интерфуд Кейтеринг. Порядок обработки и защиты персональных данных.",
+  "url": "https://interfood-catering.ru/privacy",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Интерфуд Кейтеринг",
+    "url": "https://interfood-catering.ru",
+  },
+};
+
 export default function PrivacyPage() {
   return (
     <>
       <SiteNav />
 
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumb) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdWebPage) }}
+      />
+
+      {/* ═══════════════ Breadcrumb ═══════════════ */}
+      <nav
+        aria-label="Навигация по разделам"
+        style={{
+          paddingTop: "6.5rem",
+          paddingBottom: "0.5rem",
+          background: "var(--color-warm-white)",
+        }}
+      >
+        <div className="container">
+          <ol
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "0.5rem",
+              fontSize: "0.8rem",
+              color: "var(--color-text-muted)",
+              listStyle: "none",
+              padding: 0,
+              margin: 0,
+              flexWrap: "wrap",
+            }}
+          >
+            <li>
+              <Link
+                href="/"
+                style={{
+                  color: "var(--color-brand-dark)",
+                  textDecoration: "none",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "0.25rem",
+                  transition: "color 0.3s",
+                }}
+              >
+                <Home size={14} />
+                Главная
+              </Link>
+            </li>
+            <li aria-hidden="true">
+              <ChevronRight size={14} style={{ opacity: 0.4 }} />
+            </li>
+            <li>
+              <span style={{ color: "var(--color-text-subtle)" }} aria-current="page">
+                Политика конфиденциальности
+              </span>
+            </li>
+          </ol>
+        </div>
+      </nav>
+
       {/* ═══════════════ Hero / Header ═══════════════ */}
       <section
         style={{
-          paddingTop: "8rem",
+          paddingTop: "2rem",
           paddingBottom: "4rem",
-          background: "#0F0F0F",
+          background: "var(--color-warm-white)",
           textAlign: "center",
         }}
       >
@@ -174,7 +259,7 @@ export default function PrivacyPage() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
+            transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] as const }}
           >
             <p className="section-label">Документ</p>
             <h1
@@ -193,7 +278,7 @@ export default function PrivacyPage() {
               style={{
                 fontSize: "1.05rem",
                 lineHeight: 1.7,
-                color: "rgba(255,255,255,0.6)",
+                color: "var(--color-text-subtle)",
                 maxWidth: 600,
                 margin: "0 auto",
               }}
@@ -277,19 +362,28 @@ export default function PrivacyPage() {
             <p
               style={{
                 fontSize: "0.85rem",
-                color: "rgba(255,255,255,0.4)",
+                color: "var(--color-text-muted)",
                 marginBottom: "1.5rem",
               }}
             >
               Ознакомьтесь также с условиями использования нашего сервиса
             </p>
-            <Link
-              href="/terms"
-              className="btn-outline"
-              style={{ display: "inline-flex" }}
-            >
-              Условия использования
-            </Link>
+            <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
+              <Link
+                href="/terms"
+                className="btn-outline"
+                style={{ display: "inline-flex" }}
+              >
+                Условия использования
+              </Link>
+              <Link
+                href="/"
+                className="btn-outline"
+                style={{ display: "inline-flex" }}
+              >
+                Вернуться на главную
+              </Link>
+            </div>
           </RevealSection>
         </div>
       </section>
@@ -300,9 +394,6 @@ export default function PrivacyPage() {
           <div
             className="footer-grid"
             style={{
-              display: "grid",
-              gridTemplateColumns: "2fr 1fr 1fr 1fr",
-              gap: "3rem",
               marginBottom: "3rem",
             }}
           >

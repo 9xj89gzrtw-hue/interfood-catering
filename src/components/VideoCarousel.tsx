@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 /* ═══════════════════════════════════════════════════════════════
@@ -25,26 +25,43 @@ export default function VideoCarousel({ slides, autoplay = true, interval = 8000
   const [current, setCurrent] = useState(0);
   const [playing, setPlaying] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  const goTo = (index: number) => {
+  const resetTimer = useCallback(() => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    if (autoplay) {
+      timerRef.current = setInterval(() => {
+        setCurrent((prev) => (prev + 1) % slides.length);
+      }, interval);
+    }
+  }, [autoplay, interval, slides.length]);
+
+  const goTo = useCallback((index: number) => {
     setCurrent(index);
     if (videoRef.current) {
       videoRef.current.load();
       if (playing) videoRef.current.play().catch(() => {});
     }
     resetTimer();
-  };
+  }, [playing, resetTimer]);
 
-  const next = () => goTo((current + 1) % slides.length);
-  const prev = () => goTo((current - 1 + slides.length) % slides.length);
+  const next = useCallback(() => {
+    setCurrent((prev) => (prev + 1) % slides.length);
+    resetTimer();
+  }, [slides.length, resetTimer]);
 
-  const resetTimer = () => {
-    if (timerRef.current) clearInterval(timerRef.current);
-    if (autoplay) {
-      timerRef.current = setInterval(next, interval);
-    }
-  };
+  const prev = useCallback(() => {
+    setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
+    resetTimer();
+  }, [slides.length, resetTimer]);
+
+  // Start autoplay on mount
+  useEffect(() => {
+    resetTimer();
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, [resetTimer]);
 
   const togglePlay = () => {
     if (!videoRef.current) return;

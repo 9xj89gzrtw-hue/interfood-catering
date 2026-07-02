@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
+import { ChevronRight, Home } from "lucide-react";
 import SiteNav from "@/components/SiteNav";
 
 /* ═══════════════════════════════════════════════════════════════
@@ -27,7 +28,7 @@ function RevealSection({
       ref={ref}
       initial={{ opacity: 0, y: 40 }}
       animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-      transition={{ duration: 0.7, delay, ease: [0.25, 1, 0.5, 1] }}
+      transition={{ duration: 0.7, delay, ease: [0.25, 1, 0.5, 1] as const }}
       className={className}
     >
       {children}
@@ -149,24 +150,108 @@ const SECTIONS = [
       `По всем вопросам, связанным с настоящими Условиями, оформлением заказа, качеством оказанных услуг и иным аспектам взаимодействия с Компанией, Заказчик может обратиться к Исполнителю любым из указанных способов. Мы ценим обратную связь и стремимся обеспечивать оперативное и конструктивное решение всех возникающих вопросов.`,
       `Исполнитель: ООО «Интерфуд». Юридический адрес: 191186, г. Санкт-Петербург, Невский проспект, д. 100. Телефон: +7 (812) 919-59-11 (ежедневно с 9:00 до 22:00). Электронная почта: info@interfood-catering.ru. Руководитель отдела по работе с клиентами: менеджер, назначаемый для каждого заказа индивидуально.`,
       `Для подачи претензий и рекламаций Заказчик может использовать адрес электронной почты info@interfood-catering.ru с пометкой «Претензия» или направить письмо по юридическому адресу Исполнителя. При направлении претензии по электронной почте Исполнитель подтверждает получение в течение 1 (одного) рабочего дня. Результаты рассмотрения претензии направляются Заказчику в срок, не превышающий 10 (десять) рабочих дней.`,
-      `Настоящие Условия использования вступили в силу 1 января 2025 года. Дата последнего обновления: 1 марта 2026 года. Оператор рекомендует Заказчикам регулярно знакомиться с актуальной версией Условий на данной странице. Все изменения вступают в силу с момента их публикации на Сайте, если иное не указано в тексте Условий.`,
+      `Настоящие Условия использования вступили в силу 1 января 2025 года. Дата последнего обновления: 1 марта 2026 года. Исполнитель рекомендует Заказчикам регулярно знакомиться с актуальной версией Условий на данной странице. Все изменения вступают в силу с момента их публикации на Сайте, если иное не указано в тексте Условий.`,
     ],
   },
 ];
 
 /* ═══════════════════════════════════════════════════════════════ */
 
+/* ─── JSON-LD Structured Data for Terms Page ─── */
+const jsonLdBreadcrumb = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://interfood-catering.ru" },
+    { "@type": "ListItem", "position": 2, "name": "Условия использования" },
+  ],
+};
+
+const jsonLdWebPage = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Условия использования",
+  "description": "Условия использования услуг кейтеринга Интерфуд. Правила заказа, оплаты и оказания услуг.",
+  "url": "https://interfood-catering.ru/terms",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Интерфуд Кейтеринг",
+    "url": "https://interfood-catering.ru",
+  },
+};
+
 export default function TermsPage() {
   return (
     <>
       <SiteNav />
 
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumb) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdWebPage) }}
+      />
+
+      {/* ═══════════════ Breadcrumb ═══════════════ */}
+      <nav
+        aria-label="Навигация по разделам"
+        style={{
+          paddingTop: "6.5rem",
+          paddingBottom: "0.5rem",
+          background: "var(--color-warm-white)",
+        }}
+      >
+        <div className="container">
+          <ol
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "0.5rem",
+              fontSize: "0.8rem",
+              color: "var(--color-text-muted)",
+              listStyle: "none",
+              padding: 0,
+              margin: 0,
+              flexWrap: "wrap",
+            }}
+          >
+            <li>
+              <Link
+                href="/"
+                style={{
+                  color: "var(--color-brand-dark)",
+                  textDecoration: "none",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "0.25rem",
+                  transition: "color 0.3s",
+                }}
+              >
+                <Home size={14} />
+                Главная
+              </Link>
+            </li>
+            <li aria-hidden="true">
+              <ChevronRight size={14} style={{ opacity: 0.4 }} />
+            </li>
+            <li>
+              <span style={{ color: "var(--color-text-subtle)" }} aria-current="page">
+                Условия использования
+              </span>
+            </li>
+          </ol>
+        </div>
+      </nav>
+
       {/* ═══════════════ Hero / Header ═══════════════ */}
       <section
         style={{
-          paddingTop: "8rem",
+          paddingTop: "2rem",
           paddingBottom: "4rem",
-          background: "#0F0F0F",
+          background: "var(--color-warm-white)",
           textAlign: "center",
         }}
       >
@@ -174,7 +259,7 @@ export default function TermsPage() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
+            transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] as const }}
           >
             <p className="section-label">Документ</p>
             <h1
@@ -193,7 +278,7 @@ export default function TermsPage() {
               style={{
                 fontSize: "1.05rem",
                 lineHeight: 1.7,
-                color: "rgba(255,255,255,0.6)",
+                color: "var(--color-text-subtle)",
                 maxWidth: 600,
                 margin: "0 auto",
               }}
@@ -277,19 +362,28 @@ export default function TermsPage() {
             <p
               style={{
                 fontSize: "0.85rem",
-                color: "rgba(255,255,255,0.4)",
+                color: "var(--color-text-muted)",
                 marginBottom: "1.5rem",
               }}
             >
               Ознакомьтесь также с политикой конфиденциальности
             </p>
-            <Link
-              href="/privacy"
-              className="btn-outline"
-              style={{ display: "inline-flex" }}
-            >
-              Политика конфиденциальности
-            </Link>
+            <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
+              <Link
+                href="/privacy"
+                className="btn-outline"
+                style={{ display: "inline-flex" }}
+              >
+                Политика конфиденциальности
+              </Link>
+              <Link
+                href="/"
+                className="btn-outline"
+                style={{ display: "inline-flex" }}
+              >
+                Вернуться на главную
+              </Link>
+            </div>
           </RevealSection>
         </div>
       </section>
@@ -300,9 +394,6 @@ export default function TermsPage() {
           <div
             className="footer-grid"
             style={{
-              display: "grid",
-              gridTemplateColumns: "2fr 1fr 1fr 1fr",
-              gap: "3rem",
               marginBottom: "3rem",
             }}
           >

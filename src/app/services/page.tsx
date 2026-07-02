@@ -30,26 +30,26 @@ import TiltCard from "@/components/TiltCard";
 
 // ─── IMAGE URLS ───
 const IMG = {
-  furshet: "https://sfile.chatglm.cn/images-ppt/a2fbd3b8447b.jpg",
-  banquet: "https://sfile.chatglm.cn/images-ppt/b0afca3cdeee.jpg",
-  coffee: "https://sfile.chatglm.cn/images-ppt/4f51d25798b0.jpg",
-  bar: "https://sfile.chatglm.cn/images-ppt/c73dc40e41d4.jpg",
-  dessert: "https://sfile.chatglm.cn/images-ppt/cf9ca554baf6.jpg",
-  canape: "https://sfile.chatglm.cn/images-ppt/2585575d2db2.jpg",
-  chef: "https://sfile.chatglm.cn/images-ppt/7d1938ffb3e1.jpg",
-  roses: "https://sfile.chatglm.cn/images-ppt/85381eb37c45.jpg",
-  wedding: "https://sfile.chatglm.cn/images-ppt/b77fad9eff9e.jpg",
-  corporate: "https://sfile.chatglm.cn/images-ppt/b26bc8017630.png",
-  decor: "https://sfile.chatglm.cn/images-ppt/99f244d30b4d.jpg",
-  hero: "https://sfile.chatglm.cn/images-ppt/3a442a2e6e71.jpg",
+  furshet: "/images/a2fbd3b8447b.jpg",
+  banquet: "/images/b0afca3cdeee.jpg",
+  coffee: "/images/4f51d25798b0.jpg",
+  bar: "/images/c73dc40e41d4.jpg",
+  dessert: "/images/cf9ca554baf6.jpg",
+  canape: "/images/2585575d2db2.jpg",
+  chef: "/images/7d1938ffb3e1.jpg",
+  roses: "/images/85381eb37c45.jpg",
+  wedding: "/images/b77fad9eff9e.jpg",
+  corporate: "/images/b26bc8017630.png",
+  decor: "/images/99f244d30b4d.jpg",
+  hero: "/images/3a442a2e6e71.jpg",
 };
 
 // ─── VIDEO URLS ───
 const VID = {
-  hero: "https://videos.pexels.com/video-files/3195394/3195394-uhd_2560_1440_25fps.mp4",
-  kitchen: "https://videos.pexels.com/video-files/4761433/4761433-uhd_2560_1440_25fps.mp4",
-  serving: "https://videos.pexels.com/video-files/5377703/5377703-uhd_2560_1440_25fps.mp4",
-  cooking: "https://videos.pexels.com/video-files/3195394/3195394-uhd_2560_1440_25fps.mp4",
+  hero: "/videos/catering2.mp4",
+  kitchen: "/videos/catering1.mp4",
+  serving: "/videos/catering2.mp4",
+  cooking: "/videos/catering2.mp4",
 };
 
 // ─── SERVICE DATA ───
@@ -69,10 +69,10 @@ const SERVICES = [
     descriptionThird:
       "Мы также предлагаем тематические фуршетные станции: сырную карту с продукцией от лучших фермеров, морской бар с устрицами и креветками, восточную станцию с кебабами и хумусом. Каждая станция — это не только гастрономическое удовольствие, но и визуальное украшение вашего праздника.",
     features: [
-      "30+ позиций канапе и закусок",
+      "Канапе с лососем шеф-посол",
+      "Брускетты с овощами-гриль и песто",
+      "Салаты в креманках",
       "5–8 тематических станций",
-      "Персональные официанты на каждую станцию",
-      "Тёплые и холодные закуски",
       "Сервировка и текстиль в цветах мероприятия",
     ],
   },
@@ -91,11 +91,11 @@ const SERVICES = [
     descriptionThird:
       "Для банкетов мы предлагаем полный сервис: от подбора посуды и текстиля до создания индивидуальных схем рассадки и меню-карт. Каждый стол сервируется по стандартам fine dining, а персональный официант заботится о том, чтобы каждый гость получил безупречное обслуживание. Мы также организуем шоу-программы с живой готовкой десертов и фламбированием блюд прямо за столом.",
     features: [
-      "5–7 курсов авторского меню",
+      "Речная форель слабой соли",
+      "Ростбиф medium rare",
+      "Пармская ветчина",
+      "Блинные роллы",
       "Винная карта от шеф-сомелье",
-      "Индивидуальная сервировка на каждого гостя",
-      "Координация таймлайна с ведущим",
-      "Приветственный аперитив и финальный десерт",
     ],
   },
   {
@@ -111,11 +111,31 @@ const SERVICES = [
     descriptionExtra:
       "Мы понимаем, что кофе-пауза — это не просто перекус, а важный элемент нетворкинга. Поэтому мы создаём комфортные зоны с несколькими станциями, чтобы избежать очередей даже при большом количестве участников. Для конференций на 500+ человек мы разворачиваем параллельные точки раздачи. Доступны специальные меню для аллергиков, веганов и людей с пищевыми ограничениями.",
     features: [
+      "Клаб-сэндвич",
+      "Круассан",
+      "Мини-пирожное",
+      "Ассорти печенья",
       "Зерновой кофе и 6 видов чая",
-      "Свежая выпечка и сэндвичи",
-      "Меню для аллергиков и веганов",
-      "2–4 станции раздачи",
-      "Гибкий тайминг под программу",
+    ],
+  },
+  {
+    id: "wedding",
+    title: "Свадебный",
+    price: "от 4 470 ₽/чел",
+    guests: "20+",
+    duration: "Под ключ",
+    image: IMG.wedding,
+    icon: "heart" as const,
+    description:
+      "Свадебный кейтеринг от Интерфуд — это безупречная организация гастрономической части вашего главного дня. Мы создаём меню, которое отражает вашу историю: от приветственного фуршета с шампанским до полуночного барного снека. Каждый блюдо подаётся с авторской презентацией, а обслуживание ведётся по стандартам премиальных ресторанов.",
+    descriptionExtra:
+      "Флористическое сопровождение в подарок при заказе банкета или фуршета. Мы координируем таймлайн подачи с ведущим, музыкантами и свадебным организатором, чтобы каждый момент праздника был идеальным. Шеф-сомелье составляет винную карту с идеальными пейрингами к каждому блюду. Доступны специальные меню для аллергиков и веганов.",
+    features: [
+      "Флористическое сопровождение в подарок",
+      "Авторское свадебное меню от шефа",
+      "Координация таймлайна праздника",
+      "Приветственный аперитив для гостей",
+      "Индивидуальная сервировка и декор столов",
     ],
   },
   {
@@ -178,6 +198,27 @@ const SERVICES = [
       "Логистика и координация под ключ",
     ],
   },
+  {
+    id: "snack-delivery",
+    title: "Доставка закусок",
+    subtitle: "Мобильный фуршет",
+    price: "от 8 580 ₽ за набор",
+    guests: "Без минимума гостей",
+    duration: "Доставка и самовывоз",
+    image: IMG.canape,
+    icon: "utensils" as const,
+    description:
+      "Доставка закусок — это мобильный фуршет для тех, кто хочет насладиться ресторанными закусками без полного кейтерингового обслуживания. Готовые наборы канапе и брускетт в красивой упаковке — идеальное решение для домашнего праздника, офисного мероприятия или дружеской вечеринки. Закуски готовятся в день доставки из свежих продуктов.",
+    descriptionExtra:
+      "Заказывайте через WhatsApp — оперативно ответим и поможем подобрать набор под ваш праздник. Доставка по Санкт-Петербургу в удобное для вас время. Минимальная сумма заказа — 19 000 ₽. Все закуски упакованы в фирменные коробки с инструкциями по подаче и хранению.",
+    features: [
+      "Набор канапе 66 штук — 8 580 ₽",
+      "Набор канапе 66 + брускетт 15 штук — 11 880 ₽",
+      "Минимальный заказ — 19 000 ₽",
+      "Заказ через WhatsApp: +7(911)941-72-05",
+      "Доставка по Санкт-Петербургу",
+    ],
+  },
 ];
 
 // ─── PRICING TABLE DATA ───
@@ -185,9 +226,11 @@ const PRICING = [
   { format: "Фуршет", guests: "30–500", price: "от 2 450 ₽", highlight: false },
   { format: "Банкет", guests: "20–300", price: "от 4 470 ₽", highlight: true },
   { format: "Кофе-брейк", guests: "15–1 000", price: "от 950 ₽", highlight: false },
+  { format: "Свадебный", guests: "20–300", price: "от 4 470 ₽", highlight: true },
   { format: "Бар", guests: "30–500", price: "от 1 800 ₽", highlight: false },
   { format: "Десерт", guests: "20–500", price: "от 1 200 ₽", highlight: false },
   { format: "Выездной ресторан", guests: "30–500", price: "от 3 500 ₽", highlight: true },
+  { format: "Доставка закусок", guests: "от 19 000 ₽", price: "от 8 580 ₽", highlight: false },
 ];
 
 // ─── FAQ DATA ───
@@ -228,7 +271,7 @@ const fadeUp = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, ease: [0.4, 0, 0.2, 1] },
+    transition: { duration: 0.8, ease: [0.4, 0, 0.2, 1] as const },
   },
 };
 
@@ -290,6 +333,7 @@ export default function ServicesPage() {
             muted
             loop
             playsInline
+            aria-hidden="true"
             style={{ y: heroY }}
           >
             <source src={VID.hero} type="video/mp4" />
@@ -328,7 +372,7 @@ export default function ServicesPage() {
           </motion.div>
           {/* KineticText with "scale" animation */}
           <KineticText
-            text="Наши услуги"
+            text="Услуги кейтеринга с гарантией по договору"
             as="h1"
             animation="scale"
             stagger={0.04}
@@ -345,9 +389,40 @@ export default function ServicesPage() {
           />
           <p className="hero-sub">
             Полный спектр кейтеринговых услуг — от изящного фуршета до
-            выездного ресторана под ключ. Авторская кухня, безупречный сервис и
-            внимание к каждой детали.
+            выездного ресторана под ключ. Авторская кухня, безупречный сервис,
+            резерв блюд +10% и гарантия тайминга по договору.
           </p>
+          <div
+            style={{
+              display: "flex",
+              gap: "1.5rem",
+              justifyContent: "center",
+              flexWrap: "wrap",
+              marginTop: "0.5rem",
+              marginBottom: "0.5rem",
+            }}
+          >
+            <span
+              style={{
+                fontSize: "0.75rem",
+                color: "rgba(255,255,255,0.6)",
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+              }}
+            >
+              ★ 4.55/5 на CaterMe
+            </span>
+            <span
+              style={{
+                fontSize: "0.75rem",
+                color: "rgba(255,255,255,0.6)",
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+              }}
+            >
+              ★ 10/10 на Restoclub
+            </span>
+          </div>
           <div
             style={{
               display: "flex",
@@ -370,7 +445,7 @@ export default function ServicesPage() {
                 cursor: "pointer",
               }}
             >
-              Заказать кейтеринг
+              Заказать кейтеринг — расчёт за 30 мин
             </ConfettiButton>
             <MagneticButton
               as="a"
@@ -388,7 +463,7 @@ export default function ServicesPage() {
          ═══════════════════════════════════════════════════ */}
       <section
         style={{
-          background: "#111111",
+          background: "var(--color-cream)",
           padding: "1.2rem 0",
           overflow: "hidden",
           borderBottom: "1px solid var(--color-cream-darker)",
@@ -399,9 +474,11 @@ export default function ServicesPage() {
             "Фуршет",
             "Банкет",
             "Кофе-брейк",
+            "Свадебный",
             "Бар",
             "Десерт",
             "Выездной ресторан",
+            "Доставка закусок",
             "Интерфуд Кейтеринг",
             "18 лет опыта",
           ]}
@@ -426,21 +503,21 @@ export default function ServicesPage() {
         const videoBreakAfter =
           i === 1 ? (
             <VideoBreak
-              src="https://videos.pexels.com/video-files/4761433/4761433-uhd_2560_1440_25fps.mp4"
-              title="Искусство вкуса"
-              subtitle="Каждое блюдо — результат многолетнего опыта и безупречной техники"
+              src="/videos/catering1.mp4"
+              title="Вкус, который запоминают"
+              subtitle="Шеф Дмитрий Нилов, 500+ авторских рецептов — каждое блюдо исчезает со стола за минуты"
             />
           ) : i === 3 ? (
             <VideoBreak
-              src="https://videos.pexels.com/video-files/5377703/5377703-uhd_2560_1440_25fps.mp4"
-              title="Безупречный сервис"
-              subtitle="Профессиональная команда, внимание к каждой детали"
+              src="/videos/catering2.mp4"
+              title="Сервис, который не замечают"
+              subtitle="1 официант на 10 гостей, подача ±3 минуты от таймлайна — гости даже не ждут"
             />
           ) : i === 5 ? (
             <VideoBreak
-              src="https://videos.pexels.com/video-files/3195394/3195394-uhd_2560_1440_25fps.mp4"
-              title="Ваш идеальный праздник"
-              subtitle="От концепции до реализации — мы берём на себя всё"
+              src="/videos/catering2.mp4"
+              title="Ваш праздник без забот"
+              subtitle="Один подрядчик: меню, бар, декор, персонал — один договор, одна команда, ноль стресса"
             />
           ) : null;
 
@@ -507,7 +584,7 @@ export default function ServicesPage() {
                         style={{
                           fontSize: "1rem",
                           lineHeight: 1.8,
-                          color: "rgba(255,255,255,0.6)",
+                          color: "var(--color-text-subtle)",
                           marginBottom: "1rem",
                         }}
                       >
@@ -519,7 +596,7 @@ export default function ServicesPage() {
                         style={{
                           fontSize: "0.95rem",
                           lineHeight: 1.8,
-                          color: "rgba(255,255,255,0.5)",
+                          color: "var(--color-text-secondary)",
                           marginBottom: "1.5rem",
                         }}
                       >
@@ -532,7 +609,7 @@ export default function ServicesPage() {
                           style={{
                             fontSize: "0.95rem",
                             lineHeight: 1.8,
-                            color: "rgba(255,255,255,0.5)",
+                            color: "var(--color-text-secondary)",
                             marginBottom: "1.5rem",
                           }}
                         >
@@ -751,7 +828,7 @@ export default function ServicesPage() {
             <span className="section-label">Сравнение</span>
           </Reveal>
           <TextReveal
-            text="Сравните форматы"
+            text="Сравните форматы и цены"
             as="h2"
             className="section-title section-title-light"
           />
@@ -760,8 +837,8 @@ export default function ServicesPage() {
               className="section-subtitle section-subtitle-light"
               style={{ maxWidth: 600, marginBottom: "2.5rem" }}
             >
-              Выберите подходящий формат мероприятия. Каждая карточка — это
-              отдельный мир возможностей с прозрачной ценой.
+              Выберите подходящий формат мероприятия. Каждая карточка —
+              прозрачная цена с резервом блюд +10% и гарантией по договору.
             </p>
           </Reveal>
 
@@ -928,7 +1005,7 @@ export default function ServicesPage() {
             <span className="section-label">Вопросы</span>
           </Reveal>
           <TextReveal
-            text="Частые вопросы"
+            text="Ответы на вопросы, которые вас волнуют"
             as="h2"
             className="section-title"
           />
@@ -938,7 +1015,7 @@ export default function ServicesPage() {
               style={{ marginBottom: "3rem" }}
             >
               Ответы на самые популярные вопросы о наших услугах. Не нашли свой?
-              Напишите нам — ответим в течение часа.
+              Напишите нам — ответим за 30 минут.
             </p>
           </Reveal>
 
@@ -953,12 +1030,21 @@ export default function ServicesPage() {
               >
                 <div
                   className="card"
+                  role="button"
+                  tabIndex={0}
+                  aria-expanded={openFaq === i}
                   style={{
                     overflow: "hidden",
                     cursor: "pointer",
                     transition: "box-shadow 0.4s",
                   }}
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      setOpenFaq(openFaq === i ? null : i);
+                    }
+                  }}
                 >
                   <div
                     style={{
@@ -1001,7 +1087,7 @@ export default function ServicesPage() {
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.4, ease: [0.25, 1, 0.5, 1] }}
+                        transition={{ duration: 0.4, ease: [0.25, 1, 0.5, 1] as const }}
                         style={{ overflow: "hidden" }}
                       >
                         <div
@@ -1009,7 +1095,7 @@ export default function ServicesPage() {
                             padding: "0 1.8rem 1.4rem",
                             fontSize: "0.95rem",
                             lineHeight: 1.8,
-                            color: "rgba(255,255,255,0.6)",
+                            color: "var(--color-text-subtle)",
                             borderTop: "1px solid var(--color-cream-darker)",
                             paddingTop: "1rem",
                           }}
@@ -1094,7 +1180,7 @@ export default function ServicesPage() {
                 marginBottom: "1rem",
               }}
             >
-              Создадим <em>идеальное</em> мероприятие
+              Создадим <em>идеальное</em> мероприятие — с гарантией по договору
             </h2>
             <p
               style={{
@@ -1106,8 +1192,8 @@ export default function ServicesPage() {
               }}
             >
               Оставьте заявку — и наш кейтеринг-консьерж свяжется с вами в
-              течение 30 минут. Бесплатная консультация, дегустация и
-              индивидуальное меню.
+              течение 30 минут. Бесплатная консультация, дегустация от 30
+              гостей и индивидуальное меню.
             </p>
             <div
               style={{
@@ -1130,7 +1216,7 @@ export default function ServicesPage() {
                   cursor: "pointer",
                 }}
               >
-                Заказать
+                Заказать — расчёт за 30 мин
               </ConfettiButton>
               <MagneticButton
                 as="a"
@@ -1207,9 +1293,11 @@ export default function ServicesPage() {
                   { label: "Фуршет", href: "/services#furshet" },
                   { label: "Банкет", href: "/services#banquet" },
                   { label: "Кофе-брейк", href: "/services#coffee" },
+                  { label: "Свадебный", href: "/services#wedding" },
                   { label: "Бар", href: "/services#bar" },
                   { label: "Десерт", href: "/services#dessert" },
                   { label: "Выездной ресторан", href: "/services#delivery" },
+                  { label: "Доставка закусок", href: "/services#snack-delivery" },
                 ].map((link) => (
                   <Link
                     key={link.href}
@@ -1286,14 +1374,14 @@ export default function ServicesPage() {
                 +7 (812) 919-59-11
               </a>
               <a
-                href="mailto:info@interfood-catering.ru"
+                href="mailto:interfood-catering@yandex.ru"
                 style={{
                   fontSize: "0.85rem",
                   display: "block",
                   marginBottom: "0.5rem",
                 }}
               >
-                info@interfood-catering.ru
+                interfood-catering@yandex.ru
               </a>
               <p
                 style={{
@@ -1303,7 +1391,7 @@ export default function ServicesPage() {
               >
                 Санкт-Петербург
                 <br />
-                Невский проспект, 100
+                Новолитовская ул., 15
               </p>
             </div>
           </div>

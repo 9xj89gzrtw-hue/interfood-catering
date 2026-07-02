@@ -48,7 +48,7 @@ export default function TextReveal({
               transition={{
                 duration: 0.7,
                 delay: delay + i * stagger,
-                ease: [0.25, 1, 0.5, 1],
+                ease: [0.25, 1, 0.5, 1] as const,
               }}
             >
               {unit.char}

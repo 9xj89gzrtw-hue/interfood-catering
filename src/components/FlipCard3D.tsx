@@ -35,7 +35,7 @@ export default function FlipCard3D({
     >
       <motion.div
         whileHover={{ [rotateAxis]: 180 }}
-        transition={{ duration: 0.6, ease: [0.25, 1, 0.5, 1] }}
+        transition={{ duration: 0.6, ease: [0.25, 1, 0.5, 1] as const }}
         style={{
           position: "relative",
           width: "100%",
@@ -65,7 +65,7 @@ export default function FlipCard3D({
             transform: `${rotateAxis}(180deg)`,
             borderRadius: 20,
             overflow: "hidden",
-            background: "#0F0F0F",
+            background: "var(--color-warm-white)",
           }}
         >
           {back}

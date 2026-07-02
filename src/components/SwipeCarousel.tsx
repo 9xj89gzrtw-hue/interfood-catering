@@ -71,7 +71,7 @@ export default function SwipeCarousel({
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -100 }}
-          transition={{ duration: 0.5, ease: [0.25, 1, 0.5, 1] }}
+          transition={{ duration: 0.5, ease: [0.25, 1, 0.5, 1] as const }}
         >
           {Array.isArray(children) ? children[current] : children}
         </motion.div>

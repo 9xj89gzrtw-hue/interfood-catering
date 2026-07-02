@@ -25,13 +25,13 @@ export default function AnimatedTypewriter({
   pauseDuration = 2000,
   className = "",
   style,
-  cursorColor = "var(--color-brand, #B8955A)",
+  cursorColor = "var(--color-brand, #B8860B)",
 }: AnimatedTypewriterProps) {
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const [displayedText, setDisplayedText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
   const [showCursor, setShowCursor] = useState(true);
-  const timeoutRef = useRef<NodeJS.Timeout>();
+  const timeoutRef = useRef<NodeJS.Timeout | undefined>(undefined);
 
   useEffect(() => {
     const currentFullText = texts[currentTextIndex];

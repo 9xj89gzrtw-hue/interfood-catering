@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 /* ═══════════════════════════════════════════════════════════════
    SpotlightCard — Card with mouse-following spotlight effect
@@ -20,7 +20,7 @@ export default function SpotlightCard({
   children,
   className = "",
   style,
-  spotlightColor = "rgba(184,149,90,0.12)",
+  spotlightColor = "rgba(160,125,63,0.10)",
   borderRadius = 20,
 }: SpotlightCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
@@ -44,7 +44,7 @@ export default function SpotlightCard({
         position: "relative",
         borderRadius,
         overflow: "hidden",
-        background: "#1A1A1A",
+        background: "#fff",
         boxShadow: "0 4px 30px rgba(0,0,0,0.06)",
         ...style,
       }}
@@ -54,7 +54,7 @@ export default function SpotlightCard({
       whileHover={{
         y: -8,
         boxShadow: "0 20px 60px rgba(0,0,0,0.12)",
-        transition: { duration: 0.4, ease: [0.25, 1, 0.5, 1] },
+        transition: { duration: 0.4, ease: [0.25, 1, 0.5, 1] as const },
       }}
     >
       {/* Spotlight overlay */}
@@ -86,7 +86,7 @@ export default function SpotlightCard({
             pointerEvents: "none",
             zIndex: 2,
             borderRadius,
-            border: "1px solid rgba(184,149,90,0.2)",
+            border: "1px solid rgba(160,125,63,0.18)",
           }}
         />
       )}
