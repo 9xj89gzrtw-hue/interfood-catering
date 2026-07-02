@@ -361,3 +361,41 @@ Stage Summary:
 - Build error was: cp standalone directory didn't exist ✅ (fixed)
 - Vercel token saved in .env locally ✅
 - Duplicate projects cleaned up ✅
+
+---
+Task ID: v70
+Agent: Main (Session 4)
+Task: Light Premium Theme + View Transitions API + Scroll-Driven Animations + Mobile Touch Enhancement
+
+Work Log:
+- Checked GitHub MEMORY.md and existing project state (v60 Dark Cinematic)
+- Researched interfood-catering.ru for real content (pricing, contacts, about text)
+- Researched View Transitions API, Scroll-Driven Animations, Mobile Touch best practices
+- Found CRITICAL BUG: ViewTransitionLink manually called startViewTransition() while Next.js 16 also wraps navigations — causing double-nested transitions
+- Created new Light Premium Design System v70 in globals.css with:
+  - Light surface system (#FAFAF7 → #F5F3EE → #EDE9E1)
+  - View Transitions CSS-only styling (::view-transition-old/new)
+  - 12 Scroll-Driven Animation CSS classes (sda-reveal, sda-scale, sda-clip, etc.)
+  - Mobile touch CSS enhancements (active states, safe areas, swipe hints)
+- Fixed ViewTransitionLink: removed manual startViewTransition(), now only tracks mouse position
+- Updated layout.tsx: themeColor #FAFAF7, body background #FAFAF7
+- Updated page.tsx: main background #FAFAF7
+- Ran light_theme_migrate.py script: updated 15 files from dark to light colors
+- Enhanced TouchInteractionProvider v2: iOS Taptic Engine hack, edge-swipe-back, haptic feedback
+- Updated ConversionCTA: default variant "light", light gradients
+- Updated menu/page.tsx: real pricing from interfood-catering.ru (Фуршет 2,450-5,350₽, Банкет 4,470-6,970₽, Кофе-брейк 950-2,450₽)
+- Updated contacts/page.tsx: real phone numbers, 5-field form, social links
+- Updated about/page.tsx: real about text from Дмитрий Нилов, light theme fixes
+- Build successful: all 24 pages compile without errors
+- Git commit: v70, pushed to GitHub
+- Vercel: token expired, pushed empty commit to trigger auto-deploy if Git integration is active
+
+Stage Summary:
+- Version: v70 — Light Premium + View Transitions + Scroll-Driven Animations + Mobile Touch
+- Key changes: Dark (#060607) → Light (#FAFAF7) theme across all pages
+- Bug fix: ViewTransitionLink no longer causes double-nested transitions
+- New: 12 CSS Scroll-Driven Animation classes with progressive enhancement
+- New: iOS Taptic Engine hack for haptic feedback on Safari
+- New: Real content synced from interfood-catering.ru
+- GitHub: up to date (commit af7783a8)
+- Vercel: needs re-authentication (token expired) — user should run `vercel login` or reconnect GitHub integration
