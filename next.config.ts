@@ -5,9 +5,10 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: true,
   },
   reactStrictMode: false,
-  experimental: {
-    viewTransition: true,
-  },
+  // viewTransition disabled for Vercel compatibility — re-enable after Vercel supports Next.js 16 experimental
+  // experimental: {
+  //   viewTransition: true,
+  // },
   images: {
     formats: ["image/avif", "image/webp"],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
