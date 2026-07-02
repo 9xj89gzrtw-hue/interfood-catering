@@ -5,6 +5,31 @@
 
 ---
 
+## v73 — 2026-07-03 — Mobile Hero Photo + Layout Fixes + Readability + Touch Feedback
+- **Тема**: Light Premium (продолжение v72)
+- **Hero v4**:
+  - ✅ Мобильная версия: СТАТИЧЕСКОЕ ФОТО вместо видео (надёжно!)
+  - ✅ Десктоп: видео с фоллбэками как прежде
+  - ✅ Усиленные text-shadow для читаемости на любом фоне
+  - ✅ Усиленный gradient overlay (тяжелее — текст всегда виден)
+  - ✅ Частицы с gold glow (больше видны на мобильных)
+- **StatsOdometer v2**:
+  - ✅ Убран кривой absolute div-призрак
+  - ✅ .container для центрации
+  - ✅ Правильная сетка с max-width + margin auto
+- **CulinaryJourney v2**:
+  - ✅ Clip-path теперь пикует в середине (bell-curve)
+  - ✅ inset(40%) → inset(0%) → inset(0%) — быстро раскрывается и остаётся
+- **Читаемость текста**:
+  - ✅ Hero: text-shadow усилен (3px 20px rgba(0,0,0,0.7))
+  - ✅ Gallery: белый текст с сильной тенью
+  - ✅ Gallery: тёмный vignette вместо светлого
+- **Мобильные WOW-эффекты**:
+  - ✅ ServicesShowcase: touch start/end обработчики
+  - ✅ ServicesShowcase: scale 1.03 на тап
+  - ✅ Firefox fallback: статический gold border вместо @property
+- **Gallery**: loading="lazy" вместо "eager"
+
 ## v72 — 2026-07-02 — Fix ALL broken media + Hero bulletproof + Animation fixes
 - **Тема**: Light Premium (продолжение v70)
 - **Критические фиксы**:

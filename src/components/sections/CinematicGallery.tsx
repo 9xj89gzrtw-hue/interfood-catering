@@ -180,7 +180,7 @@ function GalleryCard({
               <img
                 src={item.src}
                 alt={item.alt}
-                loading="eager"
+                loading="lazy"
                 style={{
                   width: "100%",
                   height: "100%",
@@ -193,13 +193,13 @@ function GalleryCard({
                 }}
               />
 
-              {/* Dark vignette overlay */}
+              {/* Dark vignette overlay for depth and label readability */}
               <div
                 style={{
                   position: "absolute",
                   inset: 0,
                   background:
-                    "linear-gradient(to top, rgba(250, 250, 247, 0.8) 0%, transparent 50%, rgba(250, 250, 247, 0.2) 100%)",
+                    "linear-gradient(to top, rgba(26, 23, 20, 0.7) 0%, transparent 50%, rgba(26, 23, 20, 0.15) 100%)",
                   pointerEvents: "none",
                 }}
               />
@@ -236,10 +236,10 @@ function GalleryCard({
                 style={{
                   fontFamily: "var(--font-serif)",
                   fontSize: "1.05rem",
-                  color: "var(--color-text-primary)",
+                  color: "#FFFFFF",
                   fontWeight: 300,
                   letterSpacing: "0.02em",
-                  textShadow: "0 2px 8px rgba(0,0,0,0.6)",
+                  textShadow: "0 2px 12px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.5)",
                 }}
               >
                 {item.alt}

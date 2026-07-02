@@ -95,6 +95,16 @@ const INJECTED_STYLES = `
   animation: svc-gradient-rotate 4s linear infinite;
   transition: box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1),
               background 0.3s;
+  /* Fallback for Firefox where @property is not supported */
+  border: 1px solid transparent;
+}
+
+@supports not (color: lab(50% 0 0)) {
+  .svc-gradient-border {
+    background: var(--color-brand-20);
+    border-color: var(--color-brand-20);
+    padding: 1.5px;
+  }
 }
 
 .svc-gradient-border[data-hovered="true"] {
@@ -143,6 +153,7 @@ function ServiceCard({
   const [magX, setMagX] = useState(0);
   const [magY, setMagY] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  const [isTouched, setIsTouched] = useState(false);
 
   const inView = useInView(cardRef, { once: true, margin: "-60px" });
 
@@ -151,10 +162,8 @@ function ServiceCard({
       const rect = e.currentTarget.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width - 0.5;
       const y = (e.clientY - rect.top) / rect.height - 0.5;
-      // 3D tilt: max ±8deg (x*16 → 0.5*16 = 8)
       setRotateX(-y * 16);
       setRotateY(x * 16);
-      // Magnetic: max ±5px (x*10 → 0.5*10 = 5)
       setMagX(x * 10);
       setMagY(-y * 10);
     },
@@ -169,8 +178,19 @@ function ServiceCard({
     setIsHovered(false);
   }, []);
 
+  // Touch feedback for mobile: scale up on tap
+  const handleTouchStart = useCallback(() => {
+    setIsTouched(true);
+    setIsHovered(true);
+  }, []);
+  const handleTouchEnd = useCallback(() => {
+    setIsTouched(false);
+    setTimeout(() => setIsHovered(false), 300);
+  }, []);
+
   // Depth offset: card rises 4px when hovered, combined with magnetic Y
   const yOffset = isHovered ? magY - 4 : magY;
+  const touchScale = isTouched ? 1.03 : 1;
 
   return (
     <motion.div
@@ -185,12 +205,14 @@ function ServiceCard({
       style={{ perspective: 800 }}
     >
       <motion.div
-        animate={{ rotateX, rotateY, x: magX, y: yOffset }}
+        animate={{ rotateX, rotateY, x: magX, y: yOffset, scale: touchScale }}
         transition={{ type: "spring", stiffness: 300, damping: 30 }}
         style={{ transformPerspective: 800, willChange: "transform" }}
         onMouseMove={handleMouseMove}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={handleMouseLeave}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
       >
         <Link
           href={service.href}

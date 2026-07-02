@@ -8,7 +8,7 @@
 > **Vercel проект:** interfood-catering (дубли удалены)  
 > **Vercel URL:** https://interfood-catering.vercel.app  
 > **GitHub Pages:** https://9xj89gzrtw-hue.github.io/interfood-catering/  
-> **Текущая версия:** v72 — Fix ALL broken media + Hero bulletproof + Animation fixes
+> **Текущая версия:** v73 — Mobile Hero Photo + Layout Fixes + Readability + Touch Feedback
 
 ---
 
