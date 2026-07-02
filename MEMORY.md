@@ -248,3 +248,54 @@
 ---
 
 *Последнее обновление: 2026-07-02 (сессия 2)*
+
+---
+
+## 🔍 Vercel Деплой — Статус расследования (сессия 2)
+
+### Что сделано:
+1. ✅ MEMORY.md обновлён и запушен на GitHub
+2. ✅ Создан vercel.json и .node-version для сборки на Vercel
+3. ✅ Добавлен и упрощён vercel.json (framework: nextjs)
+4. ✅ Код собирается локально без ошибок (`npx next build` ✅)
+5. ❌ Vercel деплои продолжают падать (все 13+ последних деплоев = failure)
+
+### Что проверено:
+- ❌ `~/.vercel/auth.json` — не существует
+- ❌ `.vercel/` — не существует  
+- ❌ `.env` — только DATABASE_URL
+- ❌ GitHub Secrets — 0 секретов во всех окружениях
+- ❌ Git history — нет VERCEL_TOKEN
+- ❌ Vercel API — требует авторизацию
+- ❌ Vercel CLI — требует `vercel login` или `--token`
+- ❌ GitHub App installation API — токен не имеет нужных scopes
+
+### Vercel проекты (3 штуки — дубли):
+- `interfood-catering` — https://vercel.com/9xj89gzrtw-hues-projects/interfood-catering
+- `interfood-catering-4ww8` — https://vercel.com/9xj89gzrtw-hues-projects/interfood-catering-4ww8
+- `interfood-catering-k3uf` — https://vercel.com/9xj89gzrtw-hues-projects/interfood-catering-k3uf
+
+### Последние успешные деплои:
+- sha c0dd0d2 — 2026-07-02T04:48:52Z (commit до v34)
+
+### Последующие деплои (все FAILED):
+- sha aebd3b9 → v34 Secret Hacks 2026
+- sha 9990cc0 → WhatsApp fix
+- sha d766185 → worklog update
+- sha d719d0a → GitHub Actions workflow
+- sha 0c52231 → workflow removed
+- sha bcbd0b5 → next build fix
+- sha 2fc9eaa → MEMORY update
+- sha 62cef5b → vercel.json + .node-version
+- sha 2408df9 → viewTransition disabled
+- sha e0baef5 → viewTransition restored, vercel.json simplified
+
+### Как починить:
+1. **Получить Vercel токен**: зайти на https://vercel.com/account/tokens → создать токен
+2. **Или**: `npx vercel login` в терминале с браузером
+3. **Получить логи**: `npx vercel inspect dpl_EB8w67mwwzSSuTscx9AquP2r --logs --token <TOKEN>`
+4. **Исправить ошибку** по логам
+5. **Удалить дубли проектов**: оставить только `interfood-catering`
+
+### Рабочая альтернатива:
+- **GitHub Pages**: https://9xj89gzrtw-hue.github.io/interfood-catering/ ✅ работает
