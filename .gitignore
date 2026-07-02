@@ -71,3 +71,5 @@ server.log
 /images_v11_b64/
 /tool-results/.env
 .env
+.pipeline/screenshots/
+.pipeline/snapshots/

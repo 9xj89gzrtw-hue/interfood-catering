@@ -1,7 +1,7 @@
 # 🧠 MEMORY.md — Файл памяти проекта Интерфуд Кейтеринг
 
 > **Создан:** 2026-07-02  
-> **Обновлён:** 2026-07-03 (сессия 11 — Process Redesign + Quality Gates v2)
+> **Обновлён:** 2026-07-03 (сессия 12 — Quality Pipeline v3 + Pre-commit Hook)
 > **Проект:** Сайт кейтеринговой компании «Интерфуд» (interfood-catering.ru)  
 > **Репозиторий:** https://github.com/9xj89gzrtw-hue/interfood-catering  
 > **Vercel:** ✅ Токен получен от пользователя  
@@ -9,7 +9,7 @@
 > **Vercel URL:** https://interfood-catering.vercel.app  
 > **GitHub Pages:** https://9xj89gzrtw-hue.github.io/interfood-catering/  
 > **Текущая версия:** v81 — Ultra WOW: 2026 Motion Design + MenuBuilder Nav Fix + Interactive Effects
-> **Процесс разработки:** v2 — 6-фазный цикл + Quality Gates v2 + Реестр багов
+> **Процесс разработки:** v3 — Quality Pipeline v3 + Pre-commit Hook + 8-этапный конвейер
 
 ---
 
@@ -263,19 +263,38 @@
 
 ### Документы процесса:
 - **PROCESS_AUDIT.md** — полный аудит старого процесса + корневые причины
-- **DEV_STANDARD.md** — обязательный стандарт разработки (6 фаз)
+- **DEV_STANDARD.md** — обязательный стандарт разработки v3 (Quality Pipeline)
 - **BUG_REGISTRY.md** — реестр багов (никогда не удалять)
-- **scripts/quality-gates-v2.sh** — автоматизированные Quality Gates с agent-browser
+- **scripts/quality-pipeline.sh** — 30 проверок в 8 этапах (P1-P8)
+- **scripts/quality-gates-v2.sh** — предыдущая версия (заменена на pipeline)
+- **scripts/pre-commit-hook.sh** — автоматический pre-commit hook
+- **.pipeline/** — директория с отчётами и скриншотами pipeline
 
-### Ключевые изменения:
-1. ❌ ЗАПРЕЩЕНО: commit/push/deploy без прохождения Quality Gates v2
+### Quality Pipeline v3 — 8 этапов, 30 проверок:
+1. **P1: Статический анализ** — build, ignoreBuildErrors, TypeScript, ESLint, unused deps
+2. **P2: Анализ кода** — pointer-events, z-index, duplicate CSS, console.log
+3. **P3: Проверка ресурсов** — images, videos, routes HTTP, internal links
+4. **P4: Браузерное тестирование** — console errors, hero, nav, CTA, MenuBuilder, mobile, footer
+5. **P5: Визуальная регрессия** — desktop/mobile/tablet screenshots, baseline diff
+6. **P6: Производительность** — page load time, Core Web Vitals
+7. **P7: Доступность** — ARIA, alt text, form labels, color contrast
+8. **P8: Верификация багов** — BUG_REGISTRY open items
+
+### Ключевые правила:
+1. ❌ ЗАПРЕЩЕНО: commit/push/deploy без прохождения Pipeline
 2. ❌ ЗАПРЕЩЕНО: использовать `ignoreBuildErrors: true`
 3. ❌ ЗАПРЕЩЕНО: писать "✅ исправлено" без объективного подтверждения
-4. ❌ ЗАПРЕЩЕНО: добавлять новые эффекты с открытыми багами
-5. ✅ ОБЯЗАТЕЛЬНО: 6-фазный рабочий цикл (Анализ → Изменение → Статика → Браузер → Критик → Решение)
+4. ❌ ЗАПРЕЩЕНО: повышать версию при критических багах
+5. ✅ ОБЯЗАТЕЛЬНО: pre-commit hook запускается автоматически
 6. ✅ ОБЯЗАТЕЛЬНО: agent-browser для проверки реального рендеринга
 7. ✅ ОБЯЗАТЕЛЬНО: 2 полных цикла без новых ошибок перед commit
 8. ✅ ОБЯЗАТЕЛЬНО: обновлять BUG_REGISTRY.md
+
+### Что НЕ автоматизировано (честно):
+- Пиксельное сравнение скриншотов → размер файла как proxy (нужен Percy/Chromatic)
+- Lighthouse CI → Navigation Timing API как proxy
+- Core Web Vitals → async observer не работает синхронно
+- Цветовой контраст WCAG → дизайн-система проверена вручную (нужен axe-core)
 
 ### Известные баги (BUG_REGISTRY.md):
 - BUG-001: Кнопка "Скачать PDF" перекрыта на мобильном
