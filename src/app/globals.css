@@ -51,7 +51,7 @@
   /* ─── Text System on Light ─── */
   --color-text-primary: #1A1714;
   --color-text-secondary: #5C564D;
-  --color-text-muted: #8A8578;
+  --color-text-muted: #6B655A;
   --color-text-subtle: #B0A99E;
 
   /* ─── Accent Colors ─── */
@@ -313,7 +313,7 @@ body {
 
 /* ═══ SECTION TYPOGRAPHY ═══ */
 .section-label {
-  font-size: 0.6rem;
+  font-size: 0.7rem;
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--color-brand);

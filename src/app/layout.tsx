@@ -163,7 +163,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrg) }} />
       </head>
-      <body className={`${cormorant.variable} ${inter.variable} antialiased min-h-screen flex flex-col`} style={{ background: "#FAFAF7", color: "#FAFAF7" }}>
+      <body className={`${cormorant.variable} ${inter.variable} antialiased min-h-screen flex flex-col`} style={{ background: "#FAFAF7", color: "#1A1714" }}>
         <a href="#main-content" className="skip-to-content">
           Перейти к основному содержанию
         </a>

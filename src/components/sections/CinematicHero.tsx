@@ -353,8 +353,7 @@ export default function CinematicHero() {
             textShadow: "0 2px 12px rgba(0,0,0,0.7), 0 0 30px rgba(0,0,0,0.4)",
           }}
         >
-          3 500+ мероприятий за 18 лет. Собственная кухня, авторское меню Дмитрия
-          Нилова и сервис, который не замечают — но запоминают
+          Собственная кухня. 18 лет. 3 500+ мероприятий в Санкт-Петербурге
         </motion.p>
 
         {/* CTA Buttons */}
@@ -367,6 +366,7 @@ export default function CinematicHero() {
           <a href="/contacts" className="btn-gold" style={{ minWidth: "44px", minHeight: "44px", textDecoration: "none" }}>
             Получить меню и расчёт
           </a>
+          <span style={{ fontSize: "0.7rem", color: "rgba(255,255,255,0.5)", letterSpacing: "0.05em", textShadow: "0 1px 4px rgba(0,0,0,0.5)" }}>Ответим за 30 минут</span>
           <a href="/calculator" className="btn-outline" style={{ minWidth: "44px", minHeight: "44px", textDecoration: "none", borderColor: "rgba(255,255,255,0.4)", color: "#FFFFFF" }}>
             Рассчитать стоимость
           </a>
