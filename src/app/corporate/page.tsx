@@ -29,22 +29,22 @@ import ConfettiButton from "@/components/ConfettiButton";
    ═══════════════════════════════════════════════════════════════ */
 
 const VID = {
-  hero: "/videos/catering2.mp4",
-  corporate1: "/videos/catering2.mp4",
-  corporate2: "/videos/catering1.mp4",
-  corporate3: "/videos/catering2.mp4",
-  corporate4: "/videos/catering1.mp4",
+  hero: "/videos/hero-catering.mp4",
+  corporate1: "/videos/hero-catering.mp4",
+  corporate2: "/videos/hero-catering.mp4",
+  corporate3: "/videos/hero-catering.mp4",
+  corporate4: "/videos/hero-catering.mp4",
 };
 
 const IMG = {
-  corporate: "/images/b26bc8017630.png",
-  conference: "/images/31ca0a361dc4.jpg",
-  teambuilding: "/images/a2fbd3b8447b.jpg",
-  presentation: "/images/4f51d25798b0.jpg",
-  buffet: "/images/b0afca3cdeee.jpg",
-  bar: "/images/c73dc40e41d4.jpg",
-  dessert: "/images/cf9ca554baf6.jpg",
-  hero: "/images/3a442a2e6e71.jpg",
+  corporate: "/images/wedding.jpg",
+  conference: "/images/hero_ship.jpg",
+  teambuilding: "/images/food_general.jpg",
+  presentation: "/images/banket_food1.jpg",
+  buffet: "/images/furshet_food.jpg",
+  bar: "/images/gallery_4.jpg",
+  dessert: "/images/coffee.jpg",
+  hero: "/images/gallery_1.jpg",
 };
 
 /* ─── Data ─── */

@@ -20,14 +20,14 @@ export const metadata: Metadata = {
     description:
       "Меню кейтеринга: фуршет, банкет, кофе-брейк, бар, десерты. Авторская кухня от шеф-повара Дмитрия Нилова.",
     url: "https://interfood-catering.ru/menu",
-    images: [{ url: "/images/b0afca3cdeee.jpg", width: 1200, height: 630, alt: "Меню кейтеринга Интерфуд" }],
+    images: [{ url: "/images/furshet_food.jpg", width: 1200, height: 630, alt: "Меню кейтеринга Интерфуд" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Меню кейтеринга — Интерфуд Кейтеринг",
     description:
       "Меню кейтеринга: фуршет, банкет, кофе-брейк, бар, десерты.",
-    images: ["/images/b0afca3cdeee.jpg"],
+    images: ["/images/furshet_food.jpg"],
   },
 };
 

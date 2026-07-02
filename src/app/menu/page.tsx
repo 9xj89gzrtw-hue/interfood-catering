@@ -23,22 +23,22 @@ import TextMarquee from "@/components/TextMarquee";
    ═══════════════════════════════════════════════════════════════ */
 
 const VID = {
-  hero: "/videos/catering2.mp4",
-  kitchen: "/videos/catering1.mp4",
-  cooking: "/videos/catering1.mp4",
-  food1: "/videos/catering2.mp4",
+  hero: "/videos/hero-catering.mp4",
+  kitchen: "/videos/hero-catering.mp4",
+  cooking: "/videos/hero-catering.mp4",
+  food1: "/videos/hero-catering.mp4",
 };
 
 const IMG = {
-  furshet: "/images/real/furshet_real.jpg",
-  banquet: "/images/real/furshet_serving.jpg",
-  coffee: "/images/real/gallery_pro_3.jpg",
-  bar: "/images/real/gallery_pro_7.jpg",
-  dessert: "/images/real/gallery_pro_9.jpg",
-  canape: "/images/real/furshet_canape.jpg",
-  chef: "/images/real/chef_about.jpg",
-  roses: "/images/real/gallery_pro_2.jpg",
-  wedding: "/images/real/event_wedding.jpg",
+  furshet: "/images/furshet.jpg",
+  banquet: "/images/furshet_food.jpg",
+  coffee: "/images/gallery_3.jpg",
+  bar: "/images/banket.jpg",
+  dessert: "/images/food_shrimp.jpg",
+  canape: "/images/furshet_canape.jpg",
+  chef: "/images/about.jpg",
+  roses: "/images/gallery_2.jpg",
+  wedding: "/images/wedding.jpg",
 };
 
 /* ─── Data ─── */
@@ -547,11 +547,11 @@ export default function MenuPage() {
             loop
             playsInline
             preload="metadata"
-            poster="/images/poster_kitchen.jpg"
+            poster="/images/hero-poster.jpg"
             aria-hidden="true"
             style={{ width: "100%", height: "100%", objectFit: "cover" }}
           >
-            <source src="/videos/catering1.mp4" type="video/mp4" />
+            <source src="/videos/hero-catering.mp4" type="video/mp4" />
           </video>
         </div>
 

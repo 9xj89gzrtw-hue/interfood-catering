@@ -30,26 +30,26 @@ import TiltCard from "@/components/TiltCard";
 
 // ─── IMAGE URLS ───
 const IMG = {
-  furshet: "/images/a2fbd3b8447b.jpg",
-  banquet: "/images/b0afca3cdeee.jpg",
-  coffee: "/images/4f51d25798b0.jpg",
-  bar: "/images/c73dc40e41d4.jpg",
-  dessert: "/images/cf9ca554baf6.jpg",
-  canape: "/images/2585575d2db2.jpg",
-  chef: "/images/7d1938ffb3e1.jpg",
-  roses: "/images/85381eb37c45.jpg",
-  wedding: "/images/b77fad9eff9e.jpg",
-  corporate: "/images/b26bc8017630.png",
-  decor: "/images/99f244d30b4d.jpg",
-  hero: "/images/3a442a2e6e71.jpg",
+  furshet: "/images/food_general.jpg",
+  banquet: "/images/furshet_food.jpg",
+  coffee: "/images/banket_food1.jpg",
+  bar: "/images/gallery_4.jpg",
+  dessert: "/images/coffee.jpg",
+  canape: "/images/food_salmon.jpg",
+  chef: "/images/gallery_2.jpg",
+  roses: "/images/banket_meat.jpg",
+  wedding: "/images/gallery_3.jpg",
+  corporate: "/images/wedding.jpg",
+  decor: "/images/food_shrimp.jpg",
+  hero: "/images/gallery_1.jpg",
 };
 
 // ─── VIDEO URLS ───
 const VID = {
-  hero: "/videos/catering2.mp4",
-  kitchen: "/videos/catering1.mp4",
-  serving: "/videos/catering2.mp4",
-  cooking: "/videos/catering2.mp4",
+  hero: "/videos/hero-catering.mp4",
+  kitchen: "/videos/hero-catering.mp4",
+  serving: "/videos/hero-catering.mp4",
+  cooking: "/videos/hero-catering.mp4",
 };
 
 // ─── SERVICE DATA ───
@@ -503,19 +503,19 @@ export default function ServicesPage() {
         const videoBreakAfter =
           i === 1 ? (
             <VideoBreak
-              src="/videos/catering1.mp4"
+              src="/videos/hero-catering.mp4"
               title="Вкус, который запоминают"
               subtitle="Шеф Дмитрий Нилов, 500+ авторских рецептов — каждое блюдо исчезает со стола за минуты"
             />
           ) : i === 3 ? (
             <VideoBreak
-              src="/videos/catering2.mp4"
+              src="/videos/hero-catering.mp4"
               title="Сервис, который не замечают"
               subtitle="1 официант на 10 гостей, подача ±3 минуты от таймлайна — гости даже не ждут"
             />
           ) : i === 5 ? (
             <VideoBreak
-              src="/videos/catering2.mp4"
+              src="/videos/hero-catering.mp4"
               title="Ваш праздник без забот"
               subtitle="Один подрядчик: меню, бар, декор, персонал — один договор, одна команда, ноль стресса"
             />

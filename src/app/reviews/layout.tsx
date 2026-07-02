@@ -18,14 +18,14 @@ export const metadata: Metadata = {
     description:
       "Отзывы клиентов Интерфуд Кейтеринг. Реальные истории свадеб, корпоративов и праздников.",
     url: "https://interfood-catering.ru/reviews",
-    images: [{ url: "/images/3a442a2e6e71.jpg", width: 1200, height: 630, alt: "Отзывы клиентов Интерфуд" }],
+    images: [{ url: "/images/gallery_1.jpg", width: 1200, height: 630, alt: "Отзывы клиентов Интерфуд" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Отзывы — Интерфуд Кейтеринг",
     description:
       "Отзывы клиентов Интерфуд Кейтеринг. Реальные истории.",
-    images: ["/images/3a442a2e6e71.jpg"],
+    images: ["/images/gallery_1.jpg"],
   },
 };
 

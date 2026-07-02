@@ -27,12 +27,12 @@ import VideoBreak from "@/components/VideoBreak";
    ═══════════════════════════════════════════════════════════════ */
 
 const IMG = {
-  furshet: "/images/a2fbd3b8447b.jpg",
-  banquet: "/images/b0afca3cdeee.jpg",
-  coffee: "/images/4f51d25798b0.jpg",
-  wedding: "/images/b77fad9eff9e.jpg",
-  corporate: "/images/b26bc8017630.png",
-  bar: "/images/c73dc40e41d4.jpg",
+  furshet: "/images/food_general.jpg",
+  banquet: "/images/furshet_food.jpg",
+  coffee: "/images/banket_food1.jpg",
+  wedding: "/images/gallery_3.jpg",
+  corporate: "/images/wedding.jpg",
+  bar: "/images/gallery_4.jpg",
 };
 
 /* ─── Data ─── */
@@ -449,7 +449,7 @@ export default function CalculatorPage() {
 
       {/* ─── Video Break ─── */}
       <VideoBreak
-        src="/videos/catering1.mp4"
+        src="/videos/hero-catering.mp4"
         title="Рассчитайте ваш праздник"
         subtitle="Точная стоимость за 60 секунд — без скрытых доплат"
       />

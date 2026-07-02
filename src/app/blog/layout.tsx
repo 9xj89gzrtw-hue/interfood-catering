@@ -19,14 +19,14 @@ export const metadata: Metadata = {
     description:
       "Блог о кейтеринге, рецепты от шеф-повара Дмитрия Нилова, советы по организации мероприятий.",
     url: "https://interfood-catering.ru/blog",
-    images: [{ url: "/images/cf9ca554baf6.jpg", width: 1200, height: 630, alt: "Блог и рецепты Интерфуд" }],
+    images: [{ url: "/images/coffee.jpg", width: 1200, height: 630, alt: "Блог и рецепты Интерфуд" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Блог и рецепты — Интерфуд Кейтеринг",
     description:
       "Рецепты от шеф-повара Дмитрия Нилова, советы по организации мероприятий.",
-    images: ["/images/cf9ca554baf6.jpg"],
+    images: ["/images/coffee.jpg"],
   },
 };
 

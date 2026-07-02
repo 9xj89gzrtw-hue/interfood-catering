@@ -19,14 +19,14 @@ export const metadata: Metadata = {
     description:
       "Корпоративный кейтеринг в Санкт-Петербурге. Конференции, форумы, тимбилдинги. 1200+ мероприятий.",
     url: "https://interfood-catering.ru/corporate",
-    images: [{ url: "/images/b26bc8017630.png", width: 1200, height: 630, alt: "Корпоративный кейтеринг Интерфуд" }],
+    images: [{ url: "/images/wedding.jpg", width: 1200, height: 630, alt: "Корпоративный кейтеринг Интерфуд" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Корпоративный кейтеринг — Интерфуд Кейтеринг",
     description:
       "Корпоративный кейтеринг в Санкт-Петербурге. 1200+ мероприятий.",
-    images: ["/images/b26bc8017630.png"],
+    images: ["/images/wedding.jpg"],
   },
 };
 

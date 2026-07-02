@@ -26,9 +26,9 @@ import LottiePlaceholder from "@/components/LottiePlaceholder";
    ═══════════════════════════════════════════════════════════════ */
 
 const IMG = {
-  hero: "/images/31ca0a361dc4.jpg",
-  office: "/images/5a35d18ab4c2.jpg",
-  kitchen: "/images/a2fbd3b8447b.jpg",
+  hero: "/images/hero_ship.jpg",
+  office: "/images/about.jpg",
+  kitchen: "/images/food_general.jpg",
 };
 
 const CONTACT_CARDS = [

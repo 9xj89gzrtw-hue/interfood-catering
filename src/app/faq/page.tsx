@@ -300,10 +300,10 @@ export default function FAQPage() {
             loop
             playsInline
             preload="metadata"
-            poster="/images/poster_kitchen.jpg"
+            poster="/images/hero-poster.jpg"
           >
             <source
-              src="/videos/catering1.mp4"
+              src="/videos/hero-catering.mp4"
               type="video/mp4"
             />
           </video>

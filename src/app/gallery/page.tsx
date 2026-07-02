@@ -28,34 +28,34 @@ import { useIsMobile } from "@/hooks/use-mobile";
 type BentoSize = "large" | "medium" | "small";
 
 const IMAGES = [
-  { src: "/images/real/furshet_real.jpg", alt: "Фуршет", cat: "furshet", size: "large" as BentoSize, desc: "Изысканные фуршетные закуски, оформленные с вниманием к каждой детали" },
-  { src: "/images/real/furshet_serving.jpg", alt: "Банкет", cat: "banquet", size: "medium" as BentoSize, desc: "Роскошная банкетная сервировка в авторском стиле" },
-  { src: "/images/real/gallery_pro_3.jpg", alt: "Кофе-брейк", cat: "coffee", size: "small" as BentoSize, desc: "Уютная зона кофе-брейка для делового мероприятия" },
-  { src: "/images/real/event_wedding.jpg", alt: "Свадьба", cat: "wedding", size: "large" as BentoSize, desc: "Свадебный ужин в авторском стиле Интерфуд" },
-  { src: "/images/real/gallery_pro_6.jpg", alt: "Корпоратив", cat: "corporate", size: "medium" as BentoSize, desc: "Корпоративное мероприятие для 300 гостей" },
-  { src: "/images/real/event_decor.jpg", alt: "Декор", cat: "decor", size: "small" as BentoSize, desc: "Авторский декор в золотистых тонах" },
-  { src: "/images/real/gallery_pro_7.jpg", alt: "Бар", cat: "furshet", size: "medium" as BentoSize, desc: "Коктейльная станция с авторскими напитками" },
-  { src: "/images/real/gallery_pro_9.jpg", alt: "Десерт", cat: "banquet", size: "small" as BentoSize, desc: "Десертный стол — визуальный центр праздника" },
-  { src: "/images/real/furshet_canape.jpg", alt: "Канапе", cat: "furshet", size: "medium" as BentoSize, desc: "Канапе ручной работы из свежих ингредиентов" },
-  { src: "/images/real/chef_about.jpg", alt: "Шеф", cat: "corporate", size: "large" as BentoSize, desc: "Шеф-повар за работой — живая готовка на мероприятии" },
-  { src: "/images/real/gallery_pro_2.jpg", alt: "Розы", cat: "wedding", size: "small" as BentoSize, desc: "Цветочное оформление свадебного торжества" },
-  { src: "/images/real/event_loft.jpg", alt: "Зал", cat: "banquet", size: "medium" as BentoSize, desc: "Банкетный зал в классическом стиле" },
-  { src: "/images/real/gallery_pro_1.jpg", alt: "Мероприятие", cat: "corporate", size: "large" as BentoSize, desc: "Масштабное корпоративное мероприятие" },
-  { src: "/images/real/furshet_canape2.jpg", alt: "Гриль-станция", cat: "furshet", size: "small" as BentoSize, desc: "Гриль-станция с живой готовкой на открытом воздухе" },
-  { src: "/images/real/gallery_pro_4.jpg", alt: "Сервировка", cat: "banquet", size: "medium" as BentoSize, desc: "Индивидуальная сервировка по стандартам премиум-ресторанов" },
-  { src: "/images/real/gallery_pro_5.jpg", alt: "Молодожёны", cat: "wedding", size: "small" as BentoSize, desc: "Свадебный вечер — романтика и гастрономия" },
-  { src: "/images/real/gallery_pro_8.jpg", alt: "Перерыв", cat: "coffee", size: "medium" as BentoSize, desc: "Кофе-пауза — время для нетворкинга" },
-  { src: "/images/real/gallery_pro_10.jpg", alt: "Цветы", cat: "decor", size: "large" as BentoSize, desc: "Живые цветы в авторской аранжировке" },
-  { src: "/images/real/gallery_pro_11.jpg", alt: "Коктейли", cat: "furshet", size: "small" as BentoSize, desc: "Сигнатурные коктейли для вашего мероприятия" },
-  { src: "/images/real/gallery_pro_12.jpg", alt: "Торт", cat: "wedding", size: "medium" as BentoSize, desc: "Свадебный торт ручной работы" },
+  { src: "/images/furshet.jpg", alt: "Фуршет", cat: "furshet", size: "large" as BentoSize, desc: "Изысканные фуршетные закуски, оформленные с вниманием к каждой детали" },
+  { src: "/images/furshet_food.jpg", alt: "Банкет", cat: "banquet", size: "medium" as BentoSize, desc: "Роскошная банкетная сервировка в авторском стиле" },
+  { src: "/images/gallery_3.jpg", alt: "Кофе-брейк", cat: "coffee", size: "small" as BentoSize, desc: "Уютная зона кофе-брейка для делового мероприятия" },
+  { src: "/images/wedding.jpg", alt: "Свадьба", cat: "wedding", size: "large" as BentoSize, desc: "Свадебный ужин в авторском стиле Интерфуд" },
+  { src: "/images/gallery_6.jpg", alt: "Корпоратив", cat: "corporate", size: "medium" as BentoSize, desc: "Корпоративное мероприятие для 300 гостей" },
+  { src: "/images/banket_table1.jpg", alt: "Декор", cat: "decor", size: "small" as BentoSize, desc: "Авторский декор в золотистых тонах" },
+  { src: "/images/banket.jpg", alt: "Бар", cat: "furshet", size: "medium" as BentoSize, desc: "Коктейльная станция с авторскими напитками" },
+  { src: "/images/food_shrimp.jpg", alt: "Десерт", cat: "banquet", size: "small" as BentoSize, desc: "Десертный стол — визуальный центр праздника" },
+  { src: "/images/furshet_canape.jpg", alt: "Канапе", cat: "furshet", size: "medium" as BentoSize, desc: "Канапе ручной работы из свежих ингредиентов" },
+  { src: "/images/about.jpg", alt: "Шеф", cat: "corporate", size: "large" as BentoSize, desc: "Шеф-повар за работой — живая готовка на мероприятии" },
+  { src: "/images/gallery_2.jpg", alt: "Розы", cat: "wedding", size: "small" as BentoSize, desc: "Цветочное оформление свадебного торжества" },
+  { src: "/images/hero_rooftop.jpg", alt: "Зал", cat: "banquet", size: "medium" as BentoSize, desc: "Банкетный зал в классическом стиле" },
+  { src: "/images/gallery_1.jpg", alt: "Мероприятие", cat: "corporate", size: "large" as BentoSize, desc: "Масштабное корпоративное мероприятие" },
+  { src: "/images/furshet_canape.jpg", alt: "Гриль-станция", cat: "furshet", size: "small" as BentoSize, desc: "Гриль-станция с живой готовкой на открытом воздухе" },
+  { src: "/images/gallery_4.jpg", alt: "Сервировка", cat: "banquet", size: "medium" as BentoSize, desc: "Индивидуальная сервировка по стандартам премиум-ресторанов" },
+  { src: "/images/gallery_5.jpg", alt: "Молодожёны", cat: "wedding", size: "small" as BentoSize, desc: "Свадебный вечер — романтика и гастрономия" },
+  { src: "/images/furshet_canape.jpg", alt: "Перерыв", cat: "coffee", size: "medium" as BentoSize, desc: "Кофе-пауза — время для нетворкинга" },
+  { src: "/images/wedding.jpg", alt: "Цветы", cat: "decor", size: "large" as BentoSize, desc: "Живые цветы в авторской аранжировке" },
+  { src: "/images/hero_gala.jpg", alt: "Коктейли", cat: "furshet", size: "small" as BentoSize, desc: "Сигнатурные коктейли для вашего мероприятия" },
+  { src: "/images/banket_food1.jpg", alt: "Торт", cat: "wedding", size: "medium" as BentoSize, desc: "Свадебный торт ручной работы" },
 ];
 
 // ─── VIDEO DATA ───
 const VIDEOS = [
-  { src: "/videos/catering2.mp4", title: "Наша кухня" },
-  { src: "/videos/catering1.mp4", title: "Приготовление" },
-  { src: "/videos/catering1.mp4", title: "Сервировка" },
-  { src: "/videos/catering2.mp4", title: "Обслуживание" },
+  { src: "/videos/hero-catering.mp4", title: "Наша кухня" },
+  { src: "/videos/hero-catering.mp4", title: "Приготовление" },
+  { src: "/videos/hero-catering.mp4", title: "Сервировка" },
+  { src: "/videos/hero-catering.mp4", title: "Обслуживание" },
 ];
 
 // ─── CATEGORIES ───
@@ -481,11 +481,11 @@ export default function GalleryPage() {
             loop
             playsInline
             preload="metadata"
-            poster="/images/poster_hero.jpg"
+            poster="/images/hero-poster.jpg"
             aria-label="Видео-фон: кейтеринг Интерфуд"
             style={{ width: "100%", height: "100%", objectFit: "cover" }}
           >
-            <source src="/videos/catering2.mp4" type="video/mp4" />
+            <source src="/videos/hero-catering.mp4" type="video/mp4" />
           </video>
         </motion.div>
         <div

@@ -30,25 +30,25 @@ import ConfettiButton from "@/components/ConfettiButton";
    ═══════════════════════════════════════════════════════════════ */
 
 const VID = {
-  hero: "/videos/catering1.mp4",
-  decor: "/videos/catering2.mp4",
-  wedding1: "/videos/catering2.mp4",
-  wedding2: "/videos/catering1.mp4",
-  wedding3: "/videos/catering2.mp4",
-  wedding4: "/videos/catering1.mp4",
+  hero: "/videos/hero-catering.mp4",
+  decor: "/videos/hero-catering.mp4",
+  wedding1: "/videos/hero-catering.mp4",
+  wedding2: "/videos/hero-catering.mp4",
+  wedding3: "/videos/hero-catering.mp4",
+  wedding4: "/videos/hero-catering.mp4",
 };
 
 const IMG = {
-  hero: "/images/real/event_wedding.jpg",
-  decor: "/images/real/event_decor.jpg",
-  roses: "/images/real/gallery_pro_5.jpg",
-  cake: "/images/real/gallery_pro_10.jpg",
-  flowers: "/images/real/gallery_pro_2.jpg",
-  pair: "/images/real/event_wedding.jpg",
-  champagne: "/images/real/gallery_pro_7.jpg",
-  terrace: "/images/real/event_loft.jpg",
-  banquet: "/images/real/furshet_serving.jpg",
-  dessert: "/images/real/gallery_pro_9.jpg",
+  hero: "/images/wedding.jpg",
+  decor: "/images/banket_table1.jpg",
+  roses: "/images/gallery_5.jpg",
+  cake: "/images/wedding.jpg",
+  flowers: "/images/gallery_2.jpg",
+  pair: "/images/wedding.jpg",
+  champagne: "/images/banket.jpg",
+  terrace: "/images/hero_rooftop.jpg",
+  banquet: "/images/furshet_food.jpg",
+  dessert: "/images/food_shrimp.jpg",
 };
 
 /* ─── Packages ─── */

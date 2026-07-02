@@ -640,6 +640,12 @@ body {
   100% { clip-path: circle(100% at 50% 50%); }
 }
 
+/* ─── Ripple expand (button click feedback) ─── */
+@keyframes ripple-expand {
+  0% { width: 0; height: 0; opacity: 0.5; }
+  100% { width: 300px; height: 300px; opacity: 0; }
+}
+
 /* ═══ SERVICE CARD STYLES ═══ */
 .service-card {
   position: relative;

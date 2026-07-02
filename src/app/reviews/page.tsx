@@ -29,15 +29,15 @@ import FloatingElements from "@/components/FloatingElements";
    ═══════════════════════════════════════════════════════════════ */
 
 const IMG = {
-  wedding: "/images/b77fad9eff9e.jpg",
-  corporate: "/images/b26bc8017630.png",
-  banquet: "/images/b0afca3cdeee.jpg",
-  furshet: "/images/a2fbd3b8447b.jpg",
-  coffee: "/images/4f51d25798b0.jpg",
-  bar: "/images/c73dc40e41d4.jpg",
-  dessert: "/images/cf9ca554baf6.jpg",
-  roses: "/images/85381eb37c45.jpg",
-  hero: "/images/3a442a2e6e71.jpg",
+  wedding: "/images/gallery_3.jpg",
+  corporate: "/images/wedding.jpg",
+  banquet: "/images/furshet_food.jpg",
+  furshet: "/images/food_general.jpg",
+  coffee: "/images/banket_food1.jpg",
+  bar: "/images/gallery_4.jpg",
+  dessert: "/images/coffee.jpg",
+  roses: "/images/banket_meat.jpg",
+  hero: "/images/gallery_1.jpg",
 };
 
 type Category = "all" | "wedding" | "corporate" | "private";

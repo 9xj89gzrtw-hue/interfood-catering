@@ -17,14 +17,14 @@ export const metadata: Metadata = {
     description:
       "Рассчитайте стоимость кейтеринга онлайн. Фуршет, банкет, кофе-брейк — узнайте цену за минуту.",
     url: "https://interfood-catering.ru/calculator",
-    images: [{ url: "/images/3a442a2e6e71.jpg", width: 1200, height: 630, alt: "Калькулятор стоимости кейтеринга" }],
+    images: [{ url: "/images/gallery_1.jpg", width: 1200, height: 630, alt: "Калькулятор стоимости кейтеринга" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Калькулятор стоимости — Интерфуд Кейтеринг",
     description:
       "Рассчитайте стоимость кейтеринга онлайн за минуту.",
-    images: ["/images/3a442a2e6e71.jpg"],
+    images: ["/images/gallery_1.jpg"],
   },
 };
 

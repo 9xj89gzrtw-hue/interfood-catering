@@ -26,28 +26,28 @@ import ConfettiButton from "@/components/ConfettiButton";
 
 /* ─── Media ─── */
 const VID = {
-  hero: "/videos/catering1.mp4",
-  kitchen: "/videos/catering1.mp4",
-  serving: "/videos/catering2.mp4",
+  hero: "/videos/hero-catering.mp4",
+  kitchen: "/videos/hero-catering.mp4",
+  serving: "/videos/hero-catering.mp4",
 };
 
 const IMG = {
-  hero: "/images/real/event_hero_full.jpg",
-  chef: "/images/real/chef_about.jpg",
-  team: "/images/real/team.png",
-  kitchen: "/images/real/kitchen_1.jpg",
-  kitchen2: "/images/real/kitchen_2.jpg",
-  kitchen3: "/images/real/kitchen_3.jpg",
-  serving: "/images/real/furshet_serving.jpg",
-  wedding: "/images/real/event_wedding.jpg",
-  corporate: "/images/real/event_loft.jpg",
-  banquet: "/images/real/furshet_table.jpg",
-  decor: "/images/real/event_decor.jpg",
-  bar: "/images/real/furshet_canape2.jpg",
-  dessert: "/images/real/gallery_pro_1.jpg",
-  canape: "/images/real/furshet_canape.jpg",
-  roses: "/images/real/event_rooftop.jpg",
-  hall: "/images/real/event_loft.jpg",
+  hero: "/images/hero.jpg",
+  chef: "/images/about.jpg",
+  team: "/images/about.jpg",
+  kitchen: "/images/food_general.jpg",
+  kitchen2: "/images/furshet_food.jpg",
+  kitchen3: "/images/food_salmon.jpg",
+  serving: "/images/furshet_food.jpg",
+  wedding: "/images/wedding.jpg",
+  corporate: "/images/hero_rooftop.jpg",
+  banquet: "/images/furshet.jpg",
+  decor: "/images/banket_table1.jpg",
+  bar: "/images/furshet_canape.jpg",
+  dessert: "/images/gallery_1.jpg",
+  canape: "/images/furshet_canape.jpg",
+  roses: "/images/hero_rooftop.jpg",
+  hall: "/images/hero_rooftop.jpg",
 };
 
 /* ─── Data ─── */
@@ -198,7 +198,7 @@ export default function AboutPage() {
             loop
             playsInline
             preload="metadata"
-            poster="/images/poster_hero.jpg"
+            poster="/images/hero-poster.jpg"
             style={{ width: "100%", height: "100%", objectFit: "cover" }}
           >
             <source src={VID.hero} type="video/mp4" />

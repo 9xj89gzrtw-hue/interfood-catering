@@ -23,25 +23,25 @@ import { useIsMobile } from "@/hooks/use-mobile";
 const JOURNEY_STEPS = [
   {
     number: "01",
-    image: "/images/real/kitchen_1.jpg",
+    image: "/images/food_general.jpg",
     title: "Авторское меню",
     description: "Дмитрий Нилов создаёт каждое блюдо лично",
   },
   {
     number: "02",
-    image: "/images/real/kitchen_2.jpg",
+    image: "/images/furshet_food.jpg",
     title: "Свежие продукты",
     description: "Доставка продуктов утром в день мероприятия",
   },
   {
     number: "03",
-    image: "/images/real/kitchen_3.jpg",
+    image: "/images/food_salmon.jpg",
     title: "Мастерство подачи",
     description: "Каждое блюдо — визуальный шедевр",
   },
   {
     number: "04",
-    image: "/images/real/gallery_pro_1.jpg",
+    image: "/images/gallery_1.jpg",
     title: "Впечатления гостей",
     description: "Результат, ради которого мы работаем",
   },

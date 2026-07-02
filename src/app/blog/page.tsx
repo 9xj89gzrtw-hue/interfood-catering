@@ -22,21 +22,21 @@ import VideoBreak from "@/components/VideoBreak";
 
 /* ─── Media ─── */
 const VID = {
-  hero: "/videos/catering1.mp4",
-  cooking: "/videos/catering1.mp4",
+  hero: "/videos/hero-catering.mp4",
+  cooking: "/videos/hero-catering.mp4",
 };
 
 const IMG = {
-  hero: "/images/3a442a2e6e71.jpg",
-  chef: "/images/7d1938ffb3e1.jpg",
-  furshet: "/images/a2fbd3b8447b.jpg",
-  banquet: "/images/b0afca3cdeee.jpg",
-  coffee: "/images/4f51d25798b0.jpg",
-  wedding: "/images/b77fad9eff9e.jpg",
-  dessert: "/images/cf9ca554baf6.jpg",
-  bar: "/images/c73dc40e41d4.jpg",
-  canape: "/images/2585575d2db2.jpg",
-  decor: "/images/99f244d30b4d.jpg",
+  hero: "/images/gallery_1.jpg",
+  chef: "/images/gallery_2.jpg",
+  furshet: "/images/food_general.jpg",
+  banquet: "/images/furshet_food.jpg",
+  coffee: "/images/banket_food1.jpg",
+  wedding: "/images/gallery_3.jpg",
+  dessert: "/images/coffee.jpg",
+  bar: "/images/gallery_4.jpg",
+  canape: "/images/food_salmon.jpg",
+  decor: "/images/food_shrimp.jpg",
 };
 
 /* ─── Category types ─── */
@@ -507,7 +507,7 @@ export default function BlogPage() {
           3. BLOG GRID
           ──────────────────────────────────────────── */}
       <VideoBreak
-        src="/videos/catering1.mp4"
+        src="/videos/hero-catering.mp4"
         title="Кулинарное вдохновение"
         subtitle="Откройте для себя новые вкусы и идеи"
       />

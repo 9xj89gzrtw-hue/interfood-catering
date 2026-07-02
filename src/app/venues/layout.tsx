@@ -19,14 +19,14 @@ export const metadata: Metadata = {
     description:
       "Площадки для мероприятий с 3D-турами. Выберите идеальное место для вашего события.",
     url: "https://interfood-catering.ru/venues",
-    images: [{ url: "/images/31ca0a361dc4.jpg", width: 1200, height: 630, alt: "Площадки для мероприятий" }],
+    images: [{ url: "/images/hero_ship.jpg", width: 1200, height: 630, alt: "Площадки для мероприятий" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Площадки и 3D-туры — Интерфуд Кейтеринг",
     description:
       "Площадки для мероприятий с 3D-турами в Санкт-Петербурге.",
-    images: ["/images/31ca0a361dc4.jpg"],
+    images: ["/images/hero_ship.jpg"],
   },
 };
 

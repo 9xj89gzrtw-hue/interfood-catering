@@ -12,7 +12,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 
 const JOURNEY_STEPS = [
   {
-    image: "/images/real/furshet_canape.jpg",
+    image: "/images/furshet_canape.jpg",
     dish: "Канапе с лососем шеф-посол",
     description: "Творожный сыр, лайм, укроп и красная икра — 35 г",
     price: "от 2 450 ₽/чел",
@@ -20,7 +20,7 @@ const JOURNEY_STEPS = [
     category: "Фуршет",
   },
   {
-    image: "/images/real/gallery_pro_1.jpg",
+    image: "/images/gallery_1.jpg",
     dish: "Ростбиф medium rare",
     description: "С кусочком пармезана на ржаной гренке с конфи из лука шалот",
     price: "от 4 470 ₽/чел",
@@ -28,7 +28,7 @@ const JOURNEY_STEPS = [
     category: "Банкет",
   },
   {
-    image: "/images/real/food_034.jpg",
+    image: "/images/coffee.jpg",
     dish: "Круассан с куриным филе",
     description: "Брускетта с томатами и моцареллой, мини-пирожное",
     price: "от 950 ₽/чел",
@@ -36,7 +36,7 @@ const JOURNEY_STEPS = [
     category: "Кофе-брейк",
   },
   {
-    image: "/images/real/gallery_pro_3.jpg",
+    image: "/images/gallery_3.jpg",
     dish: "Утиная грудка Магре",
     description: "С дольками апельсина — фирменное блюдо премиум-меню",
     price: "от 5 350 ₽/чел",
@@ -44,7 +44,7 @@ const JOURNEY_STEPS = [
     category: "Премиум",
   },
   {
-    image: "/images/real/gallery_pro_7.jpg",
+    image: "/images/banket.jpg",
     dish: "Морской гребешок",
     description: "С вялеными томатами на керамической ложечке",
     price: "от 5 350 ₽/чел",
@@ -52,7 +52,7 @@ const JOURNEY_STEPS = [
     category: "Премиум",
   },
   {
-    image: "/images/real/gallery_pro_9.jpg",
+    image: "/images/food_shrimp.jpg",
     dish: "Мини-пирожное",
     description: "Ассорти десертов — идеальный финал любого мероприятия",
     price: "включено",

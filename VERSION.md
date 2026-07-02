@@ -5,6 +5,27 @@
 
 ---
 
+## v72 — 2026-07-02 — Fix ALL broken media + Hero bulletproof + Animation fixes
+- **Тема**: Light Premium (продолжение v70)
+- **Критические фиксы**:
+  - ✅ Исправлено 262+ сломанных медиа-ссылок в 34 файлах
+  - ✅ Все `/images/real/*` ссылки перенаправлены на существующие `/images/*` файлы
+  - ✅ Все 16 хеш-имён изображений перенаправлены на существующие файлы
+  - ✅ Сломанные видео `catering1.mp4`/`catering2.mp4` → `hero-catering.mp4`
+  - ✅ Отсутствующие постеры `poster_hero.jpg`/`poster_kitchen.jpg` → `hero-poster.jpg`
+- **Hero v3 — Bulletproof**:
+  - ✅ Видео ВСЕГДА воспроизводится — Pexels 3195394
+  - ✅ Многоуровневый фоллбэк: video → poster → CSS gradient
+  - ✅ Плавное появление видео (opacity transition)
+  - ✅ Мобильное видео 640x360 (~150KB) для быстрой загрузки
+  - ✅ iOS Safari: автоплей после первого взаимодействия
+  - ✅ visibilitychange обработчик для возврата на вкладку
+  - ✅ onCanPlay/onError обработчики событий
+- **Анимации**:
+  - ✅ Добавлен `@keyframes ripple-expand` в globals.css
+  - ✅ Убран дублированный grid в StatsOdometer
+- **Скрипт**: `scripts/fix_broken_media.py` — 46 правил маппинга
+
 ## v70 — 2026-07-02 — Light Premium + View Transitions + Scroll-Driven + Mobile Touch
 - **Тема**: Светлая (Light Premium)
 - **Фон**: #FAFAF7 (warm white)

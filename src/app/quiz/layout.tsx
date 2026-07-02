@@ -18,14 +18,14 @@ export const metadata: Metadata = {
     description:
       "Пройдите квиз и узнайте, какой формат кейтеринга вам подходит. 5 вопросов — персональная рекомендация.",
     url: "https://interfood-catering.ru/quiz",
-    images: [{ url: "/images/3a442a2e6e71.jpg", width: 1200, height: 630, alt: "Подбор формата кейтеринга" }],
+    images: [{ url: "/images/gallery_1.jpg", width: 1200, height: 630, alt: "Подбор формата кейтеринга" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Подбор мероприятия — Интерфуд Кейтеринг",
     description:
       "Пройдите квиз и узнайте, какой формат кейтеринга вам подходит.",
-    images: ["/images/3a442a2e6e71.jpg"],
+    images: ["/images/gallery_1.jpg"],
   },
 };
 

@@ -35,7 +35,7 @@ export default function VideoBreak({ src, title, subtitle, poster }: VideoBreakP
           loop
           playsInline
           preload="metadata"
-          poster={poster || "/images/poster_kitchen.jpg"}
+          poster={poster || "/images/hero-poster.jpg"}
           style={{ width: "100%", height: "100%", objectFit: "cover" }}
         >
           <source src={src} type="video/mp4" />

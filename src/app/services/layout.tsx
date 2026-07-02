@@ -20,14 +20,14 @@ export const metadata: Metadata = {
     description:
       "Полный спектр услуг кейтеринга: фуршет, банкет, кофе-брейк, бар, десерт. Авторская кухня и безупречный сервис.",
     url: "https://interfood-catering.ru/services",
-    images: [{ url: "/images/a2fbd3b8447b.jpg", width: 1200, height: 630, alt: "Услуги кейтеринга Интерфуд" }],
+    images: [{ url: "/images/food_general.jpg", width: 1200, height: 630, alt: "Услуги кейтеринга Интерфуд" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Услуги кейтеринга — Интерфуд Кейтеринг",
     description:
       "Полный спектр услуг кейтеринга: фуршет, банкет, кофе-брейк, бар, десерт.",
-    images: ["/images/a2fbd3b8447b.jpg"],
+    images: ["/images/food_general.jpg"],
   },
 };
 

@@ -18,14 +18,14 @@ export const metadata: Metadata = {
     description:
       "Команда Интерфуд Кейтеринг — профессионалы, которые делают каждое мероприятие незабываемым. Шеф-повара, менеджеры, сомелье.",
     url: "https://interfood-catering.ru/team",
-    images: [{ url: "/images/7d1938ffb3e1.jpg", width: 1200, height: 630, alt: "Команда Интерфуд Кейтеринг" }],
+    images: [{ url: "/images/gallery_2.jpg", width: 1200, height: 630, alt: "Команда Интерфуд Кейтеринг" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Команда — Интерфуд Кейтеринг",
     description:
       "Команда Интерфуд Кейтеринг — профессионалы вашего мероприятия.",
-    images: ["/images/7d1938ffb3e1.jpg"],
+    images: ["/images/gallery_2.jpg"],
   },
 };
 

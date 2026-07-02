@@ -19,14 +19,14 @@ export const metadata: Metadata = {
     description:
       "Ответы на частые вопросы о кейтеринге Интерфуд — заказ, меню, логистика, оплата.",
     url: "https://interfood-catering.ru/faq",
-    images: [{ url: "/images/3a442a2e6e71.jpg", width: 1200, height: 630, alt: "Частые вопросы о кейтеринге" }],
+    images: [{ url: "/images/gallery_1.jpg", width: 1200, height: 630, alt: "Частые вопросы о кейтеринге" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Частые вопросы — Интерфуд Кейтеринг",
     description:
       "Ответы на частые вопросы о кейтеринге Интерфуд.",
-    images: ["/images/3a442a2e6e71.jpg"],
+    images: ["/images/gallery_1.jpg"],
   },
 };
 

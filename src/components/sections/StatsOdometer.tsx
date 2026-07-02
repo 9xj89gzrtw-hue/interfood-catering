@@ -338,41 +338,32 @@ export default function StatsOdometer() {
           </span>
         </motion.div>
 
-        {/* Stats grid */}
+        {/* Stats grid — single grid with mobile override */}
+        <style>{`
+          @media (max-width: 768px) {
+            .stats-odometer-grid {
+              grid-template-columns: repeat(2, 1fr) !important;
+              gap: 1rem !important;
+            }
+          }
+        `}</style>
         <div
+          className="stats-odometer-grid"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(4, 1fr)",
             gap: "1.5rem",
+            width: "100%",
           }}
         >
-          {/* Mobile grid override */}
-          <style>{`
-            @media (max-width: 768px) {
-              .stats-odometer-grid {
-                grid-template-columns: repeat(2, 1fr) !important;
-                gap: 1rem !important;
-              }
-            }
-          `}</style>
-          <div
-            className="stats-odometer-grid"
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(4, 1fr)",
-              gap: "1.5rem",
-              width: "100%",
-            }}
-          >
-            {STATS.map((stat, i) => (
-              <StatCard
-                key={i}
-                stat={stat}
-                index={i}
-                isInView={isInView}
-              />
-            ))}
-          </div>
+          {STATS.map((stat, i) => (
+            <StatCard
+              key={i}
+              stat={stat}
+              index={i}
+              isInView={isInView}
+            />
+          ))}
         </div>
       </div>
     </section>

@@ -1,14 +1,14 @@
 # 🧠 MEMORY.md — Файл памяти проекта Интерфуд Кейтеринг
 
 > **Создан:** 2026-07-02  
-> **Обновлён:** 2026-07-02 (сессия 4 — Light Premium v70 + View Transitions + SDA + Mobile Touch)  
+> **Обновлён:** 2026-07-02 (сессия 5 — v72 Fix ALL broken media + Hero bulletproof)  
 > **Проект:** Сайт кейтеринговой компании «Интерфуд» (interfood-catering.ru)  
 > **Репозиторий:** https://github.com/9xj89gzrtw-hue/interfood-catering  
 > **Vercel:** ✅ Токен получен от пользователя  
 > **Vercel проект:** interfood-catering (дубли удалены)  
 > **Vercel URL:** https://interfood-catering.vercel.app  
 > **GitHub Pages:** https://9xj89gzrtw-hue.github.io/interfood-catering/  
-> **Текущая версия:** v70 — Light Premium + View Transitions + Scroll-Driven Animations
+> **Текущая версия:** v72 — Fix ALL broken media + Hero bulletproof + Animation fixes
 
 ---
 
@@ -230,3 +230,28 @@
 - Используй множество агентов для параллельной работы
 - Проверяй на реальных устройствах (iOS Safari особенно)
 - Scroll-Driven Animations: используй `view()` timeline, не `scroll()` (последний ломается с Lenis)
+
+---
+
+## 🔧 v72: Что было исправлено (сессия 5)
+
+### Массовый фикс сломанных медиа (262 замены в 34 файлах)
+- **Проблема:** 50+ ссылок на `/images/real/` — директория не существовала
+- **Проблема:** 16 хеш-имён изображений (`3a442a2e6e71.jpg` и т.д.) — файлов не было
+- **Проблема:** 2 видео `catering1.mp4`/`catering2.mp4` — не существовали
+- **Проблема:** 2 постера `poster_hero.jpg`/`poster_kitchen.jpg` — не существовали
+- **Решение:** Скрипт `scripts/fix_broken_media.py` с 46 правилами маппинга → существующие файлы
+
+### Hero v3 — Bulletproof
+- Многоуровневый фоллбэк: video → poster → CSS gradient
+- Плавное появление видео через opacity transition
+- iOS Safari: автоплей после touchstart/click
+- visibilitychange обработчик для возврата на вкладку
+- Мобильное видео 640x360 (~150KB) для быстрой загрузки
+
+### Анимации
+- Добавлен `@keyframes ripple-expand` в globals.css
+- Убран дублированный grid в StatsOdometer
+
+### Файлы изображений в `/public/images/`
+Все существующие изображения используются в маппинге. НЕ добавляй новые изображения в `/images/real/` — используй `/images/` или `/images/real/` с symlink.

@@ -4,27 +4,27 @@
    ═══════════════════════════════════════════════════════════════ */
 
 export const IMG = {
-  hero: "/images/real/event_hero_full.jpg",
-  about: "/images/real/kitchen_2.jpg",
-  furshet: "/images/real/furshet_table.jpg",
-  banquet: "/images/real/gallery_pro_1.jpg",
-  coffee: "/images/real/food_034.jpg",
-  wedding: "/images/real/gallery_pro_3.jpg",
-  corporate: "/images/real/event1.jpg",
-  decor: "/images/real/gallery_pro_5.jpg",
-  bar: "/images/real/gallery_pro_7.jpg",
-  dessert: "/images/real/gallery_pro_9.jpg",
-  canape: "/images/real/furshet_canape.jpg",
-  roses: "/images/real/gallery_pro_2.jpg",
-  hall: "/images/real/gallery_pro_4.jpg",
-  team: "/images/real/team.png",
-  kitchen1: "/images/real/kitchen_1.jpg",
-  kitchen3: "/images/real/kitchen_3.jpg",
+  hero: "/images/hero.jpg",
+  about: "/images/furshet_food.jpg",
+  furshet: "/images/furshet.jpg",
+  banquet: "/images/gallery_1.jpg",
+  coffee: "/images/coffee.jpg",
+  wedding: "/images/gallery_3.jpg",
+  corporate: "/images/new_event.jpg",
+  decor: "/images/gallery_5.jpg",
+  bar: "/images/banket.jpg",
+  dessert: "/images/food_shrimp.jpg",
+  canape: "/images/furshet_canape.jpg",
+  roses: "/images/gallery_2.jpg",
+  hall: "/images/gallery_4.jpg",
+  team: "/images/about.jpg",
+  kitchen1: "/images/food_general.jpg",
+  kitchen3: "/images/food_salmon.jpg",
 };
 
 export const VID = {
-  hero: "/videos/catering2.mp4",
-  kitchen: "/videos/catering1.mp4",
+  hero: "/videos/hero-catering.mp4",
+  kitchen: "/videos/hero-catering.mp4",
 };
 
 export const HERO_TAGLINES = [
@@ -45,18 +45,18 @@ export const SERVICES = [
 ];
 
 export const GALLERY = [
-  { src: "/images/real/gallery_pro_1.jpg", alt: "Банкет", h: 420 },
-  { src: "/images/real/gallery_pro_2.jpg", alt: "Свадебный банкет", h: 320 },
-  { src: "/images/real/gallery_pro_3.jpg", alt: "Декор мероприятия", h: 450 },
-  { src: "/images/real/gallery_pro_4.jpg", alt: "Сервировка", h: 360 },
-  { src: "/images/real/gallery_pro_5.jpg", alt: "Фуршет", h: 320 },
-  { src: "/images/real/gallery_pro_6.jpg", alt: "Подача блюд", h: 420 },
-  { src: "/images/real/gallery_pro_7.jpg", alt: "Бар", h: 340 },
-  { src: "/images/real/gallery_pro_8.jpg", alt: "Канапе", h: 360 },
-  { src: "/images/real/gallery_pro_9.jpg", alt: "Десерты", h: 400 },
-  { src: "/images/real/gallery_pro_10.jpg", alt: "Оформление", h: 380 },
-  { src: "/images/real/gallery_pro_11.jpg", alt: "Выездной ресторан", h: 420 },
-  { src: "/images/real/gallery_pro_12.jpg", alt: "Праздник", h: 350 },
+  { src: "/images/gallery_1.jpg", alt: "Банкет", h: 420 },
+  { src: "/images/gallery_2.jpg", alt: "Свадебный банкет", h: 320 },
+  { src: "/images/gallery_3.jpg", alt: "Декор мероприятия", h: 450 },
+  { src: "/images/gallery_4.jpg", alt: "Сервировка", h: 360 },
+  { src: "/images/gallery_5.jpg", alt: "Фуршет", h: 320 },
+  { src: "/images/gallery_6.jpg", alt: "Подача блюд", h: 420 },
+  { src: "/images/banket.jpg", alt: "Бар", h: 340 },
+  { src: "/images/furshet_canape.jpg", alt: "Канапе", h: 360 },
+  { src: "/images/food_shrimp.jpg", alt: "Десерты", h: 400 },
+  { src: "/images/wedding.jpg", alt: "Оформление", h: 380 },
+  { src: "/images/hero_gala.jpg", alt: "Выездной ресторан", h: 420 },
+  { src: "/images/banket_food1.jpg", alt: "Праздник", h: 350 },
 ];
 
 export const REVIEWS = [

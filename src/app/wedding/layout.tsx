@@ -19,14 +19,14 @@ export const metadata: Metadata = {
     description:
       "Свадебный кейтеринг в Санкт-Петербурге. Более 850 свадеб, авторское меню, изысканная сервировка.",
     url: "https://interfood-catering.ru/wedding",
-    images: [{ url: "/images/b77fad9eff9e.jpg", width: 1200, height: 630, alt: "Свадебный кейтеринг Интерфуд" }],
+    images: [{ url: "/images/gallery_3.jpg", width: 1200, height: 630, alt: "Свадебный кейтеринг Интерфуд" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Свадебный кейтеринг — Интерфуд Кейтеринг",
     description:
       "Свадебный кейтеринг в Санкт-Петербурге. Более 850 свадеб.",
-    images: ["/images/b77fad9eff9e.jpg"],
+    images: ["/images/gallery_3.jpg"],
   },
 };
 

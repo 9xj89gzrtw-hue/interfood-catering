@@ -17,14 +17,14 @@ export const metadata: Metadata = {
     description:
       "Свяжитесь с Интерфуд Кейтеринг. Телефон, email, адрес, карта. Заказ кейтеринга в Санкт-Петербурге.",
     url: "https://interfood-catering.ru/contacts",
-    images: [{ url: "/images/31ca0a361dc4.jpg", width: 1200, height: 630, alt: "Контакты Интерфуд Кейтеринг" }],
+    images: [{ url: "/images/hero_ship.jpg", width: 1200, height: 630, alt: "Контакты Интерфуд Кейтеринг" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Контакты — Интерфуд Кейтеринг",
     description:
       "Свяжитесь с Интерфуд Кейтеринг. Телефон, email, адрес.",
-    images: ["/images/31ca0a361dc4.jpg"],
+    images: ["/images/hero_ship.jpg"],
   },
 };
 

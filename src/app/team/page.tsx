@@ -24,25 +24,25 @@ import CountUp from "@/components/CountUp";
    ═══════════════════════════════════════════════════════════════ */
 
 const VID = {
-  hero: "/videos/catering1.mp4",
-  kitchen: "/videos/catering1.mp4",
-  team: "/videos/catering1.mp4",
+  hero: "/videos/hero-catering.mp4",
+  kitchen: "/videos/hero-catering.mp4",
+  team: "/videos/hero-catering.mp4",
 };
 
 const IMG = {
-  hero: "/images/real/event_hero_full.jpg",
-  chef: "/images/real/chef_about.jpg",
-  team1: "/images/real/gallery_pro_1.jpg",
-  team2: "/images/real/gallery_pro_3.jpg",
-  team3: "/images/real/gallery_pro_4.jpg",
-  team4: "/images/real/gallery_pro_6.jpg",
-  serving: "/images/real/furshet_serving.jpg",
-  bar: "/images/real/gallery_pro_7.jpg",
-  dessert: "/images/real/gallery_pro_9.jpg",
-  canape: "/images/real/furshet_canape.jpg",
-  decor: "/images/real/event_decor.jpg",
-  roses: "/images/real/gallery_pro_2.jpg",
-  hall: "/images/real/event_loft.jpg",
+  hero: "/images/hero.jpg",
+  chef: "/images/about.jpg",
+  team1: "/images/gallery_1.jpg",
+  team2: "/images/gallery_3.jpg",
+  team3: "/images/gallery_4.jpg",
+  team4: "/images/gallery_6.jpg",
+  serving: "/images/furshet_food.jpg",
+  bar: "/images/banket.jpg",
+  dessert: "/images/food_shrimp.jpg",
+  canape: "/images/furshet_canape.jpg",
+  decor: "/images/banket_table1.jpg",
+  roses: "/images/gallery_2.jpg",
+  hall: "/images/hero_rooftop.jpg",
 };
 
 /* ─── Team Data (8 members per spec) ─── */

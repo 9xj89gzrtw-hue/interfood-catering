@@ -34,23 +34,23 @@ import ConfettiButton from "@/components/ConfettiButton";
 
 // ─── MEDIA DATA ───
 const VID = {
-  hero: "/videos/catering2.mp4",
-  venue1: "/videos/catering1.mp4",
-  venue2: "/videos/catering2.mp4",
-  venue3: "/videos/catering2.mp4",
+  hero: "/videos/hero-catering.mp4",
+  venue1: "/videos/hero-catering.mp4",
+  venue2: "/videos/hero-catering.mp4",
+  venue3: "/videos/hero-catering.mp4",
 };
 
 const IMG = {
-  venue1: "/images/31ca0a361dc4.jpg",
-  venue2: "/images/3a442a2e6e71.jpg",
-  venue3: "/images/b77fad9eff9e.jpg",
-  venue4: "/images/99f244d30b4d.jpg",
-  venue5: "/images/85381eb37c45.jpg",
-  venue6: "/images/b0afca3cdeee.jpg",
-  hero: "/images/3a442a2e6e71.jpg",
-  roses: "/images/85381eb37c45.jpg",
-  banquet: "/images/b0afca3cdeee.jpg",
-  decor: "/images/99f244d30b4d.jpg",
+  venue1: "/images/hero_ship.jpg",
+  venue2: "/images/gallery_1.jpg",
+  venue3: "/images/gallery_3.jpg",
+  venue4: "/images/food_shrimp.jpg",
+  venue5: "/images/banket_meat.jpg",
+  venue6: "/images/furshet_food.jpg",
+  hero: "/images/gallery_1.jpg",
+  roses: "/images/banket_meat.jpg",
+  banquet: "/images/furshet_food.jpg",
+  decor: "/images/food_shrimp.jpg",
 };
 
 // ─── VENUE DATA ───

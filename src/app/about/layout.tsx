@@ -18,14 +18,14 @@ export const metadata: Metadata = {
     description:
       "Интерфуд Кейтеринг — ресторан выездного обслуживания с 2007 года. История, команда, ценности.",
     url: "https://interfood-catering.ru/about",
-    images: [{ url: "/images/7d1938ffb3e1.jpg", width: 1200, height: 630, alt: "О компании Интерфуд Кейтеринг" }],
+    images: [{ url: "/images/gallery_2.jpg", width: 1200, height: 630, alt: "О компании Интерфуд Кейтеринг" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "О компании — Интерфуд Кейтеринг",
     description:
       "Интерфуд Кейтеринг — ресторан выездного обслуживания с 2007 года.",
-    images: ["/images/7d1938ffb3e1.jpg"],
+    images: ["/images/gallery_2.jpg"],
   },
 };
 

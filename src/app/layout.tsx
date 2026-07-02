@@ -75,13 +75,13 @@ export const metadata: Metadata = {
     siteName: "Интерфуд Кейтеринг",
     type: "website",
     locale: "ru_RU",
-    images: [{ url: "/images/real/event_hero_full.jpg", width: 1200, height: 630, alt: "Интерфуд Кейтеринг" }],
+    images: [{ url: "/images/hero.jpg", width: 1200, height: 630, alt: "Интерфуд Кейтеринг" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Интерфуд Кейтеринг — Ресторан выездного обслуживания",
     description: "Кейтеринг для свадеб, корпоративов и закрытых мероприятий.",
-    images: ["/images/real/event_hero_full.jpg"],
+    images: ["/images/hero.jpg"],
   },
   other: {
     "apple-mobile-web-app-capable": "yes",
@@ -135,7 +135,7 @@ export default function RootLayout({
       "@type": "City",
       name: "Санкт-Петербург",
     },
-    image: "https://interfood-catering.ru/images/real/event_hero_full.jpg",
+    image: "https://interfood-catering.ru/images/hero.jpg",
     logo: "https://interfood-catering.ru/logo.svg",
     sameAs: [
       "https://vk.com/nilovcatering",
@@ -158,7 +158,7 @@ export default function RootLayout({
       <head>
         <link rel="manifest" href="/manifest.json" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <link rel="preload" as="image" href="/images/real/event_hero_full.jpg" type="image/jpeg" fetchPriority="high" />
+        <link rel="preload" as="image" href="/images/hero.jpg" type="image/jpeg" fetchPriority="high" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrg) }} />

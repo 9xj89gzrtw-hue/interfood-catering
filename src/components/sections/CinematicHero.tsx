@@ -21,17 +21,19 @@ function useIsMounted() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   CinematicHero v2 — Bulletproof, Cross-Browser, Mobile-First
-   
-   KEY FIXES from v1:
+   CinematicHero v3 — Bulletproof Cross-Browser Mobile-First
+
+   KEY DESIGN DECISIONS:
    1. Video ALWAYS plays — Pexels 3195394 (catering with pipette/hand)
-   2. Reliable autoplay: playsInline + muted + preload + JS fallback
-   3. Mobile-optimized: smaller video file, reduced particles, no cursor effects
-   4. Poster image for instant visual while video loads
-   5. Cross-browser gradient overlays that work on ALL devices
-   6. Text contrast guaranteed on ANY video frame
-   7. Smooth Ken Burns via CSS (GPU-accelerated, no JS)
-   8. Reduced motion support (WCAG)
+   2. Multiple fallback layers: video → poster → CSS gradient
+   3. Reliable autoplay: playsInline + muted + preload + JS fallback
+   4. Mobile: smaller video (640x360, ~150KB), reduced particles
+   5. Poster image for instant visual while video loads
+   6. Cross-browser gradient overlays work on ALL devices
+   7. Text contrast guaranteed on ANY video frame
+   8. Smooth Ken Burns via CSS (GPU-accelerated, no JS)
+   9. Reduced motion support (WCAG)
+   10. iOS Safari: video play on first user interaction
    ═══════════════════════════════════════════════════════════════ */
 
 const EASE_PREMIUM = [0.16, 1, 0.3, 1] as const;
@@ -86,7 +88,7 @@ function TrustBadge({ label }: { label: string }) {
       style={{
         fontSize: "clamp(0.65rem, 1.1vw, 0.78rem)",
         letterSpacing: "0.08em",
-        color: "var(--color-text-muted)",
+        color: "rgba(255,255,255,0.65)",
         fontWeight: 400,
         whiteSpace: "nowrap" as const,
         padding: "0.3rem 0.1rem",
@@ -104,7 +106,7 @@ function TrustDot() {
         width: "3px",
         height: "3px",
         borderRadius: "50%",
-        background: "var(--color-brand-30)",
+        background: "rgba(201,169,106,0.4)",
         flexShrink: 0,
       }}
     />
@@ -119,7 +121,7 @@ export default function CinematicHero() {
   const heroRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const mounted = useIsMounted();
-  const [videoLoaded, setVideoLoaded] = useState(false);
+  const [videoReady, setVideoReady] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   // ─── Detect reduced motion preference ────────────────
@@ -132,40 +134,74 @@ export default function CinematicHero() {
     return () => mq.removeEventListener("change", handler);
   }, []);
 
-  // ─── Force video play (mobile Safari fix) ────────────
+  // ─── Bulletproof video autoplay ──────────────────────
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
     const playVideo = async () => {
       try {
+        // Ensure attributes are set (defensive)
         video.muted = true;
         video.playsInline = true;
+        video.setAttribute("playsinline", ""); // iOS Safari needs attribute
+        video.setAttribute("webkit-playsinline", ""); // Older iOS
+        video.volume = 0;
+        
         await video.play();
-        setVideoLoaded(true);
-      } catch {
-        // iOS sometimes blocks autoplay until user interaction
-        // Try again on first user interaction
+        setVideoReady(true);
+      } catch (err) {
+        // iOS Safari blocks autoplay until user interaction
+        console.log("[Hero] Autoplay blocked, waiting for user interaction...");
+        
         const handleInteraction = async () => {
           try {
             video.muted = true;
             video.playsInline = true;
             await video.play();
-            setVideoLoaded(true);
-          } catch {
-            // If still fails, show poster image only
+            setVideoReady(true);
+            console.log("[Hero] Video started after user interaction");
+          } catch (e) {
+            console.log("[Hero] Video still cannot play, using poster fallback");
           }
+          // Clean up listeners
           document.removeEventListener("touchstart", handleInteraction);
+          document.removeEventListener("touchend", handleInteraction);
           document.removeEventListener("click", handleInteraction);
         };
+        
+        // Listen for any user interaction
         document.addEventListener("touchstart", handleInteraction, { once: true, passive: true });
+        document.addEventListener("touchend", handleInteraction, { once: true, passive: true });
         document.addEventListener("click", handleInteraction, { once: true });
+
+        // Also try on visibility change (tab comes to foreground)
+        const handleVisibility = async () => {
+          if (document.visibilityState === "visible") {
+            try {
+              await video.play();
+              setVideoReady(true);
+            } catch {}
+          }
+          document.removeEventListener("visibilitychange", handleVisibility);
+        };
+        document.addEventListener("visibilitychange", handleVisibility);
       }
     };
 
-    // Small delay to ensure video element is ready
-    const timer = setTimeout(playVideo, 100);
+    // Delay slightly to ensure video element is in DOM and loaded
+    const timer = setTimeout(playVideo, 150);
     return () => clearTimeout(timer);
+  }, []);
+
+  // ─── Handle video load events ──────────────────────
+  const handleVideoCanPlay = useCallback(() => {
+    setVideoReady(true);
+  }, []);
+
+  const handleVideoError = useCallback(() => {
+    console.log("[Hero] Video failed to load, using fallback");
+    setVideoReady(false); // Will show poster
   }, []);
 
   // ─── Scroll-driven parallax ──────────────────────────
@@ -188,7 +224,8 @@ export default function CinematicHero() {
         minHeight: "600px",
         maxHeight: "1200px",
         overflow: "hidden",
-        background: "#1A1714", // Dark fallback behind video
+        // Layer 0: CSS gradient fallback (always visible)
+        background: "linear-gradient(135deg, #1A1714 0%, #2D2520 30%, #1A1714 60%, #2A2218 100%)",
       }}
       aria-label="Hero section"
     >
@@ -209,6 +246,8 @@ export default function CinematicHero() {
           playsInline
           preload="auto"
           poster="/images/hero-poster.jpg"
+          onCanPlay={handleVideoCanPlay}
+          onError={handleVideoError}
           style={{
             width: "100%",
             height: "100%",
@@ -218,41 +257,46 @@ export default function CinematicHero() {
             animation: prefersReducedMotion
               ? "none"
               : "ken-burns-zoom 25s ease-in-out alternate infinite",
-            // Ensure video fills on all devices
-            WebkitTransform: "translateZ(0)", // Force GPU layer on iOS
+            // Force GPU layer on iOS for smooth playback
+            WebkitTransform: "translateZ(0)",
+            // Ensure video is visible even if partially loaded
+            opacity: videoReady ? 1 : 0,
+            transition: "opacity 0.8s ease-in",
           }}
         >
-          {/* Desktop: high quality (4.8MB 1440p) */}
+          {/* Desktop: high quality 1440p */}
           <source
             src="/videos/hero-catering.mp4"
             type="video/mp4"
             media="(min-width: 769px)"
           />
-          {/* Mobile: optimized (480KB 360p) for fast load */}
+          {/* Mobile: optimized 360p for fast load */}
           <source
             src="/videos/hero-catering-mobile.mp4"
             type="video/mp4"
           />
         </video>
 
-        {/* Poster overlay — shows while video loads, fades out */}
-        {!videoLoaded && (
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              backgroundImage: "url('/images/hero-poster.jpg')",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              zIndex: 1,
-              animation: "ken-burns-zoom 25s ease-in-out alternate infinite",
-            }}
-          />
-        )}
+        {/* Poster overlay — shows while video loads, fades out when ready */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            backgroundImage: "url('/images/hero-poster.jpg')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            zIndex: 1,
+            opacity: videoReady ? 0 : 1,
+            transition: "opacity 0.8s ease-out",
+            pointerEvents: "none",
+            animation: prefersReducedMotion
+              ? "none"
+              : "ken-burns-zoom 25s ease-in-out alternate infinite",
+          }}
+        />
       </motion.div>
 
       {/* ── Layer 2: Gradient Overlay — GUARANTEES text readability ── */}
-      {/* Dark overlay from bottom (where text sits) — works on ANY video frame */}
       <div
         style={{
           position: "absolute",
@@ -261,10 +305,10 @@ export default function CinematicHero() {
           background: `
             linear-gradient(
               to bottom,
-              rgba(26, 23, 20, 0.15) 0%,
-              rgba(26, 23, 20, 0.10) 30%,
-              rgba(26, 23, 20, 0.50) 60%,
-              rgba(26, 23, 20, 0.85) 85%,
+              rgba(26, 23, 20, 0.2) 0%,
+              rgba(26, 23, 20, 0.15) 25%,
+              rgba(26, 23, 20, 0.45) 55%,
+              rgba(26, 23, 20, 0.8) 80%,
               rgba(26, 23, 20, 0.95) 100%
             )
           `,
@@ -279,7 +323,7 @@ export default function CinematicHero() {
           inset: 0,
           zIndex: 1,
           background:
-            "radial-gradient(ellipse at 50% 30%, transparent 30%, rgba(26, 23, 20, 0.4) 100%)",
+            "radial-gradient(ellipse at 50% 30%, transparent 30%, rgba(26, 23, 20, 0.35) 100%)",
           pointerEvents: "none",
         }}
       />
@@ -334,7 +378,7 @@ export default function CinematicHero() {
             style={{
               width: "32px",
               height: "1px",
-              background: "linear-gradient(90deg, transparent, rgba(184,134,11,0.4))",
+              background: "linear-gradient(90deg, transparent, rgba(184,134,11,0.5))",
             }}
           />
           <span
@@ -353,7 +397,7 @@ export default function CinematicHero() {
             style={{
               width: "32px",
               height: "1px",
-              background: "linear-gradient(90deg, rgba(184,134,11,0.4), transparent)",
+              background: "linear-gradient(90deg, rgba(184,134,11,0.5), transparent)",
             }}
           />
         </motion.div>
@@ -376,7 +420,7 @@ export default function CinematicHero() {
             justifyContent: "center",
             flexWrap: "wrap",
             gap: "0.2em 0.35em",
-            textShadow: "0 2px 40px rgba(0,0,0,0.3)",
+            textShadow: "0 2px 40px rgba(0,0,0,0.4)",
           }}
         >
           <span>Интерфуд</span>
@@ -396,7 +440,7 @@ export default function CinematicHero() {
             fontWeight: 300,
             marginTop: "0.5rem",
             marginBottom: "2.5rem",
-            textShadow: "0 1px 20px rgba(0,0,0,0.3)",
+            textShadow: "0 1px 20px rgba(0,0,0,0.4)",
           }}
         >
           3 500+ мероприятий за 18 лет. Собственная кухня, авторское меню Дмитрия
