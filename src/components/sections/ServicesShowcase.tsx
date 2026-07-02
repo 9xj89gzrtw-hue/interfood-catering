@@ -99,6 +99,19 @@ const INJECTED_STYLES = `
   border: 1px solid transparent;
 }
 
+/* Disable rotating conic-gradient on mobile to save GPU */
+@media (max-width: 767px) {
+  .svc-gradient-border {
+    animation: none;
+    background: var(--color-brand-20);
+    border-color: var(--color-brand-20);
+  }
+  .svc-gradient-border[data-hovered="true"] {
+    background: var(--color-brand-20);
+    border-color: var(--color-brand);
+  }
+}
+
 @supports not (color: lab(50% 0 0)) {
   .svc-gradient-border {
     background: var(--color-brand-20);
@@ -228,7 +241,7 @@ function ServiceCard({
               {/* ── Image area with Ken Burns ── */}
               <div
                 style={{
-                  height: "clamp(200px, 40vw, 280px)",
+                  height: "clamp(180px, 55vw, 280px)",
                   overflow: "hidden",
                   position: "relative",
                 }}
@@ -312,7 +325,7 @@ function ServiceCard({
                 <p
                   style={{
                     color: "var(--color-text-muted)",
-                    fontSize: "0.85rem",
+                    fontSize: "clamp(0.82rem, 3.5vw, 0.85rem)",
                     lineHeight: 1.65,
                     fontWeight: 300,
                   }}
@@ -396,7 +409,7 @@ export default function ServicesShowcase() {
             />
             <span
               style={{
-                fontSize: "clamp(0.55rem, 1.1vw, 0.68rem)",
+                fontSize: "clamp(0.75rem, 1.1vw, 0.68rem)",
                 letterSpacing: "0.3em",
                 textTransform: "uppercase" as const,
                 color: "var(--color-brand)",

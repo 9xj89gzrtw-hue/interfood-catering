@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import Link from "next/link";
 import SiteNav from "@/components/SiteNav";
@@ -177,6 +178,7 @@ function Reveal({ children, className = "", delay = 0 }: { children: React.React
    Page
    ═══════════════════════════════════════════════════════════════ */
 export default function AboutPage() {
+  const isMobile = useIsMobile();
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
@@ -207,7 +209,7 @@ export default function AboutPage() {
         {/* Light overlay */}
         <div style={{ position: "absolute", inset: 0, zIndex: 1, background: "linear-gradient(to bottom, rgba(254,253,251,0.25) 0%, rgba(254,253,251,0.15) 30%, rgba(254,253,251,0.4) 60%, rgba(254,253,251,0.92) 100%)" }} />
         {/* ParticleField overlay */}
-        <ParticleField count={50} speed={0.25} style={{ zIndex: 2 }} />
+        <ParticleField count={isMobile ? 15 : 50} speed={0.25} style={{ zIndex: 2 }} />
         {/* Content */}
         <motion.div
           style={{ position: "relative", zIndex: 3, textAlign: "center", padding: "2rem", maxWidth: 900, opacity: heroOpacity }}
@@ -225,7 +227,7 @@ export default function AboutPage() {
           </motion.div>
           {/* KineticText with fadeUp animation */}
           <KineticText
-            text="Кейтеринг — не просто работа, а увлечение, которое стало стилем жизни"
+            text={isMobile ? "Кейтеринг — стиль жизни" : "Кейтеринг — не просто работа, а увлечение, которое стало стилем жизни"}
             as="h1"
             animation="fadeUp"
             className="section-title"
@@ -324,7 +326,7 @@ export default function AboutPage() {
               src={IMG.chef}
               alt="Дмитрий Нилов, основатель Интерфуд"
               direction="left"
-              style={{ borderRadius: 20, height: 560 }}
+              style={{ borderRadius: 20, height: "clamp(280px, 60vw, 560px)" }}
             />
             {/* Right — Text */}
             <div>

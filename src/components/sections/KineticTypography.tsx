@@ -258,7 +258,7 @@ export default function KineticTypography() {
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.1 }}
           style={{
-            fontSize: "clamp(0.6rem, 2vw, 0.7rem)",
+            fontSize: "clamp(0.75rem, 2vw, 0.7rem)",
             fontWeight: 600,
             letterSpacing: "0.35em",
             textTransform: "uppercase",
@@ -389,7 +389,7 @@ export default function KineticTypography() {
             transition={{ delay: 1.2, duration: 0.8 }}
             style={{
               marginTop: "3rem",
-              fontSize: "clamp(0.65rem, 2.5vw, 0.75rem)",
+              fontSize: "clamp(0.75rem, 2.5vw, 0.75rem)",
               letterSpacing: "0.25em",
               textTransform: "uppercase",
               color: "var(--color-text-subtle)",

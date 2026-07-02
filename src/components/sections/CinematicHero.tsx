@@ -348,7 +348,7 @@ export default function CinematicHero() {
           <span style={{ width: "32px", height: "1px", background: "linear-gradient(90deg, transparent, rgba(184,134,11,0.6))" }} />
           <span
             style={{
-              fontSize: "clamp(0.7rem, 1.4vw, 0.75rem)",
+              fontSize: "clamp(0.75rem, 1.4vw, 0.75rem)",
               letterSpacing: "0.3em",
               textTransform: "uppercase" as const,
               color: "rgba(255,255,255,0.85)",
@@ -474,9 +474,9 @@ export default function CinematicHero() {
             justifyContent: "center",
           }}
         >
-          <span style={{ fontSize: "clamp(0.72rem, 1.3vw, 0.8rem)", letterSpacing: "0.08em", color: "rgba(255,255,255,0.85)", fontWeight: 400, whiteSpace: "nowrap", textShadow: "0 1px 6px rgba(0,0,0,0.5)" }}>От 950 ₽/чел</span>
+          <span style={{ fontSize: "clamp(0.75rem, 1.3vw, 0.8rem)", letterSpacing: "0.08em", color: "rgba(255,255,255,0.85)", fontWeight: 400, whiteSpace: "nowrap", textShadow: "0 1px 6px rgba(0,0,0,0.5)" }}>От 950 ₽/чел</span>
           <span style={{ width: "3px", height: "3px", borderRadius: "50%", background: "rgba(201,169,106,0.5)", flexShrink: 0 }} />
-          <a href="tel:+78129195911" style={{ fontSize: "clamp(0.72rem, 1.3vw, 0.8rem)", letterSpacing: "0.04em", color: "rgba(255,255,255,0.9)", fontWeight: 500, whiteSpace: "nowrap", textShadow: "0 1px 6px rgba(0,0,0,0.5)", textDecoration: "none" }}>+7 (812) 919-59-11</a>
+          <a href="tel:+78129195911" style={{ fontSize: "clamp(0.75rem, 1.3vw, 0.8rem)", letterSpacing: "0.04em", color: "rgba(255,255,255,0.9)", fontWeight: 500, whiteSpace: "nowrap", textShadow: "0 1px 6px rgba(0,0,0,0.5)", textDecoration: "none" }}>+7 (812) 919-59-11</a>
 
           {/* WhatsApp & Telegram icon buttons */}
           <a
@@ -541,7 +541,7 @@ export default function CinematicHero() {
           </a>
 
           <span style={{ width: "3px", height: "3px", borderRadius: "50%", background: "rgba(201,169,106,0.5)", flexShrink: 0 }} />
-          <span style={{ fontSize: "clamp(0.72rem, 1.3vw, 0.8rem)", letterSpacing: "0.08em", color: "rgba(255,255,255,0.85)", fontWeight: 400, whiteSpace: "nowrap", textShadow: "0 1px 6px rgba(0,0,0,0.5)" }}>3 500+ мероприятий</span>
+          <span style={{ fontSize: "clamp(0.75rem, 1.3vw, 0.8rem)", letterSpacing: "0.08em", color: "rgba(255,255,255,0.85)", fontWeight: 400, whiteSpace: "nowrap", textShadow: "0 1px 6px rgba(0,0,0,0.5)" }}>3 500+ мероприятий</span>
         </motion.div>
 
         {/* Mobile: "Ответим за 30 минут" below CTAs */}

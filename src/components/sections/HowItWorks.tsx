@@ -5,8 +5,10 @@ import {
   motion,
   useScroll,
   useTransform,
+  useInView,
   type MotionValue,
 } from "framer-motion";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 /* ═══════════════════════════════════════════════════════════════
    HowItWorks — Scroll storytelling with pinned section
@@ -16,7 +18,8 @@ import {
    creating an engaging narrative experience.
 
    Features:
-   - Pinned section with scroll-driven reveal
+   - Pinned section with scroll-driven reveal (desktop)
+   - whileInView reveal (mobile — avoids sticky jank)
    - Staggered step card animations via useTransform
    - Connecting timeline line (horizontal desktop, vertical mobile)
    - Scroll progress indicator bar
@@ -94,8 +97,8 @@ function StepIcon({ name }: { name: string }) {
   }
 }
 
-/* ─── Individual step card with scroll-driven reveal ─── */
-function StepCard({
+/* ─── Individual step card with scroll-driven reveal (desktop) ─── */
+function StepCardScroll({
   step,
   index,
   scrollYProgress,
@@ -104,10 +107,6 @@ function StepCard({
   index: number;
   scrollYProgress: MotionValue<number>;
 }) {
-  /* Each card reveals in a staggered range:
-     Card 0: 0.00 → 0.25 | Card 1: 0.15 → 0.40
-     Card 2: 0.30 → 0.55 | Card 3: 0.45 → 0.70
-     Overlapping ranges create a cascading reveal effect. */
   const start = index * 0.15;
   const end = start + 0.25;
 
@@ -116,28 +115,59 @@ function StepCard({
 
   return (
     <motion.div style={{ opacity, y }} className="hiw-card-wrap">
-      <div className="hiw-step-card">
-        {/* Subtle top gold accent line */}
-        <div className="hiw-card-topline" aria-hidden="true" />
-
-        {/* Step number */}
-        <span className="hiw-step-number">{step.step}</span>
-
-        {/* Icon in circular gold-bordered container */}
-        <div className="hiw-icon-circle">
-          <StepIcon name={step.icon} />
-        </div>
-
-        {/* Title */}
-        <h3 className="hiw-step-title">{step.title}</h3>
-
-        {/* Description */}
-        <p className="hiw-step-desc">{step.desc}</p>
-
-        {/* Animated border glow layer (visible on hover) */}
-        <div className="hiw-border-glow" aria-hidden="true" />
-      </div>
+      <StepCardContent step={step} />
     </motion.div>
+  );
+}
+
+/* ─── Individual step card with whileInView reveal (mobile) ─── */
+function StepCardInView({
+  step,
+  index,
+}: {
+  step: (typeof STEPS)[number];
+  index: number;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-40px" });
+
+  return (
+    <motion.div
+      ref={ref}
+      className="hiw-card-wrap"
+      initial={{ opacity: 0, y: 50 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+      transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+    >
+      <StepCardContent step={step} />
+    </motion.div>
+  );
+}
+
+/* ─── Shared card inner content ─── */
+function StepCardContent({ step }: { step: (typeof STEPS)[number] }) {
+  return (
+    <div className="hiw-step-card">
+      {/* Subtle top gold accent line */}
+      <div className="hiw-card-topline" aria-hidden="true" />
+
+      {/* Step number */}
+      <span className="hiw-step-number">{step.step}</span>
+
+      {/* Icon in circular gold-bordered container */}
+      <div className="hiw-icon-circle">
+        <StepIcon name={step.icon} />
+      </div>
+
+      {/* Title */}
+      <h3 className="hiw-step-title">{step.title}</h3>
+
+      {/* Description */}
+      <p className="hiw-step-desc">{step.desc}</p>
+
+      {/* Animated border glow layer (visible on hover) */}
+      <div className="hiw-border-glow" aria-hidden="true" />
+    </div>
   );
 }
 
@@ -145,6 +175,7 @@ function StepCard({
    Main HowItWorks Section
    ═══════════════════════════════════════════════════════════════ */
 export default function HowItWorks() {
+  const isMobile = useIsMobile();
   const sectionRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -223,7 +254,7 @@ export default function HowItWorks() {
         /* ─── Step number ─── */
         .hiw-step-number {
           display: block;
-          font-size: 0.7rem;
+          font-size: 0.75rem;
           font-weight: 700;
           letter-spacing: 0.15em;
           color: var(--color-brand);
@@ -289,6 +320,10 @@ export default function HowItWorks() {
           }
         }
         @media (max-width: 480px) {
+          .hiw-grid {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+          }
           .hiw-step-card {
             padding: 1.5rem 1rem;
           }
@@ -339,6 +374,13 @@ export default function HowItWorks() {
           z-index: 0;
           border-radius: 1px;
         }
+        /* On 1-column mobile (≤480px), center the vertical timeline */
+        @media (max-width: 480px) {
+          .hiw-timeline-v {
+            left: 50%;
+            transform: translateX(-50%);
+          }
+        }
 
         /* ─── Timeline dot on line ─── */
         .hiw-timeline-dot {
@@ -352,67 +394,74 @@ export default function HowItWorks() {
         }
       `}</style>
 
-      {/* Scroll height container — provides the scroll space for the pinned animation */}
+      {/* Scroll height container — provides the scroll space for the pinned animation (desktop only) */}
       <style>{`
         @media (max-width: 768px) {
           .hiw-scroll-container {
-            height: 180vh !important;
+            height: auto !important;
           }
         }
       `}</style>
-      <div className="hiw-scroll-container" style={{ position: "relative", height: "250vh" }}>
-        {/* Sticky pinned content */}
+      <div
+        className="hiw-scroll-container"
+        style={{ position: "relative", height: isMobile ? "auto" : "250vh" }}
+      >
+        {/* Sticky pinned content — only sticky on desktop */}
         <div
           style={{
-            position: "sticky",
-            top: 0,
-            minHeight: "100vh",
+            position: isMobile ? "relative" : "sticky",
+            top: isMobile ? "auto" : 0,
+            minHeight: isMobile ? "auto" : "100vh",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
             background: "var(--color-surface-1)",
             overflow: "hidden",
-            padding: "4rem 2rem",
+            padding: isMobile ? "clamp(3rem, 6vw, 4rem) clamp(1rem, 3vw, 2rem)" : "4rem 2rem",
           }}
         >
-          {/* ─── Scroll progress indicator ─── */}
-          <div
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              right: 0,
-              height: 2,
-              background: "var(--color-brand-8)",
-              zIndex: 10,
-            }}
-          >
-            <motion.div
+          {/* ─── Scroll progress indicator (desktop only) ─── */}
+          {!isMobile && (
+            <div
               style={{
-                height: "100%",
-                background:
-                  "linear-gradient(90deg, var(--color-brand-dark), var(--color-brand), var(--color-brand-light))",
-                transformOrigin: "left",
-                scaleX: scrollYProgress,
+                position: "absolute",
+                top: 0,
+                left: 0,
+                right: 0,
+                height: 2,
+                background: "var(--color-brand-8)",
+                zIndex: 10,
               }}
-            />
-          </div>
+            >
+              <motion.div
+                style={{
+                  height: "100%",
+                  background:
+                    "linear-gradient(90deg, var(--color-brand-dark), var(--color-brand), var(--color-brand-light))",
+                  transformOrigin: "left",
+                  scaleX: scrollYProgress,
+                }}
+              />
+            </div>
+          )}
 
           {/* ─── Top gradient fade ─── */}
-          <div
-            aria-hidden="true"
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              right: 0,
-              height: 120,
-              background:
-                "linear-gradient(to bottom, var(--color-surface-1), transparent)",
-              pointerEvents: "none",
-            }}
-          />
+          {!isMobile && (
+            <div
+              aria-hidden="true"
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                right: 0,
+                height: 120,
+                background:
+                  "linear-gradient(to bottom, var(--color-surface-1), transparent)",
+                pointerEvents: "none",
+              }}
+            />
+          )}
 
           {/* ─── Content ─── */}
           <div
@@ -434,7 +483,7 @@ export default function HowItWorks() {
             >
               <span
                 style={{
-                  fontSize: "0.6rem",
+                  fontSize: "0.75rem",
                   fontWeight: 600,
                   letterSpacing: "0.35em",
                   textTransform: "uppercase",
@@ -525,32 +574,38 @@ export default function HowItWorks() {
 
               {/* Cards grid */}
               <div className="hiw-grid">
-                {STEPS.map((step, i) => (
-                  <StepCard
-                    key={i}
-                    step={step}
-                    index={i}
-                    scrollYProgress={scrollYProgress}
-                  />
-                ))}
+                {isMobile
+                  ? STEPS.map((step, i) => (
+                      <StepCardInView key={i} step={step} index={i} />
+                    ))
+                  : STEPS.map((step, i) => (
+                      <StepCardScroll
+                        key={i}
+                        step={step}
+                        index={i}
+                        scrollYProgress={scrollYProgress}
+                      />
+                    ))}
               </div>
             </div>
           </div>
 
-          {/* ─── Bottom gradient fade ─── */}
-          <div
-            aria-hidden="true"
-            style={{
-              position: "absolute",
-              bottom: 0,
-              left: 0,
-              right: 0,
-              height: 120,
-              background:
-                "linear-gradient(to top, var(--color-surface-1), transparent)",
-              pointerEvents: "none",
-            }}
-          />
+          {/* ─── Bottom gradient fade (desktop only) ─── */}
+          {!isMobile && (
+            <div
+              aria-hidden="true"
+              style={{
+                position: "absolute",
+                bottom: 0,
+                left: 0,
+                right: 0,
+                height: 120,
+                background:
+                  "linear-gradient(to top, var(--color-surface-1), transparent)",
+                pointerEvents: "none",
+              }}
+            />
+          )}
         </div>
       </div>
     </section>

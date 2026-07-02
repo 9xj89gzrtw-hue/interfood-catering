@@ -339,7 +339,7 @@ function TrustItem({ text }: { text: string }) {
   return (
     <span
       style={{
-        fontSize: "clamp(0.72rem, 3vw, 0.85rem)",
+        fontSize: "clamp(0.75rem, 3vw, 0.85rem)",
         color: "var(--color-text-muted)",
         fontWeight: 400,
         letterSpacing: "0.04em",

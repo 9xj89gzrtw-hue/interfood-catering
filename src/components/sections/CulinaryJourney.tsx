@@ -214,7 +214,7 @@ export default function CulinaryJourney() {
           <div className="cj-timeline-line-mobile" aria-hidden="true" />
 
           <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} style={{ textAlign: "center", marginBottom: "1rem", position: "relative", zIndex: 1 }}>
-            <span style={{ fontSize: "clamp(0.6rem, 2vw, 0.7rem)", fontWeight: 600, letterSpacing: "0.35em", textTransform: "uppercase", color: "var(--color-brand)", display: "inline-flex", alignItems: "center", gap: "0.75rem" }}>
+            <span style={{ fontSize: "clamp(0.75rem, 2vw, 0.7rem)", fontWeight: 600, letterSpacing: "0.35em", textTransform: "uppercase", color: "var(--color-brand)", display: "inline-flex", alignItems: "center", gap: "0.75rem" }}>
               <span style={{ width: 24, height: 1, background: "var(--color-brand-30)", display: "inline-block" }} />
               Наш путь
               <span style={{ width: 24, height: 1, background: "var(--color-brand-30)", display: "inline-block" }} />

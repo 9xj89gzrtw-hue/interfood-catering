@@ -40,6 +40,7 @@ function FloatingLabelInput({
   const inputStyles: React.CSSProperties = {
     width: "100%",
     padding: "1.5rem 1.25rem 0.5rem",
+    minHeight: 56,
     background: "var(--color-surface-3)",
     border: focused
       ? "1px solid var(--color-brand-30)"
@@ -153,6 +154,7 @@ function FloatingLabelSelect({
         style={{
           width: "100%",
           padding: "1.5rem 1.25rem 0.5rem",
+          minHeight: 56,
           background: "var(--color-surface-3)",
           border: focused
             ? "1px solid var(--color-brand-30)"
@@ -572,7 +574,7 @@ export default function ContactShowcase() {
         style={{
           maxWidth: "1320px",
           margin: "0 auto",
-          padding: "0 2rem",
+          padding: "0 clamp(1.25rem, 3vw, 2rem)",
         }}
       >
         <div

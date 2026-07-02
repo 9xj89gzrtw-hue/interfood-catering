@@ -158,7 +158,7 @@ function ReviewCard({
           </p>
           <p
             style={{
-              fontSize: isMobile ? "clamp(0.72rem, 2vw, 0.78rem)" : "0.78rem",
+              fontSize: isMobile ? "clamp(0.75rem, 2vw, 0.78rem)" : "0.78rem",
               color: "var(--color-text-muted)",
               letterSpacing: "0.04em",
             }}
@@ -338,7 +338,7 @@ export default function ReviewsStack() {
         >
           <span
             style={{
-              fontSize: "clamp(0.6rem, 2vw, 0.7rem)",
+              fontSize: "clamp(0.75rem, 2vw, 0.7rem)",
               letterSpacing: "0.3em",
               textTransform: "uppercase",
               color: "var(--color-brand)",

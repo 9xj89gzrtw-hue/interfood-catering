@@ -453,7 +453,7 @@ export default function CinematicGallery() {
             />
             <span
               style={{
-                fontSize: "clamp(0.55rem, 1.1vw, 0.68rem)",
+                fontSize: "clamp(0.75rem, 1.1vw, 0.68rem)",
                 letterSpacing: "0.3em",
                 textTransform: "uppercase" as const,
                 color: "var(--color-brand)",
