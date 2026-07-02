@@ -5,6 +5,7 @@ import SmoothScroll from "@/components/SmoothScroll";
 import ScrollProgress from "@/components/ScrollProgress";
 import PageLoader from "@/components/PageLoader";
 import BackToTop from "@/components/BackToTop";
+import WhatsAppFloat from "@/components/WhatsAppFloat";
 import CustomCursor from "@/components/CustomCursor";
 import ServiceWorkerRegistrar from "@/components/ServiceWorkerRegistrar";
 import TouchInteractionProvider from "@/components/TouchInteractionProvider";
@@ -384,6 +385,7 @@ export default function RootLayout({
               {children}
             </div>
             <BackToTop />
+            <WhatsAppFloat />
           </SmoothScroll>
         </TouchInteractionProvider>
         <ServiceWorkerRegistrar />

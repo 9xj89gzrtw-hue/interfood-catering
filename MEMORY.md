@@ -4,7 +4,8 @@
 > **Обновлён:** 2026-07-02  
 > **Проект:** Сайт кейтеринговой компании «Интерфуд» (interfood-catering.ru)  
 > **Репозиторий:** https://github.com/9xj89gzrtw-hue/interfood-catering  
-> **Vercel:** (будет добавлено после деплоя)
+> **GitHub push:** ✅ aebd3b9 (force push, v34)  
+> **Vercel:** ❌ нет токена — нужен `vercel login` или `--token`
 
 ---
 

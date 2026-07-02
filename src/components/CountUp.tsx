@@ -28,7 +28,7 @@ export default function CountUp({
   decimals = 0,
   className = "",
   style,
-  hideUntilInView = false,
+  hideUntilInView = true,
 }: CountUpProps) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-50px" });
