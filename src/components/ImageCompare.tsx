@@ -103,7 +103,7 @@ export default function ImageCompare({
       <div style={{
         position: "absolute", top: 0, bottom: 0,
         left: `${position}%`,
-        width: 2, background: "#fff",
+        width: 2, background: "#1A1A1A",
         boxShadow: "0 0 10px rgba(0,0,0,0.3)",
         zIndex: 3,
       }}>
@@ -111,7 +111,7 @@ export default function ImageCompare({
           position: "absolute", top: "50%", left: "50%",
           transform: "translate(-50%, -50%)",
           width: 40, height: 40, borderRadius: "50%",
-          background: "#fff", boxShadow: "0 2px 10px rgba(0,0,0,0.3)",
+          background: "#1A1A1A", boxShadow: "0 2px 10px rgba(0,0,0,0.3)",
           display: "flex", alignItems: "center", justifyContent: "center",
           fontSize: "0.8rem", color: "var(--color-dark)",
         }}>

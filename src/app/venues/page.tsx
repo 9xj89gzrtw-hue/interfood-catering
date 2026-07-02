@@ -275,7 +275,7 @@ function VenueFlipCard({ venue, onTour }: { venue: Venue; onTour: (venue: Venue)
             height: "100%",
             display: "flex",
             flexDirection: "column",
-            background: "var(--color-warm-white)",
+            background: "#0F0F0F",
             justifyContent: "center",
           }}>
             <h3 style={{
@@ -301,7 +301,7 @@ function VenueFlipCard({ venue, onTour }: { venue: Venue; onTour: (venue: Venue)
             <p style={{
               fontSize: "0.85rem",
               lineHeight: 1.7,
-              color: "#666",
+              color: "rgba(255,255,255,0.5)",
               marginBottom: "1rem",
               flex: 1,
             }}>
@@ -327,7 +327,7 @@ function VenueFlipCard({ venue, onTour }: { venue: Venue; onTour: (venue: Venue)
               alignItems: "center",
               marginBottom: "1rem",
             }}>
-              <span style={{ fontSize: "0.8rem", color: "#666" }}>{venue.capacity}</span>
+              <span style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.5)" }}>{venue.capacity}</span>
               <span style={{
                 fontSize: "0.9rem",
                 fontWeight: 600,
@@ -577,7 +577,7 @@ export default function VenuesPage() {
   }, []);
 
   return (
-    <main style={{ background: "var(--color-warm-white)", overflow: "hidden" }}>
+    <main style={{ background: "#0F0F0F", overflow: "hidden" }}>
       {/* ═══ NAVIGATION ═══ */}
       <SiteNav />
 
@@ -599,7 +599,7 @@ export default function VenuesPage() {
         {/* Light overlay */}
         <div style={{
           position: "absolute", inset: 0, zIndex: 1,
-          background: "linear-gradient(to bottom, rgba(254,253,251,0.15) 0%, rgba(254,253,251,0.25) 40%, rgba(254,253,251,0.75) 80%, rgba(254,253,251,0.95) 100%)",
+          background: "linear-gradient(to bottom, rgba(10,10,10,0.3) 0%, rgba(254,253,251,0.25) 40%, rgba(254,253,251,0.75) 80%, rgba(10,10,10,0.95) 100%)",
         }} />
         {/* ParticleField overlay */}
         <ParticleField count={55} speed={0.2} style={{ zIndex: 2 }} />
@@ -644,7 +644,7 @@ export default function VenuesPage() {
             style={{
               fontSize: "1.1rem",
               lineHeight: 1.7,
-              color: "#555",
+              color: "rgba(255,255,255,0.6)",
               maxWidth: 550,
               margin: "0 auto 2rem",
             }}
@@ -688,7 +688,7 @@ export default function VenuesPage() {
             transition={{ delay: 1.5, duration: 0.8 }}
             style={{ marginTop: "3rem", display: "flex", flexDirection: "column", alignItems: "center", gap: "0.5rem" }}
           >
-            <span style={{ fontSize: "0.6rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "#999" }}>
+            <span style={{ fontSize: "0.6rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)" }}>
               Прокрутите вниз
             </span>
             <motion.div
@@ -703,7 +703,7 @@ export default function VenuesPage() {
       {/* ═══ 2. VENUE FILTER + FLIP CARDS with MorphingBlob ═══ */}
       <section
         id="venues"
-        style={{ background: "var(--color-warm-white)", padding: "6rem 0", position: "relative", overflow: "hidden" }}
+        style={{ background: "#0F0F0F", padding: "6rem 0", position: "relative", overflow: "hidden" }}
       >
         {/* MorphingBlob behind venue cards */}
         <MorphingBlob
@@ -796,7 +796,7 @@ export default function VenuesPage() {
           </AnimatePresence>
 
           {filteredVenues.length === 0 && (
-            <div style={{ textAlign: "center", padding: "4rem 2rem", color: "#999" }}>
+            <div style={{ textAlign: "center", padding: "4rem 2rem", color: "rgba(255,255,255,0.4)" }}>
               <p style={{ fontFamily: "var(--font-serif)", fontSize: "1.3rem" }}>Площадки не найдены</p>
               <p style={{ fontSize: "0.85rem", marginTop: "0.5rem" }}>Попробуйте другой фильтр</p>
             </div>
@@ -805,7 +805,7 @@ export default function VenuesPage() {
       </section>
 
       {/* ═══ 3. HORIZONTAL VIDEO SCROLL ═══ */}
-      <section style={{ background: "var(--color-cream)", overflow: "hidden" }}>
+      <section style={{ background: "#111111", overflow: "hidden" }}>
         <HorizontalVideoScroll
           videos={[
             { src: VID.venue1, title: "Усадьба «Марфино»", subtitle: "Загородный клуб для роскошных торжеств" },
@@ -816,7 +816,7 @@ export default function VenuesPage() {
       </section>
 
       {/* ═══ 4. SWIPE CAROUSEL PREVIEW ═══ */}
-      <section style={{ background: "var(--color-cream)", padding: "6rem 0" }}>
+      <section style={{ background: "#111111", padding: "6rem 0" }}>
         <div className="container" style={{ textAlign: "center" }}>
           <Reveal>
             <div className="section-label">Превью</div>
@@ -859,7 +859,7 @@ export default function VenuesPage() {
       </section>
 
       {/* ═══ 5. COMPARISON SECTION ═══ */}
-      <section id="compare" style={{ background: "var(--color-warm-white)", padding: "6rem 0" }}>
+      <section id="compare" style={{ background: "#0F0F0F", padding: "6rem 0" }}>
         <div className="container">
           <Reveal>
             <div className="section-label">Сравнение</div>
@@ -888,8 +888,8 @@ export default function VenuesPage() {
                     style={{ borderRadius: 20, marginBottom: "1rem" }}
                   />
                   <h3 style={{ fontFamily: "var(--font-serif)", fontSize: "1.2rem", marginBottom: "0.3rem" }}>{venue.name}</h3>
-                  <p style={{ fontSize: "0.8rem", color: "#888", marginBottom: "0.5rem" }}>{venue.type} · {venue.capacity}</p>
-                  <p style={{ fontSize: "0.82rem", color: "#666", lineHeight: 1.6 }}>{
+                  <p style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.4)", marginBottom: "0.5rem" }}>{venue.type} · {venue.capacity}</p>
+                  <p style={{ fontSize: "0.82rem", color: "rgba(255,255,255,0.5)", lineHeight: 1.6 }}>{
                     i === 0
                       ? "Пустая усадьба преображается в роскошное свадебное пространство: цветочные арки, подсветка деревьев, элегантная сервировка и свечи создают атмосферу волшебства."
                       : i === 1
@@ -904,7 +904,7 @@ export default function VenuesPage() {
       </section>
 
       {/* ═══ 6. STATS TRUST BAR ═══ */}
-      <section style={{ background: "var(--color-cream)", padding: "4rem 0", position: "relative", overflow: "hidden" }}>
+      <section style={{ background: "#111111", padding: "4rem 0", position: "relative", overflow: "hidden" }}>
         {/* FluidBackground behind stats */}
         <FluidBackground
           color1="rgba(184, 149, 90, 0.06)"
@@ -926,7 +926,7 @@ export default function VenuesPage() {
                   <div style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 400, color: "var(--color-brand)" }}>
                     {stat.value}
                   </div>
-                  <div style={{ fontSize: "0.7rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "#888", marginTop: "0.3rem" }}>
+                  <div style={{ fontSize: "0.7rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", marginTop: "0.3rem" }}>
                     {stat.label}
                   </div>
                 </div>
@@ -961,7 +961,7 @@ export default function VenuesPage() {
                 onClick={() => {}}
                 style={{
                   padding: "1rem 2.5rem",
-                  background: "#fff",
+                  background: "#1A1A1A",
                   color: "var(--color-brand-dark)",
                   fontSize: "0.75rem",
                   fontWeight: 600,

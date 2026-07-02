@@ -191,7 +191,7 @@ export default function AboutPage() {
           </video>
         </motion.div>
         {/* Light overlay */}
-        <div style={{ position: "absolute", inset: 0, zIndex: 1, background: "linear-gradient(to bottom, rgba(254,253,251,0.25) 0%, rgba(254,253,251,0.15) 30%, rgba(254,253,251,0.4) 60%, rgba(254,253,251,0.92) 100%)" }} />
+        <div style={{ position: "absolute", inset: 0, zIndex: 1, background: "linear-gradient(to bottom, rgba(254,253,251,0.25) 0%, rgba(10,10,10,0.3) 30%, rgba(254,253,251,0.4) 60%, rgba(254,253,251,0.92) 100%)" }} />
         {/* ParticleField overlay */}
         <ParticleField count={50} speed={0.25} style={{ zIndex: 2 }} />
         {/* Content */}
@@ -273,7 +273,7 @@ export default function AboutPage() {
                     duration={2.5}
                   />
                 </h3>
-                <p style={{ fontSize: "0.7rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "#888", marginTop: "0.25rem" }}>
+                <p style={{ fontSize: "0.7rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", marginTop: "0.25rem" }}>
                   {item.label}
                 </p>
               </div>
@@ -316,7 +316,7 @@ export default function AboutPage() {
                 stagger={0.03}
               />
               <Reveal delay={0.15}>
-                <p style={{ fontSize: "1rem", lineHeight: 1.8, color: "#555", maxWidth: 520 }}>
+                <p style={{ fontSize: "1rem", lineHeight: 1.8, color: "rgba(255,255,255,0.6)", maxWidth: 520 }}>
                   Всё началось с одной мечты — показать, что кейтеринг может быть искусством. Дмитрий Нилов, обучившись кулинарному мастерству, пройдя школу <strong style={{ color: "#1A1A1A" }}>Le Cordon Bleu</strong> в Париже и поработав в ресторанах с мишленовскими звёздами, вернулся в Санкт-Петербург с убеждением: каждое мероприятие заслуживает гастрономии ресторанного уровня.
                 </p>
               </Reveal>
@@ -472,7 +472,7 @@ export default function AboutPage() {
             {VALUES.map((val, i) => (
               <TiltCard key={i} glare maxTilt={8}>
                 <div style={{
-                  background: "#fff",
+                  background: "#1A1A1A",
                   border: "1px solid rgba(184,149,90,0.12)",
                   borderRadius: 20,
                   padding: "2.5rem",

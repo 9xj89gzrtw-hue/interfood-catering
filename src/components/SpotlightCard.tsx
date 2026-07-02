@@ -44,7 +44,7 @@ export default function SpotlightCard({
         position: "relative",
         borderRadius,
         overflow: "hidden",
-        background: "#fff",
+        background: "#1A1A1A",
         boxShadow: "0 4px 30px rgba(0,0,0,0.06)",
         ...style,
       }}

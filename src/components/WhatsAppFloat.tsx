@@ -62,7 +62,7 @@ export default function WhatsAppFloat() {
             bottom: "100%",
             right: 0,
             marginBottom: "0.5rem",
-            background: "#fff",
+            background: "#1A1A1A",
             color: "#1A1A1A",
             padding: "0.6rem 1rem",
             borderRadius: "8px",

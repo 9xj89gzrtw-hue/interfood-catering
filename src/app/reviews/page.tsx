@@ -346,7 +346,7 @@ export default function ReviewsPage() {
             inset: 0,
             zIndex: 1,
             background:
-              "linear-gradient(to bottom, rgba(254,253,251,0.35) 0%, rgba(254,253,251,0.15) 40%, rgba(254,253,251,0.6) 70%, rgba(254,253,251,0.95) 100%)",
+              "linear-gradient(to bottom, rgba(254,253,251,0.35) 0%, rgba(10,10,10,0.3) 40%, rgba(254,253,251,0.6) 70%, rgba(10,10,10,0.95) 100%)",
           }}
         />
 
@@ -409,7 +409,7 @@ export default function ReviewsPage() {
             style={{
               fontSize: "1.05rem",
               lineHeight: 1.7,
-              color: "#555",
+              color: "rgba(255,255,255,0.6)",
               maxWidth: 580,
               margin: "0 auto",
               textAlign: "center",
@@ -443,7 +443,7 @@ export default function ReviewsPage() {
             >
               4.9
             </span>
-            <span style={{ color: "#888", fontSize: "0.85rem" }}>
+            <span style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.85rem" }}>
               средний рейтинг
             </span>
           </motion.div>
@@ -557,7 +557,7 @@ export default function ReviewsPage() {
 
                     <div
                       style={{
-                        color: "#888",
+                        color: "rgba(255,255,255,0.4)",
                         fontSize: "0.85rem",
                         marginTop: "0.75rem",
                       }}
@@ -756,7 +756,7 @@ export default function ReviewsPage() {
                       {/* Review text (expandable) */}
                       <p
                         style={{
-                          color: "#555",
+                          color: "rgba(255,255,255,0.6)",
                           fontSize: "0.88rem",
                           lineHeight: 1.7,
                           display:
@@ -825,7 +825,7 @@ export default function ReviewsPage() {
                           </div>
                           <div
                             style={{
-                              color: "#888",
+                              color: "rgba(255,255,255,0.4)",
                               fontSize: "0.78rem",
                               marginTop: "0.15rem",
                             }}
@@ -970,7 +970,7 @@ export default function ReviewsPage() {
                     </div>
                     <div
                       style={{
-                        color: "#888",
+                        color: "rgba(255,255,255,0.4)",
                         fontSize: "0.8rem",
                         marginTop: "0.25rem",
                       }}

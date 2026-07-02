@@ -388,7 +388,7 @@ export default function ServicesPage() {
          ═══════════════════════════════════════════════════ */}
       <section
         style={{
-          background: "var(--color-cream)",
+          background: "#111111",
           padding: "1.2rem 0",
           overflow: "hidden",
           borderBottom: "1px solid var(--color-cream-darker)",
@@ -507,7 +507,7 @@ export default function ServicesPage() {
                         style={{
                           fontSize: "1rem",
                           lineHeight: 1.8,
-                          color: "#555",
+                          color: "rgba(255,255,255,0.6)",
                           marginBottom: "1rem",
                         }}
                       >
@@ -519,7 +519,7 @@ export default function ServicesPage() {
                         style={{
                           fontSize: "0.95rem",
                           lineHeight: 1.8,
-                          color: "#666",
+                          color: "rgba(255,255,255,0.5)",
                           marginBottom: "1.5rem",
                         }}
                       >
@@ -532,7 +532,7 @@ export default function ServicesPage() {
                           style={{
                             fontSize: "0.95rem",
                             lineHeight: 1.8,
-                            color: "#666",
+                            color: "rgba(255,255,255,0.5)",
                             marginBottom: "1.5rem",
                           }}
                         >
@@ -1009,7 +1009,7 @@ export default function ServicesPage() {
                             padding: "0 1.8rem 1.4rem",
                             fontSize: "0.95rem",
                             lineHeight: 1.8,
-                            color: "#555",
+                            color: "rgba(255,255,255,0.6)",
                             borderTop: "1px solid var(--color-cream-darker)",
                             paddingTop: "1rem",
                           }}

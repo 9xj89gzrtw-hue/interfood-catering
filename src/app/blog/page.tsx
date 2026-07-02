@@ -283,7 +283,7 @@ function ArticleCard({ article, index }: { article: Article; index: number }) {
                 }}>
                   {article.author.charAt(0)}
                 </div>
-                <span style={{ fontSize: "0.78rem", color: "#888" }}>{article.author}</span>
+                <span style={{ fontSize: "0.78rem", color: "rgba(255,255,255,0.4)" }}>{article.author}</span>
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
                 <span style={{ fontSize: "0.75rem", color: "#aaa" }}>{article.date}</span>
@@ -374,7 +374,7 @@ export default function BlogPage() {
         </motion.div>
 
         <div className="hero-overlay" style={{
-          background: "linear-gradient(to bottom, rgba(254,253,251,0.15) 0%, rgba(254,253,251,0.05) 30%, rgba(254,253,251,0.25) 60%, rgba(254,253,251,0.92) 100%)",
+          background: "linear-gradient(to bottom, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.15) 30%, rgba(254,253,251,0.25) 60%, rgba(254,253,251,0.92) 100%)",
         }} />
 
         <ParticleField count={30} speed={0.2} style={{ opacity: 0.6 }} />
@@ -436,7 +436,7 @@ export default function BlogPage() {
             <p style={{
               fontSize: "1.1rem",
               lineHeight: 1.7,
-              color: "#666",
+              color: "rgba(255,255,255,0.5)",
               maxWidth: 560,
               margin: "0 auto",
             }}>
@@ -457,7 +457,7 @@ export default function BlogPage() {
           ──────────────────────────────────────────── */}
       <section id="articles" aria-label="Фильтр статей" style={{
         padding: "3rem 2rem 0",
-        background: "var(--color-warm-white)",
+        background: "#0F0F0F",
       }}>
         <div className="container">
           <div style={{
@@ -476,7 +476,7 @@ export default function BlogPage() {
                   padding: "0.7rem 1.6rem",
                   borderRadius: 100,
                   border: "1.5px solid",
-                  borderColor: activeCategory === cat.key ? "var(--color-brand)" : "var(--color-cream-darker)",
+                  borderColor: activeCategory === cat.key ? "var(--color-brand)" : "#2D2D2D",
                   background: activeCategory === cat.key ? "var(--color-brand)" : "#fff",
                   color: activeCategory === cat.key ? "#fff" : "#555",
                   fontSize: "0.75rem",
@@ -507,7 +507,7 @@ export default function BlogPage() {
       />
       <section aria-label="Статьи" style={{
         padding: "3rem 2rem 6rem",
-        background: "var(--color-warm-white)",
+        background: "#0F0F0F",
       }}>
         <div className="container">
           <div style={{
@@ -542,7 +542,7 @@ export default function BlogPage() {
             <div style={{
               textAlign: "center",
               padding: "4rem 0",
-              color: "#999",
+              color: "rgba(255,255,255,0.4)",
               fontSize: "1.1rem",
             }}>
               Статьи не найдены
@@ -686,7 +686,7 @@ export default function BlogPage() {
           ──────────────────────────────────────────── */}
       <section aria-label="Подписка" style={{
         padding: "6rem 2rem",
-        background: "var(--color-cream)",
+        background: "#111111",
         position: "relative",
         overflow: "hidden",
       }}>
@@ -737,7 +737,7 @@ export default function BlogPage() {
                       padding: "1rem 1.5rem",
                       borderRadius: 100,
                       border: "1.5px solid var(--color-cream-darker)",
-                      background: "#fff",
+                      background: "#1A1A1A",
                       fontSize: "0.9rem",
                       outline: "none",
                       transition: "border-color 0.3s, box-shadow 0.3s",
@@ -747,7 +747,7 @@ export default function BlogPage() {
                       e.target.style.boxShadow = "0 0 0 3px rgba(184,149,90,0.12)";
                     }}
                     onBlur={(e) => {
-                      e.target.style.borderColor = "var(--color-cream-darker)";
+                      e.target.style.borderColor = "#2D2D2D";
                       e.target.style.boxShadow = "none";
                     }}
                   />

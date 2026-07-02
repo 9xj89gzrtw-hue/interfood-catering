@@ -119,7 +119,7 @@ export default function ClientMarquee() {
   return (
     <section
       style={{
-        background: "var(--color-warm-white)",
+        background: "#0F0F0F",
         borderBottom: "1px solid rgba(184,149,90,0.1)",
         borderTop: "1px solid rgba(184,149,90,0.1)",
         padding: "3rem 0",

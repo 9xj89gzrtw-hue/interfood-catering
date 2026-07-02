@@ -428,7 +428,7 @@ export default function ContactsPage() {
                     <div
                       style={{
                         fontSize: "0.82rem",
-                        color: "#888",
+                        color: "rgba(255,255,255,0.4)",
                         lineHeight: 1.5,
                       }}
                     >
@@ -505,7 +505,7 @@ export default function ContactsPage() {
                     exit={{ opacity: 0, scale: 0.95 }}
                     transition={{ duration: 0.5 }}
                     style={{
-                      background: "#fff",
+                      background: "#1A1A1A",
                       borderRadius: "20px",
                       padding: "3rem 2rem",
                       textAlign: "center",
@@ -550,7 +550,7 @@ export default function ContactsPage() {
                     </h3>
                     <p
                       style={{
-                        color: "#666",
+                        color: "rgba(255,255,255,0.5)",
                         fontSize: "0.95rem",
                         lineHeight: 1.7,
                         marginBottom: "1.5rem",
@@ -572,7 +572,7 @@ export default function ContactsPage() {
                     exit={{ opacity: 0 }}
                     onSubmit={handleSubmit}
                     style={{
-                      background: "#fff",
+                      background: "#1A1A1A",
                       borderRadius: "20px",
                       padding: "2.5rem",
                       boxShadow: "0 4px 30px rgba(0,0,0,0.06)",
@@ -614,14 +614,14 @@ export default function ContactsPage() {
                             border: `1.5px solid ${
                               errors.name
                                 ? "#e53e3e"
-                                : "var(--color-cream-darker)"
+                                : "#2D2D2D"
                             }`,
                             borderRadius: "12px",
                             fontSize: "0.9rem",
                             fontFamily: "var(--font-sans)",
                             background: errors.name
                               ? "rgba(229,62,62,0.04)"
-                              : "var(--color-warm-white)",
+                              : "#0F0F0F",
                             outline: "none",
                             transition: "border-color 0.3s, background 0.3s",
                           }}
@@ -633,7 +633,7 @@ export default function ContactsPage() {
                           onBlur={(e) => {
                             if (!errors.name)
                               e.target.style.borderColor =
-                                "var(--color-cream-darker)";
+                                "#2D2D2D";
                           }}
                         />
                         {errors.name && (
@@ -681,14 +681,14 @@ export default function ContactsPage() {
                             border: `1.5px solid ${
                               errors.phone
                                 ? "#e53e3e"
-                                : "var(--color-cream-darker)"
+                                : "#2D2D2D"
                             }`,
                             borderRadius: "12px",
                             fontSize: "0.9rem",
                             fontFamily: "var(--font-sans)",
                             background: errors.phone
                               ? "rgba(229,62,62,0.04)"
-                              : "var(--color-warm-white)",
+                              : "#0F0F0F",
                             outline: "none",
                             transition: "border-color 0.3s, background 0.3s",
                           }}
@@ -700,7 +700,7 @@ export default function ContactsPage() {
                           onBlur={(e) => {
                             if (!errors.phone)
                               e.target.style.borderColor =
-                                "var(--color-cream-darker)";
+                                "#2D2D2D";
                           }}
                         />
                         {errors.phone && (
@@ -748,14 +748,14 @@ export default function ContactsPage() {
                             border: `1.5px solid ${
                               errors.email
                                 ? "#e53e3e"
-                                : "var(--color-cream-darker)"
+                                : "#2D2D2D"
                             }`,
                             borderRadius: "12px",
                             fontSize: "0.9rem",
                             fontFamily: "var(--font-sans)",
                             background: errors.email
                               ? "rgba(229,62,62,0.04)"
-                              : "var(--color-warm-white)",
+                              : "#0F0F0F",
                             outline: "none",
                             transition: "border-color 0.3s, background 0.3s",
                           }}
@@ -767,7 +767,7 @@ export default function ContactsPage() {
                           onBlur={(e) => {
                             if (!errors.email)
                               e.target.style.borderColor =
-                                "var(--color-cream-darker)";
+                                "#2D2D2D";
                           }}
                         />
                         {errors.email && (
@@ -814,7 +814,7 @@ export default function ContactsPage() {
                             borderRadius: "12px",
                             fontSize: "0.9rem",
                             fontFamily: "var(--font-sans)",
-                            background: "var(--color-warm-white)",
+                            background: "#0F0F0F",
                             outline: "none",
                             color: form.eventType
                               ? "var(--color-dark)"
@@ -832,7 +832,7 @@ export default function ContactsPage() {
                           }
                           onBlur={(e) =>
                             (e.target.style.borderColor =
-                              "var(--color-cream-darker)")
+                              "#2D2D2D")
                           }
                         >
                           <option value="" disabled>
@@ -875,7 +875,7 @@ export default function ContactsPage() {
                             borderRadius: "12px",
                             fontSize: "0.9rem",
                             fontFamily: "var(--font-sans)",
-                            background: "var(--color-warm-white)",
+                            background: "#0F0F0F",
                             outline: "none",
                             color: form.date
                               ? "var(--color-dark)"
@@ -888,7 +888,7 @@ export default function ContactsPage() {
                           }
                           onBlur={(e) =>
                             (e.target.style.borderColor =
-                              "var(--color-cream-darker)")
+                              "#2D2D2D")
                           }
                         />
                       </div>
@@ -923,14 +923,14 @@ export default function ContactsPage() {
                             border: `1.5px solid ${
                               errors.guests
                                 ? "#e53e3e"
-                                : "var(--color-cream-darker)"
+                                : "#2D2D2D"
                             }`,
                             borderRadius: "12px",
                             fontSize: "0.9rem",
                             fontFamily: "var(--font-sans)",
                             background: errors.guests
                               ? "rgba(229,62,62,0.04)"
-                              : "var(--color-warm-white)",
+                              : "#0F0F0F",
                             outline: "none",
                             transition: "border-color 0.3s, background 0.3s",
                           }}
@@ -942,7 +942,7 @@ export default function ContactsPage() {
                           onBlur={(e) => {
                             if (!errors.guests)
                               e.target.style.borderColor =
-                                "var(--color-cream-darker)";
+                                "#2D2D2D";
                           }}
                         />
                         {errors.guests && (
@@ -992,7 +992,7 @@ export default function ContactsPage() {
                           borderRadius: "12px",
                           fontSize: "0.9rem",
                           fontFamily: "var(--font-sans)",
-                          background: "var(--color-warm-white)",
+                          background: "#0F0F0F",
                           outline: "none",
                           resize: "vertical",
                           transition: "border-color 0.3s",
@@ -1002,7 +1002,7 @@ export default function ContactsPage() {
                         }
                         onBlur={(e) =>
                           (e.target.style.borderColor =
-                            "var(--color-cream-darker)")
+                            "#2D2D2D")
                         }
                       />
                     </div>
@@ -1062,7 +1062,7 @@ export default function ContactsPage() {
                     <p
                       style={{
                         fontSize: "0.72rem",
-                        color: "#999",
+                        color: "rgba(255,255,255,0.4)",
                         marginTop: "1rem",
                         lineHeight: 1.5,
                       }}
@@ -1098,7 +1098,7 @@ export default function ContactsPage() {
               />
               <div
                 style={{
-                  background: "#fff",
+                  background: "#1A1A1A",
                   borderRadius: "20px",
                   padding: "2rem",
                   boxShadow: "0 4px 30px rgba(0,0,0,0.06)",
@@ -1118,7 +1118,7 @@ export default function ContactsPage() {
                 </div>
                 <p
                   style={{
-                    color: "#666",
+                    color: "rgba(255,255,255,0.5)",
                     fontSize: "0.9rem",
                     lineHeight: 1.7,
                     marginBottom: "1.25rem",

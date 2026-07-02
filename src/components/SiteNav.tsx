@@ -142,7 +142,7 @@ export default function SiteNav() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 + NAV_LINKS.length * 0.04 + 0.2 }}
-              style={{ color: "#666", fontSize: "0.9rem" }}
+              style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.9rem" }}
             >
               interfood-catering@yandex.ru
             </motion.a>

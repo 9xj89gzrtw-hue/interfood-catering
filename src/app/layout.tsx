@@ -27,7 +27,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
-  themeColor: "#B8955A",
+  themeColor: "#0A0A0A",
 };
 
 export const metadata: Metadata = {
@@ -173,11 +173,11 @@ export default function RootLayout({
               *{margin:0;padding:0;box-sizing:border-box}
               html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;overflow-x:hidden}
               html,body{max-width:100vw}
-              body{font-family:"Inter",system-ui,-apple-system,sans-serif;background:#FEFDFB;color:#1A1A1A;overflow-x:hidden;-webkit-overflow-scrolling:touch}
+              body{font-family:"Inter",system-ui,-apple-system,sans-serif;background:#0A0A0A;color:#FAFAF8;overflow-x:hidden;-webkit-overflow-scrolling:touch}
               .hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
               .hero-dark{background:#0a0a0a}
               .hero-bg{position:absolute;inset:0;background-size:cover;background-position:center 30%}
-              .hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(254,253,251,0.15) 0%,rgba(254,253,251,0.05) 30%,rgba(254,253,251,0.2) 60%,rgba(254,253,251,0.85) 100%)}
+              .hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,10,0.3) 0%,rgba(10,10,10,0.2) 30%,rgba(10,10,10,0.4) 60%,rgba(10,10,10,0.9) 100%)}
               .hero-content{position:relative;z-index:5;text-align:center;padding:2rem;max-width:800px;margin:0 auto}
               .section-label{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:#B8955A;margin-bottom:.75rem;font-weight:500}
               .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}

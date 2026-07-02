@@ -180,7 +180,7 @@ export default function CorporatePage() {
         </motion.div>
         {/* Light overlay — warm gradient */}
         <div className="hero-overlay" style={{
-          background: "linear-gradient(to bottom, rgba(254,253,251,0.15) 0%, rgba(254,253,251,0.25) 40%, rgba(254,253,251,0.75) 80%, rgba(254,253,251,0.95) 100%)",
+          background: "linear-gradient(to bottom, rgba(10,10,10,0.3) 0%, rgba(254,253,251,0.25) 40%, rgba(254,253,251,0.75) 80%, rgba(10,10,10,0.95) 100%)",
         }} />
         {/* ParticleField */}
         <ParticleField count={45} speed={0.2} />
@@ -256,7 +256,7 @@ export default function CorporatePage() {
 
       {/* ─── Stats Bar ─── */}
       <section style={{
-        background: "var(--color-cream)",
+        background: "#111111",
         borderBottom: "1px solid rgba(184,149,90,0.12)",
         padding: "3rem 2rem",
       }}>
@@ -288,7 +288,7 @@ export default function CorporatePage() {
                   fontSize: "0.7rem",
                   letterSpacing: "0.2em",
                   textTransform: "uppercase",
-                  color: "#888",
+                  color: "rgba(255,255,255,0.4)",
                   marginTop: "0.5rem",
                 }}>
                   {stat.label}
@@ -317,7 +317,7 @@ export default function CorporatePage() {
       {/* ═══════════════════════════════════════════════════════
           2. FORMATS — 4 format cards + FluidBackground
           ═══════════════════════════════════════════════════════ */}
-      <section id="formats" style={{ padding: "6rem 0", background: "var(--color-warm-white)", position: "relative", overflow: "hidden" }} aria-label="Форматы">
+      <section id="formats" style={{ padding: "6rem 0", background: "#0F0F0F", position: "relative", overflow: "hidden" }} aria-label="Форматы">
         {/* FluidBackground behind packages */}
         <FluidBackground
           color1="rgba(184, 149, 90, 0.07)"
@@ -377,7 +377,7 @@ export default function CorporatePage() {
                       </h3>
                       <p style={{
                         fontSize: "0.88rem", lineHeight: 1.6,
-                        color: "#666", marginBottom: "1rem", flex: 1,
+                        color: "rgba(255,255,255,0.5)", marginBottom: "1rem", flex: 1,
                       }}>
                         {fmt.desc}
                       </p>
@@ -413,7 +413,7 @@ export default function CorporatePage() {
       {/* ═══════════════════════════════════════════════════════
           3. ADVANTAGES — 6 cards with LottiePlaceholder icons
           ═══════════════════════════════════════════════════════ */}
-      <section style={{ padding: "6rem 0", background: "var(--color-cream)" }} aria-label="Преимущества">
+      <section style={{ padding: "6rem 0", background: "#111111" }} aria-label="Преимущества">
         <div className="container">
           <Reveal>
             <span className="section-label">Преимущества</span>
@@ -549,7 +549,7 @@ export default function CorporatePage() {
       {/* ═══════════════════════════════════════════════════════
           5. CASE STUDIES — 3 real cases
           ═══════════════════════════════════════════════════════ */}
-      <section style={{ padding: "6rem 0", background: "var(--color-warm-white)" }} aria-label="Кейсы">
+      <section style={{ padding: "6rem 0", background: "#0F0F0F" }} aria-label="Кейсы">
         <div className="container">
           <Reveal>
             <span className="section-label">Кейсы</span>
@@ -584,7 +584,7 @@ export default function CorporatePage() {
                       }}>
                         {cs.client}
                       </span>
-                      <span style={{ fontSize: "0.75rem", color: "#999" }}>
+                      <span style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.4)" }}>
                         {cs.guests} гостей · {cs.duration}
                       </span>
                     </div>
@@ -597,7 +597,7 @@ export default function CorporatePage() {
                     </h3>
                     <p style={{
                       fontSize: "0.9rem", lineHeight: 1.7,
-                      color: "#666", marginBottom: "1.25rem",
+                      color: "rgba(255,255,255,0.5)", marginBottom: "1.25rem",
                     }}>
                       {cs.desc}
                     </p>
@@ -617,7 +617,7 @@ export default function CorporatePage() {
                       fontStyle: "italic",
                       fontSize: "0.85rem",
                       lineHeight: 1.6,
-                      color: "#888",
+                      color: "rgba(255,255,255,0.4)",
                     }}>
                       &ldquo;{cs.quote}&rdquo;
                       <span style={{ display: "block", marginTop: "0.5rem", fontStyle: "normal", fontSize: "0.75rem", color: "var(--color-brand-dark)" }}>
@@ -642,7 +642,7 @@ export default function CorporatePage() {
       {/* ═══════════════════════════════════════════════════════
           6. VIDEO CAROUSEL — 4 corporate videos
           ═══════════════════════════════════════════════════════ */}
-      <section style={{ padding: "6rem 0", background: "var(--color-cream)" }} aria-label="Видео">
+      <section style={{ padding: "6rem 0", background: "#111111" }} aria-label="Видео">
         <div className="container">
           <Reveal>
             <span className="section-label">Видео</span>
@@ -710,7 +710,7 @@ export default function CorporatePage() {
                   style={{
                     display: "inline-flex", alignItems: "center", justifyContent: "center",
                     padding: "1rem 2.5rem",
-                    background: "#fff", color: "var(--color-brand-dark)",
+                    background: "#1A1A1A", color: "var(--color-brand-dark)",
                     fontSize: "0.75rem", fontWeight: 600,
                     letterSpacing: "0.15em", textTransform: "uppercase",
                     borderRadius: "100px", border: "none", cursor: "pointer",

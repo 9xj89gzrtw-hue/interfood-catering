@@ -65,7 +65,7 @@ export default function FlipCard3D({
             transform: `${rotateAxis}(180deg)`,
             borderRadius: 20,
             overflow: "hidden",
-            background: "var(--color-warm-white)",
+            background: "#0F0F0F",
           }}
         >
           {back}

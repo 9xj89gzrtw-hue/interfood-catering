@@ -457,7 +457,7 @@ function HolographicTeamCard({ member, index }: { member: TeamMember; index: num
                     fontSize: "0.7rem",
                     textTransform: "uppercase",
                     letterSpacing: "0.12em",
-                    color: "#999",
+                    color: "rgba(255,255,255,0.4)",
                     marginBottom: "0.5rem",
                     fontWeight: 600,
                   }}
@@ -500,7 +500,7 @@ function HolographicTeamCard({ member, index }: { member: TeamMember; index: num
                   borderLeft: `3px solid ${member.glowColor}`,
                   fontStyle: "italic",
                   fontSize: "0.82rem",
-                  color: "#555",
+                  color: "rgba(255,255,255,0.6)",
                   lineHeight: 1.5,
                 }}
               >
@@ -586,7 +586,7 @@ function DepartmentCard({ dept, index }: { dept: typeof DEPARTMENTS[0]; index: n
         >
           {inView ? <CountUp target={dept.count} suffix=" чел." /> : "0"}
         </div>
-        <p style={{ fontSize: "0.85rem", color: "#666", lineHeight: 1.7 }}>{dept.desc}</p>
+        <p style={{ fontSize: "0.85rem", color: "rgba(255,255,255,0.5)", lineHeight: 1.7 }}>{dept.desc}</p>
       </SpotlightCard>
     </motion.div>
   );
@@ -630,7 +630,7 @@ export default function TeamPage() {
           style={{
             position: "absolute",
             inset: 0,
-            background: "linear-gradient(135deg, rgba(254,253,251,0.88) 0%, rgba(250,250,248,0.92) 50%, rgba(254,253,251,0.85) 100%)",
+            background: "linear-gradient(135deg, rgba(254,253,251,0.88) 0%, rgba(250,250,248,0.92) 50%, rgba(10,10,10,0.9) 100%)",
             zIndex: 1,
           }}
         />
@@ -729,7 +729,7 @@ export default function TeamPage() {
           </motion.div>
 
           <motion.p
-            style={{ fontSize: "1.05rem", color: "#666", maxWidth: 550, margin: "0 auto", lineHeight: 1.7 }}
+            style={{ fontSize: "1.05rem", color: "rgba(255,255,255,0.5)", maxWidth: 550, margin: "0 auto", lineHeight: 1.7 }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.3 }}
@@ -761,7 +761,7 @@ export default function TeamPage() {
                 <h3 style={{ fontSize: "2.2rem", fontWeight: 700, color: "#B8955A", fontFamily: "var(--font-serif)" }}>
                   <CountUp target={s.target} suffix={s.suffix} decimals={s.target % 1 !== 0 ? 1 : 0} />
                 </h3>
-                <p style={{ fontSize: "0.8rem", color: "#888", marginTop: "0.3rem" }}>{s.label}</p>
+                <p style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.4)", marginTop: "0.3rem" }}>{s.label}</p>
               </motion.div>
             ))}
           </div>
@@ -813,7 +813,7 @@ export default function TeamPage() {
             }}
           />
 
-          <p style={{ color: "#666", maxWidth: 600, marginBottom: "3rem", fontSize: "1.05rem", lineHeight: 1.7 }}>
+          <p style={{ color: "rgba(255,255,255,0.5)", maxWidth: 600, marginBottom: "3rem", fontSize: "1.05rem", lineHeight: 1.7 }}>
             Наведите на карточку для 3D-эффекта и голографического сияния. Нажмите, чтобы узнать подробности о каждом члене команды.
           </p>
 
@@ -1020,7 +1020,7 @@ export default function TeamPage() {
                     >
                       {item.label}
                     </h4>
-                    <p style={{ fontSize: "0.85rem", color: "#666", lineHeight: 1.6 }}>
+                    <p style={{ fontSize: "0.85rem", color: "rgba(255,255,255,0.5)", lineHeight: 1.6 }}>
                       Моменты, которые создают нашу команду. Каждый день мы превращаем идеи в реальность.
                     </p>
                   </div>

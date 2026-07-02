@@ -393,7 +393,7 @@ export default function QuizPage() {
       <main
         style={{
           minHeight: "100vh",
-          background: "var(--color-warm-white)",
+          background: "#0F0F0F",
           display: "flex",
           flexDirection: "column",
         }}
@@ -404,7 +404,7 @@ export default function QuizPage() {
             paddingTop: "clamp(6rem, 12vh, 8rem)",
             paddingBottom: "2rem",
             textAlign: "center",
-            background: "var(--color-cream)",
+            background: "#111111",
             position: "relative",
             overflow: "hidden",
           }}
@@ -509,7 +509,7 @@ export default function QuizPage() {
                       <span
                         style={{
                           fontSize: "0.75rem",
-                          color: "#888",
+                          color: "rgba(255,255,255,0.4)",
                         }}
                       >
                         {Math.round(((currentStep + 1) / totalSteps) * 100)}%
@@ -520,7 +520,7 @@ export default function QuizPage() {
                         width: "100%",
                         height: 4,
                         borderRadius: 2,
-                        background: "var(--color-cream-darker)",
+                        background: "#2D2D2D",
                         overflow: "hidden",
                       }}
                     >
@@ -731,7 +731,7 @@ export default function QuizPage() {
                   {/* Result card */}
                   <div
                     style={{
-                      background: "#fff",
+                      background: "#1A1A1A",
                       borderRadius: 24,
                       overflow: "hidden",
                       boxShadow: "0 8px 50px rgba(0,0,0,0.08)",
@@ -824,7 +824,7 @@ export default function QuizPage() {
                         style={{
                           fontSize: "1rem",
                           lineHeight: 1.7,
-                          color: "#555",
+                          color: "rgba(255,255,255,0.6)",
                           marginBottom: "2rem",
                         }}
                       >
@@ -874,7 +874,7 @@ export default function QuizPage() {
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.8 }}
                         style={{
-                          background: "var(--color-cream)",
+                          background: "#111111",
                           borderRadius: 16,
                           padding: "1.25rem 1.5rem",
                           display: "flex",
@@ -952,7 +952,7 @@ export default function QuizPage() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.6, duration: 0.6 }}
                     style={{
-                      background: "#fff",
+                      background: "#1A1A1A",
                       borderRadius: 24,
                       padding: "2rem",
                       boxShadow: "0 4px 30px rgba(0,0,0,0.05)",
@@ -1056,7 +1056,7 @@ export default function QuizPage() {
                               border: "1.5px solid var(--color-cream-darker)",
                               borderRadius: 12,
                               fontSize: "0.95rem",
-                              background: "var(--color-warm-white)",
+                              background: "#0F0F0F",
                               outline: "none",
                               transition: "border-color 0.3s",
                               fontFamily: "var(--font-sans)",
@@ -1067,7 +1067,7 @@ export default function QuizPage() {
                             }
                             onBlur={(e) =>
                               (e.target.style.borderColor =
-                                "var(--color-cream-darker)")
+                                "#2D2D2D")
                             }
                           />
                         </div>
@@ -1103,7 +1103,7 @@ export default function QuizPage() {
                               border: "1.5px solid var(--color-cream-darker)",
                               borderRadius: 12,
                               fontSize: "0.95rem",
-                              background: "var(--color-warm-white)",
+                              background: "#0F0F0F",
                               outline: "none",
                               transition: "border-color 0.3s",
                               fontFamily: "var(--font-sans)",
@@ -1114,7 +1114,7 @@ export default function QuizPage() {
                             }
                             onBlur={(e) =>
                               (e.target.style.borderColor =
-                                "var(--color-cream-darker)")
+                                "#2D2D2D")
                             }
                           />
                         </div>

@@ -188,7 +188,7 @@ export default function Home() {
   const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   return (
-    <main style={{ background: "var(--color-warm-white)" }}>
+    <main style={{ background: "#0F0F0F" }}>
       <SiteNav />
       <CursorTrail />
 
@@ -276,7 +276,7 @@ export default function Home() {
       </section>
 
       {/* ═══ 2. STATS — CountUp with SDA classes ═══ */}
-      <section className="sda-reveal" style={{ padding: "4rem 2rem", background: "var(--color-cream)" }}>
+      <section className="sda-reveal" style={{ padding: "4rem 2rem", background: "#111111" }}>
         <div className="container">
           <div className="trust-bar sda-stagger">
             {[
@@ -314,7 +314,7 @@ export default function Home() {
       <ClientMarquee />
 
       {/* ═══ 4. SERVICES — TiltCards with SDA ═══ */}
-      <section className="sda-reveal" style={{ padding: "6rem 0", background: "var(--color-warm-white)" }}>
+      <section className="sda-reveal" style={{ padding: "6rem 0", background: "#0F0F0F" }}>
         <div className="container">
           <Reveal>
             <div className="section-label">Наши услуги</div>
@@ -331,13 +331,13 @@ export default function Home() {
                     <div className="card" data-cursor-hover>
                       <div style={{ position: "relative", height: 220, overflow: "hidden" }}>
                         <img src={svc.img} alt={svc.title} loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.7s" }} />
-                        <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "1.5rem", background: "linear-gradient(to top, rgba(254,253,251,0.95) 0%, transparent 100%)" }}>
+                        <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "1.5rem", background: "linear-gradient(to top, rgba(10,10,10,0.95) 0%, transparent 100%)" }}>
                           <span style={{ fontSize: "0.65rem", fontWeight: 600, letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--color-brand-dark)" }}>{svc.price}</span>
                         </div>
                       </div>
                       <div style={{ padding: "1.5rem" }}>
                         <h3 style={{ fontFamily: "var(--font-serif)", fontSize: "1.3rem", fontWeight: 400, marginBottom: "0.5rem" }}>{svc.title}</h3>
-                        <p style={{ fontSize: "0.9rem", color: "#666", lineHeight: 1.5 }}>{svc.desc}</p>
+                        <p style={{ fontSize: "0.9rem", color: "rgba(255,255,255,0.6)", lineHeight: 1.5 }}>{svc.desc}</p>
                       </div>
                     </div>
                   </ViewTransitionLink>
@@ -352,22 +352,22 @@ export default function Home() {
       <VideoBreak src={VID.kitchen} title="Наша кухня — наше искусство" subtitle="Каждое блюдо создаётся с любовью и вниманием к деталям" />
 
       {/* ═══ 6. ABOUT — SDA reveal from sides ═══ */}
-      <section style={{ padding: "6rem 0", background: "var(--color-cream)" }}>
+      <section style={{ padding: "6rem 0", background: "#111111" }}>
         <div className="container">
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4rem", alignItems: "center" }}>
             <div className="sda-reveal-left">
               <div style={{ position: "relative" }}>
                 <ImageReveal src={IMG.chef} alt="Шеф-повар" direction="left" />
-                <motion.div initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: 0.5 }} style={{ position: "absolute", bottom: "-1.5rem", right: "-1.5rem", background: "#fff", padding: "1.5rem 2rem", borderRadius: 16, boxShadow: "0 10px 40px rgba(0,0,0,0.1)", zIndex: 2 }}>
+                <motion.div initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: 0.5 }} style={{ position: "absolute", bottom: "-1.5rem", right: "-1.5rem", background: "#1A1A1A", padding: "1.5rem 2rem", borderRadius: 16, boxShadow: "0 10px 40px rgba(0,0,0,0.3)", border: "1px solid rgba(255,255,255,0.06)", zIndex: 2 }}>
                   <div style={{ fontFamily: "var(--font-serif)", fontSize: "2rem", fontWeight: 400, color: "var(--color-brand)" }}><CountUp target={18} suffix="+" /></div>
-                  <div style={{ fontSize: "0.7rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "#888" }}>Лет опыта</div>
+                  <div style={{ fontSize: "0.7rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}>Лет опыта</div>
                 </motion.div>
               </div>
             </div>
             <div className="sda-reveal-right">
               <div className="section-label">О компании</div>
               <TextScramble text="Кейтеринговая компания Interfood Catering" as="h2" className="section-title" />
-              <p style={{ fontSize: "1rem", lineHeight: 1.8, color: "#555", marginBottom: "1.5rem" }}>
+              <p style={{ fontSize: "1rem", lineHeight: 1.8, color: "rgba(255,255,255,0.6)", marginBottom: "1.5rem" }}>
                 Интерфуд Кейтеринг — это команда профессионалов, объединённых страстью к гастрономии и сервису.
                 Мы организуем выездное ресторанное обслуживание любого мероприятия: от свадебного банкета до
                 корпоративного фуршета. Пунктуальность, ответственность и профессионализм — залог нашего успеха.
@@ -388,7 +388,7 @@ export default function Home() {
       />
 
       {/* ═══ 8. VIDEO CAROUSEL ═══ */}
-      <section className="sda-reveal" style={{ padding: "6rem 0", background: "var(--color-warm-white)" }}>
+      <section className="sda-reveal" style={{ padding: "6rem 0", background: "#0F0F0F" }}>
         <div className="container">
           <Reveal>
             <div className="section-label">Видео</div>
@@ -401,7 +401,7 @@ export default function Home() {
       </section>
 
       {/* ═══ HORIZONTAL VIDEO SCROLL ═══ */}
-      <section style={{ background: "var(--color-warm-white)" }}>
+      <section style={{ background: "#0F0F0F" }}>
         <div className="container" style={{ paddingTop: "3rem" }}>
           <Reveal>
             <div className="section-label">Горизонтальный скролл</div>
@@ -444,7 +444,7 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.5 }}
-            style={{ color: "#555", lineHeight: 1.8, maxWidth: 600, margin: "0 auto" }}
+            style={{ color: "rgba(255,255,255,0.6)", lineHeight: 1.8, maxWidth: 600, margin: "0 auto" }}
           >
             Mesh-градиенты с отслеживанием мыши — тренд 2026 года. Двигайте курсор и наблюдайте, как цвета плавно перетекают, создавая живой фон.
           </motion.p>
@@ -452,7 +452,7 @@ export default function Home() {
       </section>
 
       {/* ═══ KINETIC TYPOGRAPHY ═══ */}
-      <section className="sda-reveal" style={{ padding: "6rem 2rem", background: "var(--color-cream)" }}>
+      <section className="sda-reveal" style={{ padding: "6rem 2rem", background: "#111111" }}>
         <div className="container" style={{ textAlign: "center" }}>
           <div className="section-label">Кинетическая типографика</div>
           <KineticText
@@ -479,7 +479,7 @@ export default function Home() {
             delay={0.8}
             style={{
               fontSize: "1.1rem",
-              color: "#666",
+              color: "rgba(255,255,255,0.5)",
               lineHeight: 1.6,
               maxWidth: 700,
               margin: "0 auto 2rem",
@@ -539,7 +539,7 @@ export default function Home() {
       </section>
 
       {/* ═══ 10. SWIPE CAROUSEL — Mobile-first service showcase ═══ */}
-      <section className="sda-reveal" style={{ padding: "6rem 0", background: "var(--color-cream)" }}>
+      <section className="sda-reveal" style={{ padding: "6rem 0", background: "#111111" }}>
         <div className="container">
           <Reveal>
             <div className="section-label">Наши форматы</div>
@@ -564,7 +564,7 @@ export default function Home() {
       </section>
 
       {/* ═══ 11. IMAGE COMPARE — Before/After ═══ */}
-      <section className="sda-scale" style={{ padding: "6rem 0", background: "var(--color-warm-white)" }}>
+      <section className="sda-scale" style={{ padding: "6rem 0", background: "#0F0F0F" }}>
         <div className="container">
           <Reveal>
             <div className="section-label">Оформление зала</div>
@@ -590,7 +590,7 @@ export default function Home() {
       <VideoBreak src={VID.food1} title="Кулинарное искусство" subtitle="От ингредиента до шедевра" />
 
       {/* ═══ 12. GALLERY with ParticleField ═══ */}
-      <section id="gallery" className="sda-reveal" style={{ padding: "6rem 0", background: "var(--color-cream)", position: "relative" }}>
+      <section id="gallery" className="sda-reveal" style={{ padding: "6rem 0", background: "#111111", position: "relative" }}>
         <ParticleField count={20} style={{ opacity: 0.5 }} />
         <div className="container" style={{ position: "relative", zIndex: 2 }}>
           <Reveal>
@@ -627,7 +627,7 @@ export default function Home() {
       <VideoBreak src={VID.serving} title="Безупречный сервис" subtitle="Каждый гость — особенный" />
 
       {/* ═══ 14. REVIEWS PREVIEW ═══ */}
-      <section className="sda-reveal" style={{ padding: "6rem 0", background: "var(--color-warm-white)" }}>
+      <section className="sda-reveal" style={{ padding: "6rem 0", background: "#0F0F0F" }}>
         <div className="container">
           <Reveal>
             <div className="section-label">Отзывы</div>
@@ -670,7 +670,7 @@ export default function Home() {
       <ParallaxImage src={IMG.roses} alt="Декор мероприятия" speed={0.3} style={{ height: "40vh", minHeight: 250 }} overlay overlayOpacity={0.4} />
 
       {/* ═══ 16. 3D FLIP CARDS — Services ═══ */}
-      <section className="sda-reveal" style={{ padding: "6rem 0", background: "var(--color-cream)" }}>
+      <section className="sda-reveal" style={{ padding: "6rem 0", background: "#111111" }}>
         <div className="container">
           <Reveal>
             <div className="section-label">3D Карточки</div>
@@ -694,10 +694,10 @@ export default function Home() {
                     </div>
                   }
                   back={
-                    <div style={{ width: "100%", height: "100%", padding: "2rem", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", textAlign: "center", background: "#FEFDFB" }}>
+                    <div style={{ width: "100%", height: "100%", padding: "2rem", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", textAlign: "center", background: "#1A1A1A" }}>
                       <LottiePlaceholder type={(["chef", "utensils", "glass", "heart", "star", "utensils"] as const)[i]} size={60} />
                       <h3 style={{ fontFamily: "var(--font-serif)", fontSize: "1.3rem", fontWeight: 400, margin: "1rem 0 0.5rem", color: "var(--color-dark)" }}>{svc.title}</h3>
-                      <p style={{ fontSize: "0.9rem", color: "#666", lineHeight: 1.6, margin: "0 0 1rem" }}>{svc.desc}</p>
+                      <p style={{ fontSize: "0.9rem", color: "rgba(255,255,255,0.5)", lineHeight: 1.6, margin: "0 0 1rem" }}>{svc.desc}</p>
                       <span style={{ fontSize: "0.8rem", fontWeight: 600, color: "var(--color-brand)" }}>{svc.price}</span>
                     </div>
                   }
@@ -728,14 +728,14 @@ export default function Home() {
       </section>
 
       {/* ═══ 18. ANIMATED SVG DECORATION ═══ */}
-      <section style={{ padding: "3rem 0", background: "var(--color-cream)", display: "flex", justifyContent: "center" }}>
+      <section style={{ padding: "3rem 0", background: "#111111", display: "flex", justifyContent: "center" }}>
         <Reveal>
           <DrawPath d="M10 50 Q 30 10 50 50 Q 70 90 90 50" viewBox="0 0 100 100" strokeWidth={1.5} duration={3} style={{ width: 200, height: 100 }} />
         </Reveal>
       </section>
 
       {/* ═══ 19. CONTACT ═══ */}
-      <section id="contact" className="sda-reveal" style={{ padding: "6rem 0", background: "var(--color-warm-white)" }}>
+      <section id="contact" className="sda-reveal" style={{ padding: "6rem 0", background: "#0F0F0F" }}>
         <div className="container">
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3rem", alignItems: "start" }}>
             <div className="sda-reveal-left">
@@ -766,7 +766,7 @@ export default function Home() {
       </section>
 
       {/* ═══ 20. WEBGL SHADER SECTION ═══ */}
-      <section className="sda-blur-in" style={{ position: "relative", padding: "6rem 2rem", overflow: "hidden", minHeight: 500, display: "flex", alignItems: "center", justifyContent: "center", background: "var(--color-cream)" }}>
+      <section className="sda-blur-in" style={{ position: "relative", padding: "6rem 2rem", overflow: "hidden", minHeight: 500, display: "flex", alignItems: "center", justifyContent: "center", background: "#111111" }}>
         <WebGLShaderBG style={{ zIndex: 0 }} />
         <div style={{ position: "relative", zIndex: 1, textAlign: "center", maxWidth: 700 }}>
           <motion.p
@@ -790,7 +790,7 @@ export default function Home() {
             }}
           />
           <motion.p
-            style={{ color: "#555", lineHeight: 1.8, marginBottom: "2rem" }}
+            style={{ color: "rgba(255,255,255,0.6)", lineHeight: 1.8, marginBottom: "2rem" }}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -804,7 +804,7 @@ export default function Home() {
       </section>
 
       {/* ═══ 21. MORPHING BLOB + TYPEWRITER ═══ */}
-      <section style={{ position: "relative", padding: "6rem 2rem", background: "var(--color-cream)", overflow: "hidden" }}>
+      <section style={{ position: "relative", padding: "6rem 2rem", background: "#111111", overflow: "hidden" }}>
         <MorphingBlob
           size={350}
           color1="rgba(184,149,90,0.2)"
@@ -834,7 +834,7 @@ export default function Home() {
               }}
             />
           </div>
-          <p style={{ color: "#555", lineHeight: 1.8, maxWidth: 600, marginBottom: "2rem" }}>
+          <p style={{ color: "rgba(255,255,255,0.6)", lineHeight: 1.8, maxWidth: 600, marginBottom: "2rem" }}>
             Эффект печатной машинки, морфинг-блобы на фоне, WebGL-шейдеры — всё это работает прямо в браузере, без сторонних плагинов.
           </p>
         </div>
@@ -862,7 +862,7 @@ export default function Home() {
                   </div>
                   <div style={{ padding: "1.5rem" }}>
                     <h3 style={{ fontFamily: "var(--font-serif)", fontSize: "1.3rem", fontWeight: 500, marginBottom: "0.5rem" }}>{item.title}</h3>
-                    <p style={{ color: "#666", fontSize: "0.9rem", lineHeight: 1.7 }}>{item.desc}</p>
+                    <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.9rem", lineHeight: 1.7 }}>{item.desc}</p>
                   </div>
                 </SpotlightCard>
               </Reveal>
@@ -872,7 +872,7 @@ export default function Home() {
       </section>
 
       {/* ═══ 23. SCROLL-DRIVEN VIDEO ═══ */}
-      <section className="sda-reveal" style={{ padding: "6rem 2rem", background: "var(--color-cream)" }}>
+      <section className="sda-reveal" style={{ padding: "6rem 2rem", background: "#111111" }}>
         <div style={{ maxWidth: 900, margin: "0 auto" }}>
           <TextReveal text="Scroll-Driven Video" as="p" className="section-label" />
           <TextReveal
@@ -880,7 +880,7 @@ export default function Home() {
             as="h2"
             style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(2rem, 5vw, 3rem)", fontWeight: 400, marginBottom: "2rem" }}
           />
-          <p style={{ color: "#555", lineHeight: 1.8, marginBottom: "2rem" }}>
+          <p style={{ color: "rgba(255,255,255,0.6)", lineHeight: 1.8, marginBottom: "2rem" }}>
             Это не обычное видео — оно управляется прокруткой страницы. Прокрутите вниз, и видео продвигается вперёд. Такой формат идеально подходит для демонстрации процесса.
           </p>
           <ScrollVideoPlayer

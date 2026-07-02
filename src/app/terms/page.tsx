@@ -166,7 +166,7 @@ export default function TermsPage() {
         style={{
           paddingTop: "8rem",
           paddingBottom: "4rem",
-          background: "var(--color-warm-white)",
+          background: "#0F0F0F",
           textAlign: "center",
         }}
       >
@@ -193,7 +193,7 @@ export default function TermsPage() {
               style={{
                 fontSize: "1.05rem",
                 lineHeight: 1.7,
-                color: "#555",
+                color: "rgba(255,255,255,0.6)",
                 maxWidth: 600,
                 margin: "0 auto",
               }}
@@ -277,7 +277,7 @@ export default function TermsPage() {
             <p
               style={{
                 fontSize: "0.85rem",
-                color: "#888",
+                color: "rgba(255,255,255,0.4)",
                 marginBottom: "1.5rem",
               }}
             >

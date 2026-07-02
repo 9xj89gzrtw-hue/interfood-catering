@@ -286,7 +286,7 @@ function FaqItem({ q, a }: { q: string; a: string }) {
           >
             <p
               style={{
-                color: "#666",
+                color: "rgba(255,255,255,0.5)",
                 fontSize: "0.95rem",
                 lineHeight: 1.7,
                 paddingBottom: "1.5rem",
@@ -365,7 +365,7 @@ export default function CalculatorPage() {
       {/* ─── Hero ─── */}
       <section
         className="hero"
-        style={{ minHeight: "60vh", background: "var(--color-cream)", position: "relative", overflow: "hidden" }}
+        style={{ minHeight: "60vh", background: "#111111", position: "relative", overflow: "hidden" }}
         aria-label="Калькулятор стоимости"
       >
         <div
@@ -383,7 +383,7 @@ export default function CalculatorPage() {
             position: "absolute",
             inset: 0,
             background:
-              "linear-gradient(to bottom, rgba(254,253,251,0.5) 0%, rgba(254,253,251,0.9) 70%, var(--color-warm-white) 100%)",
+              "linear-gradient(to bottom, rgba(10,10,10,0.7) 0%, rgba(10,10,10,0.9) 70%, var(--color-warm-white) 100%)",
           }}
         />
         <FluidBackground
@@ -583,7 +583,7 @@ export default function CalculatorPage() {
                       <p
                         style={{
                           fontSize: "0.8rem",
-                          color: "#888",
+                          color: "rgba(255,255,255,0.4)",
                           marginBottom: "0.5rem",
                         }}
                       >
@@ -611,7 +611,7 @@ export default function CalculatorPage() {
             <motion.div
               layout
               style={{
-                background: "#fff",
+                background: "#1A1A1A",
                 borderRadius: 20,
                 padding: "2rem",
                 boxShadow: "0 4px 30px rgba(0,0,0,0.06)",
@@ -666,7 +666,7 @@ export default function CalculatorPage() {
                   justifyContent: "space-between",
                   marginTop: "0.5rem",
                   fontSize: "0.75rem",
-                  color: "#999",
+                  color: "rgba(255,255,255,0.4)",
                 }}
               >
                 <span>20</span>
@@ -678,7 +678,7 @@ export default function CalculatorPage() {
             <motion.div
               layout
               style={{
-                background: "#fff",
+                background: "#1A1A1A",
                 borderRadius: 20,
                 padding: "2rem",
                 boxShadow: "0 4px 30px rgba(0,0,0,0.06)",
@@ -717,7 +717,7 @@ export default function CalculatorPage() {
                   <span
                     style={{
                       fontSize: "1rem",
-                      color: "#999",
+                      color: "rgba(255,255,255,0.4)",
                       marginLeft: "0.3rem",
                     }}
                   >
@@ -742,7 +742,7 @@ export default function CalculatorPage() {
                   justifyContent: "space-between",
                   marginTop: "0.5rem",
                   fontSize: "0.75rem",
-                  color: "#999",
+                  color: "rgba(255,255,255,0.4)",
                 }}
               >
                 <span>2 ч</span>
@@ -850,7 +850,7 @@ export default function CalculatorPage() {
                         <div
                           style={{
                             fontSize: "0.75rem",
-                            color: "#999",
+                            color: "rgba(255,255,255,0.4)",
                             marginTop: 2,
                           }}
                         >
@@ -1113,7 +1113,7 @@ export default function CalculatorPage() {
                 style={{
                   width: "100%",
                   borderCollapse: "collapse",
-                  background: "#fff",
+                  background: "#1A1A1A",
                   borderRadius: 20,
                   overflow: "hidden",
                   minWidth: 700,
@@ -1237,7 +1237,7 @@ export default function CalculatorPage() {
                         style={{
                           padding: "1.25rem 1.5rem",
                           textAlign: "center",
-                          color: "#666",
+                          color: "rgba(255,255,255,0.5)",
                           fontSize: "0.9rem",
                         }}
                       >
@@ -1247,7 +1247,7 @@ export default function CalculatorPage() {
                         style={{
                           padding: "1.25rem 1.5rem",
                           textAlign: "center",
-                          color: "#666",
+                          color: "rgba(255,255,255,0.5)",
                           fontSize: "0.9rem",
                         }}
                       >
@@ -1271,10 +1271,10 @@ export default function CalculatorPage() {
                               style={{
                                 display: "inline-block",
                                 padding: "0.25rem 0.6rem",
-                                background: "var(--color-cream)",
+                                background: "#111111",
                                 borderRadius: 100,
                                 fontSize: "0.72rem",
-                                color: "#666",
+                                color: "rgba(255,255,255,0.5)",
                               }}
                             >
                               {f}
@@ -1372,7 +1372,7 @@ export default function CalculatorPage() {
             >
               <ConfettiButton
                 className="btn-gold"
-                style={{ background: "#fff", color: "var(--color-brand-dark)", padding: "1rem 2.5rem", borderRadius: "100px", fontSize: "0.85rem", fontWeight: 600, letterSpacing: "0.05em", border: "none", cursor: "pointer" }}
+                style={{ background: "#1A1A1A", color: "var(--color-brand-dark)", padding: "1rem 2.5rem", borderRadius: "100px", fontSize: "0.85rem", fontWeight: 600, letterSpacing: "0.05em", border: "none", cursor: "pointer" }}
                 onClick={() => { window.location.href = "/#contact"; }}
               >
                 Рассчитать

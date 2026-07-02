@@ -27,7 +27,7 @@ export default function PageLoader() {
             position: "fixed",
             inset: 0,
             zIndex: 99999,
-            background: "var(--color-warm-white)",
+            background: "#0F0F0F",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",

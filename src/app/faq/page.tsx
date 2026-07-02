@@ -216,7 +216,7 @@ function FAQItem({
                 paddingBottom: "1.5rem",
                 fontSize: "0.95rem",
                 lineHeight: 1.75,
-                color: "#555",
+                color: "rgba(255,255,255,0.6)",
                 maxWidth: 720,
               }}
             >
@@ -334,7 +334,7 @@ export default function FAQPage() {
             style={{
               fontSize: "1.1rem",
               lineHeight: 1.7,
-              color: "#555",
+              color: "rgba(255,255,255,0.6)",
               maxWidth: 560,
               margin: "0 auto",
             }}
@@ -397,7 +397,7 @@ export default function FAQPage() {
                   fontFamily: "var(--font-sans)",
                   border: "1.5px solid rgba(184,149,90,0.2)",
                   borderRadius: "100px",
-                  background: "#fff",
+                  background: "#1A1A1A",
                   color: "var(--color-dark)",
                   outline: "none",
                   transition: "border-color 0.3s, box-shadow 0.3s",
@@ -423,7 +423,7 @@ export default function FAQPage() {
                     background: "none",
                     border: "none",
                     cursor: "pointer",
-                    color: "#999",
+                    color: "rgba(255,255,255,0.4)",
                     fontSize: "1.2rem",
                     lineHeight: 1,
                     padding: 4,
@@ -441,7 +441,7 @@ export default function FAQPage() {
                 style={{
                   marginTop: "0.75rem",
                   fontSize: "0.85rem",
-                  color: "#888",
+                  color: "rgba(255,255,255,0.4)",
                   textAlign: "center",
                 }}
               >
@@ -538,7 +538,7 @@ export default function FAQPage() {
                 <p
                   style={{
                     fontSize: "0.8rem",
-                    color: "#888",
+                    color: "rgba(255,255,255,0.4)",
                     letterSpacing: "0.1em",
                     textTransform: "uppercase",
                   }}
@@ -597,7 +597,7 @@ export default function FAQPage() {
                 style={{
                   textAlign: "center",
                   padding: "3rem 1rem",
-                  color: "#999",
+                  color: "rgba(255,255,255,0.4)",
                 }}
               >
                 <div style={{ fontSize: "3rem", marginBottom: "1rem" }}>
@@ -646,7 +646,7 @@ export default function FAQPage() {
 
                     <div
                       style={{
-                        background: "#fff",
+                        background: "#1A1A1A",
                         borderRadius: 20,
                         padding: "0 2rem",
                         boxShadow: "0 4px 30px rgba(0,0,0,0.04)",

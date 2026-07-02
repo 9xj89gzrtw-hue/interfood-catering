@@ -228,7 +228,7 @@ export default function WeddingPage() {
         />
 
         {/* Light overlay for romantic feel */}
-        <div style={{ position: "absolute", inset: 0, zIndex: 2, background: "linear-gradient(to bottom, rgba(254,253,251,0.2) 0%, rgba(254,253,251,0.1) 40%, rgba(254,253,251,0.4) 70%, rgba(254,253,251,0.92) 100%)" }} />
+        <div style={{ position: "absolute", inset: 0, zIndex: 2, background: "linear-gradient(to bottom, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.2) 40%, rgba(254,253,251,0.4) 70%, rgba(254,253,251,0.92) 100%)" }} />
 
         {/* Content */}
         <motion.div style={{ position: "relative", zIndex: 3, textAlign: "center", padding: "2rem", maxWidth: 900, opacity: heroOpacity }}>
@@ -237,7 +237,7 @@ export default function WeddingPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <span style={{ display: "inline-block", fontSize: "0.65rem", fontWeight: 600, letterSpacing: "0.3em", textTransform: "uppercase", color: "#B8955A", marginBottom: "1.5rem", padding: "0.4rem 1.2rem", border: "1px solid rgba(184,149,90,0.4)", borderRadius: "100px", background: "rgba(254,253,251,0.7)" }}>
+            <span style={{ display: "inline-block", fontSize: "0.65rem", fontWeight: 600, letterSpacing: "0.3em", textTransform: "uppercase", color: "#B8955A", marginBottom: "1.5rem", padding: "0.4rem 1.2rem", border: "1px solid rgba(184,149,90,0.4)", borderRadius: "100px", background: "rgba(10,10,10,0.8)" }}>
               Интерфуд Кейтеринг
             </span>
           </motion.div>
@@ -534,7 +534,7 @@ export default function WeddingPage() {
                       <h3 style={{ fontFamily: "var(--font-serif)", fontSize: "1.6rem", fontWeight: 400, color: "#1A1A1A", marginBottom: "0.4rem" }}>
                         {pkg.name}
                       </h3>
-                      <p style={{ color: "#999", fontSize: "0.85rem", marginBottom: "1.5rem" }}>{pkg.desc}</p>
+                      <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.85rem", marginBottom: "1.5rem" }}>{pkg.desc}</p>
                       <div style={{ marginBottom: "2rem", paddingBottom: "1.5rem", borderBottom: "1px solid rgba(184,149,90,0.12)" }}>
                         <span style={{ fontFamily: "var(--font-serif)", fontSize: "2rem", fontWeight: 300, color: "#B8955A" }}>
                           {pkg.price}
@@ -542,7 +542,7 @@ export default function WeddingPage() {
                       </div>
                       <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.65rem", marginBottom: "2rem", textAlign: "left" }}>
                         {pkg.features.map((f, j) => (
-                          <li key={j} style={{ display: "flex", gap: "0.6rem", alignItems: "flex-start", fontSize: "0.9rem", color: "#555", lineHeight: 1.5 }}>
+                          <li key={j} style={{ display: "flex", gap: "0.6rem", alignItems: "flex-start", fontSize: "0.9rem", color: "rgba(255,255,255,0.6)", lineHeight: 1.5 }}>
                             <span style={{ color: "#B8955A", flexShrink: 0, marginTop: "2px" }}>
                               {j === 0 && pkg.name !== "Классика" ? "✦" : "✓"}
                             </span>
@@ -722,7 +722,7 @@ export default function WeddingPage() {
                     <div style={{ fontFamily: "var(--font-serif)", fontSize: "1.1rem", color: "#1A1A1A", marginBottom: "0.2rem" }}>
                       {rev.name}
                     </div>
-                    <div style={{ fontSize: "0.78rem", color: "#999" }}>
+                    <div style={{ fontSize: "0.78rem", color: "rgba(255,255,255,0.4)" }}>
                       {rev.date} · {rev.guests} гостей
                     </div>
                   </div>
@@ -763,7 +763,7 @@ export default function WeddingPage() {
             <h2 style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(2rem, 5vw, 3.5rem)", fontWeight: 300, color: "#1A1A1A", lineHeight: 1.15, marginBottom: "1.5rem" }}>
               Создайте свою<br /><em style={{ color: "#B8955A", fontStyle: "italic" }}>идеальную</em> свадьбу
             </h2>
-            <p style={{ fontSize: "1.05rem", lineHeight: 1.7, color: "#666", maxWidth: 520, margin: "0 auto 2.5rem" }}>
+            <p style={{ fontSize: "1.05rem", lineHeight: 1.7, color: "rgba(255,255,255,0.5)", maxWidth: 520, margin: "0 auto 2.5rem" }}>
               Оставьте заявку — и наш кейтеринг-консьерж свяжется с вами в течение 30 минут для обсуждения деталей вашего дня.
             </p>
             <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap", alignItems: "center" }}>

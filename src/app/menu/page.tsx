@@ -262,7 +262,7 @@ function MenuCard({ item, index }: { item: MenuItem; index: number }) {
       animate={isInView ? "visible" : "hidden"}
       whileHover={{ y: -6, boxShadow: "0 20px 50px rgba(0,0,0,0.1)" }}
       style={{
-        background: "#fff",
+        background: "#1A1A1A",
         borderRadius: "16px",
         padding: "1.5rem",
         border: "1px solid rgba(184,149,90,0.08)",
@@ -312,7 +312,7 @@ function MenuCard({ item, index }: { item: MenuItem; index: number }) {
         <span
           style={{
             fontSize: "0.78rem",
-            color: "#999",
+            color: "rgba(255,255,255,0.4)",
             letterSpacing: "0.02em",
           }}
         >
@@ -481,7 +481,7 @@ export default function MenuPage() {
             style={{
               fontSize: "1.05rem",
               lineHeight: 1.7,
-              color: "#555",
+              color: "rgba(255,255,255,0.6)",
               maxWidth: 560,
               margin: "0 auto 2.5rem",
             }}
@@ -544,7 +544,7 @@ export default function MenuPage() {
       </section>
 
       {/* ─── TextMarquee with dish names ─── */}
-      <div style={{ background: "var(--color-cream)", padding: "1.2rem 0", overflow: "hidden" }}>
+      <div style={{ background: "#111111", padding: "1.2rem 0", overflow: "hidden" }}>
         <TextMarquee
           texts={[
             "Канапе с лососем", "Тарталетки с крем-сыром", "Брускетта с томатами",
@@ -654,8 +654,8 @@ export default function MenuPage() {
               padding: "5rem 2rem",
               background:
                 catIdx % 2 === 0
-                  ? "var(--color-warm-white)"
-                  : "var(--color-cream)",
+                  ? "#0F0F0F"
+                  : "#111111",
             }}
           >
             <div className="container">
@@ -696,7 +696,7 @@ export default function MenuPage() {
                     style={{
                       fontSize: "1rem",
                       lineHeight: 1.7,
-                      color: "#666",
+                      color: "rgba(255,255,255,0.5)",
                       maxWidth: 480,
                       marginBottom: "1.5rem",
                     }}
@@ -903,7 +903,7 @@ export default function MenuPage() {
             <ConfettiButton
               className="btn-gold"
               style={{
-                background: "#fff",
+                background: "#1A1A1A",
                 color: "var(--color-brand-dark)",
                 padding: "1rem 2.5rem",
                 borderRadius: "100px",
@@ -934,7 +934,7 @@ export default function MenuPage() {
       <section
         style={{
           padding: "5rem 0",
-          background: "var(--color-cream)",
+          background: "#111111",
         }}
       >
         <div className="container">
@@ -991,7 +991,7 @@ export default function MenuPage() {
       <section
         style={{
           padding: "5rem 2rem",
-          background: "var(--color-warm-white)",
+          background: "#0F0F0F",
         }}
       >
         <div className="container">

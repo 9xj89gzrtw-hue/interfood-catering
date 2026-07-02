@@ -34,8 +34,8 @@ export default function VideoBreak({ src, title, subtitle }: VideoBreakProps) {
         </video>
       </motion.div>
       {/* Warm overlay for light theme */}
-      <div style={{ position: "absolute", inset: 0, background: "rgba(254,253,251,0.3)" }} />
-      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(254,253,251,0.1) 0%, rgba(254,253,251,0.7) 100%)" }} />
+      <div style={{ position: "absolute", inset: 0, background: "rgba(10,10,10,0.5)" }} />
+      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(10,10,10,0.2) 0%, rgba(10,10,10,0.8) 100%)" }} />
       {/* Content */}
       <motion.div
         style={{ opacity }}

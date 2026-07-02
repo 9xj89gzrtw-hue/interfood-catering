@@ -151,7 +151,7 @@ function VideoCard({ video, index }: { video: typeof VIDEOS[0]; index: number })
           overflow: "hidden",
           cursor: "pointer",
           aspectRatio: "16/9",
-          background: "var(--color-cream-dark)",
+          background: "#1A1A1A",
         }}
       >
         <video
@@ -311,7 +311,7 @@ export default function GalleryPage() {
             position: "absolute",
             inset: 0,
             zIndex: 1,
-            background: "linear-gradient(to bottom, rgba(254,253,251,0.1) 0%, rgba(254,253,251,0.05) 30%, rgba(254,253,251,0.25) 60%, rgba(254,253,251,0.92) 100%)",
+            background: "linear-gradient(to bottom, rgba(10,10,10,0.2) 0%, rgba(10,10,10,0.15) 30%, rgba(254,253,251,0.25) 60%, rgba(254,253,251,0.92) 100%)",
           }}
         />
         {/* MorphingBlob decorations */}
@@ -385,7 +385,7 @@ export default function GalleryPage() {
       </section>
 
       {/* ═══ 2. CATEGORY FILTER — with FluidBackground ═══ */}
-      <section id="gallery" style={{ background: "var(--color-warm-white)", padding: "3rem 2rem 0", position: "relative", overflow: "hidden" }}>
+      <section id="gallery" style={{ background: "#0F0F0F", padding: "3rem 2rem 0", position: "relative", overflow: "hidden" }}>
         <FluidBackground
           color1="rgba(184, 149, 90, 0.06)"
           color2="rgba(158, 182, 143, 0.04)"
@@ -412,7 +412,7 @@ export default function GalleryPage() {
                   style={{
                     padding: "0.7rem 1.8rem",
                     border: "1.5px solid",
-                    borderColor: activeCategory === cat.key ? "var(--color-brand)" : "var(--color-cream-darker)",
+                    borderColor: activeCategory === cat.key ? "var(--color-brand)" : "#2D2D2D",
                     borderRadius: 100,
                     background: activeCategory === cat.key ? "var(--color-brand)" : "transparent",
                     color: activeCategory === cat.key ? "#fff" : "var(--color-dark)",
@@ -434,7 +434,7 @@ export default function GalleryPage() {
       </section>
 
       {/* ═══ 3. MASONRY GALLERY — with ParticleField + FlipCard3D ═══ */}
-      <section style={{ background: "var(--color-warm-white)", padding: "2rem 2rem 6rem", position: "relative", overflow: "hidden" }}>
+      <section style={{ background: "#0F0F0F", padding: "2rem 2rem 6rem", position: "relative", overflow: "hidden" }}>
         {/* ParticleField behind gallery grid */}
         <ParticleField
           count={30}
@@ -509,7 +509,7 @@ export default function GalleryPage() {
                           alignItems: "center",
                           justifyContent: "center",
                           padding: "2rem",
-                          background: "var(--color-warm-white)",
+                          background: "#0F0F0F",
                           textAlign: "center",
                         }}
                       >
@@ -540,7 +540,7 @@ export default function GalleryPage() {
                           style={{
                             fontSize: "0.85rem",
                             lineHeight: 1.7,
-                            color: "#666",
+                            color: "rgba(255,255,255,0.5)",
                             marginBottom: "1.2rem",
                           }}
                         >
@@ -576,11 +576,11 @@ export default function GalleryPage() {
       {/* ═══ 4. HORIZONTAL VIDEO SCROLL ═══ */}
       <HorizontalVideoScroll
         videos={HORIZONTAL_VIDEOS}
-        style={{ background: "var(--color-cream)" }}
+        style={{ background: "#111111" }}
       />
 
       {/* ═══ 5. VIDEO GALLERY ═══ */}
-      <section style={{ background: "var(--color-cream)", padding: "6rem 0" }} className="section-wide">
+      <section style={{ background: "#111111", padding: "6rem 0" }} className="section-wide">
         <div className="container" style={{ textAlign: "center" }}>
           <Reveal>
             <div className="section-label">Видео</div>
@@ -611,7 +611,7 @@ export default function GalleryPage() {
       </section>
 
       {/* ═══ 6. 360° VIRTUAL TOUR CTA — with MorphingBlob ═══ */}
-      <section style={{ background: "var(--color-warm-white)", padding: "6rem 0", position: "relative", overflow: "hidden" }} className="section-wide">
+      <section style={{ background: "#0F0F0F", padding: "6rem 0", position: "relative", overflow: "hidden" }} className="section-wide">
         {/* MorphingBlob decoration */}
         <div style={{ position: "absolute", top: "-10%", right: "-5%", pointerEvents: "none" }}>
           <MorphingBlob
@@ -725,7 +725,7 @@ export default function GalleryPage() {
               <ConfettiButton
                 style={{
                   padding: "1rem 2.5rem",
-                  background: "#fff",
+                  background: "#1A1A1A",
                   color: "var(--color-brand-dark)",
                   border: "none",
                   borderRadius: 100,
