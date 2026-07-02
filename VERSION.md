@@ -5,6 +5,23 @@
 
 ---
 
+## v75 — 2026-07-03 — Expert Audit: Mobile Readability + Conversion Copy + Phone in Hero
+- **Тема**: Light Premium (продолжение v74)
+- **Mobile Readability Fixes**:
+  - ✅ Hero CTA: 0.72rem → 0.82rem (was 11.5px on 320px)
+  - ✅ Hero label: 0.5rem → 0.7rem (was 8px!)
+  - ✅ Hero trust signals: 0.6rem → 0.72rem (visible on mobile)
+  - ✅ Scroll indicator: 0.55rem → 0.7rem
+  - ✅ Mobile helper text: 0.65rem → 0.72rem, opacity 0.45 → 0.65
+- **Conversion Copy Improvements**:
+  - ✅ Hero primary CTA: 'Получить меню и расчёт' → 'Рассчитать моё мероприятие' (active verb)
+  - ✅ Hero secondary CTA: 'Рассчитать стоимость' → 'Калькулятор цены' (clearer)
+  - ✅ Nav CTA: 'Заказать' → 'Расчёт за 30 мин' (benefit-driven)
+  - ✅ CTA section button: 'Получить расчёт и меню' → 'Рассчитать мероприятие бесплатно'
+  - ✅ Phone number added as clickable link in hero trust signals
+  - ✅ Trust: '3 500+ мероприятий' instead of '30+ отзывов' (stronger stat)
+  - ✅ Services subtitle: more specific range and budget focus
+
 ## v74 — 2026-07-03 — Mobile Video Hero + MorphingText + Responsive Overhaul + Nav Fix
 - **Тема**: Light Premium (продолжение v73)
 - **Hero v5**:
