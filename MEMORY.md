@@ -1,14 +1,14 @@
 # 🧠 MEMORY.md — Файл памяти проекта Интерфуд Кейтеринг
 
 > **Создан:** 2026-07-02  
-> **Обновлён:** 2026-07-03 (сессия 9 — v80 Maximum WOW Demo)
+> **Обновлён:** 2026-07-03 (сессия 10 — v81 Ultra WOW)
 > **Проект:** Сайт кейтеринговой компании «Интерфуд» (interfood-catering.ru)  
 > **Репозиторий:** https://github.com/9xj89gzrtw-hue/interfood-catering  
 > **Vercel:** ✅ Токен получен от пользователя  
 > **Vercel проект:** interfood-catering (дубли удалены)  
 > **Vercel URL:** https://interfood-catering.vercel.app  
 > **GitHub Pages:** https://9xj89gzrtw-hue.github.io/interfood-catering/  
-> **Текущая версия:** v80 — Maximum WOW Demo: Complete Rebuild with 2026 Motion Design
+> **Текущая версия:** v81 — Ultra WOW: 2026 Motion Design + MenuBuilder Nav Fix + Interactive Effects
 
 ---
 

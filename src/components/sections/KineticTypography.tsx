@@ -1,13 +1,14 @@
 "use client";
 
 import { useRef, useEffect, useState, useCallback, useSyncExternalStore } from "react";
-import { motion, useInView, useMotionValue, useSpring } from "framer-motion";
+import { motion, useInView, useMotionValue, useSpring, useScroll, useTransform } from "framer-motion";
 
 /* ═══════════════════════════════════════════════════════════════
-   KineticTypography — "Философия" Section
+   KineticTypography — "Философия" Section v81
    
-   Word-by-word reveal, gold highlights, count-up stats,
-   ambient gold particles, clip-path transition.
+   Word-by-word kinetic fly-in from alternating directions,
+   gold accent pulse, scroll-driven reveal, interactive hover
+   on keywords, animated mesh gradient background.
    Mobile-first, accessible, respects prefers-reduced-motion.
    ═══════════════════════════════════════════════════════════════ */
 
@@ -27,6 +28,78 @@ const KEY_PHRASES = [
   { text: "Авторская кухня", label: null, value: null },
   { text: "Безупречный сервис", label: null, value: null },
 ];
+
+/* ─── Injected CSS for mesh gradient, gold pulse, and scroll-driven ─── */
+const INJECTED_STYLES = `
+@property --mesh-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes kt-mesh-rotate {
+  0% { --mesh-angle: 0deg; }
+  100% { --mesh-angle: 360deg; }
+}
+
+.kt-mesh-bg {
+  position: absolute;
+  inset: 0;
+  background: conic-gradient(
+    from var(--mesh-angle, 0deg),
+    rgba(212,166,62,0.04) 0%,
+    rgba(250,250,247,0.6) 25%,
+    rgba(212,166,62,0.06) 50%,
+    rgba(245,243,238,0.8) 75%,
+    rgba(212,166,62,0.04) 100%
+  );
+  animation: kt-mesh-rotate 25s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes kt-gold-pulse {
+  0%, 100% {
+    text-shadow: 0 0 8px rgba(184,134,11,0.15), 0 0 20px rgba(212,166,62,0.05);
+  }
+  50% {
+    text-shadow: 0 0 16px rgba(184,134,11,0.35), 0 0 40px rgba(212,166,62,0.15), 0 0 60px rgba(184,134,11,0.05);
+  }
+}
+
+.kt-gold-pulse {
+  animation: kt-gold-pulse 3s ease-in-out infinite;
+}
+
+.kt-gold-hover {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), text-shadow 0.3s ease;
+  cursor: default;
+}
+
+.kt-gold-hover:hover {
+  transform: scale(1.12);
+  text-shadow: 0 0 20px rgba(184,134,11,0.5), 0 0 50px rgba(212,166,62,0.25), 0 0 80px rgba(184,134,11,0.1);
+}
+
+@supports (animation-timeline: view()) {
+  .kt-scroll-reveal {
+    animation: kt-clip-reveal 1s linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 40%;
+  }
+  @keyframes kt-clip-reveal {
+    from { clip-path: inset(5% 50% 5% 50%); opacity: 0; }
+    to { clip-path: inset(0 0 0 0); opacity: 1; }
+  }
+}
+
+@media (max-width: 767px) {
+  .kt-mesh-bg { animation: none; }
+  .kt-gold-pulse { animation: none; }
+  .kt-scroll-reveal { animation: none; }
+  .kt-gold-hover:hover { transform: none; }
+}
+`;
 
 function useMediaQuery(query: string): boolean {
   return useSyncExternalStore(
@@ -82,7 +155,7 @@ function GoldParticles({ reduced }: { reduced: boolean }) {
   }));
 
   return (
-    <div aria-hidden="true" style={{ position: "absolute", inset: 0, overflow: "hidden", pointerEvents: "none", zIndex: 0 }}>
+    <div aria-hidden="true" style={{ position: "absolute", inset: 0, overflow: "hidden", pointerEvents: "none", zIndex: 1 }}>
       {particles.map((p) => (
         <motion.div
           key={p.id}
@@ -113,6 +186,23 @@ function GoldParticles({ reduced }: { reduced: boolean }) {
   );
 }
 
+/* ─── Directional Fly-in Variant ─── */
+function getFlyInVariant(globalIndex: number) {
+  const dir = globalIndex % 4;
+  switch (dir) {
+    case 0: // from left
+      return { x: -60, y: 0, rotate: -6 };
+    case 1: // from right
+      return { x: 60, y: 0, rotate: 6 };
+    case 2: // from top
+      return { x: 0, y: -40, rotate: -3 };
+    case 3: // from bottom
+      return { x: 0, y: 40, rotate: 3 };
+    default:
+      return { x: 0, y: 20, rotate: 0 };
+  }
+}
+
 /* ─── Single Animated Word ─── */
 function AnimatedWord({
   word,
@@ -121,6 +211,8 @@ function AnimatedWord({
   globalIndex,
   active,
   reduced,
+  mobile,
+  scrollProgress,
 }: {
   word: string;
   lineIndex: number;
@@ -128,34 +220,94 @@ function AnimatedWord({
   globalIndex: number;
   active: boolean;
   reduced: boolean;
+  mobile: boolean;
+  scrollProgress: number;
 }) {
   const isGold = GOLD_WORDS.has(word);
-  const delay = (lineIndex * 0.2) + (wordIndex * 0.08);
+  const [isHovered, setIsHovered] = useState(false);
 
   if (reduced) {
     return (
       <span
+        className={isGold ? "kt-gold-hover" : undefined}
         style={{
           display: "inline-block",
           color: isGold ? "#B8860B" : "#1A1714",
           fontWeight: isGold ? 700 : 400,
           marginRight: "0.3em",
         }}
+        onMouseEnter={() => isGold && setIsHovered(true)}
+        onMouseLeave={() => isGold && setIsHovered(false)}
       >
         {word}
       </span>
     );
   }
 
+  const delay = (lineIndex * 0.15) + (wordIndex * 0.07);
+  const flyIn = getFlyInVariant(globalIndex);
+
+  // Mobile: simple whileInView
+  if (mobile) {
+    return (
+      <motion.span
+        initial={{ opacity: 0, filter: "blur(6px)", y: 16 }}
+        animate={active ? { opacity: 1, filter: "blur(0px)", y: 0 } : {}}
+        transition={{
+          type: "spring",
+          stiffness: 120,
+          damping: 18,
+          delay,
+        }}
+        className={`${isGold ? "kt-gold-pulse kt-gold-hover" : ""}`}
+        style={{
+          display: "inline-block",
+          color: isGold ? "#B8860B" : "#1A1714",
+          fontWeight: isGold ? 700 : 400,
+          marginRight: "0.3em",
+          willChange: "opacity, filter, transform",
+          fontStyle: isGold ? "italic" : "normal",
+          transform: isHovered ? "scale(1.12)" : undefined,
+        }}
+        onMouseEnter={() => isGold && setIsHovered(true)}
+        onMouseLeave={() => isGold && setIsHovered(false)}
+      >
+        {word}
+      </motion.span>
+    );
+  }
+
+  // Desktop: kinetic fly-in with spring physics
   return (
     <motion.span
-      initial={{ opacity: 0, filter: "blur(8px)", y: 12, scale: 0.92 }}
-      animate={active ? { opacity: 1, filter: "blur(0px)", y: 0, scale: 1 } : {}}
-      transition={{
-        duration: 0.6,
-        delay,
-        ease: [0.25, 0.46, 0.45, 0.94],
+      initial={{
+        opacity: 0,
+        filter: "blur(10px)",
+        x: flyIn.x,
+        y: flyIn.y,
+        rotate: flyIn.rotate,
+        scale: 0.7,
       }}
+      animate={
+        active
+          ? {
+              opacity: 1,
+              filter: "blur(0px)",
+              x: 0,
+              y: 0,
+              rotate: 0,
+              scale: 1,
+            }
+          : {}
+      }
+      transition={{
+        type: "spring",
+        stiffness: 80,
+        damping: 14,
+        mass: 0.8,
+        delay,
+      }}
+      className={`${isGold ? "kt-gold-pulse kt-gold-hover" : ""}`}
       style={{
         display: "inline-block",
         color: isGold ? "#B8860B" : "#1A1714",
@@ -164,6 +316,8 @@ function AnimatedWord({
         willChange: "opacity, filter, transform",
         fontStyle: isGold ? "italic" : "normal",
       }}
+      onMouseEnter={() => isGold && setIsHovered(true)}
+      onMouseLeave={() => isGold && setIsHovered(false)}
     >
       {word}
     </motion.span>
@@ -197,9 +351,14 @@ function KeyPhrase({
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20, scale: 0.9 }}
+      initial={{ opacity: 0, y: 30, scale: 0.85 }}
       animate={active ? { opacity: 1, y: 0, scale: 1 } : {}}
-      transition={{ duration: 0.7, delay: 1.2 + index * 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
+      transition={{
+        type: "spring",
+        stiffness: 100,
+        damping: 15,
+        delay: 1.2 + index * 0.15,
+      }}
       style={{
         display: "flex",
         flexDirection: "column",
@@ -209,6 +368,7 @@ function KeyPhrase({
       }}
     >
       <span
+        className="kt-gold-pulse"
         style={{
           fontFamily: "var(--font-serif)",
           fontSize: "clamp(1.5rem, 4vw, 2.5rem)",
@@ -239,7 +399,12 @@ function KeyPhrase({
       <motion.div
         initial={{ scaleX: 0 }}
         animate={active ? { scaleX: 1 } : {}}
-        transition={{ duration: 0.8, delay: 1.6 + index * 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
+        transition={{
+          type: "spring",
+          stiffness: 80,
+          damping: 14,
+          delay: 1.6 + index * 0.15,
+        }}
         style={{
           height: 2,
           width: 40,
@@ -259,6 +424,13 @@ export default function KineticTypography() {
   const reduced = useReducedMotion();
   const mobile = useIsMobile();
 
+  // Scroll progress for gold pulse intensity
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+  const scrollProgress = useTransform(scrollYProgress, [0, 0.5, 1], [0, 1, 0.5]);
+
   let globalWordIndex = 0;
 
   return (
@@ -277,6 +449,12 @@ export default function KineticTypography() {
         clipPath: reduced ? "none" : "polygon(0 3%, 100% 0%, 100% 97%, 0% 100%)",
       }}
     >
+      {/* Injected styles */}
+      <style dangerouslySetInnerHTML={{ __html: INJECTED_STYLES }} />
+
+      {/* Animated mesh gradient background */}
+      {!reduced && <div className="kt-mesh-bg" aria-hidden="true" />}
+
       {/* Ambient gold particles */}
       <GoldParticles reduced={reduced} />
 
@@ -292,12 +470,12 @@ export default function KineticTypography() {
           height: "90%",
           background: "radial-gradient(ellipse at center, rgba(212,166,62,0.04) 0%, transparent 55%)",
           pointerEvents: "none",
-          zIndex: 0,
+          zIndex: 1,
         }}
       />
 
       {/* Clip-path reveal overlay */}
-      {!reduced && (
+      {!reduced && !mobile && (
         <motion.div
           aria-hidden="true"
           initial={{ opacity: 1 }}
@@ -307,7 +485,7 @@ export default function KineticTypography() {
             position: "absolute",
             inset: 0,
             background: "#F5F3EE",
-            zIndex: 1,
+            zIndex: 2,
             pointerEvents: "none",
           }}
         />
@@ -315,9 +493,10 @@ export default function KineticTypography() {
 
       {/* Content */}
       <div
+        className={!mobile && !reduced ? "kt-scroll-reveal" : undefined}
         style={{
           position: "relative",
-          zIndex: 2,
+          zIndex: 3,
           maxWidth: 960,
           width: "100%",
           textAlign: "center",
@@ -325,9 +504,14 @@ export default function KineticTypography() {
       >
         {/* Micro-label */}
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.1 }}
+          initial={{ opacity: 0, y: 12, scale: 0.9 }}
+          animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+          transition={{
+            type: "spring",
+            stiffness: 100,
+            damping: 15,
+            delay: 0.05,
+          }}
           style={{
             fontSize: "clamp(0.65rem, 2vw, 0.7rem)",
             fontWeight: 600,
@@ -346,11 +530,11 @@ export default function KineticTypography() {
           <span style={{ width: 28, height: 1, background: "rgba(184,134,11,0.3)" }} />
         </motion.div>
 
-        {/* Philosophy quote — word-by-word reveal */}
+        {/* Philosophy quote — word-by-word kinetic reveal */}
         <div
           style={{
             fontFamily: "var(--font-serif)",
-            fontSize: "clamp(1.125rem, 3.5vw, 2.25rem)",
+            fontSize: "clamp(1rem, 3.5vw, 2.25rem)",
             lineHeight: 1.5,
             color: "#1A1714",
             maxWidth: 720,
@@ -376,6 +560,8 @@ export default function KineticTypography() {
                     globalIndex={gIdx}
                     active={isInView}
                     reduced={reduced}
+                    mobile={mobile}
+                    scrollProgress={0}
                   />
                 );
               })}
@@ -387,7 +573,12 @@ export default function KineticTypography() {
         <motion.div
           initial={{ scaleX: 0, opacity: 0 }}
           animate={isInView ? { scaleX: 1, opacity: 1 } : {}}
-          transition={{ duration: 1, delay: 1.0, ease: [0.25, 0.46, 0.45, 0.94] }}
+          transition={{
+            type: "spring",
+            stiffness: 80,
+            damping: 14,
+            delay: 1.0,
+          }}
           style={{
             height: 2,
             width: 120,
@@ -414,8 +605,8 @@ export default function KineticTypography() {
       </div>
 
       {/* Top/bottom gradient blends */}
-      <div aria-hidden="true" style={{ position: "absolute", top: 0, left: 0, right: 0, height: 80, background: "linear-gradient(to bottom, #F5F3EE, transparent)", pointerEvents: "none", zIndex: 3 }} />
-      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 80, background: "linear-gradient(to top, #F5F3EE, transparent)", pointerEvents: "none", zIndex: 3 }} />
+      <div aria-hidden="true" style={{ position: "absolute", top: 0, left: 0, right: 0, height: 80, background: "linear-gradient(to bottom, #F5F3EE, transparent)", pointerEvents: "none", zIndex: 4 }} />
+      <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 80, background: "linear-gradient(to top, #F5F3EE, transparent)", pointerEvents: "none", zIndex: 4 }} />
     </section>
   );
 }

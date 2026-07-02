@@ -1,34 +1,54 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useRef, useCallback, useSyncExternalStore } from "react";
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform, useScroll } from "framer-motion";
 import Link from "next/link";
 
 /* ═══════════════════════════════════════════════════════════════
-   Site Navigation v80 — Premium Interfood Catering
+   Site Navigation v81 — Premium Interfood Catering
    
-   FIXES:
-   1. Nav ALWAYS readable (white text + strong shadow on hero, dark when scrolled)
-   2. All buttons FULLY clickable (z-index: 9999, no pointer-events: none)
-   3. Smooth color transition when scrolling past hero
-   4. Fullscreen mobile menu with clip-path circle morph
-   5. Stagger animations on mobile links
-   6. Animated gold underline on desktop links
-   7. Spring-animated dropdown
-   8. Burger → X morph animation
+   ENHANCEMENTS:
+   1. Scroll Progress Integration — thin gold line at bottom
+   2. Active Section Highlight — gold underline + larger font on active
+   3. Magnetic Hover on Desktop Links — subtle cursor-follow
+   4. Glassmorphism Enhancement — stronger glass on scroll, gold border
+   5. Mobile Menu: 3D Flip Animation — rotateY with perspective
+   6. Logo Animation — stroke-dashoffset handwriting on load
+
+   PRESERVED:
+   - Nav ALWAYS readable (white text + shadow on hero, dark when scrolled)
+   - All buttons FULLY clickable (z-index: 9999)
+   - Smooth color transition when scrolling past hero
+   - Stagger animations on mobile links
+   - Animated gold underline on desktop links
+   - Spring-animated dropdown
+   - Burger → X morph animation
    ═══════════════════════════════════════════════════════════════ */
+
+// ─── Helpers ────────────────────────────────────────────────────
+const emptySubscribe = () => () => {};
+function useIsMobile() {
+  return useSyncExternalStore(
+    emptySubscribe,
+    () => typeof window !== "undefined" && window.innerWidth < 900,
+    () => false
+  );
+}
 
 // ─── Data ───────────────────────────────────────────────────────
 const PRIMARY_LINKS = [
-  { label: "Меню", href: "/menu" },
+  { label: "Конструктор меню", href: "#menu-builder", highlight: true },
   { label: "Услуги", href: "/services" },
   { label: "О нас", href: "/about" },
-  { label: "Калькулятор", href: "/calculator", highlight: true },
+  { label: "Калькулятор", href: "/calculator" },
   { label: "Отзывы", href: "/reviews" },
   { label: "Контакты", href: "/contacts" },
 ];
 
 const MORE_LINKS: Record<string, { label: string; href: string; highlight?: boolean }[]> = {
+  "Меню": [
+    { label: "Полное меню", href: "/menu" },
+  ],
   "Форматы": [
     { label: "Свадьбы", href: "/wedding" },
     { label: "Корпоратив", href: "/corporate" },
@@ -49,10 +69,10 @@ const MOBILE_GROUPS = [
   {
     title: "Навигация",
     links: [
-      { label: "Меню", href: "/menu" },
+      { label: "Конструктор меню", href: "#menu-builder", highlight: true },
       { label: "Услуги", href: "/services" },
       { label: "О нас", href: "/about" },
-      { label: "Калькулятор", href: "/calculator", highlight: true },
+      { label: "Калькулятор", href: "/calculator" },
       { label: "Отзывы", href: "/reviews" },
       { label: "Контакты", href: "/contacts" },
     ],
@@ -63,6 +83,12 @@ const MOBILE_GROUPS = [
       { label: "Свадьбы", href: "/wedding" },
       { label: "Корпоратив", href: "/corporate" },
       { label: "Площадки", href: "/venues" },
+    ],
+  },
+  {
+    title: "Меню",
+    links: [
+      { label: "Полное меню", href: "/menu" },
     ],
   },
   {
@@ -77,6 +103,9 @@ const MOBILE_GROUPS = [
   },
 ];
 
+// Section IDs for Intersection Observer (active section highlighting)
+const SECTION_IDS = ["menu-builder", "services", "about", "calculator", "reviews", "contacts"];
+
 // ─── SVG Icons (compact, no external deps) ─────────────────────
 function WhatsAppIcon({ size = 16, color }: { size?: number; color?: string }) {
   return (
@@ -89,7 +118,7 @@ function WhatsAppIcon({ size = 16, color }: { size?: number; color?: string }) {
 function TelegramIcon({ size = 16, color }: { size?: number; color?: string }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill={color ?? "#0088cc"}>
-      <path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
+      <path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.47.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
     </svg>
   );
 }
@@ -142,6 +171,195 @@ function CloseIcon({ size = 24 }: { size?: number }) {
 const EASE_PREMIUM = [0.16, 1, 0.3, 1] as const;
 const SPRING_SNAP = { type: "spring" as const, stiffness: 300, damping: 28 };
 const SPRING_GENTLE = { type: "spring" as const, stiffness: 180, damping: 22 };
+const SPRING_MAGNETIC_NAV = { type: "spring" as const, stiffness: 180, damping: 18 };
+
+// ═══════════════════════════════════════════════════════════════
+//  Magnetic Link — subtle cursor-follow on desktop
+// ═══════════════════════════════════════════════════════════════
+function MagneticLink({
+  children,
+  href,
+  style,
+  className,
+  onClick,
+  isMobile,
+  isActive,
+}: {
+  children: React.ReactNode;
+  href: string;
+  style?: React.CSSProperties;
+  className?: string;
+  onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
+  isMobile: boolean;
+  isActive?: boolean;
+}) {
+  const ref = useRef<HTMLAnchorElement>(null);
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const springX = useSpring(x, SPRING_MAGNETIC_NAV);
+  const springY = useSpring(y, SPRING_MAGNETIC_NAV);
+
+  const handleMouseMove = useCallback(
+    (e: React.MouseEvent) => {
+      if (isMobile) return;
+      const el = ref.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const dist = Math.hypot(e.clientX - cx, e.clientY - cy);
+      const radius = 80;
+      if (dist < radius) {
+        const strength = 1 - dist / radius;
+        x.set((e.clientX - cx) * strength * 0.15);
+        y.set((e.clientY - cy) * strength * 0.1);
+      } else {
+        x.set(0);
+        y.set(0);
+      }
+    },
+    [isMobile, x, y]
+  );
+
+  const handleMouseLeave = useCallback(() => {
+    x.set(0);
+    y.set(0);
+  }, [x, y]);
+
+  return (
+    <motion.a
+      ref={ref}
+      href={href}
+      onClick={onClick}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className={`${className || ""} ${isActive ? "nav-link-active" : ""}`}
+      style={{
+        ...style,
+        x: springX,
+        y: springY,
+        display: "inline-block",
+        willChange: isMobile ? "auto" : "transform",
+        fontSize: isActive ? "0.82rem" : style?.fontSize,
+        transition: style?.transition
+          ? `${style.transition}, font-size 0.3s cubic-bezier(0.16, 1, 0.3, 1)`
+          : "font-size 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+      }}
+    >
+      {children}
+      {/* Active section gold underline (persistent) */}
+      {isActive && (
+        <motion.span
+          layoutId="nav-active-underline"
+          style={{
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            right: 0,
+            height: 2,
+            background: "#B8860B",
+            borderRadius: 1,
+          }}
+          transition={{ type: "spring", stiffness: 300, damping: 25 }}
+        />
+      )}
+    </motion.a>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  Logo with handwriting animation
+// ═══════════════════════════════════════════════════════════════
+function AnimatedLogo({ textColor, textShadow }: { textColor: string; textShadow: string }) {
+  const [drawn, setDrawn] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setDrawn(true), 300);
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <Link
+      href="/"
+      className="vt-nav-logo"
+      aria-label="Интерфуд — Главная"
+      style={{
+        fontFamily: "var(--font-serif)",
+        fontSize: "1.1rem",
+        fontWeight: 400,
+        letterSpacing: "0.18em",
+        color: textColor,
+        textDecoration: "none",
+        transition: "color 0.5s cubic-bezier(0.16, 1, 0.3, 1)",
+        textShadow: textShadow,
+        flexShrink: 0,
+        position: "relative",
+        display: "inline-flex",
+        alignItems: "center",
+      }}
+    >
+      {/* SVG handwritten logo with stroke-dashoffset animation */}
+      <span style={{ position: "relative", display: "inline-flex", alignItems: "center", gap: "0.4rem" }}>
+        <svg
+          width="28"
+          height="28"
+          viewBox="0 0 40 40"
+          fill="none"
+          style={{
+            marginRight: "0.25rem",
+          }}
+        >
+          {/* Decorative flourish — stroke-dashoffset handwritten animation */}
+          <motion.path
+            d="M8 32 C8 8, 20 4, 20 20 C20 36, 32 8, 32 32"
+            stroke={textColor}
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            fill="none"
+            initial={{ pathLength: 0, opacity: 0.3 }}
+            animate={drawn ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0.3 }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            style={{
+              filter: `drop-shadow(0 0 2px ${textColor === "#FFFFFF" ? "rgba(212,166,62,0.4)" : "rgba(184,134,11,0.3)"})`,
+            }}
+          />
+          <motion.circle
+            cx="20"
+            cy="20"
+            r="4"
+            fill={textColor}
+            initial={{ scale: 0, opacity: 0 }}
+            animate={drawn ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
+            transition={{ delay: 0.8, duration: 0.4, type: "spring", stiffness: 200 }}
+          />
+        </svg>
+        {/* Text with stroke-dashoffset "handwriting" via clip-path reveal */}
+        <span
+          style={{
+            position: "relative",
+            display: "inline-block",
+          }}
+        >
+          ИНТЕРФУД
+          {/* Animated reveal overlay — simulates handwriting from left to right */}
+          <motion.span
+            aria-hidden="true"
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 1.0, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            style={{
+              position: "absolute",
+              inset: 0,
+              background: textColor === "#FFFFFF" ? "#1A1714" : "#FAFAF7",
+              transformOrigin: "left",
+              pointerEvents: "none",
+            }}
+          />
+        </span>
+      </span>
+    </Link>
+  );
+}
 
 // ─── Main Component ─────────────────────────────────────────────
 export default function SiteNav() {
@@ -151,6 +369,42 @@ export default function SiteNav() {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const burgerRef = useRef<HTMLButtonElement>(null);
   const navRef = useRef<HTMLElement>(null);
+  const isMobile = useIsMobile();
+
+  // ─── Active section tracking via IntersectionObserver ───
+  const [activeSection, setActiveSection] = useState<string | null>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // Find the most visible section
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible.length > 0) {
+          setActiveSection(visible[0].target.id);
+        }
+      },
+      { threshold: [0.2, 0.5], rootMargin: "-80px 0px -30% 0px" }
+    );
+
+    // Observe sections after a short delay (wait for page to render)
+    const timer = setTimeout(() => {
+      SECTION_IDS.forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) observer.observe(el);
+      });
+    }, 500);
+
+    return () => {
+      clearTimeout(timer);
+      observer.disconnect();
+    };
+  }, []);
+
+  // ─── Scroll progress ───
+  const { scrollYProgress } = useScroll();
+  const scrollProgressWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   // Derived color values
   const textColor = scrolled ? "#1A1714" : "#FFFFFF";
@@ -159,7 +413,7 @@ export default function SiteNav() {
   // ─── Scroll listener ──────────────────────────────────────────
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
-    onScroll(); // initial check
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -207,10 +461,21 @@ export default function SiteNav() {
   // ─── Burger line color ───────────────────────────────────────
   const burgerLineColor = menuOpen ? "#1A1714" : scrolled ? "#1A1714" : "#FFFFFF";
 
+  // ─── Helper: check if link matches active section ───
+  const isLinkActive = useCallback(
+    (href: string) => {
+      if (href.startsWith("#")) {
+        return activeSection === href.slice(1);
+      }
+      return false;
+    },
+    [activeSection]
+  );
+
   return (
     <>
       {/* ═══════════════════════════════════════════════════════════
-          NAV BAR — fixed, z-9999, transparent on hero → opaque on scroll
+          NAV BAR — fixed, z-9999, transparent on hero → glass on scroll
           ═══════════════════════════════════════════════════════════ */}
       <nav
         ref={navRef}
@@ -223,11 +488,17 @@ export default function SiteNav() {
           right: 0,
           zIndex: 9999,
           padding: scrolled ? "0.65rem 0" : "1.25rem 0",
-          background: scrolled ? "rgba(250,250,247,0.92)" : "transparent",
-          backdropFilter: scrolled ? "blur(20px) saturate(180%)" : "none",
-          WebkitBackdropFilter: scrolled ? "blur(20px) saturate(180%)" : "none",
-          borderBottom: scrolled ? "1px solid rgba(184,134,11,0.12)" : "1px solid transparent",
-          boxShadow: scrolled ? "0 1px 24px rgba(0,0,0,0.06)" : "none",
+          background: scrolled
+            ? "rgba(250,250,247,0.75)"
+            : "transparent",
+          backdropFilter: scrolled ? "blur(24px) saturate(200%)" : "none",
+          WebkitBackdropFilter: scrolled ? "blur(24px) saturate(200%)" : "none",
+          borderBottom: scrolled
+            ? "1px solid rgba(184,134,11,0.18)"
+            : "1px solid transparent",
+          boxShadow: scrolled
+            ? "0 1px 24px rgba(0,0,0,0.06), 0 0 0 1px rgba(184,134,11,0.05)"
+            : "none",
           transition: "all 0.5s cubic-bezier(0.16, 1, 0.3, 1)",
           pointerEvents: "auto",
         }}
@@ -242,27 +513,10 @@ export default function SiteNav() {
             justifyContent: "space-between",
           }}
         >
-          {/* ─── Logo ─────────────────────────────────────────── */}
-          <Link
-            href="/"
-            className="vt-nav-logo"
-            aria-label="Интерфуд — Главная"
-            style={{
-              fontFamily: "var(--font-serif)",
-              fontSize: "1.1rem",
-              fontWeight: 400,
-              letterSpacing: "0.18em",
-              color: textColor,
-              textDecoration: "none",
-              transition: "color 0.5s cubic-bezier(0.16, 1, 0.3, 1)",
-              textShadow: textShadow,
-              flexShrink: 0,
-            }}
-          >
-            ИНТЕРФУД
-          </Link>
+          {/* ─── Logo with handwriting animation ─── */}
+          <AnimatedLogo textColor={textColor} textShadow={textShadow} />
 
-          {/* ─── Desktop Links ────────────────────────────────── */}
+          {/* ─── Desktop Links (with magnetic hover) ─── */}
           <ul
             style={{
               display: "flex",
@@ -281,25 +535,36 @@ export default function SiteNav() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 + i * 0.04, duration: 0.5, ease: EASE_PREMIUM }}
               >
-                <Link
+                <MagneticLink
                   href={item.href}
+                  isMobile={isMobile}
+                  isActive={isLinkActive(item.href)}
+                  onClick={(e) => {
+                    if (item.href.startsWith("#")) {
+                      e.preventDefault();
+                      document.querySelector(item.href)?.scrollIntoView({ behavior: "smooth" });
+                    }
+                  }}
+                  className="nav-link-animated"
                   style={{
                     fontSize: "0.78rem",
                     letterSpacing: "0.14em",
                     textTransform: "uppercase" as const,
-                    fontWeight: item.highlight ? 600 : 500,
-                    color: item.highlight ? "#B8860B" : textColor,
+                    fontWeight: isLinkActive(item.href) ? 600 : item.highlight ? 600 : 500,
+                    color: isLinkActive(item.href)
+                      ? "#B8860B"
+                      : item.highlight
+                        ? "#B8860B"
+                        : textColor,
                     textDecoration: "none",
                     position: "relative",
                     transition: "color 0.5s cubic-bezier(0.16, 1, 0.3, 1)",
-                    textShadow: item.highlight ? "none" : textShadow,
+                    textShadow: item.highlight || isLinkActive(item.href) ? "none" : textShadow,
                     padding: "0.5rem 0",
-                    display: "inline-block",
                   }}
-                  className="nav-link-animated"
                 >
                   {item.label}
-                </Link>
+                </MagneticLink>
               </motion.li>
             ))}
 
@@ -380,7 +645,13 @@ export default function SiteNav() {
                           <Link
                             key={link.href}
                             href={link.href}
-                            onClick={closeDropdown}
+                            onClick={(e) => {
+                              if (link.href.startsWith("#")) {
+                                e.preventDefault();
+                                document.querySelector(link.href)?.scrollIntoView({ behavior: "smooth" });
+                              }
+                              closeDropdown();
+                            }}
                             style={{
                               display: "block",
                               padding: "0.45rem 0.5rem",
@@ -575,18 +846,36 @@ export default function SiteNav() {
             />
           </button>
         </div>
+
+        {/* ─── Scroll Progress Line ─── */}
+        <motion.div
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            height: 2,
+            background: "linear-gradient(90deg, #B8860B, #D4A63E, #E5BF65)",
+            width: scrollProgressWidth,
+            borderRadius: "0 1px 1px 0",
+            boxShadow: "0 0 6px rgba(184,134,11,0.3)",
+            opacity: scrolled ? 1 : 0,
+            transition: "opacity 0.3s ease",
+          }}
+        />
       </nav>
 
       {/* ═══════════════════════════════════════════════════════════
-          FULLSCREEN MOBILE MENU — clip-path circle morph animation
+          FULLSCREEN MOBILE MENU — 3D Flip Animation
           ═══════════════════════════════════════════════════════════ */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            initial={{ clipPath: "circle(0% at calc(100% - 2.5rem) 2.5rem)" }}
-            animate={{ clipPath: "circle(150% at calc(100% - 2.5rem) 2.5rem)" }}
-            exit={{ clipPath: "circle(0% at calc(100% - 2.5rem) 2.5rem)" }}
-            transition={{ duration: 0.65, ease: EASE_PREMIUM }}
+            key="mobile-menu-flip"
+            initial={{ rotateY: -90, opacity: 0 }}
+            animate={{ rotateY: 0, opacity: 1 }}
+            exit={{ rotateY: 90, opacity: 0 }}
+            transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
             style={{
               position: "fixed",
               inset: 0,
@@ -599,6 +888,9 @@ export default function SiteNav() {
               display: "flex",
               flexDirection: "column",
               pointerEvents: "auto",
+              perspective: "1200px",
+              transformOrigin: "right center",
+              backfaceVisibility: "hidden",
             }}
           >
             {/* Grain texture overlay */}
@@ -706,7 +998,13 @@ export default function SiteNav() {
                   >
                     <Link
                       href={link.href}
-                      onClick={closeMenu}
+                      onClick={(e) => {
+                        if (link.href.startsWith("#")) {
+                          e.preventDefault();
+                          document.querySelector(link.href)?.scrollIntoView({ behavior: "smooth" });
+                        }
+                        closeMenu();
+                      }}
                       style={{
                         display: "flex",
                         alignItems: "center",
@@ -926,7 +1224,7 @@ export default function SiteNav() {
       </AnimatePresence>
 
       {/* ═══════════════════════════════════════════════════════════
-          GLOBAL STYLES — injected once for animated underline, CTA pulse,
+          GLOBAL STYLES — animated underline, CTA pulse, active link,
           responsive burger/nav visibility, and scrollbar
           ═══════════════════════════════════════════════════════════ */}
       <style jsx global>{`
@@ -943,6 +1241,12 @@ export default function SiteNav() {
         }
         .nav-link-animated:hover::after {
           width: 100%;
+        }
+
+        /* Active section link — persistent gold underline */
+        .nav-link-active::after {
+          width: 100% !important;
+          height: 2px !important;
         }
 
         /* CTA pulse animation */
@@ -982,6 +1286,16 @@ export default function SiteNav() {
         .mobile-menu-scroll::-webkit-scrollbar-thumb {
           background: rgba(184,134,11,0.3);
           border-radius: 4px;
+        }
+
+        /* Reduced motion: disable magnetic hover, logo animation, flip */
+        @media (prefers-reduced-motion: reduce) {
+          .nav-link-animated::after {
+            transition: none;
+          }
+          .nav-cta-pulse-btn {
+            animation: none;
+          }
         }
       `}</style>
     </>

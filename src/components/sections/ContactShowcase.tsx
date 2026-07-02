@@ -45,8 +45,8 @@ const CONTACTS = [
   },
 ];
 
-function ContactIcon({ name }: { name: string }) {
-  const p = { width: 20, height: 20, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.5, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
+function ContactIcon({ name, size = 20 }: { name: string; size?: number }) {
+  const p = { width: size, height: size, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.5, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
   switch (name) {
     case "phone": return <svg {...p}><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.11 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>;
     case "whatsapp": return <svg {...p}><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>;
@@ -57,11 +57,12 @@ function ContactIcon({ name }: { name: string }) {
   }
 }
 
-/* ─── Animated contact item ─── */
-function ContactItem({ item, index }: { item: typeof CONTACTS[number]; index: number }) {
+/* ─── Animated contact item with pulsing glow ─── */
+function ContactItem({ item, index, isMobile }: { item: typeof CONTACTS[number]; index: number; isMobile: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-30px" });
   const [hovered, setHovered] = useState(false);
+  const iconSize = isMobile ? 22 : 20;
 
   return (
     <motion.a
@@ -71,24 +72,26 @@ function ContactItem({ item, index }: { item: typeof CONTACTS[number]; index: nu
       rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
       initial={{ opacity: 0, x: -30 }}
       animate={isInView ? { opacity: 1, x: 0 } : {}}
-      transition={{ duration: 0.6, delay: index * 0.1, ease: EASE }}
+      transition={{ duration: 0.6, delay: index * 0.12, ease: EASE }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
         display: "flex",
         alignItems: "center",
         gap: "1rem",
-        padding: "1rem 0",
+        padding: isMobile ? "1.1rem 0" : "1rem 0",
         textDecoration: "none",
         position: "relative",
         borderBottom: "1px solid rgba(184,134,11,0.08)",
         cursor: "pointer",
-        minHeight: 44,
+        minHeight: 48,
       }}
     >
-      {/* Pulsing icon container */}
+      {/* Pulsing icon container with glow */}
       <div style={{
-        width: 44, height: 44, borderRadius: "50%",
+        width: isMobile ? 52 : 44,
+        height: isMobile ? 52 : 44,
+        borderRadius: "50%",
         border: "1.5px solid rgba(184,134,11,0.15)",
         display: "flex", alignItems: "center", justifyContent: "center",
         color: "#B8860B",
@@ -97,22 +100,41 @@ function ContactItem({ item, index }: { item: typeof CONTACTS[number]; index: nu
         transition: "all 0.4s cubic-bezier(0.16,1,0.3,1)",
         background: hovered ? "rgba(184,134,11,0.06)" : "transparent",
         borderColor: hovered ? "rgba(184,134,11,0.4)" : "rgba(184,134,11,0.15)",
-        boxShadow: hovered ? "0 0 16px rgba(184,134,11,0.1)" : "none",
+        boxShadow: hovered ? "0 0 20px rgba(184,134,11,0.15)" : "none",
       }}>
         <motion.div
           animate={hovered ? { scale: [1, 1.15, 1] } : {}}
           transition={{ duration: 0.4 }}
         >
-          <ContactIcon name={item.icon} />
+          <ContactIcon name={item.icon} size={iconSize} />
         </motion.div>
-        {/* Pulse ring */}
+
+        {/* Pulse ring - continuous subtle glow */}
         {isInView && (
-          <motion.div
-            style={{ position: "absolute", inset: -4, borderRadius: "50%", border: "1px solid rgba(184,134,11,0.2)", pointerEvents: "none" }}
-            animate={{ scale: [1, 1.2], opacity: [0.4, 0] }}
-            transition={{ duration: 2, repeat: Infinity, delay: index * 0.3, ease: "easeOut" }}
-          />
+          <>
+            <motion.div
+              style={{ position: "absolute", inset: -4, borderRadius: "50%", border: "1px solid rgba(184,134,11,0.2)", pointerEvents: "none" }}
+              animate={{ scale: [1, 1.3], opacity: [0.3, 0] }}
+              transition={{ duration: 2.5, repeat: Infinity, delay: index * 0.3, ease: "easeOut" }}
+            />
+            <motion.div
+              style={{ position: "absolute", inset: -4, borderRadius: "50%", border: "1px solid rgba(184,134,11,0.15)", pointerEvents: "none" }}
+              animate={{ scale: [1, 1.2], opacity: [0.2, 0] }}
+              transition={{ duration: 2.5, repeat: Infinity, delay: index * 0.3 + 1.2, ease: "easeOut" }}
+            />
+          </>
         )}
+
+        {/* Background glow */}
+        <motion.div
+          style={{
+            position: "absolute", inset: 0, borderRadius: "50%",
+            background: "radial-gradient(circle, rgba(184,134,11,0.12) 0%, transparent 70%)",
+            pointerEvents: "none",
+          }}
+          animate={hovered ? { opacity: 1, scale: 1.2 } : { opacity: 0, scale: 1 }}
+          transition={{ duration: 0.4 }}
+        />
       </div>
       <div style={{ flex: 1 }}>
         <span style={{ display: "block", fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "#5C564D", marginBottom: "0.2rem" }}>
@@ -132,6 +154,18 @@ function ContactItem({ item, index }: { item: typeof CONTACTS[number]; index: nu
           />
         </span>
       </div>
+
+      {/* Arrow indicator */}
+      <motion.div
+        animate={{ x: hovered ? 4 : 0, opacity: hovered ? 1 : 0 }}
+        transition={{ duration: 0.3 }}
+        style={{ color: "#B8860B", flexShrink: 0 }}
+      >
+        <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12" />
+          <polyline points="12 5 19 12 12 19" />
+        </svg>
+      </motion.div>
     </motion.a>
   );
 }
@@ -164,14 +198,14 @@ function MagneticCTA({ isMobile }: { isMobile: boolean }) {
         href="/contacts"
         style={{
           display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "0.5rem",
-          padding: "1rem 2.5rem", borderRadius: 14,
+          padding: isMobile ? "1rem 2rem" : "1rem 2.5rem", borderRadius: 14,
           background: "linear-gradient(135deg, #B8860B, #D4A63E)",
           color: "#1A1714", fontWeight: 500, fontSize: "0.85rem",
           letterSpacing: "0.1em", textTransform: "uppercase", textDecoration: "none",
           minHeight: 48, transition: "box-shadow 0.4s",
           boxShadow: "0 4px 20px rgba(184,134,11,0.15)",
         }}
-        onMouseEnter={(e) => { e.currentTarget.style.boxShadow = "0 8px 40px rgba(184,134,11,0.3)"; }}
+        onMouseEnter={(e) => { e.currentTarget.style.boxShadow = "0 8px 40px rgba(184,134,11,0.3), 0 0 60px rgba(184,134,11,0.1)"; }}
         onMouseLeave={(e) => { e.currentTarget.style.boxShadow = "0 4px 20px rgba(184,134,11,0.15)"; }}
       >
         Оставить заявку
@@ -185,12 +219,20 @@ export default function ContactShowcase() {
   const isMobile = useIsMobile();
   const titleRef = useRef<HTMLDivElement>(null);
   const titleInView = useInView(titleRef, { once: true, margin: "-60px" });
+  const mapRef = useRef<HTMLDivElement>(null);
+  const [mapHovered, setMapHovered] = useState(false);
 
   return (
     <section
-      style={{ position: "relative", background: "#FAFAF7", padding: "clamp(3rem, 8vw, 7rem) 0" }}
+      style={{ position: "relative", background: "#FAFAF7", padding: "clamp(3rem, 8vw, 7rem) 0", overflow: "hidden" }}
       aria-label="Свяжитесь с нами"
     >
+      {/* Background gold gradient accent - bottom-right wash */}
+      <div style={{
+        position: "absolute", inset: 0, pointerEvents: "none",
+        background: "linear-gradient(to top left, rgba(184,134,11,0.04) 0%, transparent 50%)",
+      }} aria-hidden="true" />
+
       <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 clamp(1.25rem, 3vw, 2rem)" }}>
         {/* Section header */}
         <motion.div
@@ -219,7 +261,7 @@ export default function ContactShowcase() {
           {/* Left: Contact items */}
           <div>
             {CONTACTS.map((item, i) => (
-              <ContactItem key={item.icon} item={item} index={i} />
+              <ContactItem key={item.icon} item={item} index={i} isMobile={isMobile} />
             ))}
 
             {/* CTA button */}
@@ -227,14 +269,14 @@ export default function ContactShowcase() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.7, delay: 0.6, ease: EASE }}
+              transition={{ duration: 0.7, delay: 0.7, ease: EASE }}
               style={{ marginTop: "2rem" }}
             >
               <MagneticCTA isMobile={isMobile} />
             </motion.div>
           </div>
 
-          {/* Right: Map placeholder */}
+          {/* Right: Map preview with gold frame and zoom-on-hover */}
           <motion.div
             initial={{ opacity: 0, x: isMobile ? 0 : 40, y: isMobile ? 30 : 0 }}
             whileInView={{ opacity: 1, x: 0, y: 0 }}
@@ -243,45 +285,148 @@ export default function ContactShowcase() {
             style={{
               borderRadius: 20,
               overflow: "hidden",
-              border: "1px solid rgba(184,134,11,0.1)",
-              aspectRatio: isMobile ? "16/10" : "1",
               position: "relative",
-              background: "#EDE9E1",
+              aspectRatio: isMobile ? "16/10" : "1",
             }}
           >
-            {/* Stylized map placeholder */}
-            <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "1rem" }}>
-              {/* Map pin */}
+            {/* Gold border frame */}
+            <div style={{
+              position: "absolute", inset: 0,
+              borderRadius: 20,
+              border: "2px solid rgba(184,134,11,0.2)",
+              pointerEvents: "none",
+              zIndex: 3,
+              transition: "border-color 0.4s",
+              ...(mapHovered ? { borderColor: "rgba(184,134,11,0.5)" } : {}),
+            }} />
+
+            {/* Corner accents */}
+            <div style={{ position: "absolute", top: -1, left: 20, width: 40, height: 2, background: "#B8860B", zIndex: 4, borderRadius: 1 }} />
+            <div style={{ position: "absolute", top: 20, left: -1, width: 2, height: 40, background: "#B8860B", zIndex: 4, borderRadius: 1 }} />
+            <div style={{ position: "absolute", bottom: -1, right: 20, width: 40, height: 2, background: "#B8860B", zIndex: 4, borderRadius: 1 }} />
+            <div style={{ position: "absolute", bottom: 20, right: -1, width: 2, height: 40, background: "#B8860B", zIndex: 4, borderRadius: 1 }} />
+
+            {/* Map content */}
+            <div
+              ref={mapRef}
+              onMouseEnter={() => setMapHovered(true)}
+              onMouseLeave={() => setMapHovered(false)}
+              style={{
+                position: "absolute",
+                inset: 0,
+                background: "#EDE9E1",
+                overflow: "hidden",
+                borderRadius: 20,
+                cursor: isMobile ? "default" : "zoom-in",
+              }}
+            >
+              {/* Zoomable inner content */}
               <motion.div
-                animate={{ y: [0, -8, 0] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                animate={{
+                  scale: mapHovered && !isMobile ? 1.08 : 1,
+                }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                style={{
+                  position: "absolute",
+                  inset: -10,
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "1rem",
+                  padding: "1rem",
+                }}
               >
-                <svg width={48} height={48} viewBox="0 0 24 24" fill="none" stroke="#B8860B" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
-                  <circle cx="12" cy="10" r="3" fill="rgba(184,134,11,0.15)"/>
-                </svg>
+                {/* Map pin */}
+                <motion.div
+                  animate={{ y: [0, -8, 0] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                  style={{ position: "relative", zIndex: 2 }}
+                >
+                  <svg width={48} height={48} viewBox="0 0 24 24" fill="none" stroke="#B8860B" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                    <circle cx="12" cy="10" r="3" fill="rgba(184,134,11,0.15)"/>
+                  </svg>
+                  {/* Pin shadow */}
+                  <div style={{
+                    position: "absolute", bottom: -6, left: "50%", transform: "translateX(-50%)",
+                    width: 16, height: 4, borderRadius: "50%",
+                    background: "rgba(184,134,11,0.15)",
+                    filter: "blur(2px)",
+                  }} />
+                </motion.div>
+
+                <p style={{ fontFamily: "var(--font-serif)", fontSize: "1rem", color: "#5C564D", textAlign: "center", lineHeight: 1.5, fontWeight: 300, position: "relative", zIndex: 2 }}>
+                  Санкт-Петербург<br />
+                  <span style={{ fontSize: "0.8rem", color: "#8A8478" }}>Новолитовская ул., д. 15</span>
+                </p>
               </motion.div>
-              <p style={{ fontFamily: "var(--font-serif)", fontSize: "1rem", color: "#5C564D", textAlign: "center", lineHeight: 1.5, fontWeight: 300 }}>
-                Санкт-Петербург<br />
-                <span style={{ fontSize: "0.8rem", color: "#8A8478" }}>Новолитовская ул., д. 15</span>
-              </p>
+
+              {/* Decorative grid lines */}
+              <div style={{ position: "absolute", inset: 0, pointerEvents: "none", opacity: 0.06 }}>
+                {Array.from({ length: 8 }, (_, i) => (
+                  <div key={`h-${i}`} style={{ position: "absolute", left: 0, right: 0, top: `${(i + 1) * 11}%`, height: 1, background: "#5C564D" }} />
+                ))}
+                {Array.from({ length: 8 }, (_, i) => (
+                  <div key={`v-${i}`} style={{ position: "absolute", top: 0, bottom: 0, left: `${(i + 1) * 11}%`, width: 1, background: "#5C564D" }} />
+                ))}
+              </div>
+
+              {/* Decorative "road" lines */}
+              <div style={{ position: "absolute", inset: 0, pointerEvents: "none" }}>
+                <div style={{ position: "absolute", top: "35%", left: 0, right: 0, height: 2, background: "rgba(184,134,11,0.06)", transform: "rotate(-5deg)" }} />
+                <div style={{ position: "absolute", top: "60%", left: "10%", right: 0, height: 2, background: "rgba(184,134,11,0.04)", transform: "rotate(3deg)" }} />
+                <div style={{ position: "absolute", top: 0, bottom: 0, left: "45%", width: 2, background: "rgba(184,134,11,0.05)", transform: "rotate(-8deg)" }} />
+              </div>
+
+              {/* Gold accent line at top */}
+              <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: "linear-gradient(90deg, #B8860B, transparent)", zIndex: 2 }} />
+
+              {/* Hover overlay */}
+              {mapHovered && !isMobile && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  style={{
+                    position: "absolute", bottom: 16, left: "50%", transform: "translateX(-50%)",
+                    background: "rgba(26,23,20,0.7)", backdropFilter: "blur(8px)",
+                    padding: "0.4rem 1rem", borderRadius: 8,
+                    fontSize: "0.72rem", color: "#FAFAF7", fontWeight: 500,
+                    letterSpacing: "0.05em", zIndex: 5,
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  Нажмите, чтобы открыть карту
+                </motion.div>
+              )}
             </div>
 
-            {/* Decorative grid lines */}
-            <div style={{ position: "absolute", inset: 0, pointerEvents: "none", opacity: 0.06 }}>
-              {Array.from({ length: 8 }, (_, i) => (
-                <div key={`h-${i}`} style={{ position: "absolute", left: 0, right: 0, top: `${(i + 1) * 11}%`, height: 1, background: "#5C564D" }} />
-              ))}
-              {Array.from({ length: 8 }, (_, i) => (
-                <div key={`v-${i}`} style={{ position: "absolute", top: 0, bottom: 0, left: `${(i + 1) * 11}%`, width: 1, background: "#5C564D" }} />
-              ))}
-            </div>
-
-            {/* Gold accent corner */}
-            <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: "linear-gradient(90deg, #B8860B, transparent)" }} />
+            {/* Inner glow on hover */}
+            <motion.div
+              animate={{
+                opacity: mapHovered ? 1 : 0,
+              }}
+              transition={{ duration: 0.4 }}
+              style={{
+                position: "absolute", inset: 0, pointerEvents: "none", zIndex: 2,
+                boxShadow: "inset 0 0 40px rgba(184,134,11,0.06)",
+                borderRadius: 20,
+              }}
+            />
           </motion.div>
         </div>
       </div>
+
+      {/* Reduced motion */}
+      <style>{`
+        @media (prefers-reduced-motion: reduce) {
+          section[aria-label="Свяжитесь с нами"] * {
+            animation-duration: 0.01ms !important;
+            transition-duration: 0.01ms !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

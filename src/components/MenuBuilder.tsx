@@ -28,6 +28,7 @@ import {
   FileText,
   X,
   ChevronUp,
+  ChevronDown,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -1240,15 +1241,66 @@ export default function MenuBuilder() {
   return (
     <section
       className="w-full"
-      style={{ background: COLORS.bg, color: COLORS.textPrimary }}
+      style={{
+        background: `linear-gradient(180deg, rgba(184,134,11,0.04) 0%, ${COLORS.bg} 30%)`,
+        color: COLORS.textPrimary,
+      }}
     >
       {/* ─── SECTION TITLE ─── */}
-      <div className="text-center px-4 pt-12 pb-4">
+      <div className="text-center px-4 pt-16 pb-6 relative">
+        {/* Gold decorative border at top */}
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: "50%",
+            transform: "translateX(-50%)",
+            width: "80%",
+            maxWidth: 600,
+            height: 2,
+            background: `linear-gradient(90deg, transparent, ${COLORS.gold}, transparent)`,
+          }}
+        />
+
+        {/* Label above title */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          style={{
+            fontSize: "0.65rem",
+            letterSpacing: "0.3em",
+            textTransform: "uppercase",
+            color: COLORS.gold,
+            fontWeight: 600,
+            fontFamily: "var(--font-sans)",
+            marginBottom: "0.75rem",
+          }}
+        >
+          Интерактивный конструктор
+        </motion.div>
+
+        {/* Gold ornamental line */}
+        <motion.div
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.1 }}
+          style={{
+            width: 60,
+            height: 2,
+            background: COLORS.gold,
+            margin: "0 auto 1.25rem",
+            transformOrigin: "center",
+          }}
+        />
+
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.6, delay: 0.15 }}
           className="text-3xl sm:text-4xl lg:text-5xl font-bold"
           style={{ fontFamily: "var(--font-serif)", color: COLORS.textPrimary }}
         >
@@ -1258,17 +1310,51 @@ export default function MenuBuilder() {
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.15 }}
+          transition={{ duration: 0.6, delay: 0.25 }}
           className="text-base sm:text-lg mt-3 max-w-xl mx-auto"
           style={{ color: COLORS.textSecondary, fontFamily: "var(--font-sans)" }}
         >
           Выберите формат и блюда, укажите количество гостей — получите расчёт и PDF-меню
         </motion.p>
+
+        {/* Animated "try it" hint */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.6 }}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            marginTop: "1.25rem",
+            gap: 4,
+          }}
+        >
+          <span
+            style={{
+              fontSize: "0.7rem",
+              letterSpacing: "0.15em",
+              textTransform: "uppercase",
+              color: COLORS.goldLight,
+              fontFamily: "var(--font-sans)",
+              fontWeight: 500,
+            }}
+          >
+            Попробуйте
+          </span>
+          <motion.div
+            animate={{ y: [0, 6, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <ChevronDown size={18} style={{ color: COLORS.gold }} />
+          </motion.div>
+        </motion.div>
       </div>
 
       {/* ─── STICKY HEADER: Category pills + PDF + Cart summary ─── */}
       <div
-        className="sticky top-0 z-30"
+        className="sticky top-16 z-30"
         style={{ background: COLORS.bg }}
       >
         {/* Top row: Guest count + PDF button + Cart summary */}

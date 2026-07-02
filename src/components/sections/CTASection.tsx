@@ -12,20 +12,16 @@ import { useIsMobile } from "@/hooks/use-mobile";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
-/* ─── Floating Gold Orbs ─── */
-function GoldOrbs({ count = 8, isMobile }: { count?: number; isMobile: boolean }) {
+/* ─── Floating Gold Orbs (2-3, slow drift) ─── */
+function GoldOrbs({ isMobile }: { isMobile: boolean }) {
   const orbs = useMemo(() => {
-    const n = isMobile ? Math.min(count, 4) : count;
-    return Array.from({ length: n }, (_, i) => ({
-      id: i,
-      x: 10 + Math.random() * 80,
-      y: 10 + Math.random() * 80,
-      size: 80 + Math.random() * 200,
-      duration: 15 + Math.random() * 20,
-      delay: Math.random() * 10,
-      opacity: 0.03 + Math.random() * 0.05,
-    }));
-  }, [count, isMobile]);
+    if (isMobile) return []; // Disabled for performance on mobile
+    return [
+      { id: 0, x: 15, y: 20, size: 180, duration: 22, delay: 0, opacity: 0.05 },
+      { id: 1, x: 75, y: 60, size: 140, duration: 28, delay: 3, opacity: 0.04 },
+      { id: 2, x: 45, y: 80, size: 100, duration: 18, delay: 6, opacity: 0.035 },
+    ];
+  }, [isMobile]);
 
   return (
     <>
@@ -39,17 +35,17 @@ function GoldOrbs({ count = 8, isMobile }: { count?: number; isMobile: boolean }
             width: o.size,
             height: o.size,
             borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(184,134,11,0.15) 0%, transparent 70%)",
+            background: "radial-gradient(circle, rgba(184,134,11,0.2) 0%, rgba(212,166,62,0.08) 40%, transparent 70%)",
             opacity: 0,
             pointerEvents: "none",
             willChange: "transform, opacity",
             transform: "translate(-50%, -50%)",
           }}
           animate={{
-            x: [0, (Math.random() - 0.5) * 60, 0],
-            y: [0, (Math.random() - 0.5) * 60, 0],
+            x: [0, 30, -20, 0],
+            y: [0, -25, 15, 0],
             opacity: [0, o.opacity, o.opacity, 0],
-            scale: [0.8, 1, 0.8],
+            scale: [0.85, 1, 1, 0.85],
           }}
           transition={{
             duration: o.duration,
@@ -63,7 +59,7 @@ function GoldOrbs({ count = 8, isMobile }: { count?: number; isMobile: boolean }
   );
 }
 
-/* ─── Magnetic Button ─── */
+/* ─── Magnetic Button with Ripple ─── */
 function MagneticButton({
   children,
   href,
@@ -124,10 +120,10 @@ function MagneticButton({
           scale: hovered && !isMobile ? 1.03 : 1,
           boxShadow: hovered
             ? isPrimary
-              ? "0 8px 40px rgba(184,134,11,0.35), 0 0 80px rgba(184,134,11,0.15)"
-              : "0 4px 24px rgba(250,250,247,0.08)"
+              ? "0 8px 40px rgba(184,134,11,0.4), 0 0 80px rgba(184,134,11,0.2)"
+              : "0 4px 24px rgba(250,250,247,0.1)"
             : isPrimary
-              ? "0 4px 20px rgba(184,134,11,0.15)"
+              ? "0 4px 20px rgba(184,134,11,0.2)"
               : "0 0 0 rgba(0,0,0,0)",
         }}
         transition={{ type: "spring", stiffness: 400, damping: 15 }}
@@ -202,13 +198,38 @@ function CountUp({ target, suffix = "" }: { target: number; suffix?: string }) {
   return <span ref={ref}>{count}{suffix}</span>;
 }
 
+/* ─── Pulsing dot indicator ─── */
+function PulsingDot() {
+  return (
+    <span style={{ position: "relative", display: "inline-flex", alignItems: "center", justifyContent: "center", width: 10, height: 10, flexShrink: 0 }}>
+      <span style={{
+        width: 8, height: 8, borderRadius: "50%",
+        background: "#D4A63E",
+        position: "absolute",
+      }} />
+      <motion.span
+        style={{
+          width: 8, height: 8, borderRadius: "50%",
+          border: "1.5px solid #D4A63E",
+          position: "absolute",
+        }}
+        animate={{ scale: [1, 2.2], opacity: [0.7, 0] }}
+        transition={{ duration: 1.8, repeat: Infinity, ease: "easeOut" }}
+      />
+    </span>
+  );
+}
+
 export default function CTASection() {
   const emptySub = () => () => {};
   const mounted = useSyncExternalStore(emptySub, () => true, () => false);
   const isMobile = useIsMobile();
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
   return (
     <section
+      ref={sectionRef}
       style={{ position: "relative", padding: "clamp(4rem, 8vw, 8rem) 0", overflow: "hidden", background: "#1A1714" }}
       aria-label="Рассчитайте ваше мероприятие"
     >
@@ -222,44 +243,49 @@ export default function CTASection() {
         aria-hidden="true"
       />
 
+      {/* Subtle top/bottom gradient edge */}
+      <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 1, background: "linear-gradient(90deg, transparent, rgba(184,134,11,0.2), transparent)", zIndex: 2 }} aria-hidden="true" />
+      <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 1, background: "linear-gradient(90deg, transparent, rgba(184,134,11,0.2), transparent)", zIndex: 2 }} aria-hidden="true" />
+
       {/* Floating gold orbs */}
       {mounted && (
         <div style={{ position: "absolute", inset: 0, zIndex: 1, pointerEvents: "none", overflow: "hidden" }} aria-hidden="true">
-          <GoldOrbs count={8} isMobile={isMobile} />
+          <GoldOrbs isMobile={isMobile} />
         </div>
       )}
 
       {/* Content */}
       <div style={{ position: "relative", zIndex: 3, maxWidth: 800, margin: "0 auto", padding: "0 clamp(1.25rem, 3vw, 2rem)", textAlign: "center" }}>
-        {/* Title with gold gradient */}
-        <motion.h2
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 1, ease: EASE }}
-          style={{
-            fontFamily: "var(--font-serif)",
-            fontSize: "clamp(2rem, 5vw, 3.5rem)",
-            fontWeight: 300,
-            lineHeight: 1.15,
-            letterSpacing: "-0.02em",
-            marginBottom: "1rem",
-            background: "linear-gradient(90deg, #B8860B, #D4A63E, #E5BF65, #D4A63E, #B8860B)",
-            backgroundSize: "200% 100%",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
-            animation: "cta-gold-shift 6s ease-in-out infinite",
-          }}
+        {/* Title with shimmer gold gradient - blur-to-clear reveal */}
+        <motion.div
+          initial={{ opacity: 0, y: 40, filter: "blur(12px)" }}
+          animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+          transition={{ duration: 1.2, ease: EASE }}
         >
-          Рассчитайте ваше мероприятие
-        </motion.h2>
+          <motion.h2
+            style={{
+              fontFamily: "var(--font-serif)",
+              fontSize: "clamp(2rem, 5vw, 3.5rem)",
+              fontWeight: 300,
+              lineHeight: 1.15,
+              letterSpacing: "-0.02em",
+              marginBottom: "1rem",
+              background: "linear-gradient(90deg, #B8860B, #D4A63E, #E5BF65, #D4A63E, #B8860B)",
+              backgroundSize: "200% 100%",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+              animation: "cta-gold-shift 4s ease-in-out infinite",
+            }}
+          >
+            Рассчитайте ваше мероприятие
+          </motion.h2>
+        </motion.div>
 
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 1, delay: 0.15, ease: EASE }}
+          initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
+          animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+          transition={{ duration: 1, delay: 0.2, ease: EASE }}
           style={{
             fontSize: "clamp(0.9rem, 3vw, 1.1rem)",
             color: "rgba(250,250,247,0.7)",
@@ -274,12 +300,11 @@ export default function CTASection() {
           Ответим в течение <CountUp target={30} suffix=" минут" /> с персональным предложением
         </motion.p>
 
-        {/* Buttons */}
+        {/* Buttons - spring in from below */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 1, delay: 0.3, ease: EASE }}
+          initial={{ opacity: 0, y: 50, scale: 0.9 }}
+          animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+          transition={{ type: "spring", stiffness: 180, damping: 18, delay: 0.4 }}
           style={{ display: "flex", flexDirection: isMobile ? "column" : "row", gap: "1rem", justifyContent: "center", alignItems: "center" }}
         >
           <MagneticButton href="/calculator" variant="primary" isMobile={isMobile}>
@@ -290,13 +315,27 @@ export default function CTASection() {
           </MagneticButton>
         </motion.div>
 
+        {/* Urgency element */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ duration: 1, delay: 0.8, ease: EASE }}
+          style={{
+            display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem",
+            marginTop: "1.75rem", fontSize: "clamp(0.72rem, 2.5vw, 0.82rem)",
+            color: "rgba(212,166,62,0.7)", fontWeight: 400, letterSpacing: "0.04em",
+          }}
+        >
+          <PulsingDot />
+          Бронирование на июль заполняется быстро
+        </motion.div>
+
         {/* Trust line */}
         <motion.div
           initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 1.2, delay: 0.5, ease: EASE }}
-          style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "1rem", marginTop: "2.5rem", flexWrap: "wrap" }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ duration: 1.2, delay: 0.6, ease: EASE }}
+          style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "1rem", marginTop: "2rem", flexWrap: "wrap" }}
         >
           {["Бесплатно", "Без обязательств", "За 30 минут"].map((text, i) => (
             <span key={i} style={{ display: "flex", alignItems: "center", gap: "0.4rem", fontSize: "clamp(0.72rem, 2.5vw, 0.85rem)", color: "rgba(250,250,247,0.5)", fontWeight: 400, letterSpacing: "0.04em" }}>
@@ -312,6 +351,11 @@ export default function CTASection() {
         @keyframes cta-gold-shift {
           0%, 100% { background-position: 0% 50%; }
           50% { background-position: 100% 50%; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          @keyframes cta-gold-shift {
+            0%, 100% { background-position: 0% 50%; }
+          }
         }
       `}</style>
     </section>

@@ -1,13 +1,14 @@
 "use client";
 
 import { useRef, useEffect, useState, useCallback, useSyncExternalStore } from "react";
-import { motion, useInView, useMotionValue, useSpring } from "framer-motion";
+import { motion, useInView, useMotionValue, useSpring, useTransform } from "framer-motion";
 
 /* ═══════════════════════════════════════════════════════════════
-   StatsOdometer — Animated Counters with WOW Effects
+   StatsOdometer — Mechanical Odometer Counters v81
    
-   Odometer counters with spring physics, 3D tilt on hover,
-   animated underlines, floating gold orbs, stagger reveal.
+   Odometer counters (slot-machine digit roll), 3D tilt with
+   holographic glare, glassmorphism cards, floating gold orbs,
+   spring physics stagger entrance.
    Mobile-first, accessible, respects prefers-reduced-motion.
    ═══════════════════════════════════════════════════════════════ */
 
@@ -18,6 +19,91 @@ const STATS = [
   { value: 30, suffix: "", label: "Минут на ответ", sub: "быстрая связь" },
   { value: 98, suffix: "%", label: "Довольных клиентов", sub: "подтверждено отзывами" },
 ];
+
+/* ─── Injected CSS ─── */
+const INJECTED_STYLES = `
+@keyframes stats-border-shimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.stats-glass-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.stats-glass-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: linear-gradient(
+    135deg,
+    rgba(184,134,11,0.1) 0%,
+    rgba(212,166,62,0.25) 25%,
+    rgba(229,191,101,0.15) 50%,
+    rgba(212,166,62,0.25) 75%,
+    rgba(184,134,11,0.1) 100%
+  );
+  background-size: 300% 300%;
+  animation: stats-border-shimmer 6s ease-in-out infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.stats-glare {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.stats-glass-card:hover .stats-glare,
+.stats-glass-card[data-touched="true"] .stats-glare {
+  opacity: 1;
+}
+
+/* Odometer digit styles */
+.odom-digit-col {
+  position: relative;
+  overflow: hidden;
+  height: 1.15em;
+  width: 0.65em;
+  display: inline-flex;
+  align-items: flex-start;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  color: #B8860B;
+  font-variant-numeric: tabular-nums;
+}
+
+.odom-digit-strip {
+  display: flex;
+  flex-direction: column;
+  transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.odom-digit-strip span {
+  height: 1.15em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+@media (max-width: 767px) {
+  .stats-glass-card::before { animation: none; background-size: 100% 100%; }
+  .stats-glare { display: none; }
+}
+`;
 
 function useMediaQuery(query: string): boolean {
   return useSyncExternalStore(
@@ -39,7 +125,7 @@ function useIsMobile(): boolean {
   return useMediaQuery("(max-width: 767px)");
 }
 
-/* ─── Spring Counter Hook ─── */
+/* ─── Spring Counter Hook (for mobile fallback) ─── */
 function useSpringCounter(target: number, active: boolean) {
   const mv = useMotionValue(0);
   const spring = useSpring(mv, { stiffness: 50, damping: 18, mass: 1.2 });
@@ -59,18 +145,70 @@ function useSpringCounter(target: number, active: boolean) {
   return display;
 }
 
+/* ─── Odometer Digit Component ─── */
+function OdometerDigit({ digit, active, delay }: { digit: number; active: boolean; delay: number }) {
+  // Each digit column shows 0-9, and we scroll to the right digit
+  const [offset, setOffset] = useState(0);
+
+  useEffect(() => {
+    if (active) {
+      const timer = setTimeout(() => {
+        setOffset(digit);
+      }, delay * 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [active, digit, delay]);
+
+  return (
+    <div className="odom-digit-col">
+      <div
+        className="odom-digit-strip"
+        style={{
+          transform: `translateY(-${offset * 1.15}em)`,
+        }}
+      >
+        {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((d) => (
+          <span key={d}>{d}</span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ─── Full Odometer Number ─── */
+function OdometerNumber({ value, active, mobile }: { value: number; active: boolean; mobile: boolean }) {
+  // Mobile fallback: spring count-up
+  const springCount = useSpringCounter(value, active);
+
+  if (mobile) {
+    return <>{springCount.toLocaleString("ru-RU")}</>;
+  }
+
+  const digits = value.toString().split("").map(Number);
+  return (
+    <>
+      {digits.map((d, i) => (
+        <OdometerDigit
+          key={i}
+          digit={d}
+          active={active}
+          delay={0.3 + i * 0.2}
+        />
+      ))}
+    </>
+  );
+}
+
 /* ─── Floating Gold Orbs ─── */
 function FloatingOrbs({ reduced }: { reduced: boolean }) {
   if (reduced) return null;
 
-  const orbs = Array.from({ length: 6 }, (_, i) => ({
-    id: i,
-    x: 15 + Math.random() * 70,
-    y: 20 + Math.random() * 60,
-    size: 60 + Math.random() * 100,
-    delay: Math.random() * 5,
-    duration: 12 + Math.random() * 10,
-  }));
+  // Only 3 subtle orbs
+  const orbs = [
+    { id: 0, x: 12, y: 30, size: 120, delay: 0, duration: 18 },
+    { id: 1, x: 70, y: 55, size: 90, delay: 3, duration: 22 },
+    { id: 2, x: 45, y: 75, size: 150, delay: 6, duration: 15 },
+  ];
 
   return (
     <div aria-hidden="true" style={{ position: "absolute", inset: 0, overflow: "hidden", pointerEvents: "none", zIndex: 0 }}>
@@ -84,13 +222,13 @@ function FloatingOrbs({ reduced }: { reduced: boolean }) {
             width: orb.size,
             height: orb.size,
             borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(212,166,62,0.08) 0%, rgba(184,134,11,0.02) 60%, transparent 70%)",
-            filter: "blur(20px)",
+            background: "radial-gradient(circle, rgba(212,166,62,0.1) 0%, rgba(184,134,11,0.03) 50%, transparent 70%)",
+            filter: "blur(25px)",
           }}
           animate={{
-            y: [0, -30, 15, -10, 0],
-            x: [0, 12, -8, 6, 0],
-            scale: [1, 1.1, 0.95, 1.05, 1],
+            y: [0, -35, 20, -15, 0],
+            x: [0, 15, -10, 8, 0],
+            scale: [1, 1.15, 0.95, 1.05, 1],
           }}
           transition={{
             duration: orb.duration,
@@ -104,58 +242,84 @@ function FloatingOrbs({ reduced }: { reduced: boolean }) {
   );
 }
 
-/* ─── Stat Card with 3D Tilt ─── */
+/* ─── Stat Card with 3D Tilt + Glare ─── */
 function StatCard({
   stat,
   index,
   isInView,
   reduced,
+  mobile,
 }: {
   stat: typeof STATS[number];
   index: number;
   isInView: boolean;
   reduced: boolean;
+  mobile: boolean;
 }) {
-  const count = useSpringCounter(stat.value, isInView);
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
   const cardRef = useRef<HTMLDivElement>(null);
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  const [glarePos, setGlarePos] = useState({ x: 50, y: 50 });
+  const [isTouched, setIsTouched] = useState(false);
 
   const handleMouseMove = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
-      if (reduced) return;
+      if (reduced || mobile) return;
       const card = cardRef.current;
       if (!card) return;
       const rect = card.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width - 0.5;
       const y = (e.clientY - rect.top) / rect.height - 0.5;
-      setTilt({ x: y * -8, y: x * 8 });
+      setTilt({ x: y * -12, y: x * 12 });
+      setGlarePos({
+        x: ((e.clientX - rect.left) / rect.width) * 100,
+        y: ((e.clientY - rect.top) / rect.height) * 100,
+      });
     },
-    [reduced]
+    [reduced, mobile]
   );
 
   const handleMouseLeave = useCallback(() => {
     setTilt({ x: 0, y: 0 });
   }, []);
 
-  const staggerDelay = index * 0.12;
+  const handleTouchStart = useCallback(() => {
+    setIsTouched(true);
+  }, []);
+
+  const handleTouchEnd = useCallback(() => {
+    setIsTouched(false);
+  }, []);
+
+  const staggerDelay = index * 0.15;
+
+  // Mobile: spring counter fallback
+  const springCount = useSpringCounter(stat.value, isInView);
 
   return (
     <motion.div
       ref={cardRef}
-      initial={{ opacity: 0, y: 40, scale: 0.9 }}
-      animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+      initial={{ opacity: 0, y: 50, scale: 0.85, rotate: index % 2 === 0 ? -2 : 2 }}
+      animate={
+        isInView
+          ? { opacity: 1, y: 0, scale: 1, rotate: 0 }
+          : {}
+      }
       transition={{
-        duration: 0.8,
+        type: "spring",
+        stiffness: 70,
+        damping: 12,
         delay: staggerDelay,
-        ease: [0.25, 0.46, 0.45, 0.94],
       }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+      data-touched={isTouched}
+      className="stats-glass-card"
       style={{
-        background: "rgba(255,255,255,0.7)",
-        backdropFilter: "blur(10px)",
-        WebkitBackdropFilter: "blur(10px)",
-        border: "1px solid rgba(184,134,11,0.1)",
+        background: "rgba(255,255,255,0.55)",
+        backdropFilter: "blur(16px)",
+        WebkitBackdropFilter: "blur(16px)",
         borderRadius: 20,
         padding: "clamp(1.5rem, 3vw, 2.5rem) clamp(1rem, 2vw, 1.5rem)",
         display: "flex",
@@ -166,25 +330,24 @@ function StatCard({
         position: "relative",
         overflow: "hidden",
         transform: reduced ? "none" : `perspective(800px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
-        transition: reduced ? "none" : "transform 0.25s ease-out",
+        transition: reduced ? "none" : "transform 0.2s ease-out",
         willChange: "transform",
         minWidth: 0,
+        scale: isTouched && mobile ? 0.97 : 1,
       }}
     >
-      {/* Top gold edge glow */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: "absolute",
-          top: 0,
-          left: "15%",
-          right: "15%",
-          height: 1,
-          background: "linear-gradient(90deg, transparent, rgba(184,134,11,0.4), transparent)",
-        }}
-      />
+      {/* Holographic glare effect */}
+      {!mobile && !reduced && (
+        <div
+          className="stats-glare"
+          aria-hidden="true"
+          style={{
+            background: `radial-gradient(circle 180px at ${glarePos.x}% ${glarePos.y}%, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.05) 40%, transparent 70%)`,
+          }}
+        />
+      )}
 
-      {/* Number */}
+      {/* Number — Odometer on desktop, spring on mobile */}
       <span
         style={{
           fontFamily: "var(--font-serif)",
@@ -195,19 +358,26 @@ function StatCard({
           letterSpacing: "-0.02em",
           marginBottom: "0.4rem",
           fontVariantNumeric: "tabular-nums",
+          display: "inline-flex",
+          alignItems: "center",
+          justifyContent: "center",
         }}
       >
-        {isInView ? count.toLocaleString("ru-RU") : "0"}
-        <span
-          style={{
-            fontSize: "0.5em",
-            fontWeight: 400,
-            opacity: 0.7,
-            marginLeft: 2,
-          }}
-        >
-          {stat.suffix}
-        </span>
+        {mobile ? (
+          <>
+            {isInView ? springCount.toLocaleString("ru-RU") : "0"}
+            <span style={{ fontSize: "0.5em", fontWeight: 400, opacity: 0.7, marginLeft: 2 }}>
+              {stat.suffix}
+            </span>
+          </>
+        ) : (
+          <>
+            {isInView && <OdometerNumber value={stat.value} active={isInView} mobile={mobile} />}
+            <span style={{ fontSize: "0.5em", fontWeight: 400, opacity: 0.7, marginLeft: 2 }}>
+              {stat.suffix}
+            </span>
+          </>
+        )}
       </span>
 
       {/* Label */}
@@ -242,9 +412,10 @@ function StatCard({
         initial={{ scaleX: 0 }}
         animate={isInView ? { scaleX: 1 } : {}}
         transition={{
-          duration: 0.8,
+          type: "spring",
+          stiffness: 80,
+          damping: 14,
           delay: staggerDelay + 0.5,
-          ease: [0.25, 0.46, 0.45, 0.94],
         }}
         style={{
           height: 2,
@@ -277,6 +448,9 @@ export default function StatsOdometer() {
         overflow: "hidden",
       }}
     >
+      {/* Injected styles */}
+      <style dangerouslySetInnerHTML={{ __html: INJECTED_STYLES }} />
+
       {/* Floating gold orbs */}
       <FloatingOrbs reduced={reduced} />
 
@@ -296,9 +470,9 @@ export default function StatsOdometer() {
       <div style={{ position: "relative", zIndex: 2, maxWidth: 1100, margin: "0 auto" }}>
         {/* Section micro-label */}
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.1 }}
+          initial={{ opacity: 0, y: 12, scale: 0.95 }}
+          animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+          transition={{ type: "spring", stiffness: 100, damping: 15, delay: 0.1 }}
           style={{ textAlign: "center", marginBottom: "clamp(2rem, 4vw, 3.5rem)" }}
         >
           <span
@@ -336,6 +510,7 @@ export default function StatsOdometer() {
               index={i}
               isInView={isInView}
               reduced={reduced}
+              mobile={mobile}
             />
           ))}
         </div>
@@ -344,7 +519,12 @@ export default function StatsOdometer() {
         <motion.div
           initial={{ scaleX: 0, opacity: 0 }}
           animate={isInView ? { scaleX: 1, opacity: 1 } : {}}
-          transition={{ duration: 1.2, delay: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+          transition={{
+            type: "spring",
+            stiffness: 80,
+            damping: 14,
+            delay: 0.8,
+          }}
           style={{
             height: 1,
             maxWidth: 300,

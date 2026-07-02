@@ -61,7 +61,7 @@ export default function Home() {
       <ClientMarquee />
 
       {/* 9. MENU BUILDER — Interactive menu constructor (KEY FEATURE) */}
-      <div id="menu-builder" style={{ scrollMarginTop: "5rem" }}>
+      <div id="menu-builder" style={{ scrollMarginTop: "5rem", paddingTop: "1rem" }}>
         <MenuBuilder />
       </div>
 

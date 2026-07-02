@@ -5,6 +5,89 @@
 
 ---
 
+## v81 — 2026-07-03 — Ultra WOW: 2026 Motion Design + MenuBuilder Nav Fix + Interactive Effects
+- **Тема**: Light Premium Ultra WOW (продолжение v80)
+- **MenuBuilder критический фикс**:
+  - ✅ Добавлена ссылка "Конструктор меню" в навигацию (#menu-builder)
+  - ✅ Добавлен "ИНТЕРАКТИВНЫЙ КОНСТРУКТОР" label + золотой орнамент
+  - ✅ Sticky header: top-0 → top-16 (не перекрывает навигацию)
+  - ✅ Золотой gradient border + анимированный hint "Попробуйте"
+- **CinematicHero WOW**:
+  - ✅ Split-Text: каждый символ "Интерфуд" летит с random позиции, spring physics
+  - ✅ Glitch/Decode MorphingText: символы скрэмблятся перед разрешением
+  - ✅ Video Zoom on Scroll: scale 1→1.3 + blur при скролле
+  - ✅ 3D Parallax Depth: perspective 1200px, translateZ слои
+  - ✅ Gold Particle Burst на CTA hover (18 частиц)
+  - ✅ Cursor-Following Light Spot (flashlight эффект)
+  - ✅ Scroll-triggered Golden Line Transition
+  - ✅ Mobile: Breathing Glow + усиленный scroll indicator
+  - ✅ Magnetic Enhancement: stretchy button effect
+- **SiteNav WOW**:
+  - ✅ Scroll Progress Bar (золотая линия)
+  - ✅ Active Section Highlight (IntersectionObserver)
+  - ✅ Magnetic Hover на desktop links
+  - ✅ Glassmorphism Enhancement (24px blur, gold border)
+  - ✅ Mobile Menu: 3D Flip Animation (rotateY)
+  - ✅ Logo Handwriting Animation (SVG stroke-dashoffset)
+- **KineticTypography WOW**:
+  - ✅ Word-by-Word Kinetic Fly-In (альтернирующие направления)
+  - ✅ Gold Accent Pulse (text-shadow glow)
+  - ✅ Scroll-Driven Reveal (animation-timeline: view())
+  - ✅ Interactive Hover на Keywords
+  - ✅ Animated Mesh Gradient Background
+- **StatsOdometer WOW**:
+  - ✅ Mechanical Odometer (digit strip scroll)
+  - ✅ 3D Tilt + Holographic Glare
+  - ✅ Floating Gold Orbs (3 шт.)
+  - ✅ Glassmorphism Cards с gold border shimmer
+  - ✅ Spring Physics Entrance
+- **ServicesShowcase WOW**:
+  - ✅ Spotlight Effect (cursor-follow radial gradient)
+  - ✅ 3D Tilt + Holographic Glare Line
+  - ✅ Rotating Gradient Border (conic-gradient @property)
+  - ✅ Expand on Hover (дополнительный контент)
+  - ✅ Animated Service Icons (utensils rotate, flame flicker, etc.)
+- **HowItWorks WOW**:
+  - ✅ Horizontal Scroll Storytelling (pinned viewport)
+  - ✅ Clip-path Circle Reveal на card entrance
+  - ✅ SVG stroke-dashoffset animated icons
+  - ✅ Progressive connecting line
+  - ✅ Active Step Gold Glow + dot indicators
+- **CulinaryJourney WOW**:
+  - ✅ Pinned Scroll + Expanding Circle Mask
+  - ✅ Ken Burns на active image (zoom+pan)
+  - ✅ Dot Navigation (кликабельные)
+  - ✅ Caption blur-to-clear morph
+  - ✅ Golden Progress Ring (SVG stroke-dashoffset)
+  - ✅ Mobile: swipe carousel с touch gestures
+- **CinematicGallery WOW**:
+  - ✅ 3D Coverflow с Depth Blur
+  - ✅ Drag Navigation + Momentum Physics
+  - ✅ Autoplay (4s) + Pause on Hover
+  - ✅ Active Card Ken Burns
+  - ✅ Gold Light Sweep
+  - ✅ Mobile: Tinder-style card stack
+  - ✅ Full-Screen Lightbox (scale transition + keyboard nav)
+- **ReviewsStack WOW**:
+  - ✅ 3D Card Tilt on Drag
+  - ✅ Exit Animation (fly off + rotate)
+  - ✅ Staggered Star Fill + Golden Glow Pulse
+  - ✅ Decorative Quote Marks
+  - ✅ Avatar Initial (gold gradient circle)
+- **CTASection WOW**:
+  - ✅ Dark Background с Grain (#1A1714)
+  - ✅ Gold Gradient Shimmer Text (Apple TV+ style)
+  - ✅ Magnetic CTA Buttons + Ripple
+  - ✅ Floating Gold Orbs
+  - ✅ Urgency Element "Бронирование на июль заполняется"
+  - ✅ Dramatic blur-to-clear Entrance
+- **ContactShowcase WOW**:
+  - ✅ Pulsing Contact Icons (dual ring pulse)
+  - ✅ Staggered Reveal (120ms delay)
+  - ✅ Magnetic CTA Button
+  - ✅ Interactive Map Preview (zoom on hover + gold accents)
+  - ✅ Gold Gradient Background Accent
+
 ## v80 — 2026-07-03 — Maximum WOW Demo: Complete Rebuild with 2026 Motion Design
 - **Тема**: Light Premium Maximum WOW (продолжение v77)
 - **Полная переработка ВСЕХ секций главной страницы**:

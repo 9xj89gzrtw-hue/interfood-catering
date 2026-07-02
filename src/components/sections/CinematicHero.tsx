@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback, useSyncExternalStore } from "react";
+import { useState, useEffect, useRef, useCallback, useSyncExternalStore, useMemo } from "react";
 import {
   motion,
   AnimatePresence,
@@ -33,6 +33,7 @@ function useIsMobile() {
 const EASE_PREMIUM = [0.16, 1, 0.3, 1] as const;
 const SPRING_GENTLE = { type: "spring" as const, stiffness: 120, damping: 20 };
 const SPRING_MAGNETIC = { type: "spring" as const, stiffness: 150, damping: 15 };
+const SPRING_CHAR = { type: "spring" as const, stiffness: 80, damping: 12 };
 
 const MORPH_WORDS = ["Кейтеринг", "Свадьбы", "Банкеты", "Фуршеты", "Кофе-брейк"];
 const LONGEST_WORD = MORPH_WORDS.reduce((a, b) => (a.length > b.length ? a : b), "");
@@ -40,6 +41,9 @@ const LONGEST_WORD = MORPH_WORDS.reduce((a, b) => (a.length > b.length ? a : b),
 const EYEBROW_TEXT = "АВТОРСКАЯ КУХНЯ С 2007 ГОДА";
 const SUBTITLE = "Ресторан выездного обслуживания в Санкт-Петербурге";
 const TRUST_ITEMS = ["3 500+ мероприятий", "18 лет на рынке", "Ответим за 30 минут"];
+
+// Glitch scramble charset (Cyrillic + Latin + symbols)
+const SCRAMBLE_CHARS = "АБВГДЕЖЗИКЛМНОПРСТУФХЦЧШЩЭЮЯabcdefghijklmnopqrstuvwxyz0123456789@#$%";
 
 // ═══════════════════════════════════════════════════════════════
 //  WhatsApp & Telegram SVG Icons
@@ -94,7 +98,6 @@ function ParticleCanvas({ isMobile }: { isMobile: boolean }) {
     resize();
     window.addEventListener("resize", resize);
 
-    // Initialize particles
     const w = canvas.offsetWidth;
     const h = canvas.offsetHeight;
     for (let i = 0; i < count; i++) {
@@ -117,7 +120,6 @@ function ParticleCanvas({ isMobile }: { isMobile: boolean }) {
         const pulse = Math.sin(time * 0.001 + p.phase) * 0.05;
         const alpha = Math.max(0.05, p.opacity + pulse);
 
-        // Wrap around
         if (p.x < -10) p.x = canvas.offsetWidth + 10;
         if (p.x > canvas.offsetWidth + 10) p.x = -10;
         if (p.y < -10) p.y = canvas.offsetHeight + 10;
@@ -155,18 +157,159 @@ function ParticleCanvas({ isMobile }: { isMobile: boolean }) {
 }
 
 // ═══════════════════════════════════════════════════════════════
-//  Magnetic CTA Button
+//  Glitch Text — character scramble/decode transition
+// ═══════════════════════════════════════════════════════════════
+function GlitchText({ text, active }: { text: string; active: boolean }) {
+  const [displayed, setDisplayed] = useState(text);
+  const [glitching, setGlitching] = useState(false);
+  const prevText = useRef(text);
+
+  useEffect(() => {
+    if (prevText.current === text) return;
+    prevText.current = text;
+    setGlitching(true);
+
+    const totalSteps = 8;
+    let step = 0;
+    const interval = setInterval(() => {
+      step++;
+      if (step >= totalSteps) {
+        setDisplayed(text);
+        setGlitching(false);
+        clearInterval(interval);
+        return;
+      }
+      // Scramble: progressively more characters become correct
+      const progress = step / totalSteps;
+      const scrambled = text
+        .split("")
+        .map((char, i) => {
+          if (char === " ") return " ";
+          // Characters before the progress threshold are correct
+          if (i / text.length < progress * 0.8) return char;
+          // Random scramble character
+          return SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)];
+        })
+        .join("");
+      setDisplayed(scrambled);
+    }, 40);
+
+    return () => clearInterval(interval);
+  }, [text]);
+
+  return (
+    <span
+      style={{
+        display: "inline-block",
+        fontStyle: "italic",
+        position: "relative",
+        color: glitching ? "#E5BF65" : "#D4A63E",
+        textShadow: glitching
+          ? "0 0 8px rgba(212,166,62,0.6), -1px 0 rgba(229,191,101,0.4), 1px 0 rgba(184,134,11,0.4)"
+          : "none",
+        transition: "color 0.2s, text-shadow 0.2s",
+      }}
+    >
+      {displayed}
+      {glitching && (
+        <>
+          <span
+            aria-hidden="true"
+            style={{
+              position: "absolute",
+              left: -2,
+              top: 0,
+              color: "rgba(184,134,11,0.5)",
+              clipPath: "inset(20% 0 60% 0)",
+            }}
+          >
+            {displayed}
+          </span>
+          <span
+            aria-hidden="true"
+            style={{
+              position: "absolute",
+              left: 2,
+              top: 0,
+              color: "rgba(229,191,101,0.5)",
+              clipPath: "inset(60% 0 10% 0)",
+            }}
+          >
+            {displayed}
+          </span>
+        </>
+      )}
+    </span>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  Gold Particle Burst on CTA Hover
+// ═══════════════════════════════════════════════════════════════
+function GoldParticleBurst({ active }: { active: boolean }) {
+  const particles = useMemo(() => {
+    if (!active) return [];
+    return Array.from({ length: 18 }, (_, i) => {
+      const angle = (i / 18) * Math.PI * 2 + (Math.random() - 0.5) * 0.4;
+      const distance = 40 + Math.random() * 60;
+      return {
+        id: i,
+        angle,
+        distance,
+        size: 2 + Math.random() * 3,
+        delay: Math.random() * 0.1,
+      };
+    });
+  }, [active]);
+
+  return (
+    <AnimatePresence>
+      {active && particles.map((p) => (
+        <motion.span
+          key={p.id}
+          aria-hidden="true"
+          initial={{ opacity: 0.9, x: 0, y: 0, scale: 1 }}
+          animate={{
+            opacity: 0,
+            x: Math.cos(p.angle) * p.distance,
+            y: Math.sin(p.angle) * p.distance,
+            scale: 0.3,
+          }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.6 + p.delay * 2, ease: "easeOut", delay: p.delay }}
+          style={{
+            position: "absolute",
+            left: "50%",
+            top: "50%",
+            width: p.size,
+            height: p.size,
+            marginLeft: -p.size / 2,
+            marginTop: -p.size / 2,
+            borderRadius: "50%",
+            background: "radial-gradient(circle, #E5BF65, #B8860B)",
+            pointerEvents: "none",
+          }}
+        />
+      ))}
+    </AnimatePresence>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  Magnetic CTA Button — Enhanced with stretchy + particle burst
 // ═══════════════════════════════════════════════════════════════
 function MagneticButton({
   children,
   href,
   variant = "primary",
   isMobile,
+  prefersReduced,
 }: {
   children: React.ReactNode;
   href: string;
   variant?: "primary" | "secondary";
   isMobile: boolean;
+  prefersReduced: boolean;
 }) {
   const ref = useRef<HTMLAnchorElement>(null);
   const [ripples, setRipples] = useState<{ x: number; y: number; id: number }[]>([]);
@@ -176,33 +319,49 @@ function MagneticButton({
   const springY = useSpring(y, SPRING_MAGNETIC);
   const [hovered, setHovered] = useState(false);
 
+  // Stretchy effect: track cursor offset for scaleX distortion
+  const stretchX = useMotionValue(1);
+  const stretchY = useMotionValue(1);
+  const springStretchX = useSpring(stretchX, { stiffness: 200, damping: 20 });
+  const springStretchY = useSpring(stretchY, { stiffness: 200, damping: 20 });
+
   const handleMouseMove = useCallback(
     (e: React.MouseEvent) => {
-      if (isMobile) return;
+      if (isMobile || prefersReduced) return;
       const el = ref.current;
       if (!el) return;
       const rect = el.getBoundingClientRect();
       const cx = rect.left + rect.width / 2;
       const cy = rect.top + rect.height / 2;
       const dist = Math.hypot(e.clientX - cx, e.clientY - cy);
-      const radius = 120;
+      const radius = 140; // stronger magnetic radius
       if (dist < radius) {
         const strength = 1 - dist / radius;
-        x.set((e.clientX - cx) * strength * 0.3);
-        y.set((e.clientY - cy) * strength * 0.3);
+        // Stronger pull factor
+        x.set((e.clientX - cx) * strength * 0.45);
+        y.set((e.clientY - cy) * strength * 0.45);
+        // Stretchy: elongate toward cursor direction
+        const dx = (e.clientX - cx) / rect.width;
+        const dy = (e.clientY - cy) / rect.height;
+        stretchX.set(1 + Math.abs(dx) * strength * 0.08);
+        stretchY.set(1 + Math.abs(dy) * strength * 0.06);
       } else {
         x.set(0);
         y.set(0);
+        stretchX.set(1);
+        stretchY.set(1);
       }
     },
-    [isMobile, x, y]
+    [isMobile, prefersReduced, x, y, stretchX, stretchY]
   );
 
   const handleMouseLeave = useCallback(() => {
     x.set(0);
     y.set(0);
+    stretchX.set(1);
+    stretchY.set(1);
     setHovered(false);
-  }, [x, y]);
+  }, [x, y, stretchX, stretchY]);
 
   const handleClick = useCallback(
     (e: React.MouseEvent) => {
@@ -229,8 +388,10 @@ function MagneticButton({
       style={{
         x: springX,
         y: springY,
+        scaleX: springStretchX,
+        scaleY: springStretchY,
         position: "relative",
-        overflow: "hidden",
+        overflow: "visible", // allow particles to escape
         display: "inline-flex",
         alignItems: "center",
         justifyContent: "center",
@@ -266,36 +427,166 @@ function MagneticButton({
         willChange: "transform",
         transition: "box-shadow 0.3s ease, background 0.3s ease",
       }}
-      whileHover={{ scale: 1.02 }}
+      whileHover={prefersReduced ? {} : { scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
     >
-      {ripples.map((ripple) => (
-        <motion.span
-          key={ripple.id}
-          initial={{ scale: 0, opacity: 0.4 }}
-          animate={{ scale: 4, opacity: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          style={{
-            position: "absolute",
-            left: ripple.x,
-            top: ripple.y,
-            width: 20,
-            height: 20,
-            marginLeft: -10,
-            marginTop: -10,
-            borderRadius: "50%",
-            background: isPrimary ? "rgba(255,255,255,0.5)" : "rgba(184,134,11,0.3)",
-            pointerEvents: "none",
-          }}
-        />
-      ))}
-      {children}
+      {/* Clip overflow for button content but not particles */}
+      <span
+        style={{
+          display: "inline-flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "0.5rem",
+          overflow: "hidden",
+          borderRadius: "0.5rem",
+          position: "relative",
+        }}
+      >
+        {ripples.map((ripple) => (
+          <motion.span
+            key={ripple.id}
+            initial={{ scale: 0, opacity: 0.4 }}
+            animate={{ scale: 4, opacity: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            style={{
+              position: "absolute",
+              left: ripple.x,
+              top: ripple.y,
+              width: 20,
+              height: 20,
+              marginLeft: -10,
+              marginTop: -10,
+              borderRadius: "50%",
+              background: isPrimary ? "rgba(255,255,255,0.5)" : "rgba(184,134,11,0.3)",
+              pointerEvents: "none",
+            }}
+          />
+        ))}
+        {children}
+      </span>
+      {/* Gold Particle Burst on hover (primary only) */}
+      {isPrimary && !isMobile && <GoldParticleBurst active={hovered && !prefersReduced} />}
     </motion.a>
   );
 }
 
 // ═══════════════════════════════════════════════════════════════
-//  Main CinematicHero Component — v80
+//  Cursor-Following Light Spot (flashlight effect)
+// ═══════════════════════════════════════════════════════════════
+function CursorLightSpot({ containerRef }: { containerRef: React.RefObject<HTMLElement | null> }) {
+  const lightRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = container.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      if (lightRef.current) {
+        lightRef.current.style.transform = `translate(${x}px, ${y}px)`;
+        lightRef.current.style.opacity = "1";
+      }
+    };
+
+    const handleMouseLeave = () => {
+      if (lightRef.current) {
+        lightRef.current.style.opacity = "0";
+      }
+    };
+
+    container.addEventListener("mousemove", handleMouseMove);
+    container.addEventListener("mouseleave", handleMouseLeave);
+    return () => {
+      container.removeEventListener("mousemove", handleMouseMove);
+      container.removeEventListener("mouseleave", handleMouseLeave);
+    };
+  }, [containerRef]);
+
+  return (
+    <div
+      ref={lightRef}
+      aria-hidden="true"
+      style={{
+        position: "absolute",
+        width: 500,
+        height: 500,
+        marginLeft: -250,
+        marginTop: -250,
+        borderRadius: "50%",
+        background: "radial-gradient(circle, rgba(212,166,62,0.06) 0%, rgba(229,191,101,0.02) 40%, transparent 70%)",
+        pointerEvents: "none",
+        zIndex: 4,
+        opacity: 0,
+        transition: "opacity 0.4s ease",
+        willChange: "transform, opacity",
+      }}
+    />
+  );
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  Mobile Breathing Glow (replaces cursor light on mobile)
+// ═══════════════════════════════════════════════════════════════
+function MobileBreathingGlow() {
+  return (
+    <motion.div
+      aria-hidden="true"
+      animate={{
+        opacity: [0.3, 0.6, 0.3],
+        scale: [0.9, 1.05, 0.9],
+      }}
+      transition={{
+        duration: 3,
+        repeat: Infinity,
+        ease: "easeInOut",
+      }}
+      style={{
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        width: 300,
+        height: 300,
+        marginLeft: -150,
+        marginTop: -150,
+        borderRadius: "50%",
+        background: "radial-gradient(circle, rgba(212,166,62,0.08) 0%, transparent 70%)",
+        pointerEvents: "none",
+        zIndex: 4,
+        filter: "blur(20px)",
+      }}
+    />
+  );
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  Scroll-Triggered Golden Line Transition
+// ═══════════════════════════════════════════════════════════════
+function GoldenLineTransition({ scrollProgress }: { scrollProgress: ReturnType<typeof useMotionValue<number>> }) {
+  const width = useTransform(scrollProgress, [0.6, 0.85], ["0%", "100%"]);
+  const opacity = useTransform(scrollProgress, [0.5, 0.6, 0.85, 0.95], [0, 1, 1, 0]);
+
+  return (
+    <motion.div
+      aria-hidden="true"
+      style={{
+        position: "absolute",
+        bottom: 0,
+        left: 0,
+        width,
+        height: 1,
+        background: "linear-gradient(90deg, transparent, #B8860B, #D4A63E, #B8860B, transparent)",
+        opacity,
+        zIndex: 7,
+        boxShadow: "0 0 8px rgba(184,134,11,0.3)",
+      }}
+    />
+  );
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  Main CinematicHero Component — v81
 // ═══════════════════════════════════════════════════════════════
 export default function CinematicHero() {
   const isMounted = useIsMounted();
@@ -304,11 +595,19 @@ export default function CinematicHero() {
 
   // ─── Scroll & Parallax ───
   const containerRef = useRef<HTMLElement>(null);
-  const { scrollY } = useScroll();
+  const { scrollY, scrollYProgress } = useScroll();
   const videoY = useTransform(scrollY, [0, 1000], [0, 300]); // 0.3x
   const decorY = useTransform(scrollY, [0, 1000], [0, 500]); // 0.5x
   const textY = useTransform(scrollY, [0, 1000], [0, 800]); // 0.8x
-  const scrollOpacity = useTransform(scrollY, [0, 300], [1, 0]); // scroll indicator fade
+  const scrollOpacity = useTransform(scrollY, [0, 300], [1, 0]);
+
+  // Video zoom on scroll: 1 → 1.3 with slight blur
+  const videoScale = useTransform(scrollY, [0, 800], [1, 1.3]);
+  const videoBlurRaw = useTransform(scrollY, [0, 600, 1000], [0, 0, 3]);
+  const videoFilter = useTransform(videoBlurRaw, (v) => (v > 0.5 ? `blur(${v}px)` : "none"));
+
+  // Text fades out faster than the zoom
+  const textOpacity = useTransform(scrollY, [0, 400], [1, 0]);
 
   // ─── Video state ───
   const [videoLoaded, setVideoLoaded] = useState(false);
@@ -326,6 +625,17 @@ export default function CinematicHero() {
 
   // ─── Light sweep state ───
   const [sweepKey, setSweepKey] = useState(0);
+
+  // ─── Random initial positions for split-text chars (pre-computed) ───
+  const charInitialPositions = useMemo(
+    () =>
+      "Интерфуд".split("").map(() => ({
+        x: (Math.random() - 0.5) * 200,
+        y: (Math.random() - 0.5) * 200,
+        rotate: (Math.random() - 0.5) * 60,
+      })),
+    []
+  );
 
   // ═══════════════════════════════════════════════════════════
   //  Effects
@@ -407,22 +717,27 @@ export default function CinematicHero() {
         minHeight: "100svh",
         overflow: "hidden",
         background: "#1A1714",
-        // Safe-area for notched phones
+        // 3D Parallax Depth container
+        perspective: "1200px",
+        perspectiveOrigin: "50% 50%",
         paddingTop: "env(safe-area-inset-top, 0px)",
         paddingBottom: "env(safe-area-inset-bottom, 0px)",
         paddingLeft: "env(safe-area-inset-left, 0px)",
         paddingRight: "env(safe-area-inset-right, 0px)",
       }}
     >
-      {/* ─── Layer 1: Video Background (0.3x parallax) ─── */}
+      {/* ─── Layer 1: Video Background (depth 0) ─── */}
       <motion.div
         aria-hidden="true"
         style={{
           position: "absolute",
           inset: 0,
           y: videoY,
-          scale: 1.15, // extra room for parallax movement
+          scale: videoScale,
+          filter: videoFilter,
           willChange: "transform",
+          transformStyle: "preserve-3d",
+          translateZ: 0,
         }}
       >
         {/* Video or fallback */}
@@ -451,7 +766,6 @@ export default function CinematicHero() {
             />
           </video>
         ) : (
-          /* Fallback: poster with Ken Burns */
           <div
             style={{
               width: "100%",
@@ -512,7 +826,7 @@ export default function CinematicHero() {
         }}
       />
 
-      {/* ─── Layer 2: Decorative parallax elements (0.5x) ─── */}
+      {/* ─── Layer 2: Decorative parallax elements (depth 0.3) ─── */}
       <motion.div
         aria-hidden="true"
         style={{
@@ -522,6 +836,8 @@ export default function CinematicHero() {
           zIndex: 3,
           pointerEvents: "none",
           willChange: "transform",
+          transformStyle: "preserve-3d",
+          translateZ: -100,
         }}
       >
         {/* Gold orb top-right */}
@@ -569,6 +885,12 @@ export default function CinematicHero() {
       {/* ─── Ambient Particles ─── */}
       {isMounted && !prefersReduced && <ParticleCanvas isMobile={isMobile} />}
 
+      {/* ─── Cursor-Following Light Spot (desktop only) ─── */}
+      {!isMobile && <CursorLightSpot containerRef={containerRef} />}
+
+      {/* ─── Mobile Breathing Glow ─── */}
+      {isMobile && !prefersReduced && <MobileBreathingGlow />}
+
       {/* ─── Light Sweep Effect ─── */}
       <AnimatePresence>
         {sweepKey > 0 && !prefersReduced && (
@@ -593,7 +915,7 @@ export default function CinematicHero() {
         )}
       </AnimatePresence>
 
-      {/* ─── Layer 3: Content (0.8x parallax) ─── */}
+      {/* ─── Layer 3: Content (depth 0.7) ─── */}
       <motion.div
         ref={heroRef}
         style={{
@@ -608,6 +930,9 @@ export default function CinematicHero() {
           height: "100%",
           padding: isMobile ? "1.5rem" : "2rem 3rem",
           textAlign: "center",
+          opacity: textOpacity,
+          transformStyle: "preserve-3d",
+          translateZ: -300,
         }}
       >
         {/* ── Eyebrow with character stagger ── */}
@@ -646,7 +971,7 @@ export default function CinematicHero() {
           ))}
         </motion.div>
 
-        {/* ── Main Heading with MorphingText ── */}
+        {/* ── Main Heading with Split-Text Character Animation ── */}
         <h1
           style={{
             fontFamily: "var(--font-serif)",
@@ -658,16 +983,33 @@ export default function CinematicHero() {
             letterSpacing: "-0.01em",
           }}
         >
-          {/* Static prefix word-by-word reveal */}
+          {/* Split-Text Character Animation — each character flies in from random position */}
           {"Интерфуд".split("").map((char, i) => (
             <motion.span
               key={`prefix-${i}`}
-              initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
-              animate={isVisible ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+              initial={{
+                opacity: 0,
+                x: charInitialPositions[i].x,
+                y: charInitialPositions[i].y,
+                rotate: charInitialPositions[i].rotate,
+                filter: "blur(12px)",
+                scale: 0.3,
+              }}
+              animate={
+                isVisible
+                  ? {
+                      opacity: 1,
+                      x: 0,
+                      y: 0,
+                      rotate: 0,
+                      filter: "blur(0px)",
+                      scale: 1,
+                    }
+                  : {}
+              }
               transition={{
-                delay: 0.6 + i * 0.04,
-                duration: 0.6,
-                ease: EASE_PREMIUM,
+                delay: 0.6 + i * 0.06,
+                ...SPRING_CHAR,
               }}
               style={{ display: "inline-block" }}
             >
@@ -675,7 +1017,7 @@ export default function CinematicHero() {
             </motion.span>
           ))}
           <br />
-          {/* Morphing word */}
+          {/* Morphing word with GLITCH transition */}
           <span
             style={{
               position: "relative",
@@ -684,21 +1026,7 @@ export default function CinematicHero() {
               color: "#D4A63E",
             }}
           >
-            <AnimatePresence mode="wait">
-              <motion.span
-                key={wordIndex}
-                initial={{ opacity: 0, filter: "blur(12px)", scale: 1.1 }}
-                animate={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
-                exit={{ opacity: 0, filter: "blur(12px)", scale: 0.95 }}
-                transition={{
-                  duration: 0.5,
-                  ease: EASE_PREMIUM,
-                }}
-                style={{ display: "inline-block", fontStyle: "italic" }}
-              >
-                {MORPH_WORDS[wordIndex]}
-              </motion.span>
-            </AnimatePresence>
+            <GlitchText text={MORPH_WORDS[wordIndex]} active={morphing} />
           </span>
         </h1>
 
@@ -733,10 +1061,10 @@ export default function CinematicHero() {
             maxWidth: isMobile ? 360 : "none",
           }}
         >
-          <MagneticButton href="/calculator" variant="primary" isMobile={isMobile}>
+          <MagneticButton href="/calculator" variant="primary" isMobile={isMobile} prefersReduced={prefersReduced}>
             Рассчитать мероприятие
           </MagneticButton>
-          <MagneticButton href="/menu" variant="secondary" isMobile={isMobile}>
+          <MagneticButton href="/menu" variant="secondary" isMobile={isMobile} prefersReduced={prefersReduced}>
             Смотреть меню
           </MagneticButton>
         </motion.div>
@@ -768,7 +1096,6 @@ export default function CinematicHero() {
                 gap: isMobile ? 0 : "0.75rem",
               }}
             >
-              {/* Gold line separator (not before first item) */}
               {i > 0 && (
                 <span
                   aria-hidden="true"
@@ -894,7 +1221,7 @@ export default function CinematicHero() {
         </motion.div>
       </motion.div>
 
-      {/* ─── Scroll Indicator ─── */}
+      {/* ─── Scroll Indicator — Enhanced with gold ring ─── */}
       <motion.div
         style={{
           position: "absolute",
@@ -925,18 +1252,55 @@ export default function CinematicHero() {
         >
           Листайте
         </span>
-        <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-          style={{ color: "rgba(212,166,62,0.5)" }}
-        >
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5">
-            <path d="M5 7l5 5 5-5" />
-          </svg>
-        </motion.div>
+        {/* Gold ring that expands/contracts (mobile enhancement) */}
+        {isMobile ? (
+          <div style={{ position: "relative", width: 36, height: 36, display: "flex", alignItems: "center", justifyContent: "center" }}>
+            {/* Pulsing gold ring */}
+            <motion.div
+              animate={{
+                scale: [1, 1.3, 1],
+                opacity: [0.4, 0.15, 0.4],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              style={{
+                position: "absolute",
+                inset: 0,
+                borderRadius: "50%",
+                border: "1px solid rgba(212,166,62,0.4)",
+              }}
+            />
+            {/* Chevron with more prominent bounce */}
+            <motion.div
+              animate={{ y: [0, 8, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+              style={{ color: "rgba(212,166,62,0.7)" }}
+            >
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M5 7l5 5 5-5" />
+              </svg>
+            </motion.div>
+          </div>
+        ) : (
+          <motion.div
+            animate={{ y: [0, 6, 0] }}
+            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+            style={{ color: "rgba(212,166,62,0.5)" }}
+          >
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M5 7l5 5 5-5" />
+            </svg>
+          </motion.div>
+        )}
       </motion.div>
 
-      {/* ─── Ken Burns & Grain Keyframes (injected once) ─── */}
+      {/* ─── Scroll-Triggered Golden Line Transition ─── */}
+      <GoldenLineTransition scrollProgress={scrollYProgress} />
+
+      {/* ─── Ken Burns, Video Blur & Grain Keyframes (injected once) ─── */}
       <style>{`
         @keyframes kenBurns {
           0% {
