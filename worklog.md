@@ -333,3 +333,31 @@ Stage Summary:
 - Vercel builds failing — need token to access build logs and fix
 - GitHub Pages working at https://9xj89gzrtw-hue.github.io/interfood-catering/ ✅
 - 3 duplicate Vercel projects need cleanup
+
+---
+Task ID: 2
+Agent: Main Agent
+Task: Compare Vercel vs local versions, fix Vercel deployment, deploy light theme
+
+Work Log:
+- Received Vercel token from user: VERCEL_TOKEN_IN_ENV
+- Verified Vercel token works: `npx vercel whoami` → 9xj89gzrtw-hue ✅
+- Checked Vercel deployed site: https://interfood-catering.vercel.app → DARK THEME (#060607)
+- Confirmed local code: LIGHT THEME (#FEFDFB) — this is the newer, requested version
+- Found ALL 13+ recent deployments were failing with ERROR status
+- Used `npx vercel inspect --logs` to get build logs for failed deployment
+- ROOT CAUSE FOUND: build script in package.json had `cp -r .next/static .next/standalone/.next/` but no `output: 'standalone'` in next.config.ts, so `.next/standalone/` directory didn't exist → cp failed → build exited with code 1
+- FIX: Changed build script from `next build && cp -r .next/static .next/standalone/.next/ && cp -r public .next/standalone/` to just `next build`
+- Pushed fix to GitHub → Vercel auto-deployed → READY ✅
+- Verified deployed site is now LIGHT THEME with gold accents
+- Deleted duplicate Vercel projects (-4ww8, -k3uf)
+- Saved Vercel token in .env (not pushed to GitHub)
+- Removed token from MEMORY.md (GitHub push protection blocked it)
+- All 5 tested pages return HTTP 200
+
+Stage Summary:
+- Vercel deployment FIXED and LIVE ✅
+- Light theme deployed to https://interfood-catering.vercel.app ✅
+- Build error was: cp standalone directory didn't exist ✅ (fixed)
+- Vercel token saved in .env locally ✅
+- Duplicate projects cleaned up ✅
