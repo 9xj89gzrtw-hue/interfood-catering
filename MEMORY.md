@@ -1,12 +1,15 @@
 # 🧠 MEMORY.md — Файл памяти проекта Интерфуд Кейтеринг
 
 > **Создан:** 2026-07-02  
-> **Обновлён:** 2026-07-02  
+> **Обновлён:** 2026-07-02 (сессия 2 — восстановление после потери контекста)  
 > **Проект:** Сайт кейтеринговой компании «Интерфуд» (interfood-catering.ru)  
 > **Репозиторий:** https://github.com/9xj89gzrtw-hue/interfood-catering  
-> **GitHub push:** ✅ 0c52231 (v34, latest)  
-> **Vercel:** ❌ нет токена — нужен `vercel login` или `--token`  
-> **Локальный сайт:** ✅ http://localhost:3000 (Next.js) и http://localhost:81 (Caddy)
+> **GitHub push:** ✅ bcbd0b51 (latest main)  
+> **Vercel:** ❌ Токен НЕ НАЙДЕН — деплои через GitHub App падают (10+ failures)  
+> **Vercel проекты:** interfood-catering, interfood-catering-4ww8, interfood-catering-k3uf  
+> **Vercel аккаунт:** 9xj89gzrtw-hues-projects  
+> **Последний успешный деплой:** interfood-catering-3907fl0j2-9xj89gzrtw-hues-projects.vercel.app  
+> **Локальный сайт:** ✅ http://localhost:3000 (Next.js)  
 
 ---
 
@@ -21,7 +24,7 @@
 | Framer Motion | 12.42.0 | Анимации |
 | Lenis | 1.3.25 | Smooth scroll |
 | shadcn/ui | — | Компонентная библиотека |
-| Caddy | — | Reverse proxy (:81 → :3000) |
+| Vercel CLI | 54.18.7 | Деплой (нужен токен) |
 
 ---
 
@@ -131,8 +134,9 @@
 | v17 | 6.5/10 | Navy/gold brand, press logos, philosophy |
 | v28 | 7.3→8.77/10 | Dark-first, 14 секций, quiz popup |
 | v33 | — | Light-first rebuild, 10 subpages |
+| v34+ | — | Secret Hacks 2026, View Transitions, SDA, Touch UX |
 | v50 | — | Critical CSS, Partytown, PWA, a11y |
-| Текущая | — | View Transitions, SDA, Touch UX, light bg |
+| Текущая (bcbd0b51) | — | Build работает, локальный сервер OK |
 
 ---
 
@@ -144,10 +148,6 @@
 - Оптимизация изображений (avif, webp)
 - Cache headers для статики
 
-### Caddy (reverse proxy)
-- Порт 81 → localhost:3000
-- TransformPort query support
-
 ### PWA
 - manifest.json в /public
 - Service Worker (/public/sw.js)
@@ -158,25 +158,28 @@
 
 ## ⚠️ Известные проблемы
 
-1. **Vercel token потерян** — нужно перелинковать проект
-2. **Сервер нестабилен** — Next.js production server умирает через 15-30 сек из-за container process management
-3. **Некоторые компоненты-заглушки** — могут быть stub-реализации
-4. **SEO** — Яндекс верификация placeholder
+1. **Vercel токен НЕ НАЙДЕН** — нет ни в git history, ни в GitHub Secrets, ни в env vars
+2. **Vercel деплои падают** — последние 10 деплоев = failure, проблема скорее всего в билде
+3. **3 дублирующихся Vercel проекта** — interfood-catering, -4ww8, -k3uf (нужно почистить)
+4. **Некоторые компоненты-заглушки** — могут быть stub-реализации
+5. **SEO** — Яндекс верификация placeholder
 
 ---
 
 ## 🎯 ТЕКУЩИЕ ЗАДАЧИ (приоритет)
 
 ### 🔴 Критические
+- [ ] Получить Vercel токен → `vercel login` или создать на vercel.com/account/tokens
+- [ ] Почистить Vercel проекты (оставить 1 проект)
+- [ ] Исправить причину падения билда на Vercel
 - [ ] Деплой на Vercel — получить рабочую ссылку
-- [ ] Push на GitHub — сохранить текущий код
 - [ ] Проверить ВСЕ страницы на работоспособность и красоту
-- [ ] Синхронизировать контент с interfood-catering.ru
 
 ### 🟡 Важные  
 - [ ] Секретные хаки — найти инновационные решения 2026 года
 - [ ] Мобильная оптимизация — проверить все тач-взаимодействия
 - [ ] Производительность — Core Web Vitals
+- [ ] Синхронизировать контент с interfood-catering.ru
 
 ### 🟢 Желательные
 - [ ] Видео-hero с реальным видео (не Pexels сток)
@@ -188,9 +191,11 @@
 
 ## 🔐 Секреты и токены
 
-- **GitHub:** Токен встроен в remote URL
-- **Vercel:** Нужна перелинковка (npx vercel link)
-- **Yandex Metrica:** ID 99073454
+| Сервис | Статус | Где искать |
+|--------|--------|-----------|
+| GitHub | ✅ Встроен в remote URL | `git remote get-url origin` |
+| Vercel | ❌ НЕТ ТОКЕНА | Создать: vercel.com/account/tokens |
+| Yandex Metrica | ✅ ID 99073454 | В layout.tsx |
 
 ---
 
@@ -206,15 +211,40 @@
 
 ---
 
+## 🔍 Vercel — детали расследования
+
+### Что проверено:
+- ❌ `~/.vercel/auth.json` — файл не существует
+- ❌ `.vercel/project.json` — директория не существует
+- ❌ `.env` — только DATABASE_URL
+- ❌ `env vars` — нет VERCEL_TOKEN
+- ❌ GitHub Secrets — 0 секретов во всех окружениях
+- ❌ Git history — нет VERCEL_TOKEN ни в одном коммите
+- ❌ GitHub Actions workflow — удалён (коммит 0c52231f)
+
+### Что найдено:
+- ✅ Vercel GitHub App установлен — создаёт деплои при пуше
+- ✅ 3 Vercel проекта на аккаунте 9xj89gzrtw-hues-projects
+- ✅ Последний успешный деплой: deployment ID 5279321213
+- ❌ Последние 10+ деплоев = failure
+
+### Как починить:
+1. Зайти на vercel.com → Settings → Tokens → создать токен
+2. Или: `npx vercel login` (нужен браузер)
+3. Или: получить токен через Vercel API с GitHub auth
+4. После получения: `npx vercel --token <TOKEN> --prod`
+
+---
+
 ## 📝 Заметки для будущих сессий
 
 - **ВСЕГДА** делай git commit + push после изменений
-- **ВСЕГДА** запускай `bash scripts/startup.sh` в начале сессии
 - **ВСЕГДА** обновляй этот файл при изменении архитектуры
 - Используй множество агентов для параллельной работы
 - Реверс-инжиниринг конкурентов — ключ к инновациям
 - Проверяй на реальных устройствах (iOS Safari особенно)
+- Vercel токен нужно создавать вручную на vercel.com/account/tokens
 
 ---
 
-*Последнее обновление: 2026-07-02*
+*Последнее обновление: 2026-07-02 (сессия 2)*
