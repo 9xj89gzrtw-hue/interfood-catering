@@ -7,6 +7,7 @@ import PageLoader from "@/components/PageLoader";
 import BackToTop from "@/components/BackToTop";
 import CustomCursor from "@/components/CustomCursor";
 import ServiceWorkerRegistrar from "@/components/ServiceWorkerRegistrar";
+import TouchInteractionProvider from "@/components/TouchInteractionProvider";
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-serif",
@@ -102,9 +103,9 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: "Интерфуд Кейтеринг",
-    alternateName: "Nilov Catering",
+    alternateName: "Interfood Catering",
     description:
-      "Кейтеринг в Санкт-Петербурге. Ресторан выездного обслуживания. Авторская кухня Дмитрия Нилова.",
+      "Кейтеринг в Санкт-Петербурге. Ресторан выездного обслуживания. Авторская кухня.",
     url: "https://interfood-catering.ru",
     telephone: "+7 (812) 919-59-11",
     address: {
@@ -116,7 +117,6 @@ export default function RootLayout({
     },
     priceRange: "$$",
     foundingDate: "2007",
-    founder: { "@type": "Person", name: "Дмитрий Нилов" },
     image: "https://interfood-catering.ru/images/hero.jpg",
     sameAs: [
       "https://vk.com/nilovcatering",
@@ -171,7 +171,7 @@ export default function RootLayout({
               .hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
               .hero-dark{background:#0a0a0a}
               .hero-bg{position:absolute;inset:0;background-size:cover;background-position:center 30%}
-              .hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,10,.55) 0%,rgba(10,10,10,.35) 40%,rgba(10,10,10,.45) 65%,rgba(10,10,10,.85) 100%)}
+              .hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(254,253,251,0.15) 0%,rgba(254,253,251,0.05) 30%,rgba(254,253,251,0.2) 60%,rgba(254,253,251,0.85) 100%)}
               .hero-content{position:relative;z-index:5;text-align:center;padding:2rem;max-width:800px;margin:0 auto}
               .section-label{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:#B8955A;margin-bottom:.75rem;font-weight:500}
               .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
@@ -179,6 +179,135 @@ export default function RootLayout({
               .skip-to-content:focus{top:0}
               .container{max-width:1320px;margin:0 auto;padding:0 2rem}
               .grain-overlay{position:fixed;inset:0;pointer-events:none;z-index:9998;opacity:.03}
+
+              /* ═══ View Transitions API — 2026 ═══ */
+              @supports (view-transition-name: none) {
+                ::view-transition-old(root) {
+                  animation: vt-fade-out 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+                }
+                ::view-transition-new(root) {
+                  animation: vt-fade-in 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+                }
+                @keyframes vt-fade-out {
+                  from { opacity: 1; transform: scale(1); }
+                  to { opacity: 0; transform: scale(0.97); }
+                }
+                @keyframes vt-fade-in {
+                  from { opacity: 0; transform: scale(1.02); }
+                  to { opacity: 1; transform: scale(1); }
+                }
+              }
+
+              /* ═══ Scroll-Driven Animations — 2026 Native CSS ═══ */
+              @supports (animation-timeline: scroll()) {
+                .scroll-reveal {
+                  animation: sda-reveal 1s linear both;
+                  animation-timeline: view();
+                  animation-range: entry 0% entry 100%;
+                }
+                @keyframes sda-reveal {
+                  from { opacity: 0; transform: translateY(40px) scale(0.97); }
+                  to { opacity: 1; transform: translateY(0) scale(1); }
+                }
+
+                .scroll-reveal-left {
+                  animation: sda-reveal-left 1s linear both;
+                  animation-timeline: view();
+                  animation-range: entry 0% entry 100%;
+                }
+                @keyframes sda-reveal-left {
+                  from { opacity: 0; transform: translateX(-60px); }
+                  to { opacity: 1; transform: translateX(0); }
+                }
+
+                .scroll-reveal-right {
+                  animation: sda-reveal-right 1s linear both;
+                  animation-timeline: view();
+                  animation-range: entry 0% entry 100%;
+                }
+                @keyframes sda-reveal-right {
+                  from { opacity: 0; transform: translateX(60px); }
+                  to { opacity: 1; transform: translateX(0); }
+                }
+
+                .scroll-parallax-slow {
+                  animation: sda-parallax-slow linear both;
+                  animation-timeline: view();
+                }
+                @keyframes sda-parallax-slow {
+                  from { transform: translateY(-30px); }
+                  to { transform: translateY(30px); }
+                }
+
+                .scroll-scale-in {
+                  animation: sda-scale-in 1s linear both;
+                  animation-timeline: view();
+                  animation-range: entry 0% entry 80%;
+                }
+                @keyframes sda-scale-in {
+                  from { opacity: 0; transform: scale(0.85); }
+                  to { opacity: 1; transform: scale(1); }
+                }
+
+                .scroll-clip-reveal {
+                  animation: sda-clip-reveal 1s linear both;
+                  animation-timeline: view();
+                  animation-range: entry 0% entry 100%;
+                }
+                @keyframes sda-clip-reveal {
+                  from { clip-path: inset(0 100% 0 0); }
+                  to { clip-path: inset(0 0% 0 0); }
+                }
+
+                /* Scroll progress for sections — native CSS */
+                .scroll-progress-section::before {
+                  content: '';
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  width: 4px;
+                  height: 100%;
+                  background: var(--color-brand);
+                  transform: scaleY(0);
+                  transform-origin: top;
+                  animation: sda-progress linear both;
+                  animation-timeline: view();
+                }
+                @keyframes sda-progress {
+                  from { transform: scaleY(0); }
+                  to { transform: scaleY(1); }
+                }
+
+                /* Ken Burns on scroll — native */
+                .scroll-ken-burns {
+                  animation: sda-ken-burns linear both;
+                  animation-timeline: view();
+                }
+                @keyframes sda-ken-burns {
+                  from { transform: scale(1) translate(0, 0); }
+                  to { transform: scale(1.1) translate(-2%, -1%); }
+                }
+              }
+
+              /* ═══ Touch-enhanced mobile interactions ═══ */
+              @media (pointer: coarse) {
+                * { -webkit-tap-highlight-color: transparent; }
+                a, button, [role="button"] {
+                  transition: transform 0.15s ease, box-shadow 0.15s ease;
+                }
+                a:active, button:active, [role="button"]:active {
+                  transform: scale(0.96) !important;
+                }
+                .btn-gold:active,
+                .btn-outline:active {
+                  transform: scale(0.96) !important;
+                  box-shadow: 0 2px 10px rgba(0,0,0,0.15) !important;
+                }
+                .card:active {
+                  transform: scale(0.98) !important;
+                }
+              }
+
               @media(max-width:640px){.container{padding:0 1rem}.hero-content{padding:1rem}}
               @media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
             `,
@@ -227,14 +356,16 @@ export default function RootLayout({
           Перейти к основному содержанию
         </a>
         <PageLoader />
-        <SmoothScroll>
-          <ScrollProgress />
-          <CustomCursor />
-          <div id="main-content">
-            {children}
-          </div>
-          <BackToTop />
-        </SmoothScroll>
+        <TouchInteractionProvider>
+          <SmoothScroll>
+            <ScrollProgress />
+            <CustomCursor />
+            <div id="main-content">
+              {children}
+            </div>
+            <BackToTop />
+          </SmoothScroll>
+        </TouchInteractionProvider>
         <ServiceWorkerRegistrar />
         <div className="grain-overlay" />
       </body>

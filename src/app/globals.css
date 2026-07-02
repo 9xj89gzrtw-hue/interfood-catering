@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 /* ═══════════════════════════════════════════════════════════════
-   INTERFOOD CATERING — Light-First Premium Design v30
+   INTERFOOD CATERING — Light-First Premium Design v33
    Warm, bright, photo/video-forward aesthetic
-   Target: mid-segment clients, maximum animation showcase
+   Scroll-Driven Animations • View Transitions • Touch UX
    ═══════════════════════════════════════════════════════════════ */
 
 @theme {
@@ -40,6 +40,145 @@ body {
   background: var(--color-warm-white);
   color: var(--color-dark);
   overflow-x: hidden;
+}
+
+/* ─── View Transitions API — Native 2026 ─── */
+@supports (view-transition-name: none) {
+  ::view-transition-old(root) {
+    animation: vt-crossfade-out 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+  ::view-transition-new(root) {
+    animation: vt-crossfade-in 0.45s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  }
+  ::view-transition-old(nav-logo) {
+    animation: vt-morph-out 0.3s ease forwards;
+  }
+  ::view-transition-new(nav-logo) {
+    animation: vt-morph-in 0.3s ease forwards;
+  }
+  @keyframes vt-crossfade-out {
+    from { opacity: 1; transform: scale(1); filter: blur(0); }
+    to { opacity: 0; transform: scale(0.97); filter: blur(2px); }
+  }
+  @keyframes vt-crossfade-in {
+    from { opacity: 0; transform: scale(1.02); filter: blur(2px); }
+    to { opacity: 1; transform: scale(1); filter: blur(0); }
+  }
+  @keyframes vt-morph-out {
+    to { opacity: 0; transform: scale(0.9); }
+  }
+  @keyframes vt-morph-in {
+    from { opacity: 0; transform: scale(1.1); }
+    to { opacity: 1; transform: scale(1); }
+  }
+}
+
+/* ─── Scroll-Driven Animations — Native CSS 2026 ─── */
+@supports (animation-timeline: view()) {
+  /* Section reveal on scroll */
+  .sda-reveal {
+    animation: sda-reveal-up 0.8s linear both;
+    animation-timeline: view();
+    animation-range: entry 10% entry 90%;
+  }
+  @keyframes sda-reveal-up {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Reveal from left */
+  .sda-reveal-left {
+    animation: sda-reveal-from-left 0.8s linear both;
+    animation-timeline: view();
+    animation-range: entry 5% entry 85%;
+  }
+  @keyframes sda-reveal-from-left {
+    from { opacity: 0; transform: translateX(-60px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  /* Reveal from right */
+  .sda-reveal-right {
+    animation: sda-reveal-from-right 0.8s linear both;
+    animation-timeline: view();
+    animation-range: entry 5% entry 85%;
+  }
+  @keyframes sda-reveal-from-right {
+    from { opacity: 0; transform: translateX(60px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  /* Scale reveal */
+  .sda-scale {
+    animation: sda-scale-reveal 0.8s linear both;
+    animation-timeline: view();
+    animation-range: entry 5% entry 80%;
+  }
+  @keyframes sda-scale-reveal {
+    from { opacity: 0; transform: scale(0.88); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  /* Clip-path reveal */
+  .sda-clip {
+    animation: sda-clip-reveal 1s linear both;
+    animation-timeline: view();
+    animation-range: entry 5% entry 90%;
+  }
+  @keyframes sda-clip-reveal {
+    from { clip-path: inset(0 100% 0 0); }
+    to { clip-path: inset(0 0% 0 0); }
+  }
+
+  /* Ken Burns on scroll */
+  .sda-ken-burns {
+    animation: sda-ken-burns linear both;
+    animation-timeline: view();
+  }
+  @keyframes sda-ken-burns {
+    from { transform: scale(1); }
+    to { transform: scale(1.12) translate(-1%, -1%); }
+  }
+
+  /* Parallax slow (for decorative elements) */
+  .sda-parallax {
+    animation: sda-parallax-shift linear both;
+    animation-timeline: view();
+  }
+  @keyframes sda-parallax-shift {
+    from { transform: translateY(-40px); }
+    to { transform: translateY(40px); }
+  }
+
+  /* Fade-in with blur */
+  .sda-blur-in {
+    animation: sda-blur-in 0.9s linear both;
+    animation-timeline: view();
+    animation-range: entry 10% entry 85%;
+  }
+  @keyframes sda-blur-in {
+    from { opacity: 0; filter: blur(8px); transform: translateY(20px); }
+    to { opacity: 1; filter: blur(0); transform: translateY(0); }
+  }
+
+  /* Stagger children — CSS-only */
+  .sda-stagger > *:nth-child(1) { animation-delay: 0ms; }
+  .sda-stagger > *:nth-child(2) { animation-delay: 60ms; }
+  .sda-stagger > *:nth-child(3) { animation-delay: 120ms; }
+  .sda-stagger > *:nth-child(4) { animation-delay: 180ms; }
+  .sda-stagger > *:nth-child(5) { animation-delay: 240ms; }
+  .sda-stagger > *:nth-child(6) { animation-delay: 300ms; }
+}
+
+/* Fallback for browsers without scroll-driven animations */
+@supports not (animation-timeline: view()) {
+  .sda-reveal, .sda-reveal-left, .sda-reveal-right,
+  .sda-scale, .sda-clip, .sda-ken-burns, .sda-parallax,
+  .sda-blur-in {
+    opacity: 1;
+    transform: none;
+    clip-path: none;
+  }
 }
 ::selection { background: var(--color-brand); color: #fff; }
 ::-webkit-scrollbar { width: 6px; }
