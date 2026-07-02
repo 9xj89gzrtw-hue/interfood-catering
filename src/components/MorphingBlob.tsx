@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 
 /* ═══════════════════════════════════════════════════════════════
@@ -27,6 +28,16 @@ export default function MorphingBlob({
   className = "",
   style,
 }: MorphingBlobProps) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    setIsMobile(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+
   /* Generate random blob path points */
   const generatePath = (time: number) => {
     const points = 6;
@@ -70,7 +81,7 @@ export default function MorphingBlob({
         width: size,
         height: size,
         opacity,
-        filter: "blur(40px)",
+        filter: isMobile ? "blur(20px)" : "blur(40px)",
         ...style,
       }}
       animate={{

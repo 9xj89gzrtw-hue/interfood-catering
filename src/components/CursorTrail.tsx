@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useCallback } from "react";
+import { useEffect, useRef, useCallback, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
 /* ═══════════════════════════════════════════════════════════════
@@ -27,6 +27,17 @@ export default function CursorTrail({
   minSize?: number;
   maxAge?: number;
 }) {
+  /* ── Touch-device guard: don't render cursor trail on touch-only devices ── */
+  const [isHoverDevice, setIsHoverDevice] = useState(false);
+
+  useEffect(() => {
+    const mql = window.matchMedia("(hover: hover)");
+    setIsHoverDevice(mql.matches);
+    const handler = (e: MediaQueryListEvent) => setIsHoverDevice(e.matches);
+    mql.addEventListener("change", handler);
+    return () => mql.removeEventListener("change", handler);
+  }, []);
+
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const dotsRef = useRef<Dot[]>([]);
   const mouseRef = useRef({ x: 0, y: 0 });
@@ -74,8 +85,9 @@ export default function CursorTrail({
     if (!canvas) return;
 
     const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      /* Use clientWidth/Height to avoid hydration mismatch with innerWidth/Height */
+      canvas.width = canvas.clientWidth;
+      canvas.height = canvas.clientHeight;
     };
     resize();
     window.addEventListener("resize", resize);
@@ -94,12 +106,16 @@ export default function CursorTrail({
     };
   }, [animate]);
 
+  if (!isHoverDevice) return null;
+
   return (
     <canvas
       ref={canvasRef}
       style={{
         position: "fixed",
         inset: 0,
+        width: "100vw",
+        height: "100vh",
         zIndex: 9999,
         pointerEvents: "none",
       }}

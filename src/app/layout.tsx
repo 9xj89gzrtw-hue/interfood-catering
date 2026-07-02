@@ -182,8 +182,7 @@ export default function RootLayout({
         </SmoothScroll>
         <div className="grain-overlay" aria-hidden="true" />
       </body>
-    <!-- v70 Light Premium deployed -->
-</html>
+    </html>
   );
 }
 

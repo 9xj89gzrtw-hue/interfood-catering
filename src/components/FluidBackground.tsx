@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 
 /* ═══════════════════════════════════════════════════════════════
    FluidBackground — animated gradient mesh with mouse tracking
@@ -22,6 +22,28 @@ export default function FluidBackground({
   color3 = "rgba(223, 181, 167, 0.05)",
   speed = 8,
 }: FluidBackgroundProps) {
+  /* ── Skip on touch-only devices ── */
+  const [isHoverDevice, setIsHoverDevice] = useState(false);
+  /* ── Skip when user prefers reduced motion ── */
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const hoverMql = window.matchMedia("(hover: hover)");
+    setIsHoverDevice(hoverMql.matches);
+    const onHoverChange = (e: MediaQueryListEvent) => setIsHoverDevice(e.matches);
+    hoverMql.addEventListener("change", onHoverChange);
+
+    const motionMql = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setPrefersReducedMotion(motionMql.matches);
+    const onMotionChange = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
+    motionMql.addEventListener("change", onMotionChange);
+
+    return () => {
+      hoverMql.removeEventListener("change", onHoverChange);
+      motionMql.removeEventListener("change", onMotionChange);
+    };
+  }, []);
+
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -30,8 +52,12 @@ export default function FluidBackground({
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    let w = (canvas.width = canvas.offsetWidth * 2);
-    let h = (canvas.height = canvas.offsetHeight * 2);
+    /* Cap DPR to 1 on mobile, 2 on desktop */
+    const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+    const dpr = isMobile ? 1 : 2;
+
+    let w = (canvas.width = canvas.offsetWidth * dpr);
+    let h = (canvas.height = canvas.offsetHeight * dpr);
     let mouse = { x: w / 2, y: h / 2 };
     let time = 0;
 
@@ -42,8 +68,8 @@ export default function FluidBackground({
     ];
 
     const resize = () => {
-      w = canvas.width = canvas.offsetWidth * 2;
-      h = canvas.height = canvas.offsetHeight * 2;
+      w = canvas.width = canvas.offsetWidth * dpr;
+      h = canvas.height = canvas.offsetHeight * dpr;
     };
     window.addEventListener("resize", resize);
 
@@ -90,6 +116,8 @@ export default function FluidBackground({
       cancelAnimationFrame(raf);
     };
   }, [color1, color2, color3, speed]);
+
+  if (!isHoverDevice || prefersReducedMotion) return null;
 
   return (
     <canvas

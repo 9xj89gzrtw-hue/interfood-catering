@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 
 /* ═══════════════════════════════════════════════════════════════
@@ -26,7 +26,14 @@ export default function TiltCard({
   const ref = useRef<HTMLDivElement>(null);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
   const [glarePos, setGlarePos] = useState({ x: 50, y: 50 });
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
   const inView = useInView(ref, { once: true, margin: "-50px" });
+
+  useEffect(() => {
+    setIsTouchDevice(
+      "ontouchstart" in window || navigator.maxTouchPoints > 0
+    );
+  }, []);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!ref.current) return;
@@ -57,13 +64,13 @@ export default function TiltCard({
       initial={{ opacity: 0, y: 40 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] as const }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
+      onMouseMove={isTouchDevice ? undefined : handleMouseMove}
+      onMouseLeave={isTouchDevice ? undefined : handleMouseLeave}
     >
       <motion.div
         style={{
-          rotateX: tilt.x,
-          rotateY: tilt.y,
+          rotateX: isTouchDevice ? 0 : tilt.x,
+          rotateY: isTouchDevice ? 0 : tilt.y,
           transformStyle: "preserve-3d",
           transition: "transform 0.15s ease-out",
           position: "relative",
@@ -71,7 +78,7 @@ export default function TiltCard({
       >
         {children}
         {/* Glare overlay */}
-        {glare && (
+        {glare && !isTouchDevice && (
           <div
             style={{
               position: "absolute",

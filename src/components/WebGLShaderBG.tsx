@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 
 /* ═══════════════════════════════════════════════════════════════
    WebGL Shader Background — GPU-powered animated gradient
@@ -100,6 +100,7 @@ export default function WebGLShaderBG({ className = "", style }: WebGLShaderBGPr
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const mouseRef = useRef([0.5, 0.5]);
   const animFrameRef = useRef<number>(0);
+  const [webglFailed, setWebglFailed] = useState(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -107,7 +108,8 @@ export default function WebGLShaderBG({ className = "", style }: WebGLShaderBGPr
 
     const gl = canvas.getContext("webgl2", { antialias: false, alpha: false });
     if (!gl) {
-      console.warn("WebGL2 not supported — shader background disabled");
+      console.warn("WebGL2 not supported — falling back to CSS gradient");
+      setWebglFailed(true);
       return;
     }
 
@@ -179,10 +181,27 @@ export default function WebGLShaderBG({ className = "", style }: WebGLShaderBGPr
     };
     window.addEventListener("touchmove", onTouch, { passive: true });
 
-    /* Render loop */
+    /* Render loop — throttle to 30fps on mobile for performance */
+    const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+    const targetInterval = isMobile ? 1000 / 30 : 0; // 0 = no throttle
+    let lastFrameTime = 0;
+    let paused = false;
+
     const startTime = performance.now();
 
-    const render = () => {
+    const render = (now: number) => {
+      if (paused) {
+        animFrameRef.current = requestAnimationFrame(render);
+        return;
+      }
+
+      const elapsed = now - lastFrameTime;
+      if (targetInterval > 0 && elapsed < targetInterval) {
+        animFrameRef.current = requestAnimationFrame(render);
+        return;
+      }
+      lastFrameTime = now;
+
       const time = (performance.now() - startTime) / 1000;
       gl.uniform1f(uTime, time);
       gl.uniform2f(uResolution, canvas.width, canvas.height);
@@ -190,10 +209,21 @@ export default function WebGLShaderBG({ className = "", style }: WebGLShaderBGPr
       gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
       animFrameRef.current = requestAnimationFrame(render);
     };
-    render();
+    animFrameRef.current = requestAnimationFrame(render);
+
+    /* Pause rendering when tab is hidden */
+    const onVisibilityChange = () => {
+      paused = document.hidden;
+      if (!paused) {
+        lastFrameTime = performance.now(); // reset to avoid frame burst
+        animFrameRef.current = requestAnimationFrame(render);
+      }
+    };
+    document.addEventListener("visibilitychange", onVisibilityChange);
 
     return () => {
       cancelAnimationFrame(animFrameRef.current);
+      document.removeEventListener("visibilitychange", onVisibilityChange);
       window.removeEventListener("resize", resize);
       window.removeEventListener("mousemove", onMouse);
       window.removeEventListener("touchmove", onTouch);
@@ -203,6 +233,25 @@ export default function WebGLShaderBG({ className = "", style }: WebGLShaderBGPr
       gl.deleteBuffer(vbo);
     };
   }, []);
+
+  /* CSS gradient fallback when WebGL2 is unavailable */
+  if (webglFailed) {
+    return (
+      <div
+        className={className}
+        style={{
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          background:
+            "linear-gradient(135deg, #F9F7F1 0%, #DFB5A7 40%, #8FA87E 70%, #B8860B 100%)",
+          opacity: 0.18,
+          ...style,
+        }}
+      />
+    );
+  }
 
   return (
     <canvas

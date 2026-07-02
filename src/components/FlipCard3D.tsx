@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 
 /* ═══════════════════════════════════════════════════════════════
@@ -24,6 +24,7 @@ export default function FlipCard3D({
   flipDirection = "horizontal",
 }: FlipCard3DProps) {
   const rotateAxis = flipDirection === "horizontal" ? "rotateY" : "rotateX";
+  const [isFlipped, setIsFlipped] = useState(false);
 
   return (
     <div
@@ -34,8 +35,11 @@ export default function FlipCard3D({
       }}
     >
       <motion.div
-        whileHover={{ [rotateAxis]: 180 }}
+        animate={{ [rotateAxis]: isFlipped ? 180 : 0 }}
         transition={{ duration: 0.6, ease: [0.25, 1, 0.5, 1] as const }}
+        onClick={() => setIsFlipped((prev) => !prev)}
+        onMouseEnter={() => setIsFlipped(true)}
+        onMouseLeave={() => setIsFlipped(false)}
         style={{
           position: "relative",
           width: "100%",

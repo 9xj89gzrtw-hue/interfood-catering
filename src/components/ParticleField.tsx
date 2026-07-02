@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useCallback } from "react";
+import { useEffect, useRef, useCallback, useState } from "react";
 
 /* ═══════════════════════════════════════════════════════════════
    ParticleField — floating gold particles background
@@ -34,12 +34,23 @@ export default function ParticleField({
   className = "",
   style,
 }: ParticleFieldProps) {
+  /* ── Reduced-motion guard: skip rendering entirely ── */
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mql = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setPrefersReducedMotion(mql.matches);
+    const handler = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
+    mql.addEventListener("change", handler);
+    return () => mql.removeEventListener("change", handler);
+  }, []);
+
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const particlesRef = useRef<Particle[]>([]);
   const animRef = useRef<number>(0);
 
-  const initParticles = useCallback((width: number, height: number) => {
-    particlesRef.current = Array.from({ length: count }, () => ({
+  const initParticles = useCallback((width: number, height: number, particleCount: number) => {
+    particlesRef.current = Array.from({ length: particleCount }, () => ({
       x: Math.random() * width,
       y: Math.random() * height,
       vx: (Math.random() - 0.5) * speed,
@@ -49,7 +60,7 @@ export default function ParticleField({
       life: 0,
       maxLife: Math.random() * 300 + 200,
     }));
-  }, [count, speed]);
+  }, [speed]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -57,11 +68,15 @@ export default function ParticleField({
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
+    /* Cap particle count on mobile for performance */
+    const isMobile = window.innerWidth < 768;
+    const effectiveCount = isMobile ? Math.min(count, 10) : count;
+
     const resize = () => {
       const rect = canvas.parentElement?.getBoundingClientRect();
-      canvas.width = rect?.width || window.innerWidth;
-      canvas.height = rect?.height || window.innerHeight;
-      initParticles(canvas.width, canvas.height);
+      canvas.width = rect?.width || canvas.clientWidth;
+      canvas.height = rect?.height || canvas.clientHeight;
+      initParticles(canvas.width, canvas.height, effectiveCount);
     };
     resize();
     window.addEventListener("resize", resize);
@@ -102,7 +117,9 @@ export default function ParticleField({
       window.removeEventListener("resize", resize);
       cancelAnimationFrame(animRef.current);
     };
-  }, [color, initParticles]);
+  }, [color, count, initParticles]);
+
+  if (prefersReducedMotion) return null;
 
   return (
     <canvas

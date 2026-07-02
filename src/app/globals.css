@@ -569,6 +569,14 @@ body {
   100% { transform: translateY(-100vh) translateX(20px); opacity: 0; }
 }
 
+/* ─── Hero-specific floating particle (reliable cross-browser) ─── */
+@keyframes float-particle-hero {
+  0% { transform: translateY(0) translateX(0); opacity: 0; }
+  5% { opacity: var(--particle-opacity, 0.3); }
+  90% { opacity: var(--particle-opacity, 0.3); }
+  100% { transform: translateY(-110vh) translateX(calc((var(--particle-drift, 20) - 10) * 1px)); opacity: 0; }
+}
+
 /* ─── Gradient border rotation ─── */
 @keyframes gradient-rotate {
   0% { --gradient-angle: 0deg; }

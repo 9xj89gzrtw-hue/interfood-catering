@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useMemo } from "react";
+import { useRef, useMemo, useState, useEffect } from "react";
 import {
   motion,
   useScroll,
@@ -63,11 +63,13 @@ function KineticWord({
   index,
   totalWords,
   scrollYProgress,
+  disableBlur,
 }: {
   word: string;
   index: number;
   totalWords: number;
   scrollYProgress: ReturnType<typeof useScroll>["scrollYProgress"];
+  disableBlur: boolean;
 }) {
   const letters = useMemo(() => word.split(""), [word]);
 
@@ -112,6 +114,7 @@ function KineticWord({
             letter={letter}
             letterStagger={letterStagger}
             revealProgress={letterRevealProgress}
+            disableBlur={disableBlur}
           />
         );
       })}
@@ -124,10 +127,12 @@ function KineticLetter({
   letter,
   letterStagger,
   revealProgress,
+  disableBlur,
 }: {
   letter: string;
   letterStagger: number;
   revealProgress: ReturnType<typeof useTransform<number>>;
+  disableBlur: boolean;
 }) {
   // Each letter has its own slice of the reveal progress
   const start = letterStagger * 0.5;
@@ -135,13 +140,14 @@ function KineticLetter({
 
   const opacity = useTransform(revealProgress, [start, end], [0, 1]);
   const blur = useTransform(revealProgress, [start, end], [6, 0]);
+  const blurFilter = useTransform(blur, (b) => `blur(${b}px)`);
 
   return (
     <motion.span
       style={{
         opacity,
-        filter: useTransform(blur, (b) => `blur(${b}px)`),
-        willChange: "opacity, filter",
+        ...(disableBlur ? {} : { filter: blurFilter }),
+        willChange: disableBlur ? "opacity" : "opacity, filter",
         display: "inline-block",
       }}
     >
@@ -153,6 +159,21 @@ function KineticLetter({
 export default function KineticTypography() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: false, margin: "-10%" });
+
+  // Disable blur on mobile and when user prefers reduced motion
+  const [disableBlur, setDisableBlur] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const rmq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setDisableBlur(mq.matches || rmq.matches);
+    update();
+    mq.addEventListener("change", update);
+    rmq.addEventListener("change", update);
+    return () => {
+      mq.removeEventListener("change", update);
+      rmq.removeEventListener("change", update);
+    };
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -284,6 +305,7 @@ export default function KineticTypography() {
               index={i}
               totalWords={WORDS.length}
               scrollYProgress={scrollYProgress}
+              disableBlur={disableBlur}
             />
           ))}
         </h2>
