@@ -420,3 +420,41 @@ Stage Summary:
 - v70 successfully deployed and live at https://interfood-catering.vercel.app
 - Light Premium theme confirmed on production
 - Content synced with interfood-catering.ru verified
+
+---
+Task ID: v71
+Agent: Main (Session 5)
+Task: Fix Hero video (Pexels 3195394), critical mobile fixes, expert commission audit
+
+Work Log:
+- Downloaded Pexels video 3195394 (catering with pipette and hand)
+  - Desktop: 1440p 4.8MB (hero-catering.mp4)
+  - Mobile: 360p 480KB (hero-catering-mobile.mp4)
+  - Poster: hero-poster.jpg for instant visual
+- Rewrote CinematicHero v2:
+  - Reliable autoplay with JS fallback for iOS Safari
+  - Dark gradient overlay guarantees text readability on ANY video frame
+  - White text with text-shadow
+  - Responsive video sources (media queries for desktop/mobile)
+  - Reduced-motion support (WCAG)
+  - Floating particles use CSS keyframes instead of framer-motion (better perf)
+  - MouseGlow only on non-touch devices
+- Expert commission audit found 6 critical, 18 warning, 13 minor issues
+- Fixed all 6 critical issues:
+  - CursorTrail: returns null on touch-only devices
+  - WebGLShaderBG: CSS gradient fallback, visibilitychange pause, 30fps mobile
+  - ParticleField: reduced-motion, mobile particle cap, hydration fix
+  - FluidBackground: DPR cap mobile, reduced-motion, skip on touch-only
+- Fixed key warnings:
+  - KineticTypography: blur disabled on mobile, reduced-motion
+  - TiltCard: 3D tilt disabled on touch devices
+  - Confirmed FlipCard3D and ImageCompare already support touch
+- Added video cache headers in next.config.ts
+- Fixed layout.tsx HTML comment error (from previous session)
+- Build successful, deployed to Vercel
+
+Stage Summary:
+- v71 live at https://interfood-catering.vercel.app
+- Hero video always plays (Pexels 3195394)
+- All 6 critical mobile issues fixed
+- Cross-browser compatibility improved
