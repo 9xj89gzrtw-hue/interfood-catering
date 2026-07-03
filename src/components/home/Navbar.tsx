@@ -81,9 +81,10 @@ export default function Navbar() {
           </div>
 
           <button
-            className="lg:hidden p-2 -mr-2"
+            className="lg:hidden p-3 -mr-3 min-h-[44px] min-w-[44px] flex items-center justify-center"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label={menuOpen ? "Закрыть меню" : "Открыть меню"}
+            aria-expanded={menuOpen}
           >
             {menuOpen ? <X size={24} color="#F5F1EA" /> : <Menu size={24} color="#F5F1EA" />}
           </button>

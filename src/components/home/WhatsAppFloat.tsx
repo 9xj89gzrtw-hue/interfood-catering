@@ -45,14 +45,14 @@ export default function WhatsAppFloat() {
         </div>
       )}
 
-      {/* FAB */}
+      {/* FAB — 56x56 for WCAG touch target compliance */}
       <button
         onClick={() => setOpen(!open)}
-        className="w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-transform duration-200 hover:scale-110"
-        style={{ background: "#25D366" }}
+        className="w-14 h-14 sm:w-14 sm:h-14 rounded-full flex items-center justify-center shadow-lg transition-transform duration-200 hover:scale-110"
+        style={{ background: "#25D366", minWidth: "56px", minHeight: "56px" }}
         aria-label="Написать в WhatsApp"
       >
-        <MessageCircle size={24} style={{ color: "#fff" }} />
+        <MessageCircle size={26} style={{ color: "#fff" }} />
       </button>
     </div>
   );

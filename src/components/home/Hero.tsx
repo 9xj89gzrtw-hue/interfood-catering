@@ -9,13 +9,14 @@ export default function Hero() {
     <section
       className="relative min-h-screen flex items-center overflow-hidden"
       style={{ background: "#1A1A1A" }}
+      aria-labelledby="hero-heading"
     >
       {/* DESKTOP: video background + ken-burns */}
       <div
         className="absolute inset-0 hidden md:block"
         style={{ animation: "ken-burns 28s ease-in-out infinite" }}
       >
-        <video autoPlay muted loop playsInline preload="metadata" poster="/images/real/event_hero_full.jpg" className="w-full h-full object-cover">
+        <video autoPlay muted loop playsInline preload="metadata" poster="/images/real/event_hero_full.jpg" className="w-full h-full object-cover" aria-label="Видео с примером кейтерингового обслуживания">
           <source src="/videos/hero.mp4" />
         </video>
       </div>
@@ -43,7 +44,7 @@ export default function Hero() {
           </FadeIn>
 
           <FadeIn delay={400}>
-            <h1 className="font-serif font-light leading-[1.05] mb-4 text-5xl sm:text-6xl md:text-7xl lg:text-8xl" style={{ color: "#F5F1EA" }}>
+            <h1 id="hero-heading" className="font-serif font-light leading-[1.05] mb-4 text-5xl sm:text-6xl md:text-7xl lg:text-8xl" style={{ color: "#F5F1EA" }}>
               Интерфуд<br /><span style={{ color: "#F5F1EA" }}>Кейтеринг</span>
             </h1>
           </FadeIn>
@@ -55,9 +56,17 @@ export default function Hero() {
           </FadeIn>
 
           <FadeIn delay={700}>
-            <p className="font-sans text-base sm:text-lg leading-relaxed mb-8 max-w-lg" style={{ color: "rgba(245,241,234,0.85)" }}>
-              Ресторан выездного обслуживания в Санкт-Петербурге. Авторская кухня шеф-повара {CONTACTS.founder}. От 390 ₽/чел
+            <p className="font-sans text-base sm:text-lg leading-relaxed mb-4 max-w-lg" style={{ color: "rgba(245,241,234,0.85)" }}>
+              Ресторан выездного обслуживания в Санкт-Петербурге. Авторская кухня шеф-повара {CONTACTS.founder}.
             </p>
+            <div className="flex flex-wrap gap-x-4 gap-y-1 mb-6 font-sans text-sm" style={{ color: "rgba(245,241,234,0.7)" }}>
+              <span>Кофе-брейк <strong style={{ color: "#D4A843" }}>от 390 ₽</strong></span>
+              <span>·</span>
+              <span>Фуршет <strong style={{ color: "#D4A843" }}>от 2 450 ₽</strong></span>
+              <span>·</span>
+              <span>Банкет <strong style={{ color: "#D4A843" }}>от 4 470 ₽</strong></span>
+              <span className="block w-full text-xs mt-1" style={{ color: "rgba(245,241,234,0.5)" }}>на человека</span>
+            </div>
           </FadeIn>
 
           <FadeIn delay={800}>
@@ -69,6 +78,9 @@ export default function Hero() {
                 Смотреть меню
               </a>
             </div>
+            <p className="font-sans text-xs mt-3" style={{ color: "rgba(245,241,234,0.5)" }}>
+              ⏱ Узнайте стоимость за 2 минуты — дата, гости, тип мероприятия
+            </p>
           </FadeIn>
 
           <FadeIn delay={1000}>
