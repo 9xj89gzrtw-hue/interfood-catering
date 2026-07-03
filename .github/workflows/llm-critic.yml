@@ -136,7 +136,10 @@ jobs:
           ];
 
           console.log(`Calling ${models.length} models in parallel...`);
-          const results = await Promise.all(models.map(m => callAPI(m.name, m.fn)));
+          const results = await Promise.all(models.map(async m => {
+            const r = await callAPI(m.name, m.fn);
+            return { ...r, name: m.name };
+          }));
           const ok = results.filter(r => r.ok).length;
           console.log(`\n=== ${ok}/${results.length} models responded ===\n`);
 
