@@ -106,6 +106,19 @@ img {
   50% { box-shadow: 0 0 24px 4px rgba(212, 168, 67, 0.15); }
 }
 
+/* MorphingText — CSS-only rotating words with blur effect (SSR-safe) */
+@keyframes morph-word {
+  0%, 18% { opacity: 0; filter: blur(12px); transform: translateY(8px); }
+  22%, 78% { opacity: 1; filter: blur(0); transform: translateY(0); }
+  82%, 100% { opacity: 0; filter: blur(12px); transform: translateY(-8px); }
+}
+
+/* Gold accent line draw-in */
+@keyframes line-draw {
+  0% { transform: scaleX(0); }
+  100% { transform: scaleX(1); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

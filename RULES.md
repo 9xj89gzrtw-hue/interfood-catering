@@ -110,3 +110,15 @@ Do NOT delete speculatively. Each deletion records the criterion met.
 - Founder: Дмитрий Нилов
 - Palette: #F5F1EA (cream bg) / #1A1A1A (dark) / #D4A843 (gold accent) / #8B6F47 (caramel) / #5C564D (body text)
 - Fonts: Cormorant Garamond (headings) + Inter (body)
+
+## 12. Content source priority (added 2026-07-04)
+
+- **FIRST source for all photos, text, prices, menu, service descriptions = the old WordPress site** `https://interfood-catering.ru/`.
+- Real content pages on the old site (verified 2026-07-04):
+  - `/uslugi` (услуги), `/banket`, `/furshet`, `/kofe-brejk`, `/mobilnyj-furshet`
+  - `/floristika-i-oformlenie-zala` (флористика/декор)
+  - `/kompleksnye-obedy-v-ofis` (комплексные обеды в офис)
+  - `/about` (о компании), `/fotogalereya` (фотогалерея), `/kontakty` (контакты), `/news`
+- **Only if** the old site does not have the needed info → create original content.
+- When using old-site content: adapt copy/structure to the new design system; do not copy WordPress HTML/markup verbatim.
+- Record in `research/` which old-site pages were consulted for each module.
