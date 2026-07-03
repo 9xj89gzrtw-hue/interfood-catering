@@ -14,7 +14,7 @@ DATE=$(date +%Y-%m-%d)
 cat > MEMORY/SESSION.md << EOF
 # SESSION — Лог последней сессии
 
-> **Schema Version:** 2.0
+> **Schema Version:** 4.0
 > **Обновлён:** $DATE
 
 ---

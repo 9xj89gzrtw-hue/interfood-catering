@@ -13,7 +13,7 @@
 - **URL:** interfood-catering.ru
 - **Репозиторий:** https://github.com/9xj89gzrtw-hue/interfood-catering
 - **Деплой:** Vercel (auto on push to main)
-- **Текущая версия:** v93
+- **Текущая версия:** v94
 - **Agent OS:** v4.0
 
 ## Стек

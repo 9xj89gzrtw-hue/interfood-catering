@@ -8,7 +8,7 @@
 
 ## Текущий статус: WORKING (с нарушениями)
 
-- **Версия:** v93
+- **Версия:** v94
 - **Build:** PASS
 - **Deploy:** AUTO (Vercel, push to main)
 - **Agent OS:** v4.0

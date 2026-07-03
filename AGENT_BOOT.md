@@ -13,23 +13,23 @@
 ### Fast Boot (~500 токенов, 30 сек)
 ```
 1. git pull origin main
-2. cat MEMORY/CORE.md          → SSOT (всегда!)
-3. cat MEMORY/INDEX.md         → каталог + маршрутизация
-4. Работай! (остальное по запросу из Routing Table)
+2. cat RESUME.md             → ВСЁ что нужно для продолжения
+3. Работай! (детали по запросу из Routing Table)
 ```
 
 ### Full Boot (~2500 токенов, 2 мин)
 ```
 1. git pull origin main
-2. bash scripts/agent-os-validate.sh → проверить целостность
-3. cat MEMORY/CORE.md          → SSOT
-4. cat MEMORY/INDEX.md         → каталог + маршрутизация
-5. cat MEMORY/STATE.md         → текущий статус + violations
-6. cat MEMORY/EXECUTION.md     → КАК достичь результата
-7. Загрузить RECALL/ по задаче → см. Routing Table в INDEX.md
-8. git diff HEAD~1 MEMORY/     → что изменилось
-9. cat MEMORY/SESSION.md       → последняя сессия
-10. Работай!
+2. cat RESUME.md             → полная свёртка состояния
+3. bash scripts/agent-os-validate.sh → проверить целостность
+4. cat MEMORY/CORE.md          → SSOT
+5. cat MEMORY/INDEX.md         → каталог + маршрутизация
+6. cat MEMORY/STATE.md         → текущий статус + violations
+7. cat MEMORY/EXECUTION.md     → КАК достичь результата
+8. Загрузить RECALL/ по задаче → см. Routing Table в INDEX.md
+9. git diff HEAD~1 MEMORY/     → что изменилось
+10. cat MEMORY/SESSION.md       → последняя сессия
+11. Работай!
 ```
 
 ### Safe Mode (если CORE.md повреждён)
