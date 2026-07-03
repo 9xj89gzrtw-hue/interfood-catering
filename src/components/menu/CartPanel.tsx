@@ -90,14 +90,14 @@ export function CartPanel() {
                   <p className="font-sans text-xs" style={{ color: "#8B6F47" }}>{item.weight} · {item.pricePerGuest} ₽</p>
                 </div>
                 <div className="flex items-center gap-1 shrink-0">
-                  <button onClick={() => updateQty(item.id, item.qty - 1)} className="w-6 h-6 rounded-full flex items-center justify-center" style={{ background: "rgba(212,168,67,0.1)", color: "#8B6F47" }} aria-label="Меньше">
-                    <Minus size={12} />
+                  <button onClick={() => updateQty(item.id, item.qty - 1)} className="w-9 h-9 rounded-full flex items-center justify-center min-h-[36px]" style={{ background: "rgba(212,168,67,0.1)", color: "#8B6F47" }} aria-label="Меньше">
+                    <Minus size={14} />
                   </button>
-                  <span className="font-sans text-sm w-5 text-center" style={{ color: "#1A1A1A" }}>{item.qty}</span>
-                  <button onClick={() => updateQty(item.id, item.qty + 1)} className="w-6 h-6 rounded-full flex items-center justify-center" style={{ background: "rgba(212,168,67,0.1)", color: "#8B6F47" }} aria-label="Больше">
-                    <Plus size={12} />
+                  <span className="font-sans text-sm w-6 text-center" style={{ color: "#1A1A1A" }}>{item.qty}</span>
+                  <button onClick={() => updateQty(item.id, item.qty + 1)} className="w-9 h-9 rounded-full flex items-center justify-center min-h-[36px]" style={{ background: "rgba(212,168,67,0.1)", color: "#8B6F47" }} aria-label="Больше">
+                    <Plus size={14} />
                   </button>
-                  <button onClick={() => removeDish(item.id)} className="ml-1 text-red-400 hover:text-red-600" aria-label="Удалить">
+                  <button onClick={() => removeDish(item.id)} className="ml-1 p-2 text-red-400 hover:text-red-600 min-h-[36px] min-w-[36px] flex items-center" aria-label="Удалить">
                     <Trash2 size={14} />
                   </button>
                 </div>
