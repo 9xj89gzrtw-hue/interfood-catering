@@ -20,12 +20,12 @@ export default function Services() {
           </div>
         </FadeIn>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {SERVICES.map((s, i) => (
             <FadeIn key={s.id} delay={i * 60}>
               <Link
                 href="/services"
-                className="group block h-full bg-white rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border border-[#D4A843]/10"
+                className="group block h-full bg-white rounded-2xl p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border border-[#D4A843]/10"
               >
                 <div className="flex items-start justify-between mb-4">
                   <span className="text-4xl" style={{ filter: "grayscale(0.2)" }}>{s.icon}</span>
