@@ -1,0 +1,421 @@
+{
+  "version": "5.0",
+  "critics": [
+    {
+      "name": "Architect",
+      "focus": "Архитектура памяти — структура, модularity, extensibility",
+      "metrics": [
+        {
+          "id": "ARCH-01",
+          "name": "Memory tiering clarity",
+          "score": 10.0,
+          "weight": 15,
+          "pass": true
+        },
+        {
+          "id": "ARCH-02",
+          "name": "SSOT enforcement",
+          "score": 10.0,
+          "weight": 20,
+          "pass": true
+        },
+        {
+          "id": "ARCH-03",
+          "name": "Schema version consistency",
+          "score": 10.0,
+          "weight": 10,
+          "pass": true
+        },
+        {
+          "id": "ARCH-04",
+          "name": "File size compliance (<250 lines)",
+          "score": 10.0,
+          "weight": 15,
+          "pass": true
+        },
+        {
+          "id": "ARCH-05",
+          "name": "Index completeness",
+          "score": 10.0,
+          "weight": 20,
+          "pass": true
+        },
+        {
+          "id": "ARCH-06",
+          "name": "Cross-reference integrity",
+          "score": 10.0,
+          "weight": 10,
+          "pass": true
+        },
+        {
+          "id": "ARCH-07",
+          "name": "Routing table coverage",
+          "score": 10.0,
+          "weight": 10,
+          "pass": true
+        }
+      ],
+      "average": 10.0
+    },
+    {
+      "name": "Boot Engineer",
+      "focus": "Boot protocol — скорость, полнота, recovery",
+      "metrics": [
+        {
+          "id": "BOOT-01",
+          "name": "Fast boot exists",
+          "score": 10.0,
+          "weight": 20,
+          "pass": true
+        },
+        {
+          "id": "BOOT-02",
+          "name": "Full boot completeness",
+          "score": 10.0,
+          "weight": 20,
+          "pass": true
+        },
+        {
+          "id": "BOOT-03",
+          "name": "Safe mode defined",
+          "score": 10.0,
+          "weight": 15,
+          "pass": true
+        },
+        {
+          "id": "BOOT-04",
+          "name": "RESUME.md single-file boot",
+          "score": 10.0,
+          "weight": 25,
+          "pass": true
+        },
+        {
+          "id": "BOOT-05",
+          "name": "Context recovery prompt",
+          "score": 10.0,
+          "weight": 10,
+          "pass": true
+        },
+        {
+          "id": "BOOT-06",
+          "name": "RESUME.md under 150 lines",
+          "score": 10.0,
+          "weight": 10,
+          "pass": true
+        }
+      ],
+      "average": 10.0
+    },
+    {
+      "name": "Execution Engineer",
+      "focus": "Execution engine — протоколы, checklist, anti-patterns",
+      "metrics": [
+        {
+          "id": "EXEC-01",
+          "name": "Execution loop defined",
+          "score": 10.0,
+          "weight": 15,
+          "pass": true
+        },
+        {
+          "id": "EXEC-02",
+          "name": "New page protocol",
+          "score": 10.0,
+          "weight": 15,
+          "pass": true
+        },
+        {
+          "id": "EXEC-03",
+          "name": "Rewrite protocol",
+          "score": 10.0,
+          "weight": 15,
+          "pass": true
+        },
+        {
+          "id": "EXEC-04",
+          "name": "Bug fix protocol",
+          "score": 10.0,
+          "weight": 15,
+          "pass": true
+        },
+        {
+          "id": "EXEC-05",
+          "name": "Pre-commit checklist",
+          "score": 10.0,
+          "weight": 20,
+          "pass": true
+        },
+        {
+          "id": "EXEC-06",
+          "name": "Anti-patterns listed",
+          "score": 10.0,
+          "weight": 10,
+          "pass": true
+        },
+        {
+          "id": "EXEC-07",
+          "name": "Code patterns file",
+          "score": 10.0,
+          "weight": 10,
+          "pass": true
+        }
+      ],
+      "average": 10.0
+    },
+    {
+      "name": "Quality Guardian",
+      "focus": "Quality pipeline — validation, GC, bug registry, metrics",
+      "metrics": [
+        {
+          "id": "QUAL-01",
+          "name": "Validate script exists",
+          "score": 10.0,
+          "weight": 15,
+          "pass": true
+        },
+        {
+          "id": "QUAL-02",
+          "name": "GC script exists",
+          "score": 10.0,
+          "weight": 15,
+          "pass": true
+        },
+        {
+          "id": "QUAL-03",
+          "name": "Writeback script exists",
+          "score": 10.0,
+          "weight": 15,
+          "pass": true
+        },
+        {
+          "id": "QUAL-04",
+          "name": "Bug registry with history",
+          "score": 10.0,
+          "weight": 20,
+          "pass": true
+        },
+        {
+          "id": "QUAL-05",
+          "name": "Quality pipeline defined",
+          "score": 10.0,
+          "weight": 15,
+          "pass": true
+        },
+        {
+          "id": "QUAL-06",
+          "name": "Benchmarks tracked",
+          "score": 10.0,
+          "weight": 10,
+          "pass": true
+        },
+        {
+          "id": "QUAL-07",
+          "name": "Stress test script",
+          "score": 10.0,
+          "weight": 10,
+          "pass": true
+        }
+      ],
+      "average": 10.0
+    },
+    {
+      "name": "Portability Tester",
+      "focus": "Может ли ЛЮБОЙ AI продолжить работу — переносимость контекста",
+      "metrics": [
+        {
+          "id": "PORT-01",
+          "name": "RESUME.md has project name",
+          "score": 10.0,
+          "weight": 8,
+          "pass": true
+        },
+        {
+          "id": "PORT-02",
+          "name": "RESUME.md has stack",
+          "score": 10.0,
+          "weight": 8,
+          "pass": true
+        },
+        {
+          "id": "PORT-03",
+          "name": "RESUME.md has design system",
+          "score": 10.0,
+          "weight": 8,
+          "pass": true
+        },
+        {
+          "id": "PORT-04",
+          "name": "RESUME.md has contacts",
+          "score": 10.0,
+          "weight": 10,
+          "pass": true
+        },
+        {
+          "id": "PORT-05",
+          "name": "RESUME.md has rules",
+          "score": 10.0,
+          "weight": 10,
+          "pass": true
+        },
+        {
+          "id": "PORT-06",
+          "name": "RESUME.md has TODO",
+          "score": 10.0,
+          "weight": 12,
+          "pass": true
+        },
+        {
+          "id": "PORT-07",
+          "name": "RESUME.md has execution loop",
+          "score": 10.0,
+          "weight": 10,
+          "pass": true
+        },
+        {
+          "id": "PORT-08",
+          "name": "RESUME.md has memory structure",
+          "score": 10.0,
+          "weight": 8,
+          "pass": true
+        },
+        {
+          "id": "PORT-09",
+          "name": "RESUME.md has writeback instruction",
+          "score": 10.0,
+          "weight": 8,
+          "pass": true
+        },
+        {
+          "id": "PORT-10",
+          "name": "RESUME.md has decisions",
+          "score": 10.0,
+          "weight": 8,
+          "pass": true
+        },
+        {
+          "id": "PORT-11",
+          "name": "Fresh AI simulation score",
+          "score": 10.0,
+          "weight": 10,
+          "pass": true
+        }
+      ],
+      "average": 10.0
+    },
+    {
+      "name": "Self-Improvement Engineer",
+      "focus": "Способность системы к самоулучшению — learnings, decisions, research freshness",
+      "metrics": [
+        {
+          "id": "SELF-01",
+          "name": "Learnings have NEVER entries",
+          "score": 10.0,
+          "weight": 15,
+          "pass": true
+        },
+        {
+          "id": "SELF-02",
+          "name": "Learnings have RULES with justification",
+          "score": 10.0,
+          "weight": 15,
+          "pass": true
+        },
+        {
+          "id": "SELF-03",
+          "name": "Decisions have full schema",
+          "score": 10.0,
+          "weight": 20,
+          "pass": true
+        },
+        {
+          "id": "SELF-04",
+          "name": "Research has freshness dates",
+          "score": 10.0,
+          "weight": 15,
+          "pass": true
+        },
+        {
+          "id": "SELF-05",
+          "name": "Post-session protocol defined",
+          "score": 10.0,
+          "weight": 15,
+          "pass": true
+        },
+        {
+          "id": "SELF-06",
+          "name": "Bug registry has lessons",
+          "score": 10.0,
+          "weight": 20,
+          "pass": true
+        }
+      ],
+      "average": 10.0
+    },
+    {
+      "name": "Website Specialization",
+      "focus": "Заточка под создание сайтов — SubpageLayout, CTA, SEO, mobile",
+      "metrics": [
+        {
+          "id": "SITE-01",
+          "name": "SubpageLayout pattern",
+          "score": 10.0,
+          "weight": 15,
+          "pass": true
+        },
+        {
+          "id": "SITE-02",
+          "name": "FadeIn pattern",
+          "score": 10.0,
+          "weight": 15,
+          "pass": true
+        },
+        {
+          "id": "SITE-03",
+          "name": "WhatsApp CTA pattern",
+          "score": 10.0,
+          "weight": 15,
+          "pass": true
+        },
+        {
+          "id": "SITE-04",
+          "name": "Design tokens documented",
+          "score": 10.0,
+          "weight": 10,
+          "pass": true
+        },
+        {
+          "id": "SITE-05",
+          "name": "Page status tracking",
+          "score": 10.0,
+          "weight": 15,
+          "pass": true
+        },
+        {
+          "id": "SITE-06",
+          "name": "Competitor research exists",
+          "score": 10.0,
+          "weight": 10,
+          "pass": true
+        },
+        {
+          "id": "SITE-07",
+          "name": "Catering design research",
+          "score": 10.0,
+          "weight": 10,
+          "pass": true
+        },
+        {
+          "id": "SITE-08",
+          "name": "Violation tracking",
+          "score": 10.0,
+          "weight": 10,
+          "pass": true
+        }
+      ],
+      "average": 10.0
+    }
+  ],
+  "grand_average": 10.0,
+  "total_metrics": 52,
+  "total_pass": 52
+}

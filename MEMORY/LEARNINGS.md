@@ -62,6 +62,7 @@
 
 ### P-005: Warm colors > cool gray для food
 - Coloracci 2026
+- **Решение:** D-003
 - **Дата:** 2026-07-03
 
 ### P-006: Micro-interactions > heavy animations
