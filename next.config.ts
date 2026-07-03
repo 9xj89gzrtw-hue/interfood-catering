@@ -5,6 +5,12 @@ const nextConfig: NextConfig = {
   experimental: {
     viewTransition: true,
   },
+  async redirects() {
+    return [
+      { source: "/wedding", destination: "/svadba", permanent: true },
+      { source: "/corporate", destination: "/korporativ", permanent: true },
+    ];
+  },
   images: {
     formats: ["image/avif", "image/webp"],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
