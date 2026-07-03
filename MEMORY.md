@@ -8,8 +8,8 @@
 > **Vercel проект:** interfood-catering (дубли удалены)  
 > **Vercel URL:** https://interfood-catering.vercel.app  
 > **GitHub Pages:** https://9xj89gzrtw-hue.github.io/interfood-catering/  
-> **Текущая версия:** v81 — Ultra WOW: 2026 Motion Design + MenuBuilder Nav Fix + Interactive Effects
-> **Процесс разработки:** v4 — Quality Pipeline v4 + 49 проверок + Метрики + Самообучение
+> **Текущая версия:** v84.1 — CI/CD 5-Agent Validation: 8 P0 fixes (calc text=, dead buttons, MenuBuilder CTA, wrong WhatsApp, Cyrillic PDF, Hero H1, step numbering, mobile cart)
+> **Процесс разработки:** CI/CD Multi-Agent Validation Layer (5 agents: UX Critic, Conversion Optimizer, Engineering, User Simulator, Product Manager)
 
 ---
 
