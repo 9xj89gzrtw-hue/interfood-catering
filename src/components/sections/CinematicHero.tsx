@@ -39,8 +39,8 @@ const MORPH_WORDS = ["Кейтеринг", "Свадьбы", "Банкеты", "
 const LONGEST_WORD = MORPH_WORDS.reduce((a, b) => (a.length > b.length ? a : b), "");
 
 const EYEBROW_TEXT = "АВТОРСКАЯ КУХНЯ С 2007 ГОДА";
-const SUBTITLE = "Ресторан выездного обслуживания в Санкт-Петербурге";
-const TRUST_ITEMS = ["3 500+ мероприятий", "18 лет на рынке", "Ответим за 30 минут"];
+const SUBTITLE = "Ресторан выездного обслуживания в Санкт-Петербурге — от 950 ₽/чел";
+const TRUST_ITEMS = ["3 500+ мероприятий", "18 лет на рынке", "Ответим за 30 минут", "от 950 ₽/чел"];
 
 // Glitch scramble charset (Cyrillic + Latin + symbols)
 const SCRAMBLE_CHARS = "АБВГДЕЖЗИКЛМНОПРСТУФХЦЧШЩЭЮЯabcdefghijklmnopqrstuvwxyz0123456789@#$%";
@@ -1017,17 +1017,21 @@ export default function CinematicHero() {
             </motion.span>
           ))}
           <br />
-          {/* Morphing word with GLITCH transition */}
-          <span
+          {/* Morphing word — clean blur/scale transition, no RGB glitch */}
+          <motion.span
+            key={wordIndex}
+            initial={{ opacity: 0, filter: "blur(8px)", scale: 0.95 }}
+            animate={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
+            exit={{ opacity: 0, filter: "blur(8px)", scale: 1.05 }}
+            transition={{ duration: 0.5, ease: EASE_PREMIUM }}
             style={{
-              position: "relative",
               display: "inline-block",
               minWidth: `${LONGEST_WORD.length}ch`,
               color: "#D4A63E",
             }}
           >
-            <GlitchText text={MORPH_WORDS[wordIndex]} active={morphing} />
-          </span>
+            {MORPH_WORDS[wordIndex]}
+          </motion.span>
         </h1>
 
         {/* ── Subtitle with blur-in ── */}

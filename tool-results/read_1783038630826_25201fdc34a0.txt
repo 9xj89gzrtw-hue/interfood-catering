@@ -1,0 +1,1303 @@
+     1→"use client";
+     2→
+     3→import { useState, useEffect, useRef, useCallback, useSyncExternalStore } from "react";
+     4→import { motion, AnimatePresence, useMotionValue, useSpring, useTransform, useScroll } from "framer-motion";
+     5→import Link from "next/link";
+     6→
+     7→/* ═══════════════════════════════════════════════════════════════
+     8→   Site Navigation v81 — Premium Interfood Catering
+     9→   
+    10→   ENHANCEMENTS:
+    11→   1. Scroll Progress Integration — thin gold line at bottom
+    12→   2. Active Section Highlight — gold underline + larger font on active
+    13→   3. Magnetic Hover on Desktop Links — subtle cursor-follow
+    14→   4. Glassmorphism Enhancement — stronger glass on scroll, gold border
+    15→   5. Mobile Menu: 3D Flip Animation — rotateY with perspective
+    16→   6. Logo Animation — stroke-dashoffset handwriting on load
+    17→
+    18→   PRESERVED:
+    19→   - Nav ALWAYS readable (white text + shadow on hero, dark when scrolled)
+    20→   - All buttons FULLY clickable (z-index: 9999)
+    21→   - Smooth color transition when scrolling past hero
+    22→   - Stagger animations on mobile links
+    23→   - Animated gold underline on desktop links
+    24→   - Spring-animated dropdown
+    25→   - Burger → X morph animation
+    26→   ═══════════════════════════════════════════════════════════════ */
+    27→
+    28→// ─── Helpers ────────────────────────────────────────────────────
+    29→const emptySubscribe = () => () => {};
+    30→function useIsMobile() {
+    31→  return useSyncExternalStore(
+    32→    emptySubscribe,
+    33→    () => typeof window !== "undefined" && window.innerWidth < 900,
+    34→    () => false
+    35→  );
+    36→}
+    37→
+    38→// ─── Data ───────────────────────────────────────────────────────
+    39→const PRIMARY_LINKS = [
+    40→  { label: "Конструктор меню", href: "#menu-builder", highlight: true },
+    41→  { label: "Услуги", href: "/services" },
+    42→  { label: "О нас", href: "/about" },
+    43→  { label: "Калькулятор", href: "/calculator" },
+    44→  { label: "Отзывы", href: "/reviews" },
+    45→  { label: "Контакты", href: "/contacts" },
+    46→];
+    47→
+    48→const MORE_LINKS: Record<string, { label: string; href: string; highlight?: boolean }[]> = {
+    49→  "Меню": [
+    50→    { label: "Полное меню", href: "/menu" },
+    51→  ],
+    52→  "Форматы": [
+    53→    { label: "Свадьбы", href: "/wedding" },
+    54→    { label: "Корпоратив", href: "/corporate" },
+    55→    { label: "Площадки", href: "/venues" },
+    56→  ],
+    57→  "Компания": [
+    58→    { label: "Команда", href: "/team" },
+    59→    { label: "Галерея", href: "/gallery" },
+    60→    { label: "Блог", href: "/blog" },
+    61→  ],
+    62→  "Помощь": [
+    63→    { label: "FAQ", href: "/faq" },
+    64→    { label: "Квиз-подбор", href: "/quiz", highlight: true },
+    65→  ],
+    66→};
+    67→
+    68→const MOBILE_GROUPS = [
+    69→  {
+    70→    title: "Навигация",
+    71→    links: [
+    72→      { label: "Конструктор меню", href: "#menu-builder", highlight: true },
+    73→      { label: "Услуги", href: "/services" },
+    74→      { label: "О нас", href: "/about" },
+    75→      { label: "Калькулятор", href: "/calculator" },
+    76→      { label: "Отзывы", href: "/reviews" },
+    77→      { label: "Контакты", href: "/contacts" },
+    78→    ],
+    79→  },
+    80→  {
+    81→    title: "Форматы",
+    82→    links: [
+    83→      { label: "Свадьбы", href: "/wedding" },
+    84→      { label: "Корпоратив", href: "/corporate" },
+    85→      { label: "Площадки", href: "/venues" },
+    86→    ],
+    87→  },
+    88→  {
+    89→    title: "Меню",
+    90→    links: [
+    91→      { label: "Полное меню", href: "/menu" },
+    92→    ],
+    93→  },
+    94→  {
+    95→    title: "Компания",
+    96→    links: [
+    97→      { label: "Команда", href: "/team" },
+    98→      { label: "Галерея", href: "/gallery" },
+    99→      { label: "Блог", href: "/blog" },
+   100→      { label: "FAQ", href: "/faq" },
+   101→      { label: "Квиз-подбор", href: "/quiz", highlight: true },
+   102→    ],
+   103→  },
+   104→];
+   105→
+   106→// Section IDs for Intersection Observer (active section highlighting)
+   107→const SECTION_IDS = ["menu-builder", "services", "about", "calculator", "reviews", "contacts"];
+   108→
+   109→// ─── SVG Icons (compact, no external deps) ─────────────────────
+   110→function WhatsAppIcon({ size = 16, color }: { size?: number; color?: string }) {
+   111→  return (
+   112→    <svg width={size} height={size} viewBox="0 0 24 24" fill={color ?? "#25D366"}>
+   113→      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+   114→    </svg>
+   115→  );
+   116→}
+   117→
+   118→function TelegramIcon({ size = 16, color }: { size?: number; color?: string }) {
+   119→  return (
+   120→    <svg width={size} height={size} viewBox="0 0 24 24" fill={color ?? "#0088cc"}>
+   121→      <path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.47.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
+   122→    </svg>
+   123→  );
+   124→}
+   125→
+   126→function ChevronIcon({ open, color }: { open: boolean; color: string }) {
+   127→  return (
+   128→    <motion.svg
+   129→      width={12}
+   130→      height={12}
+   131→      viewBox="0 0 12 12"
+   132→      fill="none"
+   133→      stroke={color}
+   134→      strokeWidth={1.5}
+   135→      strokeLinecap="round"
+   136→      animate={{ rotate: open ? 180 : 0 }}
+   137→      transition={{ type: "spring", stiffness: 300, damping: 25 }}
+   138→    >
+   139→      <path d="M2.5 4.5L6 8l3.5-3.5" />
+   140→    </motion.svg>
+   141→  );
+   142→}
+   143→
+   144→function PhoneIcon({ size = 16, color }: { size?: number; color?: string }) {
+   145→  return (
+   146→    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color ?? "currentColor"} strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+   147→      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
+   148→    </svg>
+   149→  );
+   150→}
+   151→
+   152→function EmailIcon({ size = 16, color }: { size?: number; color?: string }) {
+   153→  return (
+   154→    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color ?? "currentColor"} strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+   155→      <rect x="2" y="4" width="20" height="16" rx="2" />
+   156→      <path d="m22 7-8.97 5.7a1.94 1.94 0 01-2.06 0L2 7" />
+   157→    </svg>
+   158→  );
+   159→}
+   160→
+   161→function CloseIcon({ size = 24 }: { size?: number }) {
+   162→  return (
+   163→    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+   164→      <line x1="18" y1="6" x2="6" y2="18" />
+   165→      <line x1="6" y1="6" x2="18" y2="18" />
+   166→    </svg>
+   167→  );
+   168→}
+   169→
+   170→// ─── Spring & easing presets ────────────────────────────────────
+   171→const EASE_PREMIUM = [0.16, 1, 0.3, 1] as const;
+   172→const SPRING_SNAP = { type: "spring" as const, stiffness: 300, damping: 28 };
+   173→const SPRING_GENTLE = { type: "spring" as const, stiffness: 180, damping: 22 };
+   174→const SPRING_MAGNETIC_NAV = { type: "spring" as const, stiffness: 180, damping: 18 };
+   175→
+   176→// ═══════════════════════════════════════════════════════════════
+   177→//  Magnetic Link — subtle cursor-follow on desktop
+   178→// ═══════════════════════════════════════════════════════════════
+   179→function MagneticLink({
+   180→  children,
+   181→  href,
+   182→  style,
+   183→  className,
+   184→  onClick,
+   185→  isMobile,
+   186→  isActive,
+   187→}: {
+   188→  children: React.ReactNode;
+   189→  href: string;
+   190→  style?: React.CSSProperties;
+   191→  className?: string;
+   192→  onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
+   193→  isMobile: boolean;
+   194→  isActive?: boolean;
+   195→}) {
+   196→  const ref = useRef<HTMLAnchorElement>(null);
+   197→  const x = useMotionValue(0);
+   198→  const y = useMotionValue(0);
+   199→  const springX = useSpring(x, SPRING_MAGNETIC_NAV);
+   200→  const springY = useSpring(y, SPRING_MAGNETIC_NAV);
+   201→
+   202→  const handleMouseMove = useCallback(
+   203→    (e: React.MouseEvent) => {
+   204→      if (isMobile) return;
+   205→      const el = ref.current;
+   206→      if (!el) return;
+   207→      const rect = el.getBoundingClientRect();
+   208→      const cx = rect.left + rect.width / 2;
+   209→      const cy = rect.top + rect.height / 2;
+   210→      const dist = Math.hypot(e.clientX - cx, e.clientY - cy);
+   211→      const radius = 80;
+   212→      if (dist < radius) {
+   213→        const strength = 1 - dist / radius;
+   214→        x.set((e.clientX - cx) * strength * 0.15);
+   215→        y.set((e.clientY - cy) * strength * 0.1);
+   216→      } else {
+   217→        x.set(0);
+   218→        y.set(0);
+   219→      }
+   220→    },
+   221→    [isMobile, x, y]
+   222→  );
+   223→
+   224→  const handleMouseLeave = useCallback(() => {
+   225→    x.set(0);
+   226→    y.set(0);
+   227→  }, [x, y]);
+   228→
+   229→  return (
+   230→    <motion.a
+   231→      ref={ref}
+   232→      href={href}
+   233→      onClick={onClick}
+   234→      onMouseMove={handleMouseMove}
+   235→      onMouseLeave={handleMouseLeave}
+   236→      className={`${className || ""} ${isActive ? "nav-link-active" : ""}`}
+   237→      style={{
+   238→        ...style,
+   239→        x: springX,
+   240→        y: springY,
+   241→        display: "inline-block",
+   242→        willChange: isMobile ? "auto" : "transform",
+   243→        fontSize: isActive ? "0.82rem" : style?.fontSize,
+   244→        transition: style?.transition
+   245→          ? `${style.transition}, font-size 0.3s cubic-bezier(0.16, 1, 0.3, 1)`
+   246→          : "font-size 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+   247→      }}
+   248→    >
+   249→      {children}
+   250→      {/* Active section gold underline (persistent) */}
+   251→      {isActive && (
+   252→        <motion.span
+   253→          layoutId="nav-active-underline"
+   254→          style={{
+   255→            position: "absolute",
+   256→            bottom: 0,
+   257→            left: 0,
+   258→            right: 0,
+   259→            height: 2,
+   260→            background: "#B8860B",
+   261→            borderRadius: 1,
+   262→          }}
+   263→          transition={{ type: "spring", stiffness: 300, damping: 25 }}
+   264→        />
+   265→      )}
+   266→    </motion.a>
+   267→  );
+   268→}
+   269→
+   270→// ═══════════════════════════════════════════════════════════════
+   271→//  Logo with handwriting animation
+   272→// ═══════════════════════════════════════════════════════════════
+   273→function AnimatedLogo({ textColor, textShadow }: { textColor: string; textShadow: string }) {
+   274→  const [drawn, setDrawn] = useState(false);
+   275→
+   276→  useEffect(() => {
+   277→    const timer = setTimeout(() => setDrawn(true), 300);
+   278→    return () => clearTimeout(timer);
+   279→  }, []);
+   280→
+   281→  return (
+   282→    <Link
+   283→      href="/"
+   284→      className="vt-nav-logo"
+   285→      aria-label="Интерфуд — Главная"
+   286→      style={{
+   287→        fontFamily: "var(--font-serif)",
+   288→        fontSize: "1.1rem",
+   289→        fontWeight: 400,
+   290→        letterSpacing: "0.18em",
+   291→        color: textColor,
+   292→        textDecoration: "none",
+   293→        transition: "color 0.5s cubic-bezier(0.16, 1, 0.3, 1)",
+   294→        textShadow: textShadow,
+   295→        flexShrink: 0,
+   296→        position: "relative",
+   297→        display: "inline-flex",
+   298→        alignItems: "center",
+   299→      }}
+   300→    >
+   301→      {/* SVG handwritten logo with stroke-dashoffset animation */}
+   302→      <span style={{ position: "relative", display: "inline-flex", alignItems: "center", gap: "0.4rem" }}>
+   303→        <svg
+   304→          width="28"
+   305→          height="28"
+   306→          viewBox="0 0 40 40"
+   307→          fill="none"
+   308→          style={{
+   309→            marginRight: "0.25rem",
+   310→          }}
+   311→        >
+   312→          {/* Decorative flourish — stroke-dashoffset handwritten animation */}
+   313→          <motion.path
+   314→            d="M8 32 C8 8, 20 4, 20 20 C20 36, 32 8, 32 32"
+   315→            stroke={textColor}
+   316→            strokeWidth="1.8"
+   317→            strokeLinecap="round"
+   318→            fill="none"
+   319→            initial={{ pathLength: 0, opacity: 0.3 }}
+   320→            animate={drawn ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0.3 }}
+   321→            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+   322→            style={{
+   323→              filter: `drop-shadow(0 0 2px ${textColor === "#FFFFFF" ? "rgba(212,166,62,0.4)" : "rgba(184,134,11,0.3)"})`,
+   324→            }}
+   325→          />
+   326→          <motion.circle
+   327→            cx="20"
+   328→            cy="20"
+   329→            r="4"
+   330→            fill={textColor}
+   331→            initial={{ scale: 0, opacity: 0 }}
+   332→            animate={drawn ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
+   333→            transition={{ delay: 0.8, duration: 0.4, type: "spring", stiffness: 200 }}
+   334→          />
+   335→        </svg>
+   336→        {/* Text with stroke-dashoffset "handwriting" via clip-path reveal */}
+   337→        <span
+   338→          style={{
+   339→            position: "relative",
+   340→            display: "inline-block",
+   341→          }}
+   342→        >
+   343→          ИНТЕРФУД
+   344→          {/* Animated reveal overlay — simulates handwriting from left to right */}
+   345→          <motion.span
+   346→            aria-hidden="true"
+   347→            initial={{ scaleX: 0 }}
+   348→            animate={{ scaleX: 1 }}
+   349→            transition={{ duration: 1.0, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+   350→            style={{
+   351→              position: "absolute",
+   352→              inset: 0,
+   353→              background: textColor === "#FFFFFF" ? "#1A1714" : "#FAFAF7",
+   354→              transformOrigin: "left",
+   355→              pointerEvents: "none",
+   356→            }}
+   357→          />
+   358→        </span>
+   359→      </span>
+   360→    </Link>
+   361→  );
+   362→}
+   363→
+   364→// ─── Main Component ─────────────────────────────────────────────
+   365→export default function SiteNav() {
+   366→  const [scrolled, setScrolled] = useState(false);
+   367→  const [menuOpen, setMenuOpen] = useState(false);
+   368→  const [dropdownOpen, setDropdownOpen] = useState(false);
+   369→  const dropdownRef = useRef<HTMLDivElement>(null);
+   370→  const burgerRef = useRef<HTMLButtonElement>(null);
+   371→  const navRef = useRef<HTMLElement>(null);
+   372→  const isMobile = useIsMobile();
+   373→
+   374→  // ─── Active section tracking via IntersectionObserver ───
+   375→  const [activeSection, setActiveSection] = useState<string | null>(null);
+   376→
+   377→  useEffect(() => {
+   378→    const observer = new IntersectionObserver(
+   379→      (entries) => {
+   380→        // Find the most visible section
+   381→        const visible = entries
+   382→          .filter((e) => e.isIntersecting)
+   383→          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+   384→        if (visible.length > 0) {
+   385→          setActiveSection(visible[0].target.id);
+   386→        }
+   387→      },
+   388→      { threshold: [0.2, 0.5], rootMargin: "-80px 0px -30% 0px" }
+   389→    );
+   390→
+   391→    // Observe sections after a short delay (wait for page to render)
+   392→    const timer = setTimeout(() => {
+   393→      SECTION_IDS.forEach((id) => {
+   394→        const el = document.getElementById(id);
+   395→        if (el) observer.observe(el);
+   396→      });
+   397→    }, 500);
+   398→
+   399→    return () => {
+   400→      clearTimeout(timer);
+   401→      observer.disconnect();
+   402→    };
+   403→  }, []);
+   404→
+   405→  // ─── Scroll progress ───
+   406→  const { scrollYProgress } = useScroll();
+   407→  const scrollProgressWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+   408→
+   409→  // Derived color values
+   410→  const textColor = scrolled ? "#1A1714" : "#FFFFFF";
+   411→  const textShadow = scrolled ? "none" : "2px 4px 12px rgba(0,0,0,0.7), 0 1px 3px rgba(0,0,0,0.4)";
+   412→
+   413→  // ─── Scroll listener ──────────────────────────────────────────
+   414→  useEffect(() => {
+   415→    const onScroll = () => setScrolled(window.scrollY > 60);
+   416→    onScroll();
+   417→    window.addEventListener("scroll", onScroll, { passive: true });
+   418→    return () => window.removeEventListener("scroll", onScroll);
+   419→  }, []);
+   420→
+   421→  // ─── Body overflow when menu open ────────────────────────────
+   422→  useEffect(() => {
+   423→    if (menuOpen) {
+   424→      document.body.style.overflow = "hidden";
+   425→    } else {
+   426→      document.body.style.overflow = "";
+   427→    }
+   428→    return () => {
+   429→      document.body.style.overflow = "";
+   430→    };
+   431→  }, [menuOpen]);
+   432→
+   433→  // ─── Close handlers ──────────────────────────────────────────
+   434→  const closeMenu = useCallback(() => setMenuOpen(false), []);
+   435→  const closeDropdown = useCallback(() => setDropdownOpen(false), []);
+   436→
+   437→  // ─── Escape key closes both ──────────────────────────────────
+   438→  useEffect(() => {
+   439→    const handleKeyDown = (e: KeyboardEvent) => {
+   440→      if (e.key === "Escape") {
+   441→        if (menuOpen) closeMenu();
+   442→        if (dropdownOpen) closeDropdown();
+   443→      }
+   444→    };
+   445→    document.addEventListener("keydown", handleKeyDown);
+   446→    return () => document.removeEventListener("keydown", handleKeyDown);
+   447→  }, [menuOpen, dropdownOpen, closeMenu, closeDropdown]);
+   448→
+   449→  // ─── Click outside closes dropdown ───────────────────────────
+   450→  useEffect(() => {
+   451→    if (!dropdownOpen) return;
+   452→    const handleClick = (e: MouseEvent) => {
+   453→      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+   454→        closeDropdown();
+   455→      }
+   456→    };
+   457→    document.addEventListener("mousedown", handleClick);
+   458→    return () => document.removeEventListener("mousedown", handleClick);
+   459→  }, [dropdownOpen, closeDropdown]);
+   460→
+   461→  // ─── Burger line color ───────────────────────────────────────
+   462→  const burgerLineColor = menuOpen ? "#1A1714" : scrolled ? "#1A1714" : "#FFFFFF";
+   463→
+   464→  // ─── Helper: check if link matches active section ───
+   465→  const isLinkActive = useCallback(
+   466→    (href: string) => {
+   467→      if (href.startsWith("#")) {
+   468→        return activeSection === href.slice(1);
+   469→      }
+   470→      return false;
+   471→    },
+   472→    [activeSection]
+   473→  );
+   474→
+   475→  return (
+   476→    <>
+   477→      {/* ═══════════════════════════════════════════════════════════
+   478→          NAV BAR — fixed, z-9999, transparent on hero → glass on scroll
+   479→          ═══════════════════════════════════════════════════════════ */}
+   480→      <nav
+   481→        ref={navRef}
+   482→        role="navigation"
+   483→        aria-label="Основная навигация"
+   484→        style={{
+   485→          position: "fixed",
+   486→          top: 0,
+   487→          left: 0,
+   488→          right: 0,
+   489→          zIndex: 9999,
+   490→          padding: scrolled ? "0.65rem 0" : "1.25rem 0",
+   491→          background: scrolled
+   492→            ? "rgba(250,250,247,0.75)"
+   493→            : "transparent",
+   494→          backdropFilter: scrolled ? "blur(24px) saturate(200%)" : "none",
+   495→          WebkitBackdropFilter: scrolled ? "blur(24px) saturate(200%)" : "none",
+   496→          borderBottom: scrolled
+   497→            ? "1px solid rgba(184,134,11,0.18)"
+   498→            : "1px solid transparent",
+   499→          boxShadow: scrolled
+   500→            ? "0 1px 24px rgba(0,0,0,0.06), 0 0 0 1px rgba(184,134,11,0.05)"
+   501→            : "none",
+   502→          transition: "all 0.5s cubic-bezier(0.16, 1, 0.3, 1)",
+   503→          pointerEvents: "auto",
+   504→        }}
+   505→      >
+   506→        <div
+   507→          style={{
+   508→            maxWidth: 1320,
+   509→            margin: "0 auto",
+   510→            padding: "0 2rem",
+   511→            display: "flex",
+   512→            alignItems: "center",
+   513→            justifyContent: "space-between",
+   514→          }}
+   515→        >
+   516→          {/* ─── Logo with handwriting animation ─── */}
+   517→          <AnimatedLogo textColor={textColor} textShadow={textShadow} />
+   518→
+   519→          {/* ─── Desktop Links (with magnetic hover) ─── */}
+   520→          <ul
+   521→            style={{
+   522→              display: "flex",
+   523→              alignItems: "center",
+   524→              gap: "2rem",
+   525→              listStyle: "none",
+   526→              margin: 0,
+   527→              padding: 0,
+   528→            }}
+   529→            className="nav-desktop-links"
+   530→          >
+   531→            {PRIMARY_LINKS.map((item, i) => (
+   532→              <motion.li
+   533→                key={item.href}
+   534→                initial={{ opacity: 0, y: -10 }}
+   535→                animate={{ opacity: 1, y: 0 }}
+   536→                transition={{ delay: 0.1 + i * 0.04, duration: 0.5, ease: EASE_PREMIUM }}
+   537→              >
+   538→                <MagneticLink
+   539→                  href={item.href}
+   540→                  isMobile={isMobile}
+   541→                  isActive={isLinkActive(item.href)}
+   542→                  onClick={(e) => {
+   543→                    if (item.href.startsWith("#")) {
+   544→                      e.preventDefault();
+   545→                      document.querySelector(item.href)?.scrollIntoView({ behavior: "smooth" });
+   546→                    }
+   547→                  }}
+   548→                  className="nav-link-animated"
+   549→                  style={{
+   550→                    fontSize: "0.78rem",
+   551→                    letterSpacing: "0.14em",
+   552→                    textTransform: "uppercase" as const,
+   553→                    fontWeight: isLinkActive(item.href) ? 600 : item.highlight ? 600 : 500,
+   554→                    color: isLinkActive(item.href)
+   555→                      ? "#B8860B"
+   556→                      : item.highlight
+   557→                        ? "#B8860B"
+   558→                        : textColor,
+   559→                    textDecoration: "none",
+   560→                    position: "relative",
+   561→                    transition: "color 0.5s cubic-bezier(0.16, 1, 0.3, 1)",
+   562→                    textShadow: item.highlight || isLinkActive(item.href) ? "none" : textShadow,
+   563→                    padding: "0.5rem 0",
+   564→                  }}
+   565→                >
+   566→                  {item.label}
+   567→                </MagneticLink>
+   568→              </motion.li>
+   569→            ))}
+   570→
+   571→            {/* ─── "Ещё" Dropdown ─────────────────────────────── */}
+   572→            <li ref={dropdownRef as React.Ref<HTMLLIElement>} style={{ position: "relative" }}>
+   573→              <button
+   574→                onClick={() => setDropdownOpen(!dropdownOpen)}
+   575→                aria-expanded={dropdownOpen}
+   576→                aria-haspopup="true"
+   577→                style={{
+   578→                  background: "none",
+   579→                  border: "none",
+   580→                  color: textColor,
+   581→                  fontFamily: "inherit",
+   582→                  fontSize: "0.78rem",
+   583→                  letterSpacing: "0.14em",
+   584→                  textTransform: "uppercase" as const,
+   585→                  fontWeight: 500,
+   586→                  cursor: "pointer",
+   587→                  display: "flex",
+   588→                  alignItems: "center",
+   589→                  gap: "0.35rem",
+   590→                  padding: "0.5rem 0",
+   591→                  transition: "color 0.5s cubic-bezier(0.16, 1, 0.3, 1)",
+   592→                  textShadow: textShadow,
+   593→                }}
+   594→                className="nav-link-animated"
+   595→              >
+   596→                Ещё
+   597→                <ChevronIcon open={dropdownOpen} color={textColor} />
+   598→              </button>
+   599→
+   600→              <AnimatePresence>
+   601→                {dropdownOpen && (
+   602→                  <motion.div
+   603→                    initial={{ opacity: 0, y: -8, scale: 0.96 }}
+   604→                    animate={{ opacity: 1, y: 0, scale: 1 }}
+   605→                    exit={{ opacity: 0, y: -8, scale: 0.96 }}
+   606→                    transition={{ type: "spring", stiffness: 260, damping: 24 }}
+   607→                    style={{
+   608→                      position: "absolute",
+   609→                      top: "calc(100% + 8px)",
+   610→                      right: 0,
+   611→                      background: "rgba(26,23,20,0.95)",
+   612→                      backdropFilter: "blur(24px)",
+   613→                      WebkitBackdropFilter: "blur(24px)",
+   614→                      borderRadius: "14px",
+   615→                      padding: "1.25rem",
+   616→                      minWidth: "230px",
+   617→                      boxShadow: "0 16px 48px rgba(0,0,0,0.5)",
+   618→                      border: "1px solid rgba(184,134,11,0.15)",
+   619→                      zIndex: 10000,
+   620→                      pointerEvents: "auto",
+   621→                    }}
+   622→                  >
+   623→                    {Object.entries(MORE_LINKS).map(([groupTitle, links], gi) => (
+   624→                      <div
+   625→                        key={groupTitle}
+   626→                        style={{
+   627→                          marginTop: gi > 0 ? "0.85rem" : 0,
+   628→                          paddingTop: gi > 0 ? "0.85rem" : 0,
+   629→                          borderTop: gi > 0 ? "1px solid rgba(184,134,11,0.12)" : "none",
+   630→                        }}
+   631→                      >
+   632→                        <div
+   633→                          style={{
+   634→                            fontSize: "0.55rem",
+   635→                            textTransform: "uppercase",
+   636→                            letterSpacing: "0.2em",
+   637→                            color: "#B8860B",
+   638→                            marginBottom: "0.35rem",
+   639→                            fontWeight: 600,
+   640→                          }}
+   641→                        >
+   642→                          {groupTitle}
+   643→                        </div>
+   644→                        {links.map((link) => (
+   645→                          <Link
+   646→                            key={link.href}
+   647→                            href={link.href}
+   648→                            onClick={(e) => {
+   649→                              if (link.href.startsWith("#")) {
+   650→                                e.preventDefault();
+   651→                                document.querySelector(link.href)?.scrollIntoView({ behavior: "smooth" });
+   652→                              }
+   653→                              closeDropdown();
+   654→                            }}
+   655→                            style={{
+   656→                              display: "block",
+   657→                              padding: "0.45rem 0.5rem",
+   658→                              color: link.highlight ? "#D4A63E" : "rgba(240,235,225,0.75)",
+   659→                              textDecoration: "none",
+   660→                              fontSize: "0.85rem",
+   661→                              borderRadius: "8px",
+   662→                              transition: "background 0.2s, color 0.2s",
+   663→                              fontWeight: link.highlight ? 600 : 400,
+   664→                            }}
+   665→                            onMouseEnter={(e) => {
+   666→                              e.currentTarget.style.background = "rgba(184,134,11,0.08)";
+   667→                              e.currentTarget.style.color = "#FFFFFF";
+   668→                            }}
+   669→                            onMouseLeave={(e) => {
+   670→                              e.currentTarget.style.background = "transparent";
+   671→                              e.currentTarget.style.color = link.highlight ? "#D4A63E" : "rgba(240,235,225,0.75)";
+   672→                            }}
+   673→                          >
+   674→                            {link.label}
+   675→                          </Link>
+   676→                        ))}
+   677→                      </div>
+   678→                    ))}
+   679→                  </motion.div>
+   680→                )}
+   681→              </AnimatePresence>
+   682→            </li>
+   683→
+   684→            {/* ─── Phone + WA/TG ──────────────────────────────── */}
+   685→            <li style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+   686→              <a
+   687→                href="tel:+78129195911"
+   688→                style={{
+   689→                  color: "#B8860B",
+   690→                  fontSize: "0.82rem",
+   691→                  fontWeight: 600,
+   692→                  letterSpacing: "0.06em",
+   693→                  textDecoration: "none",
+   694→                  transition: "color 0.3s",
+   695→                  textShadow: "none",
+   696→                }}
+   697→              >
+   698→                +7 (812) 919-59-11
+   699→              </a>
+   700→              <a
+   701→                href="https://wa.me/79119417205"
+   702→                target="_blank"
+   703→                rel="noopener noreferrer"
+   704→                aria-label="WhatsApp"
+   705→                style={{
+   706→                  display: "inline-flex",
+   707→                  alignItems: "center",
+   708→                  justifyContent: "center",
+   709→                  width: 26,
+   710→                  height: 26,
+   711→                  borderRadius: "50%",
+   712→                  transition: "opacity 0.2s, transform 0.2s",
+   713→                  opacity: 0.75,
+   714→                  flexShrink: 0,
+   715→                }}
+   716→                onMouseEnter={(e) => { e.currentTarget.style.opacity = "1"; e.currentTarget.style.transform = "scale(1.15)"; }}
+   717→                onMouseLeave={(e) => { e.currentTarget.style.opacity = "0.75"; e.currentTarget.style.transform = "scale(1)"; }}
+   718→              >
+   719→                <WhatsAppIcon size={17} />
+   720→              </a>
+   721→              <a
+   722→                href="https://t.me/nilov_catering"
+   723→                target="_blank"
+   724→                rel="noopener noreferrer"
+   725→                aria-label="Telegram"
+   726→                style={{
+   727→                  display: "inline-flex",
+   728→                  alignItems: "center",
+   729→                  justifyContent: "center",
+   730→                  width: 26,
+   731→                  height: 26,
+   732→                  borderRadius: "50%",
+   733→                  transition: "opacity 0.2s, transform 0.2s",
+   734→                  opacity: 0.75,
+   735→                  flexShrink: 0,
+   736→                }}
+   737→                onMouseEnter={(e) => { e.currentTarget.style.opacity = "1"; e.currentTarget.style.transform = "scale(1.15)"; }}
+   738→                onMouseLeave={(e) => { e.currentTarget.style.opacity = "0.75"; e.currentTarget.style.transform = "scale(1)"; }}
+   739→              >
+   740→                <TelegramIcon size={17} />
+   741→              </a>
+   742→            </li>
+   743→
+   744→            {/* ─── CTA Button ─────────────────────────────────── */}
+   745→            <li>
+   746→              <Link
+   747→                href="/contacts"
+   748→                style={{
+   749→                  display: "inline-flex",
+   750→                  alignItems: "center",
+   751→                  padding: "0.55rem 1.3rem",
+   752→                  background: "#B8860B",
+   753→                  color: "#FFFFFF",
+   754→                  borderRadius: 60,
+   755→                  fontWeight: 600,
+   756→                  fontSize: "0.75rem",
+   757→                  letterSpacing: "0.12em",
+   758→                  textTransform: "uppercase" as const,
+   759→                  textDecoration: "none",
+   760→                  transition: "all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)",
+   761→                  textShadow: "none",
+   762→                  position: "relative",
+   763→                  overflow: "hidden",
+   764→                }}
+   765→                className="nav-cta-pulse-btn"
+   766→                onMouseEnter={(e) => {
+   767→                  e.currentTarget.style.transform = "scale(1.06)";
+   768→                  e.currentTarget.style.boxShadow = "0 4px 20px rgba(184,134,11,0.35)";
+   769→                }}
+   770→                onMouseLeave={(e) => {
+   771→                  e.currentTarget.style.transform = "scale(1)";
+   772→                  e.currentTarget.style.boxShadow = "none";
+   773→                }}
+   774→              >
+   775→                Расчёт за 30 мин
+   776→              </Link>
+   777→            </li>
+   778→          </ul>
+   779→
+   780→          {/* ─── Burger Button (mobile) ────────────────────────── */}
+   781→          <button
+   782→            ref={burgerRef}
+   783→            onClick={() => setMenuOpen(!menuOpen)}
+   784→            aria-label={menuOpen ? "Закрыть меню" : "Открыть меню"}
+   785→            aria-expanded={menuOpen}
+   786→            style={{
+   787→              flexDirection: "column",
+   788→              gap: 5,
+   789→              background: "none",
+   790→              border: "none",
+   791→              cursor: "pointer",
+   792→              padding: 8,
+   793→              zIndex: 10001,
+   794→              position: "relative",
+   795→            }}
+   796→            className="burger"
+   797→          >
+   798→            <motion.span
+   799→              animate={{
+   800→                rotate: menuOpen ? 45 : 0,
+   801→                y: menuOpen ? 6.5 : 0,
+   802→                background: burgerLineColor,
+   803→              }}
+   804→              transition={SPRING_SNAP}
+   805→              style={{
+   806→                display: "block",
+   807→                width: 22,
+   808→                height: 1.5,
+   809→                background: burgerLineColor,
+   810→                transformOrigin: "center",
+   811→                transition: "background 0.5s",
+   812→              }}
+   813→            />
+   814→            <motion.span
+   815→              animate={{
+   816→                opacity: menuOpen ? 0 : 1,
+   817→                scaleX: menuOpen ? 0 : 1,
+   818→                background: burgerLineColor,
+   819→              }}
+   820→              transition={SPRING_SNAP}
+   821→              style={{
+   822→                display: "block",
+   823→                width: 22,
+   824→                height: 1.5,
+   825→                background: burgerLineColor,
+   826→                transformOrigin: "center",
+   827→                transition: "background 0.5s",
+   828→              }}
+   829→            />
+   830→            <motion.span
+   831→              animate={{
+   832→                rotate: menuOpen ? -45 : 0,
+   833→                y: menuOpen ? -6.5 : 0,
+   834→                background: burgerLineColor,
+   835→              }}
+   836→              transition={SPRING_SNAP}
+   837→              style={{
+   838→                display: "block",
+   839→                width: 22,
+   840→                height: 1.5,
+   841→                background: burgerLineColor,
+   842→                transformOrigin: "center",
+   843→                transition: "background 0.5s",
+   844→              }}
+   845→            />
+   846→          </button>
+   847→        </div>
+   848→
+   849→        {/* ─── Scroll Progress Line ─── */}
+   850→        <motion.div
+   851→          aria-hidden="true"
+   852→          style={{
+   853→            position: "absolute",
+   854→            bottom: 0,
+   855→            left: 0,
+   856→            height: 2,
+   857→            background: "linear-gradient(90deg, #B8860B, #D4A63E, #E5BF65)",
+   858→            width: scrollProgressWidth,
+   859→            borderRadius: "0 1px 1px 0",
+   860→            boxShadow: "0 0 6px rgba(184,134,11,0.3)",
+   861→            opacity: scrolled ? 1 : 0,
+   862→            transition: "opacity 0.3s ease",
+   863→          }}
+   864→        />
+   865→      </nav>
+   866→
+   867→      {/* ═══════════════════════════════════════════════════════════
+   868→          FULLSCREEN MOBILE MENU — 3D Flip Animation
+   869→          ═══════════════════════════════════════════════════════════ */}
+   870→      <AnimatePresence>
+   871→        {menuOpen && (
+   872→          <motion.div
+   873→            key="mobile-menu-flip"
+   874→            initial={{ rotateY: -90, opacity: 0 }}
+   875→            animate={{ rotateY: 0, opacity: 1 }}
+   876→            exit={{ rotateY: 90, opacity: 0 }}
+   877→            transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+   878→            style={{
+   879→              position: "fixed",
+   880→              inset: 0,
+   881→              zIndex: 10002,
+   882→              background: "linear-gradient(170deg, #1A1714 0%, #2C261E 50%, #3D3529 100%)",
+   883→              overflowY: "auto",
+   884→              WebkitOverflowScrolling: "touch",
+   885→              padding: "5rem 2rem 2rem",
+   886→              paddingBottom: "calc(2rem + env(safe-area-inset-bottom, 0px))",
+   887→              display: "flex",
+   888→              flexDirection: "column",
+   889→              pointerEvents: "auto",
+   890→              perspective: "1200px",
+   891→              transformOrigin: "right center",
+   892→              backfaceVisibility: "hidden",
+   893→            }}
+   894→          >
+   895→            {/* Grain texture overlay */}
+   896→            <div
+   897→              aria-hidden="true"
+   898→              style={{
+   899→                position: "absolute",
+   900→                inset: 0,
+   901→                backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E\")",
+   902→                backgroundRepeat: "repeat",
+   903→                pointerEvents: "none",
+   904→                opacity: 0.5,
+   905→              }}
+   906→            />
+   907→
+   908→            {/* Close button — 48px touch target */}
+   909→            <motion.button
+   910→              initial={{ opacity: 0, scale: 0.8 }}
+   911→              animate={{ opacity: 1, scale: 1 }}
+   912→              transition={{ delay: 0.35, ...SPRING_GENTLE }}
+   913→              onClick={closeMenu}
+   914→              aria-label="Закрыть меню"
+   915→              style={{
+   916→                position: "absolute",
+   917→                top: "1.25rem",
+   918→                right: "1.25rem",
+   919→                width: 48,
+   920→                height: 48,
+   921→                display: "flex",
+   922→                alignItems: "center",
+   923→                justifyContent: "center",
+   924→                background: "rgba(255,255,255,0.08)",
+   925→                border: "1px solid rgba(255,255,255,0.12)",
+   926→                borderRadius: "50%",
+   927→                cursor: "pointer",
+   928→                color: "#FAFAF7",
+   929→                transition: "background 0.2s",
+   930→                zIndex: 10003,
+   931→              }}
+   932→              onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.15)"; }}
+   933→              onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.08)"; }}
+   934→            >
+   935→              <CloseIcon size={22} />
+   936→            </motion.button>
+   937→
+   938→            {/* Home link */}
+   939→            <motion.div
+   940→              initial={{ opacity: 0, x: 30 }}
+   941→              animate={{ opacity: 1, x: 0 }}
+   942→              transition={{ delay: 0.2, duration: 0.5, ease: EASE_PREMIUM }}
+   943→              style={{ marginBottom: "0.5rem" }}
+   944→            >
+   945→              <Link
+   946→                href="/"
+   947→                onClick={closeMenu}
+   948→                style={{
+   949→                  color: "#FAFAF7",
+   950→                  textDecoration: "none",
+   951→                  fontFamily: "var(--font-serif)",
+   952→                  fontSize: "1.2rem",
+   953→                  fontWeight: 400,
+   954→                  letterSpacing: "0.08em",
+   955→                  padding: "0.5rem 0.25rem",
+   956→                  minHeight: 44,
+   957→                  display: "flex",
+   958→                  alignItems: "center",
+   959→                  transition: "color 0.3s",
+   960→                }}
+   961→                onMouseEnter={(e) => { e.currentTarget.style.color = "#B8860B"; }}
+   962→                onMouseLeave={(e) => { e.currentTarget.style.color = "#FAFAF7"; }}
+   963→              >
+   964→                Главная
+   965→              </Link>
+   966→            </motion.div>
+   967→
+   968→            {/* Link groups with stagger animation */}
+   969→            {MOBILE_GROUPS.map((group, gi) => (
+   970→              <div key={group.title} style={{ marginTop: "0.75rem" }}>
+   971→                <motion.div
+   972→                  initial={{ opacity: 0, x: 20 }}
+   973→                  animate={{ opacity: 1, x: 0 }}
+   974→                  transition={{ delay: 0.25 + gi * 0.08, duration: 0.5, ease: EASE_PREMIUM }}
+   975→                  style={{
+   976→                    fontSize: "0.6rem",
+   977→                    textTransform: "uppercase",
+   978→                    letterSpacing: "0.2em",
+   979→                    color: "#B8860B",
+   980→                    marginBottom: "0.3rem",
+   981→                    fontWeight: 600,
+   982→                    paddingLeft: "0.25rem",
+   983→                  }}
+   984→                >
+   985→                  {group.title}
+   986→                </motion.div>
+   987→                {group.links.map((link, li) => (
+   988→                  <motion.div
+   989→                    key={link.href}
+   990→                    initial={{ opacity: 0, x: 30 }}
+   991→                    animate={{ opacity: 1, x: 0 }}
+   992→                    transition={{
+   993→                      delay: 0.3 + gi * 0.08 + li * 0.05,
+   994→                      duration: 0.5,
+   995→                      ease: EASE_PREMIUM,
+   996→                    }}
+   997→                  >
+   998→                    <Link
+   999→                      href={link.href}
+  1000→                      onClick={(e) => {
+  1001→                        if (link.href.startsWith("#")) {
+  1002→                          e.preventDefault();
+  1003→                          document.querySelector(link.href)?.scrollIntoView({ behavior: "smooth" });
+  1004→                        }
+  1005→                        closeMenu();
+  1006→                      }}
+  1007→                      style={{
+  1008→                        display: "flex",
+  1009→                        alignItems: "center",
+  1010→                        padding: "0.65rem 0.5rem",
+  1011→                        color: link.highlight ? "#B8860B" : "#FAFAF7",
+  1012→                        fontWeight: link.highlight ? 600 : 400,
+  1013→                        fontSize: "0.95rem",
+  1014→                        fontFamily: "var(--font-serif)",
+  1015→                        minHeight: 44,
+  1016→                        textDecoration: "none",
+  1017→                        transition: "color 0.3s, padding-left 0.3s",
+  1018→                      }}
+  1019→                      onMouseEnter={(e) => {
+  1020→                        e.currentTarget.style.color = "#B8860B";
+  1021→                        e.currentTarget.style.paddingLeft = "0.75rem";
+  1022→                      }}
+  1023→                      onMouseLeave={(e) => {
+  1024→                        e.currentTarget.style.color = link.highlight ? "#B8860B" : "#FAFAF7";
+  1025→                        e.currentTarget.style.paddingLeft = "0.5rem";
+  1026→                      }}
+  1027→                    >
+  1028→                      {link.label}
+  1029→                      {link.highlight && (
+  1030→                        <span
+  1031→                          style={{
+  1032→                            marginLeft: "0.5rem",
+  1033→                            fontSize: "0.5rem",
+  1034→                            background: "#B8860B",
+  1035→                            color: "#FFFFFF",
+  1036→                            padding: "0.12rem 0.4rem",
+  1037→                            borderRadius: 4,
+  1038→                            fontWeight: 700,
+  1039→                            textTransform: "uppercase",
+  1040→                            letterSpacing: "0.1em",
+  1041→                          }}
+  1042→                        >
+  1043→                          new
+  1044→                        </span>
+  1045→                      )}
+  1046→                    </Link>
+  1047→                  </motion.div>
+  1048→                ))}
+  1049→              </div>
+  1050→            ))}
+  1051→
+  1052→            {/* ─── "Написать нам" section ─────────────────────── */}
+  1053→            <motion.div
+  1054→              initial={{ opacity: 0, y: 20 }}
+  1055→              animate={{ opacity: 1, y: 0 }}
+  1056→              transition={{ delay: 0.5, duration: 0.5, ease: EASE_PREMIUM }}
+  1057→              style={{
+  1058→                marginTop: "1.5rem",
+  1059→                paddingTop: "1rem",
+  1060→                borderTop: "1px solid rgba(184,134,11,0.2)",
+  1061→              }}
+  1062→            >
+  1063→              <div
+  1064→                style={{
+  1065→                  fontSize: "0.6rem",
+  1066→                  textTransform: "uppercase",
+  1067→                  letterSpacing: "0.2em",
+  1068→                  color: "#B8860B",
+  1069→                  marginBottom: "0.75rem",
+  1070→                  fontWeight: 600,
+  1071→                  paddingLeft: "0.25rem",
+  1072→                }}
+  1073→              >
+  1074→                Написать нам
+  1075→              </div>
+  1076→              <div style={{ display: "flex", gap: "0.75rem", paddingLeft: "0.25rem" }}>
+  1077→                <a
+  1078→                  href="https://wa.me/79119417205"
+  1079→                  target="_blank"
+  1080→                  rel="noopener noreferrer"
+  1081→                  onClick={closeMenu}
+  1082→                  style={{
+  1083→                    display: "flex",
+  1084→                    alignItems: "center",
+  1085→                    gap: "0.5rem",
+  1086→                    padding: "0.65rem 1rem",
+  1087→                    minHeight: 48,
+  1088→                    borderRadius: 12,
+  1089→                    background: "rgba(37,211,102,0.1)",
+  1090→                    border: "1px solid rgba(37,211,102,0.25)",
+  1091→                    color: "#FAFAF7",
+  1092→                    textDecoration: "none",
+  1093→                    fontSize: "0.85rem",
+  1094→                    fontWeight: 500,
+  1095→                    transition: "background 0.2s",
+  1096→                  }}
+  1097→                  onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(37,211,102,0.2)"; }}
+  1098→                  onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(37,211,102,0.1)"; }}
+  1099→                >
+  1100→                  <WhatsAppIcon size={20} color="#25D366" />
+  1101→                  WhatsApp
+  1102→                </a>
+  1103→                <a
+  1104→                  href="https://t.me/nilov_catering"
+  1105→                  target="_blank"
+  1106→                  rel="noopener noreferrer"
+  1107→                  onClick={closeMenu}
+  1108→                  style={{
+  1109→                    display: "flex",
+  1110→                    alignItems: "center",
+  1111→                    gap: "0.5rem",
+  1112→                    padding: "0.65rem 1rem",
+  1113→                    minHeight: 48,
+  1114→                    borderRadius: 12,
+  1115→                    background: "rgba(0,136,204,0.1)",
+  1116→                    border: "1px solid rgba(0,136,204,0.25)",
+  1117→                    color: "#FAFAF7",
+  1118→                    textDecoration: "none",
+  1119→                    fontSize: "0.85rem",
+  1120→                    fontWeight: 500,
+  1121→                    transition: "background 0.2s",
+  1122→                  }}
+  1123→                  onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(0,136,204,0.2)"; }}
+  1124→                  onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(0,136,204,0.1)"; }}
+  1125→                >
+  1126→                  <TelegramIcon size={20} color="#0088cc" />
+  1127→                  Telegram
+  1128→                </a>
+  1129→              </div>
+  1130→            </motion.div>
+  1131→
+  1132→            {/* ─── Bottom contact section ──────────────────────── */}
+  1133→            <motion.div
+  1134→              initial={{ opacity: 0, y: 20 }}
+  1135→              animate={{ opacity: 1, y: 0 }}
+  1136→              transition={{ delay: 0.6, duration: 0.5, ease: EASE_PREMIUM }}
+  1137→              style={{
+  1138→                marginTop: "1.5rem",
+  1139→                paddingTop: "1rem",
+  1140→                borderTop: "1px solid rgba(184,134,11,0.2)",
+  1141→              }}
+  1142→            >
+  1143→              {/* Phone */}
+  1144→              <a
+  1145→                href="tel:+78129195911"
+  1146→                style={{
+  1147→                  color: "#B8860B",
+  1148→                  fontSize: "1.1rem",
+  1149→                  display: "flex",
+  1150→                  padding: "0.5rem 0.25rem",
+  1151→                  minHeight: 44,
+  1152→                  alignItems: "center",
+  1153→                  gap: "0.5rem",
+  1154→                  textDecoration: "none",
+  1155→                  transition: "opacity 0.2s",
+  1156→                }}
+  1157→              >
+  1158→                <PhoneIcon size={16} color="#B8860B" />
+  1159→                +7 (812) 919-59-11
+  1160→              </a>
+  1161→
+  1162→              {/* Email */}
+  1163→              <a
+  1164→                href="mailto:info@interfood-catering.ru"
+  1165→                style={{
+  1166→                  color: "rgba(250,250,247,0.6)",
+  1167→                  fontSize: "0.9rem",
+  1168→                  display: "flex",
+  1169→                  padding: "0.5rem 0.25rem",
+  1170→                  minHeight: 44,
+  1171→                  alignItems: "center",
+  1172→                  gap: "0.5rem",
+  1173→                  textDecoration: "none",
+  1174→                  transition: "color 0.2s",
+  1175→                }}
+  1176→                onMouseEnter={(e) => { e.currentTarget.style.color = "#FAFAF7"; }}
+  1177→                onMouseLeave={(e) => { e.currentTarget.style.color = "rgba(250,250,247,0.6)"; }}
+  1178→              >
+  1179→                <EmailIcon size={16} color="rgba(250,250,247,0.6)" />
+  1180→                info@interfood-catering.ru
+  1181→              </a>
+  1182→
+  1183→              {/* CTA Button */}
+  1184→              <motion.div
+  1185→                initial={{ opacity: 0, y: 10 }}
+  1186→                animate={{ opacity: 1, y: 0 }}
+  1187→                transition={{ delay: 0.7, duration: 0.5, ease: EASE_PREMIUM }}
+  1188→              >
+  1189→                <Link
+  1190→                  href="/contacts"
+  1191→                  onClick={closeMenu}
+  1192→                  style={{
+  1193→                    display: "block",
+  1194→                    textAlign: "center",
+  1195→                    padding: "0.85rem",
+  1196→                    minHeight: 48,
+  1197→                    background: "#B8860B",
+  1198→                    color: "#FFFFFF",
+  1199→                    borderRadius: 60,
+  1200→                    textDecoration: "none",
+  1201→                    fontWeight: 600,
+  1202→                    fontSize: "0.8rem",
+  1203→                    letterSpacing: "0.12em",
+  1204→                    textTransform: "uppercase",
+  1205→                    marginTop: "1rem",
+  1206→                    transition: "all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)",
+  1207→                  }}
+  1208→                  onMouseEnter={(e) => {
+  1209→                    e.currentTarget.style.transform = "scale(1.03)";
+  1210→                    e.currentTarget.style.boxShadow = "0 4px 24px rgba(184,134,11,0.4)";
+  1211→                  }}
+  1212→                  onMouseLeave={(e) => {
+  1213→                    e.currentTarget.style.transform = "scale(1)";
+  1214→                    e.currentTarget.style.boxShadow = "none";
+  1215→                  }}
+  1216→                >
+  1217→                  Заказать кейтеринг
+  1218→                </Link>
+  1219→              </motion.div>
+  1220→            </motion.div>
+  1221→          </motion.div>
+  1222→        )}
+  1223→      </AnimatePresence>
+  1224→
+  1225→      {/* ═══════════════════════════════════════════════════════════
+  1226→          GLOBAL STYLES — animated underline, CTA pulse, active link,
+  1227→          responsive burger/nav visibility, and scrollbar
+  1228→          ═══════════════════════════════════════════════════════════ */}
+  1229→      <style jsx global>{`
+  1230→        /* Animated gold underline for desktop nav links */
+  1231→        .nav-link-animated::after {
+  1232→          content: "";
+  1233→          position: absolute;
+  1234→          bottom: 0;
+  1235→          left: 0;
+  1236→          width: 0;
+  1237→          height: 1.5px;
+  1238→          background: #B8860B;
+  1239→          transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  1240→        }
+  1241→        .nav-link-animated:hover::after {
+  1242→          width: 100%;
+  1243→        }
+  1244→
+  1245→        /* Active section link — persistent gold underline */
+  1246→        .nav-link-active::after {
+  1247→          width: 100% !important;
+  1248→          height: 2px !important;
+  1249→        }
+  1250→
+  1251→        /* CTA pulse animation */
+  1252→        @keyframes nav-cta-glow {
+  1253→          0%, 100% { box-shadow: 0 0 0 0 rgba(184,134,11,0); }
+  1254→          50% { box-shadow: 0 0 0 6px rgba(184,134,11,0.15); }
+  1255→        }
+  1256→        .nav-cta-pulse-btn {
+  1257→          animation: nav-cta-glow 3s ease-in-out infinite;
+  1258→        }
+  1259→
+  1260→        /* Responsive: show burger on mobile, hide desktop links */
+  1261→        @media (max-width: 900px) {
+  1262→          .nav-desktop-links {
+  1263→            display: none !important;
+  1264→          }
+  1265→          .burger {
+  1266→            display: flex !important;
+  1267→          }
+  1268→        }
+  1269→        @media (min-width: 901px) {
+  1270→          .burger {
+  1271→            display: none !important;
+  1272→          }
+  1273→          .nav-desktop-links {
+  1274→            display: flex !important;
+  1275→          }
+  1276→        }
+  1277→
+  1278→        /* Mobile menu custom scrollbar */
+  1279→        .mobile-menu-scroll::-webkit-scrollbar {
+  1280→          width: 4px;
+  1281→        }
+  1282→        .mobile-menu-scroll::-webkit-scrollbar-track {
+  1283→          background: transparent;
+  1284→        }
+  1285→        .mobile-menu-scroll::-webkit-scrollbar-thumb {
+  1286→          background: rgba(184,134,11,0.3);
+  1287→          border-radius: 4px;
+  1288→        }
+  1289→
+  1290→        /* Reduced motion: disable magnetic hover, logo animation, flip */
+  1291→        @media (prefers-reduced-motion: reduce) {
+  1292→          .nav-link-animated::after {
+  1293→            transition: none;
+  1294→          }
+  1295→          .nav-cta-pulse-btn {
+  1296→            animation: none;
+  1297→          }
+  1298→        }
+  1299→      `}</style>
+  1300→    </>
+  1301→  );
+  1302→}
+  1303→

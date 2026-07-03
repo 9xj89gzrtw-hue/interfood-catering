@@ -1,11 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, useInView } from "framer-motion";
+import { useInView } from "framer-motion";
 
 /* ═══════════════════════════════════════════════════════════════
    CountUp — animated number counter on scroll
-   Counts from 0 to target when element enters viewport
+   v2: Shows final value immediately (no "0+" flash), 
+   then animates from 0 → target when in viewport
    ═══════════════════════════════════════════════════════════════ */
 
 interface CountUpProps {
@@ -28,12 +29,17 @@ export default function CountUp({
   style,
 }: CountUpProps) {
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
-  const [count, setCount] = useState(0);
+  const inView = useInView(ref, { once: true, margin: "-50px" });
+  const [count, setCount] = useState(target); // Start with final value — no "0+" flash
   const rafRef = useRef<number>(0);
+  const hasAnimated = useRef(false);
 
   useEffect(() => {
-    if (!inView) return;
+    if (!inView || hasAnimated.current) return;
+    hasAnimated.current = true;
+
+    // Reset to 0 and animate to target
+    setCount(0);
     const start = performance.now();
     const step = (now: number) => {
       const elapsed = now - start;
@@ -54,20 +60,25 @@ export default function CountUp({
     };
   }, [inView, target, duration]);
 
+  // Fallback: ensure final value is always shown after animation should complete
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setCount(target);
+    }, (duration + 1) * 1000);
+    return () => clearTimeout(timer);
+  }, [target, duration]);
+
   const formatted = decimals > 0
     ? count.toFixed(decimals)
     : Math.round(count).toLocaleString("ru-RU");
 
   return (
-    <motion.span
+    <span
       ref={ref}
       className={className}
       style={style}
-      initial={{ opacity: 0, y: 20 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6 }}
     >
       {prefix}{formatted}{suffix}
-    </motion.span>
+    </span>
   );
 }

@@ -1,0 +1,1480 @@
+     1→"use client";
+     2→
+     3→import { useState, useEffect, useRef, useCallback } from "react";
+     4→import {
+     5→  motion,
+     6→  AnimatePresence,
+     7→  useInView,
+     8→  useMotionValue,
+     9→  useSpring,
+    10→  useTransform,
+    11→} from "framer-motion";
+    12→import Link from "next/link";
+    13→import TextReveal from "@/components/TextReveal";
+    14→import MagneticButton from "@/components/MagneticButton";
+    15→import TiltCard from "@/components/TiltCard";
+    16→import FluidBackground from "@/components/FluidBackground";
+    17→import KineticText from "@/components/KineticText";
+    18→import MorphingBlob from "@/components/MorphingBlob";
+    19→import ConfettiButton from "@/components/ConfettiButton";
+    20→import ParticleField from "@/components/ParticleField";
+    21→import VideoBreak from "@/components/VideoBreak";
+    22→
+    23→/* ═══════════════════════════════════════════════════════════════
+    24→   ИНТЕРФУД КЕЙТЕРИНГ — Калькулятор стоимости
+    25→   Interactive price calculator with animated count-up
+    26→   ═══════════════════════════════════════════════════════════════ */
+    27→
+    28→const IMG = {
+    29→  furshet: "/images/food_general.jpg",
+    30→  banquet: "/images/furshet_food.jpg",
+    31→  coffee: "/images/banket_food1.jpg",
+    32→  wedding: "/images/gallery_3.jpg",
+    33→  corporate: "/images/wedding.jpg",
+    34→  bar: "/images/gallery_4.jpg",
+    35→};
+    36→
+    37→/* ─── Data ─── */
+    38→
+    39→const EVENT_TYPES = [
+    40→  {
+    41→    id: "furshet",
+    42→    label: "Фуршет",
+    43→    basePrice: 2450,
+    44→    img: IMG.furshet,
+    45→    desc: "Лёгкие закуски и канапе",
+    46→  },
+    47→  {
+    48→    id: "banquet",
+    49→    label: "Банкет",
+    50→    basePrice: 4470,
+    51→    img: IMG.banquet,
+    52→    desc: "Полноценный ужин с подачей",
+    53→  },
+    54→  {
+    55→    id: "coffee",
+    56→    label: "Кофе-брейк",
+    57→    basePrice: 950,
+    58→    img: IMG.coffee,
+    59→    desc: "Кофе, выпечка и снеки",
+    60→  },
+    61→  {
+    62→    id: "wedding",
+    63→    label: "Свадьба",
+    64→    basePrice: 5900,
+    65→    img: IMG.wedding,
+    66→    desc: "Праздничный банкет с декором",
+    67→  },
+    68→  {
+    69→    id: "corporate",
+    70→    label: "Корпоратив",
+    71→    basePrice: 3200,
+    72→    img: IMG.corporate,
+    73→    desc: "Меню для делового мероприятия",
+    74→  },
+    75→] as const;
+    76→
+    77→const ADDONS = [
+    78→  { id: "bar", label: "Бар", pricePerPerson: 1200, isFlat: false, img: IMG.bar },
+    79→  { id: "dessert", label: "Десерт", pricePerPerson: 800, isFlat: false },
+    80→  { id: "decor", label: "Декор", pricePerPerson: 500, isFlat: false },
+    81→  { id: "service", label: "Обслуживание", pricePerPerson: 0, isFlat: false },
+    82→  { id: "transport", label: "Транспорт", pricePerPerson: 15000, isFlat: true },
+    83→  { id: "dishes", label: "Аренда посуды", pricePerPerson: 300, isFlat: false },
+    84→] as const;
+    85→
+    86→const COMPARISON = [
+    87→  {
+    88→    format: "Фуршет",
+    89→    price: "от 2 450 ₽/чел",
+    90→    guests: "30–500",
+    91→    duration: "3–5 ч",
+    92→    features: ["Канапе и закуски", "Фуршетные линии", "Официанты", "Посуда"],
+    93→  },
+    94→  {
+    95→    format: "Банкет",
+    96→    price: "от 4 470 ₽/чел",
+    97→    guests: "30–300",
+    98→    duration: "4–8 ч",
+    99→    features: ["Полный ужин", "Индивидуальная подача", "Сомелье", "Декор стола"],
+   100→  },
+   101→  {
+   102→    format: "Кофе-брейк",
+   103→    price: "от 950 ₽/чел",
+   104→    guests: "20–200",
+   105→    duration: "2–3 ч",
+   106→    features: ["Кофе и чай", "Выпечка", "Фрукты", "Снеки"],
+   107→  },
+   108→  {
+   109→    format: "Свадьба",
+   110→    price: "от 5 900 ₽/чел",
+   111→    guests: "50–300",
+   112→    duration: "6–12 ч",
+   113→    features: ["Банкет + фуршет", "Торт", "Декор", "Координатор"],
+   114→  },
+   115→  {
+   116→    format: "Корпоратив",
+   117→    price: "от 3 200 ₽/чел",
+   118→    guests: "50–500",
+   119→    duration: "4–8 ч",
+   120→    features: ["Фуршет + горячее", "Бар", "Обслуживание", "Логистика"],
+   121→  },
+   122→];
+   123→
+   124→const FAQS = [
+   125→  {
+   126→    q: "Что входит в базовую стоимость?",
+   127→    a: "Базовая стоимость включает: разработку меню, приготовление блюд, доставку, сервировку, одноразовую посуду и работу официантов. Обслуживание уже включено в базовую цену — вы не платите за него дополнительно.",
+   128→  },
+   129→  {
+   130→    q: "Можно ли изменить меню после расчёта?",
+   131→    a: "Да, меню можно корректировать вплоть до 3 дней до мероприятия. После согласования финального меню изменения возможны с доплатой. Мы всегда находим гибкое решение для наших клиентов.",
+   132→  },
+   133→  {
+   134→    q: "Как рассчитывается стоимость напитков?",
+   135→    a: "Стоимость барного обслуживания рассчитывается отдельно — от 1 200 ₽ на человека. В пакет включены: вино, пиво, крепкий алкоголь, безалкогольные напитки и соки. Мы подбираем ассортимент под формат мероприятия.",
+   136→  },
+   137→  {
+   138→    q: "Есть ли скидки при большом количестве гостей?",
+   139→    a: "Да, при количестве гостей от 150 человек действует скидка 5%, от 300 — 8%. Для постоянных клиентов предусмотрена программа лояльности с накопительными скидками до 12%.",
+   140→  },
+   141→  {
+   142→    q: "Что такое «обслуживание включено»?",
+   143→    a: "В базовую стоимость уже входит работа официантов (1 официант на 10–15 гостей), поваров на выезде и менеджера мероприятия. Дополнительная оплата за обслуживание не требуется.",
+   144→  },
+   145→  {
+   146→    q: "Сколько стоит доставка за город?",
+   147→    a: "Доставка по Санкт-Петербургу бесплатна. За городом — фиксированная сумма 15 000 ₽, включающая логистику туда и обратно, а также аренду термоконтейнеров для сохранения температуры блюд.",
+   148→  },
+   149→];
+   150→
+   151→/* ─── Animated Price Hook ─── */
+   152→
+   153→function useAnimatedPrice(target: number) {
+   154→  const motionVal = useMotionValue(0);
+   155→  const spring = useSpring(motionVal, { stiffness: 120, damping: 30 });
+   156→  const display = useTransform(spring, (v: number) => Math.round(v));
+   157→  const [shown, setShown] = useState("0");
+   158→
+   159→  useEffect(() => {
+   160→    motionVal.set(target);
+   161→  }, [target, motionVal]);
+   162→
+   163→  useEffect(() => {
+   164→    const unsub = display.on("change", (v: number) => {
+   165→      setShown(v.toLocaleString("ru-RU"));
+   166→    });
+   167→    return unsub;
+   168→  }, [display]);
+   169→
+   170→  return shown;
+   171→}
+   172→
+   173→/* ─── Animated Count Hook (for guest count etc.) ─── */
+   174→
+   175→function useAnimatedCount(target: number) {
+   176→  const motionVal = useMotionValue(0);
+   177→  const spring = useSpring(motionVal, { stiffness: 300, damping: 35 });
+   178→  const display = useTransform(spring, (v: number) => Math.round(v));
+   179→  const [shown, setShown] = useState(String(target));
+   180→
+   181→  useEffect(() => {
+   182→    motionVal.set(target);
+   183→  }, [target, motionVal]);
+   184→
+   185→  useEffect(() => {
+   186→    const unsub = display.on("change", (v: number) => {
+   187→      setShown(String(v));
+   188→    });
+   189→    return unsub;
+   190→  }, [display]);
+   191→
+   192→  return shown;
+   193→}
+   194→
+   195→/* ─── Reveal Component ─── */
+   196→
+   197→const fadeUp = {
+   198→  hidden: { opacity: 0, y: 60 },
+   199→  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.4, 0, 0.2, 1] as const } },
+   200→};
+   201→
+   202→function Reveal({
+   203→  children,
+   204→  className = "",
+   205→  delay = 0,
+   206→}: {
+   207→  children: React.ReactNode;
+   208→  className?: string;
+   209→  delay?: number;
+   210→}) {
+   211→  const ref = useRef<HTMLDivElement>(null);
+   212→  const isInView = useInView(ref, { once: true, margin: "-60px" });
+   213→  return (
+   214→    <motion.div
+   215→      ref={ref}
+   216→      initial="hidden"
+   217→      animate={isInView ? "visible" : "hidden"}
+   218→      variants={fadeUp}
+   219→      transition={{ delay }}
+   220→      className={className}
+   221→    >
+   222→      {children}
+   223→    </motion.div>
+   224→  );
+   225→}
+   226→
+   227→/* ─── FAQ Item ─── */
+   228→
+   229→function FaqItem({ q, a }: { q: string; a: string }) {
+   230→  const [open, setOpen] = useState(false);
+   231→  return (
+   232→    <motion.div
+   233→      layout
+   234→      style={{
+   235→        borderBottom: "1px solid var(--color-cream-darker)",
+   236→        overflow: "hidden",
+   237→      }}
+   238→    >
+   239→      <button
+   240→        onClick={() => setOpen(!open)}
+   241→        style={{
+   242→          width: "100%",
+   243→          display: "flex",
+   244→          justifyContent: "space-between",
+   245→          alignItems: "center",
+   246→          padding: "1.5rem 0",
+   247→          background: "none",
+   248→          border: "none",
+   249→          cursor: "pointer",
+   250→          textAlign: "left",
+   251→        }}
+   252→        aria-expanded={open}
+   253→      >
+   254→        <span
+   255→          style={{
+   256→            fontFamily: "var(--font-serif)",
+   257→            fontSize: "1.15rem",
+   258→            fontWeight: 400,
+   259→            color: "var(--color-dark)",
+   260→            maxWidth: "85%",
+   261→          }}
+   262→        >
+   263→          {q}
+   264→        </span>
+   265→        <motion.span
+   266→          animate={{ rotate: open ? 45 : 0 }}
+   267→          transition={{ duration: 0.3 }}
+   268→          style={{
+   269→            fontSize: "1.5rem",
+   270→            color: "var(--color-brand)",
+   271→            flexShrink: 0,
+   272→            lineHeight: 1,
+   273→          }}
+   274→        >
+   275→          +
+   276→        </motion.span>
+   277→      </button>
+   278→      <AnimatePresence initial={false}>
+   279→        {open && (
+   280→          <motion.div
+   281→            initial={{ height: 0, opacity: 0 }}
+   282→            animate={{ height: "auto", opacity: 1 }}
+   283→            exit={{ height: 0, opacity: 0 }}
+   284→            transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] as const }}
+   285→          >
+   286→            <p
+   287→              style={{
+   288→                color: "var(--color-text-secondary)",
+   289→                fontSize: "0.95rem",
+   290→                lineHeight: 1.7,
+   291→                paddingBottom: "1.5rem",
+   292→                maxWidth: 700,
+   293→              }}
+   294→            >
+   295→              {a}
+   296→            </p>
+   297→          </motion.div>
+   298→        )}
+   299→      </AnimatePresence>
+   300→    </motion.div>
+   301→  );
+   302→}
+   303→
+   304→/* ═══════════════════════════════════════════════════════════════
+   305→   Main Page Component
+   306→   ═══════════════════════════════════════════════════════════════ */
+   307→
+   308→export default function CalculatorPage() {
+   309→  const [eventType, setEventType] = useState<string>("furshet");
+   310→  const [guests, setGuests] = useState<number>(80);
+   311→  const [duration, setDuration] = useState<number>(4);
+   312→  const [selectedAddons, setSelectedAddons] = useState<Set<string>>(
+   313→    new Set(["service"])
+   314→  );
+   315→
+   316→  const animatedGuests = useAnimatedCount(guests);
+   317→  const animatedDuration = useAnimatedCount(duration);
+   318→
+   319→  /* ─── Calculate Price ─── */
+   320→  const getEventTypeData = useCallback(() => {
+   321→    return EVENT_TYPES.find((t) => t.id === eventType) || EVENT_TYPES[0];
+   322→  }, [eventType]);
+   323→
+   324→  const calculatePrice = useCallback(() => {
+   325→    const type = getEventTypeData();
+   326→    /* Duration multiplier: base rate covers 4 h; each extra hour adds 15% */
+   327→    const durationFactor = 1 + Math.max(0, duration - 4) * 0.15;
+   328→    const baseTotal = Math.round(type.basePrice * guests * durationFactor);
+   329→
+   330→    let addonsTotal = 0;
+   331→    selectedAddons.forEach((addonId) => {
+   332→      const addon = ADDONS.find((a) => a.id === addonId);
+   333→      if (addon) {
+   334→        if (addon.isFlat) {
+   335→          addonsTotal += addon.pricePerPerson;
+   336→        } else {
+   337→          addonsTotal += Math.round(addon.pricePerPerson * guests * durationFactor);
+   338→        }
+   339→      }
+   340→    });
+   341→
+   342→    return { baseTotal, addonsTotal, total: baseTotal + addonsTotal };
+   343→  }, [getEventTypeData, guests, duration, selectedAddons]);
+   344→
+   345→  const priceData = calculatePrice();
+   346→  const animatedTotal = useAnimatedPrice(priceData.total);
+   347→  const animatedBase = useAnimatedPrice(priceData.baseTotal);
+   348→  const animatedAddons = useAnimatedPrice(priceData.addonsTotal);
+   349→
+   350→  /* ─── Toggle Addon ─── */
+   351→  const toggleAddon = (id: string) => {
+   352→    setSelectedAddons((prev) => {
+   353→      const next = new Set(prev);
+   354→      if (next.has(id)) next.delete(id);
+   355→      else next.add(id);
+   356→      return next;
+   357→    });
+   358→  };
+   359→
+   360→  const selectedType = getEventTypeData();
+   361→
+   362→  return (
+   363→    <>
+   364→      {/* ─── Hero ─── */}
+   365→      <section
+   366→        className="hero"
+   367→        style={{ minHeight: "60vh", background: "var(--color-cream)", position: "relative", overflow: "hidden" }}
+   368→        aria-label="Калькулятор стоимости"
+   369→      >
+   370→        <div
+   371→          style={{
+   372→            position: "absolute",
+   373→            inset: 0,
+   374→            backgroundImage: `url(${IMG.banquet})`,
+   375→            backgroundSize: "cover",
+   376→            backgroundPosition: "center",
+   377→            opacity: 0.15,
+   378→          }}
+   379→        />
+   380→        <div
+   381→          style={{
+   382→            position: "absolute",
+   383→            inset: 0,
+   384→            background:
+   385→              "linear-gradient(to bottom, rgba(254,253,251,0.5) 0%, rgba(254,253,251,0.9) 70%, var(--color-warm-white) 100%)",
+   386→          }}
+   387→        />
+   388→        <FluidBackground
+   389→          color1="rgba(184,149,90,0.06)"
+   390→          color2="rgba(158,182,143,0.04)"
+   391→          color3="rgba(232,196,184,0.03)"
+   392→          speed={6}
+   393→        />
+   394→        <ParticleField count={25} speed={0.2} style={{ opacity: 0.5 }} />
+   395→        <MorphingBlob
+   396→          size={350}
+   397→          color1="rgba(184,149,90,0.10)"
+   398→          color2="rgba(158,182,143,0.06)"
+   399→          opacity={0.5}
+   400→          speed={10}
+   401→          style={{ position: "absolute", top: "10%", right: "5%", zIndex: 0 }}
+   402→        />
+   403→        <MorphingBlob
+   404→          size={250}
+   405→          color1="rgba(232,196,184,0.08)"
+   406→          color2="rgba(184,149,90,0.05)"
+   407→          opacity={0.4}
+   408→          speed={12}
+   409→          style={{ position: "absolute", bottom: "15%", left: "3%", zIndex: 0 }}
+   410→        />
+   411→        <motion.div
+   412→          className="hero-content"
+   413→          style={{ position: "relative", zIndex: 2 }}
+   414→          initial={{ opacity: 0, y: 40 }}
+   415→          animate={{ opacity: 1, y: 0 }}
+   416→          transition={{ duration: 1.2, delay: 0.3 }}
+   417→        >
+   418→          <motion.div
+   419→            className="hero-tag"
+   420→            initial={{ opacity: 0, y: 20 }}
+   421→            animate={{ opacity: 1, y: 0 }}
+   422→            transition={{ duration: 0.8, delay: 0.6 }}
+   423→          >
+   424→            Онлайн-расчёт
+   425→          </motion.div>
+   426→          <h1 className="sr-only">Калькулятор стоимости</h1>
+   427→          <KineticText
+   428→            text="Калькулятор стоимости кейтеринга — с гарантией по договору"
+   429→            as="h2"
+   430→            animation="scale"
+   431→            className="hero-title"
+   432→            stagger={0.04}
+   433→            duration={0.6}
+   434→          />
+   435→          <motion.p
+   436→            className="hero-sub"
+   437→            initial={{ opacity: 0, y: 20 }}
+   438→            animate={{ opacity: 1, y: 0 }}
+   439→            transition={{ duration: 0.8, delay: 1 }}
+   440→          >
+   441→            Рассчитайте предварительную стоимость кейтеринга за минуту.
+   442→            Выберите формат, укажите количество гостей — и получите цену мгновенно. Никаких скрытых доплат.
+   443→          </motion.p>
+   444→        </motion.div>
+   445→      </section>
+   446→
+   447→      {/* ─── Video Break ─── */}
+   448→      <VideoBreak
+   449→        src="/videos/hero-catering.mp4"
+   450→        title="Рассчитайте ваш праздник"
+   451→        subtitle="Точная стоимость за 60 секунд — без скрытых доплат"
+   452→      />
+   453→
+   454→      {/* ─── Calculator Section ─── */}
+   455→      <section
+   456→        className="section section-light"
+   457→        aria-label="Калькулятор"
+   458→        style={{ position: "relative", overflow: "hidden" }}
+   459→      >
+   460→        <FluidBackground
+   461→          color1="rgba(184,149,90,0.05)"
+   462→          color2="rgba(158,182,143,0.03)"
+   463→          color3="rgba(232,196,184,0.02)"
+   464→          speed={5}
+   465→        />
+   466→        <ParticleField count={15} speed={0.15} style={{ opacity: 0.35 }} />
+   467→        <div className="container" style={{ position: "relative", zIndex: 2 }}>
+   468→          <Reveal>
+   469→            <span className="section-label">Настройте мероприятие</span>
+   470→            <h2 className="section-title">
+   471→            text="Найдите <em>формат</em>, который покорит ваших гостей"
+   472→            </h2>
+   473→          </Reveal>
+   474→
+   475→          {/* Event Type Cards */}
+   476→          <motion.div
+   477→            style={{
+   478→              display: "grid",
+   479→              gridTemplateColumns:
+   480→                "repeat(auto-fit, minmax(200px, 1fr))",
+   481→              gap: "1.25rem",
+   482→              marginTop: "2rem",
+   483→            }}
+   484→            initial="hidden"
+   485→            whileInView="visible"
+   486→            viewport={{ once: true }}
+   487→            variants={{
+   488→              hidden: {},
+   489→              visible: { transition: { staggerChildren: 0.08 } },
+   490→            }}
+   491→          >
+   492→            {EVENT_TYPES.map((type) => (
+   493→              <motion.div
+   494→                key={type.id}
+   495→                variants={{
+   496→                  hidden: { opacity: 0, y: 30 },
+   497→                  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+   498→                }}
+   499→              >
+   500→                <TiltCard
+   501→                  className="quiz-option"
+   502→                  glare={eventType === type.id}
+   503→                  maxTilt={6}
+   504→                  style={{
+   505→                    ...(eventType === type.id
+   506→                      ? {
+   507→                          borderColor: "var(--color-brand)",
+   508→                          background: "var(--color-brand-10)",
+   509→                          boxShadow:
+   510→                            "0 4px 20px rgba(184,149,90,0.15)",
+   511→                        }
+   512→                      : {}),
+   513→                    padding: 0,
+   514→                    overflow: "hidden",
+   515→                    cursor: "pointer",
+   516→                  }}
+   517→                >
+   518→                  <div
+   519→                    onClick={() => setEventType(type.id)}
+   520→                    role="button"
+   521→                    tabIndex={0}
+   522→                    onKeyDown={(e) =>
+   523→                      e.key === "Enter" && setEventType(type.id)
+   524→                    }
+   525→                    aria-pressed={eventType === type.id}
+   526→                    style={{ cursor: "pointer" }}
+   527→                  >
+   528→                    {/* Image */}
+   529→                    <div
+   530→                      style={{
+   531→                        height: 120,
+   532→                        overflow: "hidden",
+   533→                        position: "relative",
+   534→                      }}
+   535→                    >
+   536→                      <img
+   537→                        src={type.img}
+   538→                        alt={type.label}
+   539→                        style={{
+   540→                          width: "100%",
+   541→                          height: "100%",
+   542→                          objectFit: "cover",
+   543→                          transition: "transform 0.6s cubic-bezier(0.25,1,0.5,1)",
+   544→                        }}
+   545→                      />
+   546→                      {eventType === type.id && (
+   547→                        <motion.div
+   548→                          initial={{ scale: 0 }}
+   549→                          animate={{ scale: 1 }}
+   550→                          style={{
+   551→                            position: "absolute",
+   552→                            top: 8,
+   553→                            right: 8,
+   554→                            width: 28,
+   555→                            height: 28,
+   556→                            borderRadius: "50%",
+   557→                            background: "var(--color-brand)",
+   558→                            display: "flex",
+   559→                            alignItems: "center",
+   560→                            justifyContent: "center",
+   561→                            color: "#fff",
+   562→                            fontSize: "0.8rem",
+   563→                            fontWeight: 700,
+   564→                          }}
+   565→                        >
+   566→                          ✓
+   567→                        </motion.div>
+   568→                      )}
+   569→                    </div>
+   570→                    {/* Content */}
+   571→                    <div style={{ padding: "1rem 1.2rem" }}>
+   572→                      <h3
+   573→                        style={{
+   574→                          fontFamily: "var(--font-serif)",
+   575→                          fontSize: "1.15rem",
+   576→                          fontWeight: 400,
+   577→                          color: "var(--color-dark)",
+   578→                          marginBottom: "0.25rem",
+   579→                        }}
+   580→                      >
+   581→                        {type.label}
+   582→                      </h3>
+   583→                      <p
+   584→                        style={{
+   585→                          fontSize: "0.8rem",
+   586→                          color: "var(--color-text-muted)",
+   587→                          marginBottom: "0.5rem",
+   588→                        }}
+   589→                      >
+   590→                        {type.desc}
+   591→                      </p>
+   592→                      <div
+   593→                        style={{
+   594→                          fontSize: "0.85rem",
+   595→                          fontWeight: 600,
+   596→                          color: "var(--color-brand-dark)",
+   597→                        }}
+   598→                      >
+   599→                        от {type.basePrice.toLocaleString("ru-RU")} ₽/чел
+   600→                      </div>
+   601→                    </div>
+   602→                  </div>
+   603→                </TiltCard>
+   604→              </motion.div>
+   605→            ))}
+   606→          </motion.div>
+   607→
+   608→          {/* Sliders Section */}
+   609→          <div className="calc-sliders-grid">
+   610→            {/* Guest Count */}
+   611→            <motion.div
+   612→              layout
+   613→              style={{
+   614→                background: "var(--color-warm-white)",
+   615→                borderRadius: 20,
+   616→                padding: "2rem",
+   617→                boxShadow: "0 4px 30px rgba(0,0,0,0.06)",
+   618→              }}
+   619→            >
+   620→              <div
+   621→                style={{
+   622→                  display: "flex",
+   623→                  justifyContent: "space-between",
+   624→                  alignItems: "baseline",
+   625→                  marginBottom: "1rem",
+   626→                }}
+   627→              >
+   628→                <label
+   629→                  htmlFor="guests-slider"
+   630→                  style={{
+   631→                    fontSize: "0.7rem",
+   632→                    fontWeight: 600,
+   633→                    letterSpacing: "0.15em",
+   634→                    textTransform: "uppercase",
+   635→                    color: "var(--color-brand)",
+   636→                  }}
+   637→                >
+   638→                  Количество гостей
+   639→                </label>
+   640→                <span
+   641→                  style={{
+   642→                    fontFamily: "var(--font-serif)",
+   643→                    fontSize: "2.5rem",
+   644→                    fontWeight: 400,
+   645→                    color: "var(--color-dark)",
+   646→                    lineHeight: 1,
+   647→                  }}
+   648→                >
+   649→                  {animatedGuests}
+   650→                </span>
+   651→              </div>
+   652→              <input
+   653→                id="guests-slider"
+   654→                type="range"
+   655→                min={20}
+   656→                max={500}
+   657→                step={5}
+   658→                value={guests}
+   659→                onChange={(e) => setGuests(Number(e.target.value))}
+   660→                className="calc-slider"
+   661→                aria-label="Количество гостей"
+   662→              />
+   663→              <div
+   664→                style={{
+   665→                  display: "flex",
+   666→                  justifyContent: "space-between",
+   667→                  marginTop: "0.5rem",
+   668→                  fontSize: "0.75rem",
+   669→                  color: "var(--color-text-muted)",
+   670→                }}
+   671→              >
+   672→                <span>20</span>
+   673→                <span>500</span>
+   674→              </div>
+   675→            </motion.div>
+   676→
+   677→            {/* Duration */}
+   678→            <motion.div
+   679→              layout
+   680→              style={{
+   681→                background: "var(--color-warm-white)",
+   682→                borderRadius: 20,
+   683→                padding: "2rem",
+   684→                boxShadow: "0 4px 30px rgba(0,0,0,0.06)",
+   685→              }}
+   686→            >
+   687→              <div
+   688→                style={{
+   689→                  display: "flex",
+   690→                  justifyContent: "space-between",
+   691→                  alignItems: "baseline",
+   692→                  marginBottom: "1rem",
+   693→                }}
+   694→              >
+   695→                <label
+   696→                  htmlFor="duration-slider"
+   697→                  style={{
+   698→                    fontSize: "0.7rem",
+   699→                    fontWeight: 600,
+   700→                    letterSpacing: "0.15em",
+   701→                    textTransform: "uppercase",
+   702→                    color: "var(--color-brand)",
+   703→                  }}
+   704→                >
+   705→                  Длительность
+   706→                </label>
+   707→                <span
+   708→                  style={{
+   709→                    fontFamily: "var(--font-serif)",
+   710→                    fontSize: "2.5rem",
+   711→                    fontWeight: 400,
+   712→                    color: "var(--color-dark)",
+   713→                    lineHeight: 1,
+   714→                  }}
+   715→                >
+   716→                  {animatedDuration}
+   717→                  <span
+   718→                    style={{
+   719→                      fontSize: "1rem",
+   720→                      color: "var(--color-text-muted)",
+   721→                      marginLeft: "0.3rem",
+   722→                    }}
+   723→                  >
+   724→                    ч
+   725→                  </span>
+   726→                </span>
+   727→              </div>
+   728→              <input
+   729→                id="duration-slider"
+   730→                type="range"
+   731→                min={2}
+   732→                max={12}
+   733→                step={1}
+   734→                value={duration}
+   735→                onChange={(e) => setDuration(Number(e.target.value))}
+   736→                className="calc-slider"
+   737→                aria-label="Длительность мероприятия"
+   738→              />
+   739→              <div
+   740→                style={{
+   741→                  display: "flex",
+   742→                  justifyContent: "space-between",
+   743→                  marginTop: "0.5rem",
+   744→                  fontSize: "0.75rem",
+   745→                  color: "var(--color-text-muted)",
+   746→                }}
+   747→              >
+   748→                <span>2 ч</span>
+   749→                <span>12 ч</span>
+   750→              </div>
+   751→            </motion.div>
+   752→          </div>
+   753→
+   754→          {/* Additional Options */}
+   755→          <Reveal>
+   756→            <div style={{ marginTop: "3rem" }}>
+   757→              <span
+   758→                style={{
+   759→                  fontSize: "0.7rem",
+   760→                  fontWeight: 600,
+   761→                  letterSpacing: "0.15em",
+   762→                  textTransform: "uppercase",
+   763→                  color: "var(--color-brand)",
+   764→                  display: "block",
+   765→                  marginBottom: "1rem",
+   766→                }}
+   767→              >
+   768→                Дополнительные услуги
+   769→              </span>
+   770→              <div
+   771→                style={{
+   772→                  display: "grid",
+   773→                  gridTemplateColumns:
+   774→                    "repeat(auto-fit, minmax(180px, 1fr))",
+   775→                  gap: "1rem",
+   776→                }}
+   777→              >
+   778→                {ADDONS.map((addon) => {
+   779→                  const isSelected = selectedAddons.has(addon.id);
+   780→                  return (
+   781→                    <motion.button
+   782→                      key={addon.id}
+   783→                      onClick={() => toggleAddon(addon.id)}
+   784→                      whileTap={{ scale: 0.97 }}
+   785→                      style={{
+   786→                        display: "flex",
+   787→                        alignItems: "center",
+   788→                        gap: "0.75rem",
+   789→                        padding: "1rem 1.25rem",
+   790→                        background: isSelected
+   791→                          ? "var(--color-brand-10)"
+   792→                          : "#fff",
+   793→                        border: isSelected
+   794→                          ? "1.5px solid var(--color-brand)"
+   795→                          : "1.5px solid var(--color-cream-darker)",
+   796→                        borderRadius: 14,
+   797→                        cursor: "pointer",
+   798→                        textAlign: "left",
+   799→                        transition:
+   800→                          "all 0.3s cubic-bezier(0.25,1,0.5,1)",
+   801→                        boxShadow: isSelected
+   802→                          ? "0 4px 16px rgba(184,149,90,0.12)"
+   803→                          : "none",
+   804→                      }}
+   805→                      aria-pressed={isSelected}
+   806→                    >
+   807→                      {/* Checkbox indicator */}
+   808→                      <div
+   809→                        style={{
+   810→                          width: 22,
+   811→                          height: 22,
+   812→                          borderRadius: 6,
+   813→                          border: isSelected
+   814→                            ? "2px solid var(--color-brand)"
+   815→                            : "2px solid var(--color-cream-darker)",
+   816→                          background: isSelected
+   817→                            ? "var(--color-brand)"
+   818→                            : "transparent",
+   819→                          display: "flex",
+   820→                          alignItems: "center",
+   821→                          justifyContent: "center",
+   822→                          flexShrink: 0,
+   823→                          transition: "all 0.3s",
+   824→                        }}
+   825→                      >
+   826→                        {isSelected && (
+   827→                          <motion.span
+   828→                            initial={{ scale: 0 }}
+   829→                            animate={{ scale: 1 }}
+   830→                            style={{
+   831→                              color: "#fff",
+   832→                              fontSize: "0.7rem",
+   833→                              fontWeight: 700,
+   834→                            }}
+   835→                          >
+   836→                            ✓
+   837→                          </motion.span>
+   838→                        )}
+   839→                      </div>
+   840→                      <div>
+   841→                        <div
+   842→                          style={{
+   843→                            fontSize: "0.9rem",
+   844→                            fontWeight: 500,
+   845→                            color: "var(--color-dark)",
+   846→                          }}
+   847→                        >
+   848→                          {addon.label}
+   849→                        </div>
+   850→                        <div
+   851→                          style={{
+   852→                            fontSize: "0.75rem",
+   853→                            color: "var(--color-text-muted)",
+   854→                            marginTop: 2,
+   855→                          }}
+   856→                        >
+   857→                          {addon.pricePerPerson === 0
+   858→                            ? "Включено"
+   859→                            : addon.isFlat
+   860→                            ? `+${addon.pricePerPerson.toLocaleString("ru-RU")} ₽`
+   861→                            : `+${addon.pricePerPerson.toLocaleString("ru-RU")} ₽/чел`}
+   862→                        </div>
+   863→                      </div>
+   864→                    </motion.button>
+   865→                  );
+   866→                })}
+   867→              </div>
+   868→            </div>
+   869→          </Reveal>
+   870→
+   871→          {/* ─── Live Price Display ─── */}
+   872→          <Reveal>
+   873→            <motion.div
+   874→              layout
+   875→              style={{
+   876→                marginTop: "3rem",
+   877→                background:
+   878→                  "linear-gradient(135deg, var(--color-dark) 0%, var(--color-navy) 100%)",
+   879→                borderRadius: 24,
+   880→                padding: "3rem",
+   881→                color: "#fff",
+   882→                position: "relative",
+   883→                overflow: "hidden",
+   884→              }}
+   885→            >
+   886→              {/* Decorative circles */}
+   887→              <div
+   888→                style={{
+   889→                  position: "absolute",
+   890→                  top: -60,
+   891→                  right: -60,
+   892→                  width: 200,
+   893→                  height: 200,
+   894→                  borderRadius: "50%",
+   895→                  background:
+   896→                    "radial-gradient(circle, rgba(184,149,90,0.15) 0%, transparent 70%)",
+   897→                  pointerEvents: "none",
+   898→                }}
+   899→              />
+   900→              <div
+   901→                style={{
+   902→                  position: "absolute",
+   903→                  bottom: -40,
+   904→                  left: -40,
+   905→                  width: 150,
+   906→                  height: 150,
+   907→                  borderRadius: "50%",
+   908→                  background:
+   909→                    "radial-gradient(circle, rgba(184,149,90,0.1) 0%, transparent 70%)",
+   910→                  pointerEvents: "none",
+   911→                }}
+   912→              />
+   913→
+   914→              <div
+   915→                className="calc-price-grid"
+   916→                style={{ position: "relative", zIndex: 1 }}
+   917→              >
+   918→                {/* Left: Breakdown */}
+   919→                <div>
+   920→                  <span
+   921→                    style={{
+   922→                      fontSize: "0.65rem",
+   923→                      fontWeight: 600,
+   924→                      letterSpacing: "0.3em",
+   925→                      textTransform: "uppercase",
+   926→                      color: "var(--color-brand-light)",
+   927→                    }}
+   928→                  >
+   929→                    Предварительная стоимость
+   930→                  </span>
+   931→
+   932→                  <div style={{ marginTop: "2rem" }}>
+   933→                    {/* Base price line */}
+   934→                    <div
+   935→                      style={{
+   936→                        display: "flex",
+   937→                        justifyContent: "space-between",
+   938→                        alignItems: "center",
+   939→                        paddingBottom: "1rem",
+   940→                        borderBottom: "1px solid rgba(255,255,255,0.08)",
+   941→                      }}
+   942→                    >
+   943→                      <span style={{ color: "rgba(255,255,255,0.6)", fontSize: "0.9rem" }}>
+   944→                        {selectedType.label} × {guests} гостей × {duration} ч
+   945→                      </span>
+   946→                      <span style={{ color: "#fff", fontWeight: 500, fontSize: "1rem" }}>
+   947→                        {animatedBase} ₽
+   948→                      </span>
+   949→                    </div>
+   950→
+   951→                    {/* Addons breakdown */}
+   952→                    <AnimatePresence mode="popLayout">
+   953→                      {ADDONS.filter((a) => selectedAddons.has(a.id)).map(
+   954→                        (addon) => (
+   955→                          <motion.div
+   956→                            key={addon.id}
+   957→                            initial={{ opacity: 0, height: 0 }}
+   958→                            animate={{ opacity: 1, height: "auto" }}
+   959→                            exit={{ opacity: 0, height: 0 }}
+   960→                            transition={{ duration: 0.3 }}
+   961→                            style={{
+   962→                              display: "flex",
+   963→                              justifyContent: "space-between",
+   964→                              alignItems: "center",
+   965→                              padding: "0.75rem 0",
+   966→                              borderBottom: "1px solid rgba(255,255,255,0.05)",
+   967→                              overflow: "hidden",
+   968→                            }}
+   969→                          >
+   970→                            <span
+   971→                              style={{
+   972→                                color: "rgba(255,255,255,0.5)",
+   973→                                fontSize: "0.85rem",
+   974→                              }}
+   975→                            >
+   976→                              {addon.label}
+   977→                              {addon.pricePerPerson === 0
+   978→                                ? ""
+   979→                                : addon.isFlat
+   980→                                ? ""
+   981→                                : ` × ${guests}`}
+   982→                            </span>
+   983→                            <span
+   984→                              style={{
+   985→                                color: "rgba(255,255,255,0.8)",
+   986→                                fontSize: "0.9rem",
+   987→                              }}
+   988→                            >
+   989→                              {addon.pricePerPerson === 0
+   990→                                ? "Включено"
+   991→                                : addon.isFlat
+   992→                                ? `+${addon.pricePerPerson.toLocaleString("ru-RU")} ₽`
+   993→                                : `+${(
+   994→                                    addon.pricePerPerson * guests
+   995→                                  ).toLocaleString("ru-RU")} ₽`}
+   996→                            </span>
+   997→                          </motion.div>
+   998→                        )
+   999→                      )}
+  1000→                    </AnimatePresence>
+  1001→
+  1002→                    {/* Total line */}
+  1003→                    <div
+  1004→                      style={{
+  1005→                        display: "flex",
+  1006→                        justifyContent: "space-between",
+  1007→                        alignItems: "center",
+  1008→                        paddingTop: "1.25rem",
+  1009→                        marginTop: "0.5rem",
+  1010→                      }}
+  1011→                    >
+  1012→                      <span
+  1013→                        style={{
+  1014→                          fontSize: "0.7rem",
+  1015→                          fontWeight: 600,
+  1016→                          letterSpacing: "0.15em",
+  1017→                          textTransform: "uppercase",
+  1018→                          color: "var(--color-brand-light)",
+  1019→                        }}
+  1020→                      >
+  1021→                        Итого
+  1022→                      </span>
+  1023→                      <span
+  1024→                        style={{
+  1025→                          color: "rgba(255,255,255,0.5)",
+  1026→                          fontSize: "0.85rem",
+  1027→                        }}
+  1028→                      >
+  1029→                        {animatedAddons} ₽ доп. услуг
+  1030→                      </span>
+  1031→                    </div>
+  1032→                  </div>
+  1033→                </div>
+  1034→
+  1035→                {/* Right: Total */}
+  1036→                <div
+  1037→                  style={{
+  1038→                    textAlign: "right",
+  1039→                    minWidth: 220,
+  1040→                  }}
+  1041→                >
+  1042→                  <div
+  1043→                    style={{
+  1044→                      fontSize: "0.65rem",
+  1045→                      fontWeight: 600,
+  1046→                      letterSpacing: "0.3em",
+  1047→                      textTransform: "uppercase",
+  1048→                      color: "rgba(255,255,255,0.4)",
+  1049→                      marginBottom: "0.5rem",
+  1050→                    }}
+  1051→                  >
+  1052→                    Итого
+  1053→                  </div>
+  1054→                  <div
+  1055→                    style={{
+  1056→                      fontFamily: "var(--font-serif)",
+  1057→                      fontSize: "clamp(2.5rem, 5vw, 4rem)",
+  1058→                      fontWeight: 400,
+  1059→                      color: "#fff",
+  1060→                      lineHeight: 1.1,
+  1061→                    }}
+  1062→                  >
+  1063→                    {animatedTotal}{" "}
+  1064→                    <span style={{ fontSize: "0.5em" }}>₽</span>
+  1065→                  </div>
+  1066→                  <div
+  1067→                    style={{
+  1068→                      fontSize: "0.8rem",
+  1069→                      color: "rgba(255,255,255,0.4)",
+  1070→                      marginTop: "0.5rem",
+  1071→                    }}
+  1072→                  >
+  1073→                    ≈{" "}
+  1074→                    {Math.round(
+  1075→                      priceData.total / guests
+  1076→                    ).toLocaleString("ru-RU")}{" "}
+  1077→                    ₽/чел
+  1078→                  </div>
+  1079→                  <div
+  1080→                    style={{
+  1081→                      fontSize: "0.7rem",
+  1082→                      color: "rgba(255,255,255,0.3)",
+  1083→                      marginTop: "0.75rem",
+  1084→                      lineHeight: 1.5,
+  1085→                      maxWidth: 220,
+  1086→                      marginLeft: "auto",
+  1087→                    }}
+  1088→                  >
+  1089→                    В базу: меню, готовка, доставка, сервировка, официанты (1 на 10–15 гостей), уборка
+  1090→                  </div>
+  1091→                </div>
+  1092→              </div>
+  1093→            </motion.div>
+  1094→          </Reveal>
+  1095→        </div>
+  1096→      </section>
+  1097→
+  1098→      {/* ─── Comparison Table ─── */}
+  1099→      <section
+  1100→        className="section section-cream"
+  1101→        aria-label="Сравнение форматов"
+  1102→      >
+  1103→        <div className="container">
+  1104→          <Reveal>
+  1105→            <span className="section-label">Сравнение форматов</span>
+  1106→            <h2 className="section-title">
+  1107→            text="Сравните форматы и цены — выберите лучший для вашего мероприятия"
+  1108→            </h2>
+  1109→            <p className="section-subtitle">
+  1110→              Каждый формат имеет свои преимущества. Сравните цены и возможности,
+  1111→              чтобы выбрать лучший вариант для вашего мероприятия.
+  1112→            </p>
+  1113→          </Reveal>
+  1114→
+  1115→          <Reveal delay={0.2}>
+  1116→            <div
+  1117→              style={{
+  1118→                overflowX: "auto",
+  1119→                marginTop: "2rem",
+  1120→                borderRadius: 20,
+  1121→                boxShadow: "0 4px 30px rgba(0,0,0,0.06)",
+  1122→              }}
+  1123→            >
+  1124→              <table
+  1125→                style={{
+  1126→                  width: "100%",
+  1127→                  borderCollapse: "collapse",
+  1128→                  background: "var(--color-warm-white)",
+  1129→                  borderRadius: 20,
+  1130→                  overflow: "hidden",
+  1131→                  minWidth: 700,
+  1132→                }}
+  1133→              >
+  1134→                <thead>
+  1135→                  <tr
+  1136→                    style={{
+  1137→                      background:
+  1138→                        "linear-gradient(135deg, var(--color-dark) 0%, var(--color-navy) 100%)",
+  1139→                    }}
+  1140→                  >
+  1141→                    <th
+  1142→                      style={{
+  1143→                        padding: "1.25rem 1.5rem",
+  1144→                        textAlign: "left",
+  1145→                        color: "rgba(255,255,255,0.5)",
+  1146→                        fontSize: "0.7rem",
+  1147→                        fontWeight: 600,
+  1148→                        letterSpacing: "0.15em",
+  1149→                        textTransform: "uppercase",
+  1150→                      }}
+  1151→                    >
+  1152→                      Формат
+  1153→                    </th>
+  1154→                    <th
+  1155→                      style={{
+  1156→                        padding: "1.25rem 1.5rem",
+  1157→                        textAlign: "left",
+  1158→                        color: "rgba(255,255,255,0.5)",
+  1159→                        fontSize: "0.7rem",
+  1160→                        fontWeight: 600,
+  1161→                        letterSpacing: "0.15em",
+  1162→                        textTransform: "uppercase",
+  1163→                      }}
+  1164→                    >
+  1165→                      Стоимость
+  1166→                    </th>
+  1167→                    <th
+  1168→                      style={{
+  1169→                        padding: "1.25rem 1.5rem",
+  1170→                        textAlign: "center",
+  1171→                        color: "rgba(255,255,255,0.5)",
+  1172→                        fontSize: "0.7rem",
+  1173→                        fontWeight: 600,
+  1174→                        letterSpacing: "0.15em",
+  1175→                        textTransform: "uppercase",
+  1176→                      }}
+  1177→                    >
+  1178→                      Гости
+  1179→                    </th>
+  1180→                    <th
+  1181→                      style={{
+  1182→                        padding: "1.25rem 1.5rem",
+  1183→                        textAlign: "center",
+  1184→                        color: "rgba(255,255,255,0.5)",
+  1185→                        fontSize: "0.7rem",
+  1186→                        fontWeight: 600,
+  1187→                        letterSpacing: "0.15em",
+  1188→                        textTransform: "uppercase",
+  1189→                      }}
+  1190→                    >
+  1191→                      Длительность
+  1192→                    </th>
+  1193→                    <th
+  1194→                      style={{
+  1195→                        padding: "1.25rem 1.5rem",
+  1196→                        textAlign: "left",
+  1197→                        color: "rgba(255,255,255,0.5)",
+  1198→                        fontSize: "0.7rem",
+  1199→                        fontWeight: 600,
+  1200→                        letterSpacing: "0.15em",
+  1201→                        textTransform: "uppercase",
+  1202→                      }}
+  1203→                    >
+  1204→                      Что входит
+  1205→                    </th>
+  1206→                  </tr>
+  1207→                </thead>
+  1208→                <tbody>
+  1209→                  {COMPARISON.map((row, i) => (
+  1210→                    <tr
+  1211→                      key={row.format}
+  1212→                      style={{
+  1213→                        borderBottom:
+  1214→                          i < COMPARISON.length - 1
+  1215→                            ? "1px solid var(--color-cream-darker)"
+  1216→                            : "none",
+  1217→                        transition: "background 0.3s",
+  1218→                      }}
+  1219→                      onMouseEnter={(e) =>
+  1220→                        (e.currentTarget.style.background =
+  1221→                          "var(--color-brand-10)")
+  1222→                      }
+  1223→                      onMouseLeave={(e) =>
+  1224→                        (e.currentTarget.style.background = "transparent")
+  1225→                      }
+  1226→                    >
+  1227→                      <td
+  1228→                        style={{
+  1229→                          padding: "1.25rem 1.5rem",
+  1230→                          fontFamily: "var(--font-serif)",
+  1231→                          fontSize: "1.1rem",
+  1232→                          fontWeight: 400,
+  1233→                          color: "var(--color-dark)",
+  1234→                        }}
+  1235→                      >
+  1236→                        {row.format}
+  1237→                      </td>
+  1238→                      <td
+  1239→                        style={{
+  1240→                          padding: "1.25rem 1.5rem",
+  1241→                          fontWeight: 600,
+  1242→                          color: "var(--color-brand-dark)",
+  1243→                          fontSize: "0.95rem",
+  1244→                        }}
+  1245→                      >
+  1246→                        {row.price}
+  1247→                      </td>
+  1248→                      <td
+  1249→                        style={{
+  1250→                          padding: "1.25rem 1.5rem",
+  1251→                          textAlign: "center",
+  1252→                          color: "var(--color-text-secondary)",
+  1253→                          fontSize: "0.9rem",
+  1254→                        }}
+  1255→                      >
+  1256→                        {row.guests}
+  1257→                      </td>
+  1258→                      <td
+  1259→                        style={{
+  1260→                          padding: "1.25rem 1.5rem",
+  1261→                          textAlign: "center",
+  1262→                          color: "var(--color-text-secondary)",
+  1263→                          fontSize: "0.9rem",
+  1264→                        }}
+  1265→                      >
+  1266→                        {row.duration}
+  1267→                      </td>
+  1268→                      <td
+  1269→                        style={{
+  1270→                          padding: "1.25rem 1.5rem",
+  1271→                        }}
+  1272→                      >
+  1273→                        <div
+  1274→                          style={{
+  1275→                            display: "flex",
+  1276→                            flexWrap: "wrap",
+  1277→                            gap: "0.4rem",
+  1278→                          }}
+  1279→                        >
+  1280→                          {row.features.map((f) => (
+  1281→                            <span
+  1282→                              key={f}
+  1283→                              style={{
+  1284→                                display: "inline-block",
+  1285→                                padding: "0.25rem 0.6rem",
+  1286→                                background: "var(--color-cream)",
+  1287→                                borderRadius: 100,
+  1288→                                fontSize: "0.72rem",
+  1289→                                color: "var(--color-text-secondary)",
+  1290→                              }}
+  1291→                            >
+  1292→                              {f}
+  1293→                            </span>
+  1294→                          ))}
+  1295→                        </div>
+  1296→                      </td>
+  1297→                    </tr>
+  1298→                  ))}
+  1299→                </tbody>
+  1300→              </table>
+  1301→            </div>
+  1302→          </Reveal>
+  1303→        </div>
+  1304→      </section>
+  1305→
+  1306→      {/* ─── FAQ ─── */}
+  1307→      <section
+  1308→        className="section section-light"
+  1309→        aria-label="Вопросы и ответы"
+  1310→      >
+  1311→        <div className="container">
+  1312→          <Reveal>
+  1313→            <span className="section-label">Вопросы и ответы</span>
+  1314→            <h2 className="section-title">
+  1315→            text="Часто задаваемые <em>вопросы</em> о стоимости и гарантиях"
+  1316→            </h2>
+  1317→            <p className="section-subtitle">
+  1318→              Узнайте больше о формировании стоимости, гарантиях и условиях работы.
+  1319→            </p>
+  1320→          </Reveal>
+  1321→          <Reveal delay={0.15}>
+  1322→            <div style={{ marginTop: "2rem", maxWidth: 800 }}>
+  1323→              {FAQS.map((faq) => (
+  1324→                <FaqItem key={faq.q} q={faq.q} a={faq.a} />
+  1325→              ))}
+  1326→            </div>
+  1327→          </Reveal>
+  1328→        </div>
+  1329→      </section>
+  1330→
+  1331→      {/* ─── CTA ─── */}
+  1332→      <section
+  1333→        className="section section-brand"
+  1334→        aria-label="Получить точный расчёт"
+  1335→        style={{ textAlign: "center" }}
+  1336→      >
+  1337→        <div className="container">
+  1338→          <Reveal>
+  1339→            <span
+  1340→              style={{
+  1341→                fontSize: "0.65rem",
+  1342→                fontWeight: 600,
+  1343→                letterSpacing: "0.3em",
+  1344→                textTransform: "uppercase",
+  1345→                color: "rgba(255,255,255,0.6)",
+  1346→                display: "block",
+  1347→                marginBottom: "1rem",
+  1348→              }}
+  1349→            >
+  1350→              Готовы заказать?
+  1351→            </span>
+  1352→            <h2
+  1353→              style={{
+  1354→                fontFamily: "var(--font-serif)",
+  1355→                fontSize: "clamp(2rem, 5vw, 3.5rem)",
+  1356→                fontWeight: 400,
+  1357→                color: "#fff",
+  1358→                lineHeight: 1.15,
+  1359→                marginBottom: "1.5rem",
+  1360→              }}
+  1361→            >
+  1362→            text="Получите <em>точный</em> расчёт — с гарантией по договору"
+  1363→            </h2>
+  1364→            <p
+  1365→              style={{
+  1366→                fontSize: "1.05rem",
+  1367→                lineHeight: 1.7,
+  1368→                color: "rgba(255,255,255,0.75)",
+  1369→                maxWidth: 500,
+  1370→                margin: "0 auto 2.5rem",
+  1371→              }}
+  1372→            >
+  1373→              Онлайн-калькулятор показывает предварительную стоимость. Для
+  1374→              точного расчёта свяжитесь с нами — мы учтём все нюансы вашего
+  1375→              мероприятия и зафиксируем цену в договоре.
+  1376→            </p>
+  1377→            <div
+  1378→              style={{
+  1379→                display: "flex",
+  1380→                gap: "1rem",
+  1381→                justifyContent: "center",
+  1382→                flexWrap: "wrap",
+  1383→              }}
+  1384→            >
+  1385→              <ConfettiButton
+  1386→                className="btn-gold"
+  1387→                style={{ background: "var(--color-warm-white)", color: "var(--color-brand-dark)", padding: "1rem 2.5rem", borderRadius: "100px", fontSize: "0.85rem", fontWeight: 600, letterSpacing: "0.05em", border: "none", cursor: "pointer" }}
+  1388→                onClick={() => { window.location.href = "/#contact"; }}
+  1389→              >
+  1390→                Рассчитать
+  1391→              </ConfettiButton>
+  1392→              <MagneticButton as="a" href="tel:+78129195911" strength={0.2}>
+  1393→                <span className="btn-outline" style={{ borderColor: "rgba(255,255,255,0.4)", color: "#fff" }}>
+  1394→                  +7 (812) 919-59-11
+  1395→                </span>
+  1396→              </MagneticButton>
+  1397→            </div>
+  1398→          </Reveal>
+  1399→        </div>
+  1400→      </section>
+  1401→
+  1402→      {/* ─── Footer ─── */}
+  1403→      <footer className="footer" role="contentinfo">
+  1404→        <div className="container">
+  1405→          <div
+  1406→            style={{
+  1407→              display: "flex",
+  1408→              justifyContent: "space-between",
+  1409→              alignItems: "center",
+  1410→              flexWrap: "wrap",
+  1411→              gap: "1rem",
+  1412→            }}
+  1413→          >
+  1414→            <Link
+  1415→              href="/"
+  1416→              style={{
+  1417→                fontFamily: "var(--font-serif)",
+  1418→                fontSize: "1.5rem",
+  1419→                fontWeight: 500,
+  1420→                color: "#fff",
+  1421→                textDecoration: "none",
+  1422→                letterSpacing: "0.15em",
+  1423→              }}
+  1424→            >
+  1425→              ИНТЕРФУД
+  1426→            </Link>
+  1427→            <div
+  1428→              style={{
+  1429→                display: "flex",
+  1430→                gap: "1.5rem",
+  1431→                flexWrap: "wrap",
+  1432→              }}
+  1433→            >
+  1434→              {[
+  1435→                { label: "Меню", href: "/menu" },
+  1436→                { label: "Свадьбы", href: "/wedding" },
+  1437→                { label: "Корпоратив", href: "/corporate" },
+  1438→                { label: "О нас", href: "/about" },
+  1439→                { label: "Отзывы", href: "/reviews" },
+  1440→                { label: "Калькулятор", href: "/calculator" },
+  1441→              ].map((link) => (
+  1442→                <Link
+  1443→                  key={link.href}
+  1444→                  href={link.href}
+  1445→                  style={{
+  1446→                    color: "rgba(255,255,255,0.45)",
+  1447→                    textDecoration: "none",
+  1448→                    fontSize: "0.85rem",
+  1449→                  }}
+  1450→                >
+  1451→                  {link.label}
+  1452→                </Link>
+  1453→              ))}
+  1454→            </div>
+  1455→            <div
+  1456→              style={{
+  1457→                color: "rgba(255,255,255,0.3)",
+  1458→                fontSize: "0.8rem",
+  1459→              }}
+  1460→            >
+  1461→              &copy; 2007–2026 Интерфуд Кейтеринг
+  1462→            </div>
+  1463→          </div>
+  1464→        </div>
+  1465→      </footer>
+  1466→
+  1467→      {/* WhatsApp */}
+  1468→      <a
+  1469→        href="https://wa.me/79119417205?text=Здравствуйте! Хочу рассчитать стоимость кейтеринга."
+  1470→        className="wa-float"
+  1471→        target="_blank"
+  1472→        rel="noopener noreferrer"
+  1473→        aria-label="WhatsApp"
+  1474→      >
+  1475→        &#9742;
+  1476→      </a>
+  1477→    </>
+  1478→  );
+  1479→}
+  1480→

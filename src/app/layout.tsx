@@ -9,6 +9,8 @@ import CustomCursor from "@/components/CustomCursor";
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
 import ErrorBoundary from "@/components/ErrorBoundary";
+import StickyBottomCTA from "@/components/StickyBottomCTA";
+import WhatsAppFloat from "@/components/WhatsAppFloat";
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-serif",
@@ -179,6 +181,8 @@ export default function RootLayout({
           </ErrorBoundary>
           <SiteFooter />
           <BackToTop />
+          <StickyBottomCTA />
+          <WhatsAppFloat />
         </SmoothScroll>
         <div className="grain-overlay" aria-hidden="true" />
       </body>

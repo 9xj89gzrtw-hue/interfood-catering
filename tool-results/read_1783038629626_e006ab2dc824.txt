@@ -1,0 +1,1010 @@
+     1→"use client";
+     2→
+     3→import { useState, useRef, useEffect, useCallback } from "react";
+     4→import Image from "next/image";
+     5→import {
+     6→  motion,
+     7→  useInView,
+     8→  useReducedMotion,
+     9→  AnimatePresence,
+    10→  type PanInfo,
+    11→} from "framer-motion";
+    12→import { useIsMobile } from "@/hooks/use-mobile";
+    13→
+    14→/* ═══════════════════════════════════════════════════════════════
+    15→   CinematicGallery — Premium Coverflow Carousel v2
+    16→   ═══════════════════════════════════════════════════════════════ */
+    17→
+    18→const GALLERY = [
+    19→  { src: "/images/hero_gala.jpg", title: "Гала-ужин" },
+    20→  { src: "/images/banket_food1.jpg", title: "Банкетное меню" },
+    21→  { src: "/images/furshet_canape.jpg", title: "Фуршет" },
+    22→  { src: "/images/wedding.jpg", title: "Свадебный кейтеринг" },
+    23→  { src: "/images/hero_rooftop.jpg", title: "Руст-топ вечеринка" },
+    24→  { src: "/images/food_salmon.jpg", title: "Авторская кухня" },
+    25→  { src: "/images/banket_meat.jpg", title: "Мясные деликатесы" },
+    26→  { src: "/images/hero_ship.jpg", title: "Кейтеринг на яхте" },
+    27→];
+    28→
+    29→const EASE_PREMIUM = [0.16, 1, 0.3, 1] as const;
+    30→const AUTOPLAY_INTERVAL = 4000;
+    31→
+    32→/* ─── Injected styles ─── */
+    33→const INJECTED_STYLES = `
+    34→@keyframes gal-light-sweep {
+    35→  0% { transform: translateX(-150%) skewX(-20deg); }
+    36→  100% { transform: translateX(250%) skewX(-20deg); }
+    37→}
+    38→
+    39→@keyframes gal-ken-burns {
+    40→  0% { transform: scale(1) translate(0, 0); }
+    41→  50% { transform: scale(1.06) translate(-1%, -0.5%); }
+    42→  100% { transform: scale(1.1) translate(-2%, -1%); }
+    43→}
+    44→
+    45→.gal-card-active .gal-image {
+    46→  animation: gal-ken-burns 10s ease-out forwards;
+    47→}
+    48→
+    49→.gal-light-sweep {
+    50→  animation: gal-light-sweep 2s ease-in-out;
+    51→}
+    52→`;
+    53→
+    54→/* ─── Single Gallery Card (Desktop) ──────────────────────────── */
+    55→function GalleryCard({
+    56→  item,
+    57→  index,
+    58→  activeIndex,
+    59→  total,
+    60→  onClick,
+    61→}: {
+    62→  item: (typeof GALLERY)[number];
+    63→  index: number;
+    64→  activeIndex: number;
+    65→  total: number;
+    66→  onClick: () => void;
+    67→}) {
+    68→  const prefersReduced = useReducedMotion();
+    69→  const isActive = index === activeIndex;
+    70→
+    71→  /* Calculate offset from active card */
+    72→  const offset = index - activeIndex;
+    73→
+    74→  /* Wrap around for circular feel */
+    75→  const absOffset = Math.abs(offset);
+    76→  const wrappedOffset = Math.min(absOffset, total - absOffset);
+    77→
+    78→  /* 3D coverflow transforms with depth blur */
+    79→  const rotateY = prefersReduced ? 0 : offset * -18;
+    80→  const scale = Math.max(1 - wrappedOffset * 0.08, 0.78);
+    81→  const translateZ = isActive ? 60 : -wrappedOffset * 40;
+    82→  const translateX = offset * 55;
+    83→  const opacity = wrappedOffset > 3 ? 0 : 1 - wrappedOffset * 0.15;
+    84→  const blur = isActive ? 0 : Math.min(wrappedOffset * 2, 4);
+    85→  const zIndex = 50 - wrappedOffset;
+    86→
+    87→  /* Clip-path reveal for active card */
+    88→  const clipPath = isActive
+    89→    ? "inset(0% 0% 0% 0% round 16px)"
+    90→    : "inset(4% 4% 4% 4% round 14px)";
+    91→
+    92→  return (
+    93→    <motion.div
+    94→      animate={{
+    95→        rotateY,
+    96→        scale,
+    97→        translateZ,
+    98→        translateX,
+    99→        opacity,
+   100→        filter: blur > 0 ? `blur(${blur}px)` : "blur(0px)",
+   101→        clipPath,
+   102→      }}
+   103→      transition={{
+   104→        type: "spring",
+   105→        stiffness: 200,
+   106→        damping: 28,
+   107→        mass: 1,
+   108→      }}
+   109→      style={{
+   110→        position: "absolute",
+   111→        left: "50%",
+   112→        top: "50%",
+   113→        marginLeft: -35,
+   114→        marginTop: -35,
+   115→        width: "70vw",
+   116→        maxWidth: 900,
+   117→        height: "60vh",
+   118→        maxHeight: 600,
+   119→        zIndex,
+   120→        transformStyle: "preserve-3d",
+   121→        willChange: "transform, opacity, filter",
+   122→        cursor: isActive ? "zoom-in" : "pointer",
+   123→        perspective: 1200,
+   124→      }}
+   125→      className={isActive ? "gal-card-active" : ""}
+   126→      onClick={isActive ? onClick : undefined}
+   127→    >
+   128→      <div
+   129→        style={{
+   130→          position: "relative",
+   131→          width: "100%",
+   132→          height: "100%",
+   133→          borderRadius: 16,
+   134→          overflow: "hidden",
+   135→          boxShadow: isActive
+   136→            ? "0 30px 80px rgba(0,0,0,0.5), 0 0 60px rgba(184,134,11,0.15)"
+   137→            : "0 16px 40px rgba(0,0,0,0.3)",
+   138→          transition: "box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1)",
+   139→        }}
+   140→      >
+   141→        {/* Image */}
+   142→        <Image
+   143→          src={item.src}
+   144→          alt={item.title}
+   145→          fill
+   146→          sizes="70vw"
+   147→          className="gal-image"
+   148→          style={{
+   149→            objectFit: "cover",
+   150→            willChange: "transform",
+   151→          }}
+   152→          priority={isActive}
+   153→        />
+   154→
+   155→        {/* Dark gradient overlay at bottom for title */}
+   156→        <div
+   157→          style={{
+   158→            position: "absolute",
+   159→            bottom: 0,
+   160→            left: 0,
+   161→            right: 0,
+   162→            height: "50%",
+   163→            background:
+   164→              "linear-gradient(to top, rgba(26,23,20,0.85) 0%, rgba(26,23,20,0.4) 40%, transparent 100%)",
+   165→            pointerEvents: "none",
+   166→          }}
+   167→        />
+   168→
+   169→        {/* Gold light sweep on active card — key triggers re-animation */}
+   170→        {isActive && !prefersReduced && (
+   171→          <div
+   172→            key={`sweep-${activeIndex}`}
+   173→            className="gal-light-sweep"
+   174→            style={{
+   175→              position: "absolute",
+   176→              inset: 0,
+   177→              background:
+   178→                "linear-gradient(105deg, transparent 35%, rgba(212,166,62,0.08) 42%, rgba(229,191,101,0.15) 48%, rgba(212,166,62,0.08) 54%, transparent 61%)",
+   179→              pointerEvents: "none",
+   180→              zIndex: 5,
+   181→              borderRadius: "inherit",
+   182→            }}
+   183→          />
+   184→        )}
+   185→
+   186→        {/* Gold border glow on active */}
+   187→        {isActive && (
+   188→          <div
+   189→            style={{
+   190→              position: "absolute",
+   191→              inset: 0,
+   192→              borderRadius: 16,
+   193→              border: "1.5px solid rgba(184,134,11,0.35)",
+   194→              pointerEvents: "none",
+   195→              zIndex: 6,
+   196→              boxShadow:
+   197→                "inset 0 0 30px rgba(184,134,11,0.05), 0 0 15px rgba(184,134,11,0.08)",
+   198→            }}
+   199→          />
+   200→        )}
+   201→
+   202→        {/* Title overlay */}
+   203→        <AnimatePresence mode="wait">
+   204→          {isActive && (
+   205→            <motion.div
+   206→              key={`title-${index}`}
+   207→              initial={{ opacity: 0, y: 20 }}
+   208→              animate={{ opacity: 1, y: 0 }}
+   209→              exit={{ opacity: 0, y: -10 }}
+   210→              transition={{ duration: 0.5, ease: EASE_PREMIUM }}
+   211→              style={{
+   212→                position: "absolute",
+   213→                bottom: 0,
+   214→                left: 0,
+   215→                right: 0,
+   216→                padding: "2.5rem 2rem 2rem",
+   217→                zIndex: 7,
+   218→              }}
+   219→            >
+   220→              <h3
+   221→                style={{
+   222→                  fontFamily: "var(--font-serif)",
+   223→                  fontSize: "clamp(1.2rem, 3vw, 2rem)",
+   224→                  fontWeight: 300,
+   225→                  color: "#FFFFFF",
+   226→                  letterSpacing: "0.02em",
+   227→                  textShadow:
+   228→                    "0 2px 16px rgba(0,0,0,0.8), 0 0 30px rgba(0,0,0,0.5)",
+   229→                  lineHeight: 1.3,
+   230→                }}
+   231→              >
+   232→                {item.title}
+   233→              </h3>
+   234→              <div
+   235→                style={{
+   236→                  width: 40,
+   237→                  height: 2,
+   238→                  background:
+   239→                    "linear-gradient(90deg, #D4A63E, rgba(212,166,62,0.3))",
+   240→                  marginTop: "0.75rem",
+   241→                }}
+   242→              />
+   243→              {/* Click hint */}
+   244→              <span style={{
+   245→                fontSize: "0.7rem", color: "rgba(250,250,247,0.4)",
+   246→                letterSpacing: "0.1em", marginTop: "0.5rem", display: "block",
+   247→                fontWeight: 300,
+   248→              }}>
+   249→                Нажмите для просмотра
+   250→              </span>
+   251→            </motion.div>
+   252→          )}
+   253→        </AnimatePresence>
+   254→      </div>
+   255→    </motion.div>
+   256→  );
+   257→}
+   258→
+   259→/* ─── Mobile: Stack Card (Tinder-style) ──────────────────────── */
+   260→function StackCard({
+   261→  item,
+   262→  index,
+   263→  activeIndex,
+   264→  onSwipe,
+   265→  onClick,
+   266→}: {
+   267→  item: (typeof GALLERY)[number];
+   268→  index: number;
+   269→  activeIndex: number;
+   270→  onSwipe: (direction: "left" | "right") => void;
+   271→  onClick: () => void;
+   272→}) {
+   273→  const prefersReduced = useReducedMotion();
+   274→  const isTop = index === activeIndex;
+   275→  const isSecond = index === activeIndex + 1;
+   276→  const stackIndex = index - activeIndex;
+   277→  const isVisible = stackIndex >= 0 && stackIndex < 4;
+   278→
+   279→  if (!isVisible) return null;
+   280→
+   281→  return (
+   282→    <motion.div
+   283→      layout
+   284→      initial={false}
+   285→      animate={{
+   286→        scale: isTop ? 1 : Math.max(1 - stackIndex * 0.05, 0.85),
+   287→        y: isTop ? 0 : stackIndex * 8,
+   288→        opacity: isTop ? 1 : Math.max(1 - stackIndex * 0.2, 0.3),
+   289→        zIndex: GALLERY.length - stackIndex,
+   290→      }}
+   291→      transition={{
+   292→        type: "spring",
+   293→        stiffness: 300,
+   294→        damping: 30,
+   295→      }}
+   296→      drag={isTop ? "x" : false}
+   297→      dragConstraints={{ left: 0, right: 0 }}
+   298→      dragElastic={0.7}
+   299→      onDragEnd={(_e: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+   300→        if (Math.abs(info.offset.x) > 80) {
+   301→          onSwipe(info.offset.x > 0 ? "right" : "left");
+   302→        }
+   303→      }}
+   304→      style={{
+   305→        position: "absolute",
+   306→        left: "5%",
+   307→        top: 0,
+   308→        width: "90%",
+   309→        aspectRatio: "4/3",
+   310→        borderRadius: 16,
+   311→        overflow: "hidden",
+   312→        cursor: isTop ? "grab" : "default",
+   313→        boxShadow: isTop
+   314→          ? "0 20px 50px rgba(0,0,0,0.4), 0 0 40px rgba(184,134,11,0.1)"
+   315→          : "0 10px 30px rgba(0,0,0,0.3)",
+   316→        touchAction: "pan-y",
+   317→      }}
+   318→      onClick={isTop ? onClick : undefined}
+   319→    >
+   320→      <img
+   321→        src={item.src}
+   322→        alt={item.title}
+   323→        style={{ width: "100%", height: "100%", objectFit: "cover" }}
+   324→      />
+   325→      <div style={{
+   326→        position: "absolute", inset: 0,
+   327→        background: "linear-gradient(to top, rgba(26,23,20,0.8) 0%, rgba(26,23,20,0.3) 40%, transparent 100%)",
+   328→      }} />
+   329→      {isTop && (
+   330→        <>
+   331→          {/* Gold border on top card */}
+   332→          <div style={{
+   333→            position: "absolute", inset: 0, borderRadius: 16,
+   334→            border: "1.5px solid rgba(184,134,11,0.3)",
+   335→            pointerEvents: "none",
+   336→          }} />
+   337→          {/* Light sweep on top card */}
+   338→          {!prefersReduced && (
+   339→            <div
+   340→              key={`sweep-m-${activeIndex}`}
+   341→              className="gal-light-sweep"
+   342→              style={{
+   343→                position: "absolute", inset: 0,
+   344→                background: "linear-gradient(105deg, transparent 35%, rgba(212,166,62,0.06) 42%, rgba(229,191,101,0.12) 48%, rgba(212,166,62,0.06) 54%, transparent 61%)",
+   345→                pointerEvents: "none", zIndex: 5, borderRadius: "inherit",
+   346→              }}
+   347→            />
+   348→          )}
+   349→          {/* Title */}
+   350→          <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "1.5rem", zIndex: 7 }}>
+   351→            <h3 style={{
+   352→              fontFamily: "var(--font-serif)", fontSize: "1.2rem", fontWeight: 400,
+   353→              color: "#FAFAF7", lineHeight: 1.3, textShadow: "0 2px 10px rgba(0,0,0,0.6)",
+   354→            }}>
+   355→              {item.title}
+   356→            </h3>
+   357→            <div style={{ width: 30, height: 2, background: "linear-gradient(90deg, #D4A63E, rgba(212,166,62,0.2))", marginTop: "0.5rem" }} />
+   358→          </div>
+   359→        </>
+   360→      )}
+   361→    </motion.div>
+   362→  );
+   363→}
+   364→
+   365→/* ─── Full-Screen Lightbox ──────────────────────────────────── */
+   366→function Lightbox({
+   367→  index,
+   368→  onClose,
+   369→  onPrev,
+   370→  onNext,
+   371→}: {
+   372→  index: number;
+   373→  onClose: () => void;
+   374→  onPrev: () => void;
+   375→  onNext: () => void;
+   376→}) {
+   377→  const item = GALLERY[index];
+   378→
+   379→  /* Keyboard navigation */
+   380→  useEffect(() => {
+   381→    const handleKey = (e: KeyboardEvent) => {
+   382→      if (e.key === "Escape") onClose();
+   383→      if (e.key === "ArrowLeft") onPrev();
+   384→      if (e.key === "ArrowRight") onNext();
+   385→    };
+   386→    window.addEventListener("keydown", handleKey);
+   387→    return () => window.removeEventListener("keydown", handleKey);
+   388→  }, [onClose, onPrev, onNext]);
+   389→
+   390→  return (
+   391→    <motion.div
+   392→      initial={{ opacity: 0 }}
+   393→      animate={{ opacity: 1 }}
+   394→      exit={{ opacity: 0 }}
+   395→      transition={{ duration: 0.3 }}
+   396→      style={{
+   397→        position: "fixed", inset: 0, zIndex: 9999,
+   398→        background: "rgba(26,23,20,0.95)",
+   399→        backdropFilter: "blur(20px)",
+   400→        display: "flex", alignItems: "center", justifyContent: "center",
+   401→      }}
+   402→      onClick={onClose}
+   403→    >
+   404→      {/* Close button */}
+   405→      <button
+   406→        onClick={onClose}
+   407→        aria-label="Закрыть"
+   408→        style={{
+   409→          position: "absolute", top: "1.5rem", right: "1.5rem", zIndex: 10,
+   410→          width: 48, height: 48, borderRadius: "50%",
+   411→          border: "1px solid rgba(184,134,11,0.3)",
+   412→          background: "rgba(26,23,20,0.8)",
+   413→          color: "#D4A63E", cursor: "pointer",
+   414→          display: "flex", alignItems: "center", justifyContent: "center",
+   415→          transition: "all 0.3s",
+   416→        }}
+   417→      >
+   418→        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+   419→          <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+   420→        </svg>
+   421→      </button>
+   422→
+   423→      {/* Prev button */}
+   424→      <button
+   425→        onClick={(e) => { e.stopPropagation(); onPrev(); }}
+   426→        aria-label="Предыдущее фото"
+   427→        style={{
+   428→          position: "absolute", left: "1.5rem", top: "50%", transform: "translateY(-50%)", zIndex: 10,
+   429→          width: 48, height: 48, borderRadius: "50%",
+   430→          border: "1px solid rgba(184,134,11,0.3)",
+   431→          background: "rgba(26,23,20,0.8)",
+   432→          color: "#D4A63E", cursor: "pointer",
+   433→          display: "flex", alignItems: "center", justifyContent: "center",
+   434→          transition: "all 0.3s",
+   435→        }}
+   436→      >
+   437→        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+   438→          <path d="m15 18-6-6 6-6" />
+   439→        </svg>
+   440→      </button>
+   441→
+   442→      {/* Image */}
+   443→      <motion.div
+   444→        key={index}
+   445→        initial={{ opacity: 0, scale: 0.85 }}
+   446→        animate={{ opacity: 1, scale: 1 }}
+   447→        exit={{ opacity: 0, scale: 0.9 }}
+   448→        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+   449→        style={{
+   450→          width: "85vw", maxWidth: 1200, height: "75vh", maxHeight: 800,
+   451→          borderRadius: 12, overflow: "hidden", position: "relative",
+   452→          boxShadow: "0 40px 100px rgba(0,0,0,0.5), 0 0 80px rgba(184,134,11,0.1)",
+   453→          border: "1px solid rgba(184,134,11,0.2)",
+   454→        }}
+   455→        onClick={(e) => e.stopPropagation()}
+   456→      >
+   457→        <Image
+   458→          src={item.src}
+   459→          alt={item.title}
+   460→          fill
+   461→          sizes="85vw"
+   462→          style={{ objectFit: "cover" }}
+   463→          priority
+   464→        />
+   465→        {/* Title at bottom */}
+   466→        <div style={{
+   467→          position: "absolute", bottom: 0, left: 0, right: 0,
+   468→          padding: "2rem", zIndex: 5,
+   469→          background: "linear-gradient(to top, rgba(26,23,20,0.8) 0%, transparent 100%)",
+   470→        }}>
+   471→          <span style={{
+   472→            fontSize: "0.65rem", fontWeight: 600, letterSpacing: "0.3em",
+   473→            textTransform: "uppercase", color: "#D4A63E", display: "block", marginBottom: "0.5rem",
+   474→          }}>
+   475→            {String(index + 1).padStart(2, "0")} / {String(GALLERY.length).padStart(2, "0")}
+   476→          </span>
+   477→          <h3 style={{
+   478→            fontFamily: "var(--font-serif)", fontSize: "clamp(1.3rem, 3vw, 2.2rem)",
+   479→            fontWeight: 300, color: "#FAFAF7", lineHeight: 1.2,
+   480→          }}>
+   481→            {item.title}
+   482→          </h3>
+   483→        </div>
+   484→      </motion.div>
+   485→
+   486→      {/* Next button */}
+   487→      <button
+   488→        onClick={(e) => { e.stopPropagation(); onNext(); }}
+   489→        aria-label="Следующее фото"
+   490→        style={{
+   491→          position: "absolute", right: "1.5rem", top: "50%", transform: "translateY(-50%)", zIndex: 10,
+   492→          width: 48, height: 48, borderRadius: "50%",
+   493→          border: "1px solid rgba(184,134,11,0.3)",
+   494→          background: "rgba(26,23,20,0.8)",
+   495→          color: "#D4A63E", cursor: "pointer",
+   496→          display: "flex", alignItems: "center", justifyContent: "center",
+   497→          transition: "all 0.3s",
+   498→        }}
+   499→      >
+   500→        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+   501→          <path d="m9 18 6-6-6-6" />
+   502→        </svg>
+   503→      </button>
+   504→
+   505→      {/* Counter */}
+   506→      <div style={{
+   507→        position: "absolute", bottom: "1.5rem", left: "50%", transform: "translateX(-50%)",
+   508→        display: "flex", gap: "0.4rem", zIndex: 10,
+   509→      }}>
+   510→        {GALLERY.map((_, i) => (
+   511→          <div key={i} style={{
+   512→            width: i === index ? 24 : 6,
+   513→            height: 6,
+   514→            borderRadius: 3,
+   515→            background: i === index ? "#D4A63E" : "rgba(250,250,247,0.2)",
+   516→            transition: "all 0.3s",
+   517→          }} />
+   518→        ))}
+   519→      </div>
+   520→    </motion.div>
+   521→  );
+   522→}
+   523→
+   524→/* ═══════════════════════════════════════════════════════════════
+   525→   MAIN SECTION COMPONENT
+   526→   ═══════════════════════════════════════════════════════════════ */
+   527→export default function CinematicGallery() {
+   528→  const isMobile = useIsMobile();
+   529→  const sectionRef = useRef<HTMLElement>(null);
+   530→  const headerInView = useInView(sectionRef, { once: true, margin: "-80px" });
+   531→  const prefersReduced = useReducedMotion();
+   532→
+   533→  const [activeIndex, setActiveIndex] = useState(0);
+   534→  const [isHovering, setIsHovering] = useState(false);
+   535→  const [isTouching, setIsTouching] = useState(false);
+   536→  const [progress, setProgress] = useState(0);
+   537→  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+   538→
+   539→  const isAutoplaying = !isHovering && !isTouching && !prefersReduced && lightboxIndex === null;
+   540→
+   541→  /* Drag state */
+   542→  const dragStartX = useRef(0);
+   543→  const isDragging = useRef(false);
+   544→  const hasDragged = useRef(false);
+   545→  const dragVelocity = useRef(0);
+   546→  const lastDragX = useRef(0);
+   547→  const lastDragTime = useRef(0);
+   548→
+   549→  /* Autoplay */
+   550→  useEffect(() => {
+   551→    if (!isAutoplaying) return;
+   552→
+   553→    const interval = setInterval(() => {
+   554→      setProgress(0);
+   555→      setActiveIndex((prev) => (prev + 1) % GALLERY.length);
+   556→    }, AUTOPLAY_INTERVAL);
+   557→
+   558→    return () => clearInterval(interval);
+   559→  }, [isAutoplaying]);
+   560→
+   561→  /* Progress bar animation — uses rAF callback for setState (not in effect body) */
+   562→  useEffect(() => {
+   563→    if (!isAutoplaying) return;
+   564→
+   565→    let start: number | null = null;
+   566→    let rafId: number;
+   567→
+   568→    const animate = (timestamp: number) => {
+   569→      if (!start) start = timestamp;
+   570→      const elapsed = timestamp - start;
+   571→      const p = Math.min(elapsed / AUTOPLAY_INTERVAL, 1);
+   572→      setProgress(p);
+   573→
+   574→      if (p < 1) {
+   575→        rafId = requestAnimationFrame(animate);
+   576→      }
+   577→    };
+   578→
+   579→    rafId = requestAnimationFrame(animate);
+   580→    return () => cancelAnimationFrame(rafId);
+   581→  }, [activeIndex, isAutoplaying]);
+   582→
+   583→  /* Navigation */
+   584→  const goTo = useCallback((index: number) => {
+   585→    setActiveIndex(index);
+   586→  }, []);
+   587→
+   588→  const goNext = useCallback(() => {
+   589→    setActiveIndex((prev) => (prev + 1) % GALLERY.length);
+   590→  }, []);
+   591→
+   592→  const goPrev = useCallback(() => {
+   593→    setActiveIndex((prev) => (prev - 1 + GALLERY.length) % GALLERY.length);
+   594→  }, []);
+   595→
+   596→  /* Drag handlers with momentum physics */
+   597→  const handlePointerDown = useCallback(
+   598→    (e: React.PointerEvent<HTMLDivElement>) => {
+   599→      dragStartX.current = e.clientX;
+   600→      lastDragX.current = e.clientX;
+   601→      lastDragTime.current = Date.now();
+   602→      isDragging.current = true;
+   603→      hasDragged.current = false;
+   604→      dragVelocity.current = 0;
+   605→      (e.target as HTMLElement).setPointerCapture?.(e.pointerId);
+   606→    },
+   607→    []
+   608→  );
+   609→
+   610→  const handlePointerMove = useCallback(
+   611→    (e: React.PointerEvent<HTMLDivElement>) => {
+   612→      if (!isDragging.current) return;
+   613→      const dx = e.clientX - dragStartX.current;
+   614→      const now = Date.now();
+   615→      const dt = now - lastDragTime.current;
+   616→
+   617→      /* Track velocity for momentum */
+   618→      if (dt > 0) {
+   619→        dragVelocity.current = (e.clientX - lastDragX.current) / dt * 1000;
+   620→      }
+   621→      lastDragX.current = e.clientX;
+   622→      lastDragTime.current = now;
+   623→
+   624→      if (Math.abs(dx) > 10) hasDragged.current = true;
+   625→    },
+   626→    []
+   627→  );
+   628→
+   629→  const handlePointerUp = useCallback(
+   630→    (e: React.PointerEvent<HTMLDivElement>) => {
+   631→      if (!isDragging.current) return;
+   632→      isDragging.current = false;
+   633→
+   634→      const dx = e.clientX - dragStartX.current;
+   635→      const velocity = dragVelocity.current;
+   636→
+   637→      if (hasDragged.current) {
+   638→        /* Use momentum: if velocity is high, go next/prev even with small drag */
+   639→        if (dx > 50 || velocity > 300) goPrev();
+   640→        else if (dx < -50 || velocity < -300) goNext();
+   641→      }
+   642→
+   643→      dragVelocity.current = 0;
+   644→    },
+   645→    [goNext, goPrev]
+   646→  );
+   647→
+   648→  /* Touch handlers for mobile */
+   649→  const handleTouchStart = useCallback(() => {
+   650→    setIsTouching(true);
+   651→  }, []);
+   652→
+   653→  const handleTouchEnd = useCallback(() => {
+   654→    setTimeout(() => setIsTouching(false), 500);
+   655→  }, []);
+   656→
+   657→  /* Lightbox navigation */
+   658→  const lightboxPrev = useCallback(() => {
+   659→    setLightboxIndex((prev) => prev !== null ? (prev - 1 + GALLERY.length) % GALLERY.length : null);
+   660→  }, []);
+   661→
+   662→  const lightboxNext = useCallback(() => {
+   663→    setLightboxIndex((prev) => prev !== null ? (prev + 1) % GALLERY.length : null);
+   664→  }, []);
+   665→
+   666→  const lightboxClose = useCallback(() => {
+   667→    setLightboxIndex(null);
+   668→  }, []);
+   669→
+   670→  const openLightbox = useCallback((index: number) => {
+   671→    setLightboxIndex(index);
+   672→  }, []);
+   673→
+   674→  /* Mobile swipe handler for stack cards */
+   675→  const handleMobileSwipe = useCallback((direction: "left" | "right") => {
+   676→    if (direction === "left") goNext();
+   677→    else goPrev();
+   678→  }, [goNext, goPrev]);
+   679→
+   680→  return (
+   681→    <section
+   682→      ref={sectionRef}
+   683→      style={{
+   684→        background: "#1A1714",
+   685→        position: "relative",
+   686→        overflow: "hidden",
+   687→        padding: "clamp(3rem, 6vw, 6rem) 0",
+   688→      }}
+   689→      aria-label="Наши работы"
+   690→    >
+   691→      <style dangerouslySetInnerHTML={{ __html: INJECTED_STYLES }} />
+   692→
+   693→      {/* ── Progress bar at top ── */}
+   694→      <div
+   695→        style={{
+   696→          position: "absolute",
+   697→          top: 0,
+   698→          left: 0,
+   699→          right: 0,
+   700→          height: 2,
+   701→          background: "rgba(184,134,11,0.1)",
+   702→          zIndex: 20,
+   703→        }}
+   704→      >
+   705→        <motion.div
+   706→          style={{
+   707→            height: "100%",
+   708→            background: "linear-gradient(90deg, #B8860B, #D4A63E, #E5BF65)",
+   709→            width: `${((activeIndex + (isAutoplaying ? progress : 0)) / GALLERY.length) * 100}%`,
+   710→            transition: "width 0.1s linear",
+   711→          }}
+   712→        />
+   713→      </div>
+   714→
+   715→      {/* Gold accent line above gallery */}
+   716→      <div
+   717→        style={{
+   718→          width: "min(80px, 15vw)",
+   719→          height: 1,
+   720→          background:
+   721→            "linear-gradient(90deg, transparent, rgba(184,134,11,0.4), transparent)",
+   722→          margin: "0 auto 2rem",
+   723→        }}
+   724→      />
+   725→
+   726→      <div
+   727→        className="container"
+   728→        style={{ position: "relative", zIndex: 1 }}
+   729→      >
+   730→        {/* ── Section header ── */}
+   731→        <motion.div
+   732→          initial={{ opacity: 0, y: 30 }}
+   733→          animate={headerInView ? { opacity: 1, y: 0 } : {}}
+   734→          transition={{ duration: 0.8, ease: EASE_PREMIUM }}
+   735→          style={{ marginBottom: "2.5rem", textAlign: "center" }}
+   736→        >
+   737→          <div
+   738→            style={{
+   739→              display: "flex",
+   740→              alignItems: "center",
+   741→              justifyContent: "center",
+   742→              gap: "0.75rem",
+   743→              marginBottom: "1.25rem",
+   744→            }}
+   745→          >
+   746→            <span
+   747→              style={{
+   748→                width: 32,
+   749→                height: 1,
+   750→                background:
+   751→                  "linear-gradient(90deg, transparent, rgba(184,134,11,0.3))",
+   752→              }}
+   753→            />
+   754→            <span
+   755→              style={{
+   756→                fontSize: "clamp(0.7rem, 1.1vw, 0.75rem)",
+   757→                letterSpacing: "0.3em",
+   758→                textTransform: "uppercase" as const,
+   759→                color: "#D4A63E",
+   760→                fontWeight: 600,
+   761→              }}
+   762→            >
+   763→              Наши работы
+   764→            </span>
+   765→            <span
+   766→              style={{
+   767→                width: 32,
+   768→                height: 1,
+   769→                background:
+   770→                  "linear-gradient(90deg, rgba(184,134,11,0.3), transparent)",
+   771→              }}
+   772→            />
+   773→          </div>
+   774→
+   775→          <h2
+   776→            style={{
+   777→              fontFamily: "var(--font-serif)",
+   778→              fontSize: "clamp(1.8rem, 5vw, 3.5rem)",
+   779→              fontWeight: 300,
+   780→              color: "#FFFFFF",
+   781→              lineHeight: 1.15,
+   782→              letterSpacing: "-0.02em",
+   783→              marginBottom: "0.5rem",
+   784→            }}
+   785→          >
+   786→            Наши <span style={{ color: "#D4A63E" }}>работы</span>
+   787→          </h2>
+   788→
+   789→          <p
+   790→            style={{
+   791→              fontSize: "clamp(0.85rem, 1.6vw, 1.05rem)",
+   792→              color: "rgba(255,255,255,0.5)",
+   793→              lineHeight: 1.7,
+   794→              maxWidth: 420,
+   795→              margin: "0 auto",
+   796→              fontWeight: 300,
+   797→            }}
+   798→          >
+   799→            Каждое мероприятие — уникальная история, рассказанная через вкус и
+   800→            эстетику
+   801→          </p>
+   802→        </motion.div>
+   803→
+   804→        {/* ── Coverflow carousel (Desktop) / Stack (Mobile) ── */}
+   805→        <motion.div
+   806→          initial={{ opacity: 0 }}
+   807→          animate={headerInView ? { opacity: 1 } : {}}
+   808→          transition={{ duration: 1, delay: 0.3, ease: EASE_PREMIUM }}
+   809→        >
+   810→          {isMobile ? (
+   811→            /* ── Mobile: Stack card layout ── */
+   812→            <div
+   813→              onTouchStart={handleTouchStart}
+   814→              onTouchEnd={handleTouchEnd}
+   815→              style={{
+   816→                position: "relative",
+   817→                width: "100%",
+   818→                height: "50vh",
+   819→                maxHeight: 400,
+   820→                margin: "0 auto",
+   821→                maxWidth: 420,
+   822→              }}
+   823→            >
+   824→              {GALLERY.map((item, i) => (
+   825→                <StackCard
+   826→                  key={item.src}
+   827→                  item={item}
+   828→                  index={i}
+   829→                  activeIndex={activeIndex}
+   830→                  onSwipe={handleMobileSwipe}
+   831→                  onClick={() => openLightbox(i)}
+   832→                />
+   833→              ))}
+   834→
+   835→              {/* Mobile dot navigation */}
+   836→              <div style={{
+   837→                position: "absolute", bottom: -40, left: 0, right: 0,
+   838→                display: "flex", justifyContent: "center", gap: "0.4rem",
+   839→              }}>
+   840→                {GALLERY.map((_, i) => (
+   841→                  <button
+   842→                    key={i}
+   843→                    onClick={() => goTo(i)}
+   844→                    aria-label={`Фото ${i + 1}`}
+   845→                    style={{
+   846→                      width: activeIndex === i ? 20 : 6,
+   847→                      height: 6, borderRadius: 3,
+   848→                      background: activeIndex === i ? "linear-gradient(90deg, #B8860B, #D4A63E)" : "rgba(184,134,11,0.2)",
+   849→                      border: "none", cursor: "pointer",
+   850→                      transition: "all 0.3s", minWidth: 6, minHeight: 44, padding: "19px 0",
+   851→                    }}
+   852→                  />
+   853→                ))}
+   854→              </div>
+   855→            </div>
+   856→          ) : (
+   857→            /* ── Desktop: Coverflow ── */
+   858→            <div
+   859→              onMouseEnter={() => setIsHovering(true)}
+   860→              onMouseLeave={() => setIsHovering(false)}
+   861→              onTouchStart={handleTouchStart}
+   862→              onTouchEnd={handleTouchEnd}
+   863→              onPointerDown={handlePointerDown}
+   864→              onPointerMove={handlePointerMove}
+   865→              onPointerUp={handlePointerUp}
+   866→              style={{
+   867→                position: "relative",
+   868→                width: "100%",
+   869→                height: "60vh",
+   870→                maxHeight: 600,
+   871→                perspective: 1200,
+   872→                cursor: "grab",
+   873→                userSelect: "none",
+   874→                touchAction: "pan-y",
+   875→              }}
+   876→            >
+   877→              {GALLERY.map((item, i) => (
+   878→                <GalleryCard
+   879→                  key={item.src}
+   880→                  item={item}
+   881→                  index={i}
+   882→                  activeIndex={activeIndex}
+   883→                  total={GALLERY.length}
+   884→                  onClick={() => openLightbox(i)}
+   885→                />
+   886→              ))}
+   887→            </div>
+   888→          )}
+   889→
+   890→          {/* ── Navigation arrows (Desktop) ── */}
+   891→          {!isMobile && (
+   892→            <div
+   893→              style={{
+   894→                display: "flex",
+   895→                justifyContent: "center",
+   896→                alignItems: "center",
+   897→                gap: "2rem",
+   898→                marginTop: "1.5rem",
+   899→              }}
+   900→            >
+   901→              <button
+   902→                onClick={goPrev}
+   903→                aria-label="Previous image"
+   904→                style={{
+   905→                  width: 44,
+   906→                  height: 44,
+   907→                  borderRadius: "50%",
+   908→                  border: "1px solid rgba(184,134,11,0.25)",
+   909→                  background: "rgba(184,134,11,0.05)",
+   910→                  color: "#D4A63E",
+   911→                  cursor: "pointer",
+   912→                  display: "flex",
+   913→                  alignItems: "center",
+   914→                  justifyContent: "center",
+   915→                  transition: "all 0.3s",
+   916→                }}
+   917→              >
+   918→                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+   919→                  <path d="m15 18-6-6 6-6" />
+   920→                </svg>
+   921→              </button>
+   922→
+   923→              {/* ── Navigation dots ── */}
+   924→              <div
+   925→                style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}
+   926→                role="tablist"
+   927→                aria-label="Gallery navigation"
+   928→              >
+   929→                {GALLERY.map((_, i) => (
+   930→                  <button
+   931→                    key={i}
+   932→                    onClick={() => goTo(i)}
+   933→                    role="tab"
+   934→                    aria-selected={activeIndex === i}
+   935→                    aria-label={`Фото ${i + 1}: ${GALLERY[i].title}`}
+   936→                    style={{
+   937→                      width: activeIndex === i ? 28 : 8,
+   938→                      height: 8,
+   939→                      borderRadius: 4,
+   940→                      background:
+   941→                        activeIndex === i
+   942→                          ? "linear-gradient(90deg, #B8860B, #D4A63E)"
+   943→                          : "rgba(184,134,11,0.2)",
+   944→                      border: "none",
+   945→                      cursor: "pointer",
+   946→                      transition:
+   947→                        "width 0.35s cubic-bezier(0.16, 1, 0.3, 1), background 0.35s",
+   948→                      minWidth: 8,
+   949→                      minHeight: 44,
+   950→                      padding: "18px 0",
+   951→                      display: "flex",
+   952→                      alignItems: "center",
+   953→                      justifyContent: "center",
+   954→                    }}
+   955→                  />
+   956→                ))}
+   957→              </div>
+   958→
+   959→              <button
+   960→                onClick={goNext}
+   961→                aria-label="Next image"
+   962→                style={{
+   963→                  width: 44,
+   964→                  height: 44,
+   965→                  borderRadius: "50%",
+   966→                  border: "1px solid rgba(184,134,11,0.25)",
+   967→                  background: "rgba(184,134,11,0.05)",
+   968→                  color: "#D4A63E",
+   969→                  cursor: "pointer",
+   970→                  display: "flex",
+   971→                  alignItems: "center",
+   972→                  justifyContent: "center",
+   973→                  transition: "all 0.3s",
+   974→                }}
+   975→              >
+   976→                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+   977→                  <path d="m9 18 6-6-6-6" />
+   978→                </svg>
+   979→              </button>
+   980→            </div>
+   981→          )}
+   982→        </motion.div>
+   983→      </div>
+   984→
+   985→      {/* Gold accent line below gallery */}
+   986→      <div
+   987→        style={{
+   988→          width: "min(80px, 15vw)",
+   989→          height: 1,
+   990→          background:
+   991→            "linear-gradient(90deg, transparent, rgba(184,134,11,0.4), transparent)",
+   992→          margin: "2rem auto 0",
+   993→        }}
+   994→      />
+   995→
+   996→      {/* ── Full-Screen Lightbox ── */}
+   997→      <AnimatePresence>
+   998→        {lightboxIndex !== null && (
+   999→          <Lightbox
+  1000→            index={lightboxIndex}
+  1001→            onClose={lightboxClose}
+  1002→            onPrev={lightboxPrev}
+  1003→            onNext={lightboxNext}
+  1004→          />
+  1005→        )}
+  1006→      </AnimatePresence>
+  1007→    </section>
+  1008→  );
+  1009→}
+  1010→
