@@ -784,7 +784,6 @@ export default function SiteNav() {
             aria-label={menuOpen ? "Закрыть меню" : "Открыть меню"}
             aria-expanded={menuOpen}
             style={{
-              display: "none",
               flexDirection: "column",
               gap: 5,
               background: "none",
@@ -794,7 +793,7 @@ export default function SiteNav() {
               zIndex: 10001,
               position: "relative",
             }}
-            className="burger-btn"
+            className="burger"
           >
             <motion.span
               animate={{
