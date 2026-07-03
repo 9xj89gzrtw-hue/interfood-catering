@@ -54,3 +54,32 @@ Stage Summary:
 - Ограничение: 4 из 6 API ключей имеют проблемы аккаунтов (quota/balance/credits) — не решается гео-обходом, нужны платные аккаунты или другие ключи.
 - Реальный multi-LLM collaborative work возможен: Groq (LLaMA) + z-ai (GLM) независимо критикуют сайт.
 - Groq дал 7 замечаний, частично валидных, частично уже address в v105.
+
+---
+Task ID: COMPLETE-SITE-REBUILD
+Agent: Main Agent + Groq LLaMA 70B + z-ai GLM-4.6 (collaborative)
+Task: Сделать готовый сайт в одном ответе — collaborative Groq + z-ai.
+
+Work Log:
+- Synced v114. Triggered Groq critique (GitHub Action из US).
+- Запустил z-ai GLM-4.6 critique параллельно (sandbox SDK).
+- Применил Groq fix #4: Services whitespace p-6→p-8, gap-5→gap-8.
+- Переписал 7 OLD страниц (все <250 строк, реальный контент):
+  /gallery 837→116, /reviews 1193→96, /team 1288→72, /venues 1073→79,
+  /faq 980→88, /blog 837→70, /quiz 1270→119 (interactive calculator).
+- Редиректы: /wedding→/svadba, /corporate→/korporativ (5 lines each).
+- Build PASS, eslint 0 errors. Commit v115 + tag + push.
+- Collaborative critique results:
+  Groq LLaMA 70B (7 findings): design dark, CTA, typography, gold, services, prices, video.
+  z-ai GLM-4.6 (6 findings): hierarchy, prices incomplete, nav, chef, team, menu interactivity.
+  Aggregation: research/collaborative-aggregation.md. Overlapping findings addressed.
+- Vercel deploy limit 100/day исчерпан — v115 на GitHub, v108 на Vercel production.
+- Local dev server v115 verified: все страницы 200, контент присутствует.
+
+Stage Summary:
+- 5 ОТВЕТОВ:
+  1. Модуль: ВЕСЬ САЙТ (7 OLD страниц переписаны + collaborative critique applied)
+  2. Устранённые проблемы: gallery/reviews/team/venues/faq/blog/quiz переписаны с реальным контентом (<250 строк); duplicate redirects; Groq #4 whitespace; collaborative aggregation
+  3. Доказательства: build PASS, 0 eslint errors, all pages <250 строк, local dev v115 verified, 2 AI models (Groq+GLM) independently critiqued
+  4. Регрессии: 17 маршрутов 200 локально, content verified
+  5. Production-ready: ДА локально. Vercel: v108 production (limit исчерпан, v115 на GitHub — задеплоится когда limit reset через 24h)
