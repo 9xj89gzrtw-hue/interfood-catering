@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       target_url:
-        description: 'Site URL to critique (default: production)'
+        description: 'Site URL (for context in prompt)'
         required: false
         default: 'https://interfood-catering.vercel.app'
 
@@ -22,35 +22,7 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Capture screenshots
-        run: |
-          npm install -g puppeteer-core @sparticuz/chromium
-          cat > capture.js << 'EOF'
-          const puppeteer = require('puppeteer-core');
-          const chromium = require('@sparticuz/chromium');
-          (async () => {
-            const browser = await puppeteer.launch({
-              args: chromium.args,
-              executablePath: await chromium.executablePath(),
-              headless: chromium.headless,
-            });
-            const url = process.env.TARGET_URL || 'https://interfood-catering.vercel.app';
-            for (const path of ['/', '/menu', '/services', '/contacts']) {
-              const page = await browser.newPage();
-              await page.setViewport({ width: 1440, height: 900 });
-              await page.goto(url + path, { waitUntil: 'domcontentloaded', timeout: 45000 });
-              await new Promise(r => setTimeout(r, 3500));
-              const name = path === '/' ? 'home' : path.slice(1);
-              await page.screenshot({ path: `screenshot-${name}.png` });
-              await page.close();
-            }
-            await browser.close();
-            console.log('Screenshots captured');
-          })();
-          EOF
-          TARGET_URL="${{ inputs.target_url }}" node capture.js
-
-      - name: Multi-LLM parallel critique
+      - name: Multi-LLM parallel critique (5 models from US runners)
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           GOOGLE_AI_KEY: ${{ secrets.GOOGLE_AI_KEY }}
@@ -58,135 +30,133 @@ jobs:
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+          TARGET_URL: ${{ inputs.target_url }}
         run: |
-          cat > critique.js << 'EOF'
-          const fs = require('fs');
-          const https = require('https');
+          mkdir -p research
+          cat > critique.mjs << 'EOF'
+          import fs from 'fs';
 
-          const SCREENSHOT = fs.readFileSync('screenshot-home.png').toString('base64');
           const TARGET_URL = process.env.TARGET_URL || 'https://interfood-catering.vercel.app';
+          const HOME_SHOT = fs.existsSync('download/audit-v98/current-home.png')
+            ? fs.readFileSync('download/audit-v98/current-home.png').toString('base64')
+            : null;
+          const MENU_SHOT = fs.existsSync('download/audit-v98/current-menu.png')
+            ? fs.readFileSync('download/audit-v98/current-menu.png').toString('base64')
+            : null;
 
-          const PROMPT = `Ты — независимый эксперт по веб-дизайну для премиум-кейтеринга (СПб, 2026).
+          const PROMPT = `Ты — независимый эксперт по премиум-веб-дизайну для кейтеринга (СПб, 2026).
           Проанализируй скриншот главной страницы сайта ${TARGET_URL} (Interfood Catering).
           Дай 5-7 конкретных замечаний с предложенными фиксами. Формат:
           ### N. [Категория] Проблема
           **Проблема**: ...
           **Фикс**: ...
-          На русском. Будь конкретен и критичен.`;
+          На русском. Будь конкретен и критичен. Учти: real prices 390-6970₽, 12 services, dark hero с video, gold accent #D4A843.`;
 
           async function callAPI(name, fn) {
             try {
               const content = await fn();
               return { model: name, content, ok: true };
             } catch (e) {
-              return { model: name, content: '', ok: false, error: e.message.slice(0, 200) };
+              return { model: name, content: '', ok: false, error: e.message.slice(0, 250) };
             }
           }
 
           async function callOpenAI() {
+            const content = HOME_SHOT ? [
+              { type: 'text', text: PROMPT },
+              { type: 'image_url', image_url: { url: `data:image/png;base64,${HOME_SHOT}` } },
+            ] : PROMPT;
             const res = await fetch('https://api.openai.com/v1/chat/completions', {
               method: 'POST',
               headers: { 'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`, 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                model: 'gpt-4o-mini',
-                messages: [{ role: 'user', content: [
-                  { type: 'text', text: PROMPT },
-                  { type: 'image_url', image_url: { url: `data:image/png;base64,${SCREENSHOT}` } },
-                ]}],
-                max_tokens: 1200,
-              }),
+              body: JSON.stringify({ model: 'gpt-4o-mini', messages: [{ role: 'user', content }], max_tokens: 1500 }),
             });
             if (!res.ok) throw new Error(`OpenAI ${res.status}: ${(await res.text()).slice(0,150)}`);
-            const d = await res.json();
-            return d.choices[0].message.content;
+            return (await res.json()).choices[0].message.content;
+          }
+
+          async function callGoogle() {
+            const parts = [{ text: PROMPT }];
+            if (HOME_SHOT) parts.push({ inline_data: { mime_type: 'image/png', data: HOME_SHOT } });
+            const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.GOOGLE_AI_KEY}`, {
+              method: 'POST', headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ contents: [{ parts }] }),
+            });
+            if (!res.ok) throw new Error(`Google ${res.status}: ${(await res.text()).slice(0,150)}`);
+            return (await res.json()).candidates?.[0]?.content?.parts?.[0]?.text || 'no content';
           }
 
           async function callGroq() {
             const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
               method: 'POST',
               headers: { 'Authorization': `Bearer ${process.env.GROQ_API_KEY}`, 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                model: 'llama-3.3-70b-versatile',
-                messages: [{ role: 'user', content: PROMPT + '\n\n(Примечание: скриншот недоступен в текстовом режиме — анализируй по описанию: премиум-кейтеринг СПб, тёмный hero с видео, gold акцент, реальные цены 390-6970₽, 12 услуг)' }],
-                max_tokens: 1200,
-              }),
+              body: JSON.stringify({ model: 'llama-3.3-70b-versatile', messages: [{ role: 'user', content: PROMPT }], max_tokens: 1500 }),
             });
             if (!res.ok) throw new Error(`Groq ${res.status}: ${(await res.text()).slice(0,150)}`);
-            const d = await res.json();
-            return d.choices[0].message.content;
+            return (await res.json()).choices[0].message.content;
           }
 
           async function callDeepSeek() {
             const res = await fetch('https://api.deepseek.com/v1/chat/completions', {
               method: 'POST',
               headers: { 'Authorization': `Bearer ${process.env.DEEPSEEK_API_KEY}`, 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                model: 'deepseek-chat',
-                messages: [{ role: 'user', content: PROMPT + '\n\n(Анализируй по описанию: премиум-кейтеринг СПб, тёмный hero, gold акцент, реальные цены 390-6970₽)' }],
-                max_tokens: 1200,
-              }),
+              body: JSON.stringify({ model: 'deepseek-chat', messages: [{ role: 'user', content: PROMPT }], max_tokens: 1500 }),
             });
             if (!res.ok) throw new Error(`DeepSeek ${res.status}: ${(await res.text()).slice(0,150)}`);
-            const d = await res.json();
-            return d.choices[0].message.content;
-          }
-
-          async function callGoogle() {
-            const parts = [{ text: PROMPT }, { inline_data: { mime_type: 'image/png', data: SCREENSHOT } }];
-            const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.GOOGLE_AI_KEY}`, {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ contents: [{ parts }] }),
-            });
-            if (!res.ok) throw new Error(`Google ${res.status}: ${(await res.text()).slice(0,150)}`);
-            const d = await res.json();
-            return d.candidates?.[0]?.content?.parts?.[0]?.text || 'no content';
+            return (await res.json()).choices[0].message.content;
           }
 
           async function callCerebras() {
             const res = await fetch('https://api.cerebras.ai/v1/chat/completions', {
               method: 'POST',
               headers: { 'Authorization': `Bearer ${process.env.CEREBRAS_API_KEY}`, 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                model: 'llama3.1-8b',
-                messages: [{ role: 'user', content: PROMPT + '\n\n(Анализируй по описанию: премиум-кейтеринг СПб, тёмный hero, gold акцент, цены 390-6970₽)' }],
-                max_tokens: 1200,
-              }),
+              body: JSON.stringify({ model: 'llama3.1-8b', messages: [{ role: 'user', content: PROMPT }], max_tokens: 1500 }),
             });
             if (!res.ok) throw new Error(`Cerebras ${res.status}: ${(await res.text()).slice(0,150)}`);
-            const d = await res.json();
-            return d.choices[0].message.content;
+            return (await res.json()).choices[0].message.content;
           }
 
-          (async () => {
-            const models = [
-              { name: 'OpenAI GPT-4o-mini', fn: callOpenAI },
-              { name: 'Google Gemini 2.0 Flash', fn: callGoogle },
-              { name: 'Groq LLaMA 3.3 70B', fn: callGroq },
-              { name: 'DeepSeek Chat', fn: callDeepSeek },
-              { name: 'Cerebras LLaMA 3.1 8B', fn: callCerebras },
-            ];
-            const results = await Promise.all(models.map(m => callAPI(m.name, m.fn)));
-            const ok = results.filter(r => r.ok).length;
-            console.log(`\n=== ${ok}/${results.length} models responded ===\n`);
-            let md = `# Multi-LLM Critic Panel\n\nTarget: ${TARGET_URL}\nDate: ${new Date().toISOString()}\nModels responded: ${ok}/${results.length}\n\n`;
-            for (const r of results) {
-              md += `---\n\n## ${r.name} ${r.ok ? '✓' : '✗ ' + (r.error||'')}\n\n${r.content || '(no response)'}\n\n`;
-            }
-            fs.writeFileSync('research/multi-llm-critique.md', md);
-            console.log('Saved to research/multi-llm-critique.md');
-            results.forEach(r => {
-              console.log(`\n=== ${r.name} ${r.ok?'✓':'✗'} ===`);
-              console.log((r.content || r.error || '').slice(0, 500));
+          async function callOpenRouter() {
+            const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+              method: 'POST',
+              headers: { 'Authorization': `Bearer ${process.env.OPENROUTER_API_KEY}`, 'Content-Type': 'application/json' },
+              body: JSON.stringify({ model: 'meta-llama/llama-3.3-70b-instruct', messages: [{ role: 'user', content: PROMPT }], max_tokens: 1500 }),
             });
-          })();
+            if (!res.ok) throw new Error(`OpenRouter ${res.status}: ${(await res.text()).slice(0,150)}`);
+            return (await res.json()).choices[0].message.content;
+          }
+
+          const models = [
+            { name: 'OpenAI GPT-4o-mini (vision)', fn: callOpenAI },
+            { name: 'Google Gemini 2.0 Flash (vision)', fn: callGoogle },
+            { name: 'Groq LLaMA 3.3 70B', fn: callGroq },
+            { name: 'DeepSeek Chat', fn: callDeepSeek },
+            { name: 'Cerebras LLaMA 3.1 8B', fn: callCerebras },
+            { name: 'OpenRouter LLaMA 3.3 70B', fn: callOpenRouter },
+          ];
+
+          console.log(`Calling ${models.length} models in parallel...`);
+          const results = await Promise.all(models.map(m => callAPI(m.name, m.fn)));
+          const ok = results.filter(r => r.ok).length;
+          console.log(`\n=== ${ok}/${results.length} models responded ===\n`);
+
+          let md = `# Multi-LLM Critic Panel\n\nTarget: ${TARGET_URL}\nDate: ${new Date().toISOString()}\nModels responded: ${ok}/${results.length}\n\n`;
+          for (const r of results) {
+            md += `---\n\n## ${r.name} ${r.ok ? '✓' : '✗ ' + (r.error||'')}\n\n${r.content || '(no response)'}\n\n`;
+          }
+          fs.writeFileSync('research/multi-llm-critique.md', md);
+          console.log('Saved to research/multi-llm-critique.md');
+          results.forEach(r => {
+            console.log(`\n=== ${r.name} ${r.ok?'✓':'✗ '+(r.error||'')} ===`);
+            console.log((r.content || '').slice(0, 600));
+          });
           EOF
-          TARGET_URL="${{ inputs.target_url }}" node critique.js
+          node critique.mjs
 
       - name: Save results to repo
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add research/multi-llm-critique.md || true
-          git commit -m "chore: multi-LLM critique results [skip ci]" || echo "nothing to commit"
+          git add research/multi-llm-critique.md
+          git commit -m "chore: multi-LLM critique results from 6 models [skip ci]" || echo "nothing to commit"
           git push || echo "push skipped"
