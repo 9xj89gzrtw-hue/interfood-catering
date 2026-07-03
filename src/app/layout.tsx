@@ -1,16 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import "./globals.css";
-import SmoothScroll from "@/components/SmoothScroll";
-import ScrollProgress from "@/components/ScrollProgress";
-import PageLoader from "@/components/PageLoader";
-import BackToTop from "@/components/BackToTop";
-import CustomCursor from "@/components/CustomCursor";
-import SiteNav from "@/components/SiteNav";
-import SiteFooter from "@/components/SiteFooter";
-import ErrorBoundary from "@/components/ErrorBoundary";
-import StickyBottomCTA from "@/components/StickyBottomCTA";
-import WhatsAppFloat from "@/components/WhatsAppFloat";
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-serif",
@@ -30,7 +20,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 5,
   userScalable: true,
-  themeColor: "#FAFAF7",
+  themeColor: "#F5F1EA",
 };
 
 export const metadata: Metadata = {
@@ -55,20 +45,11 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Интерфуд Кейтеринг" }],
   creator: "Интерфуд Кейтеринг",
-  publisher: "Интерфуд Кейтеринг",
   icons: {
-    icon: [
-      { url: "/favicon.ico", sizes: "48x48" },
-      { url: "/favicon.svg", type: "image/svg+xml" },
-    ],
-    apple: [
-      { url: "/apple-touch-icon.png", sizes: "192x192" },
-    ],
+    icon: "/favicon.ico",
   },
   robots: { index: true, follow: true },
-  alternates: {
-    canonical: "https://interfood-catering.ru",
-  },
+  alternates: { canonical: "https://interfood-catering.ru" },
   openGraph: {
     title: "Интерфуд Кейтеринг — Ресторан выездного обслуживания",
     description:
@@ -77,17 +58,6 @@ export const metadata: Metadata = {
     siteName: "Интерфуд Кейтеринг",
     type: "website",
     locale: "ru_RU",
-    images: [{ url: "/images/hero.jpg", width: 1200, height: 630, alt: "Интерфуд Кейтеринг" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Интерфуд Кейтеринг — Ресторан выездного обслуживания",
-    description: "Кейтеринг для свадеб, корпоративов и закрытых мероприятий.",
-    images: ["/images/hero.jpg"],
-  },
-  other: {
-    "apple-mobile-web-app-capable": "yes",
-    "mobile-web-app-capable": "yes",
   },
 };
 
@@ -115,11 +85,6 @@ export default function RootLayout({
       postalCode: "194017",
       addressCountry: "RU",
     },
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: 59.9686,
-      longitude: 30.3249,
-    },
     openingHoursSpecification: [
       {
         "@type": "OpeningHoursSpecification",
@@ -129,24 +94,9 @@ export default function RootLayout({
       }
     ],
     priceRange: "₽₽",
-    currenciesAccepted: "RUB",
-    paymentAccepted: "Cash, CreditCard, BankTransfer",
     foundingDate: "2007",
     founder: { "@type": "Person", name: "Дмитрий Нилов" },
-    areaServed: {
-      "@type": "City",
-      name: "Санкт-Петербург",
-    },
-    image: "https://interfood-catering.ru/images/hero.jpg",
-    logo: "https://interfood-catering.ru/logo.svg",
-    sameAs: [
-      "https://vk.com/nilovcatering",
-      "https://www.instagram.com/nilov_catering/",
-    ],
-    hasMenu: {
-      "@type": "Menu",
-      url: "https://interfood-catering.ru/menu",
-    },
+    areaServed: { "@type": "City", name: "Санкт-Петербург" },
     aggregateRating: {
       "@type": "AggregateRating",
       ratingValue: "4.55",
@@ -156,37 +106,24 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="ru" suppressHydrationWarning style={{ overflowX: "hidden" }}>
+    <html lang="ru" suppressHydrationWarning>
       <head>
-        <link rel="manifest" href="/manifest.json" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <link rel="preload" as="image" href="/images/hero.jpg" type="image/jpeg" fetchPriority="high" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrg) }} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrg) }}
+        />
       </head>
-      <body className={`${cormorant.variable} ${inter.variable} antialiased min-h-screen flex flex-col`} style={{ background: "#FAFAF7", color: "#1A1714" }}>
-        <a href="#main-content" className="skip-to-content">
+      <body
+        className={`${cormorant.variable} ${inter.variable} antialiased min-h-screen flex flex-col`}
+        style={{ background: "#F5F1EA", color: "#1A1A1A" }}
+      >
+        <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:rounded focus:text-sm" style={{ background: "#D4A843", color: "#fff" }}>
           Перейти к основному содержанию
         </a>
-        <PageLoader />
-        <SmoothScroll>
-          <ScrollProgress />
-          <CustomCursor />
-          <SiteNav />
-          <ErrorBoundary>
-            <div id="main-content" tabIndex={-1} className="flex-1 outline-none" style={{ scrollMarginTop: "5rem" }}>
-              {children}
-            </div>
-          </ErrorBoundary>
-          <SiteFooter />
-          <BackToTop />
-          <StickyBottomCTA />
-          <WhatsAppFloat />
-        </SmoothScroll>
-        <div className="grain-overlay" aria-hidden="true" />
+        <div id="main-content" className="flex-1">
+          {children}
+        </div>
       </body>
     </html>
   );
 }
-
