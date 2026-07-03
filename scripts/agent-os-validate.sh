@@ -1,5 +1,5 @@
 #!/bin/bash
-# Agent OS Integrity Validator v2.0
+# Agent OS Integrity Validator v4.0
 # Проверяет целостность файловой системы памяти
 
 set -e
@@ -16,7 +16,7 @@ check() {
     fi
 }
 
-echo "=== Agent OS Integrity Check v2.0 ==="
+echo "=== Agent OS Integrity Check v4.0 ==="
 echo ""
 
 # TIER 1: CORE files
@@ -31,6 +31,7 @@ test -f MEMORY/STATE.md; check $? "STATE.md exists"
 test -f MEMORY/SESSION.md; check $? "SESSION.md exists"
 test -f MEMORY/DECISIONS.md; check $? "DECISIONS.md exists"
 test -f MEMORY/LEARNINGS.md; check $? "LEARNINGS.md exists"
+test -f MEMORY/EXECUTION.md; check $? "EXECUTION.md exists"
 
 # TIER 3: ARCHIVAL directories
 echo ""
@@ -40,6 +41,13 @@ test -d MEMORY/BENCHMARKS; check $? "BENCHMARKS/ exists"
 test -d MEMORY/PROMPTS; check $? "PROMPTS/ exists"
 test -d MEMORY/QUALITY; check $? "QUALITY/ exists"
 test -d MEMORY/ARCHIVE; check $? "ARCHIVE/ exists"
+
+# QUALITY files
+echo ""
+echo "QUALITY files (must exist)"
+test -f MEMORY/QUALITY/pipeline.md; check $? "pipeline.md exists"
+test -f MEMORY/QUALITY/bug-registry.md; check $? "bug-registry.md exists"
+test -f MEMORY/QUALITY/patterns.md; check $? "patterns.md exists"
 
 # SSOT: Check contacts not duplicated
 echo ""
@@ -54,10 +62,17 @@ grep -q "Решение:" MEMORY/DECISIONS.md; check $? "DECISIONS has 'Реше
 grep -q "Почему:" MEMORY/DECISIONS.md; check $? "DECISIONS has 'Почему:' field"
 grep -q "Дата:" MEMORY/DECISIONS.md; check $? "DECISIONS has 'Дата:' field"
 
+# EXECUTION: Check has protocols
+echo ""
+echo "EXECUTION: Protocols defined"
+grep -q "EXECUTION LOOP" MEMORY/EXECUTION.md; check $? "EXECUTION has LOOP"
+grep -q "PRE-COMMIT CHECKLIST" MEMORY/EXECUTION.md; check $? "EXECUTION has CHECKLIST"
+grep -q "ANTI-PATTERNS" MEMORY/EXECUTION.md; check $? "EXECUTION has ANTI-PATTERNS"
+
 # File size limits
 echo ""
 echo "SIZE: Files under 250 lines"
-for f in MEMORY/CORE.md MEMORY/INDEX.md MEMORY/STATE.md MEMORY/SESSION.md MEMORY/DECISIONS.md MEMORY/LEARNINGS.md; do
+for f in MEMORY/CORE.md MEMORY/INDEX.md MEMORY/STATE.md MEMORY/SESSION.md MEMORY/DECISIONS.md MEMORY/LEARNINGS.md MEMORY/EXECUTION.md; do
     if [ -f "$f" ]; then
         LINES=$(wc -l < "$f")
         if [ $LINES -le 250 ]; then
@@ -70,11 +85,37 @@ for f in MEMORY/CORE.md MEMORY/INDEX.md MEMORY/STATE.md MEMORY/SESSION.md MEMORY
     fi
 done
 
-# AGENT_BOOT exists
+# AGENT_BOOT exists and version
 echo ""
 echo "BOOT: AGENT_BOOT.md"
 test -f AGENT_BOOT.md; check $? "AGENT_BOOT.md exists"
-grep -q "v2.0" AGENT_BOOT.md; check $? "AGENT_BOOT schema version is 2.0"
+grep -q "v4.0" AGENT_BOOT.md; check $? "AGENT_BOOT schema version is 4.0"
+
+# Source code violations: check for files > 250 lines
+echo ""
+echo "CODE: Files over 250 lines (violations)"
+VIOLATIONS=0
+for f in $(find src/app -name "page.tsx" 2>/dev/null); do
+    LINES=$(wc -l < "$f" 2>/dev/null || echo 0)
+    if [ "$LINES" -gt 250 ]; then
+        echo "  ⚠️  $f: $LINES lines (VIOLATION!)"
+        VIOLATIONS=$((VIOLATIONS+1))
+    fi
+done
+for f in $(find src/components -name "*.tsx" 2>/dev/null); do
+    LINES=$(wc -l < "$f" 2>/dev/null || echo 0)
+    if [ "$LINES" -gt 250 ]; then
+        echo "  ⚠️  $f: $LINES lines (VIOLATION!)"
+        VIOLATIONS=$((VIOLATIONS+1))
+    fi
+done
+if [ $VIOLATIONS -eq 0 ]; then
+    echo "  ✅ No source code violations"
+    PASS=$((PASS+1))
+else
+    echo "  ❌ $VIOLATIONS source file(s) over 250 lines"
+    FAIL=$((FAIL+1))
+fi
 
 # Summary
 echo ""
