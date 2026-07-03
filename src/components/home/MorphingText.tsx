@@ -1,40 +1,50 @@
 "use client";
 
+import { useState, useEffect } from "react";
+
 /**
- * MorphingText — CSS-only rotating words with blur effect.
- * SSR-safe: renders the first word on server, rotates client-side via CSS animation.
- * NOT the old MorphingText that broke (BUG-004) — no character scrambling, no JS animation.
+ * MorphingText — rotating words with blur transition.
+ * SSR-safe: renders the first word on server (initial state = 0).
+ * Client-only interval rotates words every 2.5s; CSS transition handles blur+opacity.
  *
- * Each word occupies the same slot; only one is visible at a time via staggered
- * animation-delay. Total cycle = words × 2.5s.
+ * NOT the old MorphingText that broke (BUG-004): no character scrambling, no JS animation loop.
+ * Words are real event types from the old site (RULES.md §12).
  */
 const WORDS = ["свадьбы", "банкеты", "фуршеты", "корпоративы", "кофе-брейки"];
-const CYCLE_MS = WORDS.length * 2500;
+const STEP_MS = 2500;
 
 export default function MorphingText() {
+  const [active, setActive] = useState(0);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    const id = setInterval(() => {
+      setActive((prev) => (prev + 1) % WORDS.length);
+    }, STEP_MS);
+    return () => clearInterval(id);
+  }, []);
+
   return (
     <span
       className="relative inline-block align-bottom"
-      style={{ minWidth: "5em", minHeight: "1.2em" }}
+      style={{ minWidth: "6em", minHeight: "1.2em" }}
       aria-label={WORDS.join(", ")}
     >
-      {WORDS.map((w, i) => (
+      {mounted ? (
         <span
-          key={w}
-          className="absolute left-0 top-0 whitespace-nowrap"
+          key={active}
+          className="inline-block"
           style={{
             color: "#D4A843",
-            animation: `morph-word ${CYCLE_MS}ms ease-in-out infinite`,
-            animationDelay: `${i * 2500}ms`,
-            // First word also visible without animation as fallback (reduced-motion)
-            ...(i === 0
-              ? { position: "relative" }
-              : {}),
+            animation: "morph-in 700ms ease-out both",
           }}
         >
-          {w}
+          {WORDS[active]}
         </span>
-      ))}
+      ) : (
+        <span style={{ color: "#D4A843" }}>{WORDS[0]}</span>
+      )}
     </span>
   );
 }
