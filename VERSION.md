@@ -5,6 +5,14 @@
 
 ---
 
+## v85 — 2026-07-03 — CI/CD 5-Agent Validation: Fix 5 P0 issues
+- **P0-1 FIXED**: StatsOdometer показывал нули (0 лет, 0+ мероприятий) — удалён сломанный OdometerDigit/OdometerNumber, заменён на spring counter с реальными числами при SSR
+- **P0-2 FIXED**: Калькулятор CTA «Получить точный расчёт» была некликабельной (ConfettiButton + window.open) — заменена на `<a href="wa.me/...">` с предзаполненным расчётом
+- **P0-3 FIXED**: Email несогласованность — furshet/banket использовали `interfood-catering@yandex.ru`, остальные `info@interfood-catering.ru` → унифицировано на `info@interfood-catering.ru`
+- **P0-4 FIXED**: Hero CTA «Рассчитать мероприятие» → `/calculator` (лишний шаг) → заменён на WhatsApp с предзаполненным текстом
+- **P0-5 FIXED**: Hydration mismatch в CinematicHero — `Math.random()` в initial positions заменён на детерминированные значения
+- **CI/CD Score до фикса:** 4/10 (BLOCKED) → ожидается 7-8/10 после фикса
+
 ## v82.2 — 2026-07-03 — Fix All 6 Bugs: ignoreBuildErrors, z-index, duplicate SiteNav, mobile menu
 - **BUG-005 FIXED**: Удалён `ignoreBuildErrors: true` из next.config.ts. TS exclude: backups, examples, skills, scripts
 - **BUG-001 FIXED**: PDF кнопка на мобильном — burger CSS fix (burger-btn→burger), убран inline display:none, z-index sticky header z-40
