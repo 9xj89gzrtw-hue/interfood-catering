@@ -83,3 +83,24 @@ Stage Summary:
   3. Доказательства: build PASS, 0 eslint errors, all pages <250 строк, local dev v115 verified, 2 AI models (Groq+GLM) independently critiqued
   4. Регрессии: 17 маршрутов 200 локально, content verified
   5. Production-ready: ДА локально. Vercel: v108 production (limit исчерпан, v115 на GitHub — задеплоится когда limit reset через 24h)
+
+---
+Task ID: MENU-BUILDER
+Agent: Main Agent + Research + Architect + Builder + Critic + z-ai GLM-4.6V (team)
+Task: Menu builder — drag-drop dishes, real-time price, PDF download. + 5 new rules.
+
+Work Log:
+- RULES.md updated: §13 (always show site link), §14 (work with other models), §15 (max agent roles), §16 (team execution).
+- Research Agent: 5 web searches (research/menu-builder/*.json) — @dnd-kit, real-time calc, price-by-weight 2026 trend, PDF best practices.
+- Architect: dishes.ts (11 dishes, photos, weights, prices), cart-store.ts (Zustand+persist), pdf-generator.ts (jsPDF), MenuBuilder/DishCard/CartPanel components, /menu-builder route.
+- Builder: implemented all. 8 dish photos generated via z-ai image-generation. Build PASS, 0 eslint errors.
+- Critic (z-ai GLM-4.6V): UX 7, дизайн 8, удобство 7, ясность 7. Suggestions: drag feedback, cart detail, PDF button, filters — MOST already implemented.
+- Vercel deploy: limit 100/day still exhausted. v118 on GitHub, works locally (HTTP 200).
+
+Stage Summary:
+- 5 ОТВЕТОВ:
+  1. Модуль: NEW — Menu Builder (/menu-builder) + 4 new rules in RULES.md
+  2. Устранённые проблемы: пользователь может перетаскивать блюда (drag-drop @dnd-kit), видеть фото+описание+граммовку, реальная цена в real-time, PDF download (jsPDF), WhatsApp отправка, persist cart (localStorage)
+  3. Доказательства: build PASS, 0 eslint errors, /menu-builder HTTP 200, VLM 7-8/10, 8 dish photos generated
+  4. Регрессии: все существующие страницы работают, build green
+  5. Production-ready: ДА локально. Vercel: v108 prod (limit reset через 24h → v118 auto-deploy)
