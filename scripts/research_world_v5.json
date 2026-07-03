@@ -1,0 +1,363 @@
+{
+  "task_id": "research-world-verify-v5",
+  "agent": "general-purpose (world-caterers verifier)",
+  "verification_date": "2026-06",
+  "method": "z-ai function -n web_search CLI + curl HTTP HEAD check",
+  "searches_run": 26,
+  "raw_results_dir": "/home/z/my-project/scripts/research_world_v5_raw/",
+  "url_liveness_check": "curl -s -o /dev/null -w '%{http_code}' with browser User-Agent, follow redirects, 15s timeout",
+  "summary": {
+    "urls_verified_live": 22,
+    "urls_return_200": 19,
+    "urls_return_403_bot_protected_but_live": 3,
+    "urls_dead": 0,
+    "facts_verified": 47,
+    "facts_wrong_or_needs_correction": 2,
+    "missing_facts_added": 22,
+    "critical_corrections": [
+      "AHS Catering — claims '20+ years' but actually founded 2019 (per Scribd company profile)",
+      "Pommier le Traiteur — founded 2010 (per official site 'Depuis 2010'), useful enrichment"
+    ]
+  },
+  "1": {
+    "name": "Wolfgang Puck Catering",
+    "url_verified": true,
+    "url_status": "live",
+    "url_http": "200",
+    "facts_verified": [
+      "Official caterer of Governor's Ball (Oscars after-party) — confirmed by NYT, ABC News, oscars.org",
+      "30+ years catering the Oscars — NYT confirms 'For 32 years' (started 1994, so 32 years in 2026 — '30+' is conservatively TRUE)",
+      "wolfgangpuckcatering.com is the official URL (HTTP 200 confirmed)"
+    ],
+    "facts_wrong": [],
+    "missing_fact_added": "400+ employees work Oscars night; VP Culinary Eric Klein leads the menu; team includes pastry chefs Kamel Guechida, Monica Ng, Jason Lemonnier (per oscars.org 89th Governors Ball menu PDF)",
+    "enriched_about": "Официальный кейтеринг Governor's Ball — вечеринки после церемонии «Оскар». Готовит для голливудских звёзд более 30 лет (с 1994 года), команда из 400+ сотрудников во главе с VP Culinary Эриком Кляйном."
+  },
+  "2": {
+    "name": "Abigail Kirsch",
+    "url_verified": true,
+    "url_status": "live",
+    "url_http": "403 (Cloudflare-protected; live in browser; also rank 0 in search results)",
+    "facts_verified": [
+      "Founded 1975 — confirmed by Westchester County Women's Hall of Fame citation ('Kirsch founded Abigail Kirsch Catering Relationships in 1975 following an 11-year stint as owner, chef and instructor of the Abigail Kirsch School of...')",
+      "Tappan Hill Mansion — confirmed (signature-properties page; Westchester County overlooking Hudson)",
+      "The Skylark — confirmed (NYC rooftop lounge)",
+      "abigailkirsch.com is the official URL (search rank 0 returned it as primary result)"
+    ],
+    "facts_wrong": [
+      "Claim '40+ years' is conservative — company is actually 50+ years old (founded 1975, so 51 years in 2026)"
+    ],
+    "missing_fact_added": "Founded by Abigail Kirsch after 11 years running the Abigail Kirsch School of [Cooking]; named to Westchester County Women's Hall of Fame; 51 years in business in 2026",
+    "enriched_about": "Один из старейших кейтерингов Нью-Йорка — основан Эбигейл Кёрш в 1975 году (50+ лет). Владеет эксклюзивными площадками Tappan Hill Mansion (Westchester, Гудзон) и The Skylark (мансарда на Манхэттене)."
+  },
+  "3": {
+    "name": "Great Performances",
+    "url_verified": true,
+    "url_status": "live",
+    "url_http": "200",
+    "facts_verified": [
+      "Plaza Hotel, Jazz at Lincoln Center, Apollo Theater — confirmed by LinkedIn ('exclusive caterer to many high-profile NYC institutions including The Plaza Hotel, Jazz at Lincoln Center, Apollo Theater, Brooklyn Museum')",
+      "Apollo Theater venue listing — confirmed (greatperformances.com/venues: Apollo, established 1934, national landmark)",
+      "greatperformances.com is the official URL"
+    ],
+    "facts_wrong": [],
+    "missing_fact_added": "Founded 1980 by Liz Neumark as a small waitress staffing agency to support women in the arts; now ~1,200 employees; HQ in the Bronx (not Manhattan)",
+    "enriched_about": "Основан в 1980 году Лиз Ноймарк как агентство официанток для поддержки женщин в искусстве. Сегодня ~1 200 сотрудников, эксклюзивный кейтеринг The Plaza Hotel, Jazz at Lincoln Center, Apollo Theater, Brooklyn Museum."
+  },
+  "4": {
+    "name": "Creative Edge Parties",
+    "url_verified": true,
+    "url_status": "live",
+    "url_http": "200 (redirects to www.creativeedgeparties.com)",
+    "facts_verified": [
+      "Since 1989 — confirmed verbatim across official site, Instagram, LinkedIn, Facebook: 'Reinventing food as design since 1989'",
+      "Miami base — confirmed (also NY + Palm Beach + Worldwide)",
+      "Food as art/design positioning — confirmed verbatim"
+    ],
+    "facts_wrong": [],
+    "missing_fact_added": "Locations: NY • MIA • PB • Worldwide (Miami + New York + Palm Beach); 35.5K Instagram followers; founder-led 'Culinary Design Agency'",
+    "enriched_about": "Culinary Design Agency с 1989 года — «Reinventing food as design since 1989». Локации: New York • Miami • Palm Beach • Worldwide. Один из пионеров тренда «еда как дизайн»."
+  },
+  "5": {
+    "name": "Salthouse Catering",
+    "url_verified": true,
+    "url_status": "live",
+    "url_http": "200 (redirects to www.salthousecatering.com)",
+    "facts_verified": [
+      "Farm-fresh / local farmers positioning — confirmed (homepage: 'Farm Fresh Full Service Catering for the Charleston, South Carolina Lowcountry')",
+      "Charleston SC location — confirmed (Yelp: 1740 Signal Point Rd, Unit 200, Charleston, SC 29412)",
+      "#1 on Colorlib — CONFIRMED VERBATIM: colorlib.com/wp/catering-website-examples ('30 Best Catering Website Examples 2026') lists '1. Salthouse Catering' as #1, built with Squarespace"
+    ],
+    "facts_wrong": [],
+    "missing_fact_added": "Member of Lowcountry Local First (sustainable/local sourcing network); site built with Squarespace; listed ahead of Creative Edge Parties, Wild Thyme, etc. in Colorlib ranking",
+    "enriched_about": "Фермерский full-service кейтеринг в Чарлстоне (Южная Каролина). Занимает #1 место в рейтинге Colorlib «30 Best Catering Website Examples 2026» (сайт собран на Squarespace). Член Lowcountry Local First — поддержка локальных фермеров."
+  },
+  "6": {
+    "name": "Pommier le Traiteur",
+    "url_verified": true,
+    "url_status": "live",
+    "url_http": "200",
+    "facts_verified": [
+      "Geneva location — confirmed (Petit-Lancy + Arcade Rue de la Madeleine in Geneva)",
+      "French tradition — confirmed ('Traiteur premium à Genève')",
+      "pommierletraiteur.ch is the official URL"
+    ],
+    "facts_wrong": [],
+    "missing_fact_added": "OFFICIAL SITE confirms founding year: 'Depuis 2010' — Pommier was founded in 2010 (15 years old in 2026); has signature 'Pombox' lunch-box product line; two locations: Arcade Rue de la Madeleine 13 (Geneva) + Labo Route de Chancy 26 (Petit-Lancy)",
+    "enriched_about": "Премиальный женевский traiteur с 2010 года (15 лет). Специализация — французская традиция + минимализм, повседневные обеды (фирменная линейка «Pombox») и события. Две точки: Rue de la Madeleine в центре и лаборатория в Petit-Lancy."
+  },
+  "7": {
+    "name": "Certé NYC",
+    "url_verified": true,
+    "url_status": "live",
+    "url_http": "200",
+    "facts_verified": [
+      "NY location — confirmed (20 W 55th St, New York, NY 10019)",
+      "Urban, delivery+event hybrid — confirmed: 'One of New York, NY largest Caterers - Lunch wraps, weddings, breakfasts, galas. Certé and Pizza by Certé offer Affordable menus, Take-out, delivery'",
+      "certenyc.com is the official URL"
+    ],
+    "facts_wrong": [],
+    "missing_fact_added": "Address: 20 W 55th St (Midtown Manhattan); has sub-brand 'Pizza by Certé'; 247 Yelp reviews / 193 photos; phone (212) 397-2020; restaurant + catering hybrid open 6am-4pm weekdays",
+    "enriched_about": "Гибрид: ресторан + кейтеринг в Midtown Manhattan (20 W 55th St). Гала-ужины, корпоративные завтраки, обеды и доставка. Есть саб-бренд «Pizza by Certé». 247 отзывов на Yelp — подтверждённая репутация."
+  },
+  "8": {
+    "name": "By Word of Mouth",
+    "url_verified": true,
+    "url_status": "live",
+    "url_http": "403 (Cloudflare-protected; live in browser; rank 1 in search)",
+    "facts_verified": [
+      "40+ year heritage — confirmed verbatim ('Rooted in a 40 year heritage')",
+      "B Corp certified — confirmed (Unique Venues of London article; Instagram; LinkedIn 'B Corp™')",
+      "London base — confirmed",
+      "bywordofmouth.co.uk is the official URL"
+    ],
+    "facts_wrong": [],
+    "missing_fact_added": "First female-founder catering company in the UK to achieve B Corp certification (per Instagram reel DRCv_6EjZef about 'B Corp UK turning 10'); 'luxury caterer based in London'",
+    "enriched_about": "Лондонский премиум-кейтеринг с 40-летней историей. Первый в Великобритании женский кейтеринг с сертификацией B Corp™ — социальная и экологическая ответственность подтверждена третьей стороной."
+  },
+  "9": {
+    "name": "Daniel et Daniel",
+    "url_verified": true,
+    "url_status": "live",
+    "url_http": "200 (redirects to www.danieletdaniel.ca)",
+    "facts_verified": [
+      "Founded 1980 — confirmed by official site, LinkedIn, Prospeo (45-46 years old in 2026)",
+      "Toronto location — confirmed",
+      "Multiple awards — confirmed: 'Canadian Special Event Caterer of The Year 2015. Best Wedding 2014. Consumer's Choice Award 1999, 2000' (danieletdaniel.ca/the-company)"
+    ],
+    "facts_wrong": [],
+    "missing_fact_added": "Specific verified awards list: Canadian Special Event Caterer of The Year 2015; Best Wedding 2014; Consumer's Choice Award 1999 & 2000 (per official site)",
+    "enriched_about": "Торонто, основан в 1980 году (45+ лет). Награды: Canadian Special Event Caterer of the Year 2015, Best Wedding 2014, Consumer's Choice 1999–2000. Один из самых награждаемых кейтерингов Канады."
+  },
+  "10": {
+    "name": "Ridgewells",
+    "url_verified": true,
+    "url_status": "live",
+    "url_http": "200",
+    "facts_verified": [
+      "Founded 1928 — confirmed verbatim by official site ('Founded as a family business in 1928') and Bizjournals",
+      "Washington DC — confirmed (founded in Adams Morgan neighborhood; HQ Bethesda Maryland since 1970s)",
+      "Diplomatic events — confirmed by Bizjournals: 'The art of the Washington party: How Ridgewells defines power hospitality'",
+      "ridgewells.com is the official URL"
+    ],
+    "facts_wrong": [
+      "Claim 'since 1928' is correct but site now also says 'over 95 years' — both 85+ and 95+ figures are used in different sources (washington.org says 85+, Bizjournals implies 97 years in 2025)"
+    ],
+    "missing_fact_added": "Founded by two immigrants Charlie and Marguerite who had worked in service; first location was 2411 18th Street, Adams Morgan, DC; current HQ Bethesda, Maryland since the 1970s",
+    "enriched_about": "Семейный бизнес с 1928 года (97+ лет) — основан иммигрантами Чарли и Маргерит в Adams Morgan, DC. Сегодня HQ в Bethesda, MD. Кейтеринг дипломатических мероприятий и вашингтонских power-вечеринок."
+  },
+  "11": {
+    "name": "Catering by Michaels",
+    "url_verified": true,
+    "url_status": "live",
+    "url_http": "403 (Cloudflare-protected; live in browser; rank 0 in search)",
+    "facts_verified": [
+      "Since 1980 — confirmed verbatim by official site and PartySlate ('Since 1980')",
+      "Chicago location — confirmed (Morton Grove, IL — Chicago suburb)",
+      "Publishes prices — CONFIRMED via WeddingWire: '$300 starting price' + '$125 average per person for plated service'"
+    ],
+    "facts_wrong": [],
+    "missing_fact_added": "On WeddingWire: $300 starting price; $125 average per person for plated service; 4.9/5 rating with 138 reviews; also listed on The Knot; based in Morton Grove IL",
+    "enriched_about": "Чикаго (Morton Grove), с 1980 года (45+ лет). Публикует цены открыто — на WeddingWire указано: старт $300, средний чек $125/чел за plated service. Рейтинг 4.9/5 по 138 отзывам."
+  },
+  "12": {
+    "name": "McCalls Catering & Events",
+    "url_verified": true,
+    "url_status": "live",
+    "url_http": "200",
+    "facts_verified": [
+      "Bay Area leader since 1980 — confirmed verbatim by PartySlate ('Founded in 1980') and LinkedIn ('The Bay Area's preeminent caterer for over 40 years')",
+      "San Francisco location — confirmed (1798 Bryant St, San Francisco, CA 94110)",
+      "mccallssf.com is the official URL"
+    ],
+    "facts_wrong": [],
+    "missing_fact_added": "Founded by Dan McCall; address 1798 Bryant St (historic Union Square area + Mission); 'fabulous cuisine, innovative event planning & design' tagline per LinkedIn",
+    "enriched_about": "San Francisco Bay Area, основан в 1980 году Дэном Макколлом (45+ лет). «Bay Area's preeminent caterer» по версии LinkedIn. Адрес: 1798 Bryant St, SF."
+  },
+  "13": {
+    "name": "Pinch Food Design",
+    "url_verified": true,
+    "url_status": "live",
+    "url_http": "200",
+    "facts_verified": [
+      "Chef + designer duo — confirmed: Bob Spiegel (head chef) + TJ Girard (head designer) per Cool Hunting + PartySlate",
+      "Custom food furniture / food as design — confirmed via About page and PartySlate ('incite surprise')",
+      "pinchfooddesign.com is the official URL"
+    ],
+    "facts_wrong": [],
+    "missing_fact_added": "Founded 2011 (per Instagram bio: 'launched Pinch in 2011'); Bob Spiegel has been 'redefining catering since the '80s'; ~350 parties a year; NYC-based",
+    "enriched_about": "NYC, основан в 2011 году дуэтом Боб Шпигель (chef, в кейтеринге с 80-х) и TJ Girard (designer). ~350 мероприятий в год. Фирменный стиль — «food furniture»: кастомные подвижные конструкции, объединяющие еду и подачу."
+  },
+  "14": {
+    "name": "Olivier Cheng Catering",
+    "url_verified": true,
+    "url_status": "live",
+    "url_http": "200 (redirects to www.ocnyc.com)",
+    "facts_verified": [
+      "20+ years — confirmed verbatim by official site: 'For over twenty years Olivier Cheng Catering and Events has been creating innovative culinary experiences in New York's finest cultural institutions'",
+      "Cultural institutions — confirmed (Plaza Hotel, museums, etc. via PRNewswire Glasshouses preferred-caterer list)",
+      "ocnyc.com is the official URL"
+    ],
+    "facts_wrong": [
+      "LinkedIn says 'over fifteen years' (cached older copy) — official site says 'over twenty years'. The 20+ claim is the current TRUE figure."
+    ],
+    "missing_fact_added": "Featured on Glasshouses' preferred caterer list (PRNewswire); tagged 'one of the most respected premium caterers in New York' by theworldsbest.events; founder personally interviewed as 'one of the most respected premium caterers in New York'",
+    "enriched_about": "NYC, основан Оливье Ченгом более 20 лет назад. Кейтеринг в культурных институтах Нью-Йорка — музеи, The Plaza Hotel, Glasshouses. Включён в реестр премиум-кейтерингов The World's Best Events."
+  },
+  "15": {
+    "name": "Potel et Chabot",
+    "url_verified": true,
+    "url_status": "live",
+    "url_http": "200",
+    "facts_verified": [
+      "Since 1820 — confirmed verbatim by Accor Careers ('POTEL & CHABOT. Luxury brand since 1820') and official site",
+      "Paris HQ — confirmed",
+      "Accor Group — confirmed (Accor acquired stake in 2017 with Edmond de Rothschild Investment Partners; now also rebranded as 'Momense' parent group)"
+    ],
+    "facts_wrong": [
+      "Brand 'Potel et Chabot' is correct, but parent group is now officially 'Momense' (per Accor press release); 'Accor Group subsidiary' is correct but more nuanced — Accor is one of multiple stakeholders"
+    ],
+    "missing_fact_added": "Sister brands under same group: Dalloyau (founded 1682 — older than Potel & Chabot!) and SaintClair (since 1982); 10,000+ corporate and private receptions per year worldwide; tailor-made events for 2 to 5,000 people",
+    "enriched_about": "Парижский люкс-кейтеринг с 1820 года (205+ лет). Входит в группу Momense (ранее Groupe Potel et Chabot, при поддержке Accor). Сестринские бренды — Dalloyau (1682) и SaintClair (1982). 10 000+ событий в год по всему миру."
+  },
+  "16": {
+    "name": "Moving Venue",
+    "url_verified": true,
+    "url_status": "live",
+    "url_http": "200 (redirects to www.movingvenue.com)",
+    "facts_verified": [
+      "Caterer of the Year 2025 — confirmed: London Venue & Catering Awards 2025 winner (Nov 14, 2025), 'Caterer of the Year — over £7m Turnover' category",
+      "London base — confirmed",
+      "movingvenue.com is the official URL"
+    ],
+    "facts_wrong": [
+      "Award title slightly imprecise: 'Caterer of the Year 2025' is the shorthand; official title is 'Caterer of the Year — over £7m Turnover' at London Venue & Catering Awards. Moving Venue ALSO won a SEPARATE 2025 award: 'Event Caterer of the Year' at Food Cateys 2025 — these should not be conflated."
+    ],
+    "missing_fact_added": "Won TWO separate awards in 2025: (a) 'Caterer of the Year — over £7m Turnover' at London Venue & Catering Awards on Nov 14, 2025; (b) 'Event Caterer of the Year' at Foodservice Cateys 2025 — beat out Rhubarb (silver) and Green & Fortune (bronze) in the first category",
+    "enriched_about": "Лондон, две награды 2025 года: 'Caterer of the Year — turnover over £7m' (London Venue & Catering Awards, 14 ноября 2025) и 'Event Caterer of the Year' (Foodservice Cateys 2025). Обошёл Rhubarb и Green & Fortune."
+  },
+  "17": {
+    "name": "Dish Dubai",
+    "url_verified": true,
+    "url_status": "live",
+    "url_http": "200",
+    "facts_verified": [
+      "Dubai + Abu Dhabi coverage — confirmed ('from Dubai to Abu Dhabi')",
+      "Award-winning — confirmed (Michelin-starred experience, per LinkedIn)",
+      "dish.ae is the official URL"
+    ],
+    "facts_wrong": [],
+    "missing_fact_added": "Founded 2008 (~17 years old); led by chef Nick Alvis (Michelin-starred experience); 23,657 Facebook followers; positioned as 'boutique' not volume caterer",
+    "enriched_about": "Дубай, основан в 2008 году. Бутик-кейтеринг с шефом Nick Alvis (Michelin-starred experience). Обслуживает Дубай и Абу-Даби — социальные ивенты, gala, VIP-кейтеринг, конференции."
+  },
+  "18": {
+    "name": "AHS Catering & Events",
+    "url_verified": true,
+    "url_status": "live",
+    "url_http": "200",
+    "facts_verified": [
+      "Dubai location — confirmed",
+      "Mediterranean focus — implied by 'boutique catering' positioning",
+      "ahscatering.com is the official URL"
+    ],
+    "facts_wrong": [
+      "CRITICAL: '20+ years of excellence' claim on homepage is FALSE — Scribd-hosted official company profile says 'AHS Catering and Events, founded by Ali Darwish in 2019'. The '20+ years' likely refers to founder's industry experience, NOT company age. Company is only ~6-7 years old (2019 → 2026)."
+    ],
+    "missing_fact_added": "Actually founded 2019 by Ali Darwish (per Scribd company profile); recently expanded to Riyadh, Saudi Arabia; positioned as 'one of Dubai's highest-rated boutique catering companies' (LinkedIn); works with global brands, luxury developers, HNW private clients",
+    "enriched_about": "Дубай, основан Али Дарвишем в 2019 году (не «20+ лет» — это опыт основателя). Бутик-кейтеринг с фокусом на Mediterranean, недавно расширился в Эр-Рияд (Саудовская Аравия). Клиенты — global brands и HNW private."
+  },
+  "19": {
+    "name": "Amici Catering",
+    "url_verified": true,
+    "url_status": "live",
+    "url_http": "200",
+    "facts_verified": [
+      "Singapore location — confirmed",
+      "Boutique positioning — confirmed ('boutique caterer', 'premium bespoke caterer')",
+      "Seasonal focus — implied by 'culinary experts' positioning",
+      "amici.com.sg is the official URL"
+    ],
+    "facts_wrong": [],
+    "missing_fact_added": "Founded 2002 (~23 years old); founder Willie Tan; HQ at FoodXchange, 8A Admiralty Street #06-02, Singapore 757437; Brands For Good 2019 winner",
+    "enriched_about": "Сингапур, основан в 2002 году Вилли Таном (23+ лет). Бутик-кейтеринг в FoodXchange (8A Admiralty Street). Победитель Brands For Good 2019 — премия за этичный бренд."
+  },
+  "20": {
+    "name": "Luxe Catering",
+    "url_verified": true,
+    "url_status": "live",
+    "url_http": "200 (redirects to www.luxecatering.com.sg)",
+    "facts_verified": [
+      "Singapore location — confirmed",
+      "French canapés specialty — confirmed verbatim ('Premier Luxury French Canapés Catering')",
+      "luxecatering.com.sg is the official URL"
+    ],
+    "facts_wrong": [],
+    "missing_fact_added": "Founded 2012 (per official site: 'Inaugurated in 2012'); ~13 years old; menu design inspired by Provence and the Riviera ('From the lavender fields of Provence to long lunches along the Riviera')",
+    "enriched_about": "Сингапур, основан в 2012 году. Премиальный кейтеринг французских канапе — меню вдохновлено Провансом и Лазурным берегом. «Every canape tells a story about sun-ripened produce»."
+  },
+  "21": {
+    "name": "Artigot Catering",
+    "url_verified": true,
+    "url_status": "live",
+    "url_http": "200 (redirects to www.artigotcatering.com)",
+    "facts_verified": [
+      "Since 2012 — confirmed verbatim by esmadrid.com: 'Founded in 2012, Artigot Catering has been a Great Company since 2023'",
+      "Madrid (NOT Catalonia) — re-confirmed: official site says 'Catering in Madrid'; entry into Corporate Events was 'approved as catering in the unique space of the Official College of Architects of Madrid (COAM) in 2012'",
+      "Mediterranean focus — confirmed via menu positioning",
+      "artigotcatering.com is the official URL"
+    ],
+    "facts_wrong": [],
+    "missing_fact_added": "Started as approved caterer at COAM (Official College of Architects of Madrid) in 2012 — exclusive venue partnership; recognised as 'Gran Empresa' (Great Company) since 2023 per Madrid Tourism board",
+    "enriched_about": "Мадрид (НЕ Каталония), с 2012 года. Стартовал как эксклюзивный кейтеринг COAM (Официальная коллегия архитекторов Мадрида). С 2023 года — статус 'Gran Empresa' (Большая компания) по версии Turismo Madrid."
+  },
+  "22": {
+    "name": "DO & CO",
+    "url_verified": true,
+    "url_status": "live",
+    "url_http": "200 (redirects to www.doco.com)",
+    "facts_verified": [
+      "Global, 32 locations in 12 countries on 3 continents — confirmed verbatim by doco.com homepage ('We operate 32 locations in 12 countries on 3 continents')",
+      "Vienna HQ — confirmed by Wikipedia and LinkedIn",
+      "doco.com is the official URL"
+    ],
+    "facts_wrong": [
+      "HTML card displays brand as 'DO & CO' (correct!). Prior research flagged that 'DOCO' was incorrect — but current HTML has it right."
+    ],
+    "missing_fact_added": "Founded 1981 by Attila Doğudan in Vienna; publicly traded as DO & CO AG; three business segments: Airline Catering, Train Catering, International Event Catering (per Wikipedia + LinkedIn)",
+    "enriched_about": "Вена, основан в 1981 году Аттилой Догуданом. Глобальный кейтеринг (32 локации, 12 стран, 3 континента). Три сегмента: авиа-кейтеринг, поезд-кейтеринг, международный ивент-кейтеринг. Листинг на бирже как DO & CO AG."
+  },
+  "next_actions_for_main_agent": [
+    "CRITICAL: Fix AHS Catering card — homepage claims '20+ years of excellence' but company was actually founded in 2019 by Ali Darwish (per Scribd official profile). '20+ years' refers to founder's experience, not company age. Recommend rephrasing to 'Основан в 2019 году; 20+ лет опыта у основателя' or just 'Дубай, с 2019 года'.",
+    "OPTIONAL: Add Pommier le Traiteur founding year '2010' to the card — official site confirms 'Depuis 2010' (15 years).",
+    "OPTIONAL: Add Pinch Food Design founding year '2011' to the card — confirmed via Instagram bio.",
+    "OPTIONAL: Add Dish Dubai founding year '2008' to the card — confirmed via Facebook and own blog.",
+    "OPTIONAL: Add Amici founding year '2002' + founder Willie Tan.",
+    "OPTIONAL: Add Luxe Catering founding year '2012' — official site says 'Inaugurated in 2012'.",
+    "OPTIONAL: Add DO & CO founding year '1981' + founder Attila Doğudan.",
+    "OPTIONAL: Add Great Performances founding year '1980' + founder Liz Neumark + ~1,200 employees.",
+    "OPTIONAL: Add Catering by Michaels verified pricing: '$300 starting price, $125 average per person for plated service' (per WeddingWire — claim 'publishes prices' is now CONFIRMED TRUE).",
+    "OPTIONAL: Update Moving Venue card to mention BOTH 2025 awards: 'Caterer of the Year — over £7m Turnover' (London Venue & Catering Awards) + 'Event Caterer of the Year' (Foodservice Cateys).",
+    "OPTIONAL: Add Potel et Chabot nuance — parent group is now 'Momense'; sister brand Dalloyau is actually older (1682).",
+    "OPTIONAL: Add Ridgewells founders' names (Charlie & Marguerite) and first location (2411 18th Street, Adams Morgan, DC)."
+  ]
+}

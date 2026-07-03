@@ -1,0 +1,50 @@
+🚀 Initializing Z-AI SDK...
+🚀 Invoking function: web_search...
+[
+  {
+    "url": "https://www.mosfurshet.ru/blog/novyy-vzglyad-na-keytering-trendy-2025-goda",
+    "name": "Новый взгляд на кейтеринг: тренды 2025 года - Mosfurshet",
+    "snippet": "Кейтеринг 2025 года предлагает решения для каждого: безглютеновые мини-кексы, десерты на растительном молоке, закуски с высоким содержанием белка — и все это с ...",
+    "host_name": "www.mosfurshet.ru",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://catering-stg.ru/articles/trend-na-kejtering-v-boksakh",
+    "name": "Тренды кейтеринга в боксах на мероприятие в 2025 году",
+    "snippet": "Веганская и диетическая аудитория всё активнее выбирает полезные блюда: салаты со суперфудами, ферментированные продукты, мясо высокого качества и разнообразные ...",
+    "host_name": "catering-stg.ru",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://hungryaswolf.ru/blog/trendy-keyteringa",
+    "name": "Тренды кейтеринга в 2025 году, новинки и события - Хангри Вульф",
+    "snippet": "Мировые и локальные тенденции, такие как расширение ассортимента, привлечение новых брендов, акцент на импортозамещение, здоровые низкокалорийные блюда и ...",
+    "host_name": "hungryaswolf.ru",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.instagram.com/p/DOlmz5EjGmD/?hl=ms",
+    "name": "Фуд-тренды кейтеринга 2025–2026 Рассказываем о тенденциях",
+    "snippet": "Нежные рулетики из лаваша и баклажанов с крем-сыром • Мини-тартинки и тарталетки с семгой, вялеными томатами и моцареллой • Классические ...",
+    "host_name": "www.instagram.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://event.ru/overviews/top-7-trendov-keyteringa-v-2025-godu",
+    "name": "Топ-7 трендов кейтеринга в 2025 году - Event.ru",
+    "snippet": "Топ-7 трендов кейтеринга в 2025 году · Здоровое питание · Моктейли и смузи · Фокус на эмоции · Открытый кейтеринг · Снеки в велком-зоне · Устойчивое развитие.",
+    "host_name": "event.ru",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]
+🎉 Function invocation completed!

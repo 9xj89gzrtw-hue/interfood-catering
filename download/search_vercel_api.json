@@ -1,0 +1,47 @@
+[
+  {
+    "url": "https://vercel.com/docs/rest-api",
+    "name": "Vercel REST API Reference",
+    "snippet": "You can deploy new versions of web applications, manage custom domains, retrieve information about deployments, and manage secrets and environment variables for ...\nVercel Access Tokens are required to authenticate and use the Vercel API. Include the token in the Authorization header: Authorization: Bearer <TOKEN>.",
+    "host_name": "vercel.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://vercel.com/docs/cli/deploy",
+    "name": "vercel deploy",
+    "snippet": "The vercel deploy command deploys Vercel projects, executable from the project's root directory or by specifying a path.",
+    "host_name": "vercel.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/vercel/vercel/discussions/4622",
+    "name": "CLI Deploy to different domains #4622 - vercel vercel - GitHub",
+    "snippet": "Hit the Preview tab and set ENV variable API_URL to staging.url.com/api , and then run vercel , everything works fine on Preview mode (my staging env). Then ...",
+    "host_name": "github.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=yLMODEUPJdU",
+    "name": "Deploying a backend on Vercel (APIs and Functions) - YouTube",
+    "snippet": "Learn how to deploy a backend to Vercel, like a REST API, through Vercel Functions. These backend APIs can then connect to your database or ...",
+    "host_name": "www.youtube.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://vercel.com/docs/deployment-protection/methods-to-protect-deployments/vercel-authentication",
+    "name": "Restrict access to deployments with Vercel Authentication",
+    "snippet": "Vercel Authentication lets you restrict access to your public and non-public deployments. It is the recommended approach to protecting your deployments.",
+    "host_name": "vercel.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]

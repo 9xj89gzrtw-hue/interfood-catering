@@ -1,0 +1,50 @@
+🚀 Initializing Z-AI SDK...
+🚀 Invoking function: web_search...
+[
+  {
+    "url": "https://shikocc.ru",
+    "name": "Шико Catering Club",
+    "snippet": "Меню с доставкой ; Сеты для фуршета (для 10-30 гостей) ; Подносы для фуршета (для 4-10 гостей) ; Канапе и закуски ; Сэндвичи, круассаны, брускетты ; Десерты и ...",
+    "host_name": "shikocc.ru",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.facebook.com/shikocc.ru/photos",
+    "name": "Шико Catering Club (@shikocc.ru) - Photos | Facebook",
+    "snippet": "Шико Catering Club. 216 likes. Кейтеринговая компания «Шико» оказывает высококачест. ... Фуршет: непринужденное изобилие · Кофе-брейк: перерыв для легкого общения.",
+    "host_name": "www.facebook.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://vk.com/shikocc",
+    "name": "Shiko Catering - ВКонтакте",
+    "snippet": "Оказываем услуги мобильного фуршета и доставку с сервировкой праздничных блюд. Все способы оплаты: Картой, наличными, по договору, по гос. заказу. Доставка по ...",
+    "host_name": "vk.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://caterme.ru/caterer/shikocc",
+    "name": "Shiko Catering: заказ еды и кейтеринга в г Москва (меню, цены",
+    "snippet": "Компания Shiko Catering (Шико Кейтеринг) уже 12 лет Ваш надежный партнер в организации и проведении фуршетов, кофе-брейков, банкетов и праздников, создавая для ...",
+    "host_name": "caterme.ru",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://shikocc.orgs.biz",
+    "name": "Shiko Catering - высококачественный кейтеринг на выезд",
+    "snippet": "Shiko Catering - высококачественные услуги в области выездного ресторанного бизнеса. Грамотная организация кейтеринга на высшем уровне.",
+    "host_name": "shikocc.orgs.biz",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]
+🎉 Function invocation completed!

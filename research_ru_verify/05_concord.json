@@ -1,0 +1,50 @@
+🚀 Initializing Z-AI SDK...
+🚀 Invoking function: web_search...
+[
+  {
+    "url": "https://www.restoclub.ru/spb/place/concord-catering",
+    "name": "Кейтеринг «Concord Catering» Санкт-Петербург - Restoclub.ru",
+    "snippet": "Кейтеринговая компания с репутацией. На рынке почти 20 лет; знаменита банкетами «на высшем уровне» для известных политиков, бизнесменов и деятелей искусства ...",
+    "host_name": "www.restoclub.ru",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://tomesto.ru/spb/groups/concord-catering",
+    "name": "Рестораны и кафе Concord Catering (Конкорд Кейтеринг) в",
+    "snippet": "Рестораны и кафе Concord Catering (Конкорд Кейтеринг) в Санкт-Петербурге. Мы нашли 8 заведений - выбирайте и бронируйте столик! Заведения на карте. Фильтры.",
+    "host_name": "tomesto.ru",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://spb.catery.ru/caterer/concord-catering-spb",
+    "name": "\"Concord Catering\" в Санкт-Петербурге - Кейтеринг",
+    "snippet": "Выездной ресторан Concord Catering предлагает помощь в организации банкетов, юбилейных ужинов, свадеб. Разнообразное меню включает изысканные блюда различных ...",
+    "host_name": "spb.catery.ru",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://restorating.ru/spb/catalogue/concord-catering",
+    "name": "Кейтеринг Concord Catering, наб. Лейтенанта Шмидта, 7",
+    "snippet": "Возможности «Конкорд Кейтеринг» позволяют организовать мероприятие до 7500 гостей. Вариантов меню также множество — от русского до японского. Посетители о ...",
+    "host_name": "restorating.ru",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.speedrent.ru/en/venue/339081",
+    "name": "Rent Concord Catering (Конкорд Кейтеринг) - SpeedRent",
+    "snippet": "Rent Concord Catering (Конкорд Кейтеринг). Санкт-Петербург, м. Василеостровская , Университетская наб д 15. Площадка закрыта навсегда (Архив).",
+    "host_name": "www.speedrent.ru",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]
+🎉 Function invocation completed!

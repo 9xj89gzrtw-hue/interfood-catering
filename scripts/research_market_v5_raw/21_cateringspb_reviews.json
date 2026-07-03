@@ -1,0 +1,50 @@
+🚀 Initializing Z-AI SDK...
+🚀 Invoking function: web_search...
+[
+  {
+    "url": "http://catering-spb.ru",
+    "name": "Кейтеринг в СПб с доставкой. Услуги кейтеринга широкого",
+    "snippet": "Constanta Catering. Кейтеринг — это просто. Меню · Мобильный фуршет; Кейтеринг ... Скачать презентацию Отзывы о нас. Наши клиенты. Генеральное консульство ФРГ ...",
+    "host_name": "catering-spb.ru",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.restoclub.ru/spb/place/constanta-catering/opinions",
+    "name": "Всего 5 отзывов - о кейтеринге «Constanta Catering - Restoclub.ru",
+    "snippet": "Организовали шикарный праздник для выпускников! Очень внимательный отзывчивый персонал и в офисе и на площадке. Сервис достойный высшей похвалы.",
+    "host_name": "www.restoclub.ru",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "http://catering-spb.ru/otzyivyi",
+    "name": "Отзывы - CONSTANTA catering",
+    "snippet": "Constanta Catering. Кейтеринг — это просто. Меню · Мобильный фуршет; Кейтеринг. Корпоративный кейтеринг · Свадебный кейтеринг · Событийный кейтеринг ...",
+    "host_name": "catering-spb.ru",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://vc.ru/life/2326808-keyteringovye-kompanii-sankt-peterburga",
+    "name": "15 лучших кейтеринговых компаний Санкт-Петербурга в 2026",
+    "snippet": "Кейтеринговые компании Санкт-Петербурга, рейтинг лучших услуг, советы по выбору, особенности кейтеринга, отзывы клиентов, цены на услуги.",
+    "host_name": "vc.ru",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://ec-restaurant.ru/otzyvy",
+    "name": "Кейтеринг в СПб - отзывы клиентов о качестве  - Empire Catering",
+    "snippet": "Столы были оформлены изысканно, блюда — выше всяких похвал! Работа была организована четко и безукоризненно. Официанты проявили внимание и заботу к каждому ...",
+    "host_name": "ec-restaurant.ru",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]
+🎉 Function invocation completed!

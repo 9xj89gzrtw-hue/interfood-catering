@@ -1,0 +1,50 @@
+🚀 Initializing Z-AI SDK...
+🚀 Invoking function: web_search...
+[
+  {
+    "url": "https://www.restoclub.ru/spb/place/concord-catering",
+    "name": "Кейтеринг «Concord Catering» Санкт-Петербург - Restoclub.ru",
+    "snippet": "Кейтеринговая компания с репутацией. На рынке почти 20 лет; знаменита банкетами «на высшем уровне» для известных политиков, бизнесменов и деятелей искусства ...",
+    "host_name": "www.restoclub.ru",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://tomesto.ru/spb/groups/concord-catering",
+    "name": "Рестораны и кафе Concord Catering (Конкорд Кейтеринг) в",
+    "snippet": "Рестораны и кафе Concord Catering (Конкорд Кейтеринг) в Санкт-Петербурге. Мы нашли 8 заведений - выбирайте и бронируйте столик! Заведения на карте. Фильтры.",
+    "host_name": "tomesto.ru",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.speedrent.ru/en/venue/339081",
+    "name": "Rent Concord Catering (Конкорд Кейтеринг) - SpeedRent",
+    "snippet": "Rent Concord Catering (Конкорд Кейтеринг). Санкт-Петербург, м. Василеостровская , Университетская наб д 15. Площадка закрыта навсегда (Архив).",
+    "host_name": "www.speedrent.ru",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.opensanctions.org/entities/NK-k6M7uhXvAF6eRpRSvJpezR",
+    "name": "Concord Catering - OpenSanctions",
+    "snippet": "Санкт-Петербург, проспект Большой Петроградської сторони, буд. 9/1 (літера А, прим. 1Н, кім. № 28) · NAB. LIEUTENANT SCHMIDT D. 7, VON KEYSERLING MANSION ...",
+    "host_name": "www.opensanctions.org",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://concordgroup.ru",
+    "name": "ГК «Конкорд»",
+    "snippet": "С 10 по 14 июня в Санкт-Петербурге проходит салон \"Флот-2026\". 11 июня 2026. На Международном военно-морском салоне «Флот-2026» в Кронштадте Комитет по ...",
+    "host_name": "concordgroup.ru",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]
+🎉 Function invocation completed!

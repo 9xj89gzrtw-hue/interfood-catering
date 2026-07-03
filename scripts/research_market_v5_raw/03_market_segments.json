@@ -1,0 +1,50 @@
+🚀 Initializing Z-AI SDK...
+🚀 Invoking function: web_search...
+[
+  {
+    "url": "https://www.tadviser.ru/index.php/%D0%A1%D1%82%D0%B0%D1%82%D1%8C%D1%8F:%D0%9A%D0%B5%D0%B9%D1%82%D0%B5%D1%80%D0%B8%D0%BD%D0%B3_%D0%B2_%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D0%B8",
+    "name": "Кейтеринг в России - TAdviser",
+    "snippet": "Объем рынка кейтеринга в России увеличился на 6,7% по отношению к аналогичному показателю предыдущего года в 2024 году. Рынок составил более ₽ ...",
+    "host_name": "www.tadviser.ru",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://marketing.rbc.ru/articles/16131",
+    "name": "Анализ российского рынка кейтеринга: итоги 2024 г., прогноз до",
+    "snippet": "Объем рынка увеличился на 6,7% по отношению к аналогичному показателю годом ранее и составил более 800 млрд. руб. Динамика роста отмечается вот ...",
+    "host_name": "marketing.rbc.ru",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://hungryaswolf.ru/blog/trendy-keyteringa",
+    "name": "Тренды кейтеринга в 2025 году, новинки и события - Хангри Вульф",
+    "snippet": "В 2024 году российский рынок кейтеринга продолжает стремительный рост. По прогнозам, его объем может превысить 880 миллиардов рублей, что на 10% больше ...",
+    "host_name": "hungryaswolf.ru",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://m-catering.ru/blog/glavnye-trendy-i-perspektivy-razvitiya-keyteringa-v-rossii",
+    "name": "Главные тренды и перспективы развития кейтеринга в России",
+    "snippet": "Прогнозы на 2024 год для отрасли оптимистичные. Объем рынка кейтеринга России способен превысить 880 млрд руб., то есть вырасти на 10% к 2023 году. Если ...",
+    "host_name": "m-catering.ru",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.neoanalytics.ru/wp-content/uploads/2025/09/demo_neoanalytics_rossijskij-rynok-kejteringa_2025.pdf",
+    "name": "[PDF] Российский рынок кейтеринга: - NeoAnalytics",
+    "snippet": "Прогноз объема рынка кейтеринговых услуг в России, 2024-2028 гг., млрд. руб., %. 91. Рис. 69. Прогноз динамики доли кейтеринга в структуре оборота общественного.",
+    "host_name": "www.neoanalytics.ru",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]
+🎉 Function invocation completed!

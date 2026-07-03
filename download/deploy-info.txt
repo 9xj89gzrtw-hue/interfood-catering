@@ -1,0 +1,8 @@
+DEPLOY_URL=https://interfood-catering.vercel.app/
+METHOD=vercel-github-integration
+DEPLOYED_AT=2026-07-02T01:35:00Z
+GITHUB_REPO=https://github.com/9xj89gzrtw-hue/interfood-catering
+VERCEL_PROJECT=interfood-catering
+VERCEL_URL=https://interfood-catering.vercel.app
+PREVIEW_URL=https://preview-ws-bf2cc85e-49fa-4dfc-a8cc-29b0c6a93683.space-z.ai/
+NOTES=Vercel auto-deploys from GitHub main branch. Push to GitHub to deploy.

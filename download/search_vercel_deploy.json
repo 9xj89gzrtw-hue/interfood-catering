@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://www.reddit.com/r/nextjs/comments/1kr6033/whats_the_correct_or_recommended_way_of_doing",
+    "name": "Whats the correct - or recommended - way of doing CI/CD in Next.js?",
+    "snippet": "A common and reliable approach is using GitHub Actions for CI/CD with Next.js. You can run tests, build your app, and deploy to platforms like Vercel, Netlify, ...",
+    "host_name": "www.reddit.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://vercel.com/kb/guide/how-can-i-use-github-actions-with-vercel",
+    "name": "How can I use GitHub Actions with Vercel?",
+    "snippet": "Learn how to use GitHub Actions to deploy to Vercel including support for GitHub Enterprise Server.",
+    "host_name": "vercel.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://utsavdesai26.medium.com/integrating-ci-cd-pipelines-with-next-js-and-vercel-a-complete-guide-380433cff420",
+    "name": "Integrating CI/CD Pipelines with Next.js and Vercel: A Complete Guide",
+    "snippet": "A complete guide to integrating CI/CD with Next.js and Vercel using GitHub Actions. Automate testing, linting, and continuous deployment for your web apps.",
+    "host_name": "utsavdesai26.medium.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.ali-dev.com/blog/deploying-next-js-to-vercel-with-github-actions-a-quick-guide",
+    "name": "Deploying Next.js to Vercel with GitHub Actions: A Quick Guide",
+    "snippet": "This guide will help you deploy a Next.js application to Vercel using GitHub Actions, streamlining your development workflow.",
+    "host_name": "www.ali-dev.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://dev.to/latchudevops/github-actions-workflow-to-deploy-the-nextjs-application-on-vercel-cloud-2ooi",
+    "name": "GitHub Actions workflow to deploy the Next.js Application on Vercel",
+    "snippet": "STEP 1: Install Node.js and Required Tools on local machine · STEP 2: Create Next.js Application · STEP 3: Install Dependencies · STEP 4: Build the ...",
+    "host_name": "dev.to",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/vercel/next.js/discussions/14339",
+    "name": "Understanding next build and the deployment process #14339",
+    "snippet": "The bare minimum I usually include are: next.config.js, node_modules, package.json, and .next folder. The rest don't need to be copied.",
+    "host_name": "github.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=gIHBVpJhmEk",
+    "name": "Deploy to Vercel with a GitHub Action - YouTube",
+    "snippet": "Vercel magically deploys changes to your branch. However when you want more control over the deployment - for example, to create releases ...",
+    "host_name": "www.youtube.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://eastondev.com/blog/en/posts/dev/20251220-nextjs-cicd-github-actions",
+    "name": "Next.js CI/CD in Action: Automated Testing and Deployment with",
+    "snippet": "Implement automated testing and deployment for Next.js projects using GitHub Actions. Complete configuration code, troubleshooting tips, ...",
+    "host_name": "eastondev.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://techhub.iodigital.com/articles/take-control-over-your-ci-cd-process-with-github-actions-vercel",
+    "name": "Take control over your CI/CD process: Use GitHub Actions to deploy",
+    "snippet": "In this article I will show you how to set up your CI/CD pipelines using GitHub Actions and deploy your application to Vercel.",
+    "host_name": "techhub.iodigital.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/vercel/next.js/discussions/20905",
+    "name": "How to configure Vercel to deploy for a Github release instead of a",
+    "snippet": "I couldn't find any documentation around how to only deploy to Vercel for let's say production when I create a release instead of push to master.",
+    "host_name": "github.com",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

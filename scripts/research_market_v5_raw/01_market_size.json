@@ -1,0 +1,50 @@
+🚀 Initializing Z-AI SDK...
+🚀 Invoking function: web_search...
+[
+  {
+    "url": "https://businesstat.ru/catalog/id75783",
+    "name": "Анализ рынка кейтеринга в России в 2021-2025 гг, прогноз на",
+    "snippet": "По оценкам BusinesStat, за 2021-2025 гг оборот рынка услуг кейтеринга в России вырос на 93% и в 2024 г составил 150 млрд руб. В 2023-2025 гг увеличение ...",
+    "host_name": "businesstat.ru",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://marketing.rbc.ru/articles/16131",
+    "name": "Анализ российского рынка кейтеринга: итоги 2024 г., прогноз до",
+    "snippet": "Российский рынок кейтеринга: итоги 2021 г., прогноз до 2025 г. NeoAnalytics 70 000 ₽ Анализ рынка кейтеринга в России в 2016-2020 гг ...",
+    "host_name": "marketing.rbc.ru",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.tadviser.ru/index.php/%D0%A1%D1%82%D0%B0%D1%82%D1%8C%D1%8F:%D0%9A%D0%B5%D0%B9%D1%82%D0%B5%D1%80%D0%B8%D0%BD%D0%B3_%D0%B2_%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D0%B8",
+    "name": "Кейтеринг в России - TAdviser",
+    "snippet": "Основная статья: Ресторанный рынок России. История. 2024: Рост объема российского рынка кейтеринга на 6,7% до ₽800 млрд.",
+    "host_name": "www.tadviser.ru",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.neoanalytics.ru/wp-content/uploads/2025/09/demo_neoanalytics_rossijskij-rynok-kejteringa_2025.pdf",
+    "name": "[PDF] Российский рынок кейтеринга: - NeoAnalytics",
+    "snippet": "Российский рынок кейтеринга: итоги 2024 г., прогноз до 2028 г. г. Москва, 2025г. Аналитический отчёт.",
+    "host_name": "www.neoanalytics.ru",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://hungryaswolf.ru/blog/trendy-keyteringa",
+    "name": "Тренды кейтеринга в 2025 году, новинки и события - Хангри Вульф",
+    "snippet": "В 2024 году российский рынок кейтеринга продолжает стремительный рост. По прогнозам, его объем может превысить 880 миллиардов рублей, что на 10% больше ...",
+    "host_name": "hungryaswolf.ru",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]
+🎉 Function invocation completed!

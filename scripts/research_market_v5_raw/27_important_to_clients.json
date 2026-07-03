@@ -1,0 +1,50 @@
+🚀 Initializing Z-AI SDK...
+🚀 Invoking function: web_search...
+[
+  {
+    "url": "https://www.obed-online.ru/chto-nuzhno-znat-zakazyvaya-kejtering",
+    "name": "Что нужно знать, заказывая кейтеринг - Русские Традиции",
+    "snippet": "Перед тем как связаться со службой кейтеринга, определите в общих чертах характер своего праздника, чтобы уже при подаче заявки получить максимально быструю ...",
+    "host_name": "www.obed-online.ru",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.instagram.com/reel/C3udX09Iafh",
+    "name": "КЕЙТЕРИНГ •МИНИСТЕРСТВО• Банкет • Фуршет - Instagram",
+    "snippet": "1. Пишите или звоните нам. Расскажите дату, формат и количество гостей. Подскажем, что лучше подойдёт именно вашему мероприятию. 2. Подбираем ...",
+    "host_name": "www.instagram.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.instagram.com/p/DNpzDEzo3Nj",
+    "name": "Что важно учесть при заказе кейтеринга? ТОП-5 вопросов",
+    "snippet": "своевременную подачу еды и напитков; удобные форматы (фуршет, сет‑ланчи, finger food); учёт диетических предпочтений сотрудников. Мероприятие на ...",
+    "host_name": "www.instagram.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://canapeclub.ru/blog/kak-vybrat-catering",
+    "name": "Как выбрать кейтеринг – секреты организации успешного",
+    "snippet": "У каждого типа кейтеринга определенная специфика, поэтому при выборе организации по обслуживанию важно обратить внимание на ряд важных пунктов.",
+    "host_name": "canapeclub.ru",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://catering-muscat.ru/blog",
+    "name": "Блог про кейтеринг",
+    "snippet": "При организации бранча с доставкой нужно учесть пять особенностей: время проведения с 11 до 15 часов, совмещение блюд завтрака и обеда, обязательные горячие ...",
+    "host_name": "catering-muscat.ru",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]
+🎉 Function invocation completed!

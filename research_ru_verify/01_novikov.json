@@ -1,0 +1,50 @@
+🚀 Initializing Z-AI SDK...
+🚀 Invoking function: web_search...
+[
+  {
+    "url": "https://www.novikovgroup.ru/en",
+    "name": "ресторан японской кухни в самом сердце Москвы - Novikov Group",
+    "snippet": "История Novikov Group берет свое начало в 1991 году. Именно в этом году Аркадий Новиков открыл свой первый ресторан — Sirena, который стал первым рыбным ...",
+    "host_name": "www.novikovgroup.ru",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://rating.catering/catering/novikov-group-catering",
+    "name": "Novikov Group Catering - Рейтинг Кейтерингов",
+    "snippet": "1. Победы в Премии “Кейтеринг года”: 10 · 2. Победы в номинациях других отраслевых премий, помимо \"Кейтеринг года\": 1 · 3. Наличие аккредитации CATERING ...",
+    "host_name": "rating.catering",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://cateringawards.ru",
+    "name": "Премия «Кейтеринг года»",
+    "snippet": "ПремияКейтеринг года. 21 апреля 2026 года состоится шестнадцатая ежегодная церемония вручения премии «Кейтеринг года».",
+    "host_name": "cateringawards.ru",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.instagram.com/p/DX9FWIxCJr4",
+    "name": "обзор рынка 2026. А еще — успешный кейс Novikov Group. Обо",
+    "snippet": "В Premio Catering уверены: премиальный кейтеринг начинается с команды профессиональных поваров. Наши повара — это специалисты с большим ...",
+    "host_name": "www.instagram.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.facebook.com/NovikovRestaurant/posts/novikov-group-%D0%B8-novikov-catering-%D0%BE%D0%B1%D1%8A%D1%8F%D0%B2%D0%BB%D1%8F%D1%8E%D1%82-%D0%BA%D0%BE%D0%BD%D0%BA%D1%83%D1%80%D1%81%D1%83%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%82%D0%B5-%D1%84%D1%83%D1%80%D1%88%D0%B5%D1%82-%D0%BE%D1%82-novikov-cat/2992101300812137/?locale=zh_CN",
+    "name": "Novikov Restaurant Group - Facebook",
+    "snippet": "Novikov Group и Novikov Catering объявляют конкурс! Устройте фуршет от Novikov Catering! Первый премиальный кейтеринг России доставит ...",
+    "host_name": "www.facebook.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]
+🎉 Function invocation completed!

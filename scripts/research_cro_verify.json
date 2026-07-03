@@ -1,0 +1,113 @@
+{
+  "_meta": {
+    "task_id": "research-cro-verify",
+    "agent": "general-purpose",
+    "purpose": "Verify 6 CRO/marketing claims cited in the 'principles' section of /home/z/my-project/download/catering_inspiration_nilov.html, plus 3 general CRO facts.",
+    "verification_method": "z-ai web-search CLI (web_search function, count=5) + direct curl fetches of cited source pages where possible",
+    "verification_date": "2026-06-25",
+    "verdict_legend": {
+      "VERIFIED": "Cited source actually exists and says the claimed thing (with the claimed number)",
+      "PARTIALLY": "Cited source exists and supports the direction of the claim, but does NOT state the specific number/figure cited",
+      "UNVERIFIED": "Source cannot be confirmed to make the specific claim (source may exist but the cited statistic cannot be found in it)",
+      "INVENTED": "Cited source does not exist (404 / cannot be found anywhere)"
+    }
+  },
+
+  "claim_1": {
+    "text": "Загромождённый hero теряет до 30% посетителей в первые 5 секунд.",
+    "cited_source": "Unbounce CRO Case Studies; Mouseflow eCommerce Friction Report",
+    "verdict": "PARTIALLY",
+    "actual_finding": "Both cited sources are real and exist: Unbounce has a 'CRO case studies' hub (https://unbounce.com/conversion-rate-optimization/cro-case-studies) and Mouseflow publishes a blog on eCommerce friction (https://mouseflow.com/blog/why-your-ecommerce-conversion-rate-is-low). Both support the general direction (cluttered pages increase bounce, mobile users 'leave the second a page feels slow, cluttered, or hard to use' per Unbounce LinkedIn post; Mouseflow reports ~45% typical eCommerce bounce rate). HOWEVER: neither source contains the specific '30% loss in 5 seconds' combination. The closest real numbers found elsewhere: Forbes/Diviflash stat says '61% leave if they can't find what they want in ~5 seconds'; a LinkedIn post (Paul Ayomide) mentions '30% increase in conversion rates when optimizing pages' — but that is about gains from optimization, not losses from clutter. The cited '30% in 5 seconds' figure appears to be a fabricated combination of two unrelated stats."
+  },
+
+  "claim_2": {
+    "text": "Сайт с качественной фуд-съёмкой получает в 2–3 раза больше запросов меню, чем тот же сайт со стоковыми фото.",
+    "cited_source": "Foodshot.ai — How to Market a Catering Business; ALX Eats Food Photography Trends 2025–2026",
+    "verdict": "PARTIALLY",
+    "actual_finding": "Both sources exist and are real articles. Foodshot.ai article 'How to Market a Catering Business: 10 Strategies That Work' (https://foodshot.ai/blog/how-to-market-catering-business) and 'Catering Marketing: The Complete Guide to Growing Revenue' (https://foodshot.ai/blog/catering-marketing-guide) both argue strongly that professional food photography drives catering inquiries. ALX Eats 'Food & Beverage Photography Trends 2025/2026' (https://www.alxeats.com/post/food-beverage-photography-trends-2025-2026) is a Toronto food photographer's trends article. ACTUAL stats the Foodshot.ai article DOES cite: 'menus with quality images increase sales by 20–45%'; 'delivery app listings with photos generate up to 70% more orders' (per Grubhub data); 'restaurants that switch from text-only to photo-based menus see a 25% conversion rate increase'; 'Google profiles with photos receive 42% more direction requests'. The '2–3× more menu requests' comparison specifically between professional food photography and STOCK photography is NOT in either cited source — it appears to be an exaggerated extrapolation. The real, defensible figure is ~20–45% sales lift, not 100–200%."
+  },
+
+  "claim_3": {
+    "text": "Радужная палитра снижает воспринимаемую цену блюда на 20–40%.",
+    "cited_source": "AMR & Elma Visual Branding Psychology Statistics",
+    "verdict": "PARTIALLY",
+    "actual_finding": "AMR & Elma 'TOP 20 VISUAL BRANDING PSYCHOLOGY STATISTICS 2026' page (https://www.amraandelma.com/visual-branding-psychology-statistics) DOES exist (confirmed in search index, though Cloudflare blocks programmatic reads). The visible snippet confirms the directional claim: 'Color Psychology. Wrong color palette = mispositioned brand = lower price tolerance from buyers. ↓ Price sensitivity risk.' This matches the direction of the cited claim (limited/correct palette → higher perceived price tolerance). HOWEVER: the specific 'rainbow palette lowers perceived price by 20–40%' figure is NOT in the snippet and could not be confirmed. AMR & Elma is a secondary stat-aggregator blog (not original research); the 20–40% number for rainbow palettes specifically appears to be invented. Direction: supported. Specific number: unverified."
+  },
+
+  "claim_4": {
+    "text": "Засечки в заголовках поднимают доверие к бренду на 15–20%.",
+    "cited_source": "Your Brand Cafe — Psychology of Colors in Branding; Justinmind Hero Image Studies",
+    "verdict": "UNVERIFIED",
+    "actual_finding": "Both cited articles exist but neither makes the claimed claim. (1) 'Your Brand Cafe — Psychology of Colors in Branding' (https://www.yourbrandcafe.com/blog/psychology-of-colors-in-branding) is real, but is about COLOR psychology for custom coffee cup branding — it does NOT discuss serif typography or 15–20% trust lift. (2) Justinmind has a real article '40 inspiring hero images examples for your websites' (https://www.justinmind.com/blog/inspiring-hero-image-websites) — it is a listicle of hero image design examples, with NO statistics on serif typography and NO 'Hero Image Studies' title; the cited title 'Justinmind Hero Image Studies' does not match any real article. The DIRECTIONAL claim (serifs → perceived premium/trust) IS supported by independent academic research: Marketing Trends Congress 2024 paper 'The effect of using serifs in brand names on luxury perception'; Sciedupress journal article on serif vs sans-serif in luxury fashion; Emerald EJM article 'Serif or sans serif typefaces?' — but none of these cite a 15–20% trust-increase figure. The cited sources don't say it, and the specific 15–20% number appears to be invented."
+  },
+
+  "claim_5": {
+    "text": "Без trust signals форма заявки работает в 3× хуже.",
+    "cited_source": "Pixxen Website Trust Signals Checklist; Orbit Media Social Proof in Web Design",
+    "verdict": "PARTIALLY",
+    "actual_finding": "Both sources exist and are real, substantive articles. Pixxen '11 Website Trust Signals That Help Build Your Credibility' (https://pixxen.com/blog/website-trust-signals) explicitly recommends placing trust signals 'Beside forms and CTAs: security badges, a privacy note, or a short testimonial, right where the visitor is deciding to commit' and cites Stanford's Web Credibility Research. Orbit Media 'How to Add Social Proof to Websites' (https://www.orbitmedia.com/blog/social-proof-web-design) supports social proof importance with stats like '44% of B2B marketers named social proof as one of the top 3 elements of websites' and '27% of B2B visitors named social proof as one of the top 3 most influential'. HOWEVER: neither source contains the specific '3× worse without trust signals' figure. The closest verified numbers from OTHER sources: CXL research (cited on LinkedIn) found 'adding trust badges to checkout pages increased conversions by up to 42%'; Eklipse Creative states 'Adding trust signals to your product pages can increase conversions by up to 20%'. The '3× worse' multiplier is an exaggeration — the real, defensible lift is roughly +20–42%, not 200%."
+  },
+
+  "claim_6": {
+    "text": "Кричащий красный CTA со скидкой снижает perceived value и отпугивает ядро целевой аудитории.",
+    "cited_source": "Foreground Web — CTA Buttons Guide; LeadFlask Hero Design Best Practices",
+    "verdict": "UNVERIFIED",
+    "actual_finding": "Source verification mixed. (1) Foreground Web article 'Using call-to-action buttons to guide people through your website' (https://www.foregroundweb.com/call-to-action-buttons) — domain is real, article exists in search index, but live page returns HTTP 202 with captcha challenge (bot protection) so content could not be directly verified; based on URL/title it is a general CTA guide for photographers, not a study on red CTAs lowering perceived value. (2) LeadFlask 'Above the Fold: Best Practices for Website Hero Design' (https://leadflask.com/blog/website-hero-design-best-practices) — appears in Google search index, but live fetch returns HTTP 404 'This page doesn't exist'. The article may have been deleted or moved. The snippet visible in search results is about hero section elements (Company name, services, audience, value statements), with NO mention of red CTAs lowering perceived value. ADDITIONALLY: the claim is partially CONTRADICTED by AMR & Elma's own statistic compilation (https://www.amraandelma.com/buy-now-button-color-test-statistics) which states 'red CTA buttons can lift conversions by 34%, especially when paired with minimalistic or neutral site designs' — i.e. red CTAs typically increase, not decrease, conversions. The 'repels premium audience' claim is intuitive and directionally plausible for luxury brands, but is not stated by the cited sources and is contradicted by general CTA color research. The cited specific phrasing appears to be invented attribution."
+  },
+
+  "general_fact_1_premium_no_discounts": {
+    "text": "Премиум-клиент не реагирует на скидки (premium clients don't respond to discounts).",
+    "verdict": "VERIFIED (directionally; slight overstatement as worded)",
+    "actual_finding": "Directionally supported by multiple research sources: (1) Retail Brew article 'How discounting impacts a luxury retailer's brand image' — 'Deep discounts in luxury would therefore be detrimental to the consumer perception of the brand and erode the value.' (2) LinkedIn/Gaurav Dubey cites research: 'frequent discounts can reduce brand value by up to 33%'. (3) SBIJ journal article 'Deal or No Deal' — 'frequent monetary promotions can adversely affect consumer perception of brand quality by lowering the reference price (Yi & Yoo, 2011)'. (4) Globalpraxis insight piece — luxury brands that slash prices cause 'core customer base questioning the brand's value'. The absolute phrasing 'doesn't respond' is a slight overstatement — premium clients DO sometimes respond to discounts in the short term — but the underlying behavioral finding (discounts erode luxury brand value and alienate core luxury customers) is well-supported. Recommend softening to 'premium clients are alienated by visible discounts' or 'premium clients respond to perceived value, not to discounts'."
+  },
+
+  "general_fact_2_trust_signals_near_cta": {
+    "text": "Trust signals next to CTA improve conversion.",
+    "verdict": "VERIFIED",
+    "actual_finding": "Widely supported by both practitioner and research sources. (1) Eklipse Creative — 'Adding trust signals to your product pages can increase conversions by up to 20%'. (2) CXL research (cited via LinkedIn) — 'adding trust badges to checkout pages increased conversions by up to 42%'. (3) Pixxen article explicitly recommends 'Beside forms and CTAs: security badges, a privacy note, or a short testimonial, right where the visitor is deciding to commit.' (4) Crazy Egg, Bitdyno, Reform.app, Trustmary, Trustpilot all corroborate. This is one of the most consistently supported CRO findings — keep as-is."
+  },
+
+  "general_fact_3_serif_premium": {
+    "text": "Serif typography in headers increases perceived premium.",
+    "verdict": "VERIFIED (directionally)",
+    "actual_finding": "Supported by multiple academic and practitioner sources. (1) Marketing Trends Congress 2024 paper 'The effect of using serifs in brand names on luxury perception' — 'Serifs play a significant role in shaping brand perception, enhancing the dimension associated with luxury when compared to [sans-serif].' (2) Sciedupress JBAR paper 'The Effect of Serif and San Serif Typeface of Luxury Fashion' — tests serif vs sans-serif impact in luxury fashion context. (3) Emerald EJM article 'Serif or sans serif typefaces? The effects of typefaces on consumers' activity and potency perceptions' — peer-reviewed study. (4) Fontfabric 'Fonts in Luxury Branding' guide — confirms 'classic serifs (Didot, Bodoni)' dominate luxury branding. (5) Instagram brand-design content corroborates: 'serif fonts are often perceived as more traditional, credible, and established.' The DIRECTIONAL finding is well-supported. NOTE: no specific percentage figure is supported (claim 4's '15–20%' is invented); the directional claim itself is sound."
+  },
+
+  "_summary": {
+    "total_claims_checked": 9,
+    "verdicts": {
+      "VERIFIED": 2,
+      "PARTIALLY": 4,
+      "UNVERIFIED": 2,
+      "INVENTED": 0,
+      "verified_directionally": 1
+    },
+    "summary_by_claim": {
+      "claim_1": "PARTIALLY — sources real, 30%/5s figure invented",
+      "claim_2": "PARTIALLY — sources real, real stat is 20–45% not 2–3×",
+      "claim_3": "PARTIALLY — source real, direction supported, 20–40% not in source",
+      "claim_4": "UNVERIFIED — sources real but on wrong topic, 15–20% invented; direction supported by OTHER academic research",
+      "claim_5": "PARTIALLY — sources real, real lift is +20–42% not 3× worse",
+      "claim_6": "UNVERIFIED — sources may exist but don't say this; contradicted by AMR&Elma's own red-CTA-lifts-34% stat",
+      "general_1": "VERIFIED directionally (slight overstatement as worded)",
+      "general_2": "VERIFIED — widely supported",
+      "general_3": "VERIFIED directionally (no specific % supported)"
+    },
+    "recommendations_for_html_file": {
+      "keep_as_is": [
+        "General CRO facts block (trust signals next to CTA, serif = premium, premium clients discount-averse) — all directionally supported"
+      ],
+      "soften_numbers_to_defensible_ranges": [
+        "Claim 1: replace 'до 30% в первые 5 секунд' with 'значительная часть посетителей уходит в первые 5 секунд (Forbes: 61% не находят нужное за 5 сек)' OR remove specific number",
+        "Claim 2: replace 'в 2–3 раза больше запросов меню' with real Foodshot.ai stat 'на 20–45% больше заказов (Foodshot.ai/DoorDash)'",
+        "Claim 3: replace 'снижает воспринимаемую цену на 20–40%' with 'снижает воспринимаемую цену блюда' (drop the fake percentage) — direction supported by AMR&Elma but no defensible number",
+        "Claim 5: replace 'работает в 3× хуже' with 'форма без trust signals конвертирует на 20–42% хуже (CXL/Eklipse)' — the real, defensible number"
+      ],
+      "rewrite_or_remove_specific_attribution": [
+        "Claim 4: drop '15–20%' figure (invented). Replace cited sources 'Your Brand Cafe — Psychology of Colors in Branding; Justinmind Hero Image Studies' with actual academic research: 'Marketing Trends Congress 2024 — serif luxury perception study; Emerald EJM — typeface perception research'. Keep directional claim, drop specific number.",
+        "Claim 6: drop specific attribution to 'Foreground Web' and 'LeadFlask Hero Design Best Practices' (live 404). Replace with grounded consumer-psychology source — recommend citing Retail Brew / luxury discounting research instead. Note that the underlying claim ('loud red discount CTA repels premium audience') IS directionally supported by luxury discounting research but is contradicted by general CTA-color research (red CTAs typically lift conversion). Soften to 'для премиум-сегмента кричащий красный CTA со скидкой противоречит позиционированию' (positioning argument, not a quantified conversion claim)."
+      ],
+      "remove_completely": []
+    }
+  }
+}

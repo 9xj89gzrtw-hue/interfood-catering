@@ -1,0 +1,50 @@
+🚀 Initializing Z-AI SDK...
+🚀 Invoking function: web_search...
+[
+  {
+    "url": "http://trixter.digital/case-box-catering",
+    "name": "Продвижение доставки еды: как эффективно настроить рекламу?",
+    "snippet": "Для продвижения кейтеринга кроме «Конверсий» дополнительно используем цели «Генерация лидов» и «Сообщения». Преимущество лидогенерации в том, что ...",
+    "host_name": "trixter.digital",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://foodshot.ai/ru/blog/catering-marketing-ideas",
+    "name": "20 идей маркетинга кейтеринга на 2026 | FoodShot AI",
+    "snippet": "20 проверенных идей маркетинга кейтеринга по усилиям, цене и эффекту. Цифровые, партнёрские и контент-тактики на 2026. Узнайте больше!",
+    "host_name": "foodshot.ai",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://nethouse.ru/blog/lid-forma-na-vashem-sayte",
+    "name": "Лид-форма на Вашем сайте | Nethouse",
+    "snippet": "Теперь Вы можете увеличить конверсию сайта на нашей платформе, добавив яркую и заметную лид-форму в любой из доступных шаблонов.",
+    "host_name": "nethouse.ru",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://lpgenerator.ru/blog/2016/07/26/7-sposobov-optimizirovat-konversiyu-vashej-lid-formy",
+    "name": "7 способов оптимизировать конверсию вашей лид-формы",
+    "snippet": "7 способов оптимизировать конверсию вашей лид-формы · 1. Поместите форму в верхней части страницы · 2. Убедитесь, что ваш призыв к действию ...",
+    "host_name": "lpgenerator.ru",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.calltouch.ru/blog/chto-takoe-lid-forma-i-kak-ee-sdelat-konversionnoj",
+    "name": "Что такое лид-форма и как ее сделать конверсионной - Calltouch",
+    "snippet": "Лид-форма — это окно, в котором пользователи оставляют свои контакты, чтобы заказать обратный звонок, подписаться на контент или получить ценный ...",
+    "host_name": "www.calltouch.ru",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]
+🎉 Function invocation completed!

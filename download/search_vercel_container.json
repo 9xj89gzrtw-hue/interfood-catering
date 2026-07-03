@@ -1,0 +1,74 @@
+[
+  {
+    "url": "https://vercel.com/kb/guide/how-can-i-use-github-actions-with-vercel",
+    "name": "How can I use GitHub Actions with Vercel?",
+    "snippet": "Learn how to use GitHub Actions to deploy to Vercel including support for GitHub Enterprise Server.",
+    "host_name": "vercel.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://stackoverflow.com/questions/79011901/error-vercel-git-author-must-have-access-to-the-project-on-vercel-to-create-d",
+    "name": "Git author must have access to the project on Vercel to create",
+    "snippet": "You need to add the Deploy Hook URL to GitHub: In Vercel, select your project and go to Settings → Git → Deploy Hooks; Create a hook with ...\nSwitching to an automated CI/CD pipeline with GitHub Actions and triggering deployments via the Vercel CLI has resolved this issue. Steps to Fix ...",
+    "host_name": "stackoverflow.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://aaronfrancis.com/2021/the-perfect-vercel-github-actions-deployment-pipeline-faa0d4ac",
+    "name": "The perfect Vercel + GitHub Actions deployment pipeline",
+    "snippet": "You can deploy your Vercel app in a couple different ways. One is to deploy from your local machine using the Vercel CLI, by just calling vercel --prod.",
+    "host_name": "aaronfrancis.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/marketplace/actions/deploy-to-vercel-action",
+    "name": "Deploy to Vercel Action - GitHub Marketplace",
+    "snippet": "You can generate your GitHub Personal Access token here and your Vercel Token here and then specify them as GITHUB_TOKEN and VERCEL_TOKEN in the Actions inputs.",
+    "host_name": "github.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=gIHBVpJhmEk",
+    "name": "Deploy to Vercel with a GitHub Action - YouTube",
+    "snippet": "Vercel magically deploys changes to your branch. However when you want more control over the deployment - for example, to create releases ...",
+    "host_name": "www.youtube.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/vercel/vercel/discussions/6446",
+    "name": "Authentication · vercel vercel · Discussion #6446 - GitHub",
+    "snippet": "you can just create a vercel.json using a simple shell script and then use the token to run vercel cli to trigger the deployment instead.",
+    "host_name": "github.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/vercel/vercel/discussions/4853",
+    "name": "How do deploy to Vercel with GitLab CI? #4853 - GitHub",
+    "snippet": "It's now much easier to deploy to Vercel with any custom CI/CD provider like self-managed GitLab with GitLab Pipelines! We've created a guide and an example ...",
+    "host_name": "github.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://community.vercel.com/t/deploy-hooks-no-longer-triggering-deployments/22074",
+    "name": "Deploy Hooks No Longer Triggering Deployments - Vercel Community",
+    "snippet": "Deploy hooks doesn't trigger any deployment, insufficient permissions. Can you check your git metadata matches your GitHub account? then the ...",
+    "host_name": "community.vercel.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  }
+]

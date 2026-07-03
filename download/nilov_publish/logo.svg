@@ -1,0 +1,10 @@
+<svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="lg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D4B87C" />
+      <stop offset="100%" stop-color="#8B6F4E" />
+    </linearGradient>
+  </defs>
+  <rect width="40" height="40" rx="8" fill="#0C0B09" stroke="url(#lg)" stroke-width="1" />
+  <text x="20" y="28" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-size="24" font-weight="300" fill="url(#lg)">N</text>
+</svg>

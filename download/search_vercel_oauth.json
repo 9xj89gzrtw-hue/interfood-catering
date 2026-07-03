@@ -1,0 +1,47 @@
+[
+  {
+    "url": "https://vercel.com/docs/git/vercel-for-github",
+    "name": "Deploying GitHub Projects with Vercel",
+    "snippet": "Vercel for GitHub automatically deploys your GitHub projects with Vercel, providing Preview Deployment URLs, and automatic Custom Domain updates.",
+    "host_name": "vercel.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://stackoverflow.com/questions/79011901/error-vercel-git-author-must-have-access-to-the-project-on-vercel-to-create-d",
+    "name": "Git author must have access to the project on Vercel to create",
+    "snippet": "Create a new commit by setting git config user.email to the Vercel platform owner email ID. For example: Suppose your Vercel owner email ID ...",
+    "host_name": "stackoverflow.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://vercel.com/kb/guide/how-can-i-use-github-actions-with-vercel",
+    "name": "How can I use GitHub Actions with Vercel?",
+    "snippet": "Vercel for GitHub automatically deploys your GitHub projects with Vercel, providing Preview Deployment URLs, and automatic Custom Domain ...",
+    "host_name": "vercel.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://community.vercel.com/t/troubles-w-bitbucket-git-access-for-deployment/25831",
+    "name": "Troubles w/ Bitbucket git access for deployment - Vercel Community",
+    "snippet": "So I migrated the code over to BitBucket, disconnected my GitHub repo from the project, and OAuth'd BitBucket to their organization to allow the ...",
+    "host_name": "community.vercel.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/marketplace/actions/vercel-deployment-for-github-actions",
+    "name": "Vercel Deployment for GitHub Actions - GitHub Marketplace",
+    "snippet": "You can generate your GitHub Personal Access token here and your Vercel Token here and then specify them as GITHUB_TOKEN and VERCEL_TOKEN in the Actions inputs.",
+    "host_name": "github.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]

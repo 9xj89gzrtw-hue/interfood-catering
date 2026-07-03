@@ -1,0 +1,50 @@
+🚀 Initializing Z-AI SDK...
+🚀 Invoking function: web_search...
+[
+  {
+    "url": "https://www.sostav.ru/publication/dolya-mobilnogo-trafika-v-rf-prevysila-rekordnye-20-11417.html",
+    "name": "Доля мобильного трафика в РФ превысила рекордные 20%",
+    "snippet": "Доля мобильного трафика в июле 2014 года впервые за всю историю Рунета превысила 20% и составила 20,8% от общего объема, тогда как в июле ...",
+    "host_name": "www.sostav.ru",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://ru.hostzealot.com/blog/research/kakoi-procent-veb-trafika-prixoditsia-na-mobilnye-ustroistva-vo-vsem-mire-obnovleno-mart-2026",
+    "name": "Какой процент веб-трафика приходится на мобильные",
+    "snippet": "Доля мобильного веб-трафика увеличилась с 0,98% в 2009 году до 50,91% в 2026 году, что означает рост почти на 50 процентных пунктов за 17 лет.",
+    "host_name": "ru.hostzealot.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/restaurant/comments/1n5p857/restaurant_online_traffic_tools/?tl=ru",
+    "name": "Инструменты для онлайн-трафика ресторанов : r/restaurant",
+    "snippet": "Как привлечь органический трафик в ваш ресторан? · Какие стратегии вы используете для удержания клиентов в своем ресторане? · Владельцы ресторанов ...",
+    "host_name": "www.reddit.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://remarked.ru/review-traffic-near-establishment",
+    "name": "Оценить проходящий поток возле заведения.",
+    "snippet": "Инструмент «Оценка проходящего потока» позволит подсчитать по часам проходящий поток, долю повторяющегося дневного трафика, а также конверсию из прохожих в ...",
+    "host_name": "remarked.ru",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.aurorainternet.ru/blog/dolya-mobilnogo-trafika-sostavila-20-procentov",
+    "name": "Доля мобильного трафика в России впервые превысила 20%",
+    "snippet": "Средняя доля мобильного трафика в июле 2014 года впервые превысила 20%, составив 20,8% от общего объема интернет-трафика. Таким образом, объем и доля мобильного ...",
+    "host_name": "www.aurorainternet.ru",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]
+🎉 Function invocation completed!

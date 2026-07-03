@@ -1,0 +1,47 @@
+[
+  {
+    "url": "https://github.com/vercel-labs/agent-skills/blob/main/skills/vercel-cli-with-tokens/SKILL.md",
+    "name": "agent-skills/skills/vercel-cli-with-tokens/SKILL.md at main - GitHub",
+    "snippet": "Deploy and manage projects on Vercel using the CLI with token-based authentication, without relying on vercel login . Step 1: Locate the Vercel Token. Before ...",
+    "host_name": "github.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://vercel.com/docs/cli/tokens",
+    "name": "vercel tokens",
+    "snippet": "The vercel tokens command manages your personal authentication tokens. Tokens authenticate Vercel CLI commands and Vercel REST API requests ...",
+    "host_name": "vercel.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://lobehub.com/bg/skills/xixu-me-skills-vercel-cli-with-tokens",
+    "name": "vercel-cli-with-tokens | Skills Mark - LobeHub",
+    "snippet": "Deploy and manage projects on Vercel using the CLI with token-based authentication, without relying on vercel login . Step 1: Locate the Vercel ...",
+    "host_name": "lobehub.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://vercel.com/docs/cli",
+    "name": "Vercel CLI Overview",
+    "snippet": "Learn how to use the Vercel command-line interface (CLI) to manage and configure your Vercel Projects from the command line.",
+    "host_name": "vercel.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://mcpmarket.com/tools/skills/vercel-cli-with-tokens-1",
+    "name": "Vercel CLI with Tokens: Secure Deployment Claude Code Skill",
+    "snippet": "This skill provides a standardized workflow for interacting with the Vercel CLI using access tokens instead of interactive logins.",
+    "host_name": "mcpmarket.com",
+    "rank": 4,
+    "date": "Jun 27, 2026",
+    "favicon": ""
+  }
+]

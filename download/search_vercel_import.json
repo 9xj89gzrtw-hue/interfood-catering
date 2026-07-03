@@ -1,0 +1,47 @@
+[
+  {
+    "url": "https://vercel.com/docs/git/vercel-for-github",
+    "name": "Deploying GitHub Projects with Vercel",
+    "snippet": "Vercel for GitHub automatically deploys your GitHub projects with Vercel, providing Preview Deployment URLs, and automatic Custom Domain updates.",
+    "host_name": "vercel.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=E8xaV6fiTaA",
+    "name": "How To Deploy GitHub Project on Vercel (Step By Step) - YouTube",
+    "snippet": "In this video, I show you how to deploy GitHub project on Vercel. Did this video help? Comment below and let me know. Thanks!",
+    "host_name": "www.youtube.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://stackoverflow.com/questions/79011901/error-vercel-git-author-must-have-access-to-the-project-on-vercel-to-create-d",
+    "name": "Git author must have access to the project on Vercel to create",
+    "snippet": "Get the Deploy Hook URL from Vercel: - Project Settings → Git → Deploy Hooks - Create a hook (e.g., \"Auto Deploy\") - Copy the generated URL 2.",
+    "host_name": "stackoverflow.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://gist.github.com/ky28059/1c9af929a9030105da8cf00006b50484",
+    "name": "Deploying to Vercel from an organization for free using GitHub actions",
+    "snippet": "To automatically deploy our project to Vercel on push, we'll use amondnet/vercel-action. A typical GitHub pages action builds the project to static files and ...",
+    "host_name": "gist.github.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://vercel.com/docs/git",
+    "name": "Deploying Git Repositories with Vercel",
+    "snippet": "Vercel allows for automatic deployments on every branch push and merges onto the production branch of your GitHub, GitLab, and Bitbucket projects.",
+    "host_name": "vercel.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]

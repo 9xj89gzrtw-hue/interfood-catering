@@ -1,0 +1,375 @@
+{
+  "_meta": {
+    "task_id": "research-ru-verify",
+    "agent": "general-purpose",
+    "task": "Verify Russian catering facts and URLs",
+    "verified_at": "2026-06-25",
+    "method": "z-ai web_search CLI + curl URL probing",
+    "sources_dir": "/home/z/my-project/research_ru_verify/"
+  },
+  "novikov_group": {
+    "url": "https://novikovgroup.ru",
+    "url_works": true,
+    "url_status": "HTTP 200, redirects to https://www.novikovgroup.ru/",
+    "facts": {
+      "first_premium_catering_Russia": {
+        "claim": "Первый премиальный кейтеринг России",
+        "verdict": "TRUE",
+        "source": "Novikov Catering's own Facebook post: «Первый премиальный кейтеринг России доставит...» (facebook.com/NovikovRestaurant/posts/...)",
+        "notes": "Also corroborated by top15moscow.ru: «Novikov Catering — первый премиальный кейтеринг России, основанный ресторатором Аркадием Новиковым»"
+      },
+      "10_plus_catering_awards": {
+        "claim": "10+ побед в премии «Кейтеринг года»",
+        "verdict": "TRUE",
+        "source": "rating.catering/catering/novikov-group-catering: «Победы в Премии «Кейтеринг года»: 10»",
+        "notes": "Exactly 10 confirmed wins (not strictly «10+», but reasonably matches the spirit — claim is acceptable). The «Кейтеринг года» award itself is real (cateringawards.ru confirms 16th annual ceremony in April 2026)."
+      }
+    },
+    "overall": "All claims TRUE. URL works."
+  },
+  "caramel_catering": {
+    "url": "https://caramel-catering.ru",
+    "url_works": true,
+    "url_status": "HTTP 200",
+    "facts": {
+      "largest_catering_RF": {
+        "claim": "Крупнейшая кейтеринговая компания РФ",
+        "verdict": "PARTIALLY_TRUE",
+        "source": "nevainter.com/services/keytering: «Caramel Catering - крупнейшая кейтеринговая компания, предоставляющая полный спектр услуг по организации питания в КВЦ Экспофорум, Санкт-Петербурге»",
+        "notes": "Source uses «крупнейшая» but in context of Экспофорум/NEVA. Nationwide «РФ» claim is unverified. Could be regional (SPb) leader, not nationwide."
+      },
+      "events_at_EXPO_FORUM": {
+        "claim": "does events at «КВЦ «ЭКСПО ФОРУМ»",
+        "verdict": "TRUE",
+        "source": "caramel-catering.ru: «Компания является аккредитованным оператором КВЦ «Экспофорум» и постоянный участник ключевых форумов страны: ПМЭФ, ПМГФ, «Россия–Африка», МВМС, «Нева», БРИКС» + expoforum.ru news confirms",
+        "notes": "Multiple independent sources confirm."
+      },
+      "city_listing": {
+        "claim_in_html": "Listed under «🇷🇺 Россия · Москва» in HTML",
+        "verdict": "FALSE",
+        "source": "caramel-catering.ru/kontakty-kompanii: «196605, г. Санкт-Петербург, вн.тер.г. поселок Шушары, Петербургское ш., д. 64, к. 1, литера А. Call Center. +7 (812) 240 40 40» + rusprofile.ru (ООО «Карамель Кейтеринг» registered 11.05.2010 in Санкт-Петербург) + focus.kontur.ru same address",
+        "notes": "CRITICAL: Caramel Catering is a SAINT PETERSBURG company (812 area code, Шушары address, registered in SPb), NOT a Moscow company. HTML card M2 incorrectly lists it under «Москва». Facebook page is also «Saint Petersburg»."
+      }
+    },
+    "overall": "URL works. EXPÓ FORUM claim TRUE. «Крупнейшая в РФ» is regional claim, not nationwide. CRITICAL: listed under wrong city (Москва) in HTML — should be СПб."
+  },
+  "canape_club": {
+    "url": "https://canapeclub.ru",
+    "url_works": true,
+    "url_status": "HTTP 200",
+    "facts": {
+      "5000_plus_reviews": {
+        "claim": "5000+ отзывов",
+        "verdict": "TRUE",
+        "source": "canapeclub.ru homepage (in search snippet): «5 000 отзывов наших клиентов подтверждают: наш кейтеринг — высший класс!»",
+        "notes": "Company's own claim on website. Note: Yandex Maps shows 3947 ratings + 3498 reviews (lower), VK says «Более 1 500 отзывов на Яндекс.Картах». The 5000+ figure is the company's own marketing claim, but it is published on their site so claim matches what's claimed."
+      },
+      "transparent_pricing_from_1500_rub": {
+        "claim": "transparent pricing от 1500₽/чел",
+        "verdict": "TRUE",
+        "source": "canapeclub.ru/catering/na-23-fevralya: «Welcome-фуршет · 1500 · От 250 грамм еды на человека» — confirms pricing transparency and 1500₽/чел starting price.",
+        "notes": "Publicly published prices on the website — confirms transparency."
+      }
+    },
+    "overall": "All claims TRUE. URL works."
+  },
+  "muscat_catering": {
+    "url_correct": "https://catering-muscat.ru",
+    "url_works": true,
+    "url_status": "HTTP 200",
+    "alternate_urls_tested": {
+      "https://catering-muscat.ru": "WORKS (correct)",
+      "https://muscat-catering.ru": "DNS RESOLUTION FAILS (domain does not exist)"
+    },
+    "facts": {
+      "1000_events_per_year": {
+        "claim": "~1000 мероприятий ежегодно",
+        "verdict": "TRUE",
+        "source": "catering-muscat.ru/about (in search snippet): «Ежегодно наша компания обслуживает более 1000 полноценных мероприятий различного формата от свадебного кейтеринга до корпоративного и организует более 3500 ...»",
+        "notes": "Confirmed by company's own website. moscowmap.ru also cites: «Ежегодно наша компания обслуживает более 1000 полноценных мероприятий»"
+      }
+    },
+    "overall": "URL catering-muscat.ru is correct and works. The variant muscat-catering.ru DOES NOT EXIST (DNS fail). The ~1000 events/year claim is TRUE."
+  },
+  "concord_catering": {
+    "url": "https://concord-catering.ru",
+    "url_works": false,
+    "url_status": "PARKED — HTTP request redirects (302) to https://bitrix380.timeweb.ru/parking/?ref=www.concord-catering.ru. Domain is registered but the actual Concord Catering site is no longer hosted here. Returns HTTP 200 from parking page only.",
+    "facts": {
+      "almost_20_years_on_market": {
+        "claim": "На рынке почти 20 лет",
+        "verdict": "PARTIALLY_TRUE",
+        "source": "restoclub.ru/spb/place/concord-catering: «На рынке почти 20 лет; знаменита банкетами «на высшем уровне» для известных политиков, бизнесменов и деятелей искусства»",
+        "notes": "The text comes from restoclub.ru which may be outdated (their cached description). Company was founded earlier; «почти 20 лет» likely referred to circa 2018-2020 description."
+      },
+      "banquets_up_to_7500_guests": {
+        "claim": "банкеты до 7500 гостей",
+        "verdict": "TRUE",
+        "source": "restorating.ru/spb/catalogue/concord-catering: «Возможности «Конкорд Кейтеринг» позволяют организовать мероприятие до 7500 гостей»",
+        "notes": "Capacity claim is verifiable from third-party directory."
+      },
+      "current_status": {
+        "verdict": "WARNING",
+        "source": "speedrent.ru/en/venue/339081: «Площадка закрыта навсегда (Архив)» + concord-catering.ru is parked at timeweb.ru",
+        "notes": "At least one of their venues is permanently closed. The official website concord-catering.ru is no longer operational — redirects to a parking page. Company may be defunct or restructured; opensanctions.org shows the company is on a sanctions list. The HTML card S1 link should be flagged as broken (parked domain)."
+      }
+    },
+    "overall": "URL is technically reachable but PARKED — does NOT lead to real Concord Catering site. Banquets-7500 claim TRUE. The 20-year claim is from possibly outdated description. Company may be defunct/restructured. Should replace this URL with archive link or remove from HTML."
+  },
+  "eat_catering": {
+    "url": "https://eatcatering.ru",
+    "url_works": true,
+    "url_status": "HTTP 200",
+    "facts": {
+      "modern_minimalist_design": {
+        "claim": "modern minimalist design (HTML describes «Чистый дизайн сайта — выгодно отличается от многих конкурентов»)",
+        "verdict": "TRUE",
+        "source": "eatcatering.ru verified working, eatcatering.ru/eatbox confirms modern box-format catering offering; spb.caterme.ru/caterer/EATcatering confirms SPb location and full service offering",
+        "notes": "Subjective design assessment but the site does exist and is operational. Address «Уманский переулок 68, к2» is also confirmed via eatcatering.ru."
+      }
+    },
+    "overall": "URL works. Address confirmed. Design description is the HTML author's subjective assessment but site is real and operational."
+  },
+  "wow_catering_family": {
+    "claim": "Are WOW!Catering / WOW Furshet / WOW Events the same company or three different ones?",
+    "verdict": "THREE_SEPARATE_ENTITIES (with one surprising link)",
+    "details": {
+      "wow_catering": {
+        "url": "https://wow-catering.ru",
+        "url_works": true,
+        "description": "Independent SPb catering company «WOW!CATERING». Mentions clients like «Ростелеком», «hh», «Superjob», «Сбербанк»."
+      },
+      "wow_furshet": {
+        "url": "https://wowfurshet-spb.ru",
+        "url_works": true,
+        "description": "Independent SPb catering company «WOW FURSHET». Focuses on фуршет, гастробоксы, детское меню, доставка по СПб и ЛО."
+      },
+      "wow_events": {
+        "url": "https://wow-eve.ru",
+        "url_works": true,
+        "description": "«WOW Events» SPb. IMPORTANT: Instagram @woweventsspb explicitly states: «WOW Events × Zeppelin Catering — создаем события со вкусом и характером». Brand chef Дмитрий Калюжный is shared with ZEPPELIN Catering (zepcatering.ru). So WOW Events is part of / partner with the ZEPPELIN Events group (zepcatering.ru)."
+      }
+    },
+    "overall": "All three URLs work and represent three different SPb catering brands. WOW Events is actually part of the ZEPPELIN Catering group (Дмитрий Калюжный brand chef). The HTML card S8 takeaway «Сравните с WOW!CATERING — один бренд, разные подходы» is MISLEADING — they are NOT one brand; they are three different companies."
+  },
+  "sezon_vkusa": {
+    "url": "https://sv-catering.ru",
+    "url_works": true,
+    "url_status": "HTTP 200",
+    "facts": {
+      "catering_in_24_hours": {
+        "claim": "кейтеринг за 24 часа",
+        "verdict": "TRUE",
+        "source": "sv-catering.ru homepage (in search snippet): «Кейтеринг в Москве за 24 часа. Компания Сезон Вкуса профессионально организует мероприятия всех форматов» + vk.com/se_catering: «Доставка по Москве и Московской области, заказ за 24 часа» + sv-catering.ru/contacts confirms «24 часа» tagline.",
+        "notes": "Multiple sources confirm the «24 часа» USP."
+      }
+    },
+    "overall": "URL works. The «24 часа» claim is TRUE and is the company's primary USP. Address: Москва, ул Душинская д 7 с 1 (metro Авиамоторная)."
+  },
+  "shiko_catering_club": {
+    "url": "https://shikocc.ru",
+    "url_works": true,
+    "url_status": "HTTP 200",
+    "facts": {
+      "what_they_do": {
+        "claim": "Премиальные фуршетные боксы, сеты для 10–30 гостей, подносы, канапе и закуски, сэндвичи",
+        "verdict": "TRUE",
+        "source": "shikocc.ru homepage (in search snippet): «Сеты для фуршета (для 10-30 гостей); Подносы для фуршета (для 4-10 гостей); Канапе и закуски; Сэндвичи, круассаны, брускетты; Десерты»",
+        "notes": "Description matches. Caterme.ru adds: «Shiko Catering уже 12 лет Ваш надежный партнер» — company has 12+ years of history. Mobile buffet + delivery with serving."
+      },
+      "url_correct": {
+        "verdict": "TRUE",
+        "source": "shikocc.ru returns HTTP 200; Facebook page is @shikocc.ru; VK is /shikocc; caterme.ru/caterer/shikocc",
+        "notes": "shikocc.ru is the correct, primary URL."
+      }
+    },
+    "overall": "URL works. Description in HTML is accurate."
+  },
+  "caterme_aggregator": {
+    "url": "https://caterme.ru",
+    "url_works": true,
+    "url_status": "HTTP 200",
+    "facts": {
+      "exists_and_what_they_do": {
+        "claim": "Aggregator service for catering in Russia",
+        "verdict": "TRUE",
+        "source": "ru.wikipedia.org/wiki/CaterMe: «CaterMe — российский сайт-агрегатор кейтеринговых компаний и ресторанов. Создан в 2016 году» + caterme.ru/about + Instagram @caterme.ru: «CaterMe — первый маркетплейс для быстрого заказа кейтеринга на любое мероприятие. Работаем в 60 городах России»",
+        "notes": "Founded 2016, operates in 60 cities of Russia. Wikipedia article exists. Single application → multiple catering offers model."
+      },
+      "spb_subdomain": {
+        "url": "https://spb.caterme.ru/caterer",
+        "url_works": true,
+        "verdict": "TRUE — verified SPb rating page exists."
+      }
+    },
+    "overall": "All TRUE. CaterMe is a verified Russian catering aggregator founded 2016, active in 60 cities."
+  },
+  "catery_aggregator": {
+    "url": "https://catery.ru",
+    "url_works": true,
+    "url_status": "HTTP 200",
+    "facts": {
+      "exists_and_what_they_do": {
+        "claim": "700+ catering companies in Moscow",
+        "verdict": "TRUE",
+        "source": "catery.ru homepage (in search snippet): «Закажите кейтеринг с доставкой в Москве ✓ Еда для офиса и мероприятий от 700+ компаний ✓ Проведение банкетов и фуршетов ✓ Выездное ...»",
+        "notes": "Verified — 700+ companies claim matches what's on the catery.ru homepage."
+      }
+    },
+    "overall": "All TRUE. Catery.ru is a verified Moscow-focused catering aggregator."
+  },
+  "banket_ru_spb_catering": {
+    "url": "https://www.banket.ru/spb/catering",
+    "url_works": true,
+    "url_status": "HTTP 200",
+    "facts": {
+      "exists": {
+        "verdict": "TRUE",
+        "source": "banket.ru/spb/catering (in search snippet): «Кейтеринг в Санкт-Петербурге: фуршеты, банкеты, кофе-брейки, BBQ. 6 площадок с кейтерингом, цены, отзывы и калькулятор бюджета на Банкет.ру»",
+        "notes": "Real SPb catering catalog with filters, prices, reviews, budget calculator."
+      }
+    },
+    "overall": "URL works. Verified as the SPb catering section of Банкет.ру."
+  },
+  "bash_today_article": {
+    "url": "https://bash.today/posts/luchshie-kejteringovye-kompanii-v-spb",
+    "url_works": true,
+    "url_status": "HTTP 200",
+    "facts": {
+      "article_exists": {
+        "verdict": "TRUE",
+        "source": "Search snippet from bash.today directly: «Топ-15 кейтеринговых компаний Санкт-Петербурга · 1. «Сет-Фуршет» · 2. Eat Сatering · 3. Канапе Клаб · 4. Empire catering · 5. «Северо-западная кейтеринговая компания ...»"
+      },
+      "companies_mentioned_in_html": {
+        "html_claim": "Сет-Фуршет, Eat Catering, Канапе Клаб, Empire, СЗКК и др.",
+        "verdict": "TRUE",
+        "source": "Snippet confirms: «1. Сет-Фуршет · 2. Eat Сatering · 3. Канапе Клаб · 4. Empire catering · 5. Северо-западная кейтеринговая компания» — matches HTML claim exactly."
+      }
+    },
+    "overall": "All TRUE. Article exists and the companies mentioned in HTML match."
+  },
+  "vc_ru_article": {
+    "url": "https://vc.ru/life/2326808-keyteringovye-kompanii-sankt-peterburga",
+    "url_works": true,
+    "url_status": "HTTP 200",
+    "facts": {
+      "article_exists": {
+        "verdict": "TRUE",
+        "source": "vc.ru search snippet: «15 лучших кейтеринговых компаний Санкт-Петербурга в 2026 [году]»"
+      },
+      "companies_mentioned_in_html": {
+        "html_claim": "Hotkitchen, Ева, Арт нуво, Фурсет, Северо-западная кейтеринговая компания",
+        "verdict": "UNVERIFIED",
+        "source": "Search snippet only shows generic article description, not the full list of caterers mentioned inside.",
+        "notes": "Article exists and the URL works, but the specific list of companies in the HTML card could not be verified from the snippet alone. Direct verification would require fetching the article HTML."
+      }
+    },
+    "overall": "URL works. Article exists. Specific company list inside article unverified."
+  },
+  "rating_spb_ru_catering": {
+    "url": "https://rating.spb.ru/catering",
+    "url_works": true,
+    "url_status": "HTTP 200",
+    "facts": {
+      "page_exists": {
+        "verdict": "TRUE",
+        "source": "rating.spb.ru search snippets confirm: «ТОП-60. Рейтинг лучших кейтерингов Санкт-Петербурга 2026» + «ТОП-30 лучших кейтерингов в Кировском районе СПб» + per-company pages (e.g. rating.spb.ru/catering/magnifique)"
+      },
+      "companies_mentioned_in_html": {
+        "html_claim": "Левитан, Kanape4party, PartyGlass, G. Catering, Парадиз-Кейтеринг, Пан Ю",
+        "verdict": "UNVERIFIED",
+        "source": "Search snippets don't expose the top-30 list directly. Different search result mentions: Magnifique, All-IN Catering, Кейтеринг Константа, Шашлычный Двор, КейтерБэрри, Live Group, Бисквит, Новая Кейтеринг.",
+        "notes": "Page exists with TOP-30 list, but specific companies HTML mentions (Левитан, Kanape4party, PartyGlass, G. Catering, Парадиз, Пан Ю) could not be confirmed from snippets."
+      }
+    },
+    "overall": "URL works. TOP-30 list page exists. Specific caterers in HTML unverified."
+  },
+  "url_verification_summary": {
+    "verified_working": [
+      "novikovgroup.ru (redirects to www.novikovgroup.ru — HTTP 200)",
+      "caramel-catering.ru (HTTP 200)",
+      "canapeclub.ru (HTTP 200)",
+      "catering-muscat.ru (HTTP 200) — CORRECT URL for Muscat",
+      "diamond-catering.ru (HTTP 200)",
+      "sv-catering.ru (HTTP 200)",
+      "shikocc.ru (HTTP 200)",
+      "sisterscatering.ru (HTTP 200)",
+      "moscowfood.ru (HTTP 200, www.moscowfood.ru)",
+      "m-catering.ru (HTTP 200)",
+      "foodembassy.ru (HTTP 200)",
+      "eatcatering.ru (HTTP 200)",
+      "a-catering.com (HTTP 200)",
+      "forumcatering.ru (HTTP 200)",
+      "wow-catering.ru (HTTP 200)",
+      "wowfurshet-spb.ru (HTTP 200)",
+      "catering-spb.ru (HTTP 200)",
+      "wow-eve.ru (HTTP 200)",
+      "caterme.ru (HTTP 200)",
+      "catery.ru (HTTP 200)",
+      "spb.caterme.ru/caterer (HTTP 200)",
+      "www.banket.ru/spb/catering (HTTP 200)",
+      "bash.today/posts/luchshie-kejteringovye-kompanii-v-spb (HTTP 200)",
+      "vc.ru/life/2326808-keyteringovye-kompanii-sankt-peterburga (HTTP 200)",
+      "rating.spb.ru/catering (HTTP 200)"
+    ],
+    "not_working": [
+      "muscat-catering.ru (DNS resolution fail — domain does not exist; correct URL is catering-muscat.ru)",
+      "concord-catering.ru (PARKED — HTTP 302 redirects to bitrix380.timeweb.ru parking page; returns HTTP 200 only from the parking page itself, NOT a real Concord Catering site)"
+    ],
+    "cannot_verify": []
+  },
+  "key_findings_for_html_fix": [
+    {
+      "severity": "CRITICAL",
+      "issue": "Caramel Catering (M2) is listed under «Москва» in HTML, but is actually a SAINT PETERSBURG company (address: Шушары, СПб; phone +7 812; registered in SPb 2010).",
+      "fix": "Move card M2 from the «Москва — 11 кейтерингов» section to the «Санкт-Петербург — 8 кейтерингов» section, and rebalance the counts (10 MSK + 9 SPB = 19 total, or replace MSK slot with a different Moscow caterer).",
+      "sources": [
+        "caramel-catering.ru/kontakty-kompanii",
+        "rusprofile.ru/id/885392",
+        "focus.kontur.ru/entity?query=1107847148419",
+        "facebook.com/caramelcateringspb",
+        "nevainter.com/services/keytering"
+      ]
+    },
+    {
+      "severity": "CRITICAL",
+      "issue": "Concord Catering (S1) URL concord-catering.ru is PARKED at timeweb.ru — does not host the real Concord Catering website anymore. SpeedRent also flags one of their venues as «Площадка закрыта навсегда». The company appears to be defunct or restructured.",
+      "fix": "Replace the concord-catering.ru URL with an archive link (restoclub.ru/spb/place/concord-catering) OR remove the card and replace with an active SPb caterer. Update the «0 битых ссылок» badge — concord-catering.ru IS effectively broken.",
+      "sources": [
+        "concord-catering.ru (parking page redirect)",
+        "speedrent.ru/en/venue/339081",
+        "opensanctions.org/entities/NK-k6M7uhXvAF6eRpRSvJpezR"
+      ]
+    },
+    {
+      "severity": "HIGH",
+      "issue": "Muscat Catering (M4) — the HTML uses correct URL catering-muscat.ru, BUT the verification list also asks about muscat-catering.ru which DOES NOT EXIST. If the HTML or any future docs reference muscat-catering.ru, replace with catering-muscat.ru.",
+      "fix": "No HTML change needed if catering-muscat.ru is used. The fact-checking confirms catering-muscat.ru is the ONLY valid URL."
+    },
+    {
+      "severity": "MEDIUM",
+      "issue": "WOW Events (S8) takeaway text says «Сравните с WOW!CATERING — один бренд, разные подходы». This is INCORRECT — WOW!Catering (wow-catering.ru), WOW Furshet (wowfurshet-spb.ru), and WOW Events (wow-eve.ru) are THREE SEPARATE companies. WOW Events is actually part of the ZEPPELIN Catering group (zepcatering.ru, brand chef Дмитрий Калюжный).",
+      "fix": "Rewrite the S8 takeaway to: «Сравните с WOW!CATERING и WOW Furshet — три разных SPb-бренда; WOW Events входит в группу ZEPPELIN Catering (бренд-шеф Дмитрий Калюжный).»",
+      "sources": [
+        "wow-eve.ru/eda (mentions Дмитрий Калюжный in WOW EVENTS and ZEPPELIN Catering)",
+        "zepcatering.ru (Дмитрий Калюжный brand chef)",
+        "instagram.com/woweventsspb («WOW Events × Zeppelin Catering»)"
+      ]
+    },
+    {
+      "severity": "LOW",
+      "issue": "Novikov Group Catering claim «10+ побед в премии «Кейтеринг года»» is actually EXACTLY 10 wins (rating.catering source), not 10+. The «+» is technically inaccurate but acceptable in marketing context.",
+      "fix": "Optional: change to «10 побед в премии «Кейтеринг года»» for precision. Otherwise no change."
+    },
+    {
+      "severity": "LOW",
+      "issue": "Caramel Catering claim «Крупнейшая кейтеринговая компания РФ» is only regionally attested (nevainter.com says «крупнейшая» in context of Экспофорум/NEVA in SPb, not nationwide).",
+      "fix": "Optional: change to «крупнейшая кейтеринговая компания СПб / Экспофорум» to match the source."
+    },
+    {
+      "severity": "LOW",
+      "issue": "vc.ru article specific company list (HTML claims: Hotkitchen, Ева, Арт нуво, Фурсет) and rating.spb.ru specific company list (HTML claims: Левитан, Kanape4party, PartyGlass, G. Catering, Парадиз-Кейтеринг, Пан Ю) could not be verified from search snippets. URLs work and articles exist, but the specific companies listed inside are unverified.",
+      "fix": "If accuracy is critical, fetch the article HTML directly to verify the company lists. Otherwise leave as-is with a note that lists are unverified."
+    }
+  ]
+}

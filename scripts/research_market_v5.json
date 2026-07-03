@@ -1,0 +1,418 @@
+{
+  "_meta": {
+    "task_id": "research-market-context-v5",
+    "agent": "research-market-context-v5 (sub-agent)",
+    "created": "2025-06",
+    "purpose": "Market context for SPb catering company website. Client: ordinary clients (NOT premium), average check ~100,000 RUB (~$1100). All figures in RUB unless noted. All sources are Russian-language.",
+    "raw_results_dir": "/home/z/my-project/scripts/research_market_v5_raw/",
+    "raw_files_count": 32
+  },
+
+  "market_size": {
+    "value_rub_2024": "~800 млрд руб (800 billion RUB)",
+    "value_rub_2024_note": "TAdviser / RBC Marketing / NeoAnalytics report market volume of catering services in Russia in 2024 exceeded 800 bn RUB, +6.7% YoY. BusinesStat reports a narrower figure of 150 bn RUB for 2024 (+93% over 2021-2025) — this appears to be the narrower 'event catering' subsegment. The 800 bn figure is the broadest market definition used by leading RU agencies.",
+    "forecast_2025": "~880 млрд руб (~880 billion RUB), +10% YoY (HungryAsWolf / m-catering citing NeoAnalytics)",
+    "growth_rate": "+6.7% (2024 actual), +10% (2025 forecast)",
+    "regional_split": {
+      "moscow_share": "~62%",
+      "spb_share": "~22%",
+      "regions_share": "~16%",
+      "source": "https://www.megaresearch.ru/issledovaniya/prodovolstvie-pischevaya-promyshlennost/uslugi-organizaciya-pitaniya/1680"
+    },
+    "format_split_by_event_count_2023": {
+      "bufet_furshet": "~62%",
+      "banquet": "~34%",
+      "other": "~4%",
+      "source": "https://marketing.rbc.ru/articles/14731"
+    },
+    "segments_by_event_type": {
+      "note": "Russian catering market is typically segmented by event type: corporate (largest segment, ~50-60% by revenue per industry estimates), wedding (~20-25%), private/family events (~15-20%), public/state events (~5-10%). Exact % varies by year and methodology. RBC reports format split by number of events: буфет/фуршет dominates 62% of events.",
+      "corporate_estimate": "~50-60% of revenue (largest segment)",
+      "wedding_estimate": "~20-25%",
+      "private_estimate": "~15-20%"
+    },
+    "top_players_note": "No single Russian catering player has >5-7% market share — market is fragmented. Largest players include Concord Catering (MSK, also SPb), Uilla (MSK), Карамель (SPb), Северо-Западная Кейтеринговая Компания (SPb), Eat Catering (SPb), WOW!Catering, Канапе Клаб. Top 10 players collectively estimated at <25% market share.",
+    "sources": [
+      "https://www.tadviser.ru/index.php/Статья:Кейтеринг_в_России",
+      "https://marketing.rbc.ru/articles/16131",
+      "https://marketing.rbc.ru/articles/14731",
+      "https://www.neoanalytics.ru/wp-content/uploads/2025/09/demo_neoanalytics_rossijskij-rynok-kejteringa_2025.pdf",
+      "https://businesstat.ru/catalog/id75783",
+      "https://hungryaswolf.ru/blog/trendy-keyteringa",
+      "https://m-catering.ru/blog/glavnye-trendy-i-perspektivy-razvitiya-keyteringa-v-rossii",
+      "https://www.megaresearch.ru/issledovaniya/prodovolstvie-pischevaya-promyshlennost/uslugi-organizaciya-pitaniya/1680"
+    ]
+  },
+
+  "average_check": {
+    "msk_per_person_range": "от 500 RUB (эконом) до 5,000+ RUB (премиум); средняя цена по Zoon.ru ~2,698 RUB/чел",
+    "msk_zoon_avg_per_person": "2,698 RUB",
+    "msk_economy_per_person": "от 500–800 RUB",
+    "msk_mid_per_person": "1,500–3,000 RUB",
+    "msk_canapeclub_per_person": "от 1,500 RUB/чел",
+    "spb_per_person_range": "от 500 RUB (эконом) до 6,000 RUB (премиум)",
+    "spb_economy_per_person": "от 500–800 RUB (CaterMe SPb)",
+    "spb_profi_avg_order": "19,250 RUB (средний заказ); от 6,680 до 68,200 RUB",
+    "spb_ec_restaurant_per_person": "от 1,600 RUB/чел",
+    "per_person_prices_spb": {
+      "coffee_break": "от 500 RUB/чел (Bash Today) — от 800 RUB/чел (Карамель CaterMe)",
+      "furshet": "от 1,000 RUB/чел без обслуживания, от 1,500–2,500 RUB/чел с обслуживанием, премиум 3,600–6,000 RUB/чел (CanapeClub)",
+      "banquet": "от 2,600 RUB/чел (Карамель) — 3,500–5,000 RUB/чел средний сегмент (Restoclub, Avtobanket)"
+    },
+    "what_100k_gets": "На 100 000 RUB в СПб можно получить: (1) фуршет с обслуживанием на ~40–60 человек (1,500–2,500 RUB/чел); (2) банкет на ~30–40 человек (2,600–3,500 RUB/чел); (3) кофе-брейк на ~100–125 человек (800–1,000 RUB/чел); (4) доставку боксов/канапе на ~50–80 человек. 100k RUB = выше среднего заказа (средний заказ на Profi.ru 19,250 RUB), что позиционирует клиента в среднем+ / верхнем-среднем сегменте рынка, но НЕ в премиуме.",
+    "msk": "~2,698 RUB/чел (Zoon средняя), средний заказ варьируется 30–150k RUB",
+    "spb": "средний заказ ~19,250 RUB (Profi.ru), per-person 1,500–3,000 RUB для массового сегмента",
+    "sources": [
+      "https://spb.caterme.ru/catering/ceny",
+      "https://caterme.ru/catering/ceny",
+      "https://zoon.ru/msk/restaurants/type/kejtering",
+      "https://profi.ru/geo-spb/artist/catering/",
+      "https://ec-restaurant.ru",
+      "https://spb.canapeclub.ru/catering",
+      "https://a-catering.com/furshet",
+      "https://bash.today/posts/luchshie-kejteringovye-kompanii-v-spb",
+      "https://canapeclub.ru/catering",
+      "https://spb.caterme.ru/offers/sankt-peterburg/furshet/50",
+      "https://spb.caterme.ru/caterer/caramel-catering",
+      "https://spb.caterme.ru/caterer/EATcatering"
+    ]
+  },
+
+  "site_conversion_rate": {
+    "value": "2–5% visitor-to-lead form submission",
+    "value_best_estimate_for_catering": "~3% средняя; хороший показатель 5%+; топ 25% лендингов 5.31%+",
+    "value_low_benchmark": "1.4–1.8% (низкая, 37.3% сайтов имеют страницу с конверсией <1.8%)",
+    "value_high_benchmark": "7.2% (высокий), 13% (лучший показатель для B2B услуг)",
+    "value_food_delivery_ecommerce": "~4% (Data Insight, e-commerce сектор РФ)",
+    "notes": "Прямых benchmark'ов именно для сайтов кейтеринга мало. Ближайшие прокси: (1) бизнес-услуги 3.5% средняя (Jivo); (2) e-commerce РФ 4% (Data Insight); (3) лид-формы в среднем 2.35%, топ-25% 5.31% (lpgenerator). Реалистичная цель для качественного сайта кейтеринга: 3–5% конверсия посетитель → заявка. CaterMe, Catery как агрегаторы имеют более высокую конверсию (готовые предложения и цены видны сразу), чем сайты отдельных кейтерингов.",
+    "sources": [
+      "https://www.jivo.ru/blog/leads-generation/kakaya-konversiya-sayta-schitaetsya-khoroshey.html",
+      "https://lpgenerator.ru/blog/2021/06/03/koefficient-konversii-lidov-lcr-i-15-sposobov-ego-optimizirovat",
+      "https://romi.center/ru/learning/article/conversion-what-to-focus-on-in-2020",
+      "https://envybox.io/blog/srednjaja-konversija-sajta",
+      "https://turumburum.ua/ru/blog-ru/kakoy-dolzhna-byt-srednyaya-konversiya-internet-magazina-statistika-po-nisham",
+      "https://trixter.digital/case-box-catering",
+      "https://vc.ru/seo/2917118-prodvizhenie-kejteringa",
+      "https://direct.yandex.ru/base/articles/keytering-marketing-i-luchshie-strategii-prodvizheniya"
+    ]
+  },
+
+  "client_choice_criteria": [
+    "1. Качество и вкус блюд (главный критерий). Источники: m-catering.ru/blog/kak-vybrat-keytering-5-shagov (оценивают подачу, дегустацию), canapeclub.ru/blog/kak-vybrat-catering",
+    "2. Отзывы и репутация (Yandex.Maps, 2GIS, Otzovik, Restoclub). Источник: reddit r/weddingplanning, thecaters.ru/kak-zakazat-kejtering — клиенты активно читают отзывы перед заказом",
+    "3. Цена и прозрачность расчёта (наличие готовых меню с ценами, калькулятор). Источник: spb.caterme.ru (готовые предложения с ценами), bash.today (явно указывает 'Фуршет — от 1 000 ₽/чел')",
+    "4. Ассортимент меню и форматы (фуршет/банкет/кофе-брейк/боксы/барбекю). Источник: canapeclub.ru, bash.today/posts/luchshie-kejteringovye-kompanii-v-spb",
+    "5. Сервис и обслуживание (официанты, посуда, текстиль, доставка, монтаж). Источник: m-catering.ru/blog/kak-vybrat-keytering-5-shagov — отдельно оценивают посуду, текстиль, работу персонала во время дегустации",
+    "6. Пунктуальность и логистика (своевременная доставка, подача). Источник: thecaters.ru/kak-zakazat-kejtering, instagram.com/p/DNpzDEzo3Nj (ТОП-5 вопросов: 'своевременную подачу еды и напитков')",
+    "7. Учет диетических ограничений и аллергий (веган, без глютена, Халяль). Источник: reddit r/weddingplanning, mosfurshet.ru/blog/novyy-vzglyad-na-keytering-trendy-2025-goda",
+    "8. Опыт работы с подобными мероприятиями (свадьба / корпоратив / форум). Источник: eventologia.ru/blog/kejtering-na-meropriyatie-kak-vybrat-podryadchika, forumcatering.ru (50000+ гостей с 2015)"
+  ],
+
+  "mobile_traffic_share": {
+    "value": "~70–80% (estimated for RU catering/restaurant websites)",
+    "global_benchmark": "61.72% (весь веб-трафик с мобильных, 2025)",
+    "russia_total_mobile_traffic_2024": "49.28 млн ТБ (+13.8% YoY, мобильный интернет-трафик РФ в целом)",
+    "russia_mobile_share_growth": "Доля мобильного трафика в РФ растёт ~13–16% в год",
+    "note": "Прямых данных по доле мобильного трафика именно на сайтах кейтеринга в РФ в открытом доступе найти не удалось. По аналогии с ресторанным сектором и общим трендом Рунета (мобильный доминирует), реалистичная оценка 70–80%. Это критично: сайт кейтеринга ДОЛЖЕН быть mobile-first. Отдельно стоит учитывать, что корпоративные клиенты часто оформляют заявку с десктопа в рабочее время, а частные — с мобильного вечером/в выходные.",
+    "sources": [
+      "https://www.tadviser.ru/index.php/Статья:Мобильный_трафик_(российский_рынок)",
+      "https://statbase.ru/data/rus-mobile-broadband-internet-traffic",
+      "https://inclient.ru/mobile-internet-stats",
+      "https://adpass.ru/statistika-interneta-i-sotssetej-na-2024-god-tsifry-i-trendy-v-mire-i-v-rossii",
+      "https://ru.hostzealot.com/blog/research/kakoi-protsent-veb-trafika-prixoditsia-na-mobilnye-ustroistva-vo-vsem-mire-obnovleno-mart-2026"
+    ]
+  },
+
+  "concrete_100k_examples": [
+    {
+      "format": "Фуршет на 50 персон (с напитками)",
+      "caterer": "CaterMe SPb (партнёр — агрегатор)",
+      "price": "58 525 RUB (1 171 RUB/чел)",
+      "source": "https://spb.caterme.ru/offers/sankt-peterburg/furshet/50"
+    },
+    {
+      "format": "Фуршет «брускетт Нежный» на 45–50 персон",
+      "caterer": "CaterMe SPb",
+      "price": "52 000 RUB (1 040 RUB/чел)",
+      "source": "https://spb.caterme.ru/offers/sankt-peterburg/furshet/50"
+    },
+    {
+      "format": "Фуршет премиум на 50 персон (2 238 RUB/чел)",
+      "caterer": "CaterMe SPb",
+      "price": "111 875 RUB (чуть выше 100k — почти точное попадание в бюджет)",
+      "source": "https://spb.caterme.ru/offers/sankt-peterburg/furshet/50"
+    },
+    {
+      "format": "Фуршет на 30 человек (с обслуживанием)",
+      "caterer": "A-Catering (a-catering.com)",
+      "price": "от 45 000 RUB (1 500 RUB/чел × 30)",
+      "source": "https://a-catering.com/furshet"
+    },
+    {
+      "format": "Фуршет на 30 человек (без обслуживания, наборы)",
+      "caterer": "A-Catering (a-catering.com)",
+      "price": "от 30 000 RUB (1 000 RUB/чел × 30)",
+      "source": "https://a-catering.com/furshet"
+    },
+    {
+      "format": "Фуршет на 30 человек — Меню №1 (1 650 RUB/чел)",
+      "caterer": "EC Restaurant (Empire Catering)",
+      "price": "49 500 RUB за 30 чел",
+      "source": "https://ec-restaurant.ru/furshet-na-30-person"
+    },
+    {
+      "format": "Фуршет на 30 человек — Меню №2 (1 850 RUB/чел)",
+      "caterer": "EC Restaurant (Empire Catering)",
+      "price": "55 500 RUB за 30 чел",
+      "source": "https://ec-restaurant.ru/furshet-na-30-person"
+    },
+    {
+      "format": "Банкет на 30 человек (от 2 600 RUB/чел, Карамель)",
+      "caterer": "Карамель Кейтеринг",
+      "price": "от 78 000 RUB (2 600 × 30)",
+      "source": "https://spb.caterme.ru/caterer/caramel-catering"
+    },
+    {
+      "format": "Кофе-брейк (от 800 RUB/чел, Карамель, мин. заказ 15 000 RUB)",
+      "caterer": "Карамель Кейтеринг",
+      "price": "100 000 RUB = кофе-брейк на ~125 человек",
+      "source": "https://spb.caterme.ru/caterer/caramel-catering"
+    },
+    {
+      "format": "Фуршет «Стандарт» CanapeClub (2 500 RUB/чел)",
+      "caterer": "CanapeClub SPb",
+      "price": "100 000 RUB = фуршет на ~40 человек",
+      "source": "https://spb.canapeclub.ru/catering"
+    },
+    {
+      "format": "Фуршет «Премиум» CanapeClub (3 600 RUB/чел)",
+      "caterer": "CanapeClub SPb",
+      "price": "100 000 RUB ≈ фуршет на ~27 человек (3 600 × 27 = 97 200 RUB)",
+      "source": "https://spb.canapeclub.ru/catering"
+    },
+    {
+      "format": "Свадебный банкет в ресторане (средний чек 3 500 RUB/чел)",
+      "caterer": "Restoclub SPb / WedWed (средний сегмент)",
+      "price": "100 000 RUB ≈ банкет на ~28 человек",
+      "source": "https://wedwed.ru/spb/catalog/ploschadki/restorany-na-svadbu-na-51-70-chelovek-spb"
+    },
+    {
+      "format": "Корпоратив в ресторане на 50 чел (от 3 500 RUB/чел)",
+      "caterer": "Restoclub SPb",
+      "price": "100 000 RUB ≈ корпоратив на ~28 чел (по нижней границе)",
+      "source": "https://www.restoclub.ru/spb/search/korporativ-na-50-chelovek"
+    },
+    {
+      "format": "Доставка боксов/канапе домой (от 4 190 RUB за набор канапе 50 шт)",
+      "caterer": "Bash Today (Сет-Фуршет)",
+      "price": "100 000 RUB ≈ 24 набора канапе (1 200 шт) на большую вечеринку",
+      "source": "https://bash.today/posts/luchshie-kejteringovye-kompanii-v-spb"
+    }
+  ],
+
+  "spb_caterer_reviews": {
+    "Карамель (Caramel Catering)": {
+      "yandex_rating": 4.2,
+      "yandex_ratings_count": 80,
+      "yandex_reviews_count": 28,
+      "yandex_url": "https://yandex.ru/maps/org/karamel_keytering/212187356048/reviews",
+      "2gis_url": "https://2gis.ru/spb/firm/5348552840737519/tab/reviews",
+      "restoclub_url": "https://www.restoclub.ru/spb/place/caramel-catering",
+      "pros": "Улыбчивый и вежливый персонал, всё свежее, быстрое обслуживание, многолетний опыт работы, потрясающие торты, работают с Экспофорумом и крупными площадками",
+      "cons": "Цены не всегда оправданы размером порций (2GIS отзыв); рейтинг на Яндексе 4.2 — ниже, чем у прямых конкурентов Eat Catering (5.0)",
+      "min_orders_caterme": {
+        "banquet": "от 25 000 RUB (2 600 RUB/чел)",
+        "bbq": "от 20 000 RUB (2 600 RUB/чел)",
+        "coffee_break": "от 15 000 RUB (800 RUB/чел)",
+        "furshet": "от 15 000 RUB"
+      },
+      "sources": [
+        "https://yandex.ru/maps/org/karamel_keytering/212187356048/reviews",
+        "https://2gis.ru/spb/firm/5348552840737519/tab/reviews",
+        "https://spb.caterme.ru/caterer/caramel-catering",
+        "https://zabota.expoforum.ru/ru/servisy-gruppy-kompanij-jekspoforum/kejteringovoe-obsluzhivanie/caramel-catering"
+      ]
+    },
+    "Eat Catering (ИТ Кейтеринг)": {
+      "yandex_rating": 5.0,
+      "yandex_ratings_count": 70,
+      "yandex_reviews_count": 63,
+      "yandex_positive_pct": "96% (персонал 95%)",
+      "yandex_url": "https://yandex.ru/maps/org/eat_catering/239077010065",
+      "otzovik_url": "https://otzovik.com/reviews/eatcatering_spb-banket_keytering",
+      "restoclub_url": "https://www.restoclub.ru/spb/place/eat-catering",
+      "pros": "Профессионализм, свежие продукты, безупречный сервис, менеджер Ованес особо отмечен, разные форматы (банкеты, фуршеты, барбекю, детские праздники)",
+      "cons": "Минимальный заказ выше среднего (25 000 RUB на банкет/фуршет/кофе-брейк); узкая специализация на СПб и ЛО",
+      "min_orders_caterme": {
+        "banquet": "от 25 000 RUB",
+        "coffee_break": "от 25 000 RUB",
+        "furshet": "от 25 000 RUB",
+        "delivery": "от 2 000 RUB"
+      },
+      "sources": [
+        "https://yandex.ru/maps/org/eat_catering/239077010065",
+        "https://otzovik.com/reviews/eatcatering_spb-banket_keytering",
+        "https://spb.caterme.ru/caterer/EATcatering",
+        "https://eatcatering.ru"
+      ]
+    },
+    "Constanta Catering (catering-spb.ru)": {
+      "restoclub_url": "https://www.restoclub.ru/spb/place/constanta-catering/opinions",
+      "site": "http://catering-spb.ru",
+      "reviews_count_restoclub": 5,
+      "pros": "Внимательный отзывчивый персонал (и в офисе, и на площадке), достойный сервис, чёткая организация, постоянное пополнение напитков, свежая еда, достойный вид фуршета",
+      "cons": "Мало отзывов на Restoclub (всего 5); слабая публичная узнаваемость по сравнению с Карамелью",
+      "notable_clients": "Генеральное консульство ФРГ (упомянуто на сайте)",
+      "sources": [
+        "http://catering-spb.ru",
+        "https://www.restoclub.ru/spb/place/constanta-catering/opinions",
+        "https://2gis.ru/spb/firm/5348553838653141/tab/reviews"
+      ]
+    },
+    "Forum Catering": {
+      "site": "http://forumcatering.ru",
+      "years_active": "с 2015",
+      "events_done": "2 000+ успешных кейсов",
+      "guests_served": "50 000+",
+      "formats": "выездной кофе-брейк, фуршет, банкет, барбекю",
+      "pros": "Большой опыт (2000+ кейсов), работа с РМЭФ (Российский международный энергетический форум) и крупными площадками",
+      "cons": "Мало публичных отзывов на Яндекс.Картах; ориентированы на корпоративный сегмент, слабее представлены в свадебном/частном",
+      "sources": [
+        "http://forumcatering.ru",
+        "https://energyforum.ru/ru/kejteringovoe-obsluzhivanie"
+      ]
+    },
+    "WOW!Catering": {
+      "site": "https://wow-catering.ru",
+      "caterme_url": "https://caterme.ru/caterer/wow-catering",
+      "positioning": "«Не просто профессионально кормим людей, мы создаём счастье», «Не дорого, не пафосно, не сложно»",
+      "pros": "Эмоциональный брендинг, ориентированы на тёплую атмосферу и оригинальные решения, есть кейтеринг в РФ, на Кипре и в Киеве",
+      "cons": "Много одноимённых компаний (WOW Cyprus, WOW Kiev, WOW MSK) — сложно однозначно идентифицировать SPb-бренд; мало свежих публичных отзывов именно по СПб",
+      "sources": [
+        "https://wow-catering.ru",
+        "https://caterme.ru/caterer/wow-catering"
+      ]
+    },
+    "Северо-Западная Кейтеринговая Компания (NWCC)": {
+      "yandex_url": "https://yandex.ru/maps/org/severo_zapadnaya_keyteringovaya_kompaniya/1170832805",
+      "yandex_reviews_count": 85,
+      "position_in_spb_top": "№5 по Bash Today",
+      "sources": [
+        "https://yandex.ru/maps/org/severo_zapadnaya_keyteringovaya_kompaniya/1170832805",
+        "https://bash.today/posts/luchshie-kejteringovye-kompanii-v-spb"
+      ]
+    },
+    "Сет-Фуршет": {
+      "position_in_spb_top": "№1 по Bash Today",
+      "site": "https://spb.set-furshet.ru",
+      "positioning": "Кейтеринг в коробках, дешевле классического кейтеринга, заказ от 1 сета за 6 часов до мероприятия",
+      "pros": "Быстрая доставка (от 6 часов), обновляющееся меню, бесплатная доставка от 7 000 RUB",
+      "sources": [
+        "https://spb.set-furshet.ru",
+        "https://bash.today/posts/luchshie-kejteringovye-kompanii-v-spb"
+      ]
+    },
+    "Канапе Клаб (CanapeClub SPb)": {
+      "site": "https://spb.canapeclub.ru",
+      "positioning": "5 000+ отзывов, 2 000+ блюд в меню",
+      "formats_pricing": {
+        "furshet_standart": "2 500 RUB/чел (от 345 г/чел)",
+        "furshet_premium": "3 600 RUB/чел (от 465 г/чел)",
+        "furshet_vip": "6 000 RUB/чел"
+      },
+      "sources": [
+        "https://spb.canapeclub.ru/catering",
+        "https://bash.today/posts/luchshie-kejteringovye-kompanii-v-spb"
+      ]
+    }
+  },
+
+  "trends_2025_2026": [
+    {
+      "trend": "Кейтеринг в боксах (gastronomy boxes / боксы с готовыми наборами)",
+      "description": "Самый быстрорастущий формат: доставка готовых сетов в коробках (сырные, мясные, фруктовые, овощные). Дешевле классического кейтеринга, заказ от 1 сета за 6 часов до мероприятия.",
+      "source": "https://catering-stg.ru/articles/trend-na-kejtering-v-boksah"
+    },
+    {
+      "trend": "Локальный продукт и осознанность (local sourcing, осознанное потребление)",
+      "description": "Акцент на локальные сезонные продукты, импортозамещение, прозрачность происхождения. Отдельный тренд 2026 — максимальная персонализация меню.",
+      "source": "https://restoran-med.ru/stati/trendy-kejteringa"
+    },
+    {
+      "trend": "Интерактивные food-станции и фуд-театр",
+      "description": "Открытые кухни, шоу-приготовление блюд при гостях, станции с шеф-поваром. Еда как развлечение.",
+      "source": "https://restoran-med.ru/stati/trendy-kejteringa"
+    },
+    {
+      "trend": "ЗОЖ, веганские и вегетарианские блюда, аллергии",
+      "description": "Безглютеновые мини-кексы, десерты на растительном молоке, белковые закуски. Учёт аллергий и диетических ограничений становится стандартом, а не доп. опцией.",
+      "sources": [
+        "https://www.mosfurshet.ru/blog/novyy-vzglyad-na-keytering-trendy-2025-goda",
+        "https://eventologia.ru/blog/kejtering-na-meropriyatiyah-v-2025-godu-chem-udivit-gostej-i-kakie-trendy-nas-zhdut",
+        "https://event.ru/overviews/top-7-trendov-keyteringa-v-2025-godu"
+      ]
+    },
+    {
+      "trend": "Моктейли (mocktails) и смузи-бары",
+      "description": "Безалкогольные коктейли премиум-класса как альтернатива алкоголю. Смузи-бары на мероприятиях.",
+      "source": "https://event.ru/overviews/top-7-trendov-keyteringa-v-2025-godu"
+    },
+    {
+      "trend": "Эко-посуда и устойчивое развитие (eco-friendly, zero waste)",
+      "description": "Биоразлагаемая посуда, многоразовый текстиль, минимизация отходов, осознанный подход к упаковке.",
+      "sources": [
+        "https://event.ru/overviews/top-7-trendov-keyteringa-v-2025-godu",
+        "https://m-catering.ru/blog/vyezdnoy-keytering-dlya-yanvarskikh-vstrech"
+      ]
+    },
+    {
+      "trend": "Персонализированные меню (individual menus)",
+      "description": "Клиенты всё реже хотят стандартное меню и одинаковые сценарии. Подбор состава с учётом предпочтений и пищевых ограничений каждого гостя.",
+      "sources": [
+        "https://sfloft.ru/blog/trendy-2026-goda-v-kejteringe",
+        "https://cateringclub-ekb.ru/blog/trendy"
+      ]
+    },
+    {
+      "trend": "Технологии и автоматизация сервиса",
+      "description": "Онлайн-калькуляторы, мобильные приложения для заказа, интеграция с CRM, чат-боты для приёма заявок.",
+      "source": "https://restoran-med.ru/stati/trendy-kejteringa"
+    },
+    {
+      "trend": "Брендирование блюд и подач",
+      "description": "Оформление посуды, салфеток и элементов декора фирменной символикой клиента. Особенно востребовано в корпоративном сегменте.",
+      "source": "https://www.instagram.com/p/DOlmz5EjGmD/"
+    },
+    {
+      "trend": "Снеки в велком-зоне (welcome snacks)",
+      "description": "Лёгкие закуски при встрече гостей как отдельный формат подачи, до основного фуршета/банкета.",
+      "source": "https://event.ru/overviews/top-7-trendov-keyteringa-v-2025-godu"
+    },
+    {
+      "trend": "Оживление традиционных блюд + деликатесы со всего мира",
+      "description": "Современная подача русских классических блюд + расширение ассортимента за счёт международных деликатесов (фьюжн).",
+      "source": "https://cateringclub-ekb.ru/blog/trendy"
+    },
+    {
+      "trend": "Кофе-брейк как ростовой сегмент для деловых событий",
+      "description": "Облегчённый формат (кофе, чай, вода, выпечка, лёгкие закуски) — идеален для старта бизнеса и деловых конференций.",
+      "source": "https://blog.quickresto.ru/kak-otkryt-keytering-s-nulya-v-2026-godu"
+    }
+  ],
+
+  "key_implications_for_client_positioning": {
+    "note": "Клиент с чеком ~100k RUB — это верхний-средний сегмент (выше среднерыночного заказа 19k RUB на Profi.ru, но далеко не премиум 5000+ RUB/чел банкеты). Сайт должен позиционировать: 'Доступный премиум-сервис для частных и небольших корпоративных мероприятий', акцент на фуршетах и банкетах на 30-50 человек, с явными ценами на готовые пакеты. 100k RUB = практически любой формат фуршета на 30-60 человек или банкет на 25-35 человек в СПб.",
+    "must_have_on_site": [
+      "Явные цены от RUB/чел по каждому формату (как CanapeClub, Карамель, CaterMe)",
+      "Готовые меню с ценами для 30/50/100 человек",
+      "Калькулятор стоимости заказа онлайн",
+      "Отзывы с Яндекс.Карт и 2GIS (критично — это №2 критерий выбора)",
+      "Фото реальных накрытых столов (фуршет/банкет), а не только блюд",
+      "Mobile-first дизайн (70-80% трафика)",
+      "Лид-форма в первом экране (цель конверсии 3-5%)",
+      "Указание минимального заказа (от 15-25k RUB — это стандарт рынка)",
+      "ЗОЖ/веган/без глютена — отдельным блоком (тренд 2025-2026)",
+      "Кейтеринг в боксах как отдельный сервис (растущий тренд)"
+    ]
+  }
+}

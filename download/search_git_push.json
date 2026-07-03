@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://github.com/orgs/community/discussions/68891",
+    "name": "command \"git push\" inside to runner · community · Discussion #68891",
+    "snippet": "1.Create a Personal Access Token (PAT): Go to your GitHub account settings, then navigate to \"Developer settings\" > \"Personal access tokens\" and ...\nGo to your GitHub account settings, then navigate to \"Developer settings\" > \"Personal access tokens\" and generate a new token. Make sure to give ...",
+    "host_name": "github.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://serverfault.com/questions/1086232/how-to-authenticate-and-push-to-github-from-a-ci-script",
+    "name": "How to authenticate and push to GitHub from a CI Script - Server Fault",
+    "snippet": "You should create a new personal access token for your CI pipeline. Just go to https://github.com/settings/tokens to create it.",
+    "host_name": "serverfault.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://blog.devops.dev/remote-authentication-using-personal-access-tokens-on-github-com-e707646d2f8b",
+    "name": "Remote Authentication using Personal Access Tokens on GitHub.com",
+    "snippet": "Step 1: Create your Unique Personal Access Token in your GitHub.com account · Step 2: Use your GitHub personal access token to authenticate into ...\nYour newly created personal access token allows you to remote push your dev project back into your GitHub account. Now in your Command Line, ...",
+    "host_name": "blog.devops.dev",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://stackoverflow.com/questions/51716044/how-do-i-push-to-a-repo-from-within-a-gitlab-ci-pipeline",
+    "name": "How do I push to a repo from within a gitlab CI pipeline?",
+    "snippet": "Select Settings > CI/CD. Expand Job token permissions. In the Permissions section, select Allow Git push requests to the repository. You can ...",
+    "host_name": "stackoverflow.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.virtuozzo.com/company/blog/git-push-deploy-to-containers",
+    "name": "Deploy Code to Containers from Git Automatically - Virtuozzo",
+    "snippet": "To get your personal access token for GitHub account, navigate to the Settings > Personal access tokens and click the Generate new token button.",
+    "host_name": "www.virtuozzo.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://docs.github.com/actions/reference/authentication-in-a-workflow",
+    "name": "Use GITHUB_TOKEN for authentication in workflows - GitHub Docs",
+    "snippet": "This tutorial leads you through how to use the GITHUB_TOKEN for authentication in GitHub Actions workflows, including examples for passing the token to ...",
+    "host_name": "docs.github.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/orgs/community/discussions/55852",
+    "name": "git push with new personal access token #55852 - GitHub",
+    "snippet": "This command will update the remote URL to include the new access token, allowing you to push your Git changes without being prompted for ...",
+    "host_name": "github.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=wiQ3CvLdjL8",
+    "name": "Push Code to GitHub using Personal Access Token Authentication",
+    "snippet": "Beginning 13th August 2021, git will no longer accept account passwords when authenticating Git operations on GitHub.com.",
+    "host_name": "www.youtube.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://medium.com/devopsturkiye/pushing-docker-images-to-githubs-registry-manual-and-automated-methods-19cce3544eb1",
+    "name": "Pushing Docker Images to GitHub Registry(ghcr.io) - Medium",
+    "snippet": "In this guide, we'll walk through the process of publishing Docker images to GHCR and automating the publishing process using GitHub Actions.",
+    "host_name": "medium.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/orgs/community/discussions/26254",
+    "name": "I cannot git push into github refusing to allow a Personal Access",
+    "snippet": "Simplest solution is to go the Personal Access Token page of your GitHub profile and modify that token to include the 'workflow' scope. Go to Settings-> ...",
+    "host_name": "github.com",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

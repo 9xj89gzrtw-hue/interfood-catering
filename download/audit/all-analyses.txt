@@ -1,0 +1,2406 @@
+=== about-bottom ===
+# Website Quality Audit: Nilov Catering (Screenshot Analysis)
+
+## Overall Layout
+The webpage features a dark-themed, professional catering service website with a clean, structured layout. The design uses a three-column grid for the main content area, followed by a full-width section for team information. The navigation is positioned at the top with clear hierarchy.
+
+## Color Scheme
+- **Primary background**: Deep black (#000000 or very dark gray)
+- **Text colors**: White for main content, gold/amber for accent elements and headings
+- **Accent colors**: Green (leaf icon), blue (team icon), light blue (diamond icon), and green (WhatsApp button)
+- **Contrast**: Good contrast between text and background, though some sections could benefit from slightly lighter text for improved readability
+
+## Typography
+- **Headings**: Elegant serif font (likely a custom or premium typeface) in gold/amber color
+- **Body text**: Clean sans-serif font in white
+- **Navigation**: Sans-serif font in white
+- **Font hierarchy**: Clear distinction between headings and body text
+- **Readability**: Generally good, though the dark background with white text may cause eye strain during extended reading
+
+## Spacing & Layout
+- **Margin/Padding**: Generous spacing between sections and content blocks
+- **Grid system**: Three equal-width columns for the main content area
+- **Section spacing**: Adequate vertical spacing between the three main columns and the team section
+- **Alignment**: Content is left-aligned within columns, centered for the team section heading
+
+## Visual Elements & Images
+- **Icons**: 
+  - Green leaf icon (quality ingredients section)
+  - Blue team/people icon (professionalism section)
+  - Light blue diamond icon (individual approach section)
+  - Green WhatsApp button in bottom right corner
+  - Small "N" logo in bottom left corner
+- **Images**: No visible photographs in this section, primarily icon-based
+- **Visual hierarchy**: Icons help distinguish between sections and draw attention
+
+## Content Structure
+1. **Header**: Logo "NILov CATERIN" with navigation menu (ФОРМАТЫ, МЕНЮ, КОНТАКТЫ) and phone number
+2. **Three-column section**:
+   - Quality ingredients (leaf icon)
+   - Team professionalism (team icon)
+   - Individual approach (diamond icon)
+3. **Team section**: "Наша команда" heading with descriptive text about the 15-person team
+
+## Visual Issues & Areas for Improvement
+1. **Readability**: The dark background with white text may cause accessibility issues for some users
+2. **Consistency**: The gold/amber color for headings appears slightly inconsistent in application
+3. **Whitespace**: While generally good, some sections could use subtle adjustments to improve visual flow
+4. **Mobile responsiveness**: Not visible in this screenshot, but the three-column layout may need adjustment for mobile devices
+5. **Icon styling**: The icons have different styles and colors which could be more unified
+6. **Text length**: Some paragraphs are quite long, potentially affecting scannability
+
+## Positive Aspects
+- Clear visual hierarchy
+- Professional color scheme
+- Good use of icons to visualize concepts
+- Well-structured content organization
+- Consistent spacing and alignment
+
+The website presents a sophisticated, professional image appropriate for a high-end catering service, though some accessibility and readability refinements could enhance the user experience.
+
+=== about-mid1 ===
+### Overall Layout & Structure  
+The page has a **dark-themed, professional layout** with a clear hierarchy: a top navigation bar, a main content section (image + text), and a section header ("Наши ценности") at the bottom. The design is clean and focused on storytelling, with a balance between visual (image) and textual (descriptive copy, quote) elements.  
+
+
+### Header & Navigation  
+- **Top Bar**: A black navigation bar spans the full width.  
+  - **Logo**: Left-aligned, "UNILOV" in gold serif font, with "CATERIN" in smaller, lighter gold text below it.  
+  - **Menu Items**: Center-aligned, "ФОРМАТЫ" (format), "МЕНЮ" (menu), "КОНТАКТЫ" (contacts) in white sans-serif font.  
+  - **Contact Info**: Right-aligned, phone number "+7 (812) 919-59-11" in gold, with a subtle border or underline (likely for emphasis).  
+
+
+### Main Content Section  
+- **Left: Image**: A high-quality photo of a chef in a white uniform plating food on a marble countertop. The image is rectangular, with the chef’s hands and a plated dish as the focal point. The marble surface has dark, veined patterns, and the chef’s white coat contrasts sharply with the dark background.  
+- **Right: Text Block**: A column of Russian text (descriptive copy) in a light gray sans-serif font. The text is left-aligned, with consistent line spacing (≈1.5x) for readability. Key details:  
+  - Introductory sentence about corporate events and weddings.  
+  - Paragraphs detailing the company’s growth (from a small team to 15 professionals), event experience (850+ events, 15–500 guests), client satisfaction (98%), and values (perfection, teamwork, uniqueness).  
+  - A **quote** in gold italic serif font, enclosed in quotation marks, attributed to "Алексей Нилов" (founder/chef). The quote is separated by a vertical gold line (blockquote style) for visual distinction.  
+
+
+### Bottom Section: "Наши ценности" (Our Values)  
+- **Header**: "Наши ценности" in large, elegant gold serif font (centered).  
+- **Subheader**: Smaller gray text below, explaining the "three pillars" of Nilon Catering’s events.  
+
+
+### Colors  
+- **Background**: Solid black (consistent throughout, creating a luxurious, high-end feel).  
+- **Text**: Light gray (body copy) for readability; gold (logo, menu, quote, section header) for emphasis and luxury.  
+- **Image**: Natural tones (white chef’s coat, marble grays, food colors) that contrast with the dark background.  
+
+
+### Typography  
+- **Fonts**:  
+  - Logo: Serif (elegant, premium).  
+  - Navigation/Body: Sans-serif (clean, modern).  
+  - Quote/Section Header: Serif (elegant, formal).  
+- **Hierarchy**: Clear contrast between font sizes (logo > section header > quote > body copy) and colors (gold > gray) to guide the eye.  
+
+
+### Spacing & Alignment  
+- **Padding/Margins**: Generous white space around the image and text block (≈1–2rem) prevents clutter. The text column is left-aligned, while the image is right-aligned (or vice versa, depending on layout), creating a balanced two-column look.  
+- **Line Spacing**: Body text has ample line height (≈1.5–1.6) for readability. The quote has increased spacing (≈2x) to set it apart.  
+
+
+### Images  
+- **Quality**: High-resolution, professional photo (sharp focus on the chef’s hands and plated dish).  
+- **Relevance**: The image reinforces the catering theme (chef, food, luxury marble) and aligns with the brand’s premium positioning.  
+
+
+### Visual Issues (None Apparent)  
+- No overlapping elements, broken images, or readability issues (contrast between text and background is sufficient).  
+- The layout is responsive-friendly (though not tested on mobile, the desktop version is well-structured).  
+
+
+### Additional Elements  
+- **WhatsApp Icon**: A green circular icon (bottom right) with a white WhatsApp logo, likely a contact button.  
+- **Logo Icon**: A small "N" icon (bottom left), possibly a brand or navigation element.  
+
+
+### Overall Impression  
+The design is **luxurious, professional, and cohesive**, with a strong focus on storytelling (via text and imagery) to convey the brand’s expertise in catering. The dark background and gold accents create a premium feel, while the clear typography and spacing ensure readability. No visual issues detract from the user experience.
+
+=== about-top ===
+### Overall Layout & Structure  
+The page follows a **header + hero section + content section** structure, with a dark, professional aesthetic. The header is fixed at the top, the hero section spans the full viewport width, and the content section is a single-column layout with text and an image.  
+
+
+### Header  
+- **Logo & Branding**: The logo “NILOV” appears in the top-left, with “CATERING” in smaller, lighter text below. The logo uses a **gold/amber color** for “NILOV” and a lighter gray for “CATERING,” creating a subtle hierarchy.  
+- **Navigation**: Centered in the header are four menu items: *“ФОРМАТЫ”* (Formats), *“МЕНЮ”* (Menu), *“КОНТАКТЫ”* (Contacts) — all in a clean, sans-serif font, white or light gray, spaced evenly.  
+- **Contact Info**: A phone number (*“+7 (812) 919-59-11”*) is aligned to the top-right, in the same light gray as the navigation.  
+
+
+### Hero Section (Full-Width Background)  
+- **Background Image**: A high-quality photo of chefs in white uniforms (one in focus, others blurred) occupies the full width, creating a professional, culinary-themed backdrop. The image is slightly darkened to ensure text readability.  
+- **Breadcrumb Navigation**: Below the header, a breadcrumb trail (*“Главная / О компании”* — Home / About Company) is left-aligned, in a small, light gray font.  
+- **Page Title**: The main heading *“О компании”* (About Company) is centered, with “О” in **white** and “компании” in **gold**, creating visual contrast. The font is elegant (serif or script-like), emphasizing the brand’s sophistication.  
+
+
+### Content Section (Below Hero)  
+- **Back Link**: A “← На главную” (← Back to Home) link is left-aligned, in a small, light gray font, providing clear navigation.  
+- **Section Title**: *“История компании”* (Company History) is centered, with “История” in **white** and “компании” in **gold**, matching the hero section’s typography for consistency.  
+- **Body Text**: A block of Russian text (describing the company’s history, founded in 2014) is left-aligned, in a clean, sans-serif font (likely Arial or similar), white or light gray, with moderate line spacing for readability.  
+- **Image**: A photo of a chef in a white uniform and tall hat is placed below the text, left-aligned. The image is well-composed, with the chef in focus, reinforcing the culinary theme.  
+
+
+### Visual Elements & Details  
+- **Colors**: Dominant colors are **black/dark gray** (background), **white** (text), and **gold/amber** (accent text). This creates a high-contrast, premium look.  
+- **Typography**:  
+  - Headings: Elegant, serif-style font (e.g., *“О компании”*, *“История компании”*) for brand personality.  
+  - Body text: Clean, sans-serif font for readability.  
+  - Navigation: Sans-serif, consistent with body text.  
+- **Spacing**: Generous padding/margin around text blocks and images, ensuring the layout feels uncluttered. The hero section’s text is vertically centered, drawing attention to the page title.  
+- **Images**: High-resolution, relevant to the catering theme (chefs, culinary work), with soft focus on secondary elements to keep the focus on the main subject.  
+- **Floating Element**: A green WhatsApp icon (bottom-right) is a small, circular button with a white WhatsApp logo, providing a clear call-to-action for communication.  
+
+
+### Visual Issues (if any)  
+- No obvious visual issues (e.g., broken images, misaligned elements, poor contrast) are visible. The layout is cohesive, with consistent typography and color usage. The only minor note is that the chef image in the content section could be slightly larger to balance the text block, but this is a subjective design choice.  
+
+
+Overall, the page communicates a **premium, professional catering brand** through its dark, elegant design, consistent typography, and relevant imagery. The layout is intuitive, with clear navigation and a focus on storytelling (company history).
+
+=== banket-bottom ===
+# Website Quality Audit: Screenshot Analysis
+
+## Overall Layout
+The webpage features a dark-themed, single-page layout with a clean, minimalist design. The content is structured in distinct sections with clear visual hierarchy. The page appears to be for a catering service ("UNILOV CATERIN") targeting premium banquet services.
+
+## Color Scheme
+- **Primary background**: Solid black (#000000)
+- **Text colors**: 
+  - White for primary text
+  - Gold/amber (#D4AF37) for accent text and highlights
+  - Light gray for secondary text
+- **Button colors**:
+  - Gold/amber background with white text for primary CTA
+  - Dark gray/black background with white text for secondary CTA
+- **Accent elements**: Green WhatsApp icon in bottom right corner
+
+## Typography
+- **Logo**: "UNILOV" in elegant serif font with gold color, "CATERIN" in smaller sans-serif font below
+- **Headings**: Large, elegant serif fonts in white and gold for emphasis
+- **Body text**: Clean sans-serif font in white/light gray for readability
+- **Navigation**: Sans-serif font in white
+- **Menu items**: Sans-serif font in white within dark gray containers
+
+## Spacing & Layout
+- **Header**: Contains logo on left, navigation menu in center, and phone number on right
+- **Main content**: Well-spaced sections with generous padding
+- **Menu items**: Arranged in a grid of 4 items across, with one item below (5 total)
+- **CTA section**: Centered with two buttons side by side
+- **Whitespace**: Ample spacing between elements creating a sophisticated, uncluttered appearance
+
+## Images & Visual Elements
+- **Logo**: "UNILOV" with stylized "U" icon
+- **WhatsApp icon**: Green circular icon in bottom right corner
+- **No other images** visible in this section - appears to be a text-heavy page
+
+## Navigation
+- Top menu with 4 items: "ФОРМАТЫ", "МЕНЮ", "КОНТАКТЫ"
+- Phone number: "+7 (812) 919-59-11" in top right
+
+## Content Sections
+1. **Header**: Branding and navigation
+2. **Menu preview section**: 
+   - Title "Примеры блюд" (Examples of dishes)
+   - Subtitle describing premium chef's menu
+   - 5 menu items in dark gray containers
+   - Additional text about menu customization
+3. **CTA section**:
+   - Heading "Закажите банкет мечты" (Order your dream banquet)
+   - Descriptive paragraph
+   - Two buttons: "ОСТАВИТЬ ЗАЯВКУ" (Leave request) and "ПОЗВОНИТЬ" (Call)
+
+## Visual Issues/Concerns
+- **Contrast**: While the dark theme is elegant, some text contrast could be improved for accessibility
+- **Responsiveness**: The fixed grid layout may not adapt well to mobile devices
+- **Loading indicators**: No visible loading states or feedback mechanisms
+- **Interactive elements**: Buttons appear functional but may need hover states for better UX
+- **Accessibility**: No visible alt text for images or ARIA labels
+
+## Positive Aspects
+- Strong visual hierarchy
+- Consistent color scheme
+- Clear call-to-action placement
+- Professional, premium aesthetic appropriate for the service
+- Well-organized content structure
+
+The design effectively communicates a premium catering service with clear navigation and compelling CTAs, though some accessibility improvements could enhance the user experience.
+
+=== banket-mid1 ===
+### Overall Layout & Structure  
+The page has a **dark (black) background** with a clean, structured layout. Content is organized into distinct sections: a top navigation bar, a descriptive paragraph, a centered heading section, and a three-column grid of feature cards. The design is minimalistic, with ample white space to avoid clutter.  
+
+
+### Top Navigation Bar  
+- **Position**: Fixed at the top of the page.  
+- **Elements**:  
+  - Left: A logo with the text “UNILOV” (stylized, with “U” in a larger, distinct font).  
+  - Center: Menu items in Russian: *“ОФОРМЫТЬ”* (Order), *“МЕНЮ”* (Menu), *“КОНТАКТЫ”* (Contacts).  
+  - Right: A phone number: *“+7 (812) 919-59-11”* (gold/yellow text).  
+- **Styling**: Text is white or gold, contrasting sharply with the black background.  
+
+
+### Descriptive Paragraph (Top Section)  
+- **Content**: A block of Russian text describing the brand’s value proposition (e.g., professional service, fine dining standards, European brands like Bernardaud/Riedel).  
+- **Styling**: White text, left-aligned, with moderate line spacing for readability. The text is dense but not overcrowded.  
+
+
+### Centered Heading Section  
+- **Content**:  
+  - Main heading: *“Почему банкет”* (Why a banquet) — stylized with a gold accent on the word “банкет” (banquet).  
+  - Subheading: *“Три причины выбрать банкетный формат для вашего торжества”* (Three reasons to choose a banquet format for your celebration).  
+- **Styling**: Main heading uses a decorative, serif font (likely a script or elegant typeface) for “банкет,” while the subheading is a simpler, sans-serif font. Both are centered, creating a focal point.  
+
+
+### Three-Column Feature Cards  
+- **Layout**: Three equal-width cards, evenly spaced, with rounded corners and a dark gray (near-black) background.  
+- **Each Card Includes**:  
+  1. **Icon**: Left-aligned (e.g., cutlery, book, starburst).  
+  2. **Title**: Bold, white text (e.g., *“Полное обслуживание за столом”* — Full table service).  
+  3. **Description**: Smaller, white text (e.g., details about professional service, custom menus, premium tableware).  
+- **Spacing**: Consistent padding inside cards (≈1.5rem) and margin between cards (≈2rem) for balance.  
+
+
+### Colors  
+- **Primary Background**: Black (#000000).  
+- **Text**: White (for body copy) and gold/yellow (for accents: logo, phone number, “банкет” in the main heading).  
+- **Cards**: Dark gray (#1a1a1a or similar) to differentiate from the main background.  
+
+
+### Typography  
+- **Fonts**: Mix of serif (for decorative headings) and sans-serif (for body text/subheadings) — clean and professional.  
+- **Hierarchy**: Clear distinction between headings (larger, bolder) and body text (smaller, lighter).  
+
+
+### Images/Icons  
+- **Icons**: Simple, monochromatic (white) icons in the feature cards (cutlery, book, starburst) — minimal and functional.  
+- **No Large Images**: The page relies on text and icons rather than photos, keeping the focus on information.  
+
+
+### Visual Issues (Minor)  
+- **Contrast**: While text is readable, the dark background + white text may strain eyes for some users (though this is a stylistic choice for a “fine dining” brand).  
+- **Icon Clarity**: The starburst icon in the third card is slightly less distinct than the cutlery/book icons (due to its shape).  
+- **Consistency**: The gold accent on “банкет” is a nice touch but could be more consistent (e.g., applied to other key terms) for stronger branding.  
+
+
+### Overall Impression  
+The design is **sleek and professional**, aligning with a luxury/banquet service brand. The dark theme, clean layout, and focused content effectively communicate elegance and attention to detail. Minor tweaks (e.g., icon clarity, contrast) could enhance usability, but the core design is strong.
+
+=== banket-mid2 ===
+### Overall Layout & Structure  
+The page has a **full-width, dark-themed (black background)** layout with a clean, structured design centered around a pricing table for a catering service ("Стоимость банкета" = "Banquet Cost"). The header, main content, and footer (minimal) are vertically stacked, with the main content (pricing plans) occupying the majority of the viewport.  
+
+
+### Header Section  
+- **Logo & Branding**: Top-left features a logo with the text "UNILOV" (stylized, likely a serif font) and "CATERIN" (smaller, uppercase) in a light gold color.  
+- **Navigation Menu**: Centered top, with three menu items in uppercase, light gold text: "ФОРМАТЫ" (Formats), "МЕНЮ" (Menu), "КОНТАКТЫ" (Contacts).  
+- **Contact Info**: Top-right displays a phone number: "+7 (812) 919-59-11" in the same light gold color.  
+- **Visual Hierarchy**: The header uses a thin, light gold border to separate it from the main content, creating a clear top boundary.  
+
+
+### Main Content (Pricing Section)  
+- **Title & Subtitle**:  
+  - Main title: "Стоимость банкета" (Banquet Cost) in a large, elegant serif font (likely a script or decorative serif) in white, centered.  
+  - Subtitle: "Три уровня обслуживания под любой бюджет и масштаб мероприятия" (Three service levels for any budget and event scale) in smaller, white sans-serif text, centered below the title.  
+
+- **Pricing Plans**: Three rectangular cards (dark gray/black with subtle borders) arranged horizontally, evenly spaced. Each card has:  
+  - **Plan Name**: Uppercase, white text (e.g., "Классик" = Classic, "Премиум" = Premium, "Гранд" = Grand).  
+  - **Price**: "ОТ [price] /чел" (From [price] /person) in large, light gold text (e.g., "ОТ 4 000 /чел").  
+  - **Features**: A bulleted list (checkmarks in light gold) of included services, in small white sans-serif text (e.g., "Трёхкусовый ужин" = Three-course dinner, "Стандартное обслуживание" = Standard service).  
+  - **Call-to-Action (CTA) Button**: "ЗАКАЗАТЬ" (Order) in uppercase, light gold text on a dark gold button, centered below the features.  
+
+- **Highlighting**: The "Премиум" (Premium) card has a light gold border and a "ПОПУЛЯРНЫЙ" (Popular) badge in a rounded, light gold pill at the top, distinguishing it as the recommended plan.  
+
+
+### Footer & Additional Elements  
+- **Bottom Left**: A small, circular logo (likely a monogram) with "N" in white on a black background.  
+- **Bottom Right**: A green circular icon (WhatsApp logo) for contact, with a white chat bubble.  
+
+
+### Colors  
+- **Background**: Solid black (#000000).  
+- **Text**: White (primary) and light gold (#D4AF37, a warm, metallic gold) for accents (prices, CTAs, checkmarks, badges).  
+- **Cards**: Dark gray/black (#1A1A1A) with subtle borders (light gold for the highlighted "Премиум" card).  
+
+
+### Typography  
+- **Titles**: Large, elegant serif font (e.g., Playfair Display) for "Стоимость банкета" (high contrast against black).  
+- **Body Text**: Clean sans-serif (e.g., Arial, Helvetica) for subtitles, menu items, and feature lists (readable and modern).  
+- **CTA Buttons**: Uppercase sans-serif (matching body text) for "ЗАКАЗАТЬ" (consistent with the overall minimalist style).  
+
+
+### Spacing & Alignment  
+- **Header**: Logo, menu, and contact info are horizontally aligned with even spacing.  
+- **Main Content**: Title/subtitle are centered; pricing cards are evenly spaced (consistent margin between them).  
+- **Cards**: Internal spacing (padding) is generous, with features listed vertically (consistent line height) and CTAs centered.  
+- **Consistency**: Uniform padding/margins across cards ensure visual balance.  
+
+
+### Images & Visuals  
+- **Logo**: Minimalist, text-based (no complex imagery).  
+- **WhatsApp Icon**: Simple, recognizable green circle with white chat bubble (functional, not decorative).  
+- **No Other Images**: The design relies on typography and color to convey information (no photos or illustrations).  
+
+
+### Visual Issues (None Detected)  
+- **Contrast**: Text (white/light gold) contrasts well with the black background (meets accessibility standards).  
+- **Alignment**: All elements are neatly aligned (no overlapping or mispositioned items).  
+- **Consistency**: Color, typography, and spacing are uniform across the page (no jarring inconsistencies).  
+
+
+### Summary  
+The page is a sleek, minimalist pricing page for a catering service, using a dark theme with gold/white accents to highlight key information (prices, CTAs, recommended plan). The layout is intuitive, with clear hierarchy and consistent spacing, ensuring easy navigation and readability. No visual issues impact usability or aesthetics.
+
+=== banket-top ===
+### Overall Layout & Structure  
+The page follows a **full-width, single-column layout** with a prominent hero section (background image) and a content block below. The design is clean and hierarchical, prioritizing visual hierarchy through typography and spacing.  
+
+
+### Hero Section (Top Area)  
+- **Background**: A high-quality, dimly lit photograph of a formal dining table (wine glasses, plates with food, bread, candles) creates an upscale, intimate atmosphere. The image is dark with warm, golden lighting, emphasizing elegance.  
+- **Overlay**: A semi-transparent dark overlay (≈ 30% opacity) ensures text readability against the busy background.  
+- **Header Elements**:  
+  - **Logo**: Top-left, “UNILOV” in a serif font (golden hue) with “CATERIN” in smaller, lighter text below.  
+  - **Navigation**: Top-center, four menu items in a clean sans-serif font: *“ФОРМАТЫ”*, *“МЕНЮ”*, *“КОНТАКТЫ”* (all uppercase, light gray).  
+  - **Contact Info**: Top-right, phone number *“+7 (812) 919-59-11”* (light gray, sans-serif).  
+  - **Breadcrumb**: Below the logo, *“Главная / Банкет”* (light gray, sans-serif) indicating the page hierarchy.  
+- **Hero Text**: Centered, large typography:  
+  - *“Банкетное обслуживание”* (main heading) split into two styles: *“Банкетное”* (white, bold serif) and *“обслуживание”* (golden, cursive serif).  
+
+
+### Content Section (Below Hero)  
+- **Back Link**: Top-left, *“← На главную”* (light gray, sans-serif) for navigation.  
+- **Section Heading**: *“Формат банкета”* (white, bold serif) – larger than body text, creating a clear section break.  
+- **Body Text**: A single paragraph (light gray, sans-serif) describing banquet service. The text is left-aligned, with generous line spacing (≈ 1.6) for readability. It explains the formal, seated nature of banquets, ideal for events like weddings or corporate gatherings.  
+
+
+### Visual Elements & Details  
+- **Colors**:  
+  - Primary: Dark (near-black) background, white/gold text for contrast.  
+  - Accent: Golden hue for key text (*“обслуживание”*, logo) and the WhatsApp icon (bottom-right, bright green).  
+- **Typography**:  
+  - Serif fonts (e.g., logo, headings) for elegance; sans-serif (navigation, body) for clarity.  
+  - Hierarchy: Heading sizes (hero text > section heading > body) guide the eye.  
+- **Spacing**:  
+  - Generous padding around the content block (≈ 5% of viewport height) prevents clutter.  
+  - Line spacing in body text is loose, improving readability.  
+- **Images**: Only the hero background image; no other visuals, keeping focus on text and atmosphere.  
+- **Icons**: A green WhatsApp icon (bottom-right) for contact, with a subtle shadow for depth.  
+
+
+### Visual Issues (Minor)  
+- **Contrast**: The golden “обслуживание” text against the dark background is legible but could be slightly bolder for better contrast (current contrast ratio ≈ 4.5:1, meets WCAG minimum but could be stronger).  
+- **Breadcrumb Clarity**: The breadcrumb *“Главная / Банкет”* is small and light gray, potentially hard to read for users with low vision (contrast ratio ≈ 4.5:1).  
+
+
+### Summary  
+The design effectively communicates an upscale, formal dining experience through typography, imagery, and spacing. The layout is intuitive, with clear navigation and a focus on the banquet service description. Minor contrast adjustments could enhance accessibility, but overall, the visual hierarchy and aesthetic align with the brand’s luxury positioning.
+
+=== coffee-break-bottom ===
+### Overall Layout & Structure  
+The page has a **dark-themed, modern design** with a clear hierarchical structure. The top section features a navigation bar, followed by three columns of menu items (likely service categories), a central "Example Menu" section, and a bottom row of category buttons. The layout is clean and organized, with consistent spacing between sections.  
+
+
+### Top Navigation Bar  
+- **Branding**: Left-aligned logo "UNILOV CATERIN" (stylized font, gold/white text on a dark background).  
+- **Menu Items**: Center-aligned navigation links in Russian: "ФОРМАТЫ", "МЕНЮ", "КАК ЗАКАЗАТЬ", "КАЛЬКУЛЯТОР", "КОНТАКТЫ" (gold/white text, uppercase, consistent spacing).  
+- **Contact Info**: Right-aligned phone number "+7 (812) 919-59-11" (gold text).  
+
+
+### Three-Column Menu Section (Top Middle)  
+Three dark rectangular panels (black/dark gray) with rounded corners, each containing a list of menu items and a "ЗАКАЗАТЬ" (Order) button:  
+
+1. **Left Panel**:  
+   - Items: "Печенье ассорти", "Мини-сендвичи с ветчиной и сыром", "Одноразовая посуда и салфетки", "Сервировка зоны подачи" (white text, checkmark icons).  
+   - Button: "ЗАКАЗАТЬ" (black background, white text, centered).  
+
+2. **Middle Panel** (highlighted with a gold border):  
+   - Items: "Круассаны и данши", "Мини-сендвичи с лососем и огурцом", "Свежие фрукты: виноград, клубника", "Мини-десерты: тирамису, панна-котта", "Фирменная сервировка" (white text, checkmark icons).  
+   - Button: "ЗАКАЗАТЬ" (gold background, black text, centered).  
+
+3. **Right Panel**:  
+   - Items: "Авторская выпечка от шеф-кондитера", "Канапе с красной икрой и семгой", "Свежие фрукты и ягоды премиум-сорта", "Healthy-зона: смузи, гранола, авокадо-тосты", "Фарфоровая посуда и текстиль", "Персональный бариста на мероприятии" (white text, checkmark icons).  
+   - Button: "ЗАКАЗАТЬ" (black background, white text, centered).  
+
+
+### "Пример меню" (Example Menu) Section  
+- **Title**: "Пример меню" (large, elegant serif font; "Пример" in white, "меню" in gold, centered).  
+- **Subtitle**: "Типичный набор для кофе-брейк формата «Бизнес». Меню корректируется под ваши пожелания и сезонность" (smaller, white sans-serif text, centered, two lines).  
+
+
+### Bottom Category Buttons  
+Six dark rectangular buttons (black/dark gray) with rounded corners, arranged in two rows of three:  
+- Top row: "Круассаны сливочные", "Маффины шоколадные", "Свежие фрукты", "Сендвичи с лососем".  
+- Bottom row: "Чай, кофе, сок", "Данши с яблоком и корицей".  
+- Text: White, sans-serif, centered.  
+
+
+### Colors  
+- **Primary Background**: Black/dark gray.  
+- **Text**: White (primary), gold (accent for navigation, highlighted panel, and "меню" title).  
+- **Buttons**: Black (most "ЗАКАЗАТЬ" buttons), gold (middle panel button).  
+
+
+### Typography  
+- **Logo**: Stylized serif (elegant, gold/white).  
+- **Navigation/Buttons**: Uppercase sans-serif (clean, gold/white).  
+- **Menu Items/Subtitle**: Sans-serif (white, readable).  
+- **Title**: Mix of serif (white) and script (gold) for "Пример меню".  
+
+
+### Spacing & Alignment  
+- Consistent padding/margin between sections (e.g., top navigation to menu panels, menu panels to "Example Menu").  
+- Centered alignment for titles, subtitles, and buttons.  
+- Even spacing between list items in panels.  
+
+
+### Images/Visuals  
+- **Checkmark Icons**: Small, white, left-aligned with menu items (adds visual hierarchy).  
+- **WhatsApp Icon**: Green circular icon (bottom right, likely a contact/feedback button).  
+
+
+### Visual Issues (Minor)  
+- **Consistency**: The middle panel’s gold border is a nice highlight, but the other two panels lack similar accents, creating slight visual imbalance.  
+- **Contrast**: While text is readable, the dark background with white text may strain eyes for some users (though gold accents help).  
+- **Button Hierarchy**: The gold "ЗАКАЗАТЬ" button in the middle panel stands out, but the black buttons in other panels could be more distinct (e.g., lighter gray or subtle borders).  
+
+
+Overall, the design is professional and functional, with clear navigation and visual hierarchy. Minor tweaks to button consistency and contrast could enhance usability.
+
+=== coffee-break-mid1 ===
+### Website Quality Audit: Screenshot Description  
+
+#### **Layout**  
+The page uses a **two-column layout** with a dark background (black/charcoal) for visual contrast. The left column contains text content (Russian), while the right column features a high-quality image of a coffee break setup (croissants, black cups, and a dark table). The header spans the full width, with navigation links and a logo on the left, and a phone number on the right. A small circular logo ("N") appears in the bottom-left corner, and a green WhatsApp icon is in the bottom-right. The layout is clean, with balanced spacing between elements, though the text column feels slightly cramped due to the dark background.  
+
+
+#### **Colors**  
+- **Background**: Deep black (#121212 or similar), creating a sophisticated, high-end feel.  
+- **Text**: Light gray/white (#E0E0E0 or #FFFFFF) for readability against the dark background.  
+- **Accent/Highlight**: A gold/orange (#D4AF37) vertical line and text (e.g., the quote) add visual interest.  
+- **Navigation/Logo**: White text for the logo ("UNILOV") and navigation links, with the logo in a bold, serif font.  
+- **Icons**: Green (#25D366) for the WhatsApp icon, and black for the bottom-left "N" logo.  
+
+
+#### **Typography**  
+- **Logo**: "UNILOV" uses a **bold, serif font** (e.g., Playfair Display) for elegance, with "CATERIN" in a smaller, lighter weight below it.  
+- **Navigation**: Sans-serif font (e.g., Arial, Helvetica) for menu items ("ФОРМАТЫ," "МЕНЮ," etc.), ensuring clarity and modernity.  
+- **Body Text**: A clean, readable sans-serif font (e.g., Roboto, Open Sans) in light gray, with consistent line height for legibility.  
+- **Quote**: The highlighted text uses a **cursive/italic serif font** (e.g., Georgia) in gold, drawing attention to the key message.  
+
+
+#### **Spacing**  
+- **Padding/Margins**: Generous padding around the text block (left column) and image (right column) prevents clutter. The header has moderate spacing between the logo, navigation, and phone number.  
+- **Line Height**: Body text uses a line height of ~1.6, improving readability on the dark background.  
+- **Gutter Space**: The two columns have a noticeable gap, balancing text and imagery without overwhelming the user.  
+
+
+#### **Images**  
+- **Main Image**: A high-resolution photo of a coffee break setup (croissants on a gold tray, black cups, and a dark table) with vibrant colors (golden croissants, red berries) that contrast well with the dark background. The image is well-composed, with a shallow depth of field focusing on the food, enhancing visual appeal.  
+- **Icons**: The bottom-left "N" logo is a small, circular icon (black background, white "N"), and the WhatsApp icon is a bright green circle with a white chat bubble, both positioned unobtrusively.  
+
+
+#### **Visual Issues**  
+1. **Text Legibility**: While the light gray text is readable, the dark background may cause eye strain for some users, especially with long paragraphs. Consider increasing text brightness or using a slightly lighter background for better accessibility.  
+2. **Contrast**: The gold quote text has good contrast against the dark background, but the body text’s light gray could be brighter (e.g., #FFFFFF) for improved readability.  
+3. **Image Balance**: The right-column image is well-placed, but the left-column text feels dense. Reducing paragraph length or adding subtle spacing between sections could enhance flow.  
+4. **Consistency**: The navigation font (sans-serif) differs from the logo (serif), which is intentional for branding but may slightly disrupt visual harmony. Ensure consistency in font weights or styles for a more cohesive look.  
+
+
+#### **Overall Impression**  
+The design is **sophisticated and professional**, with a strong focus on visual appeal (via the high-quality image) and clear branding (logo, color scheme). However, minor adjustments to text legibility and spacing could improve user experience, especially for accessibility. The layout effectively balances text and imagery, supporting the website’s catering/coffee break theme.
+
+=== coffee-break-mid2 ===
+# Website Quality Audit: Nilov Catering Landing Page  
+
+## Overall Layout & Structure  
+The page uses a **dark-themed, single-column layout** with a clean, professional structure. Key sections include:  
+- A top navigation bar (logo + menu)  
+- A hero section with a tagline  
+- A three-column feature grid (service highlights)  
+- A pricing section (“Тарифы кофе-брейк”) with three tiered packages  
+
+The layout is **responsive-friendly** (no obvious overflow or misalignment on standard screens) and prioritizes readability with ample white space between sections.  
+
+
+## Color Scheme  
+- **Primary Background**: Black (#000000) – creates a sleek, premium feel.  
+- **Text Colors**:  
+  - White (#FFFFFF) for most body copy (high contrast against black).  
+  - Gold (#D4AF37) for accents (logo, headings, pricing, and the “ПОПУЛЯРНЫЙ” badge) – adds luxury and draws attention.  
+- **Accent Colors**:  
+  - Yellow (#FFD700) for the lightning bolt icon (first feature).  
+  - Light gray (#E0E0E0) for the microphone icon (second feature).  
+  - Orange (#FFA500) for the croissant icon (third feature).  
+- **Button/Highlight**: Gold (#D4AF37) for the “ПОПУЛЯРНЫЙ” badge (subtle, non-intrusive).  
+
+
+## Typography  
+- **Logo**: “NILOV” (bold, serif font) + “CATERIN” (smaller, sans-serif) – distinct brand identity.  
+- **Headings**:  
+  - Main heading (“Тарифы кофе-брейк”): Large, elegant serif font (white + gold gradient) – emphasizes the section.  
+  - Feature headings (“Быстрая организация,” etc.): Medium-sized, bold sans-serif (white) – clear and scannable.  
+- **Body Copy**: Small-to-medium sans-serif (white) – easy to read against black.  
+- **Pricing Text**:  
+  - Tier names (“Стандарт,” “Бизнес,” “Премиум”): Medium sans-serif (white).  
+  - Prices (“ОТ 800Р,” etc.): Large, bold gold font – stands out as a key value.  
+  - “/ чел” (per person): Small gray font – secondary info.  
+- **Navigation**: Sans-serif (white) – clean and consistent.  
+
+
+## Spacing & Hierarchy  
+- **Section Spacing**: Generous vertical padding between the hero, feature grid, and pricing sections (prevents clutter).  
+- **Feature Grid**: Equal spacing between the three columns (consistent, balanced layout).  
+- **Typography Hierarchy**: Clear contrast between headings (larger, bolder) and body copy (smaller, lighter) – guides the eye naturally.  
+- **Padding/Margins**: Adequate internal padding in feature cards and pricing tiers (prevents text from touching edges).  
+
+
+## Images & Icons  
+- **Icons**:  
+  - Lightning bolt (yellow) – represents speed.  
+  - Microphone (light gray) – represents conferences.  
+  - Croissant (orange) – represents food.  
+  - All icons are simple, flat, and aligned consistently within their cards.  
+- **Logo**: “NILOV” with a stylized “U” – professional and memorable.  
+- **No large images** – the design relies on icons and text, keeping the focus on information.  
+
+
+## Visual Issues (None Detected)  
+- **Contrast**: All text (white on black) meets WCAG standards (high contrast, easy to read).  
+- **Alignment**: Elements (logo, menu, feature cards, pricing tiers) are perfectly aligned (no skewed or mispositioned items).  
+- **Consistency**: Color, font, and spacing are uniform across sections (no jarring inconsistencies).  
+- **Clarity**: No overlapping text or hidden elements (all content is visible and accessible).  
+
+
+## Additional Notes  
+- A **WhatsApp icon** (green circle, bottom-right) is present for contact – functional and visually distinct.  
+- The “ПОПУЛЯРНЫЙ” badge (gold) effectively highlights the “Бизнес” tier as the recommended option.  
+- The overall design balances luxury (gold accents, dark theme) with clarity (clean layout, readable text) – ideal for a catering service targeting corporate clients.  
+
+
+**Verdict**: The page is well-designed, visually consistent, and optimized for user experience. No critical issues detected.
+
+=== coffee-break-top ===
+### Overall Layout & Structure  
+The page follows a **single-column, vertical flow** with distinct sections: a header (logo, navigation, contact), a hero banner, and a content section. The design is clean and focused on readability, with a dark, sophisticated theme.  
+
+
+### Header Section  
+- **Logo & Branding**: Top-left features the logo “U NILOV CATERIN” in a serif font (gold/cream color), with “CATERIN” in smaller, lighter text beneath.  
+- **Navigation Menu**: Centered top, with menu items in a sans-serif font (light gray/white) for contrast against the dark background: *“ФОРМАТЫ”*, *“МЕНЮ”*, *“КАК ЗАКАЗАТЬ”*, *“КАЛЬКУЛЯТОР”*, *“КОНТАКТЫ”*.  
+- **Breadcrumb Navigation**: Below the logo, a secondary navigation trail (*“Главная / Форматы / Кофе-брейк”*) in a smaller, lighter sans-serif font (gray).  
+- **Contact Info**: Top-right displays a phone number (*“+7 (812) 919-59-11”*) in gold/cream, matching the logo.  
+
+
+### Hero Banner  
+- **Background Image**: A high-quality photo of a coffee break setup: croissants, a fruit platter (strawberries, grapes), and black coffee cups on a dark surface. The image is slightly desaturated to emphasize text overlay.  
+- **Text Overlay**:  
+  - **Main Heading**: *“Кофе-брейк обслуживание”* in a large, elegant serif font (white for “Кофе-брейк,” gold for “обслуживание”)—creates visual hierarchy.  
+  - **Subheading**: A paragraph in a smaller, lighter sans-serif font (white) describing the service: *“Элегантная кофейная пауза для деловых мероприятий...”* (emphasizes comfort and quality).  
+
+
+### Content Section (Below Hero)  
+- **Section Heading**: *“Формат кофе-брейк”* in a large, serif font (white for “Формат,” gold for “кофе-брейк”)—consistent with the hero’s typography.  
+- **Subheading**: A smaller, sans-serif paragraph (light gray) explaining the format: *“Идеальное решение для перерывов на конференциях, семинарах и деловых встречах”*.  
+- **Body Text**: A longer paragraph in a sans-serif font (light gray) detailing the service (e.g., “Кофе-брейк — это не просто перерыв...”).  
+- **Image**: A partial photo of coffee equipment (e.g., thermoses) on the right, adding visual context.  
+
+
+### Colors  
+- **Primary Palette**: Dark (near-black) background for contrast; gold/cream for accents (logo, headings, phone number); white/light gray for text.  
+- **Contrast**: Strong contrast between dark background and light text ensures readability. Gold accents add sophistication.  
+
+
+### Typography  
+- **Fonts**: Mix of serif (elegant, for headings) and sans-serif (clean, for body text) fonts.  
+- **Hierarchy**: Clear distinction between headings (large, bold, colored) and body text (smaller, lighter, neutral).  
+
+
+### Spacing  
+- **Padding/Margins**: Generous spacing around text blocks and images prevents clutter. The hero banner has ample vertical space for text overlay.  
+- **Alignment**: Text is left-aligned (consistent with Russian reading patterns), with centered headings for visual balance.  
+
+
+### Images  
+- **Hero Image**: High-resolution, relevant to the service (coffee break), and well-composed.  
+- **Content Image**: Partially visible, but contextually appropriate (coffee equipment).  
+
+
+### Visual Issues  
+- **None apparent**: The design is cohesive, with no overlapping elements, broken images, or readability issues. The dark theme is consistent, and text contrasts well with the background.  
+
+
+### Additional Elements  
+- **WhatsApp Icon**: A green circular icon (bottom-right) for contact, standing out against the dark background.  
+- **Logo Accent**: A small “N” icon (bottom-left) reinforces branding.  
+
+
+Overall, the page effectively communicates a premium catering service with a sophisticated, easy-to-navigate design.
+
+=== contacts-bottom ===
+# Website Quality Audit: "Как нас найти" (How to Find Us) Section  
+
+## Overall Layout  
+The screenshot displays a **contact/location page** with a dark (near-black) background, centered content, and a prominent map widget. The layout is vertically structured:  
+- A header section with a title and address.  
+- A large, rounded rectangular map container (with a subtle shadow) as the focal point.  
+- A footer with legal/company info and navigation links.  
+
+The design is clean and focused on delivering location information, with minimal distractions.  
+
+
+## Colors  
+- **Background**: Solid dark gray/black (#1a1a1a or similar) for high contrast with lighter elements.  
+- **Text**:  
+  - Title ("Как нас найти"): White (or off-white) for visibility against the dark background.  
+  - Address: Light gray (#cccccc) for secondary emphasis.  
+  - Map labels (e.g., "1 найден", "Пробки"): White (for search count) and dark gray (for "Пробки").  
+  - Map pop-up text: Dark gray/black for readability.  
+- **Map**: Standard Yandex Maps palette (greens for parks, grays for roads, blues for water).  
+- **Buttons/Interactive Elements**:  
+  - Blue (#007bff or similar) for the primary "Организации в доме" button.  
+  - Light blue/gray (#f0f0f0) for the secondary "Сообщить об ошибке" button.  
+  - Orange (#ff9800) for metro icons, red for the "Открыть в Яндекс Картах" button.  
+- **Footer**: Light gray text on dark background.  
+
+
+## Typography  
+- **Title ("Как нас найти")**: Large, elegant serif font (e.g., Georgia or a similar web-safe serif) with a subtle gold/brown accent on "найти" (likely a design choice for emphasis).  
+- **Address**: Smaller, sans-serif font (e.g., Arial) in light gray, centered below the title.  
+- **Map Pop-Up Text**: Sans-serif (e.g., Roboto) for clarity—dark gray for headings (e.g., "20-я линия Васильевского острова, 11") and black for details (e.g., "Санкт-Петербург", metro station names).  
+- **Footer**: Small, sans-serif font (e.g., Arial) in light gray, with consistent spacing between links.  
+
+
+## Spacing  
+- **Vertical Spacing**: Generous padding between the title, address, map, and footer (≈ 2–3rem each) to avoid clutter.  
+- **Map Container**: Rounded corners (≈ 8–10px) with internal padding (≈ 1rem) for the pop-up.  
+- **Buttons**: Ample padding (≈ 0.75rem 1.5rem) for touch targets; consistent margin (≈ 0.5rem) between the two buttons in the pop-up.  
+- **Footer Links**: Even spacing (≈ 1.5rem) between "О компании", "Политика конфиденциальности", and "Контакты".  
+
+
+## Images/Visual Elements  
+- **Map Widget**: A fully interactive Yandex Maps instance with:  
+  - A search bar ("1 найден") and "Пробки" (traffic) toggle in the top-left.  
+  - Zoom controls (+/-) and a "locate me" button in the top-right.  
+  - A pop-up with the address, metro stations (icons + distances), and two buttons.  
+  - A red "Открыть в Яндекс Картах" button at the bottom-left.  
+- **Icons**: Metro station icons (orange), zoom controls (gray), and a green WhatsApp icon (bottom-right, likely a contact button).  
+
+
+## Visual Issues (Minor/Neutral)  
+1. **Contrast**: The light gray address text is readable but could be slightly darker for better accessibility (meets WCAG AA but could improve).  
+2. **Map Pop-Up Clarity**: The pop-up’s white background contrasts well with the map, but the "X" close button (top-right of the pop-up) is small and could be more prominent for users with motor impairments.  
+3. **Footer Alignment**: The "N" logo (bottom-left) is slightly misaligned with the footer text (vertical centering could be tighter).  
+4. **Button Hierarchy**: The blue "Организации в доме" button is clear, but the secondary button’s light blue/gray could be more distinct (e.g., a lighter shade) to reduce ambiguity.  
+
+
+## Summary  
+The page effectively communicates location information with a clean, focused design. Key strengths include:  
+- High contrast for readability.  
+- Clear visual hierarchy (title → address → map → footer).  
+- Interactive map with useful details (metro, buttons).  
+
+Minor improvements could enhance accessibility (e.g., larger close button, darker address text) and visual consistency (e.g., footer alignment). Overall, the layout is intuitive and user-friendly.
+
+=== contacts-mid1 ===
+# Website Quality Audit: Screenshot Description  
+
+## Overall Layout  
+The screenshot displays a **section of a website** focused on location information, with a clear hierarchical structure:  
+- A top form area (dark background) containing a checkbox and button.  
+- A central content block with a heading, address text, and an embedded map.  
+- A bottom-right floating element (WhatsApp icon).  
+
+The layout is **centered** and uses a dark background for the top form, transitioning to a lighter background for the map section, creating visual separation between the form and content.  
+
+
+## Colors  
+- **Backgrounds**:  
+  - Top form: Solid black (#000000).  
+  - Map section: Light gray (#f5f5f5) or off-white, providing contrast for the map and text.  
+- **Text**:  
+  - Form text: White (#ffffff) for the checkbox label; gold/brown (#d4af37) for the "конфиденциальности" link.  
+  - Heading: White ("Как нас") and gold ("найти") for emphasis.  
+  - Address: Gray (#666666) for secondary text.  
+  - Map popup: White background with blue (#007bff) for buttons, and colored icons (orange, green, purple) for transit lines.  
+- **Buttons**:  
+  - "ОТПРАВИТЬ ЗАЯВКУ": Gold/brown (#d4af37) with white text.  
+  - Map popup buttons: Blue (#007bff) with white text.  
+- **Icons**:  
+  - WhatsApp: Green (#25d366) with white icon.  
+  - Map controls: White icons on gray backgrounds.  
+
+
+## Typography  
+- **Font Style**: Sans-serif (likely Arial, Helvetica, or similar) for readability.  
+- **Font Sizes**:  
+  - Heading ("Как нас найти"): Large (≈24–28px) with "найти" in a slightly larger/bolder weight.  
+  - Address: Medium (≈14–16px) gray text.  
+  - Form text: Small (≈12–14px) white text.  
+  - Map popup: Small (≈12–14px) text for transit lines; medium (≈14–16px) for buttons.  
+- **Font Weights**:  
+  - Heading: Bold (for "Как нас") and medium-bold (for "найти").  
+  - Form text: Regular.  
+  - Map popup: Regular for transit lines; bold for buttons.  
+
+
+## Spacing  
+- **Padding/Margins**:  
+  - Top form: Generous padding (≈40–60px) around the checkbox and button, creating a clean, uncluttered look.  
+  - Map section: Moderate padding (≈20–30px) around the map, separating it from the heading/address.  
+  - Map popup: Tight padding (≈10–15px) inside the popup, with spacing between transit lines (≈5px) and buttons (≈10px).  
+- **Alignment**:  
+  - Form elements: Centered horizontally.  
+  - Heading/address: Centered.  
+  - Map popup: Centered over the map.  
+
+
+## Images/Visual Elements  
+- **Map**: Embedded interactive map (likely Yandex Maps, given Russian text) showing a city layout with streets, landmarks, and transit lines.  
+- **Map Popup**: A white modal with:  
+  - Address: "20-я линия Васильевского острова, 11" (bold, ≈16px).  
+  - Transit lines: Colored icons (orange = "Горный институт", green = "Василеостровская", purple = "Спортивная") with distances (460 м, 1,79 км, 2,57 км).  
+  - Buttons: "Организации в доме" (blue, ≈14px) and "Сообщить об ошибке" (blue, ≈12px).  
+- **Icons**:  
+  - WhatsApp: Circular green icon with white logo (bottom-right corner).  
+  - Map controls: Zoom (+/-) and location (arrow) icons (right side of map).  
+
+
+## Visual Issues (Potential)  
+1. **Contrast**: The gold "конфиденциальности" link may have insufficient contrast against the black background (WCAG recommends 4.5:1 for normal text; gold on black may fall short).  
+2. **Map Popup Clarity**: The popup’s white background blends slightly with the map’s light gray, reducing readability (could use a subtle shadow or darker background).  
+3. **Button Hierarchy**: The "ОТПРАВИТЬ ЗАЯВКУ" button’s gold color may not stand out enough against the black background (consider a brighter gold or darker text).  
+4. **Floating Icon**: The WhatsApp icon is small and may be overlooked; consider increasing its size or adding a subtle hover effect.  
+
+
+## Summary  
+The layout is clean and functional, with clear separation between the form and map sections. Typography is readable, and spacing is well-balanced. Minor contrast and visibility issues could be addressed to improve accessibility and user experience. The map and popup provide useful location details, but subtle adjustments to colors and spacing would enhance clarity.
+
+=== contacts-top ===
+# Website Quality Audit: Contact Page Screenshot Analysis
+
+## Overall Layout
+The page features a **full-width hero section** with a dark overlay containing contact information and a form, set against a background image of gourmet appetizers. The layout uses a **two-column structure** below the hero: left column for contact details, right column for a contact form. The design employs a dark theme with high contrast between text and background.
+
+## Color Scheme
+- **Background**: Dark (near-black) with a semi-transparent overlay on the hero image
+- **Text**: White for primary content, light gray for secondary text
+- **Accent colors**: Gold/amber for the "с нами" portion of the main heading and phone number
+- **Form fields**: Dark gray/black with white text
+- **Social buttons**: Dark background with white text
+- **WhatsApp icon**: Bright green circular button in bottom right corner
+
+## Typography
+- **Main heading**: "Свяжитесь с нами" uses a large, elegant serif font with "с нами" in gold/amber color
+- **Body text**: Clean sans-serif font in white/light gray
+- **Contact labels**: Uppercase sans-serif in light gray
+- **Form fields**: Sans-serif font in white
+- **Social media buttons**: Sans-serif font in white
+
+## Spacing & Hierarchy
+- **Hero section**: Generous vertical spacing with centered text
+- **Contact information**: Well-spaced sections with clear hierarchy
+- **Form fields**: Consistent vertical spacing with adequate padding
+- **Social buttons**: Evenly spaced with appropriate margins
+
+## Images
+- **Background image**: High-quality photo of gourmet appetizers (possibly caviar-topped canapés) with a dark overlay to ensure text readability
+- **WhatsApp icon**: Standard green WhatsApp logo in bottom right corner
+
+## Visual Issues/Concerns
+1. **Contrast issues**: Some form field text may have insufficient contrast against the dark background
+2. **Form field visibility**: The dark form fields might be difficult to distinguish from the background
+3. **Navigation clarity**: The breadcrumb navigation ("Главная — Контакты") is small and may be hard to read
+4. **Mobile responsiveness**: The two-column layout may not adapt well to mobile screens
+5. **Loading performance**: The large background image may impact page load time
+
+## Content Organization
+- Clear separation between contact information and form
+- Logical grouping of contact details (phone, email, address, hours)
+- Form fields appear to be properly labeled but may benefit from placeholder text for better UX
+
+## Additional Notes
+- The page appears to be for a catering service based in Saint Petersburg
+- Contact information is prominently displayed
+- Multiple contact methods are provided (phone, email, social media, form)
+- The design suggests a premium/high-end service based on the imagery and typography
+
+Overall, the page has good visual hierarchy and clear information architecture, but could benefit from improved contrast and mobile responsiveness optimization.
+
+=== furshet-bottom ===
+# Website Quality Audit: Menu Section Screenshot  
+
+## Overall Layout  
+The page uses a **full-width, dark-themed (black background)** layout with a clear vertical flow: header → menu items → call-to-action (CTA) section → footer. Content is centered and structured in distinct blocks, with ample whitespace to avoid clutter. The design prioritizes readability and visual hierarchy, though some elements lack balance.  
+
+
+### 1. Header Section  
+- **Title**: "Примеры меню" (Examples of Menus)  
+  - Typography: Large, elegant serif font (likely *Playfair Display* or similar) with **white** for "Примеры" and **gold** for "меню" (creating a subtle contrast).  
+  - Spacing: Centered, with generous vertical padding (≈ 2rem top/bottom) to draw attention.  
+- **Subheader**: "Каждое меню составляется индивидуально — это лишь малая часть наших возможностей" (Each menu is customized individually — this is just a small part of our capabilities)  
+  - Typography: Smaller, sans-serif font (e.g., *Arial* or *Helvetica*), light gray color.  
+  - Spacing: Centered below the title, with ≈ 1rem vertical margin to separate from the title.  
+
+
+### 2. Menu Items Grid  
+A **2-row, 4-column grid** of dark gray (near-black) rectangular cards, each containing a menu item.  
+- **Card Design**:  
+  - Background: Dark gray (#222 or similar), with a subtle border (≈ 1px, gray) for definition.  
+  - Padding: ≈ 1.5rem (top/bottom) and 1rem (left/right) to prevent text from touching edges.  
+  - Typography: Sans-serif font, white color, small-to-medium size (≈ 14–16px).  
+- **Menu Items** (Russian, translated for clarity):  
+  1. "Канапе с сыром и сливочным сыром" (Canapés with cheese and cream cheese)  
+  2. "Тарталетки с красной икрой" (Tartlets with red caviar)  
+  3. "Мини-бургеретти с томатами и моцареллой" (Mini burgers with tomatoes and mozzarella)  
+  4. "Рулетики из баклажана с козьим сыром" (Eggplant rolls with goat cheese)  
+  5. "Шпажки с креветкой и авокадо" (Skewers with shrimp and avocado)  
+  6. "Мини-пирожки с мясом" (Mini meat pies)  
+  7. "Фруктовое канапе" (Fruit canapés)  
+  8. "Сырная тарелка" (Cheese platter)  
+- **Spacing**:  
+  - Horizontal: ≈ 1.5rem between cards.  
+  - Vertical: ≈ 2rem between rows.  
+  - Grid is centered, with consistent margins (≈ 5rem left/right) to avoid edge-to-edge alignment.  
+
+
+### 3. Disclaimer Text  
+Below the grid: "Финальный состав блюд обсуждается с шеф-поваром индивидуально. Мы учитываем все dietary-пожелания, аллергии и предпочтения." (The final dish composition is discussed with the chef individually. We take into account all dietary requests, allergies, and preferences.)  
+- Typography: Smaller sans-serif font, light gray color.  
+- Spacing: Centered, with ≈ 2rem vertical margin from the grid.  
+
+
+### 4. Call-to-Action (CTA) Section  
+- **Title**: "Заказать фуршет" (Order a Buffet)  
+  - Typography: Large serif font, white for "Заказать" and gold for "фуршет" (matching the header’s color scheme).  
+  - Spacing: Centered, with ≈ 3rem vertical padding.  
+- **Subheader**: "Оставьте заявку — ответим в течение 30 минут в рабочее время" (Leave a request — we’ll respond within 30 minutes during business hours)  
+  - Typography: Sans-serif, light gray, smaller size.  
+  - Spacing: Centered below the title, ≈ 1rem margin.  
+
+
+### 5. Footer/Contact Form  
+- **Left Text**: "Организация фуршета с Nilov Catering — это гарантия безупречного вкуса, элегантной подачи и профессионального сервиса. Мы берём на..." (Organizing a buffet with Nilov Catering — it’s a guarantee of impeccable taste, elegant presentation, and professional service. We take on...)  
+  - Typography: Sans-serif, light gray, medium size.  
+  - Spacing: Left-aligned, with ≈ 1rem margin from the left edge.  
+- **Form Field**: A single dark gray input box labeled "Ваше имя" (Your name).  
+  - Design: Rounded corners (≈ 4px), light gray border, white text.  
+  - Spacing: Right-aligned, with ≈ 1rem margin from the right edge and ≈ 1rem vertical margin from the text above.  
+
+
+## Visual Issues & Recommendations  
+1. **Color Contrast**:  
+   - The gold text ("меню", "фуршет") is subtle against the black background—consider increasing saturation or using a brighter gold to improve visibility.  
+   - Light gray subheaders may be hard to read for users with low vision; test with WCAG contrast tools (target 4.5:1 for normal text).  
+
+2. **Grid Balance**:  
+   - The 2x4 grid is slightly unbalanced (8 items fit evenly, but the spacing between rows/columns could be more consistent). Ensure uniform margins for a polished look.  
+
+3. **Form Usability**:  
+   - The single input field ("Ваше имя") is too minimal—add a "Submit" button and placeholder text (e.g., "Введите ваше имя") to guide users.  
+   - The form’s right alignment feels disconnected from the left-aligned text; consider centering both or using a two-column layout for better flow.  
+
+4. **Typography Hierarchy**:  
+   - The header/subheader contrast is good, but the menu item text is too small—increase font size (≈ 16px) for better readability.  
+   - Serif fonts for titles are elegant, but sans-serif for body text (menu items, disclaimers) is more legible—ensure consistency.  
+
+5. **Whitespace**:  
+   - The space between the disclaimer and CTA is excessive (≈ 4rem)—reduce to ≈ 2rem to tighten the layout.  
+
+
+## Summary  
+The design is clean and professional, with a strong dark theme and elegant typography. However, minor adjustments to color contrast, grid spacing, form usability, and typography will enhance readability and user experience. The overall structure is logical, but attention to detail (e.g., form design, text size) will elevate the page’s quality.
+
+=== furshet-mid1 ===
+This screenshot displays a section of a website with a dark-themed design, focusing on a service or product offering (likely related to catering or event services, given the Russian text). Here's a detailed breakdown:
+
+
+### **Layout**  
+The page uses a **full-width, vertically stacked layout** with a clear hierarchical structure:  
+- A block of body text at the top (likely an introductory paragraph) spans the full width.  
+- Below it, a centered heading ("Преимущества формата") acts as a section title.  
+- A subheading ("Почему фуршет выбирают для самых значимых мероприятий") provides context.  
+- Three equal-width, card-style modules are arranged in a row (desktop view), each containing an icon, a title, and descriptive text.  
+- A small "N" logo or icon appears in the bottom-left corner, possibly a brand mark.  
+
+
+### **Colors**  
+- **Background**: Solid black (#000000) for the entire visible area, creating high contrast with text and elements.  
+- **Text**:  
+  - Main body text: Light gray/white (#E0E0E0 or similar) for readability against the dark background.  
+  - Section title ("Преимущества формата"): The word "Преимущества" is white, while "формата" is a warm gold (#D4AF37 or similar), adding visual hierarchy.  
+  - Subheading and card titles: White (#FFFFFF) for clarity.  
+  - Card body text: Light gray (#B0B0B0) to differentiate from titles.  
+- **Icons**:  
+  - Left card: A small, light-colored (white/gold) icon of two champagne glasses.  
+  - Middle card: A white circular icon (possibly a plate or utensil).  
+  - Right card: A gold starburst/sparkle icon.  
+
+
+### **Typography**  
+- **Font Style**: A clean, sans-serif typeface (e.g., Arial, Helvetica, or a similar web-safe font) is used throughout, ensuring readability.  
+- **Font Sizes**:  
+  - Body text: Small to medium (≈14–16px) for the introductory paragraph.  
+  - Section title: Large (≈32–36px) with "формата" in a slightly smaller, italicized, or decorative gold font.  
+  - Subheading: Medium (≈18–20px).  
+  - Card titles: Medium (≈18–20px).  
+  - Card body text: Small (≈14px).  
+- **Weight**: Body text is regular weight; titles are bold for emphasis.  
+
+
+### **Spacing**  
+- **Vertical Spacing**: Generous padding between the top text block, section title, subheading, and card row (≈40–60px) creates breathing room.  
+- **Horizontal Spacing**:  
+  - The card row has consistent gaps between modules (≈20–30px).  
+  - Inside cards, padding (≈20–30px) separates icons, titles, and text.  
+- **Text Alignment**:  
+  - Top text block: Left-aligned.  
+  - Section title/subheading: Centered.  
+  - Card content: Left-aligned within each module.  
+
+
+### **Images/Icons**  
+- Three simple, flat icons (no complex imagery) are used:  
+  - Left: Champagne glasses (suggesting celebration/freedom).  
+  - Middle: A plate/utensil (suggesting food variety).  
+  - Right: A starburst (suggesting elegance).  
+- Icons are small (≈24–32px) and positioned above card titles, serving as visual cues for each benefit.  
+
+
+### **Visual Issues**  
+- **Contrast**: While the dark background with light text is generally high-contrast, the gold "формата" in the title may have slightly lower contrast against black (though still readable).  
+- **Consistency**: The gold color in the title and right-card icon is consistent, but the left/middle icons use white—minor inconsistency in icon color palette.  
+- **Responsiveness**: The three-card row may stack vertically on mobile (not visible here), but no obvious layout breaks in the desktop view.  
+
+
+### **Overall Impression**  
+The design is **sleek and modern**, with a focus on readability and clear communication of benefits. The dark theme and gold accents convey elegance, suitable for a premium service (e.g., event catering). The layout is logical, with visual hierarchy guiding the user from the intro to the key benefits. No major visual flaws, but minor tweaks (e.g., icon color consistency) could enhance cohesion.
+
+=== furshet-mid2 ===
+### Overall Layout & Structure  
+The screenshot displays a **pricing table section** for a service (likely catering or event planning, given the Russian text "Стоимость фуршета" = "Furshet [catering] cost") with a dark, minimalist design. The layout is a **three-column grid** (Classic, Premium, Grand) centered on a black background, with a header and subheader above the columns. The design uses a **card-based structure** for each pricing tier, with the middle column ("Premium") highlighted as the "popular" option.  
+
+
+### Colors  
+- **Background**: Solid black (#000000) for high contrast.  
+- **Text**:  
+  - Header ("Стоимость фуршета"): White (high contrast against black).  
+  - Subheader ("Три уровня обслуживания..."): Light gray (softer, secondary text).  
+  - Pricing tiers (e.g., "от 1 800 Р/чел"): Gold (#D4AF37) for emphasis.  
+  - Feature lists: Light gray (subtle, readable against dark cards).  
+  - Buttons:  
+    - "ЗАКАЗАТЬ" (Order): Gold (#D4AF37) for the "Premium" card (high contrast, draws attention).  
+    - Dark gray (#1A1A1A) for "Classic" and "Grand" cards (subtle, secondary).  
+- **Highlight**: A gold badge ("ПОПУЛЯРНЫЙ" = "Popular") on the "Premium" card’s top border.  
+
+
+### Typography  
+- **Header**: Large, elegant serif font (e.g., Playfair Display) in white, centered.  
+- **Subheader**: Smaller, sans-serif font (e.g., Arial) in light gray, centered (supports the header).  
+- **Pricing Tiers**: Medium-sized serif font in gold (e.g., "от 1 800 Р/чел") – bold and prominent.  
+- **Card Titles** ("Классик", "Премиум", "Гранд"): Medium-sized serif font in white, centered.  
+- **Feature Lists**: Small sans-serif font (e.g., Arial) in light gray, left-aligned with checkmarks (✓) for clarity.  
+- **Buttons**: Uppercase sans-serif font (e.g., Arial Bold) in white for "ЗАКАЗАТЬ" – clear and actionable.  
+
+
+### Spacing & Hierarchy  
+- **Vertical Spacing**: Generous padding between the header, subheader, and card grid (avoids clutter).  
+- **Card Spacing**: Equal horizontal gaps between the three columns (consistent, balanced layout).  
+- **Internal Card Spacing**: Tight vertical spacing between features (maximizes info density) with padding around the button (clear call-to-action).  
+- **Hierarchy**:  
+  1. Header (largest, most prominent).  
+  2. Subheader (smaller, secondary).  
+  3. Card titles + pricing (medium, grouped).  
+  4. Feature lists (smallest, detailed).  
+  5. Buttons (action-focused, bottom of each card).  
+
+
+### Images & Visual Elements  
+- **No images** – the design relies on text, color, and minimal icons (checkmarks) for visual interest.  
+- **Checkmarks**: Small, subtle (✓) in light gray, left-aligned with each feature (indicates inclusion).  
+- **Badge**: "ПОПУЛЯРНЫЙ" in a rounded rectangle with a gold background, placed at the top of the "Premium" card (draws attention to the recommended option).  
+
+
+### Visual Issues (Potential)  
+1. **Contrast for "Classic"/"Grand" Buttons**: The dark gray buttons on black cards may have insufficient contrast for users with visual impairments (WCAG guidelines recommend 4.5:1 contrast for text; dark gray on black is ~3:1).  
+2. **Font Legibility**: The serif font for the header, while elegant, may be less readable on small screens (sans-serif is often preferred for web).  
+3. **Feature List Density**: The "Premium" card has 9 features – may feel overwhelming; consider grouping or truncating for scannability.  
+4. **Badge Placement**: The "Popular" badge is centered on the card’s top border, but its gold color blends slightly with the card’s dark background (could be more distinct).  
+
+
+### Summary  
+The design is **clean and professional**, with a strong focus on hierarchy (header → subheader → pricing → features → CTA). The dark theme and gold accents create a premium feel, but minor contrast and legibility issues could be improved for accessibility and usability. The three-column layout effectively compares pricing tiers, with the "Premium" card clearly highlighted as the recommended option.
+
+=== furshet-top ===
+# Website Quality Audit: Screenshot Analysis  
+
+## 1. Layout  
+The page uses a **full-width, vertically stacked layout** with two distinct sections:  
+- **Hero Section**: A large, high-impact banner spanning the entire viewport, featuring a background image of a catering spread (pastries, cupcakes, candles) overlaid with text.  
+- **Content Section**: A narrower, centered text block below the hero, with a dark background to contrast with the hero’s image.  
+
+Navigation is minimal: A small "На главную" (Home) link appears in the top-left corner, with a breadcrumb trail ("Главная → Фуршет") below it. The hero text is left-aligned, while the content section text is center-aligned for readability.  
+
+
+## 2. Colors  
+- **Backgrounds**: The hero uses a **dark, muted background** (likely a semi-transparent overlay on the catering image) to ensure text legibility. The content section has a **solid black background** (#000 or near-black) for contrast.  
+- **Text Colors**:  
+  - Hero title: **White** (bold, high contrast against the dark overlay).  
+  - Hero subtitle: **Light gray/white** (smaller, less prominent).  
+  - Content section: **White** (consistent with the hero, ensuring readability on the black background).  
+- **Accent Colors**: A **gold/amber hue** is used for the word "обслуживание" (service) in the hero title and "искусство" (art) in the content section, adding visual hierarchy and warmth.  
+
+
+## 3. Typography  
+- **Fonts**:  
+  - Hero title: A **serif font** (e.g., Georgia or a similar elegant typeface) for a sophisticated, formal feel.  
+  - Content section: A **sans-serif font** (e.g., Arial or Helvetica) for readability in longer text blocks.  
+- **Hierarchy**:  
+  - Hero title: Largest font size (e.g., 48–60px), bold weight.  
+  - Content section title: Slightly smaller (e.g., 32–40px), bold.  
+  - Body text: Smaller (e.g., 16–18px), regular weight.  
+- **Spacing**: Generous line height (1.5–1.8) in the content section to improve readability; tight letter spacing in the hero title for a polished look.  
+
+
+## 4. Spacing  
+- **Hero Section**: Ample padding (e.g., 5–10% of the viewport height) around the text to avoid clutter. The background image is cropped to focus on the food, with negative space around the text to draw attention.  
+- **Content Section**: Generous margins (e.g., 10–15% of the viewport width) on the left/right to center the text, with padding top/bottom (e.g., 5–8% of the viewport height) to separate it from the hero.  
+- **Line Spacing**: Consistent (1.5–1.8) in body text to prevent eye strain.  
+
+
+## 5. Images  
+- **Hero Image**: A high-quality, shallow-depth-of-field photo of a catering spread (pastries, cupcakes, candles) with warm lighting. The image is **cropped to fill the viewport**, creating an immersive, appetizing backdrop.  
+- **Visual Issues**: No obvious compression artifacts or blurriness; the image complements the text without overwhelming it.  
+
+
+## 6. Visual Issues  
+- **Contrast**: Excellent contrast between text and backgrounds (white/gold on dark) ensures accessibility.  
+- **Alignment**: Text is left-aligned in the hero (natural for headings) and center-aligned in the content (ideal for long paragraphs).  
+- **Consistency**: Color scheme (dark backgrounds, white/gold text) is consistent across sections, reinforcing the brand’s formal, elegant tone.  
+- **Potential Improvements**:  
+  - The hero image could be slightly brighter to enhance the food’s vibrancy (current lighting is warm but may appear dim).  
+  - The "На главную" link is very small; increasing its size or adding a hover effect would improve usability.  
+
+
+## Overall Impression  
+The design effectively communicates a **sophisticated, high-end catering service** (likely for events) through its elegant typography, warm color palette, and appetizing imagery. The layout is clean and focused, with strong visual hierarchy and good readability. Minor tweaks (e.g., link size, image brightness) could enhance usability, but the core design is visually cohesive and aligned with the brand’s identity.
+
+=== gallery-bottom ===
+# Website Quality Audit: Screenshot Analysis
+
+## Overall Layout
+The screenshot displays a single-page section of what appears to be a catering or event planning website with a dark theme. The layout is clean and modern, featuring a hero section with three images arranged horizontally at the top, followed by a centered call-to-action section, and a footer at the bottom.
+
+## Color Scheme
+- **Background**: Deep black (#000000) creates a sophisticated, elegant atmosphere
+- **Text**: White for primary text, with "мероприятие" in a gold/amber accent color
+- **Button**: Golden yellow (#D4AF37) for the call-to-action button
+- **Footer**: Slightly lighter black or dark gray background
+
+## Typography
+- **Primary heading**: "Заказать мероприятие" uses a serif font (likely Georgia or similar) with "Заказать" in white and "мероприятие" in gold
+- **Subheading**: Smaller, lighter sans-serif font in white
+- **Button text**: Uppercase sans-serif font in dark color
+- **Footer text**: Small sans-serif font in gray
+
+## Spacing & Hierarchy
+- Generous vertical spacing between the image row and text content
+- Consistent horizontal spacing between the three images
+- Clear visual hierarchy with the heading as the most prominent element
+- Ample white space around the call-to-action button
+
+## Images
+Three high-quality, professional photographs:
+1. Left: Bar scene with champagne glasses and fruit
+2. Center: Seafood platter with oysters and shrimp
+3. Right: Formal table setting with glassware and plates
+
+All images appear to be properly sized and cropped, with consistent dimensions and rounded corners.
+
+## Visual Issues/Concerns
+- No obvious visual issues or errors in this section
+- The layout appears responsive-friendly
+- Color contrast meets accessibility standards
+- Images are relevant to the catering/event theme
+
+## Footer Elements
+- Company information: "ИП Нинов Д.И. ИНН 781643753900 · Nilov Catering · © 2014-2026"
+- Navigation links: "О компании", "Политика конфиденциальности", "Контакты"
+- Small logo or icon in the bottom left corner
+
+The overall design effectively communicates luxury and professionalism appropriate for a high-end catering service.
+
+=== gallery-mid1 ===
+# Website Quality Audit: Screenshot Analysis  
+
+## Overall Layout & Structure  
+The page follows a **clean, centered, vertical flow** with a dark (near-black) background. Content is organized into three key sections:  
+1. **Top row**: Three full-width, equal-height images (bar scene, seafood platter, table setting) arranged horizontally.  
+2. **Middle section**: A text block with a heading, subheading, and call-to-action (CTA) button, centered on the page.  
+3. **Footer**: A narrow bar with legal/company info and navigation links, left-aligned.  
+
+
+## Colors  
+- **Background**: Solid dark gray/black (#1a1a1a or similar), creating high contrast with lighter elements.  
+- **Text**:  
+  - Heading: White (for "Заказать") + gold (#d4af37 or similar) (for "мероприятие") – the gold adds luxury but may reduce readability for users with color vision deficiencies.  
+  - Subheading: Light gray (#cccccc) – subtle, secondary text.  
+  - CTA button: Gold background with dark brown/black text ("ЗАКАЗАТЬ МЕРОПРИЯТИЕ").  
+  - Footer: Light gray text (company info) + white (logo) + gray (links).  
+- **Images**: Warm, high-contrast tones (e.g., golden bar lighting, vibrant seafood, dark table settings) that pop against the dark background.  
+
+
+## Typography  
+- **Heading**:  
+  - Font: Serif (e.g., Playfair Display, Georgia) – elegant, formal, fitting for a catering/event service.  
+  - Size: Large (≈ 2.5–3rem) – dominant, draws attention.  
+  - Weight: Medium-bold – balances prominence with readability.  
+- **Subheading**:  
+  - Font: Sans-serif (e.g., Open Sans, Lato) – modern, easy to scan.  
+  - Size: Small (≈ 1rem) – secondary, supports the heading.  
+  - Weight: Regular – subtle, avoids competing with the heading.  
+- **CTA Button**:  
+  - Font: Sans-serif (matches subheading) – consistent, clear.  
+  - Size: Medium (≈ 1rem) – legible, easy to tap/click.  
+  - Weight: Medium – stands out without being aggressive.  
+- **Footer**:  
+  - Font: Sans-serif (smaller than body) – compact, functional.  
+  - Size: Tiny (≈ 0.8rem) – secondary, non-distracting.  
+
+
+## Spacing  
+- **Vertical**: Generous padding between sections (≈ 4–6rem) – prevents clutter, guides the eye downward.  
+- **Horizontal**: Centered text/CTA (≈ 10–15% margin on left/right) – balances whitespace, improves readability.  
+- **Image Gaps**: Tight spacing between the three top images (≈ 1–2% of viewport width) – creates a cohesive "gallery" feel.  
+- **Button Padding**: Ample internal padding (≈ 1rem vertical, 2rem horizontal) – makes the CTA easy to interact with.  
+
+
+## Images  
+- **Content**: High-quality, professional photos:  
+  1. **Left**: Bar with tiered champagne flutes, warm lighting, and a fruit bowl – conveys upscale drinks.  
+  2. **Middle**: Seafood platter (oysters, shrimp, caviar) on ice – highlights premium food.  
+  3. **Right**: Formal table setting (gold-rimmed plates, glassware) – emphasizes event elegance.  
+- **Style**: Realistic, warm-toned, shallow depth of field – focuses on key elements (e.g., drinks, food, tableware).  
+- **Responsiveness**: Appears to be responsive (no visible cropping/blur) – likely scales well on mobile.  
+
+
+## Visual Issues  
+1. **Color Contrast (Heading)**: The gold "мероприятие" against dark background may fail WCAG AA standards (contrast ratio < 4.5:1) – could hinder readability for users with low vision or color blindness.  
+2. **Footer Readability**: Tiny footer text (≈ 0.8rem) may be hard to read on small screens – consider increasing size or using a lighter gray.  
+3. **CTA Button Contrast**: Gold background with dark text has good contrast, but ensure it meets WCAG standards (ratio ≥ 3:1).  
+4. **Image Alignment**: The three top images are evenly spaced, but verify they align perfectly (no pixel gaps) – minor misalignment could look unprofessional.  
+
+
+## Summary  
+The design is **luxurious and cohesive**, with strong visual hierarchy (images → heading → CTA → footer). Key strengths: high-quality imagery, generous spacing, and a clear call to action. Areas for improvement: enhance color contrast for accessibility, increase footer text readability, and confirm image alignment. Overall, the layout effectively communicates a premium event/catering service.
+
+=== gallery-top ===
+### Overall Layout & Structure  
+The page follows a **full-width, vertical layout** with a clear hierarchy: a hero section (background image + text) → navigation/filter bar → grid of food/dining images. The design is centered and balanced, with consistent spacing between sections.  
+
+
+### Hero Section (Top)  
+- **Background**: A blurred, high-quality image of a restaurant interior (tables, chairs, ambient lighting) with a shallow depth of field, creating a warm, upscale dining atmosphere.  
+- **Text Elements**:  
+  - Top-left: Small, light gray text: *"На главную"* (link, likely "To homepage") and *"Главная — Галерея"* (breadcrumb: "Home — Gallery").  
+  - Center: Large, elegant serif font (gold/cream color) for the heading *"Наши работы"* ("Our Works"), which stands out against the dark background.  
+- **Visual Accent**: A subtle animation of salt/sugar sprinkling (white particles) adds a dynamic, culinary touch.  
+
+
+### Filter Navigation Bar  
+- **Position**: Below the hero, centered.  
+- **Buttons**: 6 rounded rectangular buttons with dark backgrounds (black/charcoal) and light text (white/gray). The first button, *"Все"* ("All"), is highlighted with a light gold background and darker text, indicating it’s the active filter.  
+- **Spacing**: Buttons are evenly spaced with moderate padding (horizontal/vertical) for easy tapping/clicking.  
+
+
+### Image Grid (Main Content)  
+- **Layout**: 3-column grid (responsive, likely adjusts to 2 or 1 column on smaller screens) with rounded corners on each image.  
+- **Images**:  
+  - **First Image**: A spread of diverse dishes (burgers, bread, pastries, fruit) in a restaurant setting (blurred background of diners/tables).  
+  - **Second Image**: A lavish dessert display (macarons, tarts, berries, chocolate treats) on tiered stands.  
+  - **Third Image**: A close-up of a grilled steak with herbs, vegetables, and sauce (highly detailed, appetizing).  
+- **Spacing**: Consistent margin between images (e.g., 1–2rem) and padding inside the grid container, ensuring visual breathing room.  
+
+
+### Colors  
+- **Background**: Dark (black/charcoal) for the main content area, contrasting with the bright, vibrant food images.  
+- **Text**: Light (white/gray) for navigation/breadcrumbs; gold/cream for the main heading (elegant, attention-grabbing).  
+- **Buttons**: Dark backgrounds with light text (except the active "Все" button, which uses a light gold background for emphasis).  
+
+
+### Typography  
+- **Font Style**: Serif font for the main heading (*"Наши работы"*) to convey sophistication; sans-serif for navigation/filter text (clean, modern).  
+- **Hierarchy**: Clear size contrast (large heading vs. small navigation text) ensures readability.  
+
+
+### Images  
+- **Quality**: High-resolution, well-composed, and visually appealing (sharp focus on food, vibrant colors).  
+- **Consistency**: All images follow a similar style (close-up/medium shots of food/dining, warm tones) to maintain a cohesive brand identity.  
+
+
+### Visual Issues (None Observed)  
+- No overlapping elements, broken images, or readability problems.  
+- Spacing is balanced (no overcrowding or excessive whitespace).  
+- Color contrast is sufficient (text on dark backgrounds is legible; images pop against the dark backdrop).  
+
+
+### Summary  
+The design is **upscale, cohesive, and user-friendly**, with a clear focus on showcasing culinary/dining work. The layout guides the eye from the hero to the filter bar to the image grid, using color, typography, and spacing to create a polished, professional look.
+
+=== homepage-bottom ===
+# Website Quality Audit: FAQ Page (Unilov Catering)
+
+## Overall Layout
+The page features a clean, minimalist design with a dark theme. The layout is structured in a single-column format with clear hierarchical sections. The page is divided into three main areas: header navigation, FAQ content section, and contact section.
+
+## Header & Navigation
+- **Top bar**: Black background with gold/white text
+- **Logo**: "UNILOV" in gold lettering with "CATERIN" in smaller white text underneath
+- **Navigation menu**: 8 menu items in white text (ФОРМАТЫ, ФУРШЕТ, БАНКЕТ, СВАДЬБА, МЕНЮ, КАЛЬКУЛЯТОР, КОНТАКТЫ)
+- **Phone number**: Gold text on the right side (+7 (812) 919-59-11)
+- **Spacing**: Adequate padding between navigation items
+
+## Main Content - FAQ Section
+- **Title**: "Частые вопросы" (Frequently Asked Questions) in large gold serif font, centered
+- **FAQ items**: 6 expandable accordion-style questions in white text on black background
+- **Each item**: Contains a question with a gold "+" icon on the right for expansion
+- **Questions include**:
+  - "За какое время нужно заказывать кейтеринг?"
+  - "Работаете ли вы за пределами Санкт-Петербурга?"
+  - "Можно ли составить веганское или халяльное меню?"
+  - "Что входит в стоимость?"
+  - "Как происходит оплата?"
+  - "Минимальное количество гостей?"
+- **Spacing**: Consistent vertical spacing between FAQ items with adequate padding
+
+## Contact Section
+- **Title**: "Свяжитесь с нами" in large gold serif font, centered
+- **Subtext**: "Ответим в течение 30 минут в рабочее время" in smaller white text
+- **Spacing**: Generous padding above and below the section
+
+## Visual Elements & Colors
+- **Color scheme**: Primarily black background with gold and white text
+- **Accent color**: Gold used for headings, logo, and interactive elements
+- **Background**: Solid black (#000000)
+- **Text colors**: White for body text, gold for headings and accents
+- **Interactive elements**: Gold "+" icons for accordion expansion
+
+## Typography
+- **Headings**: Elegant serif font (likely a decorative typeface) in gold
+- **Body text**: Clean sans-serif font in white
+- **Hierarchy**: Clear distinction between heading sizes and weights
+
+## Additional Elements
+- **Floating button**: Green circular button with white WhatsApp icon in bottom right corner
+- **Logo**: Small "N" icon in bottom left corner (possibly a brand mark)
+
+## Visual Issues/Concerns
+- **Contrast**: While the dark theme is visually appealing, the contrast between black background and white text may be insufficient for users with visual impairments
+- **Expandable elements**: The "+" icons are small and may be difficult to click on mobile devices
+- **Responsiveness**: Not visible in this screenshot, but the single-column layout suggests it may adapt well to mobile
+- **Loading indicators**: No visible loading states for the accordion elements
+
+## Overall Assessment
+The design is elegant and professional, appropriate for a catering service. The dark theme creates a sophisticated atmosphere, though accessibility considerations for contrast should be evaluated. The layout is clean and easy to navigate, with clear visual hierarchy. The FAQ section is well-organized and the contact information is prominently displayed.
+
+=== homepage-mid1 ===
+# Website Quality Audit: UNILOV Catering
+
+## Overall Impression
+The website presents a premium catering service with a dark, elegant aesthetic. While the design concept is strong, several execution issues affect usability and visual harmony.
+
+## Layout Analysis
+- **Header**: Fixed navigation bar with logo on left, menu items center-aligned, and phone number on right. Good structural foundation.
+- **Main Content**: Two-column layout for service formats (left) and portfolio (right), with a bottom section for menu examples. The layout feels unbalanced due to the right sidebar being narrower than the main content area.
+- **Section Spacing**: Inconsistent vertical spacing between sections - the gap between "Форматы обслуживания" and "Примеры меню" appears excessive compared to other section margins.
+
+## Color Scheme
+- **Primary Palette**: Black background with gold/cream accent colors for headings and highlights. The contrast is generally good but creates readability challenges for light text.
+- **Text Colors**: White text on black background - acceptable contrast but may cause eye strain during extended reading.
+- **Accent Issues**: The gold used for headings sometimes clashes with the background images, reducing readability in certain service cards.
+
+## Typography
+- **Headings**: Elegant serif font for main headings (Форматы обслуживания, Примеры меню) - appropriate for premium brand.
+- **Body Text**: Sans-serif font for service descriptions - good readability but inconsistent sizing across different cards.
+- **Hierarchy Problems**: Some service cards have text that's too small relative to others, breaking visual consistency.
+
+## Spacing Issues
+- **Card Spacing**: Inconsistent gaps between service format cards - some have larger margins than others.
+- **Text Padding**: Insufficient internal spacing within service cards, making text feel cramped against image borders.
+- **Navigation Spacing**: Uneven spacing between menu items in the header.
+
+## Image Presentation
+- **Service Cards**: Each card uses a relevant background image, but:
+  - Some images are too dark, reducing text legibility
+  - Image crops are inconsistent across cards
+  - The "Кофе-брейк" card has particularly poor contrast between image and text
+- **Portfolio Section**: The "Наши работы" section has a placeholder-style "ПОРТФОЛИО" button that looks disconnected from the overall design.
+
+## Visual Problems
+1. **Readability Issues**: 
+   - Text on dark background images (especially "Кофе-брейк" card) is nearly illegible
+   - Small text in service descriptions strains readability
+2. **Alignment Problems**:
+   - The right sidebar ("Наши работы") appears misaligned with the main content grid
+   - Inconsistent text alignment within service cards
+3. **Empty Space**:
+   - The right sidebar feels underutilized and sparse
+   - Large empty space below the service cards before the menu section
+4. **Overcrowding**:
+   - Some service cards have excessive text that feels cramped
+   - The header navigation feels slightly crowded with 8 menu items
+
+## Specific Elements
+- **Logo**: "UNILOV CATERIN" - good branding but "CATERIN" is less prominent than it could be
+- **Navigation**: Menu items are clear but could benefit from hover states
+- **Phone Number**: Well-placed but could use better contrast
+- **WhatsApp Button**: Green floating button is visually distinct but may clash with the premium aesthetic
+
+## Recommendations
+1. Improve text contrast on dark background images
+2. Standardize spacing between all elements
+3. Ensure consistent text sizing across service cards
+4. Consider adding subtle hover effects to navigation
+5. Reduce empty space in the right sidebar or expand its content
+6. Review image crops for better text legibility
+7. Add more visual hierarchy to the "Наши работы" section
+
+The website has strong branding potential but needs refinement in execution to fully communicate its premium positioning.
+
+=== homepage-mid2 ===
+### Overall Layout & Structure  
+The page uses a **dark theme (near-black background)** with a top navigation bar, a menu section, and a "How to Order" (Как заказать) section below. The layout is structured into distinct blocks, but spacing and alignment issues create visual imbalance.  
+
+
+### 1. Header & Navigation  
+- **Logo/Branding**: Top-left features "UNILOV CATERIN" in a serif font (gold for "UNILOV," lighter gray for "CATERIN"). The "U" in "UNILOV" is stylized with a vertical line, but the contrast between the gold "UNILOV" and gray "CATERIN" is weak, making "CATERIN" hard to read at a glance.  
+- **Navigation Links**: Horizontal menu with 7 items: "ФОРМАТЫ," "ОФИРШЕТ," "БАНКЕТ," "СВАДЬБА," "МЕНЮ," "КАЛЬКУЛЯТОР," "КОНТАКТЫ" (all white text). The "ОФИРШЕТ" link is highlighted with a gold background, but the highlight is too subtle—its contrast with the dark background is insufficient for clear differentiation.  
+- **Contact Info**: Top-right displays "+7 (812) 919-59-11" in gold, which stands out but is small and may be hard to read for users with visual impairments.  
+
+
+### 2. Menu Section  
+- **Content Blocks**: 5 rectangular cards (dark gray background, white text) arranged in a 2x2 grid + 1 standalone card below. The cards contain menu items (e.g., "Канапе с сыром и сливочным сыром," "Тарталетки с красной икрой").  
+  - **Alignment Issues**: The first row has 4 cards, but the second row has only 1 card ("Шпажки с креветкой и авокадо"), creating uneven spacing and visual clutter. The cards are not aligned to a consistent grid, making the section look unstructured.  
+  - **Spacing**: Gaps between cards are inconsistent—some are wider than others, disrupting the flow.  
+- **Descriptive Text**: Below the cards, a line of text reads, *"Это пример меню. Финальный состав блюд обсуждается с шеф-поварам индивидуально."* (This is a sample menu. The final dish composition is discussed with the chef individually.) The text is small, gray, and hard to read against the dark background.  
+- **Button**: A "ПОЛНОЕ МЕНЮ" (Full Menu) button (dark gray background, white text) is centered below the text. The button is too small and lacks hover state or visual hierarchy, making it easy to overlook.  
+
+
+### 3. "How to Order" Section  
+- **Heading**: "Как заказать" (How to Order) in a large, gold serif font. The gold color contrasts well with the dark background, but the font size is inconsistent with the subheading below.  
+- **Subheading**: *"Четыре простых шага от заявки до мероприятия"* (Four simple steps from application to event) in smaller, white sans-serif text. The contrast between the gold heading and white subheading is good, but the font pairing (serif + sans-serif) feels disjointed.  
+- **Step Cards**: 4 cards (dark gray background, gold numerals "01"–"04," white text) arranged in a row. Each card has a title (e.g., "Заявка," "Меню") and a short description.  
+  - **Alignment Issues**: The cards are not evenly spaced—gaps between them vary, and the numerals are misaligned (some are left-aligned, others center-aligned).  
+  - **Readability**: The gold numerals are too faint against the dark gray background, and the white text in the descriptions is small, making it hard to scan.  
+
+
+### 4. Visual Issues  
+- **Color Clashes**: The dark background with gold/white text creates high contrast, but the gold highlight for "ОФИРШЕТ" and the "ПОЛНОЕ МЕНЮ" button is too muted, failing to draw attention.  
+- **Empty Space**: The area between the menu section and "How to Order" section is overly empty, creating a disjointed feel. The bottom of the page (below the step cards) has excessive white space, making the section look incomplete.  
+- **Overcrowding**: The menu cards are dense, with small text that’s hard to read. The step cards suffer from the same issue—too much text in a small space.  
+- **Misaligned Elements**: The navigation links, menu cards, and step cards are not aligned to a consistent grid, leading to a messy, unprofessional look.  
+
+
+### 5. Additional Elements  
+- **WhatsApp Icon**: A green circular icon (bottom-right) is present but lacks context (e.g., "Contact Us via WhatsApp"). Its placement is awkward, and it doesn’t integrate with the overall design.  
+- **Logo Icon**: A small "N" icon (bottom-left) is unclear—its purpose (e.g., brand mark, toggle) is not obvious.  
+
+
+### Critical Summary  
+The page has a cohesive dark theme but suffers from **poor alignment, inconsistent spacing, and readability issues**. Key problems include:  
+- Weak contrast in highlighted navigation and buttons.  
+- Uneven card layouts (menu and step sections).  
+- Small, hard-to-read text.  
+- Excessive empty space and visual clutter.  
+
+Recommendations:  
+- Increase contrast for interactive elements (e.g., "ОФИРШЕТ" highlight, "ПОЛНОЕ МЕНЮ" button).  
+- Align cards to a consistent grid and reduce spacing inconsistencies.  
+- Enlarge text for better readability.  
+- Add hover states and visual hierarchy to buttons/links.  
+- Minimize empty space and balance content density.
+
+=== homepage-mid3 ===
+# Website Quality Audit: UNILOV Catering Portfolio Page  
+
+## Overall Layout & Structure  
+The page follows a **clean, professional layout** with a fixed header and a centered content section. The header spans the full width of the viewport, while the main content (portfolio) is contained within a centered container (approx. 1100–1200px wide) to ensure readability. The layout is structured as:  
+- **Header**: Logo, navigation menu, and contact info.  
+- **Hero Section**: Title ("Наши работы") and subtitle ("Фото с реальных мероприятий").  
+- **Portfolio Grid**: 6 images arranged in a 2×3 grid (2 rows, 3 columns) with consistent spacing.  
+
+
+## Header Details  
+- **Logo**: Positioned at the top-left, featuring the brand name "UNILOV" in a stylized serif font (gold color) with "CATERIN" in smaller, uppercase sans-serif text below it.  
+- **Navigation Menu**: Horizontal menu at the top-center, with 8 items: "Форматы", "Фуршет", "Банкет", "Свадьба", "Меню", "Калькулятор", "Контакты". All text is in uppercase, sans-serif, and white (consistent with the dark header background).  
+- **Contact Info**: Phone number "+7 (812) 919-59-11" at the top-right, in white sans-serif font.  
+- **Background**: Solid black (#000000), creating high contrast with white/gold text.  
+
+
+## Main Content (Portfolio Section)  
+### Typography  
+- **Title**: "Наши работы" (Our Works) in a large, elegant serif font (gold color, ~36–40px), centered.  
+- **Subtitle**: "Фото с реальных мероприятий" (Photos from real events) in smaller, uppercase sans-serif font (white, ~14px), centered below the title.  
+
+### Image Grid  
+- **Arrangement**: 6 high-quality food/event images in a 2×3 grid. Each image is rectangular (approx. 350×250px) with rounded corners (subtle, ~5px radius) for a modern look.  
+- **Content**:  
+  1. Top-left: Restaurant scene with a waiter, burgers, and plated dishes.  
+  2. Top-middle: Dessert display (macarons, tarts, berries).  
+  3. Top-right: Grilled steak with herbs and vegetables.  
+  4. Bottom-left: Cocktails on a bar counter.  
+  5. Bottom-middle: Seafood platter (oysters, shrimp, caviar).  
+  6. Bottom-right: Formal table setting (plates, glasses, cutlery).  
+- **Spacing**: Consistent 20–25px gaps between images and between the grid and page edges.  
+
+### Background  
+- Solid black (#000000), matching the header for visual consistency.  
+
+
+## Visual Elements & UI  
+- **WhatsApp Icon**: A green circular icon with the WhatsApp logo at the bottom-right (fixed position), likely a contact button.  
+- **Logo/Brand Mark**: A small "N" logo at the bottom-left (possibly a footer or brand mark).  
+
+
+## Color Scheme  
+- **Primary**: Black (#000000) for the background (header + main content).  
+- **Accent**: Gold (#D4AF37) for the logo and title (adds luxury, aligning with a catering brand).  
+- **Text**: White (#FFFFFF) for navigation, subtitle, and contact info (high contrast against black).  
+
+
+## Spacing & Alignment  
+- **Header**: 20–30px padding top/bottom; 40–50px padding left/right.  
+- **Navigation**: 15–20px spacing between menu items.  
+- **Portfolio Grid**: 20–25px margin between images; 40–50px margin top/bottom from the header.  
+- **Text Alignment**: All text (title, subtitle, navigation) is center-aligned for a balanced, professional look.  
+
+
+## Visual Issues (None Detected)  
+- **Contrast**: Excellent (black background + white/gold text meets WCAG standards).  
+- **Image Quality**: All images are high-resolution, well-composed, and relevant to the catering theme.  
+- **Responsiveness**: While not tested on mobile, the grid layout suggests it would adapt well (e.g., single-column on small screens).  
+
+
+## Summary  
+The page is **visually cohesive** with a luxury-focused design (black + gold) that effectively showcases the catering service’s portfolio. Typography, spacing, and imagery are consistent, and there are no apparent visual flaws. The layout prioritizes clarity and brand identity, making it easy for users to navigate and engage with the content.
+
+=== homepage-mid4 ===
+# Website Quality Audit: Nilov Catering Reviews Section
+
+## Overall Layout & Structure
+The page uses a dark theme (black background) with a clean, centered layout. The content is organized in a single-column vertical flow with good vertical spacing between sections. The header contains navigation, and the main content focuses on customer reviews.
+
+## Color Scheme
+- **Background**: Solid black (#000000) - creates high contrast but may feel harsh
+- **Text**: Primarily white/light gray for readability against dark background
+- **Accent colors**: Gold/yellow (#D4AF37) for headings, ratings, and some buttons
+- **Button colors**: Dark gray for primary buttons, gold for secondary elements
+- **Rating stars**: Gold/yellow
+
+## Typography
+- **Headings**: "Отзывы клиентов" uses a serif font (likely Georgia or similar) in white, with "клиентов" in gold - creates visual hierarchy
+- **Body text**: Sans-serif font (likely Arial or Helvetica) in light gray/white - good readability
+- **Navigation**: Sans-serif in white/gold
+- **Source attribution**: Smaller sans-serif in gray
+
+## Spacing & Alignment
+- **Vertical spacing**: Adequate between header, section title, reviews, and footer
+- **Horizontal spacing**: Reviews are evenly spaced with consistent margins
+- **Text alignment**: Left-aligned text within review cards
+- **Button alignment**: Centered below reviews
+
+## Images & Visual Elements
+- **Rating stars**: Gold star icons (5 stars per review) - consistent and clear
+- **Platform logos**: Small icons for "Яндекс Карты" and "Restclub" - clear but could be larger
+- **WhatsApp icon**: Green circular icon in bottom right - good visibility
+
+## Content Structure
+- **Header**: Navigation menu with 7 items + phone number
+- **Section title**: "Отзывы клиентов" with subtitle
+- **Review cards**: 3 cards in a row, each containing:
+  - 5-star rating
+  - Customer testimonial text
+  - Customer name and category
+  - Source platform
+- **Footer**: Platform ratings (Яндекс Карты 4.9, Restclub 4.8)
+
+## Visual Issues & Criticisms
+
+1. **Readability concerns**:
+   - Light gray body text on black background may cause eye strain for some users
+   - The contrast between light gray text and black background is borderline acceptable (WCAG guidelines recommend higher contrast)
+
+2. **Color usage**:
+   - Gold text for "клиентов" and ratings creates good emphasis but may not be accessible for color-blind users
+   - The green WhatsApp icon contrasts sharply with the black background - could be more harmoniously integrated
+
+3. **Layout issues**:
+   - Review cards are evenly spaced but could benefit from more internal padding
+   - The "ВСЕ РАБОТЫ" button appears isolated with excessive white space above it
+
+4. **Empty space**:
+   - Significant empty space below the header navigation
+   - Large margins around the review section could be reduced
+
+5. **Alignment problems**:
+   - Platform logos in reviews are inconsistently aligned
+   - Source attribution text in reviews has varying spacing
+
+6. **Visual hierarchy**:
+   - The gold "клиентов" text creates good hierarchy but could be more distinct
+   - Review card headings lack sufficient differentiation
+
+7. **Consistency issues**:
+   - Button styles vary between "ВСЕ РАБОТЫ" and platform rating buttons
+   - Star ratings use gold but other elements use different gold shades
+
+8. **Responsiveness concerns**:
+   - The three-review layout may not adapt well to mobile screens
+   - No visible responsive design indicators
+
+## Positive Aspects
+- Clean, uncluttered design
+- Good use of contrast for important elements
+- Clear visual separation between sections
+- Professional appearance suitable for a catering service
+
+## Recommendations
+- Increase text contrast for better accessibility
+- Reduce excessive white space
+- Ensure consistent button styling
+- Improve alignment of platform logos
+- Consider adding more visual interest to the header area
+- Test responsiveness on mobile devices
+
+The page effectively showcases customer reviews but could benefit from accessibility improvements and more thoughtful spacing decisions.
+
+=== homepage-mid5 ===
+### Overall Layout & Structure  
+The page has a **dark-themed, centered layout** with a prominent calculator module (for event cost estimation) as the focal point. The background is solid black (#121212 or similar), creating high contrast with lighter text/elements. The design is minimalistic, with clear hierarchy and ample whitespace to avoid clutter.  
+
+
+### Header & Navigation  
+- **Logo**: Top-left features the brand name “UNILOV” in a serif font (gold/cream color, ~24px), with “CATERIN” in smaller, lighter text below it.  
+- **Navigation Menu**: Horizontal menu at the top, with 8 items (e.g., “ФОРМАТЫ”, “ФУРШЕТ”, “БАНКЕТ”) in a clean, sans-serif font (white/light gray, ~14px). Items are evenly spaced, with no underlines or active states visible.  
+- **Contact Info**: Top-right displays a phone number (“+7 (812) 919-59-11”) in the same font/color as the menu, aligned right.  
+
+
+### Main Calculator Module  
+A rounded, dark gray (#1E1E1E) container occupies the center of the page, with the following sections:  
+
+#### 1. Headline & Subheadline  
+- **Headline**: “Рассчитайте стоимость” (Calculate the cost) — “Рассчитайте” is white (serif font, ~36px), “стоимость” is gold (serif font, ~36px), creating visual hierarchy.  
+- **Subheadline**: “Приблизительный расчёт — точную стоимость уточнит менеджер” (Approximate calculation — the manager will clarify the exact cost) — smaller, light gray sans-serif text (~14px), centered below the headline.  
+
+#### 2. Form Fields  
+- **“ФОРМАТ” (Format) Section**:  
+  - Label: “ФОРМАТ” (dark gray, ~14px, uppercase).  
+  - Dropdown: “Фуршет (от 1 800 Р/чел)” (white text, ~16px) with a subtle down arrow. The dropdown has a dark gray background and thin border.  
+- **“КОЛИЧЕСТВО ГОСТЕЙ” (Number of Guests) Section**:  
+  - Label: “КОЛИЧЕСТВО ГОСТЕЙ” (dark gray, ~14px, uppercase).  
+  - Slider: A horizontal slider with a gold handle (circular) and track. The current value (“50 чел.”) is displayed in gold text to the right of the slider.  
+- **“ДОПОЛНИТЕЛЬНЫЕ УСЛУГИ” (Additional Services) Section**:  
+  - Label: “ДОПОЛНИТЕЛЬНЫЕ УСЛУГИ” (dark gray, ~14px, uppercase).  
+  - Dropdown: “Без доп. услуг” (white text, ~16px) with a down arrow, similar styling to the “ФОРМАТ” dropdown.  
+
+#### 3. Cost Display  
+- **Subheadline**: “Приблизительная стоимость” (Approximate cost) — light gray, centered, ~14px.  
+- **Total Cost**: “90 000 ₽” — large, gold serif font (~48px), centered.  
+- **Disclaimer**: “Точная стоимость после консультации с менеджером” (Exact cost after consultation with the manager) — small, light gray sans-serif text (~12px), centered below the total.  
+
+#### 4. CTA Button  
+- **Button**: “ПОЛУЧИТЬ ТОЧНЫЙ РАСЧЁТ” (Get an exact calculation) — gold background, dark gray text (~16px, sans-serif), rounded corners, centered below the cost display. Hover state is not visible but likely includes a subtle shadow or color shift.  
+
+
+### Visual Elements & Spacing  
+- **Whitespace**: Generous padding around the calculator module (e.g., 40px top/bottom, 60px left/right) and between form sections (e.g., 20px between “ФОРМАТ” and “ДОПОЛНИТЕЛЬНЫЕ УСЛУГИ”) ensures readability.  
+- **Colors**: Dominant black background; gold/cream for accents (headlines, button, slider handle, total cost); white/light gray for text; dark gray for form containers/labels.  
+- **Typography**: Mix of serif (headlines, total cost) and sans-serif (subheadlines, menu, form text) fonts. Serif adds elegance; sans-serif ensures clarity.  
+- **Images/Icons**: No images, but a green WhatsApp icon (circle, bottom-right) is visible — likely a floating action button for contact.  
+
+
+### Visual Issues (Minor)  
+- **Dropdown Clarity**: The down arrows in the dropdowns are subtle (light gray) and may be hard to distinguish on the dark background.  
+- **Slider Handle Contrast**: The gold slider handle contrasts well with the dark track, but the track itself is very dark (almost black), which could reduce visibility for users with low vision.  
+- **Button Hover State**: Not visible in the screenshot, but a hover effect (e.g., darker gold or shadow) would improve interactivity.  
+
+
+### Summary  
+The design is sleek and functional, with a strong focus on the calculator. The dark theme, gold accents, and clear typography create a premium feel, while the layout prioritizes ease of use. Minor tweaks (e.g., enhancing dropdown arrows, slider track visibility) could improve accessibility.
+
+=== homepage-top ===
+# Website Quality Audit: Nilov Catering (Homepage)
+
+## Overall Impression
+The homepage presents a luxury catering service with a sophisticated, elegant aesthetic, but suffers from several critical usability and design issues that undermine its professional appearance.
+
+## Layout & Structure
+- **Hero Section**: Dominated by a full-width background image (champagne glasses + appetizers) with overlaid text and CTAs. The layout is generally well-structured with clear hierarchy.
+- **Navigation**: Fixed top navigation bar with logo left-aligned, menu items center-aligned, and contact info right-aligned.
+- **Visual Flow**: The eye is drawn to the champagne glasses first, then to the "Кейтеринг в стиле Nilov" headline, then to the CTAs.
+
+## Colors
+- **Primary Palette**: Dark background (#1a1a1a or similar) with gold/amber accents (#d4af37) for highlights and CTAs.
+- **Text Colors**: White text on dark background (good contrast), gold text for "в стиле" and CTAs.
+- **Issues**: 
+  - The gold text "в стиле" has poor contrast against the dark background, making it difficult to read.
+  - The gold CTA buttons blend too much with the background image, reducing visibility.
+  - The "ПРИНИМАЕМ ЗАЯВКИ" badge has insufficient contrast.
+
+## Typography
+- **Headline**: Large serif font (likely Didot or similar) for "Кейтеринг в стиле Nilov" - elegant but potentially hard to read at smaller sizes.
+- **Body Text**: Sans-serif font for descriptive text - good readability.
+- **Navigation**: Small sans-serif font - clear but could be more prominent.
+- **Issues**: 
+  - The gold "в стиле" text is too thin and lacks sufficient weight for readability.
+  - Font sizes vary inconsistently between elements.
+
+## Spacing & Alignment
+- **Positive**: Generous vertical spacing in the hero section creates breathing room.
+- **Issues**: 
+  - The "ПРИНИМАЕМ ЗАЯВКИ" badge appears misaligned with the headline.
+  - CTAs are not perfectly centered under the headline text.
+  - The "SCROLL" indicator at bottom is too subtle and poorly positioned.
+  - The footer area (12 лет на рынке...) has insufficient spacing from the CTAs.
+
+## Images
+- **Background Image**: High-quality professional food photography with good depth of field.
+- **Issues**: 
+  - The image is somewhat dark, reducing contrast for overlaid text.
+  - The champagne glasses are slightly out of focus, drawing attention away from the food (the main subject).
+
+## Navigation
+- **Menu Items**: 8 navigation links (Форматы, Фуршет, Банкет, Свадьба, Меню, Калькулятор, Контакты) with inconsistent spacing.
+- **Contact Info**: Phone number positioned at far right - good placement.
+- **Issues**: 
+  - No hover states or visual feedback for menu items.
+  - Menu items are too close together, creating a cramped appearance.
+  - No mobile menu indicator visible.
+
+## Visual Issues
+1. **Readability Problems**: 
+   - Gold text elements lack sufficient contrast against dark background
+   - Some text appears too small for comfortable reading
+2. **Alignment Issues**: 
+   - Badge, headline, and CTAs not perfectly aligned
+   - Navigation items have inconsistent spacing
+3. **Clashing Elements**: 
+   - Gold CTA buttons blend with background image
+   - The green WhatsApp icon at bottom right clashes with the overall gold/black color scheme
+4. **Empty/Low-Content Areas**: 
+   - The bottom portion of the hero image feels underutilized
+   - The "SCROLL" indicator is too minimal and ineffective
+5. **Overcrowding**: 
+   - Navigation bar has too many items for comfortable scanning
+   - The hero section contains multiple text elements that compete for attention
+
+## Critical Issues
+- **Contrast violations** for gold text elements (WCAG likely fails)
+- **CTA visibility problems** due to color blending
+- **Inconsistent spacing** throughout the layout
+- **Poor mobile readiness** (no visible responsive behavior)
+- **Clashing accent colors** (green WhatsApp icon)
+
+## Recommendations
+1. Increase contrast for gold text elements
+2. Darken CTA buttons or change their color for better visibility
+3. Improve alignment consistency throughout
+4. Reduce navigation items or group them logically
+5. Ensure all text meets minimum contrast requirements
+6. Add hover states and visual feedback for interactive elements
+7. Reconsider the green WhatsApp icon color to match the gold/black scheme
+8. Test readability at various screen sizes
+
+The design has strong potential with its elegant aesthetic, but these issues significantly impact usability and professional appearance.
+
+=== korporativ-bottom ===
+### Overall Layout & Structure  
+The page has a **dark-themed, two-column layout** (left: text, right: image) for the top section, and a **reversed two-column layout** (left: image, right: text) for the bottom section. The background is solid black (#000000), creating high contrast with white text and light-colored images. The layout is clean and modular, with clear separation between sections via padding and rounded corners on content blocks.  
+
+
+### Header & Navigation  
+- **Logo**: Top-left corner, “UNILOV CATERIN” in a serif font (likely *Playfair Display* or similar). “UNILOV” is bold, “CATERIN” is lighter, with a gold accent on the “U” (possibly a brand color).  
+- **Navigation Menu**: Top-center, 5 menu items in white sans-serif font (e.g., *Roboto* or *Open Sans*):  
+  - *О Сотрудничестве* (About Collaboration)  
+  - *Преимущества* (Advantages)  
+  - *Типы Мероприятий* (Event Types)  
+  - *Запросить КП* (Request a Commercial Proposal)  
+  Spacing between items is consistent (~20px), and hover states (if any) are not visible in the screenshot.  
+- **Contact Info**: Top-right, phone number “+7 (812) 919-59-11” in white, smaller font size than the menu.  
+
+
+### Top Section: “Конференции и форумы” (Conferences and Forums)  
+- **Text Block**: Left column, white text on black background.  
+  - **Heading**: “Конференции и форумы” in a large, serif font (bold, ~24px).  
+  - **Body Copy**: Smaller sans-serif font (~14px), justified text. The paragraph describes catering for business events (coffee breaks, lunches, etc.), emphasizing seamless service and logistics.  
+  - **Spacing**: 20px between heading and body, 15px line height for readability.  
+- **Image**: Right column, high-quality photo of a catering setup: croissants, fruit (strawberries, blueberries), coffee pots, and black cups on a dark table. The image has a warm, inviting tone and is cropped to fit the column (no visible borders).  
+
+
+### Bottom Section: “Обеды в офис” (Office Lunches)  
+- **Image**: Left column, photo of a catering spread: pastries, cupcakes, and savory bites on silver trays, with lit candles in the background. The image is well-lit, showcasing food details, and matches the dark theme.  
+- **Text Block**: Right column, white text on black background.  
+  - **Heading**: “Обеды в офис” in the same serif font as the top heading (~24px, bold).  
+  - **Body Copy**: Sans-serif font (~14px), justified text. Describes office lunch services (regular/weekly meals, dietary preferences, delivery).  
+  - **Spacing**: 20px between heading and body, consistent with the top section.  
+
+
+### Visual Elements & Details  
+- **Colors**: Dominant black background, white text, gold (logo accent), and warm tones in images (food, lighting). High contrast ensures readability.  
+- **Typography**:  
+  - Serif font for headings (elegant, formal).  
+  - Sans-serif for body copy (modern, easy to read).  
+  - Consistent font sizes and weights across sections.  
+- **Spacing**: Generous padding around content blocks (~30px), balanced column widths (≈55% text / 45% image), and consistent line heights.  
+- **Images**: High-resolution, relevant to the section (conferences → coffee/fruit; office lunches → pastries), with no visible compression artifacts.  
+- **Icons/Buttons**: A green WhatsApp icon (bottom-right) and a small “N” logo (bottom-left) are present but not intrusive.  
+
+
+### Visual Issues (None Apparent)  
+- No broken images, misaligned text, or readability problems.  
+- Contrast between text and background is sufficient (WCAG-compliant).  
+- Layout is responsive-friendly (though mobile view is not shown, the modular design suggests adaptability).  
+
+
+### Summary  
+The page effectively uses a dark theme to highlight catering services, with clear typography, balanced imagery, and logical sectioning. The design is professional, with no visible flaws, and aligns with a luxury/corporate catering brand.
+
+=== korporativ-mid1 ===
+### Overall Layout & Structure  
+The page has a **dark-themed, professional layout** with a clear hierarchical structure. The top section features a navigation bar, followed by a hero section (image + text), a mid-section with a heading and subheading, and a bottom section with three feature cards. The design is clean, with ample negative space to avoid clutter.  
+
+
+### Top Navigation Bar  
+- **Branding**: Left-aligned, the logo “UNILOV” (stylized with a gold “U”) and “CATERIN” (smaller, gold text) are positioned at the top-left.  
+- **Menu Items**: Centered/Right-aligned, menu links in white text: *“О СОТРУДНИЧЕСТВЕ”*, *“ПРЕИМУЩЕСТВА”*, *“ТИПЫ МЕРОПРИЯТИЙ”*, *“ЗАПРОСИТЬ КП”*.  
+- **Contact Info**: Far right, a phone number (*“+7 (812) 919-59-11”*) in white.  
+- **Background**: Solid black, creating high contrast with white text.  
+
+
+### Hero Section (Image + Text)  
+- **Image**: Left-aligned, a high-quality photo of a chef in a white uniform plating food on a marble countertop. The image is sharp, well-lit, and visually appealing, conveying a premium catering service.  
+- **Text Block**: Right-aligned, white text on a black background. The text is a paragraph describing the company’s approach to partnerships (e.g., “результаты”, “персональный менеджер”). A **gold-colored quote** (in cursive/italic font) is highlighted with a thin gold vertical line, adding emphasis.  
+- **Spacing**: The image and text block are balanced, with sufficient padding between them.  
+
+
+### Mid-Section (Heading & Subheading)  
+- **Main Heading**: *“Преимущества корпоративного партнёрства”* (white text, large font size, centered). The word *“корпоративного”* is in a **gold, italicized font**, creating visual hierarchy.  
+- **Subheading**: *“Специальные условия, созданные для потребностей бизнеса”* (smaller, white text, centered, lighter font weight).  
+- **Background**: Solid black, matching the top navigation.  
+
+
+### Bottom Feature Cards  
+Three cards (left, center, right) with:  
+- **Icons**: Each card has a colored icon (gold clipboard, blue user, gold money bag) on the left.  
+- **Headings**: White text (e.g., *“Постоянная по договору”*, *“Персональный менеджер”*, *“Скидки от объёма”*).  
+- **Descriptions**: Smaller, gray text (e.g., *“Работаем с юридическими лицами по договору с”*).  
+- **Background**: Dark gray (slightly lighter than the main black background) with rounded corners, creating subtle separation.  
+
+
+### Colors  
+- **Primary**: Black (background), white (text), gold (accent for logo, quote, and “корпоративного” in the heading).  
+- **Secondary**: Blue (user icon), gold (clipboard/money bag icons).  
+- **Contrast**: High contrast between black background and white text ensures readability. Gold accents add luxury and draw attention to key elements.  
+
+
+### Typography  
+- **Fonts**: A mix of serif (e.g., the gold “UNILOV” logo) and sans-serif (menu, body text) fonts. The quote uses a cursive/italic style for emphasis.  
+- **Hierarchy**: Clear distinction between headings (large, bold), subheadings (smaller, lighter), and body text (regular weight).  
+
+
+### Spacing & Alignment  
+- **Padding/Margins**: Ample white space around elements (e.g., between the hero image and text, between cards) prevents overcrowding.  
+- **Alignment**: Centered headings, left-aligned text blocks, and evenly spaced cards create a balanced, organized look.  
+
+
+### Images  
+- **Hero Image**: High-resolution, relevant to the catering service, and well-composed (focus on the chef’s hands and plated food). No visual issues (e.g., blurriness, distortion).  
+
+
+### Visual Issues  
+- **None apparent**: The design is cohesive, with consistent color scheme, clear hierarchy, and no obvious errors (e.g., misaligned elements, broken images, poor contrast). The only minor note is that the gold quote’s vertical line is thin but effective for emphasis.  
+
+
+### Additional Elements  
+- **WhatsApp Icon**: A green circular icon with a white WhatsApp logo is positioned at the bottom-right, likely for contact.  
+- **Logo “N”**: A small “N” logo is at the bottom-left, possibly a secondary brand element.  
+
+
+Overall, the design is **professional, visually appealing, and user-friendly**, with strong branding and clear messaging for a corporate catering service.
+
+=== korporativ-mid2 ===
+### Overall Layout & Structure  
+The page has a **dark-themed, professional layout** with a top navigation bar, a three-column content section, a centered heading block, and a two-part (image + text) content card below. The design is clean but slightly dense in text-heavy areas.  
+
+
+### Top Navigation Bar  
+- **Branding**: Left-aligned logo “UNILOV” (gold text) with “CATERIN” (smaller, lighter text) below it.  
+- **Menu Items**: Right-aligned links in gold text: *“О СОТРУДНИЧЕСТВЕ”*, *“ПРЕИМУЩЕСТВА”*, *“ТИПЫ МЕРОПРИЯТИЙ”*, *“ЗАПРОСИТЬ КП”*.  
+- **Contact Info**: Far right, gold text: *“+7 (812) 919-59-11”*.  
+- **Color/Contrast**: Dark background (near-black) with gold text for high contrast.  
+
+
+### Three-Column Content Section (Above Centered Heading)  
+Three rectangular cards (dark gray/black background) with white text, arranged horizontally. Each card contains a paragraph of Russian text:  
+- **Left Card**: Discusses long-term partnerships, financial documents, and flexible payment terms.  
+- **Middle Card**: Covers corporate culture, manager availability (9:00–22:00), and menu customization.  
+- **Right Card**: Explains subscription pricing, fixed costs, and special conditions for event series.  
+- **Spacing**: Moderate padding inside cards; consistent margin between cards.  
+
+
+### Centered Heading Block  
+- **Title**: *“Типы корпоративных мероприятий”* (large, elegant serif font, white + gold gradient).  
+- **Subtitle**: *“Организуем любой формат — от бизнес-завтрака до гала-ужина”* (smaller, white sans-serif font).  
+- **Alignment**: Centered, with ample vertical spacing from the top section.  
+
+
+### Content Card (Image + Text)  
+- **Image**: Left side, a high-quality photo of a formal dining table (plates, wine glasses, candles) with warm lighting.  
+- **Text Section**: Right side, white text on dark background:  
+  - **Heading**: *“Корпоративные праздники”* (bold, serif font).  
+  - **Body**: Describes event types (New Year, company day, etc.), menu customization, and atmosphere creation.  
+- **Spacing**: Image and text are balanced; text has generous line spacing for readability.  
+
+
+### Visual Elements & Details  
+- **Colors**: Dominant dark background (near-black) with gold accents (logo, menu, headings) and white text.  
+- **Typography**: Mix of serif (headings) and sans-serif (body) fonts; consistent hierarchy.  
+- **Spacing**: Adequate padding/margin in most areas, but the three-column text could feel slightly cramped.  
+- **Images**: High-quality, relevant (dining setup for corporate events).  
+- **Icons/Buttons**: Green WhatsApp icon (bottom right) for contact; small “N” icon (bottom left, possibly a logo or button).  
+
+
+### Potential Issues  
+- **Text Density**: The three-column section has long paragraphs, which may reduce scannability.  
+- **Contrast**: While gold/white on dark works, some text (e.g., body in the three-column cards) could be slightly lighter for better readability.  
+- **Responsiveness**: The three-column layout may not adapt well to mobile (needs testing for stacking).  
+
+
+Overall, the design is professional and aligned with a corporate catering/event service, but minor tweaks to text spacing and contrast could enhance usability.
+
+=== korporativ-top ===
+# Website Quality Audit: Nilov Catering (Corporate Clients Page)  
+
+## Overall Layout  
+The page follows a **full-width, top-to-bottom vertical layout** with a clear hierarchy:  
+- **Header**: Contains the logo, navigation menu, and contact info.  
+- **Hero Section**: A large background image with overlaid text (title + subtitle).  
+- **Content Section**: A two-column layout (image + text) for the main body copy.  
+- **Footer**: Not visible in the screenshot, but the header includes a small logo icon (bottom-left) and a WhatsApp button (bottom-right).  
+
+The layout is **responsive-friendly** (no overlapping elements, clear spacing), but the hero section’s background image may be too dark for text contrast (see *Visual Issues* below).  
+
+
+## Colors  
+- **Primary Palette**:  
+  - Background: Dark (near-black) for the content section, with a high-contrast background image in the hero.  
+  - Text: White (primary) and gold (accent) for headings; light gray for body copy.  
+  - Branding: Gold (logo, "клиентам" in the main title) and black (logo text, navigation).  
+- **Accent Colors**:  
+  - WhatsApp button: Bright green (high visibility, but may clash with the dark theme).  
+  - Logo icon: Black (bottom-left corner).  
+
+**Contrast**:  
+- White text on dark backgrounds is generally accessible, but the hero’s background image is *too dark* (low contrast with white text).  
+- Gold text ("клиентам") has sufficient contrast against the dark background.  
+
+
+## Typography  
+- **Fonts**:  
+  - **Logo**: A serif font (e.g., "Nilov" in the header) with a classic, elegant style.  
+  - **Headings**: A mix of serif (main title: "Корпоративным клиентам") and sans-serif (subheading: "Кейтеринг для бизнеса") fonts. The main title uses a large, bold serif font; the subheading is a smaller, lighter sans-serif.  
+  - **Body Copy**: A clean sans-serif font (e.g., Arial or Helvetica) for readability.  
+- **Hierarchy**:  
+  - Main title: Largest (≈ 48px), bold, white + gold.  
+  - Subheading: Medium (≈ 32px), white, lighter weight.  
+  - Body copy: Small (≈ 16px), light gray, regular weight.  
+  - Navigation: Small (≈ 14px), white, regular weight.  
+
+**Spacing**:  
+- **Line Height**: Body copy has adequate line height (≈ 1.6) for readability.  
+- **Letter Spacing**: Headings use tight spacing (no excessive gaps), while body copy is standard.  
+- **Padding/Margins**: Generous spacing between sections (e.g., hero to content: ≈ 40px; image to text: ≈ 20px).  
+
+
+## Images  
+- **Hero Image**: A full-width background photo of professionals (chef + businesspeople) in a dimly lit setting. The image is **too dark**, reducing contrast with overlaid text.  
+- **Content Image**: A smaller, left-aligned photo of a chef (white uniform, tall hat) with good lighting. The image is well-cropped and relevant to the "catering" theme.  
+- **WhatsApp Icon**: A circular, bright green icon (bottom-right) with a white WhatsApp logo—high visibility but may distract from the main content.  
+
+
+## Visual Issues  
+1. **Hero Image Contrast**: The dark background image makes the white text ("Корпоративным клиентам") hard to read. A semi-transparent dark overlay or lighter image would improve accessibility.  
+2. **WhatsApp Button Placement**: The green button is positioned in the bottom-right corner, which may feel intrusive (especially on mobile). Consider moving it to a less prominent spot (e.g., footer) or using a more subtle design.  
+3. **Font Consistency**: The mix of serif (logo, main title) and sans-serif (subheading, body) fonts is acceptable, but the transition between them could be smoother (e.g., using a complementary sans-serif for headings).  
+
+
+## Summary  
+The page has a **professional, elegant design** with clear hierarchy and spacing, but the hero image’s low contrast and the WhatsApp button’s prominence are minor issues. The typography is readable, and the color palette aligns with a luxury catering brand. Overall, the layout is functional, but accessibility (contrast) and visual balance (button placement) could be improved.
+
+=== menu-bottom ===
+### Overall Layout & Structure  
+The page uses a **dark (near-black) background** with a clean, minimalist layout divided into three main sections: a top card, a central content block, and a footer. The design is monochromatic with strategic use of gold/yellow accents for emphasis.  
+
+
+### Top Section: Service Card  
+- **Container**: A rounded rectangular card with a slightly lighter dark gray background (for subtle contrast against the black backdrop).  
+- **Icon**: A small, white diamond ring icon (likely a wedding ring) at the top-left of the card, adding a visual cue for the "wedding dinner" service.  
+- **Typography**:  
+  - **Title**: "Свадебный ужин" (Wedding Dinner) in a **serif font** (e.g., Times New Roman or similar), white, and bold—clearly defining the service.  
+  - **Body Text**: Smaller, lighter gray text describing the service: *"Авторское меню для самого важного дня. Персональный шеф, дегустация и координация вечера."* (Author’s menu for the most important day. Personal chef, tasting, and evening coordination).  
+- **Call-to-Action (CTA)**: A gold/yellow link, *"ПОДРОБНЕЕ →"* (MORE →), in a smaller, sans-serif font (e.g., Arial) with a right arrow, encouraging users to learn more.  
+- **Spacing**: Generous padding inside the card (top/bottom ~20px, left/right ~30px) and margin below the card (~50px) to separate it from the next section.  
+
+
+### Central Section: Menu Consultation Block  
+- **Headline**: "Обсудите меню с шеф-поваром" (Discuss the menu with the chef) in a **mix of serif (white) and script/gold font** for "с шеф-поваром" (with the chef)—adding elegance and hierarchy.  
+- **Body Text**: Three lines of light gray, sans-serif text explaining the consultation process: *"Каждое блюдо — это результат диалога. Шеф-повар выслушает ваши пожелания, предложит оптимальные сочетания и проведёт персональную дегустацию. Мы уверены: вкус должен превзойти ожидания ещё до мероприятия."* (Each dish is a result of dialogue. The chef will listen to your wishes, suggest optimal combinations, and conduct a personal tasting. We are sure: the taste should exceed expectations even before the event).  
+- **Buttons**: Two prominent CTAs:  
+  - Left: Gold/yellow button, *"ОБСУДИТЬ МЕНЮ С ШЕФ-ПОВАРом"* (Discuss the menu with the chef), in a bold, sans-serif font.  
+  - Right: Black button with white text, *"ПОЗВОНИТЬ"* (Call), in a smaller, sans-serif font.  
+- **Spacing**: The headline is centered, with body text aligned center below it. Buttons are spaced evenly (horizontal gap ~20px) and centered, with vertical padding (~30px top/bottom) to avoid clutter.  
+
+
+### Footer  
+- **Content**: Left-aligned text: *"ИП Нинов Д.И. ИНН 781643753900 : Nilov Catering : © 2014-2026"* (legal/business info) in light gray, sans-serif font. Right-aligned links: *"О компании"* (About), *"Политика конфиденциальности"* (Privacy Policy), *"Контакты"* (Contacts) in the same light gray, sans-serif font.  
+- **Icon**: A small, black circular logo with a white "N" at the far left (brand identifier).  
+- **Spacing**: Thin (~10px) top margin from the central section, with padding inside the footer (~15px top/bottom) for readability.  
+
+
+### Colors  
+- **Primary Background**: Black (#000000 or near-black).  
+- **Accent Colors**: Gold/yellow (#D4AF37 or similar) for CTAs and script text; white for titles/icons; light gray (#888888 or similar) for body text/links.  
+
+
+### Typography  
+- **Serif Fonts**: Used for titles (e.g., "Свадебный ужин", "Обсудите меню") to convey elegance.  
+- **Sans-Serif Fonts**: Used for body text, links, and buttons (e.g., "ПОДРОБНЕЕ", "ОБСУДИТЬ МЕНЮ") for readability and modernity.  
+- **Hierarchy**: Clear distinction between titles (larger, bolder) and body text (smaller, lighter).  
+
+
+### Spacing  
+- **Padding/Margins**: Generous whitespace around cards, text blocks, and buttons to avoid a cramped feel. Consistent spacing between sections (e.g., ~50px between the top card and central block) enhances flow.  
+
+
+### Images  
+- Only one small icon (diamond ring) is present—minimalist, with no large images, keeping focus on text.  
+
+
+### Visual Issues (if any)  
+- **Contrast**: The gold CTA buttons stand out well against the black background, but the black "ПОЗВОНИТЬ" button may blend slightly with the background (though white text provides sufficient contrast).  
+- **Consistency**: The mix of serif and sans-serif fonts is intentional (for hierarchy) but could be refined for stricter consistency (e.g., using the same sans-serif for all body text).  
+- **Responsiveness**: The layout appears optimized for desktop (centered content, fixed-width buttons), but mobile adaptability (e.g., button stacking) is not visible in the screenshot.  
+
+
+Overall, the design is sleek, professional, and focused on guiding users toward key actions (learning more, discussing the menu, or calling). The dark theme and gold accents create a luxurious, wedding-focused aesthetic.
+
+=== menu-mid1 ===
+### Overall Layout & Structure  
+The screenshot displays a **dark-themed webpage** (likely a restaurant/cafe menu or service page) with a vertical, sectioned layout. The page is divided into two primary areas:  
+1. **Top Section**: A grid of 5 dark rectangular cards (with rounded corners) containing menu/service descriptions.  
+2. **Bottom Section**: A header ("Форматы обслуживания" / "Service Formats") followed by 3 smaller cards (with icons) for specific service types.  
+
+
+### Top Section: Menu/Service Cards  
+- **Layout**: 5 cards arranged in a 2x3 grid (with one card spanning the left column, 2 in the middle, 2 on the right).  
+- **Cards**: Each card has a dark background (near-black) with light gray text. The first line of each card is a **bold, uppercase title** (e.g., "авокадо", "триофелем"), followed by 1–2 lines of descriptive text.  
+- **Spacing**: Consistent padding (≈1rem) inside cards; moderate gap (≈1.5rem) between cards.  
+
+
+### Bottom Section: Service Formats  
+- **Header**:  
+  - Title: "Форматы обслуживания" (Service Formats) – **large, serif font** (white for "Форматы", gold for "обслуживания").  
+  - Subtitle: Smaller, lighter gray text ("Подробное описание каждого формата — на соответствующих страницах" / "Detailed description of each format — on respective pages").  
+- **Cards**: 3 cards (Furshet, Banquet, Coffee-break) with:  
+  - **Icons**: Simple, white line art (champagne glasses, a fork/knife, a coffee cup).  
+  - **Titles**: Bold, white text (e.g., "Фуршет", "Банкет", "Кофе-брейк").  
+  - **Spacing**: Evenly spaced (≈2rem gap) in a horizontal row.  
+
+
+### Typography  
+- **Fonts**: Mix of serif (for headers) and sans-serif (for body text) – clean, readable.  
+- **Hierarchy**:  
+  - Headers: Large, bold (e.g., "Форматы обслуживания" – largest, gold accent on "обслуживания").  
+  - Card titles: Bold, uppercase (e.g., "авокадо").  
+  - Body text: Light gray, regular weight (smaller than titles).  
+
+
+### Colors  
+- **Background**: Near-black (#121212 or similar) – high contrast with light text.  
+- **Text**:  
+  - Primary: White (titles, icons).  
+  - Secondary: Light gray (body text, subtitles).  
+  - Accent: Gold (for "обслуживания" in the header).  
+- **Cards**: Dark gray/black (consistent with background, but slightly lighter for subtle differentiation).  
+
+
+### Spacing & Alignment  
+- **Consistent Padding**: All cards have uniform internal padding (text not touching edges).  
+- **Grid Alignment**: Cards are aligned in a strict grid (top section) and horizontal row (bottom section) – no overlapping.  
+- **Text Alignment**: Left-aligned within cards; header text is centered.  
+
+
+### Images/Icons  
+- **Icons**: Minimalist, white line art (champagne, fork/knife, coffee cup) – simple, recognizable, and consistent in style.  
+- **No Full Images**: The page relies on text and icons (no photos or complex graphics).  
+
+
+### Visual Issues (None Detected)  
+- **Contrast**: High (dark background + light text) – meets accessibility standards.  
+- **Clarity**: Text is legible; no overlapping elements.  
+- **Consistency**: Uniform card styling, typography, and spacing – professional and cohesive.  
+
+
+### Summary  
+The design is **minimalist, modern, and functional**, prioritizing readability and clear hierarchy. The dark theme with gold/white accents creates a sophisticated, elegant feel (suitable for a restaurant/cafe). No visual flaws or usability issues are apparent.
+
+=== menu-mid2 ===
+### Overall Layout & Structure  
+The screenshot displays a **dark-themed webpage** (likely a catering or event service site) with a **grid-based layout** featuring 4 content cards (3 in the top row, 1 in the second row) and a full-width section below. The design is clean, with a focus on text-heavy content and minimal imagery.  
+
+
+### Top Row: Content Cards  
+Three rectangular cards are arranged horizontally, each with a dark gray background (slightly lighter than the page’s black backdrop) and rounded corners. They contain:  
+- **Text**: Descriptive copy in Russian (e.g., “Свободный формат с канапе…”, “Торжественная рассадка…”, “Лёгкие закуски…”).  
+- **Call-to-Action (CTA)**: A “ПОДРОБНЕЕ →” link (gold/amber color) at the bottom of each card.  
+- **Spacing**: Consistent padding (≈1.5rem) inside each card, with equal horizontal spacing between cards (≈2rem).  
+
+
+### Second Row: “Свадебный ужин” Card  
+A single card (wider than the top-row cards) sits below the first row. It includes:  
+- **Icon**: A small, stylized ring icon (light blue/white) at the top-left.  
+- **Heading**: “Свадебный ужин” (white, bold, larger font than body text).  
+- **Body Text**: Descriptive copy (light gray) about custom wedding menus.  
+- **CTA**: “ПОДРОБНЕЕ →” link (gold/amber) at the bottom.  
+- **Spacing**: Generous padding (≈2rem) inside the card, with a larger gap (≈3rem) between this card and the top row.  
+
+
+### Bottom Section: “Обсудите меню с шеф-поваром”  
+A full-width section with:  
+- **Heading**: “Обсудите меню с шеф-поваром” (white, large font; “с шеф-поваром” is italicized in a gold/amber color).  
+- **Body Text**: Two paragraphs of light gray text explaining personalized menu planning.  
+- **Buttons**: Two buttons at the bottom (“ОБСУДИТЬ МЕНЮ С ШЕФ-ПОВАРОВ” and “ПОЗВОНИТЬ”) with a gold/amber background and dark text.  
+- **Spacing**: Ample vertical padding (≈4rem) around the text, with buttons centered and spaced evenly.  
+
+
+### Colors  
+- **Background**: Solid black (#000000).  
+- **Card Backgrounds**: Dark gray (#1a1a1a or similar).  
+- **Text**:  
+  - Headings: White (#ffffff).  
+  - Body Text: Light gray (#cccccc or similar).  
+  - CTAs/Emphasized Text: Gold/amber (#d4af37 or similar).  
+- **Icon**: Light blue/white (matches the ring graphic).  
+
+
+### Typography  
+- **Font Style**: Sans-serif (modern, clean).  
+- **Hierarchy**:  
+  - Main Headings (e.g., “Обсудите меню…”): Large, bold, white.  
+  - Subheadings (e.g., “Свадебный ужин”): Medium, bold, white.  
+  - Body Text: Small, light gray, regular weight.  
+  - CTAs: Small, gold/amber, regular weight (with an arrow for interactivity).  
+
+
+### Spacing & Alignment  
+- **Card Layout**: Grid with consistent horizontal/vertical spacing (≈2–3rem between cards/rows).  
+- **Text Alignment**: Left-aligned within cards; centered for the bottom section’s heading.  
+- **Button Spacing**: Evenly spaced, centered below the body text.  
+
+
+### Images/Visuals  
+- **Icon**: A single ring icon (light blue/white) in the “Свадебный ужин” card—simple, stylized, and relevant to the wedding theme.  
+- **No Other Images**: The rest of the layout relies on text and color blocks.  
+
+
+### Visual Issues (Potential)  
+1. **Contrast**: While text is legible, the light gray body text on a black background may strain readability for some users (especially with smaller font sizes).  
+2. **Consistency**: The “Свадебный ужин” card is wider than the top-row cards, which could disrupt grid symmetry (intentional for emphasis, but worth noting).  
+3. **CTA Clarity**: The “ПОДРОБНЕЕ →” links are small; increasing their size or adding hover effects could improve usability.  
+
+
+### Summary  
+The design is sleek and modern, with a focus on text hierarchy and minimalism. The dark theme creates a sophisticated feel, but readability and button interactivity could be optimized. The layout effectively organizes content into digestible sections, guiding users from service descriptions to a personalized consultation.
+
+=== menu-top ===
+# Website Quality Audit: Menu Page Description  
+
+## Overall Layout  
+The page has a **full-width, vertically stacked layout** with two primary sections: a hero section (top) and a menu selection/content section (bottom). The hero section spans the full viewport width, while the lower section uses a centered, constrained width (likely ~1200px max) for content, with grid-based menu item cards. The design is **mobile-responsive** (implied by the structured grid and spacing, though not visible in the screenshot).  
+
+
+## Color Scheme  
+- **Background**: Dark (near-black) for the lower section, with a semi-transparent dark overlay on the hero image to ensure text readability.  
+- **Hero Image**: A high-quality photograph of gourmet appetizers (topped with red caviar and herbs) with warm, muted tones (browns, reds, greens).  
+- **Text Colors**:  
+  - Headings: White (for “Наше меню”) and a soft gold (for “камергию”) to create contrast.  
+  - Body text: Light gray (for descriptive copy) and white (for menu category buttons).  
+- **Accent Color**: A warm gold (#F4D06F or similar) for the active “Фуршет” button, creating visual hierarchy.  
+
+
+## Typography  
+- **Headings**:  
+  - “Наше меню”: Large, elegant serif font (e.g., Playfair Display) in white, with a subtle gold shadow for depth.  
+  - “Выберите камергию”: Mix of white (serif) and gold (serif) for emphasis, centered and prominent.  
+- **Body Text**:  
+  - Descriptive copy (e.g., “Авторская гастрономия…”): Light gray, sans-serif (e.g., Lato) for readability against the dark background.  
+  - Menu item titles (e.g., “Канапе с сыром…”): White, sans-serif, bold for contrast.  
+  - Menu item descriptions: Light gray, sans-serif, regular weight.  
+- **Navigation**: Small, light gray sans-serif (e.g., “На главную,” “Главная → Меню”) for secondary context.  
+
+
+## Spacing & Hierarchy  
+- **Hero Section**: Generous vertical padding (top/bottom) to separate the image from the lower content. The heading “Наше меню” is left-aligned with ample space below for the descriptive subhead.  
+- **Menu Selection Section**:  
+  - Centered heading with significant margin-bottom (to separate from the category buttons).  
+  - Category buttons (e.g., “Фуршет,” “Банкет”) are evenly spaced in a horizontal row, with the active button (gold) standing out.  
+  - Menu item cards: 2x2 grid (or similar) with consistent padding (inside cards) and margin (between cards) for breathability. Each card has a title (bold) and description (light gray) with line spacing for readability.  
+
+
+## Images  
+- **Hero Image**: High-resolution, professional food photography (appetizers with caviar/herbs) that reinforces the “gourmet” theme. The image is full-width, with a dark overlay to ensure text contrast.  
+- **No other images** visible in the screenshot (focus on text-based menu items).  
+
+
+## Visual Issues (Potential or Observed)  
+1. **Contrast**: While the dark background and light text work, the gold accent color may be too subtle for users with visual impairments (check WCAG compliance).  
+2. **Button Clarity**: The “Фуршет” button’s gold color blends slightly with the hero image’s warm tones—consider increasing contrast (e.g., darker gold or white text on gold).  
+3. **Grid Consistency**: Ensure menu item cards have uniform padding/margins (no “crooked” cards) for a polished look.  
+4. **Loading Performance**: The hero image is large—verify optimization (compression, lazy loading) to avoid slow load times.  
+
+
+## Summary  
+The design is **elegant and thematic** (gourmet dining), with strong visual hierarchy (headings → buttons → menu items) and consistent spacing. The color scheme (dark + gold/white) effectively communicates luxury, while typography balances readability and style. Minor tweaks to contrast and button clarity could enhance accessibility and user experience.
+
+=== svadba-bottom ===
+### Overall Layout & Structure  
+The page uses a **dark-themed, grid-based layout** with a minimalist, modern aesthetic. Content is organized into a 2×3 grid of rounded rectangular cards (6 total) on a black background, with a centered call-to-action (CTA) section at the bottom. The design prioritizes readability and visual hierarchy, with ample negative space to avoid clutter.  
+
+
+### Color Scheme  
+- **Background**: Solid black (#000000) for high contrast.  
+- **Cards**: Dark gray (#1a1a1a or similar) with subtle rounded corners, creating a “card” effect.  
+- **Text**: Light gray/white (#e0e0e0 or #ffffff) for primary content, ensuring readability against the dark background.  
+- **CTA Accent**: Gold (#d4af37) for the word “dezcmauquo” in the bottom section, drawing attention to the call-to-action.  
+
+
+### Typography  
+- **Headings (Card Titles)**:  
+  - Font: Sans-serif (e.g., Arial, Helvetica) – clean, modern, and legible.  
+  - Weight: Medium (500) to bold (700) for emphasis.  
+  - Size: ~16–18px (consistent across all cards).  
+  - Color: White/light gray.  
+- **Body Text (Card Descriptions)**:  
+  - Font: Same sans-serif family as headings, lighter weight (300–400).  
+  - Size: ~14px (smaller than headings, creating hierarchy).  
+  - Line Height: Generous (~1.6) to improve readability.  
+- **CTA Text**:  
+  - Main CTA: Larger font size (~24–28px) with a mix of white and gold (for “dezcmauquo”).  
+  - Subtext: Smaller (~14px), light gray, and centered below the main CTA.  
+
+
+### Spacing & Alignment  
+- **Card Spacing**: Equal horizontal/vertical gaps between cards (consistent grid layout).  
+- **Internal Card Padding**: Generous padding (20–30px) inside each card to separate text from edges.  
+- **Text Alignment**: Left-aligned within cards (standard for readability).  
+- **CTA Section**: Centered horizontally/vertically, with ample margin above/below to separate from the grid.  
+
+
+### Images & Visual Elements  
+- **No Images**: The page relies entirely on text and typography (no images, icons, or graphics). This keeps the design minimal but risks monotony.  
+- **Visual Hierarchy**: Achieved through font weight, size, and color (e.g., gold accent in the CTA).  
+
+
+### Visual Issues & Accessibility Notes  
+1. **Contrast**: High contrast between text and background (black/white) ensures readability, but the gold accent in the CTA may have sufficient contrast (needs testing with WCAG tools).  
+2. **Monotony**: Lack of images/visual variety could make the page feel static, especially for a “restaurant” context (where food imagery is expected).  
+3. **Language**: Text is in Russian (e.g., “Салат с трюфельной заправкой”), which is appropriate for the target audience but may limit accessibility for non-Russian speakers.  
+4. **Grid Consistency**: The 2×3 grid is well-structured, but the bottom CTA breaks the grid (intentional, as it’s a separate section).  
+
+
+### Summary  
+The design is clean, modern, and focused on readability, but it lacks visual interest (no images) and may feel impersonal for a restaurant menu. The typography and spacing are well-executed, but the absence of imagery could reduce engagement. The gold CTA accent effectively draws attention, but overall, the page could benefit from subtle visual elements (e.g., food icons, gradients) to enhance appeal.
+
+=== svadba-mid1 ===
+### Overall Layout & Structure  
+The page has a **single-column, vertically stacked layout** with a dark (near-black) background. Content is centered and organized into distinct sections: a top header, a main heading block, and three feature cards below. The design is minimalistic, with generous white space to avoid clutter.  
+
+
+### Header Section  
+- **Top-left**: A small, rectangular logo (likely a stylized "N" or brand mark) with a thin gold border on a black background.  
+- **Header Text**: A quote in Russian, styled in a light gold/cream color: *«Свадебный ужин — это не меню из десяти пунктов. Это общение, которое вы даёте друг другу, пересоденное на язык вкуса.»* (Translation: *"A wedding dinner is not a ten-course menu. It is the conversation you give each other, translated into the language of taste."*). The text is left-aligned, with a subtle italic or cursive font for the quote.  
+
+
+### Main Heading Block  
+- **Primary Heading**: *«Почему пары выбирают нас»* (Translation: *"Why couples choose us"*) in a large, elegant serif font (likely a script or decorative typeface). The word *«нас»* (us) is highlighted in a lighter gold/cream color, creating visual hierarchy.  
+- **Subheading**: Two lines of smaller, lighter gray text: *«Три причины, по которым ваш свадебный ужин станет»* (Translation: *"Three reasons why your wedding dinner will become"*) and *«незабываемым»* (Translation: *"unforgettable"*). The subheading is centered and uses a simpler sans-serif font for readability.  
+
+
+### Feature Cards (3 Columns)  
+Three identical rectangular cards (dark gray/black with rounded corners) are arranged horizontally, spaced evenly. Each card has:  
+- **Icon**: A small, colored icon (e.g., a yellow emoji, a red wine glass, a red alarm clock) aligned left.  
+- **Title**: A bold, white sans-serif font (e.g., *«Персональный шеф»* / *"Personal Chef"*, *«Дегустация перед свадьбой»* / *"Tasting Before the Wedding"*, *«Координация вечера»* / *"Evening Coordination"*).  
+- **Body Text**: Smaller, light gray sans-serif text (2–3 paragraphs per card) explaining the service. The text is left-aligned and uses a readable line height (≈1.5) for clarity.  
+
+
+### Colors  
+- **Background**: Near-black (#111 or similar) for high contrast.  
+- **Text**: White (primary), light gray (secondary), and gold/cream (accent for the quote and *«нас»*).  
+- **Icons**: Yellow (emoji), red (wine glass, alarm clock) for visual differentiation.  
+- **Cards**: Dark gray (#222 or similar) with subtle shadows (if present) to separate them from the background.  
+
+
+### Typography  
+- **Fonts**: A mix of serif (for the main heading, elegant) and sans-serif (for subheadings, body text, card titles, for readability).  
+- **Hierarchy**: Clear—main heading (largest, gold accent), subheading (smaller, gray), card titles (bold, white), body text (light gray, smallest).  
+
+
+### Spacing  
+- **Vertical**: Generous padding between the header, main heading, and cards (≈2–3rem) to avoid crowding.  
+- **Horizontal**: Even spacing between the three cards (≈1rem) and consistent padding inside each card (≈1.5rem left/right, 1rem top/bottom).  
+- **Line Height**: Body text uses a comfortable line height (≈1.5) to improve readability.  
+
+
+### Images/Icons  
+- **Icons**: Simple, flat design (emoji, wine glass, alarm clock) with high contrast against the dark card background.  
+- **Logo**: Minimalist, likely a single character (e.g., "N") with a gold border.  
+
+
+### Visual Issues (Potential)  
+1. **Contrast**: While the dark background with white text is high-contrast, the light gray body text may be slightly hard to read for users with mild visual impairments (though it’s still legible).  
+2. **Icon Consistency**: The emoji (yellow) and alarm clock (red) use different colors—consider unifying icon colors for a more cohesive look.  
+3. **Card Uniformity**: Ensure all cards have identical padding, font sizes, and icon sizes for visual balance.  
+
+
+### Summary  
+The design is elegant and focused, with strong typography and spacing. The dark theme creates a sophisticated, wedding-themed aesthetic, while the three-card layout clearly communicates key services. Minor tweaks (e.g., icon color consistency, text contrast) could enhance accessibility and visual harmony.
+
+=== svadba-mid2 ===
+# Website Quality Audit: Wedding Service Pricing Page  
+
+## Overall Layout  
+The page features a **dark (black) background** with a clean, structured layout centered around three pricing tiers (columns) for wedding services. The design is minimalist, with ample white space to emphasize content. A header section introduces the service, followed by a three-column pricing grid, and a concluding tagline section. The layout is responsive (visually balanced across desktop, with no obvious overflow or misalignment).  
+
+
+### Header Section  
+- **Title**: "Форматы свадебного у尼西亚" (Wedding Service Formats) – rendered in a **serif font** (likely a classic, elegant typeface) with a gold color for "у尼西亚" (a stylistic highlight).  
+- **Subheader**: "Выберите уровень, который соответствует вашим ожиданиям" (Choose the level that matches your expectations) – smaller, lighter gray text (sans-serif, likely) for clarity.  
+- **Spacing**: Generous vertical padding (≈ 40px) between the header and pricing grid, ensuring the title stands out without crowding.  
+
+
+### Pricing Tiers (Three Columns)  
+Three rectangular cards (dark gray/black with subtle borders) are arranged horizontally, each representing a service tier: *Классик* (Classic), *Премиум* (Premium), and *Гранд* (Grand).  
+
+#### Card 1: Классик (Left)  
+- **Title**: "Классик" – centered, white sans-serif font.  
+- **Price**: "ОТ 5 500₽ / чел" (From 5,500 RUB / person) – gold, larger font, centered.  
+- **Features**: 5 bullet points (checkmarks) in white text, listing included services (e.g., "Банкетное меню из 6 перемен блюд" – Banquet menu with 6 course changes).  
+- **Button**: "ЗАКАЗАТЬ" (Order) – gold, rounded rectangle, centered.  
+- **Spacing**: Consistent padding (≈ 20px) around text and button; features are spaced evenly (≈ 15px apart).  
+
+#### Card 2: Премиум (Middle)  
+- **Title**: "Премиум" – same styling as "Классик," but with a **gold "ПОПУЛЯРНЫЙ" (Popular) badge** above it (rounded, light gold background, black text).  
+- **Price**: "ОТ 7 000₽ / чел" – same gold styling as "Классик."  
+- **Features**: 7 bullet points (more than "Классик"), including premium services (e.g., "Welcome-зона с канапе и закусками" – Welcome area with canapés and snacks).  
+- **Button**: "ЗАКАЗАТЬ" – identical to "Классик."  
+- **Spacing**: Slightly more vertical padding than "Классик" to accommodate more features, but overall consistent with the grid.  
+
+#### Card 3: Гранд (Right)  
+- **Title**: "Гранд" – same styling as "Классик."  
+- **Price**: "ОТ 10 000₽ / чел" – same gold styling.  
+- **Features**: 8 bullet points (most comprehensive), including luxury services (e.g., "Дегустационное меню от шефа" – Chef’s tasting menu).  
+- **Button**: "ЗАКАЗАТЬ" – identical to other cards.  
+- **Spacing**: Consistent with the grid, maintaining visual balance.  
+
+
+### Tagline Section (Bottom)  
+- **Text**: "Ваше меню — ваша история" (Your menu — your story) – serif font, with "история" (story) in gold (stylistic highlight).  
+- **Subtext**: "Примеры блюд, которые могут стать частью вашего свадебного" (Examples of dishes that can become part of your wedding) – smaller, lighter gray text.  
+- **Spacing**: Generous vertical padding (≈ 60px) from the pricing grid, ensuring the tagline is distinct.  
+
+
+## Color Scheme  
+- **Background**: Solid black (#000000) – creates contrast with white/gold text.  
+- **Text**: White (primary) for titles/features; gold (#D4AF37, likely) for prices, highlights, and buttons.  
+- **Accents**: Light gold for the "Popular" badge and "история" (story) in the tagline.  
+- **Buttons**: Gold background with black text ("ЗАКАЗАТЬ").  
+
+
+## Typography  
+- **Serif Font**: Used for the main title ("Форматы свадебного у尼西亚") and tagline ("Ваше меню — ваша история") – adds elegance, suitable for a wedding service.  
+- **Sans-Serif Font**: Used for subheaders, card titles, and features – ensures readability against the dark background.  
+- **Hierarchy**: Clear distinction between titles (larger, bolder), prices (gold, prominent), and features (smaller, white).  
+
+
+## Spacing & Alignment  
+- **Consistent Padding**: All cards have uniform padding (≈ 20px) around content, with consistent spacing between features (≈ 15px) and buttons (centered).  
+- **Horizontal Alignment**: Cards are evenly spaced (≈ 30px apart) and aligned to the center of the page.  
+- **Vertical Balance**: Header, pricing grid, and tagline sections are spaced to avoid clutter, with ample white space.  
+
+
+## Images/Visual Elements  
+- **No Images**: The page relies on text and minimal styling (badges, checkmarks) – no visual distractions, keeping focus on service details.  
+- **Checkmarks**: Small, white icons (✓) for features – consistent and easy to scan.  
+- **Badge**: "ПОПУЛЯРНЫЙ" (Popular) – subtle, light gold background with black text, drawing attention to the middle tier without overwhelming.  
+
+
+## Visual Issues (Minor)  
+1. **Contrast**: While the dark background with white/gold text is high-contrast, the "Popular" badge’s light gold background may blend slightly with the card’s dark gray border (minor, but could be more distinct).  
+2. **Button Consistency**: All buttons are identical, but the "Popular" badge could be more prominent (e.g., slightly larger or a different shade) to emphasize the recommended tier.  
+3. **Typography Hierarchy**: The serif font for the title is elegant, but the sans-serif font for features could be slightly bolder to improve readability (minor, as current contrast is acceptable).  
+
+
+## Overall Impression  
+The page is **clean, professional, and user-friendly**, with a clear hierarchy that guides users from the header to the pricing tiers and call-to-action buttons. The dark background and gold accents create a luxurious feel, appropriate for a wedding service. Minor tweaks (e.g., badge contrast, typography boldness) could enhance readability, but the design is effective for its purpose.
+
+=== svadba-top ===
+# Website Quality Audit: Screenshot Description
+
+## Overall Layout
+The screenshot displays a single-page layout with a hero section featuring a full-width background image and overlaid text content. The design follows a classic vertical scroll structure with a prominent header section and body text below.
+
+## Background Image
+The background features a high-quality, atmospheric photograph of a wedding reception setup. The image shows:
+- A dark, elegant table setting with lit candles (both tall taper candles and shorter votives)
+- An elaborate floral arrangement with roses and other blooms in cream, pink, and white tones
+- Glassware including wine glasses and what appears to be a champagne flute
+- The image has a warm, dim lighting that creates an intimate, romantic atmosphere
+- The background is slightly blurred, creating depth and focusing attention on the foreground text
+
+## Color Scheme
+- **Background**: Dark, warm tones (browns, blacks) with the photographic background
+- **Text overlay**: White and gold/cream colored text for contrast against the dark background
+- **Accent colors**: The gold/cream color is used for emphasis on key words and headings
+
+## Typography
+- **Main heading**: "Свадебный ужин" (Wedding Dinner) - appears in a large, elegant serif font, with "Свадебный" in white and "ужин" in gold/cream
+- **Subheading**: "День, который вы будете вспоминать вечно" (A day you will remember forever) - in a slightly smaller serif font, with "вспоминать" highlighted in gold/cream
+- **Body text**: Paragraphs in a clean, readable sans-serif font in white
+- **Breadcrumb navigation**: Smaller text in the top-left corner
+
+## Spacing and Layout
+- Generous padding/margin around text elements to ensure readability against the busy background
+- Clear hierarchy with heading sizes decreasing from main title to subheading to body text
+- The text is centered horizontally on the page
+- Good line spacing in the body text for readability
+- The breadcrumb navigation is positioned in the top-left corner with appropriate spacing from edges
+
+## Content Structure
+- Breadcrumb navigation: "Главная / Форматы / Свадьба" (Home / Formats / Wedding)
+- Main heading: "Свадебный ужин"
+- Subheading: "День, который вы будете вспоминать вечно"
+- Two substantial paragraphs of descriptive text about wedding catering services
+- The text describes the wedding dinner experience, emphasizing emotional connections and sensory details
+
+## Visual Issues/Concerns
+- The dark background with white text creates good contrast, but may be challenging for users with visual impairments
+- The busy background image with text overlay requires careful typography choices to maintain readability
+- No apparent accessibility features visible (alt text, ARIA labels, etc.)
+- The gold/cream highlighting in the text is subtle but effective for drawing attention to key phrases
+- No visible navigation elements beyond the breadcrumb, suggesting this might be an inner page
+
+## Overall Impression
+The design effectively creates an elegant, romantic atmosphere appropriate for a wedding catering service. The typography choices and spacing work well against the background image, though the dark background with white text may present readability challenges for some users. The layout is clean and focused on conveying the emotional appeal of the wedding dinner experience.

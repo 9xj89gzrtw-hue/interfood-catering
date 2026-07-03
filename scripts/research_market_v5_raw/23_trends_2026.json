@@ -1,0 +1,50 @@
+🚀 Initializing Z-AI SDK...
+🚀 Invoking function: web_search...
+[
+  {
+    "url": "https://restoran-med.ru/stati/trendy-kejteringa",
+    "name": "Тренды кейтеринга в 2026 году - Ресторан МЁД",
+    "snippet": "Тренды кейтеринга в 2026 году · Локальный продукт и осознанность · Интерактивные станции: еда как шоу · Технологии и оптимизация сервиса · Как эффективно ...",
+    "host_name": "restoran-med.ru",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://sfloft.ru/blog/trendy-2026-goda-v-kejteringe",
+    "name": "Тренды 2026 года в кейтеринге - Soulfulloft",
+    "snippet": "Один из главных трендов кейтеринга 2026 года — максимальная персонализация. Клиенты всё реже хотят стандартное меню и одинаковые сценарии ...",
+    "host_name": "sfloft.ru",
+    "rank": 1,
+    "date": "Jun 21, 2026",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.instagram.com/p/DTkkGnzDUsP",
+    "name": "Гастрономия как искусство: главные тренды кейтеринга в 2026",
+    "snippet": "Что заказывать в 2026 году? Современный кейтеринг — это синергия вкуса, эстетики и эмоций. Выбирая кейтеринг для своего события, ищите не просто ...",
+    "host_name": "www.instagram.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://cateringclub-ekb.ru/blog/trendy",
+    "name": "Тренды и новинки кейтеринга 2026 года",
+    "snippet": "Тренды кейтеринга 2026 · 1. Оживление традиционных блюд · 2. Деликатесы со всего мира · 3. ЗОЖ и полезное питание · 4. Персонализированные меню · 5.",
+    "host_name": "cateringclub-ekb.ru",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://blog.quickresto.ru/kak-otkryt-keytering-s-nulya-v-2026-godu",
+    "name": "Как открыть кейтеринг с нуля в 2026 году",
+    "snippet": "Кофе-брейк. Облегчённый формат для деловых событий. Включает кофе, чай, воду, выпечку и лёгкие закуски. Идеален для старта, так как требует ...",
+    "host_name": "blog.quickresto.ru",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]
+🎉 Function invocation completed!

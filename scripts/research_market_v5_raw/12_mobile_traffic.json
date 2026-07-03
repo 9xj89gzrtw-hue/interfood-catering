@@ -1,0 +1,50 @@
+🚀 Initializing Z-AI SDK...
+🚀 Invoking function: web_search...
+[
+  {
+    "url": "https://restoran-rossia.ru/catering",
+    "name": "Кейтеринг — Ресторан Россия",
+    "snippet": "Кейтеринг «Дубровский» - вкус и стиль ваших событий · Ни одно мероприятие не обходится без вкусных угощений и сытных блюд. Эта составляющая является наиболее ...",
+    "host_name": "restoran-rossia.ru",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.instagram.com/reel/C7AHnhlIy5g",
+    "name": "Кейтеринг от ресторана «Бавария  - Instagram",
+    "snippet": "207 likes, 1 comments - news_vladikavkaz on May 15, 2024: \"Кейтеринг от ресторана «Бавария» @bavaria_restaurant_ предлагает широкий спектр ...",
+    "host_name": "www.instagram.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://design.megagroup.ru/solution/keytering",
+    "name": "Готовые сайты 'Кейтеринг'",
+    "snippet": "Разработка сайта 'Кейтеринг' на шаблоне. Купите готовый сайт, интернет-магазин или лендинг 'Кейтеринг' и получите удобную CMS, адаптивную верстку, ...",
+    "host_name": "design.megagroup.ru",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://panorama-steakhouse.ru/private-events/catering",
+    "name": "Кейтеринг - Ресторан Стейк-Хаус Панорама Воронеж",
+    "snippet": "Нам под силу все виды кейтеринга для вашего мероприятия. Наши услуги предполагают не только приготовление блюд, но и полное обслуживание клиентов ...",
+    "host_name": "panorama-steakhouse.ru",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://v-catering.ru/bbq",
+    "name": "заказать выездной барбекю-кейтеринг в Москве",
+    "snippet": "- Возможность заказа по телефону — всего один звонок. - Гибкий график работы — до поздних часов. -индивидуальное меню. ... - Регулярно проводим акции и специально ...",
+    "host_name": "v-catering.ru",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]
+🎉 Function invocation completed!

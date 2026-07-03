@@ -1,0 +1,50 @@
+🚀 Initializing Z-AI SDK...
+🚀 Invoking function: web_search...
+[
+  {
+    "url": "http://forumcatering.ru",
+    "name": "FORUM Catering",
+    "snippet": "Провели более 2000 успешных кейсов, обслужили 50000+ гостей с 2015 года. Примеры наших работы в форматах выездного кофе-брейка, фуршета, банкета и барбекю.",
+    "host_name": "forumcatering.ru",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://zabota.expoforum.ru/ru/servisy-gruppy-kompanij-jekspoforum/kejteringovoe-obsluzhivanie/caramel-catering",
+    "name": "Caramel Catering | Экспофорум",
+    "snippet": "Ресторан идеально подходит для закрытых мероприятий «под ключ»: банкеты до 150 гостей, фуршеты до 250 гостей. Панорамный ресторан включает в себя просторный ...",
+    "host_name": "zabota.expoforum.ru",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://energyforum.ru/ru/kejteringovoe-obsluzhivanie",
+    "name": "Кейтеринговое обслуживание на РМЭФ",
+    "snippet": "Компания имеет современное инновационное производство более 4000 кв.м. Использование инновационных технологий приготовления блюд (ферментация, копчение, сувид) ...",
+    "host_name": "energyforum.ru",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://bash.today/posts/luchshie-kejteringovye-kompanii-v-spb",
+    "name": "Топ-15 кейтеринговых компаний Санкт-Петербурга - Bash Today",
+    "snippet": "В своих отзывах клиенты говорят о том, что «Сет-Фуршет» они любят за: постоянно обновляющееся меню (каждый раз можно удивлять гостей новыми угощениями); ...",
+    "host_name": "bash.today",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://2gis.ru/spb/firm/5348553838653141/tab/reviews",
+    "name": "Отзывы о Константа кейтеринг - Санкт-Петербург - 2ГИС",
+    "snippet": "Заказывали услуги кейтеринга для форума, всё организовано чётко, напитки постоянно пополняли, еда свежая, фуршет выглядел достойно. Полезно? Кк. Константа ...",
+    "host_name": "2gis.ru",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]
+🎉 Function invocation completed!

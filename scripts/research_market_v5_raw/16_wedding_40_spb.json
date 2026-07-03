@@ -1,0 +1,50 @@
+🚀 Initializing Z-AI SDK...
+🚀 Invoking function: web_search...
+[
+  {
+    "url": "https://spb.gorko.ru/%D1%80%D0%B5%D1%81%D1%82%D0%BE%D1%80%D0%B0%D0%BD%D1%8B/Banketniy-zal-na-40-chelovek-v-Sankt-Peterburge",
+    "name": "Банкетный зал на 40 человек в Санкт-Петербурге - Горько!",
+    "snippet": "Банкетные залы, рестораны и кафе для банкета на 40 человек в Санкт-Петербурге ; Кирочный двор · 9.7 · ЧернышевскаяНа карте ; Amulet на Восстания · 9.7 · садНа карте.",
+    "host_name": "spb.gorko.ru",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.avtobanket.ru/restorany-dlya-svadby/na-40-chelovek",
+    "name": "Рестораны для свадьбы на 40 человек в СПб - Автобанкет",
+    "snippet": "Найдено 463 ресторана для организации свадьбы на 40 человек. Среди них 270 ресторанов, 138 банкетных залов, 42 кафе и 13 дворцов.",
+    "host_name": "www.avtobanket.ru",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.palermo-spb.ru/ru/banquets-na-40-chelovek",
+    "name": "Снять ресторан для свадебного банкета на 40 человек PALERMO",
+    "snippet": "Ресторан с банкетным залом на 40 человек в центре Санкт-Петербурга ✓ Красивый зал для свадебного банкета с живой музыкой и танцполом ✓ Банкетное меню, ...",
+    "host_name": "www.palermo-spb.ru",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://wedwed.ru/spb/catalog/ploschadki/restorany-na-svadbu-spb-na-40-50-chelovek",
+    "name": "Свадьба на 40–50 человек в СПб — банкетные залы и рестораны",
+    "snippet": "При выборе зала на 40–50 человек обратите внимание на наличие сцены или танцпола, звукового оборудования и возможности индивидуального оформления. Банкетные ...",
+    "host_name": "wedwed.ru",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.restoclub.ru/spb/search/restorany-dlja-svadby-na-30-chelovek-v-sankt-peterburge",
+    "name": "Рестораны для свадьбы на 30 человек в Санкт-Петербурге",
+    "snippet": "Подборка лучших ресторанов для свадьбы на 30 человек в Санкт-Петербурге: уютные залы, стильный интерьер и вкусное меню для вашего торжества.",
+    "host_name": "www.restoclub.ru",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]
+🎉 Function invocation completed!

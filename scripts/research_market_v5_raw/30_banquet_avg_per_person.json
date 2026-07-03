@@ -1,0 +1,50 @@
+🚀 Initializing Z-AI SDK...
+🚀 Invoking function: web_search...
+[
+  {
+    "url": "https://spb.gorko.ru/%D1%80%D0%B5%D1%81%D1%82%D0%BE%D1%80%D0%B0%D0%BD%D1%8B/Banketniy-zal-na-30-chelovek-v-Sankt-Peterburge",
+    "name": "Банкетный зал на 30 человек в Санкт-Петербурге",
+    "snippet": "Банкетные залы, рестораны и кафе для банкета на 30 человек в Санкт-Петербурге ; Graf ZEPPELIN · 9.9 · На карте · 20 – 80 чел. · от 5 000 ₽/чел. ; Фламбе · 9.8 ...",
+    "host_name": "spb.gorko.ru",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "http://spb.banketresto.ru/main_menu/banketnyj_zal",
+    "name": "Банкетные залы - Рестораны Санкт-Петербурга",
+    "snippet": "банкет от 3500 руб., средний счет 1500р. ПозвонитьЗабронировать · Банкетный зал Дворец Князя Владимира · Банкетный зал Дворец Князя Владимира. Дворцовая ...",
+    "host_name": "spb.banketresto.ru",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.restoclub.ru/spb/search/banket",
+    "name": "Рестораны и банкетные залы в СПб для проведения банкетов",
+    "snippet": "Банкетот 5000 р./чел.до 80 чел.Захватывающий панорамный вид на Исаакиевский собор и крыши города.",
+    "host_name": "www.restoclub.ru",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://wedwed.ru/spb/catalog/ploschadki/restorany-na-svadbu-na-51-70-chelovek-spb",
+    "name": "Свадьба на 60–70 человек в СПб — рестораны и банкетные залы",
+    "snippet": "Рестораны и банкетные залы для свадьбы на 60–70 человек в Санкт-Петербурге ... Средний чек. 1500 - 3500 руб. 3500 - 4000 руб. 4000 - 8500 руб. Очистить",
+    "host_name": "wedwed.ru",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.avtobanket.ru/article/restorani-banketnie-zaly-na-30-chelovek.html",
+    "name": "Рестораны и банкетные залы на 30 человек в Санкт-Петербурге",
+    "snippet": "Банкет: от 30 до 70 чел. Депозит: от 3900 р. на человека. Аренда: отсутствует в течение 6 часов (до 22:00), продление - ...",
+    "host_name": "www.avtobanket.ru",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]
+🎉 Function invocation completed!

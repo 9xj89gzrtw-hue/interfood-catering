@@ -1,0 +1,50 @@
+🚀 Initializing Z-AI SDK...
+🚀 Invoking function: web_search...
+[
+  {
+    "url": "https://www.tadviser.ru/index.php/%D0%A1%D1%82%D0%B0%D1%82%D1%8C%D1%8F:%D0%9C%D0%BE%D0%B1%D0%B8%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9_%D1%82%D1%80%D0%B0%D1%84%D0%B8%D0%BA_(%D1%80%D0%BE%D1%81%D1%81%D0%B8%D0%B9%D1%81%D0%BA%D0%B8%D0%B9_%D1%80%D1%8B%D0%BD%D0%BE%D0%BA)",
+    "name": "Мобильный трафик (российский рынок) - TAdviser",
+    "snippet": "2024. Объем мобильного трафика в России за год вырос на 13% и достиг 44,6 тыс. Пбайт · 2022. Мобильный трафик в Рунете за девять месяцев вырос до ...",
+    "host_name": "www.tadviser.ru",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://statbase.ru/data/rus-mobile-broadband-internet-traffic",
+    "name": "Объем мобильного интернет-трафика | Россия. Данные по годам",
+    "snippet": "Объем трафика мобильного интернета в России в 2024 году составил 49 283 072 терабайт, что на 13.8% больше, чем в 2023 году, когда он было равен 43 306 189 ...",
+    "host_name": "statbase.ru",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.comnews.ru/content/244585/2026-04-03/2026-w14/1010/bolee-90-mobilnogo-trafika-rossii-formiruyut-polzovateli-starshe-25-let",
+    "name": "Более 90% мобильного трафика в России формируют",
+    "snippet": "Более 90% мобильного трафика в России формируют пользователи старше 25 лет · Мобильный трафик: +16% за год. Среднемесячное потребление мобильного ...",
+    "host_name": "www.comnews.ru",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://inclient.ru/mobile-internet-stats",
+    "name": "Мобильный интернет в мире (2025) - Кто такой Алексей Бегин?",
+    "snippet": "61.72% всего веб-трафика приходилось на мобильные телефоны. За последние десять лет доля мобильного интернет-трафика в мире выросла в два раза, ...",
+    "host_name": "inclient.ru",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://adpass.ru/statistika-interneta-i-sotssetej-na-2024-god-tsifry-i-trendy-v-mire-i-v-rossii",
+    "name": "Статистика интернета и соцсетей на 2024 год - ADPASS",
+    "snippet": "Видео — главный драйвер интернет-трафика, на него приходится 75% всего мобильного трафика. YouTube остается ведущей видеоплатформой с самой ...",
+    "host_name": "adpass.ru",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]
+🎉 Function invocation completed!

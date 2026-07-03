@@ -1,0 +1,50 @@
+🚀 Initializing Z-AI SDK...
+🚀 Invoking function: web_search...
+[
+  {
+    "url": "https://thecaters.ru/kak-zakazat-kejtering",
+    "name": "Как выбрать и заказать кейтеринг - особенности выбора компании",
+    "snippet": "При выборе фирмы следует обращать внимание на то, какой праздник может спланировать, какое количество гостей способна обслужить, в какие районы города ...",
+    "host_name": "thecaters.ru",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://m-catering.ru/blog/kak-vybrat-keytering-5-shagov",
+    "name": "Как выбрать кейтеринг: 5 шагов",
+    "snippet": "Шаг 1: Гости и тип кейтеринга ... Ключевой момент при решении любых вопросов по поводу свадьбы — количество гостей. В первую очередь важно, чтобы качество блюд не ...",
+    "host_name": "m-catering.ru",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/weddingplanning/comments/10nr32s/how_do_i_choose_a_caterer/?tl=ru",
+    "name": "Как выбрать кейтеринг?! : r/weddingplanning - Reddit",
+    "snippet": "Кто лучше всего учитывает аллергии и диетические ограничения? У кого лучшие отзывы? Входят ли в стоимость блюда, приборы и салфетки, или у кого ...",
+    "host_name": "www.reddit.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://eventologia.ru/blog/kejtering-na-meropriyatie-kak-vybrat-podryadchika",
+    "name": "Как выбрать кейтеринг на мероприятие - Ивентология",
+    "snippet": "Как выбрать кейтеринг на мероприятие · Виды кейтеринга и особенности · Как выбрать подрядчика — кейтеринговую службу · Чек-лист для проведения тест ...",
+    "host_name": "eventologia.ru",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.instagram.com/p/DHbNtMuNbSq",
+    "name": "Выбор кейтеринга – очень важная часть подготовки мероприятия",
+    "snippet": "▪️Определитесь с форматом мероприятия. Формат, локация, количество гостей – перед поиском кейтеринговой компании необходимо определить основные ...",
+    "host_name": "www.instagram.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]
+🎉 Function invocation completed!

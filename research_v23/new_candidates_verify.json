@@ -1,0 +1,194 @@
+[
+  {
+    "url": "https://groupepoteletchabot.com/en",
+    "name": "Potel et Chabot (FR)",
+    "code": 200,
+    "server": "cloudflare",
+    "final_url": "https://groupepoteletchabot.com/en",
+    "ok": true
+  },
+  {
+    "url": "https://www.movingvenue.com",
+    "name": "Moving Venue (UK)",
+    "code": 200,
+    "server": "nginx",
+    "final_url": "https://www.movingvenue.com",
+    "ok": true
+  },
+  {
+    "url": "https://www.chandcogroup.com",
+    "name": "CH & Co Group (UK)",
+    "code": 403,
+    "server": "HTTPError",
+    "final_url": "https://www.chandcogroup.com",
+    "ok": false
+  },
+  {
+    "url": "https://www.souschef.co.uk",
+    "name": "Sous Chef (UK)",
+    "code": 200,
+    "server": "cloudflare",
+    "final_url": "https://www.souschef.co.uk",
+    "ok": true
+  },
+  {
+    "url": "https://www.foodshows.co.uk",
+    "name": "Food Shows (UK)",
+    "code": null,
+    "server": "URLError: timed out",
+    "final_url": "https://www.foodshows.co.uk",
+    "ok": false
+  },
+  {
+    "url": "https://www.dragonbluecatering.com",
+    "name": "Dragon Blue (UK)",
+    "code": null,
+    "server": "URLError: [Errno -2] Name or service not known",
+    "final_url": "https://www.dragonbluecatering.com",
+    "ok": false
+  },
+  {
+    "url": "https://ahscatering.com",
+    "name": "AHS Catering (Dubai)",
+    "code": 200,
+    "server": "LiteSpeed",
+    "final_url": "https://ahscatering.com",
+    "ok": true
+  },
+  {
+    "url": "https://dish.ae",
+    "name": "Dish Dubai",
+    "code": 200,
+    "server": "Apache",
+    "final_url": "https://dish.ae",
+    "ok": true
+  },
+  {
+    "url": "https://www.elements.catering",
+    "name": "Elements (Dubai)",
+    "code": 200,
+    "server": "cloudflare",
+    "final_url": "https://www.elements.catering",
+    "ok": true
+  },
+  {
+    "url": "https://www.monchef.ae/event-catering",
+    "name": "MonChef Dubai",
+    "code": 200,
+    "server": "nginx-rc",
+    "final_url": "https://www.monchef.ae/event-catering/",
+    "ok": true
+  },
+  {
+    "url": "https://procat.ae",
+    "name": "ProCat Dubai",
+    "code": 200,
+    "server": "nginx",
+    "final_url": "https://procat.ae",
+    "ok": true
+  },
+  {
+    "url": "https://amici.com.sg",
+    "name": "Amici (Singapore)",
+    "code": 200,
+    "server": "nginx",
+    "final_url": "https://amici.com.sg",
+    "ok": true
+  },
+  {
+    "url": "https://www.luxecatering.com.sg",
+    "name": "Luxe Catering (Singapore)",
+    "code": 200,
+    "server": "nginx",
+    "final_url": "https://www.luxecatering.com.sg",
+    "ok": true
+  },
+  {
+    "url": "https://purplesage.com.sg",
+    "name": "Purple Sage (Singapore)",
+    "code": 403,
+    "server": "HTTPError",
+    "final_url": "https://purplesage.com.sg",
+    "ok": false
+  },
+  {
+    "url": "https://www.caterco.com.sg",
+    "name": "CaterCo (Singapore)",
+    "code": 200,
+    "server": "cloudflare",
+    "final_url": "https://www.caterco.com.sg",
+    "ok": true
+  },
+  {
+    "url": "https://www.orangeclove.com.sg",
+    "name": "Orange Clove (Singapore)",
+    "code": 200,
+    "server": "nginx",
+    "final_url": "https://www.orangeclove.com.sg",
+    "ok": true
+  },
+  {
+    "url": "https://luxevents.com",
+    "name": "LUX Catering & Events (Utah USA)",
+    "code": 200,
+    "server": "Flywheel/5.1.0",
+    "final_url": "https://luxevents.com",
+    "ok": true
+  },
+  {
+    "url": "https://www.doco.com",
+    "name": "DOCO (global chain, 32 locations)",
+    "code": 200,
+    "server": "nginx",
+    "final_url": "https://www.doco.com",
+    "ok": true
+  },
+  {
+    "url": "https://www.albron.nl",
+    "name": "Albron (Netherlands)",
+    "code": 200,
+    "server": "",
+    "final_url": "https://www.albron.nl/nl/",
+    "ok": true
+  },
+  {
+    "url": "https://lifegourmetcatering.com",
+    "name": "Life Gourmet Catering (Spain)",
+    "code": null,
+    "server": "URLError: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1010)",
+    "final_url": "https://lifegourmetcatering.com",
+    "ok": false
+  },
+  {
+    "url": "https://www.salthousecatering.com",
+    "name": "Salthouse",
+    "code": 200,
+    "server": "Squarespace",
+    "final_url": "https://www.salthousecatering.com",
+    "ok": true
+  },
+  {
+    "url": "https://abigailkirsch.com",
+    "name": "Abigail Kirsch",
+    "code": 403,
+    "server": "HTTPError",
+    "final_url": "https://abigailkirsch.com",
+    "ok": false
+  },
+  {
+    "url": "https://bywordofmouth.co.uk",
+    "name": "By Word of Mouth",
+    "code": 403,
+    "server": "HTTPError",
+    "final_url": "https://bywordofmouth.co.uk",
+    "ok": false
+  },
+  {
+    "url": "https://www.cateringbymichaels.com",
+    "name": "Catering by Michaels",
+    "code": 403,
+    "server": "HTTPError",
+    "final_url": "https://www.cateringbymichaels.com",
+    "ok": false
+  }
+]

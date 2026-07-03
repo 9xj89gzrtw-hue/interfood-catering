@@ -1,0 +1,50 @@
+🚀 Initializing Z-AI SDK...
+🚀 Invoking function: web_search...
+[
+  {
+    "url": "https://foodshot.ai/ru/blog/catering-marketing-guide",
+    "name": "Маркетинг кейтеринга: полный гид по росту выручки - FoodShot AI",
+    "snippet": "Полный гид по маркетингу кейтеринга 2026: данные рынка, бренд, воронка продаж, SEO, соцсети, фуд фотография и ROI.",
+    "host_name": "foodshot.ai",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://caterme.ru/partner/guide",
+    "name": "Инструкция для партнеров - Кейтеринг CaterMe",
+    "snippet": "Статистика – количество блюд, готовых предложений и выполненных заказов. Краткое описание компании, которое показывает ваши ключевые преимущества. Подробнее, ...",
+    "host_name": "caterme.ru",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://design.megagroup.ru/solution/keytering",
+    "name": "Готовые сайты 'Кейтеринг'",
+    "snippet": "Успейте подать заявку, чтобы получить современный сайт с максимальной выгодой. Условия акции. Регионы. Новосибирск · +7 (383) 207-80-51 · Ростов-на-Дону · +7 ( ...",
+    "host_name": "design.megagroup.ru",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://vc.ru/seo/2917118-prodvizhenie-kejteringa",
+    "name": "Продвижение сайта кейтеринга: как кейтеринговой компании",
+    "snippet": "Продвижение кейтеринга, структура сайта, семантическое ядро, оптимизация карточек, локальное SEO, контент-маркетинг, поведенческие факторы.",
+    "host_name": "vc.ru",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://direct.yandex.ru/base/articles/keytering-marketing-i-luchshie-strategii-prodvizheniya",
+    "name": "Кейтеринг: маркетинг и лучшие стратегии продвижения",
+    "snippet": "В этой статье разберём ключевые инструменты продвижения и подходы: от сайта и SEO до социальных сетей и офлайн-активностей. Продвижение ...",
+    "host_name": "direct.yandex.ru",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]
+🎉 Function invocation completed!

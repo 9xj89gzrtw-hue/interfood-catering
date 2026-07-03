@@ -1,0 +1,50 @@
+🚀 Initializing Z-AI SDK...
+🚀 Invoking function: web_search...
+[
+  {
+    "url": "https://eventologia.ru/blog/kejtering-na-meropriyatie-kak-vybrat-podryadchika",
+    "name": "Как выбрать кейтеринг на мероприятие - Ивентология",
+    "snippet": "Главный критерий — всем присутствующим должно быть удобно наблюдать сцену. Кейтеринг, виды и характеристики (банкет, фуршет, кофе-брейк) | Как.",
+    "host_name": "eventologia.ru",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/weddingplanning/comments/10nr32s/how_do_i_choose_a_caterer/?tl=ru",
+    "name": "Как выбрать кейтеринг?! : r/weddingplanning - Reddit",
+    "snippet": "Кто лучше всего учитывает аллергии и диетические ограничения? У кого лучшие отзывы? Входят ли в стоимость блюда, приборы и салфетки, или у кого ...",
+    "host_name": "www.reddit.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://m-catering.ru/blog/kak-vybrat-keytering-5-shagov",
+    "name": "Как выбрать кейтеринг: 5 шагов",
+    "snippet": "Во-первых, оцените подачу блюда. · Во-вторых, качество сервировки (какая посуда, текстиль) и обслуживание во время дегустации. · В-третьих, понаблюдайте за ...",
+    "host_name": "m-catering.ru",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://canapeclub.ru/blog/kak-vybrat-catering",
+    "name": "Как выбрать кейтеринг – секреты организации успешного",
+    "snippet": "Выбрать кейтеринговую компанию с полным спектром услуг. У правильно организованного мероприятия один качественный показатель – довольные гости.",
+    "host_name": "canapeclub.ru",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://thecaters.ru/kak-zakazat-kejtering",
+    "name": "Как выбрать и заказать кейтеринг - особенности выбора компании",
+    "snippet": "Главными критериями считаются способность к разговору и сильная заинтересованность в работе. Если партнер хочет общаться только в переписке и долго отвечает ...",
+    "host_name": "thecaters.ru",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]
+🎉 Function invocation completed!

@@ -1,0 +1,50 @@
+🚀 Initializing Z-AI SDK...
+🚀 Invoking function: web_search...
+[
+  {
+    "url": "https://eatcatering.ru",
+    "name": "Кейтеринг в Санкт-Петербурге и Ленинградской области от",
+    "snippet": "Первый раз воспользовалась услугами компании EAT catering. Очень довольны. Всё было безупречно. Мы потеряли много бойцов на ледяных дорожках кёрлинга, их сложно ...",
+    "host_name": "eatcatering.ru",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://otzovik.com/reviews/eatcatering_spb-banket_keytering",
+    "name": "Отзывы о Eatcatering.spb - банкет кейтеринг - Отзовик",
+    "snippet": "Огромное спасибо Eatcatering и менеджеру Ованесу за профессионализм и высокое качество исполнения! Еда была на высшем уровне, все продукты свежие и очень ...",
+    "host_name": "otzovik.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://spb.caterme.ru/caterer/EATcatering",
+    "name": "EAT catering: заказ еды и кейтеринга в г г Санкт-Петербург",
+    "snippet": "Отзывы о EAT catering ; Банкет. от 25 000 р. ; Кофе-брейк. от 25 000 р. ; Фуршет. от 25 000 р. ; Доставка блюд и напитков. от 2 000 р.",
+    "host_name": "spb.caterme.ru",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.restoclub.ru/spb/place/eat-catering",
+    "name": "Кейтеринг «Eat Catering - Санкт-Петербург - Restoclub.ru",
+    "snippet": "Кейтеринг «Eat Catering» / «Ит кейтеринг» в Санкт-Петербурге, пер. Уманский 68к3: описание, фотографии, телефоны, меню с ценами, отзывы.",
+    "host_name": "www.restoclub.ru",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://bash.today/posts/luchshie-kejteringovye-kompanii-v-spb",
+    "name": "Топ-15 кейтеринговых компаний Санкт-Петербурга - Bash Today",
+    "snippet": "В Eat Catering предлагают разные форматы: от классических банкетов и фуршетов до барбекю на открытом воздухе, детских праздников или, например, выездных ...",
+    "host_name": "bash.today",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]
+🎉 Function invocation completed!

@@ -1,0 +1,74 @@
+[
+  {
+    "url": "https://vercel.com/docs/cli",
+    "name": "Vercel CLI Overview",
+    "snippet": "Set the VERCEL_TOKEN environment variable; Pass the --token option to the command. Using the VERCEL_TOKEN environment variable is recommended ...",
+    "host_name": "vercel.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/vercel-labs/agent-skills/blob/main/skills/vercel-cli-with-tokens/SKILL.md",
+    "name": "agent-skills/skills/vercel-cli-with-tokens/SKILL.md at main - GitHub",
+    "snippet": "Deploy and manage projects on Vercel using the CLI with token-based authentication, without relying on vercel login . Step 1: Locate the Vercel Token. Before ...",
+    "host_name": "github.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://vercel.com/docs/cli/global-options",
+    "name": "Vercel CLI Global Options",
+    "snippet": "VERCEL_TOKEN environment variable: Set the token as an environment variable. If both are provided, the --token flag takes precedence over the ...",
+    "host_name": "vercel.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://agentskillsfinder.com/skills/vercel-cli-with-tokens",
+    "name": "vercel-cli-with-tokens install and usage guide - Agent Skills Finder",
+    "snippet": "“Use the vercel-cli-with-tokens skill to deploy this repo from the current directory. First check whether VERCEL_TOKEN is already set, then ...",
+    "host_name": "agentskillsfinder.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://community.vercel.com/t/pass-environment-variables-to-the-vercel-cli-build-command/10653",
+    "name": "Pass environment variables to the vercel CLI build command - Help",
+    "snippet": "The vercel CLI deploy command has the option to pass build environment variables, because the build is happening at Vercel.",
+    "host_name": "community.vercel.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://mcpmarket.com/tools/skills/vercel-cli-with-tokens-1",
+    "name": "Vercel CLI with Tokens: Secure Deployment Claude Code Skill",
+    "snippet": "This skill provides a standardized workflow for interacting with the Vercel CLI using access tokens instead of interactive logins.",
+    "host_name": "mcpmarket.com",
+    "rank": 5,
+    "date": "Jun 27, 2026",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/nextjs/comments/xqtxqd/help_vercel_cli_deployment_still_accessing_local",
+    "name": "[Help] Vercel CLI Deployment still accessing local environment",
+    "snippet": "Using the Vercel CLI, I first pull the environment variables from Vercel with vercel pull --environment=preview , build with vercel build , and ...",
+    "host_name": "www.reddit.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.craigwardman.com/blog/deploying-to-vercel-from-the-cli",
+    "name": "Deploying to Vercel from the CLI | CraigWardman.com",
+    "snippet": "Create the \"Project\" in Vercel · Deploy an application (from within a monorepo) · Configure the project as part of the deployment, to avoid having ...",
+    "host_name": "www.craigwardman.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  }
+]

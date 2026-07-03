@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "# Premium Catering Website Contact Page Audit (Desktop)\n\n## 1. CONTACT FORM: Labels, Validation, Focus States, Consent Checkbox, Submission\n**Score: 6/10**\n\n**What's good:**\n- Clear required field indicators (asterisks)\n- Logical field order (name, phone, event type, guests, date, message)\n- Professional button styling with hover effect\n- Consent checkbox present with policy link\n\n**What needs improvement:**\n- No visible focus states (critical accessibility issue)\n- No real-time validation feedback\n- Checkbox styling is minimal and unclear\n- No submission success/error messaging\n- \"Format meropriyatiya\" label is unclear (should be \"Event Type\")\n- No placeholder text for guidance\n\n**Specific fixes:**\n- Add visible focus states (e.g., border color change, shadow)\n- Implement real-time validation with error messages\n- Improve checkbox visibility (larger, more contrast)\n- Add success toast or confirmation message\n- Replace with clear label \"Event Type\"\n- Add descriptive placeholders (e.g., \"Your full name\")\n- Add form submission loading state\n\n## 2. MAP: Integration, Location Visibility\n**Score: 3/10**\n\n**What's good:**\n- Address clearly displayed in text format\n\n**What needs improvement:**\n- No map integration at all\n- Address is just plain text without interactivity\n- No clickable directions or location marker\n- No visual representation of the venue\n- No satellite/street view option\n\n**Specific fixes:**\n- Integrate Google Maps or similar with embedded map\n- Add clickable \"Get Directions\" button\n- Include a marker showing exact location\n- Add venue photo in map popup\n- Make address clickable for quick copy/paste\n\n## 3. VISUAL DESIGN: Layout, Form Aesthetics\n**Score: 7/10**\n\n**What's good:**\n- Professional dark theme consistent with luxury brand\n- Good contrast between form and background\n- Clean two-column layout (contact info vs form)\n- Elegant typography matching premium catering\n- Consistent spacing and alignment\n\n**What needs improvement:**\n- Form fields lack sufficient hover/active states\n- Checkbox styling is too subtle\n- Button could be more prominent\n- No visual hierarchy differentiation between required/optional fields\n- Dark background may cause readability issues for some users\n\n**Specific fixes:**\n- Enhance form field interactions with subtle animations\n- Improve checkbox visibility with custom styling\n- Make submit button more prominent (e.g., gold accent)\n- Add subtle visual cues for required fields\n- Consider adding a lighter form background or better contrast\n\n## 4. UX: Multiple Contact Channels, Response Time Expectations\n**Score: 5/10**\n\n**What's good:**\n- Multiple contact methods (phone, email, WhatsApp, Telegram, VK)\n- Clear business hours displayed\n- Professional contact information presentation\n\n**What needs improvement:**\n- No response time expectations (critical for premium service)\n- No \"Contact Us\" button prominence\n- WhatsApp/Telegram buttons lack clear purpose\n- No live chat option (despite floating icon)\n- No email subject suggestion for inquiries\n\n**Specific fixes:**\n- Add response time guarantee (e.g., \"We respond within 2 hours\")\n- Make contact methods more prominent with icons\n- Add clear purpose to social buttons (e.g., \"Message us on WhatsApp\")\n- Implement functional live chat\n- Add email subject suggestion for faster routing\n- Consider adding a \"Call Now\" button for urgent inquiries\n\n**Overall Assessment:** The page has strong visual design but lacks critical UX elements for a premium catering service. The form needs significant accessibility and usability improvements, and the absence of a map is a major drawback for location-based services. Response time expectations are particularly important for high-end clients who need reassurance about service quality and availability.",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1782676149,
+  "id": "202606290348565454b87a19ae4ea6",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "202606290348565454b87a19ae4ea6",
+  "usage": {
+    "completion_tokens": 793,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 3940,
+    "prompt_tokens_details": {
+      "cached_tokens": 7
+    },
+    "total_tokens": 4733
+  }
+}

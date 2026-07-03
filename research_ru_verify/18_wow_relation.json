@@ -1,0 +1,50 @@
+🚀 Initializing Z-AI SDK...
+🚀 Invoking function: web_search...
+[
+  {
+    "url": "https://wow-eve.ru/eda",
+    "name": "Еда - WOW Events",
+    "snippet": "Дмитрий отвечает за гастрономическое направление во всех ресторанах WOW EVENTS и в ZEPPELIN Catering. Под его руководством создаются меню для свадеб, бизнес ...",
+    "host_name": "wow-eve.ru",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://zepcatering.ru",
+    "name": "Кейтеринг в Санкт-Петербурге - заказать выездной банкет и",
+    "snippet": "Дмитрий Калюжный. Бренд шеф Zeppelin Events. Ксения Грачева. Основатель Zeppelin Events. Антон Игумнов. Руководитель банкетной службы. Мария Костарнова.\nПрофессиональный кейтеринг в СПб и Ленинградской области: организация банкетов, фуршетов, кофе-брейков и доставка меню. Закажите услуги кейтеринга онлайн.",
+    "host_name": "zepcatering.ru",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.instagram.com/woweventsspb",
+    "name": "WOW EVENTS | Санкт-Петербург (@woweventsspb) - Instagram",
+    "snippet": "WOW Events × Zeppelin Catering — создаем события со вкусом и характером. ... Меню разрабатывает бренд-шеф Дмитрий Калюжный — чистые вкусы, точная подача, внимание ...\n632 Followers, 258 Following, 661 Posts - WOW EVENTS | Санкт-Петербург (@woweventsspb) on Instagram: \"Банкетные рестораны и кейтеринг в Петербурге Александровский Парк | Graf Zeppelin | Кейтеринг ⬇️ Связаться с нами taplink.cc/zeppelinspb\"",
+    "host_name": "www.instagram.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.instagram.com/reel/DJq9z7JIGAR",
+    "name": "Немного процесса создания Ваших праздников   Трудимся не",
+    "snippet": "Выездное обслуживание ZEPPELIN Catering Шоу, иммерсивные праздники, события, которые остаются в памяти - WOW Production Мы создаём не просто ...",
+    "host_name": "www.instagram.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://zeppcatering.orgs.biz",
+    "name": "ZEPPELIN Catering - выездное обслуживание мероприятий в",
+    "snippet": "Как мне сделать заказ на кейтеринг в ZEPPELIN Catering? Чтобы сделать заказ или получить консультацию, вы можете связаться с нами по телефону +7 (921) 941-11-24 ...",
+    "host_name": "zeppcatering.orgs.biz",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]
+🎉 Function invocation completed!

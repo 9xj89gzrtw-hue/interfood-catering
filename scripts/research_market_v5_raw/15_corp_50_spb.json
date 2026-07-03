@@ -1,0 +1,50 @@
+🚀 Initializing Z-AI SDK...
+🚀 Invoking function: web_search...
+[
+  {
+    "url": "https://spb.caterme.ru/offers/sankt-peterburg/furshet/50",
+    "name": "Готовые предложения на фуршет на 50 человек в Санкт",
+    "snippet": "58 525 ₽. 1 171 руб./чел. Фуршет на 50 персон ; 52 000 ₽. 1 040 руб./чел. Фуршет брускетт «Нежный» с напитками на 45-50 персон ; 111 875 ₽. 2 238 руб./чел. Фуршет ...",
+    "host_name": "spb.caterme.ru",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://spb.set-furshet.ru/catering/50-chelovek",
+    "name": "Заказать кейтеринг на 50 человек в Санкт-Петербурге",
+    "snippet": "Дешевле классического кейтеринга. Принимаем заказ от одного сета за 6 часов до мероприятия. Бесплатная доставка действует при заказе от 7000 рублей в пределах ...",
+    "host_name": "spb.set-furshet.ru",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://spb.canapeclub.ru/catering",
+    "name": "Кейтеринг в Санкт-Петербурге - CanapeClub",
+    "snippet": "Стоимость организации кейтеринга ; Фуршет «Стандарт» · 2500 · Норма: от 345 г на человека ; Фуршет «Премиум» · 3600 · Норма: от 465 г на человека ; Фуршет «ВИП» · 6000 ...",
+    "host_name": "spb.canapeclub.ru",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://bash.today/posts/luchshie-kejteringovye-kompanii-v-spb",
+    "name": "Топ-15 кейтеринговых компаний Санкт-Петербурга - Bash Today",
+    "snippet": "1. «Сет-Фуршет» · 2. Eat Сatering · 3. Канапе Клаб · 4. Empire catering · 5. «Северо-западная кейтеринговая компания» · 6. «Аллегро кейтеринг» · 7. Stroganoff ...",
+    "host_name": "bash.today",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://kanapedia.ru",
+    "name": "Кейтеринг СПб. Выездные банкеты, фуршеты, доставка еды",
+    "snippet": "С нами удобнее! · Практичная упаковка блюд · Различные формы оплаты · мероприятия любого уровня · Кухня от шефа · только свежие продукты · своевременная доставка.",
+    "host_name": "kanapedia.ru",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]
+🎉 Function invocation completed!

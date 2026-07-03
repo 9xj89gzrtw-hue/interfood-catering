@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://vercel.com/docs/cli/deploy",
+    "name": "vercel deploy",
+    "snippet": "The vercel deploy command deploys Vercel projects, executable from the project's root directory or by specifying a path.",
+    "host_name": "vercel.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://vercel.com/docs/cli",
+    "name": "Vercel CLI Overview",
+    "snippet": "Learn how to use the Vercel command-line interface (CLI) to manage and configure your Vercel Projects from the command line.",
+    "host_name": "vercel.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://stackoverflow.com/questions/74940135/how-to-deploy-to-vercel-staging-environment-using-bitbucket-pipelines-and-vercel",
+    "name": "How to deploy to Vercel staging environment using bitbucket",
+    "snippet": "Vercel only gives you 4 sets of environment variables you can pick from. When you're writing your Bitbucket Pipeline file, you've gotta pick 1 of those 4.",
+    "host_name": "stackoverflow.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://vercel.com/docs/deployments",
+    "name": "Deploying to Vercel",
+    "snippet": "You can deploy your Projects directly from the command line using Vercel CLI. This method works whether your project is connected to Git or not.",
+    "host_name": "vercel.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.freecodecamp.org/news/deploy-to-vercel-with-github-actions",
+    "name": "How To Deploy a Next.js App To Vercel With GitHub Actions",
+    "snippet": "In your Vercel account, go to Settings, then go to Tokens. Vercel account settings tokens. In the Create Token section, enter a name for your ...",
+    "host_name": "www.freecodecamp.org",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/nextjs/comments/xqtxqd/help_vercel_cli_deployment_still_accessing_local",
+    "name": "[Help] Vercel CLI Deployment still accessing local environment",
+    "snippet": "For some reason, the deployed site still has access to some of the environment variables that were available locally but not available on the UI.",
+    "host_name": "www.reddit.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=W3jKJ3V_4V4",
+    "name": "Deploy ANY Next.js app in 9 Minutes (using the Vercel CLI with your",
+    "snippet": "Use code SONNY at checkout to save up to £500 GBP with Hostinger (Limited Black Friday Offer!): https://www.hostinger.com/sonny 1️⃣ Join the ...",
+    "host_name": "www.youtube.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://community.vercel.com/t/how-to-set-environment-variables-per-deployment-using-vercel-cli/10349",
+    "name": "How to set environment variables per deployment using Vercel CLI",
+    "snippet": "I'm trying to use GitHub Actions to deploy the app to Vercel using this command. vercel deploy --yes --token=${{ secrets.PRIVATE_VERCEL_TOKEN }}",
+    "host_name": "community.vercel.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.craigwardman.com/blog/deploying-to-vercel-from-the-cli",
+    "name": "Deploying to Vercel from the CLI | CraigWardman.com",
+    "snippet": "Create the \"Project\" in Vercel; Deploy an application (from within a monorepo); Configure the project as part of the deployment, to avoid having ...",
+    "host_name": "www.craigwardman.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://medium.com/@gturkin/deploy-a-prebuilt-next-js-app-to-vercel-51c5086655b9",
+    "name": "Deploy a prebuilt Next.js app to Vercel | by George Turkin | Medium",
+    "snippet": "Vercel is a serverless cloud platform and it is a recommended way to deploy Next.js app. Moreover, both projects were created by the same developers.",
+    "host_name": "medium.com",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

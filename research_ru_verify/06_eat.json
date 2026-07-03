@@ -1,0 +1,50 @@
+🚀 Initializing Z-AI SDK...
+🚀 Invoking function: web_search...
+[
+  {
+    "url": "https://eatcatering.ru",
+    "name": "Кейтеринг в Санкт-Петербурге и Ленинградской области от",
+    "snippet": "Санкт-Петербург, Уманский переулок 68, к2. eat.catering@mail.ru. +7 (952) 209-22-44. Сайт нашей доставки. кОНТАКТНЫЕ ДАННЫЕ: Навигация по сайту: Форматы. Фото.",
+    "host_name": "eatcatering.ru",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://eatcatering.ru/eatbox",
+    "name": "Кейтеринг в боксах с доставкой по Санкт-Петербургу от Eat",
+    "snippet": "Кейтеринг в Санкт-Петербурге для частных и корпоративных мероприятий. Варианты меню: Welcome-коктейльный кейтеринг, Анимационный кейтеринг, БанкетBBQ, Фуршет, ...",
+    "host_name": "eatcatering.ru",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://eatcatering.ru/birthday",
+    "name": "Кейтеринг на день рождения в Санкт-Петербурге от компании",
+    "snippet": "Мы сможем организовать для Вас праздник любого формата – от тихого семейного застолья, до шумного веселья с шоу программой. Наша команда справится с заказами ...",
+    "host_name": "eatcatering.ru",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.restoclub.ru/spb/place/eat-catering/menu",
+    "name": "Eat Catering» / «Ит кейтеринг» в Петербурге | Цены - Restoclub.ru",
+    "snippet": "Полное меню. Меню (pdf, 14 Мбайт, обновлено 4 октября 2024). Забронируйте по телефону: +7 (952) 209-22-. Связаться с кейтерингом «Eat Catering».",
+    "host_name": "www.restoclub.ru",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://spb.caterme.ru/caterer/EATcatering",
+    "name": "EAT catering: заказ еды и кейтеринга в г г Санкт-Петербург",
+    "snippet": "Галерея выполненных работ компании. Все форматы; Банкет; Фуршет; Доставка блюд и напитков; Кофе-брейк; Доставка боксов. EAT catering. 1/29. EAT catering ...",
+    "host_name": "spb.caterme.ru",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]
+🎉 Function invocation completed!

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Интерфуд Кейтеринг — Static Export Hub</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0a; color: #fff; padding: 40px 20px; min-height: 100vh; }
+    h1 { text-align: center; font-size: 2.2rem; margin-bottom: 8px; color: #c8a97e; }
+    .subtitle { text-align: center; color: #888; margin-bottom: 40px; font-size: 1.1rem; }
+    .container { max-width: 1000px; margin: 0 auto; }
+    .method { background: #151515; border: 1px solid #2a2a2a; border-radius: 16px; padding: 28px 32px; margin-bottom: 20px; transition: border-color 0.2s; }
+    .method:hover { border-color: #c8a97e; }
+    .method h2 { font-size: 1.3rem; margin-bottom: 8px; color: #fff; display: flex; align-items: center; gap: 10px; }
+    .method h2 .badge { font-size: 0.7rem; padding: 3px 10px; border-radius: 20px; font-weight: 600; text-transform: uppercase; }
+    .badge-best { background: #16a34a; color: #fff; }
+    .badge-ok { background: #2563eb; color: #fff; }
+    .badge-partial { background: #d97706; color: #fff; }
+    .method p { color: #999; margin-bottom: 14px; line-height: 1.6; font-size: 0.95rem; }
+    .method ul { list-style: none; margin-bottom: 14px; }
+    .method li { color: #aaa; padding: 3px 0; font-size: 0.9rem; }
+    .method li::before { content: "→ "; color: #c8a97e; }
+    .method a { display: inline-block; background: #c8a97e; color: #000; padding: 10px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: background 0.2s; margin-right: 10px; }
+    .method a:hover { background: #dbb98f; }
+    .method a.secondary { background: transparent; color: #c8a97e; border: 1px solid #c8a97e; }
+    .method a.secondary:hover { background: #c8a97e22; }
+    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-top: 14px; }
+    .stat { background: #0a0a0a; padding: 12px 16px; border-radius: 8px; text-align: center; }
+    .stat .value { font-size: 1.4rem; font-weight: 700; color: #c8a97e; }
+    .stat .label { font-size: 0.75rem; color: #666; margin-top: 2px; text-transform: uppercase; }
+    .note { text-align: center; margin-top: 40px; color: #555; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🍽️ Интерфуд Кейтеринг</h1>
+    <p class="subtitle">Static Export Hub — 4 варианта просмотра сайта</p>
+
+    <div class="method">
+      <h2>Approach 1: Next.js Static Export <span class="badge badge-best">★ Best</span></h2>
+      <p>Официальный static export из Next.js (output: "export"). Все 17 страниц, JS/CSS бандлы, изображения и шрифты включены. Полностью интерактивный сайт.</p>
+      <div class="stats">
+        <div class="stat"><div class="value">17</div><div class="label">Pages</div></div>
+        <div class="stat"><div class="value">18 MB</div><div class="label">Size</div></div>
+        <div class="stat"><div class="value">✓</div><div class="label">JS Works</div></div>
+        <div class="stat"><div class="value">✓</div><div class="label">CSS Works</div></div>
+      </div>
+      <br>
+      <a href="site/index.html">Открыть сайт →</a>
+    </div>
+
+    <div class="method">
+      <h2>Approach 2: Node.js Scraped Site <span class="badge badge-ok">Alternative</span></h2>
+      <p>HTML-страницы, полученные через HTTP-запросы к localhost:3000 с перезаписью ссылок для локального просмотра. Включены _next ассеты из static export.</p>
+      <div class="stats">
+        <div class="stat"><div class="value">17</div><div class="label">Pages</div></div>
+        <div class="stat"><div class="value">17 MB</div><div class="label">Size</div></div>
+        <div class="stat"><div class="value">✓</div><div class="label">Links</div></div>
+        <div class="stat"><div class="value">~</div><div class="label">Rewritten</div></div>
+      </div>
+      <br>
+      <a href="scraped-site/index.html">Открыть scraped-сайт →</a>
+    </div>
+
+    <div class="method">
+      <h2>Approach 3: Screenshots Gallery <span class="badge badge-partial">Visual</span></h2>
+      <p>Полные скриншоты всех 17 страниц сайта через agent-browser. Не интерактивно, но даёт визуальное представление.</p>
+      <div class="stats">
+        <div class="stat"><div class="value">17</div><div class="label">Screenshots</div></div>
+        <div class="stat"><div class="value">23 MB</div><div class="label">Size</div></div>
+        <div class="stat"><div class="value">✓</div><div class="label">Visual</div></div>
+        <div class="stat"><div class="value">✗</div><div class="label">Interactive</div></div>
+      </div>
+      <br>
+      <a href="screenshots-gallery.html">Открыть галерею →</a>
+    </div>
+
+    <div class="method">
+      <h2>Approach 4: wget Mirror <span class="badge badge-ok">Mirror</span></h2>
+      <p>Зеркало сайта, созданное через wget --mirror --convert-links. Ссылки автоматически конвертированы для локального просмотра.</p>
+      <div class="stats">
+        <div class="stat"><div class="value">18</div><div class="label">Files</div></div>
+        <div class="stat"><div class="value">13 MB</div><div class="label">Size</div></div>
+        <div class="stat"><div class="value">✓</div><div class="label">Links</div></div>
+        <div class="stat"><div class="value">✓</div><div class="label">Assets</div></div>
+      </div>
+      <br>
+      <a href="wget-mirror/localhost:3000/index.html">Открыть wget-зеркало →</a>
+    </div>
+
+    <p class="note">Создано: 2026-07-01 · Исходный сайт: localhost:3000 · Проект: /home/z/my-project/</p>
+  </div>
+</body>
+</html>

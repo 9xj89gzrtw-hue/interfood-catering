@@ -1,0 +1,50 @@
+🚀 Initializing Z-AI SDK...
+🚀 Invoking function: web_search...
+[
+  {
+    "url": "https://catering-stg.ru/articles/trend-na-kejtering-v-boksakh",
+    "name": "Тренды кейтеринга в боксах на мероприятие в 2025 году",
+    "snippet": "Кейтеринг в боксах: какие тренды удивят гостей на мероприятиях в 2025 году · Формат подачи и упаковки · Разнообразие меню для бокс-формата · Логистика и доставка в ...",
+    "host_name": "catering-stg.ru",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://eventologia.ru/blog/kejtering-na-meropriyatiyah-v-2025-godu-chem-udivit-gostej-i-kakie-trendy-nas-zhdut",
+    "name": "Тренды кейтеринга на мероприятиях в 2025 году - Ивентология",
+    "snippet": "Кейтеринг на мероприятиях в 2025 году: чем удивить гостей и какие тренды нас ждут · 1. Устойчивое питание · 2. Веганские и вегетарианские блюда · 3 ...",
+    "host_name": "eventologia.ru",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://m-catering.ru/blog/vyezdnoy-keytering-dlya-yanvarskikh-vstrech",
+    "name": "Выездной кейтеринг для январских встреч: тренды 2025 года",
+    "snippet": "Тематические меню. В 2025 году акцент делается на адаптированные меню с локальными продуктами, блюдами для ЗОЖ и кулинарными трендами. · Эко-френдли кейтеринг.",
+    "host_name": "m-catering.ru",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.instagram.com/p/DOlmz5EjGmD/?hl=ms",
+    "name": "Фуд-тренды кейтеринга 2025–2026 Рассказываем о тенденциях",
+    "snippet": "Брендирование: оформление посуды, салфеток и элементов декора фиренной символикой ... Индивидуальные меню: состав с учётом предпочтений и пищевых ...",
+    "host_name": "www.instagram.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://zepcatering.ru/blog/trendy-cataringa-2025",
+    "name": "Тренды кейтеринга 2025: чем будут удивлять гостей?",
+    "snippet": "Тренды кейтеринга 2025: чем будут удивлять гостей? | Цеппелин Кейтеринг · 1. Фуд-театр по-петербургски · 2. Осознанная кухня и устойчивый подход.",
+    "host_name": "zepcatering.ru",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]
+🎉 Function invocation completed!

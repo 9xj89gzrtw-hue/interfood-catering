@@ -1,0 +1,50 @@
+🚀 Initializing Z-AI SDK...
+🚀 Invoking function: web_search...
+[
+  {
+    "url": "https://www.reddit.com/r/PPC/comments/1oovnzn/any_difference_in_getting_leads_from_a_leads/?tl=ru",
+    "name": "r/PPC on Reddit: Есть ли разница в получении лидов из кампании",
+    "snippet": "Есть ли разница в получении лидов из кампании \"Лиды (сайт)\" по сравнению с кампанией \"Продажи/Конверсии\", которая отслеживает кнопку отправки ...",
+    "host_name": "www.reddit.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://lpgenerator.ru/blog/2021/06/03/koefficient-konversii-lidov-lcr-i-15-sposobov-ego-optimizirovat",
+    "name": "Коэффициент конверсии лидов (LCR) и 15 способов его",
+    "snippet": "Усредненный коэффициент конверсии лидов составляет 2,35%, но лучшие 25% лендингов конвертируют посетителей на уровне 5,31% или выше. И только в ...",
+    "host_name": "lpgenerator.ru",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://envybox.io/blog/kak-ocenit-kachestvo-lidov-i-povysit-ih-konversiju-v-prodazhu",
+    "name": "Как оценить качество лидов и повысить их конверсию в продажу",
+    "snippet": "Повышение коэффициента конверсии лидов максимизирует отдачу от инвестиций в маркетинговые усилия (ROI). Это приводит к увеличению доходов и ...",
+    "host_name": "envybox.io",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://xn--80ajgqwpbe6f.xn--90ais/vopros-otvet/stoimost-lida-v-kontekstnoj-reklame",
+    "name": "Стоимость лида в контекстной рекламе",
+    "snippet": "Конверсия считается в процентах. Например, пришло на сайт 100 человек из них 1 позвонил, соответственно, конверсия сайта — 1%. Стоимость лида в контекстной ...",
+    "host_name": "xn--80ajgqwpbe6f.xn--90ais",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://kontur.ru/articles/6202",
+    "name": "Что такое лид и конверсия в продажах - Контур",
+    "snippet": "Лид — потенциальный клиент, который проявил интерес к услугам или продуктам компании и поделился ее контактами: телефоном, электронной ...",
+    "host_name": "kontur.ru",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]
+🎉 Function invocation completed!

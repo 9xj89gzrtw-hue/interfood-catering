@@ -1,0 +1,50 @@
+🚀 Initializing Z-AI SDK...
+🚀 Invoking function: web_search...
+[
+  {
+    "url": "https://www.vremena-goda.ru/furshety/furshety-na-150-500-chelovek",
+    "name": "Фуршет на 150-500 человек: организация и проведение со",
+    "snippet": "Например, минимальная цена фуршета на 500 человек рассчитывается исходя из тарифа 3000 руб. для одного гостя. Более того, рестораном предусмотрена скидка 10 ...",
+    "host_name": "www.vremena-goda.ru",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://cateringincity.ru/stati/furshet-skolko-grammov-na-cheloveka",
+    "name": "Фуршет: сколько грамм на человека нужно? Расчет меню и нормы",
+    "snippet": "Нормы блюд на человека: сколько еды нужно на фуршет ; До 1 часа, 6–8 позиций, 350–400 г ; 1,5–2 часа, 8–10 позиций, 450–550 г ; 3–4 часа, 12–15 ...",
+    "host_name": "cateringincity.ru",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/weddingplanning/comments/1jz3a8g/what_are_you_paying_per_head_for_catering/?tl=ru",
+    "name": "Сколько вы платите на человека за кейтеринг? : r/weddingplanning",
+    "snippet": "$159 с человека, включая кучу еды (8 закусок во время коктейльного часа, салат, суп и основное блюдо) и открытый бар.",
+    "host_name": "www.reddit.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.instagram.com/reel/DRUAlfgjb4Q",
+    "name": "СКОЛЬКО СТОИТ ФУРШЕТ? мой самый частый вопрос в директ",
+    "snippet": "Превращаю «Сколько стоит?» в «Это того стоило!» Поэтому я не просто скидываю прайс. Я создаю для вас индивидуальное предложение! Я честно ...",
+    "host_name": "www.instagram.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://rest-catering.ru/furshet/na-40person",
+    "name": "Фуршет на 40 персон: заказать организацию фуршета в Москве",
+    "snippet": "... 2025 01 21 16 55 49. Фуршет / На выезд. Фуршет на 40 человек. от 250 тыс рублей. Готовите масштабное мероприятие, но хотите, чтобы оно прошло без суеты? Мы ...",
+    "host_name": "rest-catering.ru",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]
+🎉 Function invocation completed!

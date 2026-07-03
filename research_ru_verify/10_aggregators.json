@@ -1,0 +1,50 @@
+🚀 Initializing Z-AI SDK...
+🚀 Invoking function: web_search...
+[
+  {
+    "url": "https://caterme.ru/about",
+    "name": "О сервисе CaterMe: Агрегатор кейтеринговых компаний",
+    "snippet": "Сервис CaterMe - агрегатор кейтеринговых компаний и ресторанов, основанный в 2016 году. Платформа даёт уникальную возможность всего по одной заявке получить ...",
+    "host_name": "caterme.ru",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://ru.wikipedia.org/wiki/CaterMe",
+    "name": "CaterMe - Википедия",
+    "snippet": "CaterMe (произн. КейтерМи) — российский сайт-агрегатор кейтеринговых компаний и ресторанов. Создан в 2016 году. CaterMe. Тип, частная компания.",
+    "host_name": "ru.wikipedia.org",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.instagram.com/caterme.ru",
+    "name": "Вкусная еда и кейтеринг (@caterme.ru) - Instagram",
+    "snippet": "CaterMe — первый маркетплейс для быстрого заказа кейтеринга на любое мероприятие. Работаем в 60 городах России.",
+    "host_name": "www.instagram.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://caterme.ru/delivery-and-payment",
+    "name": "Доставка блюд и оплата услуг - Кейтеринг CaterMe",
+    "snippet": "Доставка и оплата заказа в CaterMe — выбор среди множества предложений, расчет онлайн. Бесконтактная доставка с соблюдениями правил безопасности.",
+    "host_name": "caterme.ru",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://catery.ru",
+    "name": "Кейтеринг в Москве с доставкой: заказать фуршет или банкет на",
+    "snippet": "Закажите кейтеринг с доставкой в Москве ✓ Еда для офиса и мероприятий от 700+ компаний ✓ Проведение банкетов и фуршетов ✓ Выездное ...",
+    "host_name": "catery.ru",
+    "rank": 4,
+    "date": "Jun 24, 2026",
+    "favicon": ""
+  }
+]
+🎉 Function invocation completed!

@@ -1,0 +1,6 @@
+:HL["/_next/static/chunks/7aa270b2007d6ffa.css","style"]
+:HL["/_next/static/chunks/abce50451d20d9e8.css","style"]
+:HL["/images/hero.jpg","image",{"type":"image/jpeg","fetchPriority":"high"}]
+:HL["/fonts/cormorant-garamond-v15-cyrillic_latin-600.woff2","font",{"crossOrigin":"anonymous","type":"font/woff2"}]
+:HL["/fonts/inter-v18-cyrillic_latin-regular.woff2","font",{"crossOrigin":"anonymous","type":"font/woff2"}]
+0:{"buildId":"UUUYvY3uph5a5chwe57bC","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"/_not-found","paramType":null,"paramKey":"/_not-found","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":true},"staleTime":300}

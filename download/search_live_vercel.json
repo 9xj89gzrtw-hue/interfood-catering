@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://thegoodfood.vercel.app",
+    "name": "The Good Food",
+    "snippet": "Our new TGF app is a great way to keep track of your favourite dishes and get recommendations on what to order next. Plus, you can earn loyalty points every ...",
+    "host_name": "thegoodfood.vercel.app",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://pi-foods-app.vercel.app",
+    "name": "Food App",
+    "snippet": "You need to enable JavaScript to run this app. Tu navegador no soporta video HTML5. Let's cook. ,",
+    "host_name": "pi-foods-app.vercel.app",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://food-court-admin.vercel.app",
+    "name": "Food Admin",
+    "snippet": "Add Items. List Items.",
+    "host_name": "food-court-admin.vercel.app",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://v-food-app.vercel.app",
+    "name": "V-food App",
+    "snippet": "Our Virtual-food App is a virtual and Augmented Technological Restaurant app that allows you to cook virtually anywhere at anytime without visiting the ...",
+    "host_name": "v-food-app.vercel.app",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://vercel.com",
+    "name": "Vercel: Agentic Infrastructure",
+    "snippet": "Ship apps that scale from zero to millions instantly · Features · Global Delivery · Deployment Environments · Serverless Functions · Web Application Firewall ...",
+    "host_name": "vercel.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://food-order-online-frontend.vercel.app",
+    "name": "Food Order",
+    "snippet": "Order Restaurant food, takeaway and groceries. Feast Your Senses, Fast and Fresh. Enter a postcode to see what we deliver. Search. Food Banner ...",
+    "host_name": "food-order-online-frontend.vercel.app",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://food-delivery-app-fe.vercel.app",
+    "name": "Food Delivery App",
+    "snippet": "Order your favorite food here. Choose from a diverse menu featuring a delectable array of dishes crafted with the finest ingredients and culinary expertise.",
+    "host_name": "food-delivery-app-fe.vercel.app",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://vercel.com/login",
+    "name": "Login – Vercel",
+    "snippet": "Skip to content. Sign Up. Log in to Vercel. Continue with Email. Continue with Google Continue with GitHub. Continue with Apple.",
+    "host_name": "vercel.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://foodfinder-frontend.vercel.app",
+    "name": "Food Finder",
+    "snippet": "You need to enable JavaScript to run this app. Food Finder · Map · Favorites · Log In. Recents Favorites",
+    "host_name": "foodfinder-frontend.vercel.app",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://community.vercel.com/t/totallychefs-a-social-network-for-food-lovers/6114",
+    "name": "TotallyChefs - a social network for food lovers - Vercel Community",
+    "snippet": "A place for creating your own recipes, generating creative new ai recipes, saving recipes to your recipe boxes and sharing your recipes with others around the ...",
+    "host_name": "community.vercel.com",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

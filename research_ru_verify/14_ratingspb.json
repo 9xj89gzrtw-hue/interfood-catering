@@ -1,0 +1,50 @@
+🚀 Initializing Z-AI SDK...
+🚀 Invoking function: web_search...
+[
+  {
+    "url": "https://rating.spb.ru/catering/magnifique",
+    "name": "Кейтеринг Magnifique в рейтингах 2026",
+    "snippet": "В рейтинге лучших кейтерингов Magnifique занимает 86 место. В округе Василеостровский 21 место. Кейтеринг Magnifique в рейтингах 2026: Не входит в ТОП3. Быстрая ...",
+    "host_name": "rating.spb.ru",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://rating.spb.ru/catering-kirovskiy",
+    "name": "Лучшие кейтеринги Кировский - Рейтинг Санкт-Петербурга 2026",
+    "snippet": "ТОП-30 лучших кейтерингов в Кировском районе СПб. Новая Кейтеринг. Вы ... All-IN Catering · Кейтеринг Константа Кейтеринг · Кейтеринг Шашлычный Двор.",
+    "host_name": "rating.spb.ru",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://rating.spb.ru/catering?page=2",
+    "name": "ТОП-60. Рейтинг лучших кейтерингов Санкт-Петербурга 2026",
+    "snippet": "Лучшие ТОП-30 – ТОП-60 кейтеринги в Рейтинге Санкт-Петербурга. Узнайте, какие кейтеринги в Санкт-Петербурге лучшие по отзывам посетителей.",
+    "host_name": "rating.spb.ru",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://rating.spb.ru/catering/compare/keiterberri/ili/live-group",
+    "name": "Какой кейтеринг лучше: КейтерБэрри или Live Group",
+    "snippet": "Кейтеринг Live Group занимает 17 место в Rating Spb, в то время как КейтерБэрри на 49 месте.Таким образом, кейтеринг Live Group лучше, по мнению портала ...",
+    "host_name": "rating.spb.ru",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "http://rating.spb.ru/catering/biskvit/awards",
+    "name": "Кейтеринг Бисквит в рейтингах 2026 - Рейтинг Санкт-Петербурга",
+    "snippet": "Узнайте, какое место занимает Бисквит в Рейтинге Кейтеринги Санкт-Петербурга 2021-2022. Описание, фото, отзывы Бисквит в Рейтинге Санкт-Петербурга.",
+    "host_name": "rating.spb.ru",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]
+🎉 Function invocation completed!

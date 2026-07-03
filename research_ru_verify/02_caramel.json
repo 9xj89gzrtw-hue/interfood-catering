@@ -1,0 +1,50 @@
+🚀 Initializing Z-AI SDK...
+🚀 Invoking function: web_search...
+[
+  {
+    "url": "https://caramel-catering.ru",
+    "name": "Caramel-Catering",
+    "snippet": "Компания является аккредитованным оператор КВЦ «Экспофорум» и постоянный участник ключевых форумов страны: ПМЭФ, ПМГФ, «Россия–Африка», МВМС, «Нева», БРИКС.",
+    "host_name": "caramel-catering.ru",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://caramel-catering.ru/delovye-meroprijatija",
+    "name": "Бизнес кейтеринг. Фуршеты и банкеты на деловых мероприятиях",
+    "snippet": "Карамель Кейтеринг организует обслуживание бизнес-мероприятий. Первоклассное кейтеринговое обслуживание ваставок, форумов и деловых мероприятий.",
+    "host_name": "caramel-catering.ru",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.facebook.com/caramelcateringspb/?locale=es_LA",
+    "name": "Карамель Кейтеринг | Saint Petersburg - Facebook",
+    "snippet": "http://caramel-catering.ru/ Карамель Кейтеринг - это европейский уровень обслуживания и оригинальные решения для Ваших мероприятий, это так-же, тщательно ...",
+    "host_name": "www.facebook.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://caramel-catering.ru/gallery_item/kvc-jekspoforum-otkroetsja-v-oktjabre",
+    "name": "КВЦ «ЭКСПОФОРУМ» откроется в октябре - Caramel-Catering",
+    "snippet": "КВЦ «ЭКСПОФОРУМ» откроется в октябре. Площадка для проведения конгрессов, выставок, фестивалей. Тел.: 8(812)240-40-40.",
+    "host_name": "caramel-catering.ru",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://zabota.expoforum.ru/ru/servisy-gruppy-kompanij-jekspoforum/kejteringovoe-obsluzhivanie",
+    "name": "Кейтеринговое обслуживание – Международный форум",
+    "snippet": "СПЕЦИАЛИЗИРУЕМСЯ НА КРУПНЫХ И ЗНАКОВЫХ МЕРОПРИЯТИЯХ. Также Caramel Catering организовывает частные мероприятия и осуществляет доставку канапе в праздничных ...",
+    "host_name": "zabota.expoforum.ru",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]
+🎉 Function invocation completed!

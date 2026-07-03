@@ -1,0 +1,50 @@
+🚀 Initializing Z-AI SDK...
+🚀 Invoking function: web_search...
+[
+  {
+    "url": "https://wow-eve.ru",
+    "name": "WOW Events: Главная",
+    "snippet": "Выездной кейтеринг, банкет, фуршет ... Вы можете заказать кейтеринг отдельно, или в составе большого события. Мы точно рассчитаем объем, подберем формат и приедем ...",
+    "host_name": "wow-eve.ru",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://wowfurshet-spb.ru",
+    "name": "WOW FURSHET. Кейтеринг, фуршет, гастробоксы, детское меню",
+    "snippet": "Закажите фуршет, кейтеринг, детское меню, гастробоксы с доставкой в Санкт-Петербурге (СПб) и Ленинградской области (ЛО). Свежие и вкусные блюда для любого ...",
+    "host_name": "wowfurshet-spb.ru",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://wow-catering.ru",
+    "name": "WOW!CATERING",
+    "snippet": "Крупные компании такие как: \"Ростелеком\", \"hh\", \"Superjob\", \"Сбербанк\" и многие другие доверили нам. Наша команда профессионалов готова создать незабываемые ...",
+    "host_name": "wow-catering.ru",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.instagram.com/woweventsspb",
+    "name": "WOW EVENTS | Санкт-Петербург (@woweventsspb) - Instagram",
+    "snippet": "Бронируйте рестораны или выездной кейтеринг WOW EVENTS +7(905)200-65-67 #WOWEVENTS #zeppelincatering #брендшеф #ДмитрийКалюжный #банкетспб #фуршетспб # ...",
+    "host_name": "www.instagram.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.instagram.com/reel/DKKz6LnuDXO",
+    "name": "ZEPPELIN Catering готов приехать к Вам в любоооое место на",
+    "snippet": "Мы выросли, расширились и стали многограннее Теперь у нас не только рестораны и кейтеринг, но и режиссёрские шоу, иммерсивные постановки, арт- ...",
+    "host_name": "www.instagram.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]
+🎉 Function invocation completed!

@@ -1,0 +1,50 @@
+🚀 Initializing Z-AI SDK...
+🚀 Invoking function: web_search...
+[
+  {
+    "url": "https://www.megaresearch.ru/issledovaniya/prodovolstvie-pischevaya-promyshlennost/uslugi-organizaciya-pitaniya/1680",
+    "name": "Рынок кейтеринговых услуг в России: текущее состояние и",
+    "snippet": "На рынок Москвы приходится порядка 62% от общего объема рынка кейтеринга в России, на Санкт-Петербург - 22%. Нестоличные регионы в совокупности составляют лишь ...",
+    "host_name": "www.megaresearch.ru",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://marketing.rbc.ru/articles/14731",
+    "name": "Анализ российского рынка кейтеринга: итоги 2023 г., прогноз до",
+    "snippet": "Наиболее востребованным форматом кейтеринга в 2023 г. был буфет - около 62% от общего количества мероприятий, доля банкета составляла 34%, на ...",
+    "host_name": "marketing.rbc.ru",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://m-catering.ru/blog/glavnye-trendy-i-perspektivy-razvitiya-keyteringa-v-rossii",
+    "name": "Главные тренды и перспективы развития кейтеринга в России",
+    "snippet": "Объем рынка превысил 800 млрд руб., что на 9,3% выше показателя 2022 года. Аналитики NeoAnalytics отмечают главные тенденции – появление новых кейтеринг ...",
+    "host_name": "m-catering.ru",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://cyberleninka.ru/article/n/keytering-novyy-segment-rynka-obschestvennogo-pitaniya",
+    "name": "КЕЙТЕРИНГ - НОВЫЙ СЕГМЕНТ РЫНКА ОБЩЕСТВЕННОГО",
+    "snippet": "В статье проанализирован новый сегмент рынка общественного питания - кейтеринг, рассмотрены история его развития в России и перспективы дальнейшего развития.",
+    "host_name": "cyberleninka.ru",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://gidmark.ru/cat1/marketingovoe-issledovanie-rynka-kejteringa",
+    "name": "Анализ рынка кейтеринга в России",
+    "snippet": "Стоимость 45000 ₽ Купить: кейтеринг состоит из следующих взаимосвязанных элементов: презентация блюд, оформление оценка объема рынка, анализ конкурентов,",
+    "host_name": "gidmark.ru",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]
+🎉 Function invocation completed!

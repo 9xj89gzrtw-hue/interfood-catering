@@ -1,0 +1,50 @@
+🚀 Initializing Z-AI SDK...
+🚀 Invoking function: web_search...
+[
+  {
+    "url": "https://www.jivo.ru/blog/leads-generation/kakaya-konversiya-sayta-schitaetsya-khoroshey.html",
+    "name": "Какая конверсия сайта считается хорошей - Jivo",
+    "snippet": "Средняя конверсия в сфере бизнес-услуг — 3,5%. Лучший показатель – 13%. Высокий – 7,2%. Низкий – 1,4%. Средняя конверсия в области ...",
+    "host_name": "www.jivo.ru",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://o2k.ru/blog/srednyaya-konversiya",
+    "name": "Средняя конверсия интернет-магазинов в разных нишах",
+    "snippet": "Средняя конверсия ниши составила 2,8%. За 2020 год количество заказов увеличилось на 77% по сравнению с 2019. Лидеры по количеству заказов — интернет-магазины ...",
+    "host_name": "o2k.ru",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://envybox.io/blog/srednjaja-konversija-sajta",
+    "name": "Средняя конверсия сайта: как посчитать - Envybox",
+    "snippet": "По статистике у 37,3% веб-мастеров в данной сфере деятельности имеется хотя бы одна страница с конверсией ниже 1,8%. Если вам удастся выйти на ...",
+    "host_name": "envybox.io",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://romi.center/ru/learning/article/conversion-what-to-focus-on-in-2020",
+    "name": "Конверсия: на что ориентироваться - ROMI center",
+    "snippet": "Оптимальная конверсия для интернет-магазинов обычно составляет от 2% до 5%. Высокий показатель свидетельствует о хорошем пользовательском опыте ...",
+    "host_name": "romi.center",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://turumburum.ua/ru/blog-ru/kakoy-dolzhna-byt-srednyaya-konversiya-internet-magazina-statistika-po-nisham",
+    "name": "Средняя конверсия интернет-магазина: статистика по нишам",
+    "snippet": "По данным Data Insight, средняя конверсия сектора ecommerce в России, например, за период 2018-2019 годов составила 4%. Доставка еды. Как ...",
+    "host_name": "turumburum.ua",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]
+🎉 Function invocation completed!

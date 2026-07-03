@@ -1,0 +1,50 @@
+🚀 Initializing Z-AI SDK...
+🚀 Invoking function: web_search...
+[
+  {
+    "url": "https://spb.gorko.ru/%D1%80%D0%B5%D1%81%D1%82%D0%BE%D1%80%D0%B0%D0%BD%D1%8B/Banketniy-zal-na-50-chelovek-v-Sankt-Peterburge",
+    "name": "Банкетный зал на 50 человек в Санкт-Петербурге - Горько!",
+    "snippet": "от 2 750 ₽/чел. Ресторан с банкетным залом в центре Санкт-Петербурга. Кухня: Русская, европейская. Есть своя кухня. Особенности: Можно свои фрукты, ...",
+    "host_name": "spb.gorko.ru",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.avtobanket.ru/restorany-dlya-svadby/na-50-chelovek",
+    "name": "Рестораны для свадьбы на 50 человек в СПб - Автобанкет",
+    "snippet": "Найдено 416 ресторанов для организации свадьбы на 50 человек. Среди них 242 ресторана, 125 банкетных залов, 32 кафе и 17 дворцов.",
+    "host_name": "www.avtobanket.ru",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.restoclub.ru/spb/search/korporativ-na-50-chelovek",
+    "name": "Корпоратив в ресторане на 50 человек в Санкт-Петербурге",
+    "snippet": "Корпоративот 3500 руб.до 70 чел.Корпоративы в элегантном панорамном зале с классическими винами и возможностью принести свой алкоголь. Дарим бутылку игристого ...",
+    "host_name": "www.restoclub.ru",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://spb.wed-expert.com/categories/restaurants-and-cafes?capacity=5",
+    "name": "Банкетные залы на 50 человек в Санкт-Петербурге",
+    "snippet": "Ищите банкетный зал на 50 человек для вашей свадьбы в Санкт-Петербурге? Здесь вы найдете хороший список ресторанов и кафе для свадебного банкета на 50 ...",
+    "host_name": "spb.wed-expert.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.gdebar.ru/spb/articles/restorany-s-otdelnym-zalom-komnatoj-na-20-chelovek-a18333",
+    "name": "Рестораны с отдельным залом на 20 человек в Санкт-Петербурге",
+    "snippet": "Рестораны с отдельным залом на 20 человек · Ginza Project · Баклажан · Дискотека.рф · Peperoni / Пепперони · Пряности и радости · Мангал & Гриль · Руки Вверх · O' ...",
+    "host_name": "www.gdebar.ru",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]
+🎉 Function invocation completed!

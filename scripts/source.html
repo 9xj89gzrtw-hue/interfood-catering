@@ -1,0 +1,1874 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Кейтеринги мира и России — вдохновение для сайта Nilov Catering</title>
+<meta name="description" content="40 живых сайтов кейтерингов из 9 стран мира и лучшие компании Москвы и Санкт-Петербурга. Откройте, посмотрите, выберите 3–5 понравившихся — и пришлите мне номера.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg-primary:#1F2A24;
+  --bg-secondary:#F8F3E9;
+  --bg-card:#FFFFFF;
+  --text-light:#F8F3E9;
+  --text-dark:#1F2A24;
+  --text-muted:#6B7B71;
+  --accent:#A88A48;
+  --accent-deep:#8B6F47;
+  --accent-soft:rgba(168,138,71,0.12);
+  --up:#4F7A5A;
+  --up-soft:rgba(79,122,90,0.10);
+  --down:#A85A4A;
+  --down-soft:rgba(168,90,74,0.10);
+  --line:rgba(31,42,36,0.10);
+  --line-dark:rgba(248,243,233,0.14);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  background:var(--bg-secondary);
+  color:var(--text-dark);
+  line-height:1.65;
+  font-size:16px;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+.container{max-width:1240px;margin:0 auto;padding:0 28px;}
+.serif{font-family:'Cormorant Garamond','Playfair Display',Georgia,serif;}
+em{font-style:italic;color:var(--accent-deep);}
+
+/* HERO */
+.hero{
+  background:linear-gradient(180deg,#1F2A24 0%,#2A3833 100%);
+  color:var(--text-light);
+  padding:96px 0 104px;
+  position:relative;
+  overflow:hidden;
+}
+.hero::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:radial-gradient(ellipse 70% 60% at 50% 0%,rgba(168,138,71,0.10) 0%,transparent 60%);
+  pointer-events:none;
+}
+.hero::after{
+  content:'';
+  position:absolute;
+  bottom:0;left:0;right:0;
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--accent),transparent);
+}
+.hero-inner{position:relative;z-index:2;}
+.hero-eyebrow{
+  display:inline-block;
+  font-size:12px;
+  letter-spacing:0.28em;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin-bottom:28px;
+  padding:6px 14px;
+  border:1px solid rgba(168,138,71,0.4);
+  border-radius:2px;
+}
+.hero h1{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:clamp(36px,5.6vw,68px);
+  font-weight:500;
+  line-height:1.05;
+  letter-spacing:-0.01em;
+  margin-bottom:28px;
+  max-width:980px;
+}
+.hero h1 em{color:var(--accent);font-weight:500;}
+.hero-lead{
+  font-size:18px;
+  line-height:1.7;
+  color:rgba(248,243,233,0.85);
+  max-width:780px;
+  margin-bottom:44px;
+}
+.hero-lead strong{color:var(--text-light);font-weight:600;}
+.hero-stats{
+  display:flex;
+  flex-wrap:wrap;
+  gap:0;
+  border-top:1px solid var(--line-dark);
+  border-bottom:1px solid var(--line-dark);
+}
+.hero-stat{
+  flex:1;
+  min-width:160px;
+  padding:24px 28px 24px 0;
+  border-right:1px solid var(--line-dark);
+}
+.hero-stat:last-child{border-right:none;}
+.hero-stat .num{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:36px;
+  color:var(--accent);
+  font-weight:500;
+  line-height:1;
+  display:block;
+  margin-bottom:6px;
+}
+.hero-stat .lbl{
+  font-size:12px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:rgba(248,243,233,0.65);
+}
+
+/* SECTIONS */
+section{position:relative;}
+.section-pad{padding:80px 0;}
+.section-eyebrow{
+  display:inline-block;
+  font-size:11px;
+  letter-spacing:0.28em;
+  text-transform:uppercase;
+  color:var(--accent-deep);
+  margin-bottom:16px;
+  font-weight:500;
+}
+.section-title{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:clamp(30px,4vw,46px);
+  font-weight:500;
+  line-height:1.1;
+  color:var(--text-dark);
+  margin-bottom:20px;
+  letter-spacing:-0.01em;
+}
+.section-sub{
+  font-size:17px;
+  line-height:1.7;
+  color:var(--text-muted);
+  max-width:780px;
+}
+
+/* HOW TO USE */
+.howto{
+  background:var(--bg-secondary);
+  padding:80px 0;
+  border-bottom:1px solid var(--line);
+}
+.howto-steps{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:48px;
+  margin-top:48px;
+}
+.howto-step{position:relative;padding-top:24px;border-top:2px solid var(--accent);}
+.howto-step .step-num{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:14px;
+  letter-spacing:0.2em;
+  color:var(--accent-deep);
+  margin-bottom:14px;
+  display:block;
+  text-transform:uppercase;
+}
+.howto-step h3{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:24px;
+  font-weight:600;
+  color:var(--text-dark);
+  margin-bottom:12px;
+  line-height:1.2;
+}
+.howto-step p{font-size:15px;color:var(--text-muted);line-height:1.65;}
+.howto-step p strong{color:var(--text-dark);font-weight:600;}
+
+/* DESIGN = MONEY */
+.principles{
+  background:#fff;
+  padding:88px 0;
+  border-bottom:1px solid var(--line);
+}
+.principles-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:28px;
+  margin-top:52px;
+}
+.principle{
+  background:var(--bg-secondary);
+  padding:36px 32px;
+  border-left:3px solid var(--accent);
+  position:relative;
+  transition:transform 0.3s ease,box-shadow 0.3s ease;
+}
+.principle:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 24px rgba(31,42,36,0.06);
+}
+.principle .p-num{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:13px;
+  letter-spacing:0.24em;
+  color:var(--accent-deep);
+  margin-bottom:8px;
+  text-transform:uppercase;
+}
+.principle h3{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:26px;
+  font-weight:600;
+  margin-bottom:14px;
+  line-height:1.15;
+}
+.principle p{font-size:14.5px;color:var(--text-muted);margin-bottom:18px;line-height:1.65;}
+.principle .impact{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:var(--up-soft);
+  color:var(--up);
+  padding:7px 14px;
+  border-radius:2px;
+  font-size:13px;
+  font-weight:600;
+  margin-right:8px;
+}
+.principle .src{
+  display:block;
+  margin-top:14px;
+  font-size:12px;
+  color:var(--text-muted);
+  font-style:italic;
+  opacity:0.85;
+}
+
+/* CARDS SECTION */
+.section-header{
+  padding:64px 0 32px;
+  background:var(--bg-secondary);
+}
+.section-header.dark{
+  background:var(--bg-primary);
+  color:var(--text-light);
+}
+.section-header.dark .section-title{color:var(--text-light);}
+.section-header.dark .section-sub{color:rgba(248,243,233,0.70);}
+.section-header.dark .section-eyebrow{color:var(--accent);}
+
+.sites{padding:24px 0 72px;background:var(--bg-secondary);}
+.sites.dark{background:var(--bg-primary);color:var(--text-light);}
+
+.group-title{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:24px;
+  font-weight:600;
+  color:var(--text-dark);
+  margin:48px 0 24px;
+  padding-left:6px;
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+.group-title::before{
+  content:'';
+  width:32px;
+  height:2px;
+  background:var(--accent);
+}
+.sites.dark .group-title{color:var(--text-light);}
+
+.card{
+  background:#fff;
+  margin-bottom:24px;
+  border:1px solid var(--line);
+  border-radius:2px;
+  overflow:hidden;
+  transition:transform 0.3s ease,box-shadow 0.3s ease,border-color 0.3s ease;
+}
+.card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 12px 32px rgba(31,42,36,0.08);
+  border-color:rgba(168,138,71,0.4);
+}
+.card-grid{
+  display:grid;
+  grid-template-columns:280px 1fr;
+  min-height:240px;
+}
+.card-preview{
+  background:linear-gradient(135deg,#1F2A24 0%,#2D3A33 100%);
+  color:var(--text-light);
+  padding:28px 24px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  position:relative;
+}
+.card-num{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:48px;
+  font-weight:500;
+  color:var(--accent);
+  line-height:1;
+  margin-bottom:14px;
+}
+.card-flag{
+  font-size:13px;
+  letter-spacing:0.08em;
+  color:rgba(248,243,233,0.80);
+  margin-bottom:8px;
+}
+.card-name{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:23px;
+  font-weight:600;
+  line-height:1.2;
+  margin-bottom:6px;
+  color:var(--text-light);
+}
+.card-url{
+  font-size:13px;
+  color:rgba(248,243,233,0.65);
+  letter-spacing:0.02em;
+  word-break:break-all;
+}
+.card-btn{
+  display:inline-block;
+  margin-top:16px;
+  padding:10px 20px;
+  background:transparent;
+  border:1px solid var(--accent);
+  color:var(--accent);
+  text-decoration:none;
+  font-size:14px;
+  font-weight:500;
+  letter-spacing:0.04em;
+  transition:background 0.25s ease,color 0.25s ease;
+  align-self:flex-start;
+}
+.card-btn:hover{background:var(--accent);color:var(--bg-primary);}
+
+.card-body{padding:28px 32px;display:flex;flex-direction:column;}
+.card-style{
+  font-size:14.5px;
+  color:#3D4A40;
+  margin-bottom:18px;
+  line-height:1.6;
+}
+.card-style strong{color:var(--text-dark);font-weight:600;}
+.conv-label{
+  font-size:11px;
+  letter-spacing:0.20em;
+  text-transform:uppercase;
+  color:var(--accent-deep);
+  margin:14px 0 6px;
+  font-weight:600;
+}
+.conv-row{
+  display:flex;
+  gap:14px;
+  padding:8px 0 12px;
+  font-size:14px;
+  line-height:1.6;
+  color:var(--text-dark);
+}
+.conv-row:last-of-type{border-bottom:1px solid var(--line);}
+.conv-arrow{
+  flex-shrink:0;
+  width:28px;
+  height:28px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+  font-size:16px;
+  border-radius:50%;
+  margin-top:1px;
+}
+.conv-up .conv-arrow{background:var(--up-soft);color:var(--up);border:1.5px solid var(--up);}
+.conv-down .conv-arrow{background:var(--down-soft);color:var(--down);border:1.5px solid var(--down);}
+.conv-up strong{color:var(--up);font-weight:600;}
+.conv-down strong{color:var(--down);font-weight:600;}
+.card-palette{
+  display:flex;
+  gap:8px;
+  margin-top:14px;
+}
+.card-palette span{
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  border:1px solid rgba(31,42,36,0.12);
+  box-shadow:0 1px 2px rgba(0,0,0,0.04);
+}
+.palette-label{
+  font-size:11px;
+  color:var(--text-muted);
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  margin-right:8px;
+  align-self:center;
+}
+
+/* AGGREGATORS */
+.aggregators{padding:64px 0;background:#fff;border-top:1px solid var(--line);}
+.agg-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+  margin-top:36px;
+}
+.agg-grid.margin-top{margin-top:18px;}
+.agg-card{
+  display:block;
+  padding:24px 20px;
+  background:var(--bg-secondary);
+  border:1px solid var(--line);
+  text-decoration:none;
+  color:inherit;
+  transition:all 0.3s ease;
+  border-radius:2px;
+}
+.agg-card:hover{
+  background:#fff;
+  border-color:var(--accent);
+  transform:translateY(-2px);
+  box-shadow:0 8px 20px rgba(31,42,36,0.06);
+}
+.agg-card h4{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:20px;
+  font-weight:600;
+  margin-bottom:4px;
+  color:var(--text-dark);
+}
+.agg-url{
+  font-size:12px;
+  color:var(--accent-deep);
+  margin-bottom:10px;
+  word-break:break-all;
+}
+.agg-card p{font-size:13px;color:var(--text-muted);line-height:1.55;}
+
+/* INSPIRATION LINKS */
+.inspiration{padding:64px 0;background:var(--bg-secondary);border-top:1px solid var(--line);}
+.insp-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:16px;
+  margin-top:32px;
+}
+.insp-card{
+  display:block;
+  padding:22px 20px;
+  background:#fff;
+  border-left:3px solid var(--accent);
+  text-decoration:none;
+  color:inherit;
+  transition:all 0.3s ease;
+}
+.insp-card:hover{transform:translateX(4px);box-shadow:0 6px 16px rgba(31,42,36,0.06);}
+.insp-card strong{
+  display:block;
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:18px;
+  font-weight:600;
+  margin-bottom:4px;
+  color:var(--text-dark);
+}
+.insp-card span{font-size:12px;color:var(--text-muted);}
+
+/* POLL */
+.poll{
+  padding:88px 0;
+  background:linear-gradient(180deg,#1F2A24 0%,#2A3833 100%);
+  color:var(--text-light);
+}
+.poll h2{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:clamp(30px,4vw,46px);
+  font-weight:500;
+  line-height:1.1;
+  margin-bottom:20px;
+}
+.poll h2 em{color:var(--accent);}
+.poll .lead{
+  font-size:17px;
+  color:rgba(248,243,233,0.78);
+  max-width:760px;
+  margin-bottom:48px;
+}
+.poll-block-title{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:22px;
+  font-weight:500;
+  margin:36px 0 18px;
+  padding-bottom:10px;
+  border-bottom:1px solid var(--line-dark);
+  color:var(--text-light);
+}
+.poll-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+.poll-option{position:relative;}
+.poll-option input{
+  position:absolute;
+  opacity:0;
+  pointer-events:none;
+}
+.poll-option label{
+  display:block;
+  padding:12px 14px;
+  background:rgba(248,243,233,0.04);
+  border:1px solid var(--line-dark);
+  font-size:13.5px;
+  cursor:pointer;
+  transition:all 0.2s ease;
+  color:rgba(248,243,233,0.85);
+  line-height:1.4;
+}
+.poll-option label:hover{
+  background:rgba(168,138,71,0.10);
+  border-color:rgba(168,138,71,0.4);
+}
+.poll-option input:checked + label{
+  background:rgba(168,138,71,0.18);
+  border-color:var(--accent);
+  color:var(--text-light);
+}
+.poll-option input:checked + label::before{content:'✓ ';color:var(--accent);font-weight:700;}
+
+.poll-note{
+  margin-top:48px;
+  padding:32px;
+  background:rgba(248,243,233,0.04);
+  border:1px solid var(--line-dark);
+  border-left:3px solid var(--accent);
+}
+.poll-note h3{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:22px;
+  margin-bottom:18px;
+  color:var(--text-light);
+}
+.poll-note ol{padding-left:20px;margin-bottom:18px;}
+.poll-note li{
+  font-size:14.5px;
+  line-height:1.7;
+  color:rgba(248,243,233,0.85);
+  margin-bottom:10px;
+}
+.poll-note li strong{color:var(--accent);font-weight:600;}
+.poll-note .example{
+  display:block;
+  margin-top:14px;
+  padding:14px 18px;
+  background:rgba(168,138,71,0.08);
+  border-left:2px solid var(--accent);
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:17px;
+  font-style:italic;
+  color:var(--text-light);
+}
+
+/* FOOTER */
+.footer{
+  padding:48px 0;
+  background:#15201A;
+  color:rgba(248,243,233,0.55);
+  text-align:center;
+  font-size:13px;
+  line-height:1.7;
+}
+.footer .brand{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:24px;
+  color:var(--accent);
+  margin-bottom:8px;
+  letter-spacing:0.04em;
+}
+.footer .meta{
+  display:flex;
+  justify-content:center;
+  gap:0;
+  margin:24px 0;
+  flex-wrap:wrap;
+}
+.footer .meta span{
+  padding:0 20px;
+  border-right:1px solid rgba(248,243,233,0.18);
+}
+.footer .meta span:last-child{border-right:none;}
+
+/* FLOATING BACK TO TOP */
+.totop{
+  position:fixed;
+  bottom:24px;
+  right:24px;
+  width:44px;
+  height:44px;
+  background:var(--bg-primary);
+  color:var(--accent);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-decoration:none;
+  border:1px solid var(--accent);
+  border-radius:50%;
+  font-size:18px;
+  z-index:100;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity 0.3s ease;
+}
+.totop.show{opacity:1;pointer-events:auto;}
+
+/* RESPONSIVE */
+@media (max-width:900px){
+  .howto-steps{grid-template-columns:1fr;gap:32px;}
+  .principles-grid{grid-template-columns:1fr;}
+  .card-grid{grid-template-columns:1fr;}
+  .card-preview{padding:24px;}
+  .agg-grid{grid-template-columns:repeat(2,1fr);}
+  .insp-grid{grid-template-columns:1fr;}
+  .poll-grid{grid-template-columns:repeat(2,1fr);}
+  .hero-stat{min-width:50%;padding:20px 16px 20px 0;}
+  .hero{padding:64px 0 72px;}
+  .section-pad{padding:56px 0;}
+}
+@media (max-width:560px){
+  .container{padding:0 18px;}
+  .poll-grid{grid-template-columns:1fr;}
+  .agg-grid{grid-template-columns:1fr;}
+  .card-body{padding:20px;}
+  .hero h1{font-size:32px;}
+  .hero-lead{font-size:16px;}
+}
+
+@media print{
+  .hero,.poll,.footer{background:#fff !important;color:#000 !important;}
+  .card{break-inside:avoid;page-break-inside:avoid;}
+  .card-preview{background:#f5f5f5 !important;color:#000 !important;}
+  .totop{display:none;}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="container hero-inner">
+    <span class="hero-eyebrow">Вдохновение для сайта Nilov Catering</span>
+    <h1>Кейтеринги<br><em>мира и России</em> — что выберете?</h1>
+    <p class="hero-lead">Перед вами <strong>40 живых сайтов</strong> кейтерингов из 9 стран мира и лучшие компании Москвы и Санкт-Петербурга. Откройте каждый — посмотрите 1–2 минуты, отметьте 3–5 понравившихся в опроснике внизу и пришлите мне номера. На этом основании мы зафиксируем стиль вашего будущего сайта.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><span class="num">40</span><span class="lbl">Кейтерингов</span></div>
+      <div class="hero-stat"><span class="num">9</span><span class="lbl">Стран мира</span></div>
+      <div class="hero-stat"><span class="num">18</span><span class="lbl">Российских</span></div>
+      <div class="hero-stat"><span class="num">3</span><span class="lbl">Шага · 20 минут</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW TO USE -->
+<section class="howto">
+  <div class="container">
+    <span class="section-eyebrow">Три шага — 20 минут</span>
+    <h2 class="section-title">Как пользоваться этой страницей</h2>
+    <p class="section-sub">Эта страница — не магазин и не каталог. Это «витрина стилей». Ваша задача — пройтись по сайтам, почувствовать общее впечатление и выбрать то, что откликается. Не анализируйте — доверяйте первому ощущению.</p>
+    <div class="howto-steps">
+      <div class="howto-step">
+        <span class="step-num">Шаг 01</span>
+        <h3>Откройте 5–7 сайтов</h3>
+        <p>Из мировой подборки ниже — любые, что зацепили взглядом. На каждом задержитесь <strong>1–2 минуты</strong>. Достаточно посмотреть главную, галерею и страницу меню. Не нужно изучать каждый раздел.</p>
+      </div>
+      <div class="howto-step">
+        <span class="step-num">Шаг 02</span>
+        <h3>Заходите на российские</h3>
+        <p>18 прямых ссылок на топ-кейтеринги Москвы и СПб. Сравните с мировыми — увидите, где Россия сильна, а где уступает. Это ваши прямые конкуренты. <strong>Что у них хорошо — повторим. Что плохо — обойдём.</strong></p>
+      </div>
+      <div class="howto-step">
+        <span class="step-num">Шаг 03</span>
+        <h3>Пришлите мне номера</h3>
+        <p>В опроснике внизу отметьте 3–5 понравившихся + 1–2 «что точно НЕ нравится». Пришлите мне скриншот или просто номера в Telegram. <strong>Минимум — 3 номера + 2–3 слова о предпочтениях.</strong> Дальше — моя работа.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DESIGN = MONEY -->
+<section class="principles">
+  <div class="container">
+    <span class="section-eyebrow">Что работает в кейтеринге</span>
+    <h2 class="section-title">Что привлекает <em>клиентов</em></h2>
+    <p class="section-sub">Прежде чем открывать сайты — 6 признаков, которые отличают кейтеринг, приносящий заявки, от «красивого, но пустого». Каждый подтверждён исследованиями. Держите их в голове — будет проще понять, что именно вам нравится и почему.</p>
+
+    <div class="principles-grid">
+      <div class="principle">
+        <div class="p-num">01 · Воздух</div>
+        <h3>Один hero, одно сообщение, одна кнопка</h3>
+        <p>Хороший сайт не «вываливает» на посетителя 5 баннеров, 3 акции и календарь. Один сильный заголовок, одна фотография, одна кнопка «Запросить меню». Между блоками — пауза, как между блюдами в дегустационном меню. Перегруженный hero теряет посетителей в первые секунды.</p>
+        <span class="impact">↑ до 61% уходят, если не нашли нужное за 5 сек</span>
+        <span class="src">Источник: Forbes — Loading Time & UX; Unbounce Landing Page Stats</span>
+      </div>
+
+      <div class="principle">
+        <div class="p-num">02 · Фуд-фотография</div>
+        <h3>Студийный свет — главный носитель качества</h3>
+        <p>Не «скачано со стока» и не «снято на iPhone при жёлтом свете». Студийный свет, фуд-стайлинг, макро-крупные планы, контрастный фон. Фотография еды важнее текста — именно она продаёт. Качественная фуд-съёмка поднимает продажи на 20–45% по сравнению со стоковыми фото.</p>
+        <span class="impact">↑ +20–45% к продажам</span>
+        <span class="src">Источник: Foodshot.ai — How to Market a Catering Business; Oberlo Food Photography Stats</span>
+      </div>
+
+      <div class="principle">
+        <div class="p-num">03 · Палитра</div>
+        <h3>Два цвета + один акцент — не больше</h3>
+        <p>Хороший вкус — это всегда ограничение. Базовый (charcoal / cream / deep green) + 1 акцент (бронза / бордо / sage / терракота). Никогда — все цвета радуги. Палитра должна быть читаема на скриншоте 200×200 px. Пёстрая палитра снижает воспринимаемую цену блюда.</p>
+        <span class="impact">↑ +воспринимаемая ценность</span>
+        <span class="src">Источник: AMR & Elma Visual Branding Psychology; Color Psychology in F&B Branding</span>
+      </div>
+
+      <div class="principle">
+        <div class="p-num">04 · Типографика</div>
+        <h3>Serif в заголовках = «солидно», Sans = «современно»</h3>
+        <p>Cormorant Garamond, Playfair Display, Fraunces, Tiempos — это типографика журналов. Sans-serif в заголовках говорит «современно», но менее «солидно». Связка Cormorant + Inter — почти универсальна для кейтеринга. Засечки в заголовках ассоциируются с более высокой ценностью бренда.</p>
+        <span class="impact">↑ +воспринимаемая ценность бренда</span>
+        <span class="src">Источник: Marketing Trends Congress 2024; Emerald European Journal of Marketing — Typography & Brand Perception</span>
+      </div>
+
+      <div class="principle">
+        <div class="p-num">05 · Trust signals</div>
+        <h3>Логотипы клиентов и цифры — рядом с кнопкой заявки</h3>
+        <p>«5000 мероприятий», «15 лет на рынке», логотипы известных клиентов / награды / отзывы — всё, что снимает возражение «кто эти люди?». Без trust signals форма заявки работает заметно хуже. Размещайте их не в подвале, а рядом с CTA — это может поднять конверсию на 20–42%.</p>
+        <span class="impact">↑ до +42% к конверсии формы</span>
+        <span class="src">Источник: CXL Social Proof Research; Eklipse Trust Signals Study; Orbit Media</span>
+      </div>
+
+      <div class="principle">
+        <div class="p-num">06 · Спокойный CTA</div>
+        <h3>«Запросить меню», а не «ЗАКАЗАТЬ СО СКИДКОЙ -30%!!!»</h3>
+        <p>Кнопка цвета акцента, одного размера с полями формы, без пульсации и мигания. Постоянные скидки в CTA снижают воспринимаемую ценность бренда — клиенты привыкают ждать «акции» и не покупают по обычной цене. Спокойный CTA работает лучше в долгую.</p>
+        <span class="impact">↑ +долгосрочная ценность бренда</span>
+        <span class="src">Источник: Retail Brew — Discount Strategy; SBIJ — Brand Value & Discounting; Harvard Business Review</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORLD CATERERS -->
+<section class="section-header">
+  <div class="container">
+    <span class="section-eyebrow">22 ссылок · 9 стран · 4 континента</span>
+    <h2 class="section-title">Мировые <em>кейтеринги</em></h2>
+    <p class="section-sub">От Лос-Анджелеса до Сингапура, от Женевы до Дубая. Каждый сайт — признанный лидер в своей стране. На карточках: что усиливает продажи (↑), что мешает (↓). Выбирайте не только «красивое» — выбирайте то, что принесёт заявки.</p>
+  </div>
+</section>
+
+<section class="sites">
+  <div class="container">
+    <article class="card">
+      <div class="card-grid">
+        <div class="card-preview">
+          <div>
+            <div class="card-num">01</div>
+            <div class="card-flag">🇺🇸 США · Los Angeles</div>
+            <h3 class="card-name">Wolfgang Puck Catering</h3>
+            <div class="card-url">wolfgangpuckcatering.com</div>
+          </div>
+          <a href="https://wolfgangpuckcatering.com" target="_blank" rel="noopener" class="card-btn">Открыть сайт →</a>
+        </div>
+        <div class="card-body">
+          <p class="card-style">Официальный кейтеринг Governor's Ball после церемонии «Оскар». <strong>Тёмная классика, золотой акцент, фуд-фотография мирового уровня.</strong> Часто цитируется как образец в индустрии.</p>
+          <div class="conv-label">Что усиливает продажи</div>
+          <div class="conv-row conv-up"><span class="conv-arrow">↑</span><span><strong>Тёмный hero + золотой акцент</strong> → солидное впечатление, клиент легче соглашается на чек выше среднего</span></div>
+          <div class="conv-label">Что мешает конверсии</div>
+          <div class="conv-row conv-down"><span class="conv-arrow">↓</span><span>Нет явной формы быстрой заявки на главной — посетителю приходится искать «как заказать»</span></div>
+          <div class="conv-label">Палитра сайта</div>
+          <div class="card-palette"><span style="background:#0A0A0A"></span><span style="background:#C9A961"></span><span style="background:#F8F3E9"></span><span style="background:#5C5C5C"></span></div>
+        </div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="card-grid">
+        <div class="card-preview">
+          <div>
+            <div class="card-num">02</div>
+            <div class="card-flag">🇺🇸 США · New York</div>
+            <h3 class="card-name">Abigail Kirsch</h3>
+            <div class="card-url">abigailkirsch.com</div>
+          </div>
+          <a href="https://abigailkirsch.com" target="_blank" rel="noopener" class="card-btn">Открыть сайт →</a>
+        </div>
+        <div class="card-body">
+          <p class="card-style">Более 40 лет на рынке, кейтеринг в Tappan Hill Mansion и Skylark. <strong>Светлая элегантность, акцент на эксклюзивных площадках.</strong> Лидер по свадебному сегменту.</p>
+          <div class="conv-label">Что усиливает продажи</div>
+          <div class="conv-row conv-up"><span class="conv-arrow">↑</span><span><strong>Светлый «воздушный» дизайн + красивые площадки</strong> → сильный эмоциональный отклик у свадебного сегмента</span></div>
+          <div class="conv-label">Что мешает конверсии</div>
+          <div class="conv-row conv-down"><span class="conv-arrow">↓</span><span>Слишком «тонкий» CTA — легко пропустить, нужна более явная кнопка в hero</span></div>
+          <div class="conv-label">Палитра сайта</div>
+          <div class="card-palette"><span style="background:#F8F3E9"></span><span style="background:#8B6F47"></span><span style="background:#1A1A1A"></span><span style="background:#A89378"></span></div>
+        </div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="card-grid">
+        <div class="card-preview">
+          <div>
+            <div class="card-num">03</div>
+            <div class="card-flag">🇺🇸 США · New York</div>
+            <h3 class="card-name">Great Performances</h3>
+            <div class="card-url">greatperformances.com</div>
+          </div>
+          <a href="https://greatperformances.com" target="_blank" rel="noopener" class="card-btn">Открыть сайт →</a>
+        </div>
+        <div class="card-body">
+          <p class="card-style">Кейтеринг The Plaza Hotel, Jazz at Lincoln Center, Apollo Theater. <strong>Сторителлинг «unleash joy through genuine hospitality».</strong></p>
+          <div class="conv-label">Что усиливает продажи</div>
+          <div class="conv-row conv-up"><span class="conv-arrow">↑</span><span><strong>Бренд-сторителлинг через людей и события</strong> → лояльность, возвратные клиенты</span></div>
+          <div class="conv-label">Что мешает конверсии</div>
+          <div class="conv-row conv-down"><span class="conv-arrow">↓</span><span>Длинные тексты в hero — теряются мобильные пользователи (до 60% трафика)</span></div>
+          <div class="conv-label">Палитра сайта</div>
+          <div class="card-palette"><span style="background:#8B9A91"></span><span style="background:#F8F3E9"></span><span style="background:#7A5C3E"></span><span style="background:#3D4A3E"></span></div>
+        </div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="card-grid">
+        <div class="card-preview">
+          <div>
+            <div class="card-num">04</div>
+            <div class="card-flag">🇺🇸 США · Miami</div>
+            <h3 class="card-name">Creative Edge Parties</h3>
+            <div class="card-url">creativeedgeparties.com</div>
+          </div>
+          <a href="https://www.creativeedgeparties.com" target="_blank" rel="noopener" class="card-btn">Открыть сайт →</a>
+        </div>
+        <div class="card-body">
+          <p class="card-style">«Reinventing food as design since 1989». <strong>Концептуальный арт-кейтеринг, food-stations как инсталляции.</strong> Для смелых брендов.</p>
+          <div class="conv-label">Что усиливает продажи</div>
+          <div class="conv-row conv-up"><span class="conv-arrow">↑</span><span><strong>Уникальная концепция «food-as-design»</strong> → виральность, шеры в соцсетях, бесплатные охваты</span></div>
+          <div class="conv-label">Что мешает конверсии</div>
+          <div class="conv-row conv-down"><span class="conv-arrow">↓</span><span>Нестандартная навигация — новые посетители путаются, растёт показатель отказов</span></div>
+          <div class="conv-label">Палитра сайта</div>
+          <div class="card-palette"><span style="background:#000000"></span><span style="background:#E63946"></span><span style="background:#F4D35E"></span><span style="background:#FFFFFF;border:1px solid #ddd"></span></div>
+        </div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="card-grid">
+        <div class="card-preview">
+          <div>
+            <div class="card-num">05</div>
+            <div class="card-flag">🇺🇸 США · Charleston</div>
+            <h3 class="card-name">Salthouse Catering</h3>
+            <div class="card-url">salthousecatering.com</div>
+          </div>
+          <a href="https://www.salthousecatering.com" target="_blank" rel="noopener" class="card-btn">Открыть сайт →</a>
+        </div>
+        <div class="card-body">
+          <p class="card-style">Colorlib №1 в рейтинге кейтеринговых сайтов. <strong>Farm-to-table, локальные продукты, тёплая эстетика.</strong> Актуально для тренда 2026.</p>
+          <div class="conv-label">Что усиливает продажи</div>
+          <div class="conv-row conv-up"><span class="conv-arrow">↑</span><span><strong>Farm-to-table сторителлинг</strong> → +доверие, тренд 2026 года, эко-сознательные клиенты</span></div>
+          <div class="conv-label">Что мешает конверсии</div>
+          <div class="conv-row conv-down"><span class="conv-arrow">↓</span><span>Нет цен на сайте — посетитель уходит к конкурентам с прозрачными ценами</span></div>
+          <div class="conv-label">Палитра сайта</div>
+          <div class="card-palette"><span style="background:#A4B494"></span><span style="background:#F8F3E9"></span><span style="background:#BC6C25"></span><span style="background:#283618"></span></div>
+        </div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="card-grid">
+        <div class="card-preview">
+          <div>
+            <div class="card-num">06</div>
+            <div class="card-flag">🇨🇭 Швейцария · Geneva</div>
+            <h3 class="card-name">Pommier le Traiteur</h3>
+            <div class="card-url">pommierletraiteur.ch</div>
+          </div>
+          <a href="https://www.pommierletraiteur.ch" target="_blank" rel="noopener" class="card-btn">Открыть сайт →</a>
+        </div>
+        <div class="card-body">
+          <p class="card-style">Женевский traiteur (французский кейтеринг). <strong>Минимализм, много воздуха, French elegance.</strong> Didot-style serif типографика.</p>
+          <div class="conv-label">Что усиливает продажи</div>
+          <div class="conv-row conv-up"><span class="conv-arrow">↑</span><span><strong>Минимализм + много воздуха</strong> → воспринимается как «дорого», фильтрует нецелевых клиентов</span></div>
+          <div class="conv-label">Что мешает конверсии</div>
+          <div class="conv-row conv-down"><span class="conv-arrow">↓</span><span>Слишком холодный — нет эмоциональной составляющей, средний чек есть, но мало заявок</span></div>
+          <div class="conv-label">Палитра сайта</div>
+          <div class="card-palette"><span style="background:#1A1A1A"></span><span style="background:#FFFFFF;border:1px solid #ddd"></span><span style="background:#722F37"></span><span style="background:#C9A961"></span></div>
+        </div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="card-grid">
+        <div class="card-preview">
+          <div>
+            <div class="card-num">07</div>
+            <div class="card-flag">🇺🇸 США · New York</div>
+            <h3 class="card-name">Certé NYC</h3>
+            <div class="card-url">certenyc.com</div>
+          </div>
+          <a href="https://www.certenyc.com" target="_blank" rel="noopener" class="card-btn">Открыть сайт →</a>
+        </div>
+        <div class="card-body">
+          <p class="card-style">Один из крупных кейтерингов Нью-Йорка. <strong>Современный urban-стиль, чистая типографика, акцент на доставке.</strong> Гибридная модель.</p>
+          <div class="conv-label">Что усиливает продажи</div>
+          <div class="conv-row conv-up"><span class="conv-arrow">↑</span><span><strong>Чистая навигация + явный акцент на доставке</strong> → высокая конверсия в заказ</span></div>
+          <div class="conv-label">Что мешает конверсии</div>
+          <div class="conv-row conv-down"><span class="conv-arrow">↓</span><span>Без акцента на сервировку — выглядит как доставка, а не как event-кейтеринг</span></div>
+          <div class="conv-label">Палитра сайта</div>
+          <div class="card-palette"><span style="background:#FFFFFF;border:1px solid #ddd"></span><span style="background:#1A1A1A"></span><span style="background:#C9A961"></span><span style="background:#E8E8E8"></span></div>
+        </div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="card-grid">
+        <div class="card-preview">
+          <div>
+            <div class="card-num">08</div>
+            <div class="card-flag">🇬🇧 UK · London</div>
+            <h3 class="card-name">By Word of Mouth</h3>
+            <div class="card-url">bywordofmouth.co.uk</div>
+          </div>
+          <a href="https://bywordofmouth.co.uk" target="_blank" rel="noopener" class="card-btn">Открыть сайт →</a>
+        </div>
+        <div class="card-body">
+          <p class="card-style">40+ лет опыта, <strong>B Corp™ сертификация</strong> (редкость в сегменте). Сдержанный британский стиль, editorial-фото.</p>
+          <div class="conv-label">Что усиливает продажи</div>
+          <div class="conv-row conv-up"><span class="conv-arrow">↑</span><span><strong>B Corp™ сертификация</strong> → мощный trust signal для корпоративных и институциональных клиентов</span></div>
+          <div class="conv-label">Что мешает конверсии</div>
+          <div class="conv-row conv-down"><span class="conv-arrow">↓</span><span>Очень сдержанный hero — может пропустить внимание при беглом просмотре</span></div>
+          <div class="conv-label">Палитра сайта</div>
+          <div class="card-palette"><span style="background:#1F3329"></span><span style="background:#F5EFE3"></span><span style="background:#B08560"></span><span style="background:#3D4A3E"></span></div>
+        </div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="card-grid">
+        <div class="card-preview">
+          <div>
+            <div class="card-num">09</div>
+            <div class="card-flag">🇨🇦 Канада · Toronto</div>
+            <h3 class="card-name">Daniel et Daniel</h3>
+            <div class="card-url">danieletdaniel.ca</div>
+          </div>
+          <a href="https://www.danieletdaniel.ca" target="_blank" rel="noopener" class="card-btn">Открыть сайт →</a>
+        </div>
+        <div class="card-body">
+          <p class="card-style">Один из самых титулованных кейтерингов Канады. <strong>Образец аккуратной подачи: тёплая палитра, награды на видном месте.</strong></p>
+          <div class="conv-label">Что усиливает продажи</div>
+          <div class="conv-row conv-up"><span class="conv-arrow">↑</span><span><strong>Чёткая подача наград и опыта</strong> → снимает возражение «кто эти люди?»</span></div>
+          <div class="conv-label">Что мешает конверсии</div>
+          <div class="conv-row conv-down"><span class="conv-arrow">↓</span><span>Без явных цен — клиенту приходится звонить, чтобы узнать бюджет</span></div>
+          <div class="conv-label">Палитра сайта</div>
+          <div class="card-palette"><span style="background:#E8DFD0"></span><span style="background:#1A1A1A"></span><span style="background:#A67C52"></span><span style="background:#6B4423"></span></div>
+        </div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="card-grid">
+        <div class="card-preview">
+          <div>
+            <div class="card-num">10</div>
+            <div class="card-flag">🇺🇸 США · Washington DC</div>
+            <h3 class="card-name">Ridgewells</h3>
+            <div class="card-url">ridgewells.com</div>
+          </div>
+          <a href="https://www.ridgewells.com" target="_blank" rel="noopener" class="card-btn">Открыть сайт →</a>
+        </div>
+        <div class="card-body">
+          <p class="card-style">Семейный бизнес с 1928 года. <strong>95 лет истории.</strong> Эксклюзивный менеджер Mellon Auditorium. Кейтеринг для дипломатических приёмов.</p>
+          <div class="conv-label">Что усиливает продажи</div>
+          <div class="conv-row conv-up"><span class="conv-arrow">↑</span><span><strong>Heritage-сторителлинг «с 1928»</strong> → +trust для дипломатического и корпоративного сегмента</span></div>
+          <div class="conv-label">Что мешает конверсии</div>
+          <div class="conv-row conv-down"><span class="conv-arrow">↓</span><span>Старомодная типографика — рискует выглядеть «вчерашним» для молодой аудитории</span></div>
+          <div class="conv-label">Палитра сайта</div>
+          <div class="card-palette"><span style="background:#1B2845"></span><span style="background:#C9A961"></span><span style="background:#F8F3E9"></span><span style="background:#7A5C3E"></span></div>
+        </div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="card-grid">
+        <div class="card-preview">
+          <div>
+            <div class="card-num">11</div>
+            <div class="card-flag">🇺🇸 США · Chicago</div>
+            <h3 class="card-name">Catering by Michaels</h3>
+            <div class="card-url">cateringbymichaels.com</div>
+          </div>
+          <a href="https://www.cateringbymichaels.com" target="_blank" rel="noopener" class="card-btn">Открыть сайт →</a>
+        </div>
+        <div class="card-body">
+          <p class="card-style">С 1980 года. <strong>45 лет опыта.</strong> Один из немногих, кто публикует ориентир по ценам на свадебные меню — редкость для сегмента.</p>
+          <div class="conv-label">Что усиливает продажи</div>
+          <div class="conv-row conv-up"><span class="conv-arrow">↑</span><span><strong>Публикация диапазона цен</strong> → меньше холостых запросов, выше качество лидов</span></div>
+          <div class="conv-label">Что мешает конверсии</div>
+          <div class="conv-row conv-down"><span class="conv-arrow">↓</span><span>Цены в шапке могут отпугнуть чувствительных к бюджету — но это сознательный фильтр</span></div>
+          <div class="conv-label">Палитра сайта</div>
+          <div class="card-palette"><span style="background:#2D2D2D"></span><span style="background:#F5EFE3"></span><span style="background:#8B9A91"></span><span style="background:#A67C52"></span></div>
+        </div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="card-grid">
+        <div class="card-preview">
+          <div>
+            <div class="card-num">12</div>
+            <div class="card-flag">🇺🇸 США · San Francisco</div>
+            <h3 class="card-name">McCalls Catering & Events</h3>
+            <div class="card-url">mccallssf.com</div>
+          </div>
+          <a href="https://mccallssf.com" target="_blank" rel="noopener" class="card-btn">Открыть сайт →</a>
+        </div>
+        <div class="card-body">
+          <p class="card-style">Главный кейтеринг Bay Area. 40+ лет. <strong>«Elegance | Innovation | Seamless Execution».</strong> Калифорнийская свежесть, локальные продукты.</p>
+          <div class="conv-label">Что усиливает продажи</div>
+          <div class="conv-row conv-up"><span class="conv-arrow">↑</span><span><strong>Калифорнийская свежесть + локальные продукты</strong> → тренд 2026, эко-appeal</span></div>
+          <div class="conv-label">Что мешает конверсии</div>
+          <div class="conv-row conv-down"><span class="conv-arrow">↓</span><span>Сайт перегружен разделами — нужна минимизация для чистого восприятия</span></div>
+          <div class="conv-label">Палитра сайта</div>
+          <div class="card-palette"><span style="background:#F8F5EE"></span><span style="background:#8B9A91"></span><span style="background:#C9A961"></span><span style="background:#3D4A3E"></span></div>
+        </div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="card-grid">
+        <div class="card-preview">
+          <div>
+            <div class="card-num">13</div>
+            <div class="card-flag">🇺🇸 США · New York</div>
+            <h3 class="card-name">Pinch Food Design</h3>
+            <div class="card-url">pinchfooddesign.com</div>
+          </div>
+          <a href="https://pinchfooddesign.com" target="_blank" rel="noopener" class="card-btn">Открыть сайт →</a>
+        </div>
+        <div class="card-body">
+          <p class="card-style">Уникальный подход: chef + designer duo. <strong>Создаёт собственную «food furniture»</strong> — кастомные станции и сервировку.</p>
+          <div class="conv-label">Что усиливает продажи</div>
+          <div class="conv-row conv-up"><span class="conv-arrow">↑</span><span><strong>Уникальное УТП «food furniture»</strong> → виральность, выделение на фоне конкурентов</span></div>
+          <div class="conv-label">Что мешает конверсии</div>
+          <div class="conv-row conv-down"><span class="conv-arrow">↓</span><span>Очень нишевый — может не подойти для классических банкетов и корпоративов</span></div>
+          <div class="conv-label">Палитра сайта</div>
+          <div class="card-palette"><span style="background:#1A1A1A"></span><span style="background:#E85D3F"></span><span style="background:#F8F3E9"></span><span style="background:#5A7A5E"></span></div>
+        </div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="card-grid">
+        <div class="card-preview">
+          <div>
+            <div class="card-num">14</div>
+            <div class="card-flag">🇺🇸 США · New York</div>
+            <h3 class="card-name">Olivier Cheng Catering</h3>
+            <div class="card-url">ocnyc.com</div>
+          </div>
+          <a href="https://www.ocnyc.com" target="_blank" rel="noopener" class="card-btn">Открыть сайт →</a>
+        </div>
+        <div class="card-body">
+          <p class="card-style">20+ лет работает с NYC's finest cultural institutions — музеями, галереями. <strong>Минимализм, акцент на логотипах клиентов.</strong></p>
+          <div class="conv-label">Что усиливает продажи</div>
+          <div class="conv-row conv-up"><span class="conv-arrow">↑</span><span><strong>Минимализм + логотипы музеев как trust signals</strong> → +trust для B2B-сегмента</span></div>
+          <div class="conv-label">Что мешает конверсии</div>
+          <div class="conv-row conv-down"><span class="conv-arrow">↓</span><span>Минимум цвета — рискует выглядеть «бюрократично», теряет эмоцию</span></div>
+          <div class="conv-label">Палитра сайта</div>
+          <div class="card-palette"><span style="background:#000000"></span><span style="background:#FFFFFF;border:1px solid #ddd"></span><span style="background:#F8F3E9"></span><span style="background:#8B6F47"></span></div>
+        </div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="card-grid">
+        <div class="card-preview">
+          <div>
+            <div class="card-num">15</div>
+            <div class="card-flag">🇫🇷 Франция · Paris</div>
+            <h3 class="card-name">Potel et Chabot</h3>
+            <div class="card-url">groupepoteletchabot.com/en</div>
+          </div>
+          <a href="https://groupepoteletchabot.com/en" target="_blank" rel="noopener" class="card-btn">Открыть сайт →</a>
+        </div>
+        <div class="card-body">
+          <p class="card-style">Один из старейших кейтерингов Франции, основан в 1820 году. <strong>200+ лет истории.</strong> Подразделение Accor Group.</p>
+          <div class="conv-label">Что усиливает продажи</div>
+          <div class="conv-row conv-up"><span class="conv-arrow">↑</span><span><strong>«С 1820 года» — мощнейший trust signal</strong> → мгновенное доверие, готовность платить за heritage</span></div>
+          <div class="conv-label">Что мешает конверсии</div>
+          <div class="conv-row conv-down"><span class="conv-arrow">↓</span><span>Сайт перегружен историей — не сразу видна кнопка заявки, нужна явная иерархия</span></div>
+          <div class="conv-label">Палитра сайта</div>
+          <div class="card-palette"><span style="background:#4A1C2C"></span><span style="background:#F8F3E9"></span><span style="background:#C9A961"></span><span style="background:#2A1A1F"></span></div>
+        </div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="card-grid">
+        <div class="card-preview">
+          <div>
+            <div class="card-num">16</div>
+            <div class="card-flag">🇬🇧 UK · London</div>
+            <h3 class="card-name">Moving Venue</h3>
+            <div class="card-url">movingvenue.com</div>
+          </div>
+          <a href="https://www.movingvenue.com" target="_blank" rel="noopener" class="card-btn">Открыть сайт →</a>
+        </div>
+        <div class="card-body">
+          <p class="card-style">Event Caterer of the Year по London Venue & Catering Awards. <strong>121 событие в 18 аккредитованных площадках за одно лето.</strong></p>
+          <div class="conv-label">Что усиливает продажи</div>
+          <div class="conv-row conv-up"><span class="conv-arrow">↑</span><span><strong>Награда prominently displayed в hero</strong> → +credibility, снимает возражение «кто эти люди?»</span></div>
+          <div class="conv-label">Что мешает конверсии</div>
+          <div class="conv-row conv-down"><span class="conv-arrow">↓</span><span>Фокус на площадках, а не на еде — слабее продаёт кейтеринг как таковой</span></div>
+          <div class="conv-label">Палитра сайта</div>
+          <div class="card-palette"><span style="background:#1F2A30"></span><span style="background:#F5EFE3"></span><span style="background:#8B9A91"></span><span style="background:#B08560"></span></div>
+        </div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="card-grid">
+        <div class="card-preview">
+          <div>
+            <div class="card-num">17</div>
+            <div class="card-flag">🇦🇪 ОАЭ · Dubai</div>
+            <h3 class="card-name">Dish Dubai</h3>
+            <div class="card-url">dish.ae</div>
+          </div>
+          <a href="https://dish.ae" target="_blank" rel="noopener" class="card-btn">Открыть сайт →</a>
+        </div>
+        <div class="card-body">
+          <p class="card-style">Award-winning catering в Dubai и Abu Dhabi. <strong>Bespoke-меню для корпоративов, gala-dinners.</strong> Арабская эстетика: тёмный фон, золото.</p>
+          <div class="conv-label">Что усиливает продажи</div>
+          <div class="conv-row conv-up"><span class="conv-arrow">↑</span><span><strong>Тёмный hero + золото</strong> → ощущение роскоши, готовность клиента к высокому чеку</span></div>
+          <div class="conv-label">Что мешает конверсии</div>
+          <div class="conv-row conv-down"><span class="conv-arrow">↓</span><span>Может выглядеть «too much» для сдержанной российской аудитории — нужен баланс</span></div>
+          <div class="conv-label">Палитра сайта</div>
+          <div class="card-palette"><span style="background:#0F0F0F"></span><span style="background:#D4AF37"></span><span style="background:#FAF3E0"></span><span style="background:#8B6F47"></span></div>
+        </div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="card-grid">
+        <div class="card-preview">
+          <div>
+            <div class="card-num">18</div>
+            <div class="card-flag">🇦🇪 ОАЭ · Dubai</div>
+            <h3 class="card-name">AHS Catering & Events</h3>
+            <div class="card-url">ahscatering.com</div>
+          </div>
+          <a href="https://ahscatering.com" target="_blank" rel="noopener" class="card-btn">Открыть сайт →</a>
+        </div>
+        <div class="card-body">
+          <p class="card-style">20+ лет в Dubai. <strong>Mediterranean и fusion, полный цикл</strong>: концепция, меню, персонал, оборудование, live-stations.</p>
+          <div class="conv-label">Что усиливает продажи</div>
+          <div class="conv-row conv-up"><span class="conv-arrow">↑</span><span><strong>Light premium + акцент на сервис и live-stations</strong> → universal appeal, шире целевая аудитория</span></div>
+          <div class="conv-label">Что мешает конверсии</div>
+          <div class="conv-row conv-down"><span class="conv-arrow">↓</span><span>Меньше индивидуальности — рискует затеряться среди других «чистых» сайтов</span></div>
+          <div class="conv-label">Палитра сайта</div>
+          <div class="card-palette"><span style="background:#FAFAFA"></span><span style="background:#5A7A5E"></span><span style="background:#1A1A1A"></span><span style="background:#C9A961"></span></div>
+        </div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="card-grid">
+        <div class="card-preview">
+          <div>
+            <div class="card-num">19</div>
+            <div class="card-flag">🇸🇬 Сингапур · Singapore</div>
+            <h3 class="card-name">Amici Catering</h3>
+            <div class="card-url">amici.com.sg</div>
+          </div>
+          <a href="https://amici.com.sg" target="_blank" rel="noopener" class="card-btn">Открыть сайт →</a>
+        </div>
+        <div class="card-body">
+          <p class="card-style">Boutique event catering в Сингапуре. <strong>Кейтеринг для любых масштабов</strong> — от домашних вечеринок до больших событий. Сезонные меню.</p>
+          <div class="conv-label">Что усиливает продажи</div>
+          <div class="conv-row conv-up"><span class="conv-arrow">↑</span><span><strong>Boutique-эстетика + акцент на сезонности</strong> → +лояльность возвратных клиентов</span></div>
+          <div class="conv-label">Что мешает конверсии</div>
+          <div class="conv-row conv-down"><span class="conv-arrow">↓</span><span>Малый масштаб истории — слабее для крупных банкетов на 500+ гостей</span></div>
+          <div class="conv-label">Палитра сайта</div>
+          <div class="card-palette"><span style="background:#F5EFE3"></span><span style="background:#5A7A5E"></span><span style="background:#2A3A30"></span><span style="background:#C9A961"></span></div>
+        </div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="card-grid">
+        <div class="card-preview">
+          <div>
+            <div class="card-num">20</div>
+            <div class="card-flag">🇸🇬 Сингапур · Singapore</div>
+            <h3 class="card-name">Luxe Catering</h3>
+            <div class="card-url">luxecatering.com.sg</div>
+          </div>
+          <a href="https://www.luxecatering.com.sg" target="_blank" rel="noopener" class="card-btn">Открыть сайт →</a>
+        </div>
+        <div class="card-body">
+          <p class="card-style">Handcrafted French canapés и catering. <strong>Корпоративы, private dining, элегантные праздники.</strong> Минимализм, французская традиция.</p>
+          <div class="conv-label">Что усиливает продажи</div>
+          <div class="conv-row conv-up"><span class="conv-arrow">↑</span><span><strong>Чёткое УТП «French canapés»</strong> → нишевая экспертиза, выделяет на фоне generalists</span></div>
+          <div class="conv-label">Что мешает конверсии</div>
+          <div class="conv-row conv-down"><span class="conv-arrow">↓</span><span>Очень узкая специализация — не для всех типов событий</span></div>
+          <div class="conv-label">Палитра сайта</div>
+          <div class="card-palette"><span style="background:#F8F3E9"></span><span style="background:#722F37"></span><span style="background:#C9A961"></span><span style="background:#1A1A1A"></span></div>
+        </div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="card-grid">
+        <div class="card-preview">
+          <div>
+            <div class="card-num">21</div>
+            <div class="card-flag">🇪🇸 Испания · Madrid</div>
+            <h3 class="card-name">Artigot Catering</h3>
+            <div class="card-url">artigotcatering.com</div>
+          </div>
+          <a href="https://www.artigotcatering.com/en/exclusive-gourmet-catering" target="_blank" rel="noopener" class="card-btn">Открыть сайт →</a>
+        </div>
+        <div class="card-body">
+          <p class="card-style">Испанский гастрономический кейтеринг (Мадрид). <strong>«Rigorous selection of premium ingredients».</strong> Средиземноморская кухня, акцент на terroir.</p>
+          <div class="conv-label">Что усиливает продажи</div>
+          <div class="conv-row conv-up"><span class="conv-arrow">↑</span><span><strong>Terroir-сторителлинг + премиальные ингредиенты</strong> → +trust для гурманов и foodies</span></div>
+          <div class="conv-label">Что мешает конверсии</div>
+          <div class="conv-row conv-down"><span class="conv-arrow">↓</span><span>Локальный средиземноморский акцент — менее универсален для российского рынка</span></div>
+          <div class="conv-label">Палитра сайта</div>
+          <div class="card-palette"><span style="background:#F5EFE3"></span><span style="background:#BC6C25"></span><span style="background:#5A7A5E"></span><span style="background:#3D2817"></span></div>
+        </div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="card-grid">
+        <div class="card-preview">
+          <div>
+            <div class="card-num">22</div>
+            <div class="card-flag">🇦🇹 Австрия · Vienna (32 локации)</div>
+            <h3 class="card-name">DO & CO</h3>
+            <div class="card-url">doco.com</div>
+          </div>
+          <a href="https://www.doco.com" target="_blank" rel="noopener" class="card-btn">Открыть сайт →</a>
+        </div>
+        <div class="card-body">
+          <p class="card-style">Единственный глобальный кейтеринг в подборке. <strong>32 локации в 12 странах на 3 континентах.</strong> Полный спектр: корпоративы, конференции, частные события.</p>
+          <div class="conv-label">Что усиливает продажи</div>
+          <div class="conv-row conv-up"><span class="conv-arrow">↑</span><span><strong>Глобальный масштаб + единый стандарт качества</strong> → для транснациональных корпоративов</span></div>
+          <div class="conv-label">Что мешает конверсии</div>
+          <div class="conv-row conv-down"><span class="conv-arrow">↓</span><span>Слишком «корпоративный» — теряет индивидуальность и душу, меньше эмоции</span></div>
+          <div class="conv-label">Палитра сайта</div>
+          <div class="card-palette"><span style="background:#1A1A1A"></span><span style="background:#F8F3E9"></span><span style="background:#C9A961"></span><span style="background:#5A7A5E"></span></div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- RUSSIAN CATERERS -->
+<section class="section-header">
+  <div class="container">
+    <span class="section-eyebrow">18 ссылок · Москва + Санкт-Петербург</span>
+    <h2 class="section-title">Российские <em>кейтеринги</em></h2>
+    <p class="section-sub">Ваши прямые конкуренты и коллеги по цеху. Сравните с мировыми — увидите, где Россия сильна, а где уступает. Что у них хорошо — повторим. Что плохо — обойдём.</p>
+  </div>
+</section>
+
+<section class="sites">
+  <div class="container">
+
+    <h3 class="group-title">Москва — 10 кейтерингов</h3>
+    <article class="card">
+      <div class="card-grid">
+        <div class="card-preview">
+          <div>
+            <div class="card-num">M1</div>
+            <div class="card-flag">🇷🇺 Москва</div>
+            <h3 class="card-name">Novikov Group · Catering</h3>
+            <div class="card-url">novikovgroup.ru</div>
+          </div>
+          <a href="https://www.novikovgroup.ru" target="_blank" rel="noopener" class="card-btn">Открыть сайт →</a>
+        </div>
+        <div class="card-body">
+          <p class="card-style">Один из самых известных кейтерингов России, основан Аркадием Новиковым. <strong>10 побед в премии «Кейтеринг года».</strong> Элитные площадки, авторская подача.</p>
+          <div class="conv-label">Что усиливает продажи</div>
+          <div class="conv-row conv-up"><span class="conv-arrow">↑</span><span><strong>Известное имя + 10 наград на главной</strong> → мощный trust signal</span></div>
+          <div class="conv-label">Что мешает конверсии</div>
+          <div class="conv-row conv-down"><span class="conv-arrow">↓</span><span>Сайт ресторана, а не кейтеринга — навигация запутанная, раздел «кейтеринг» спрятан</span></div>
+          <div class="conv-label">Палитра сайта</div>
+          <div class="card-palette"><span style="background:#0F1A14"></span><span style="background:#C9A961"></span><span style="background:#F8F3E9"></span><span style="background:#7A5C3E"></span></div>
+        </div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="card-grid">
+        <div class="card-preview">
+          <div>
+            <div class="card-num">M2</div>
+            <div class="card-flag">🇷🇺 Москва</div>
+            <h3 class="card-name">Canape Club (Канапе Клаб)</h3>
+            <div class="card-url">canapeclub.ru</div>
+          </div>
+          <a href="https://canapeclub.ru" target="_blank" rel="noopener" class="card-btn">Открыть сайт →</a>
+        </div>
+        <div class="card-body">
+          <p class="card-style">Один из лидеров по фуршетам в Москве. <strong>5000+ отзывов, прозрачные цены от 1500 ₽/чел</strong>, удобный фильтр по начинкам.</p>
+          <div class="conv-label">Что усиливает продажи</div>
+          <div class="conv-row conv-up"><span class="conv-arrow">↑</span><span><strong>5000+ отзывов + прозрачные цены от 1500 ₽/чел</strong> → очень высокий CRO, конверсия в заявку выше рынка</span></div>
+          <div class="conv-label">Что мешает конверсии</div>
+          <div class="conv-row conv-down"><span class="conv-arrow">↓</span><span>Каталог-стиль — теряет «воздух», не подходит как референс для имиджевой подачи</span></div>
+          <div class="conv-label">Палитра сайта</div>
+          <div class="card-palette"><span style="background:#F8F3E9"></span><span style="background:#CC3333"></span><span style="background:#2A3A30"></span><span style="background:#A67C52"></span></div>
+        </div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="card-grid">
+        <div class="card-preview">
+          <div>
+            <div class="card-num">M3</div>
+            <div class="card-flag">🇷🇺 Москва</div>
+            <h3 class="card-name">Muscat Catering</h3>
+            <div class="card-url">catering-muscat.ru</div>
+          </div>
+          <a href="https://catering-muscat.ru" target="_blank" rel="noopener" class="card-btn">Открыть сайт →</a>
+        </div>
+        <div class="card-body">
+          <p class="card-style">Один из лидеров по масштабу в Москве. <strong>Более 1000 мероприятий ежегодно.</strong> Полный цикл: банкеты, фуршеты, кофе-брейки, выездные бары, BBQ.</p>
+          <div class="conv-label">Что усиливает продажи</div>
+          <div class="conv-row conv-up"><span class="conv-arrow">↑</span><span><strong>«1000 мероприятий в год» как цифра</strong> → +trust, снимает возражение «а вы справитесь?»</span></div>
+          <div class="conv-label">Что мешает конверсии</div>
+          <div class="conv-row conv-down"><span class="conv-arrow">↓</span><span>Стандартный дизайн — не выделяется на фоне других, рискует затеряться</span></div>
+          <div class="conv-label">Палитра сайта</div>
+          <div class="card-palette"><span style="background:#F5EFE3"></span><span style="background:#722F37"></span><span style="background:#1A1A1A"></span><span style="background:#C9A961"></span></div>
+        </div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="card-grid">
+        <div class="card-preview">
+          <div>
+            <div class="card-num">M4</div>
+            <div class="card-flag">🇷🇺 Москва</div>
+            <h3 class="card-name">Diamond Catering</h3>
+            <div class="card-url">diamond-catering.ru</div>
+          </div>
+          <a href="https://diamond-catering.ru" target="_blank" rel="noopener" class="card-btn">Открыть сайт →</a>
+        </div>
+        <div class="card-body">
+          <p class="card-style">Выездной кейтеринг с ресторанным качеством. <strong>Корпоративные события, частные мероприятия.</strong> B2B-фокус.</p>
+          <div class="conv-label">Что усиливает продажи</div>
+          <div class="conv-row conv-up"><span class="conv-arrow">↑</span><span><strong>Чёткий B2B-фокус и структура услуг</strong> → корпоративные клиенты находят нужное быстрее</span></div>
+          <div class="conv-label">Что мешает конверсии</div>
+          <div class="conv-row conv-down"><span class="conv-arrow">↓</span><span>Слабая эмоциональная подача — нет storytelling, нет «почему мы»</span></div>
+          <div class="conv-label">Палитра сайта</div>
+          <div class="card-palette"><span style="background:#1A1F2E"></span><span style="background:#3B6BA5"></span><span style="background:#F8F3E9"></span><span style="background:#A67C52"></span></div>
+        </div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="card-grid">
+        <div class="card-preview">
+          <div>
+            <div class="card-num">M5</div>
+            <div class="card-flag">🇷🇺 Москва</div>
+            <h3 class="card-name">Сезон Вкуса</h3>
+            <div class="card-url">sv-catering.ru</div>
+          </div>
+          <a href="https://sv-catering.ru" target="_blank" rel="noopener" class="card-btn">Открыть сайт →</a>
+        </div>
+        <div class="card-body">
+          <p class="card-style">Уникальное УТП: <strong>кейтеринг за 24 часа.</strong> Профессиональная организация мероприятий всех форматов, индивидуальный подход.</p>
+          <div class="conv-label">Что усиливает продажи</div>
+          <div class="conv-row conv-up"><span class="conv-arrow">↑</span><span><strong>УТП «24 часа»</strong> → для срочных заказов, конкурентное преимущество в нише «last-minute»</span></div>
+          <div class="conv-label">Что мешает конверсии</div>
+          <div class="conv-row conv-down"><span class="conv-arrow">↓</span><span>УТП «скорость» может снизить perceived value — клиент думает «быстро = упрощённое меню»</span></div>
+          <div class="conv-label">Палитра сайта</div>
+          <div class="card-palette"><span style="background:#F8F3E9"></span><span style="background:#5A7A5E"></span><span style="background:#2A3A30"></span><span style="background:#C9A961"></span></div>
+        </div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="card-grid">
+        <div class="card-preview">
+          <div>
+            <div class="card-num">M6</div>
+            <div class="card-flag">🇷🇺 Москва</div>
+            <h3 class="card-name">Шико Catering Club</h3>
+            <div class="card-url">shikocc.ru</div>
+          </div>
+          <a href="https://shikocc.ru" target="_blank" rel="noopener" class="card-btn">Открыть сайт →</a>
+        </div>
+        <div class="card-body">
+          <p class="card-style">Премиальные фуршетные боксы, сеты для 10–30 гостей, подносы, канапе и закуски. <strong>Аккуратная подача каталога.</strong></p>
+          <div class="conv-label">Что усиливает продажи</div>
+          <div class="conv-row conv-up"><span class="conv-arrow">↑</span><span><strong>Аккуратная подача фуршетных боксов</strong> → чёткая нишевая экспертиза, понятный формат</span></div>
+          <div class="conv-label">Что мешает конверсии</div>
+          <div class="conv-row conv-down"><span class="conv-arrow">↓</span><span>Узкая ниша — не для крупных банкетов на 200+ гостей</span></div>
+          <div class="conv-label">Палитра сайта</div>
+          <div class="card-palette"><span style="background:#1A1A1A"></span><span style="background:#C9A961"></span><span style="background:#F8F3E9"></span><span style="background:#7A5C3E"></span></div>
+        </div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="card-grid">
+        <div class="card-preview">
+          <div>
+            <div class="card-num">M7</div>
+            <div class="card-flag">🇷🇺 Москва</div>
+            <h3 class="card-name">Sisters Catering (Систерс)</h3>
+            <div class="card-url">sisterscatering.ru</div>
+          </div>
+          <a href="https://sisterscatering.ru" target="_blank" rel="noopener" class="card-btn">Открыть сайт →</a>
+        </div>
+        <div class="card-body">
+          <p class="card-style">«Ресторан на вашем празднике». <strong>Организация мероприятий любого формата с любовью к деталям.</strong> Мягкая, эмоциональная подача.</p>
+          <div class="conv-label">Что усиливает продажи</div>
+          <div class="conv-row conv-up"><span class="conv-arrow">↑</span><span><strong>Эмоциональная подача «с любовью к деталям»</strong> → для свадеб и семейных событий</span></div>
+          <div class="conv-label">Что мешает конверсии</div>
+          <div class="conv-row conv-down"><span class="conv-arrow">↓</span><span>Слабая функциональная часть — нет калькулятора, нет быстрой заявки</span></div>
+          <div class="conv-label">Палитра сайта</div>
+          <div class="card-palette"><span style="background:#F8F3E9"></span><span style="background:#D4A5A5"></span><span style="background:#3D4A3E"></span><span style="background:#A67C52"></span></div>
+        </div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="card-grid">
+        <div class="card-preview">
+          <div>
+            <div class="card-num">M8</div>
+            <div class="card-flag">🇷🇺 Москва</div>
+            <h3 class="card-name">Moscow Food</h3>
+            <div class="card-url">moscowfood.ru</div>
+          </div>
+          <a href="https://www.moscowfood.ru" target="_blank" rel="noopener" class="card-btn">Открыть сайт →</a>
+        </div>
+        <div class="card-body">
+          <p class="card-style">Кейтеринг с 2005 года. <strong>Специализация — конференции, корпоративы, деловые события.</strong> Стабильное качество, отлаженные процессы.</p>
+          <div class="conv-label">Что усиливает продажи</div>
+          <div class="conv-row conv-up"><span class="conv-arrow">↑</span><span><strong>20-летняя история + B2B-специализация</strong> → +trust для корпоративных заказчиков</span></div>
+          <div class="conv-label">Что мешает конверсии</div>
+          <div class="conv-row conv-down"><span class="conv-arrow">↓</span><span>Устаревший дизайн — не соответствует современным стандартам 2026</span></div>
+          <div class="conv-label">Палитра сайта</div>
+          <div class="card-palette"><span style="background:#F8F3E9"></span><span style="background:#1B4D7A"></span><span style="background:#2A3A30"></span><span style="background:#A67C52"></span></div>
+        </div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="card-grid">
+        <div class="card-preview">
+          <div>
+            <div class="card-num">M9</div>
+            <div class="card-flag">🇷🇺 Москва</div>
+            <h3 class="card-name">M-Catering</h3>
+            <div class="card-url">m-catering.ru</div>
+          </div>
+          <a href="https://m-catering.ru" target="_blank" rel="noopener" class="card-btn">Открыть сайт →</a>
+        </div>
+        <div class="card-body">
+          <p class="card-style">С 2013 года — выездной кейтеринг + доставка готовых фуршетных/банкетных блюд. <strong>Гибкая модель: с сервисом и без.</strong></p>
+          <div class="conv-label">Что усиливает продажи</div>
+          <div class="conv-row conv-up"><span class="conv-arrow">↑</span><span><strong>Гибкая модель (с сервисом/без)</strong> → для разных бюджетов, расширяет целевую аудиторию</span></div>
+          <div class="conv-label">Что мешает конверсии</div>
+          <div class="conv-row conv-down"><span class="conv-arrow">↓</span><span>Слабый brand identity — нет запоминающегося визуала или УТП</span></div>
+          <div class="conv-label">Палитра сайта</div>
+          <div class="card-palette"><span style="background:#F5EFE3"></span><span style="background:#2A3A30"></span><span style="background:#C9A961"></span><span style="background:#7A5C3E"></span></div>
+        </div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="card-grid">
+        <div class="card-preview">
+          <div>
+            <div class="card-num">M10</div>
+            <div class="card-flag">🇷🇺 Москва</div>
+            <h3 class="card-name">Food Embassy</h3>
+            <div class="card-url">foodembassy.ru</div>
+          </div>
+          <a href="https://foodembassy.ru" target="_blank" rel="noopener" class="card-btn">Открыть сайт →</a>
+        </div>
+        <div class="card-body">
+          <p class="card-style">Семейные торжества, корпоративные праздники, деловые бранчи. <strong>От уютных ужинов до больших праздников.</strong> Мягкая, эмоциональная подача.</p>
+          <div class="conv-label">Что усиливает продажи</div>
+          <div class="conv-row conv-up"><span class="conv-arrow">↑</span><span><strong>Семейный фокус «от уютных ужинов»</strong> → чёткая ниша, не пытается быть «всем для всех»</span></div>
+          <div class="conv-label">Что мешает конверсии</div>
+          <div class="conv-row conv-down"><span class="conv-arrow">↓</span><span>Слабая B2B-составляющая — корпоративный сегмент уходит к конкурентам</span></div>
+          <div class="conv-label">Палитра сайта</div>
+          <div class="card-palette"><span style="background:#F8E8D8"></span><span style="background:#D4A574"></span><span style="background:#3D2817"></span><span style="background:#A67C52"></span></div>
+        </div>
+      </div>
+    </article>
+
+    <h3 class="group-title">Санкт-Петербург — 8 кейтерингов</h3>
+    <article class="card">
+      <div class="card-grid">
+        <div class="card-preview">
+          <div>
+            <div class="card-num">S1</div>
+            <div class="card-flag">🇷🇺 СПб</div>
+            <h3 class="card-name">Caramel Catering (Карамель)</h3>
+            <div class="card-url">caramel-catering.ru</div>
+          </div>
+          <a href="https://caramel-catering.ru" target="_blank" rel="noopener" class="card-btn">Открыть сайт →</a>
+        </div>
+        <div class="card-body">
+          <p class="card-style">Крупнейшая кейтеринговая компания Санкт-Петербурга. <strong>Полный спектр</strong>: банкеты, фуршеты, событийный кейтеринг, выставки (КВЦ «Экспофорум», NEVA).</p>
+          <div class="conv-label">Что усиливает продажи</div>
+          <div class="conv-row conv-up"><span class="conv-arrow">↑</span><span><strong>Кейсы на 5000+ гостей + выставки</strong> → для крупных корпоративов и государственных событий</span></div>
+          <div class="conv-label">Что мешает конверсии</div>
+          <div class="conv-row conv-down"><span class="conv-arrow">↓</span><span>Сайт иногда нестабилен — рискует потерять посетителя, нужен надёжный хостинг</span></div>
+          <div class="conv-label">Палитра сайта</div>
+          <div class="card-palette"><span style="background:#3D2817"></span><span style="background:#C9A961"></span><span style="background:#F8F3E9"></span><span style="background:#8B6F47"></span></div>
+        </div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="card-grid">
+        <div class="card-preview">
+          <div>
+            <div class="card-num">S2</div>
+            <div class="card-flag">🇷🇺 СПб</div>
+            <h3 class="card-name">Eat Catering</h3>
+            <div class="card-url">eatcatering.ru</div>
+          </div>
+          <a href="https://eatcatering.ru" target="_blank" rel="noopener" class="card-btn">Открыть сайт →</a>
+        </div>
+        <div class="card-body">
+          <p class="card-style">Чистый минималистичный дизайн. <strong>Современная подача, акцент на эстетику.</strong> Один из самых «современных» кейтерингов СПб.</p>
+          <div class="conv-label">Что усиливает продажи</div>
+          <div class="conv-row conv-up"><span class="conv-arrow">↑</span><span><strong>Чистый минималистичный дизайн</strong> → modern appeal, привлекает молодую аудиторию</span></div>
+          <div class="conv-label">Что мешает конверсии</div>
+          <div class="conv-row conv-down"><span class="conv-arrow">↓</span><span>Меньше trust signals — нет цифр «N лет», нет логотипов клиентов, ниже доверие</span></div>
+          <div class="conv-label">Палитра сайта</div>
+          <div class="card-palette"><span style="background:#FAFAFA"></span><span style="background:#2A3A30"></span><span style="background:#C9A961"></span><span style="background:#5A7A5E"></span></div>
+        </div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="card-grid">
+        <div class="card-preview">
+          <div>
+            <div class="card-num">S3</div>
+            <div class="card-flag">🇷🇺 СПб</div>
+            <h3 class="card-name">A-Catering</h3>
+            <div class="card-url">a-catering.com</div>
+          </div>
+          <a href="https://a-catering.com" target="_blank" rel="noopener" class="card-btn">Открыть сайт →</a>
+        </div>
+        <div class="card-body">
+          <p class="card-style">Чёткая ниша: <strong>BBQ и загородный кейтеринг.</strong> Выезды на природу, гриль-станции, летние форматы.</p>
+          <div class="conv-label">Что усиливает продажи</div>
+          <div class="conv-row conv-up"><span class="conv-arrow">↑</span><span><strong>Чёткая ниша (BBQ, загород)</strong> → niche expert, легче SEO-продвижение по специфичным запросам</span></div>
+          <div class="conv-label">Что мешает конверсии</div>
+          <div class="conv-row conv-down"><span class="conv-arrow">↓</span><span>Узкая специализация — теряет сегмент банкетов и корпоративов в помещениях</span></div>
+          <div class="conv-label">Палитра сайта</div>
+          <div class="card-palette"><span style="background:#F8F3E9"></span><span style="background:#BC6C25"></span><span style="background:#2A3A30"></span><span style="background:#A67C52"></span></div>
+        </div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="card-grid">
+        <div class="card-preview">
+          <div>
+            <div class="card-num">S4</div>
+            <div class="card-flag">🇷🇺 СПб</div>
+            <h3 class="card-name">Forum Catering</h3>
+            <div class="card-url">forumcatering.ru</div>
+          </div>
+          <a href="http://forumcatering.ru" target="_blank" rel="noopener" class="card-btn">Открыть сайт →</a>
+        </div>
+        <div class="card-body">
+          <p class="card-style">Специализация — <strong>форумы, конгрессы, деловые события.</strong> B2B-фокус, отлаженные процессы под масштабные мероприятия.</p>
+          <div class="conv-label">Что усиливает продажи</div>
+          <div class="conv-row conv-up"><span class="conv-arrow">↑</span><span><strong>B2B-экспертиза в форумах и конгрессах</strong> → для крупных деловых событий, стабильный B2B-поток</span></div>
+          <div class="conv-label">Что мешает конверсии</div>
+          <div class="conv-row conv-down"><span class="conv-arrow">↓</span><span>Слабая визуальная подача — нет «вау»-эффекта в hero, теряет эмоциональных клиентов</span></div>
+          <div class="conv-label">Палитра сайта</div>
+          <div class="card-palette"><span style="background:#F5EFE3"></span><span style="background:#1B4D7A"></span><span style="background:#2A3A30"></span><span style="background:#C9A961"></span></div>
+        </div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="card-grid">
+        <div class="card-preview">
+          <div>
+            <div class="card-num">S5</div>
+            <div class="card-flag">🇷🇺 СПб</div>
+            <h3 class="card-name">WOW!CATERING</h3>
+            <div class="card-url">wow-catering.ru</div>
+          </div>
+          <a href="https://wow-catering.ru" target="_blank" rel="noopener" class="card-btn">Открыть сайт →</a>
+        </div>
+        <div class="card-body">
+          <p class="card-style">«WOW!Настроение Вам и Вашим гостям для любого события». <strong>Свадьбы, фуршеты, детские утренники.</strong> Эмоциональный бренд-подход.</p>
+          <div class="conv-label">Что усиливает продажи</div>
+          <div class="conv-row conv-up"><span class="conv-arrow">↑</span><span><strong>Эмоциональный брендинг «WOW!»</strong> → для свадеб и детских событий, запоминающийся бренд</span></div>
+          <div class="conv-label">Что мешает конверсии</div>
+          <div class="conv-row conv-down"><span class="conv-arrow">↓</span><span>Кричащие яркие цвета снижают солидность — не подходит для высокого чека</span></div>
+          <div class="conv-label">Палитра сайта</div>
+          <div class="card-palette"><span style="background:#FF6B9D"></span><span style="background:#F8F3E9"></span><span style="background:#2A3A30"></span><span style="background:#FFB347"></span></div>
+        </div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="card-grid">
+        <div class="card-preview">
+          <div>
+            <div class="card-num">S6</div>
+            <div class="card-flag">🇷🇺 СПб</div>
+            <h3 class="card-name">WOW Furshet SPb</h3>
+            <div class="card-url">wowfurshet-spb.ru</div>
+          </div>
+          <a href="https://wowfurshet-spb.ru" target="_blank" rel="noopener" class="card-btn">Открыть сайт →</a>
+        </div>
+        <div class="card-body">
+          <p class="card-style">Фуршеты, кейтеринг, детское меню, <strong>гастробоксы с доставкой по СПб и ЛО.</strong> Современный, с акцентом на каталог.</p>
+          <div class="conv-label">Что усиливает продажи</div>
+          <div class="conv-row conv-up"><span class="conv-arrow">↑</span><span><strong>Гастробоксы как формат</strong> → тренд 2026, удобная доставка, низкий порог входа для клиента</span></div>
+          <div class="conv-label">Что мешает конверсии</div>
+          <div class="conv-row conv-down"><span class="conv-arrow">↓</span><span>Каталог-стиль — средний чек ниже, чем у банкетных кейтерингов</span></div>
+          <div class="conv-label">Палитра сайта</div>
+          <div class="card-palette"><span style="background:#F8F3E9"></span><span style="background:#E85D3F"></span><span style="background:#2A3A30"></span><span style="background:#A67C52"></span></div>
+        </div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="card-grid">
+        <div class="card-preview">
+          <div>
+            <div class="card-num">S7</div>
+            <div class="card-flag">🇷🇺 СПб</div>
+            <h3 class="card-name">Catering-spb.ru</h3>
+            <div class="card-url">catering-spb.ru</div>
+          </div>
+          <a href="http://catering-spb.ru" target="_blank" rel="noopener" class="card-btn">Открыть сайт →</a>
+        </div>
+        <div class="card-body">
+          <p class="card-style">Кейтеринг в СПб с доставкой. <strong>Широкий спектр услуг.</strong> Классический российский кейтеринг.</p>
+          <div class="conv-label">Что усиливает продажи</div>
+          <div class="conv-row conv-up"><span class="conv-arrow">↑</span><span><strong>Широкий спектр</strong> → универсальность, подходит для разных типов клиентов</span></div>
+          <div class="conv-label">Что мешает конверсии</div>
+          <div class="conv-row conv-down"><span class="conv-arrow">↓</span><span><strong>Дизайн «из 2010-х» — главный анти-референс</strong>. Снижает доверие, отпугивает часть клиентов</span></div>
+          <div class="conv-label">Палитра сайта</div>
+          <div class="card-palette"><span style="background:#F8F3E9"></span><span style="background:#CC3333"></span><span style="background:#2A3A30"></span><span style="background:#A67C52"></span></div>
+        </div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="card-grid">
+        <div class="card-preview">
+          <div>
+            <div class="card-num">S8</div>
+            <div class="card-flag">🇷🇺 СПб</div>
+            <h3 class="card-name">WOW Events</h3>
+            <div class="card-url">wow-eve.ru</div>
+          </div>
+          <a href="https://wow-eve.ru" target="_blank" rel="noopener" class="card-btn">Открыть сайт →</a>
+        </div>
+        <div class="card-body">
+          <p class="card-style">Выездной кейтеринг, банкет, фуршет. <strong>«Достойное событие в любом месте: в офисе, на природе, во дворце».</strong> Отдельная компания (часть группы ZEPPELIN Catering).</p>
+          <div class="conv-label">Что усиливает продажи</div>
+          <div class="conv-row conv-up"><span class="conv-arrow">↑</span><span><strong>«В офисе, на природе, во дворце» — универсальность площадок</strong> → шире целевая аудитория</span></div>
+          <div class="conv-label">Что мешает конверсии</div>
+          <div class="conv-row conv-down"><span class="conv-arrow">↓</span><span>Похожее название с WOW!CATERING может путать клиента — нужна чёткая дифференциация</span></div>
+          <div class="conv-label">Палитра сайта</div>
+          <div class="card-palette"><span style="background:#FFB347"></span><span style="background:#F8F3E9"></span><span style="background:#2A3A30"></span><span style="background:#FF6B9D"></span></div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- AGGREGATORS -->
+<section class="aggregators">
+  <div class="container">
+    <span class="section-eyebrow">Сравнить рынок</span>
+    <h2 class="section-title">Агрегаторы и <em>рейтинги</em></h2>
+    <p class="section-sub">Если захочется больше вариантов — вот проверенные сервисы для сравнения российских кейтерингов и рейтинги 2026 года.</p>
+
+    <div class="agg-grid">
+      <a class="agg-card" href="https://caterme.ru" target="_blank" rel="noopener">
+        <h4>CaterMe</h4>
+        <div class="agg-url">caterme.ru</div>
+        <p>300+ кейтерингов. Одна заявка → до 7 предложений за 30 минут. По всей России.</p>
+      </a>
+      <a class="agg-card" href="https://catery.ru" target="_blank" rel="noopener">
+        <h4>Catery</h4>
+        <div class="agg-url">catery.ru</div>
+        <p>700+ компаний в Москве. Один договор → сотни проверенных кейтерингов.</p>
+      </a>
+      <a class="agg-card" href="https://spb.caterme.ru/caterer" target="_blank" rel="noopener">
+        <h4>CaterMe · СПб</h4>
+        <div class="agg-url">spb.caterme.ru/caterer</div>
+        <p>Рейтинг кейтерингов Санкт-Петербурга с отзывами.</p>
+      </a>
+      <a class="agg-card" href="https://www.banket.ru/spb/catering" target="_blank" rel="noopener">
+        <h4>Banket.ru · СПб</h4>
+        <div class="agg-url">banket.ru/spb/catering</div>
+        <p>Каталог кейтерингов СПб с фильтрами по типу события и бюджету.</p>
+      </a>
+    </div>
+    <div class="agg-grid margin-top">
+      <a class="agg-card" href="https://bash.today/posts/luchshie-kejteringovye-kompanii-v-spb" target="_blank" rel="noopener">
+        <h4>Bash Today · Топ-15 СПб</h4>
+        <div class="agg-url">bash.today</div>
+        <p>Сет-Фуршет, Eat Catering, Канапе Клаб, Empire, СЗКК и др.</p>
+      </a>
+      <a class="agg-card" href="https://vc.ru/life/2326808-keyteringovye-kompanii-sankt-peterburga" target="_blank" rel="noopener">
+        <h4>vc.ru · 15 лучших СПб 2026</h4>
+        <div class="agg-url">vc.ru</div>
+        <p>Hotkitchen, Ева, Арт нуво, Фурсет, Северо-западная кейтеринговая компания.</p>
+      </a>
+      <a class="agg-card" href="https://rating.spb.ru/catering" target="_blank" rel="noopener">
+        <h4>Rating.spb.ru · ТОП-30</h4>
+        <div class="agg-url">rating.spb.ru</div>
+        <p>Левитан, Kanape4party, PartyGlass, G. Catering, Парадиз-Кейтеринг, Пан Ю.</p>
+      </a>
+      <a class="agg-card" href="https://worldculinaryawards.com" target="_blank" rel="noopener">
+        <h4>World Culinary Awards</h4>
+        <div class="agg-url">worldculinaryawards.com</div>
+        <p>Мировая премия в кулинарии. Европа, Северная Америка, Азия — лучшие кейтеринги по версиям.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- MORE INSPIRATION -->
+<section class="inspiration">
+  <div class="container">
+    <span class="section-eyebrow">Свежие работы — раз в неделю</span>
+    <h2 class="section-title">Ещё больше <em>вдохновения</em></h2>
+    <p class="section-sub">Эти ссылки — не отдельные кейтеринги, а постоянно обновляемые подборки. Заходите раз в неделю — найдёте новые работы и увидите тренды сезона.</p>
+
+    <div class="insp-grid">
+      <a class="insp-card" href="https://www.awwwards.com/websites/food-drink" target="_blank" rel="noopener">
+        <strong>Awwwards · Food & Drink</strong>
+        <span>awwwards.com/websites/food-drink</span>
+      </a>
+      <a class="insp-card" href="https://www.awwwards.com/websites/hotel-restaurant" target="_blank" rel="noopener">
+        <strong>Awwwards · Hotel & Restaurant</strong>
+        <span>awwwards.com/websites/hotel-restaurant</span>
+      </a>
+      <a class="insp-card" href="https://www.awwwards.com/websites/luxury" target="_blank" rel="noopener">
+        <strong>Awwwards · Luxury</strong>
+        <span>awwwards.com/websites/luxury</span>
+      </a>
+      <a class="insp-card" href="https://winners.webbyawards.com/winners/websites-and-mobile-sites/general-desktop-mobile-sites/food-drink" target="_blank" rel="noopener">
+        <strong>The Webby Awards · Food & Drink</strong>
+        <span>winners.webbyawards.com</span>
+      </a>    </div>
+  </div>
+</section>
+
+<!-- POLL -->
+<section class="poll" id="poll">
+  <div class="container">
+    <span class="section-eyebrow" style="color:var(--accent);">20 минут — и готово</span>
+    <h2>Что вам <em>понравилось?</em></h2>
+    <p class="lead">Отметьте 3–5 вариантов, которые произвели лучшее впечатление. Плюс 1–2 «что точно НЕ нравится». Пришлите мне скриншот или просто номера в Telegram — дальше моя работа.</p>
+
+    <div class="poll-block-title">🌍 Мировые кейтеринги</div>
+    <div class="poll-grid">
+      <div class="poll-option"><input type="checkbox" id="w01"><label for="w01">01 · Wolfgang Puck Catering</label></div>
+      <div class="poll-option"><input type="checkbox" id="w02"><label for="w02">02 · Abigail Kirsch</label></div>
+      <div class="poll-option"><input type="checkbox" id="w03"><label for="w03">03 · Great Performances</label></div>
+      <div class="poll-option"><input type="checkbox" id="w04"><label for="w04">04 · Creative Edge Parties</label></div>
+      <div class="poll-option"><input type="checkbox" id="w05"><label for="w05">05 · Salthouse Catering</label></div>
+      <div class="poll-option"><input type="checkbox" id="w06"><label for="w06">06 · Pommier le Traiteur</label></div>
+      <div class="poll-option"><input type="checkbox" id="w07"><label for="w07">07 · Certé NYC</label></div>
+      <div class="poll-option"><input type="checkbox" id="w08"><label for="w08">08 · By Word of Mouth</label></div>
+      <div class="poll-option"><input type="checkbox" id="w09"><label for="w09">09 · Daniel et Daniel</label></div>
+      <div class="poll-option"><input type="checkbox" id="w10"><label for="w10">10 · Ridgewells</label></div>
+      <div class="poll-option"><input type="checkbox" id="w11"><label for="w11">11 · Catering by Michaels</label></div>
+      <div class="poll-option"><input type="checkbox" id="w12"><label for="w12">12 · McCalls Catering & Events</label></div>
+      <div class="poll-option"><input type="checkbox" id="w13"><label for="w13">13 · Pinch Food Design</label></div>
+      <div class="poll-option"><input type="checkbox" id="w14"><label for="w14">14 · Olivier Cheng Catering</label></div>
+      <div class="poll-option"><input type="checkbox" id="w15"><label for="w15">15 · Potel et Chabot</label></div>
+      <div class="poll-option"><input type="checkbox" id="w16"><label for="w16">16 · Moving Venue</label></div>
+      <div class="poll-option"><input type="checkbox" id="w17"><label for="w17">17 · Dish Dubai</label></div>
+      <div class="poll-option"><input type="checkbox" id="w18"><label for="w18">18 · AHS Catering & Events</label></div>
+      <div class="poll-option"><input type="checkbox" id="w19"><label for="w19">19 · Amici Catering</label></div>
+      <div class="poll-option"><input type="checkbox" id="w20"><label for="w20">20 · Luxe Catering</label></div>
+      <div class="poll-option"><input type="checkbox" id="w21"><label for="w21">21 · Artigot Catering</label></div>
+      <div class="poll-option"><input type="checkbox" id="w22"><label for="w22">22 · DO & CO</label></div>    </div>
+
+    <div class="poll-block-title">🇷🇺 Москва</div>
+    <div class="poll-grid">
+      <div class="poll-option"><input type="checkbox" id="m1"><label for="m1">M1 · Novikov Group · Catering</label></div>
+      <div class="poll-option"><input type="checkbox" id="m2"><label for="m2">M2 · Canape Club</label></div>
+      <div class="poll-option"><input type="checkbox" id="m3"><label for="m3">M3 · Muscat Catering</label></div>
+      <div class="poll-option"><input type="checkbox" id="m4"><label for="m4">M4 · Diamond Catering</label></div>
+      <div class="poll-option"><input type="checkbox" id="m5"><label for="m5">M5 · Сезон Вкуса</label></div>
+      <div class="poll-option"><input type="checkbox" id="m6"><label for="m6">M6 · Шико Catering Club</label></div>
+      <div class="poll-option"><input type="checkbox" id="m7"><label for="m7">M7 · Sisters Catering</label></div>
+      <div class="poll-option"><input type="checkbox" id="m8"><label for="m8">M8 · Moscow Food</label></div>
+      <div class="poll-option"><input type="checkbox" id="m9"><label for="m9">M9 · M-Catering</label></div>
+      <div class="poll-option"><input type="checkbox" id="m10"><label for="m10">M10 · Food Embassy</label></div>    </div>
+
+    <div class="poll-block-title">🇷🇺 Санкт-Петербург</div>
+    <div class="poll-grid">
+      <div class="poll-option"><input type="checkbox" id="s1"><label for="s1">S1 · Caramel Catering</label></div>
+      <div class="poll-option"><input type="checkbox" id="s2"><label for="s2">S2 · Eat Catering</label></div>
+      <div class="poll-option"><input type="checkbox" id="s3"><label for="s3">S3 · A-Catering</label></div>
+      <div class="poll-option"><input type="checkbox" id="s4"><label for="s4">S4 · Forum Catering</label></div>
+      <div class="poll-option"><input type="checkbox" id="s5"><label for="s5">S5 · WOW!CATERING</label></div>
+      <div class="poll-option"><input type="checkbox" id="s6"><label for="s6">S6 · WOW Furshet SPb</label></div>
+      <div class="poll-option"><input type="checkbox" id="s7"><label for="s7">S7 · Catering-spb.ru</label></div>
+      <div class="poll-option"><input type="checkbox" id="s8"><label for="s8">S8 · WOW Events</label></div>    </div>
+
+    <div class="poll-block-title">🎨 Что важно для вашего сайта</div>
+    <div class="poll-grid">
+      <div class="poll-option"><input type="checkbox" id="st1"><label for="st1">Тёмная палитра (forest + bronze)</label></div>
+      <div class="poll-option"><input type="checkbox" id="st2"><label for="st2">Светлая палитра (cream + bronze)</label></div>
+      <div class="poll-option"><input type="checkbox" id="st3"><label for="st3">Serif-типографика (Cormorant)</label></div>
+      <div class="poll-option"><input type="checkbox" id="st4"><label for="st4">Тёплая фуд-фотография (natural light)</label></div>
+      <div class="poll-option"><input type="checkbox" id="st5"><label for="st5">Farm-to-table эстетика</label></div>
+      <div class="poll-option"><input type="checkbox" id="st6"><label for="st6">Минимализм (Pommier-style)</label></div>
+      <div class="poll-option"><input type="checkbox" id="st7"><label for="st7">Storytelling через людей</label></div>
+      <div class="poll-option"><input type="checkbox" id="st8"><label for="st8">Показать цены прямо на сайте</label></div>
+      <div class="poll-option"><input type="checkbox" id="st9"><label for="st9">Только форма заявки (без цен)</label></div>
+    </div>
+
+    <div class="poll-block-title">❌ Что точно НЕ нравится</div>
+    <div class="poll-grid">
+      <div class="poll-option"><input type="checkbox" id="an1"><label for="an1">Переполненный hero с 5+ элементами</label></div>
+      <div class="poll-option"><input type="checkbox" id="an2"><label for="an2">Кричащий CTA «СКИДКА -30%»</label></div>
+      <div class="poll-option"><input type="checkbox" id="an3"><label for="an3">Стоковые фото без фуд-стайлинга</label></div>
+      <div class="poll-option"><input type="checkbox" id="an4"><label for="an4">Авто-воспроизведение видео со звуком</label></div>
+      <div class="poll-option"><input type="checkbox" id="an5"><label for="an5">Каталог-стиль без имиджевой подачи</label></div>
+      <div class="poll-option"><input type="checkbox" id="an6"><label for="an6">Устаревший дизайн «из 2010-х»</label></div>
+    </div>
+
+    <div class="poll-note">
+      <h3>Как отправить мне ваш выбор</h3>
+      <ol>
+        <li><strong>Способ 1 (быстрый):</strong> просто напишите мне номера в Telegram. Например: «Понравились: 1, 6, 9, 15, M1, S2. Не понравились: 4, S5. Хочу тёмную палитру + storytelling.»</li>
+        <li><strong>Способ 2 (наглядный):</strong> отметьте галочками 3–5 понравившихся + 1–2 «что НЕ нравится» прямо на этой странице, сделайте скриншот опросника и пришлите мне.</li>
+        <li><strong>Способ 3 (развёрнутый):</strong> пришлите 2–3 скриншота конкретных сайтов, где понравилась определённая секция (hero, меню, галерея) и подпись — что именно нравится. Это самый полезный формат — я смогу точно перенести удачные элементы.</li>
+      </ol>
+      <span class="example">Минимум — 3 номера понравившихся + 2–3 слова о предпочтениях. Дальше — моя работа.</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="brand">Nilov Catering</div>
+    <p>Подборка подготовлена для выбора стиля будущего сайта</p>
+    <div class="meta">
+      <span>40 кейтерингов</span>
+      <span>9 стран мира</span>
+      <span>18 российских</span>
+      <span>Ссылки проверены</span>
+    </div>
+    <p>Откройте · посмотрите · отметьте 3–5 понравившихся · пришлите мне номера</p>
+  </div>
+</footer>
+
+<a href="#top" class="totop" id="totop" aria-label="Наверх">↑</a>
+
+<script>
+(function(){
+  var btn = document.getElementById('totop');
+  window.addEventListener('scroll', function(){
+    if (window.scrollY > 600) { btn.classList.add('show'); }
+    else { btn.classList.remove('show'); }
+  }, {passive:true});
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+🚀 Initializing Z-AI SDK...
+🚀 Invoking function: web_search...
+[
+  {
+    "url": "https://caramel-catering.ru",
+    "name": "Caramel-Catering",
+    "snippet": "Карамель Кейтеринг предлагает широкий спектр кейтеринговых услуг: организация банкетов и фуршетов недорого, событийный кейтеринг, выездное ресторанное ...",
+    "host_name": "caramel-catering.ru",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://spb.caterme.ru/caterer/caramel-catering",
+    "name": "Карамель Кейтеринг",
+    "snippet": "Банкет. от 25 000 р. (2 600 р./чел.) за 48 ч. ; Барбекю. от 20 000 р. (2 600 р./чел.) за 48 ч. ; Кофе-брейк. от 15 000 р. (800 р./чел.) за 36 ч. ; Фуршет. от 15 ...",
+    "host_name": "spb.caterme.ru",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.facebook.com/caramelcateringspb/?locale=es_LA",
+    "name": "Карамель Кейтеринг | Saint Petersburg - Facebook",
+    "snippet": "http://caramel-catering.ru/ Карамель Кейтеринг - это европейский уровень обслуживания и оригинальные решения для Ваших мероприятий, это так-же, тщательно ...",
+    "host_name": "www.facebook.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.expoforum.ru/news/karamel-kejtering-nakormila-luchshih-restoratorov-rossii",
+    "name": "«Карамель Кейтеринг» накормила лучших рестораторов России",
+    "snippet": "«Карамель Кейтеринг» накормила лучших рестораторов России ; Главную награду премии завоевал ресторанBirchиз Санкт-Петербурга ; 1.Birch, ; 2.Twins ...",
+    "host_name": "www.expoforum.ru",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://dreamjob.ru/employers/182176",
+    "name": "Работа в КАРАМЕЛЬ Кейтеринг ᐈ Отзывы сотрудников о",
+    "snippet": "Невероятно крутой коллектив! Очень душевный,дружный,сплоченный! Все блюда,которые предоставляет Карамель ,просто восхитительные,бренд шефу ...",
+    "host_name": "dreamjob.ru",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]
+🎉 Function invocation completed!

@@ -1,0 +1,50 @@
+🚀 Initializing Z-AI SDK...
+🚀 Invoking function: web_search...
+[
+  {
+    "url": "https://vc.ru/life/2326808-keyteringovye-kompanii-sankt-peterburga",
+    "name": "15 лучших кейтеринговых компаний Санкт-Петербурга в 2026",
+    "snippet": "Кейтеринговые компании Санкт-Петербурга, рейтинг лучших услуг, советы по выбору, особенности кейтеринга, отзывы клиентов, цены на услуги.",
+    "host_name": "vc.ru",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://bash.today/posts/luchshie-kejteringovye-kompanii-v-spb",
+    "name": "Топ-15 кейтеринговых компаний Санкт-Петербурга - Bash Today",
+    "snippet": "1. «Сет-Фуршет» · 2. Eat Сatering · 3. Канапе Клаб · 4. Empire catering · 5. «Северо-западная кейтеринговая компания» · 6. «Аллегро кейтеринг» · 7. Stroganoff ...",
+    "host_name": "bash.today",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://top15moscow.ru/novosti/luchshie-kejteringi-sankt-peterburga",
+    "name": "Лучшие кейтеринги СПб - top15moscow",
+    "snippet": "Лучший кейтеринг Санкт-Петербурга для свадьбы (и не только) · Mishka Catering · Raw to Go · Magnifique Catering Group · Feliks Station Catering.",
+    "host_name": "top15moscow.ru",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://yandex.ru/maps/org/severo_zapadnaya_keyteringovaya_kompaniya/1170832805",
+    "name": "Северо-Западная Кейтеринговая Компания, кейтеринг  - Яндекс",
+    "snippet": "Кейтеринг «Северо-Западная Кейтеринговая Компания» по адресу Санкт-Петербург, Ставропольская улица, 10, ☎️ +7 812 622 42 52. Читать 85 отзывов, смотреть 186 ...",
+    "host_name": "yandex.ru",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://yandex.ru/maps/org/eat_catering/239077010065",
+    "name": "Eat Catering, кейтеринг — Яндекс Карты",
+    "snippet": "Кейтерингдоставка еды и обедов Рейтинг 5,0 70 оценок 63 отзыва 96%положительный 56 отзывов Персонал · 95%положительный 47 отзывов Екатерина О.",
+    "host_name": "yandex.ru",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]
+🎉 Function invocation completed!

@@ -1,0 +1,402 @@
+{
+  "task_id": "research-world-verify",
+  "task": "Verify world catering facts via z-ai web_search CLI",
+  "verification_date": "2026-06",
+  "method": "z-ai function -n web_search --args '{\"query\": \"...\", \"count\": 5}'",
+  "searches_run": 26,
+  "raw_results_dir": "/home/z/my-project/scripts/research_world_verify/",
+  "summary": {
+    "verified_true": 18,
+    "partially_true": 3,
+    "false": 1,
+    "unverified": 0,
+    "total_claims": 22
+  },
+  "country_count": {
+    "claim_in_file": "10 стран",
+    "actual_unique_countries": 9,
+    "verdict": "FALSE — file overcounts by 1",
+    "countries": ["USA", "Switzerland", "UK", "Canada", "France", "UAE", "Singapore", "Spain", "Austria"]
+  },
+  "claims": [
+    {
+      "id": 1,
+      "company": "Wolfgang Puck Catering",
+      "url": "wolfgangpuckcatering.com",
+      "claim": "Официальный кейтеринг Governor's Ball после Оскара",
+      "verdict": "VERIFIED TRUE",
+      "evidence": "NYT (2026-03-13): 'Wolfgang Puck and his team spend months preparing to cater the Governors Ball, the official Oscars after-party.'; ABC News: 'The Oscars after-party will be catered again by famed chef Wolfgang Puck'; WPCatering IG: 'For more than three decades'.",
+      "sources": [
+        "https://www.nytimes.com/2026/03/13/dining/wolfgang-puck-kitchen-oscars-night.html",
+        "https://abcnews.com/GMA/Food/wolfgang-puck-reveals-menu-32nd-oscars-governors-ball/story?id=131008950",
+        "https://www.oscars.org/sites/oscars/files/89th-gb-wolfgang-puck-menu.pdf"
+      ]
+    },
+    {
+      "id": 2,
+      "company": "Abigail Kirsch",
+      "url": "abigailkirsch.com",
+      "claim": "40+ лет на рынке; Tappan Hill Mansion и Skylark",
+      "verdict": "VERIFIED TRUE",
+      "evidence": "Founded 1975 by Abigail Kirsch (Westchester County Hall of Fame) → ~50 years in 2026 (claim '40+' is conservative TRUE). Signature properties page lists both Tappan Hill Mansion (Westchester) and The Skylark (30 stories above Manhattan Fashion District rooftop lounge).",
+      "sources": [
+        "https://abigailkirsch.com/signature-properties",
+        "https://abigailkirsch.com/signature-properties/tappan-hill-mansion",
+        "https://www.westchestercountyny.gov/previous-releases/abigail-kirsch-named-to-womens-hall-of-fame"
+      ]
+    },
+    {
+      "id": 3,
+      "company": "Great Performances",
+      "url": "greatperformances.com",
+      "claim": "The Plaza Hotel, Jazz at Lincoln Center, Apollo Theater; slogan 'unleash joy through genuine hospitality'",
+      "verdict": "VERIFIED TRUE",
+      "evidence": "LinkedIn/Glassdoor/Wollman Park Partners all confirm: 'exclusive caterer to many high-profile NYC institutions including The Plaza Hotel, Jazz at Lincoln Center, Apollo Theater, Brooklyn Museum'. Official Mission (multiple job listings): 'Unleash Joy through Genuine Hospitality'.",
+      "sources": [
+        "https://wollmanparkpartners.com/wpp/great-performances",
+        "https://www.linkedin.com/company/great-performances",
+        "https://bebee.com/us/jobs/sales-administrator-great-performances-bronx-ny--theirstack-679850265"
+      ]
+    },
+    {
+      "id": 4,
+      "company": "Creative Edge Parties",
+      "url": "creativeedgeparties.com",
+      "claim": "Reinventing food as design since 1989",
+      "verdict": "VERIFIED TRUE",
+      "evidence": "Official site, Instagram bio, LinkedIn, and Facebook all say verbatim: 'Reinventing food as design since 1989'. NY • MIA • PB • Worldwide.",
+      "sources": [
+        "https://www.creativeedgeparties.com",
+        "https://www.instagram.com/creativeedgeparties/",
+        "https://www.linkedin.com/company/creative-edge-parties"
+      ]
+    },
+    {
+      "id": 5,
+      "company": "Salthouse Catering",
+      "url": "salthousecatering.com",
+      "claim": "Colorlib #1 в рейтинге кейтеринговых сайтов",
+      "verdict": "VERIFIED TRUE",
+      "evidence": "colorlib.com article '30 Best Catering Website Examples 2026' lists '1. Salthouse Catering' as #1 (followed by Tall Guy and a Grill, Steven's Catering, Creative Edge Parties, Wild Thyme Company). Salthouse is Charleston, SC.",
+      "sources": [
+        "https://colorlib.com/wp/catering-website-examples",
+        "https://www.salthousecatering.com"
+      ]
+    },
+    {
+      "id": 6,
+      "company": "Pommier le Traiteur",
+      "url": "pommierletraiteur.ch",
+      "claim": "Женевский traiteur",
+      "verdict": "VERIFIED TRUE",
+      "evidence": "Yelp: 'Route de Chancy 26, 1213 Petit Lancy, Switzerland'. Site: 'Pommier le Traiteur Rue de la Madeleine 13 1204 Genève'. Tripadvisor listing under Lancy/Geneva. Local.ch confirms Petit-Lancy location.",
+      "sources": [
+        "https://www.pommierletraiteur.ch",
+        "https://www.yelp.com/biz/pommier-le-traiteur-gen%C3%A8ve-petit-lancy-2",
+        "https://www.tripadvisor.com/Restaurant_Review-g1140494-d20327965-Reviews-Pommier_le_Traiteur_Geneve-Lancy.html"
+      ]
+    },
+    {
+      "id": 7,
+      "company": "Certé NYC",
+      "url": "certenyc.com",
+      "claim": "Один из крупнейших кейтерингов Нью-Йорка",
+      "verdict": "VERIFIED TRUE",
+      "evidence": "Official site title: 'One of New York, NY largest Caterers - Lunch wraps, weddings, breakfasts, galas'. Instagram: 'One of the most prominent NYC Caterers'. Located at 20 W 55th St, NYC.",
+      "sources": [
+        "https://www.certenyc.com",
+        "https://www.instagram.com/certenyc",
+        "https://www.yelp.com/biz/cert%C3%A9-new-york-4"
+      ]
+    },
+    {
+      "id": 8,
+      "company": "By Word of Mouth",
+      "url": "bywordofmouth.co.uk",
+      "claim": "40+ лет опыта; B Corp™ сертификация",
+      "verdict": "VERIFIED TRUE",
+      "evidence": "About page: 'Rooted in a 40 year heritage, we combine luxury and creativity with the modern, sustainable ethos of a B Corp certified organisation'. LinkedIn title: 'By Word Of Mouth | B Corp™'. Facebook/IG: 'creating elegant, beautifully styled events for over 40 years'.",
+      "sources": [
+        "https://bywordofmouth.co.uk/about",
+        "https://uk.linkedin.com/company/by-word-of-mouth",
+        "https://bywordofmouth.co.uk"
+      ]
+    },
+    {
+      "id": 9,
+      "company": "Daniel et Daniel",
+      "url": "danieletdaniel.ca",
+      "claim": "Один из самых титулованных кейтерингов Канады; publishes minimum order",
+      "verdict": "PARTIALLY TRUE",
+      "evidence": "'Один из самых титулованных' is reasonable: LinkedIn describes them as 'Toronto's most distinguished catering and events brands'; won ICA 'Best Hors D'œuvre 2024 @icacater'. HOWEVER: 'publishes minimum order' is UNVERIFIED — their official site does not publish a public minimum order amount. A third-party Facebook post mentions '$1300 min spend' but this is not from their site.",
+      "sources": [
+        "https://ca.linkedin.com/company/daniel-et-daniel-event-creation-&-catering",
+        "https://www.danieletdaniel.ca/ordernow",
+        "https://www.instagram.com/danieletdaniel/"
+      ]
+    },
+    {
+      "id": 10,
+      "company": "Ridgewells",
+      "url": "ridgewells.com",
+      "claim": "Семейный бизнес с 1928 года; 95 лет; эксклюзивный менеджер Mellon Auditorium",
+      "verdict": "VERIFIED TRUE",
+      "evidence": "Official site: 'Founded as a family business in 1928'; site footer/header: 'For over 95 years, Ridgewells Catering has been behind the scenes...'; press release: 'Ridgewells Catering Selected as Exclusive Manager for DC's Mellon Auditorium' (took over Nov 1, 2023).",
+      "sources": [
+        "https://www.ridgewells.com",
+        "https://www.ridgewells.com/haute-about",
+        "https://www.ridgewells.com/post/press-release-ridgewells-catering-selected-as-exclusive-manager-for-d-c-s-mellon-auditorium",
+        "https://www.eventsatmellon.com"
+      ]
+    },
+    {
+      "id": 11,
+      "company": "Catering by Michaels",
+      "url": "cateringbymichaels.com",
+      "claim": "С 1980 года; publishes wedding prices from $120/guest",
+      "verdict": "PARTIALLY TRUE",
+      "evidence": "'Since 1980' VERIFIED TRUE (official site + ALBUM agency + PartySlate all confirm). HOWEVER: 'publishes wedding prices from $120/guest' is UNVERIFIED — WeddingWire lists $65 avg per person for hors d'oeuvres; no public $120/guest starting price was found. The company does not appear to publish prices publicly on their own site.",
+      "sources": [
+        "https://www.cateringbymichaels.com",
+        "https://albumagency.com/portfolio/branding-catering-by-michaels",
+        "https://www.partyslate.com/vendors/catering-by-michaels",
+        "https://www.weddingwire.com/biz/catering-by-michaels-morton-grove/d133601848254f94.html"
+      ]
+    },
+    {
+      "id": 12,
+      "company": "McCalls Catering",
+      "url": "mccallssf.com",
+      "claim": "40+ лет; slogan 'Elegance | Innovation | Seamless Execution'; Главный кейтеринг Bay Area",
+      "verdict": "VERIFIED TRUE",
+      "evidence": "Instagram bio verbatim: 'Elegance | Innovation | Seamless Execution • San Francisco Bay Area Preeminent Catering & Events bringing your visions to life for 40+ years'. Facebook same. McCalls SF located at 1798 Bryant St, San Francisco.",
+      "sources": [
+        "https://www.instagram.com/mccallssf/",
+        "https://www.facebook.com/McCallsCatering/mentions",
+        "https://mccallssf.com"
+      ]
+    },
+    {
+      "id": 13,
+      "company": "Pinch Food Design",
+      "url": "pinchfooddesign.com",
+      "claim": "chef + designer duo; food furniture",
+      "verdict": "VERIFIED TRUE",
+      "evidence": "About page: 'Led by a Chef and Designer duo, Pinch Food Design is a NYC-based catering company creating innovative culinary experiences with bold flavors and artistic...'. Instagram: 'This is the Pinch Table: a modular, flat-packed, lightweight piece of food furniture crafted to keep up with the pace of New York City.'",
+      "sources": [
+        "https://pinchfooddesign.com/about",
+        "https://www.instagram.com/pinchfooddesign/",
+        "https://pinchfooddesign.com"
+      ]
+    },
+    {
+      "id": 14,
+      "company": "Olivier Cheng Catering",
+      "url": "ocnyc.com",
+      "claim": "20+ лет работает с NYC's finest cultural institutions",
+      "verdict": "VERIFIED TRUE",
+      "evidence": "Official site header: 'For over twenty years Olivier Cheng Catering and Events has been creating innovative culinary experiences in New York's finest cultural institutions.' (Note: older LinkedIn page says 'fifteen years' but current site says 'twenty years' — site is authoritative.)",
+      "sources": [
+        "https://www.ocnyc.com",
+        "https://www.ocnyc.com/our-team",
+        "https://www.linkedin.com/company/olivier-cheng-catering-and-events"
+      ]
+    },
+    {
+      "id": 15,
+      "company": "Potel et Chabot",
+      "url": "groupepoteletchabot.com",
+      "claim": "Старейший кейтеринг Франции, основан в 1820 году; 200+ лет истории; Подразделение Accor Group; Banquet des Maires в Tuileries (22 000 гостей в 1900)",
+      "verdict": "VERIFIED TRUE (with nuance)",
+      "evidence": "Accor Careers: 'POTEL & CHABOT. Luxury brand since 1820' / 'The Potel & Chabot Group, a subsidiary of the Accor Group'. Wikipedia/Taste of France: 'Two tonnes of salmon, 22,000 guests' at the 1900 Banquet des Maires (Tuileries, 22 Sept 1900). 1820 → 2026 = 206 years (200+ TRUE). NUANCE: 'Старейший кейтеринг Франции' is debatable — sister brand Dalloyau (1682) is older, but Potel & Chabot brand itself dates to 1820.",
+      "sources": [
+        "https://careers.accor.com/global/en/grouppoteletchabot",
+        "https://hotel.report/management/accor-in-talks-to-take-over-french-events-company-potel-and-chabot",
+        "https://tasteoffrancemag.com/trending/mayors-banquet-2-tonnes-of-salmon-33000-bottles-of-wine",
+        "https://fr.wikipedia.org/wiki/Banquet_des_maires_de_1900"
+      ]
+    },
+    {
+      "id": 16,
+      "company": "Moving Venue",
+      "url": "movingvenue.com",
+      "claim": "Event Caterer of the Year по London Venue & Catering Awards; 121 событие в 18 аккредитованных площадках за одно лето",
+      "verdict": "VERIFIED TRUE",
+      "evidence": "Instagram: 'Moving Venue has been crowned Event Caterer of the Year at the London Venue & Catering Awards'. London Venue Awards 2025 winners page: 'CATERER OF THE YEAR – over £7m Turnover. Winner: Moving Venue' (official title; company uses 'Event Caterer of the Year' in own PR). Summer 2024 IG: 'catering over 121 events across 18 of our accredited venues in London'. Site: '40 years' history.",
+      "sources": [
+        "https://www.instagram.com/reel/DRKT1yDCs-p",
+        "https://londonvenueawards.co.uk/2025-winners",
+        "https://www.instagram.com/p/DMugHgGtBtx",
+        "https://www.movingvenue.com",
+        "https://www.thecaterer.com/news/foodservice-cateys-2025-event-caterer-of-the-year-moving-venue"
+      ]
+    },
+    {
+      "id": 17,
+      "company": "Dish Dubai",
+      "url": "dish.ae",
+      "claim": "Award-winning luxury catering в Dubai и Abu Dhabi",
+      "verdict": "VERIFIED TRUE",
+      "evidence": "Official site meta description verbatim: 'Award-winning luxury catering in Dubai & Abu Dhabi. Bespoke menus for corporate events, gala dinners & private occasions.' Facebook: 'Established in 2008, Dish is renowned as Dubai's premier catering and event management company.'",
+      "sources": [
+        "https://dish.ae",
+        "https://www.facebook.com/dishcateringandevents",
+        "https://ae.linkedin.com/company/dish-catering-and-events"
+      ]
+    },
+    {
+      "id": 18,
+      "company": "AHS Catering",
+      "url": "ahscatering.com",
+      "claim": "20+ лет в Dubai",
+      "verdict": "VERIFIED TRUE",
+      "evidence": "Official site title verbatim: 'Luxury AHS Catering & Events in Dubai | 20+ Years of Excellence'. About Us page: 'AHS Catering and Events is a leading Dubai catering company with more than 20 years of excellence in luxury weddings, corporate functions, and private...'",
+      "sources": [
+        "https://ahscatering.com",
+        "https://ahscatering.com/about-us",
+        "https://ahscatering.com/homeold"
+      ]
+    },
+    {
+      "id": 19,
+      "company": "Amici Catering",
+      "url": "amici.com.sg",
+      "claim": "Boutique event catering в Сингапуре",
+      "verdict": "VERIFIED TRUE",
+      "evidence": "Official site meta description verbatim: 'We are a boutique event catering company in Singapore providing luxury food & catering services on all scales, from home parties to big events.' LinkedIn: 'Amici Events and Catering is a premium bespoke caterer in Singapore'.",
+      "sources": [
+        "https://amici.com.sg",
+        "https://sg.linkedin.com/company/amicicateringsg",
+        "https://www.caterspot.sg/caterers/amici"
+      ]
+    },
+    {
+      "id": 20,
+      "company": "Luxe Catering",
+      "url": "luxecatering.com.sg",
+      "claim": "Handcrafted French canapés",
+      "verdict": "VERIFIED TRUE",
+      "evidence": "Official site meta description verbatim: 'Luxe Catering offers handcrafted French canapés and luxury catering in Singapore for corporate events, private dining, and elegant celebrations.'",
+      "sources": [
+        "https://www.luxecatering.com.sg",
+        "https://www.luxecatering.com.sg/about-us",
+        "https://www.luxecatering.com.sg/menu/cocktail-canapes"
+      ]
+    },
+    {
+      "id": 21,
+      "company": "Artigot Catering",
+      "url": "artigotcatering.com",
+      "claim": "Каталонский премиум-кейтеринг",
+      "verdict": "FALSE",
+      "evidence": "Artigot Catering is MADRID-based, NOT Catalan. Founded in Madrid (Polígono de Julián Camarillo). esmadrid.com (Turismo Madrid) official page: 'Founded in 2012, Artigot Catering has been a Great Company since 2023'. They serve Barcelona/Catalonia for events but are headquartered in Madrid. The claim 'Каталонский' should be corrected to 'Мадридский' (Madrid-based) or 'Испанский премиум-кейтеринг с офисом в Мадриде'.",
+      "sources": [
+        "https://www.esmadrid.com/mcb/en/venue-service/artigot-catering",
+        "https://www.artigotcatering.com/en/artigot-catering/page/6",
+        "https://www.eventoplus.com/en/suppliers/artigot-catering"
+      ]
+    },
+    {
+      "id": 22,
+      "company": "DOCO Gourmet Entertainment",
+      "url": "doco.com",
+      "claim": "32 локации в 12 странах на 3 континентах",
+      "verdict": "VERIFIED TRUE",
+      "evidence": "Official site: 'We offer Gourmet Entertainment all over the world. We operate 32 locations in 12 countries on 3 continents, maintaining the highest standard of quality in both our products and services. AT-1010 Vienna Worldwide'. LinkedIn: same wording. NOTE: brand is officially 'DO & CO' (not just DOCO); HQ is Vienna, Austria — so this is an AUSTRIAN company, adding Austria to the country list.",
+      "sources": [
+        "https://www.doco.com",
+        "https://www.linkedin.com/company/do&co",
+        "https://culinaryagents.com/groups/121-DO-%2526-CO%252C-The-Gourmet-Entertainment-Group"
+      ]
+    }
+  ],
+  "country_assignment_per_company": [
+    {"id": 1,  "company": "Wolfgang Puck Catering",   "country": "USA",         "city": "Los Angeles"},
+    {"id": 2,  "company": "Abigail Kirsch",            "country": "USA",         "city": "NYC"},
+    {"id": 3,  "company": "Great Performances",        "country": "USA",         "city": "NYC (Bronx)"},
+    {"id": 4,  "company": "Creative Edge Parties",     "country": "USA",         "city": "NY / Miami / Palm Beach"},
+    {"id": 5,  "company": "Salthouse Catering",        "country": "USA",         "city": "Charleston, SC"},
+    {"id": 6,  "company": "Pommier le Traiteur",       "country": "Switzerland", "city": "Geneva / Petit-Lancy"},
+    {"id": 7,  "company": "Certé NYC",                 "country": "USA",         "city": "NYC"},
+    {"id": 8,  "company": "By Word of Mouth",          "country": "UK",          "city": "London"},
+    {"id": 9,  "company": "Daniel et Daniel",          "country": "Canada",      "city": "Toronto"},
+    {"id": 10, "company": "Ridgewells",                "country": "USA",         "city": "Washington DC"},
+    {"id": 11, "company": "Catering by Michaels",      "country": "USA",         "city": "Chicago (Morton Grove, IL)"},
+    {"id": 12, "company": "McCalls Catering",          "country": "USA",         "city": "San Francisco"},
+    {"id": 13, "company": "Pinch Food Design",         "country": "USA",         "city": "NYC"},
+    {"id": 14, "company": "Olivier Cheng Catering",    "country": "USA",         "city": "NYC (TriBeCa)"},
+    {"id": 15, "company": "Potel et Chabot",           "country": "France",      "city": "Paris"},
+    {"id": 16, "company": "Moving Venue",              "country": "UK",          "city": "London"},
+    {"id": 17, "company": "Dish Dubai",                "country": "UAE",         "city": "Dubai (also Abu Dhabi)"},
+    {"id": 18, "company": "AHS Catering",              "country": "UAE",         "city": "Dubai"},
+    {"id": 19, "company": "Amici Catering",            "country": "Singapore",   "city": "Singapore"},
+    {"id": 20, "company": "Luxe Catering",             "country": "Singapore",   "city": "Singapore"},
+    {"id": 21, "company": "Artigot Catering",          "country": "Spain",       "city": "Madrid (NOT Catalonia)"},
+    {"id": 22, "company": "DOCO / DO & CO",            "country": "Austria",     "city": "Vienna (HQ, global)"}
+  ],
+  "false_or_inaccurate_claims_to_fix": [
+    {
+      "company": "Artigot Catering",
+      "issue": "WRONG REGION",
+      "claim": "Каталонский премиум-кейтеринг",
+      "fact": "Madrid-based catering company founded 2012, headquartered in Madrid (Polígono de Julián Camarillo). They service Barcelona/Catalonia events but are not Catalan.",
+      "fix": "Change to 'Мадридский премиум-кейтеринг' or 'Испанский премиум-кейтеринг (Мадрид)'"
+    },
+    {
+      "company": "Daniel et Daniel",
+      "issue": "UNVERIFIED SUB-CLAIM",
+      "claim": "publishes minimum order",
+      "fact": "Their official website does not publish a public minimum order amount. A 3rd-party Facebook post mentioned $1300 min spend (unverified).",
+      "fix": "Remove 'publishes minimum order' OR replace with verified claim like 'ICA-awarded (Best Hors D'œuvre 2024)'"
+    },
+    {
+      "company": "Catering by Michaels",
+      "issue": "UNVERIFIED SUB-CLAIM",
+      "claim": "publishes wedding prices from $120/guest",
+      "fact": "No public $120/guest starting price found. WeddingWire lists $65 avg per person for hors d'oeuvres only. The company does not publish a clear starting wedding price on its own site.",
+      "fix": "Remove specific '$120/guest' figure or replace with '40+ years (since 1980)' alone"
+    },
+    {
+      "company": "Potel et Chabot",
+      "issue": "DEBATABLE SUPERLATIVE",
+      "claim": "Старейший кейтеринг Франции",
+      "fact": "Potel & Chabot brand founded 1820 — one of the oldest, but their sister brand Dalloyau (also part of the group) was founded 1682 and is older.",
+      "fix": "Soften to 'Один из старейших кейтерингов Франции (с 1820)' or 'Старейший парижский traiteur (1820)'"
+    },
+    {
+      "company": "DOCO",
+      "issue": "MISLEADING BRAND",
+      "claim": "DOCO Gourmet Entertainment",
+      "fact": "Official brand name is 'DO & CO' (with ampersand). URL doco.com is correct.",
+      "fix": "Display as 'DO & CO' in the card; can keep DOCO as URL shortlink reference"
+    },
+    {
+      "company": "Moving Venue",
+      "issue": "AWARD TITLE IMPRECISE",
+      "claim": "Event Caterer of the Year по London Venue & Catering Awards",
+      "fact": "Official London Venue Awards 2025 winner page lists Moving Venue as 'Caterer of the Year – over £7m Turnover'. Separately they won 'Event Caterer of the Year' at The Caterer Foodservice Cateys 2025 (different awards). Their own Instagram calls the LVCA win 'Event Caterer of the Year'.",
+      "fix": "Either use 'Caterer of the Year — London Venue & Catering Awards 2025' OR 'Event Caterer of the Year — Foodservice Cateys 2025' (don't merge the two)"
+    },
+    {
+      "company": "All (Hero stat)",
+      "issue": "WRONG COUNTRY COUNT",
+      "claim": "10 стран",
+      "fact": "Actual count is 9 unique countries: USA, Switzerland, UK, Canada, France, UAE, Singapore, Spain, Austria.",
+      "fix": "Change hero stat from '10 стран' to '9 стран'"
+    }
+  ],
+  "verified_slogans_and_quotes": [
+    "Great Performances: 'Unleash Joy through Genuine Hospitality' (Mission)",
+    "Creative Edge Parties: 'Reinventing food as design since 1989'",
+    "McCalls: 'Elegance | Innovation | Seamless Execution' + 'San Francisco Bay Area Preeminent Catering & Events'",
+    "Catering by Michaels: 'Since 1980'",
+    "Ridgewells: 'Founded as a family business in 1928' + 'For over 95 years'",
+    "AHS Catering: '20+ Years of Excellence'",
+    "By Word of Mouth: 'Rooted in a 40 year heritage' + 'B Corp™'",
+    "DO & CO: 'We operate 32 locations in 12 countries on 3 continents'",
+    "Pinch Food Design: 'Led by a Chef and Designer duo' + 'food furniture' (Pinch Table)",
+    "Olivier Cheng: 'For over twenty years... in New York's finest cultural institutions'",
+    "Potel & Chabot: 'Luxury brand since 1820' (Accor subsidiary)",
+    "Dish Dubai: 'Award-winning luxury catering in Dubai & Abu Dhabi'"
+  ]
+}

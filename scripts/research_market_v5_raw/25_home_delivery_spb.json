@@ -1,0 +1,50 @@
+🚀 Initializing Z-AI SDK...
+🚀 Invoking function: web_search...
+[
+  {
+    "url": "https://xn--80aaatqhrfeq5p.xn--p1ai/vyezdnoj-banket",
+    "name": "Канапемания. Кейтеринг на заказ в СПб. Заказать кейтеринг в",
+    "snippet": "У нас вы можете заказать канапе и фуршетные закуски для организации кейтеринга. Большой выбор закусок + низкие цены. Доставим в нужный день и в нужный час !",
+    "host_name": "xn--80aaatqhrfeq5p.xn--p1ai",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://spb.set-furshet.ru/catering/catering-nedorogoy",
+    "name": "Недорогой кейтеринг в коробках с доставкой по Санкт-Петербургу",
+    "snippet": "Дешевле классического кейтеринга. Принимаем заказ от одного сета за 6 часов до мероприятия. Бесплатная доставка действует при заказе от 7000 рублей в пределах ...",
+    "host_name": "spb.set-furshet.ru",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://foodboxspb.ru/catering/catering-na-dom",
+    "name": "Кейтеринг на дом в Санкт-Петербурге - FoodbricK",
+    "snippet": "Кейтеринг на дом в Санкт-Петербурге – свежие блюда, стильная подача, удобная доставка. Хотите заказать кейтеринг недорого? Мы подберем меню для любого ...",
+    "host_name": "foodboxspb.ru",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.instagram.com/acateringspb",
+    "name": "КЕЙТЕРИНГ СПб и Доставка еды (@acateringspb) - Instagram",
+    "snippet": "Привезем все прямо на место, свежее, горячее и вкусное. Или вообще приготовим прям при вас. «А кейтеринг» — выездной ресторан в офис, домой и на природу, ...",
+    "host_name": "www.instagram.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://hotkitchen-delivery.ru/kejtering-v-spb",
+    "name": "Кейтеринг на дом и в офис заказать под ключ, фуршетный",
+    "snippet": "Заказать еду вы можете с доставкой по любому адресу в городе СПб. ... Вы можете заказать кейтеринг на дом в СПб с доставкой по городу и Ленинградской области.",
+    "host_name": "hotkitchen-delivery.ru",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]
+🎉 Function invocation completed!

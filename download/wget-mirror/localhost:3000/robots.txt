@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+Disallow: /api/
+
+Sitemap: https://interfood-catering.ru/sitemap.xml

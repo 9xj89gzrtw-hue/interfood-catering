@@ -1,0 +1,50 @@
+🚀 Initializing Z-AI SDK...
+🚀 Invoking function: web_search...
+[
+  {
+    "url": "https://spb.caterme.ru/catering/ceny",
+    "name": "Стоимость кейтеринга в Санкт Петербурге",
+    "snippet": "Кейтеринг эконом класса в СПб стоит от 500 до 800 рублей на человека. В этом сегменте предлагаются сытные блюда, стандартный набор услуг и большое внимание к ...",
+    "host_name": "spb.caterme.ru",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.restoclub.ru/spb/search/zakazat-kejtering-v-peterburge",
+    "name": "Кейтеринг в СПб: банкеты, выездное обслуживание - Restoclub.ru",
+    "snippet": "Отфильтруйте на нашем сайте средний чек, ближайшую станцию метро и необходимые особенности, и вы найдете для себя лучший кейтеринг в Санкт-Петербурге.",
+    "host_name": "www.restoclub.ru",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://ec-restaurant.ru",
+    "name": "Кейтеринг в СПБ - меню кейтеринга и организация фуршета по",
+    "snippet": "организовываем кейтеринг любой сложности ... от 1600 руб/чел. Организуем мероприятия в офисе, на природе или в холле. В ассортименте разнообразные холодные и ...",
+    "host_name": "ec-restaurant.ru",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://profi.ru/geo-spb/artist/catering/?srsltid=AfmBOooRD3kr9PNyGhWZOkUaTLVpBjfTam8_OjZSPXaCBxGdMHlOvF2z",
+    "name": "Услуги кейтеринга в Санкт-Петербурге - Профи.ру",
+    "snippet": "Цены начинаются от 6680 рублей. В среднем 19250 рублей, а максимальные цены на уровне 68200 рублей. Но вы можете назвать свою цену, а специалисты, ...",
+    "host_name": "profi.ru",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://bash.today/posts/luchshie-kejteringovye-kompanii-v-spb",
+    "name": "Топ-15 кейтеринговых компаний Санкт-Петербурга - Bash Today",
+    "snippet": "Топ-15 кейтеринговых компаний Санкт-Петербурга · 1. «Сет-Фуршет» · 2. Eat Сatering · 3. Канапе Клаб · 4. Empire catering · 5. «Северо-западная кейтеринговая компания ...",
+    "host_name": "bash.today",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]
+🎉 Function invocation completed!

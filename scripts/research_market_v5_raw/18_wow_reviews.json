@@ -1,0 +1,50 @@
+🚀 Initializing Z-AI SDK...
+🚀 Invoking function: web_search...
+[
+  {
+    "url": "https://caterme.ru/caterer/wow-catering",
+    "name": "WOW! Catering: заказ еды и кейтеринга в г Москва (меню, цены",
+    "snippet": "Компания WOW!Catering позаботится о вкуснейших угощениях и теплой атмосфере, предложит оригинальные решения, обеспечит качественный сервис и WOW!",
+    "host_name": "caterme.ru",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.instagram.com/wow_catering_cyprus",
+    "name": "Wow кейтеринг Штепса (@wow_catering_cyprus) - Instagram",
+    "snippet": "Мы знаем что ты будешь делать этой весной и летом! ☀️ Первое - это конечно же искать повод(ы), чтоб по чаше встречаться с друзьями или коллегами Второе и ...",
+    "host_name": "www.instagram.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://wow-catering.ru",
+    "name": "WOW!CATERING",
+    "snippet": "Мы не просто профессионально кормим людей, мы создаем счастье. Каждый ингредиент, каждое блюдо,. каждая подача - все это не просто приготовление пищи.",
+    "host_name": "wow-catering.ru",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.facebook.com/wowcateringkiev",
+    "name": "WOW Catering (@wowcateringkiev) - Facebook",
+    "snippet": "WOW Catering - вкусная еда со стильной подачей! Это не дорого, это не пафосно, это не сложно! Не обязательно ждать большого праздника или юбилея, порадуйте себя ...",
+    "host_name": "www.facebook.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/Winnipeg/comments/1og8me2/candy_corn_coloured_triple_cheddar_from_wow/?tl=ru",
+    "name": "Тройной чеддер цвета кукурузных конфет от WOW catering - Reddit",
+    "snippet": "На этом мероприятии, где угощали от WOW catering, был восхитительный стол с мясной нарезкой и овощами. ... Нельзя добавлять новые комментарии и ...",
+    "host_name": "www.reddit.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]
+🎉 Function invocation completed!

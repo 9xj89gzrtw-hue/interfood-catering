@@ -1,0 +1,50 @@
+🚀 Initializing Z-AI SDK...
+🚀 Invoking function: web_search...
+[
+  {
+    "url": "https://catering-muscat.ru/catering",
+    "name": "Выездное обслуживание кейтеринг | Мускат Кейтеринг",
+    "snippet": "Кейтеринг это не просто доставка еды. Не стоит путать. Наша услуга рассчитана на большое количество персон – до 1000 человек! Мы оформляем каждое блюдо, так ...",
+    "host_name": "catering-muscat.ru",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.facebook.com/cateringmuscat",
+    "name": "Банкетная служба Muscat Catering | Moscow - Facebook",
+    "snippet": "Muscat Catering — это про: 1. Про заданную атмосферу 2. Про эстетику 3. Про вкусные и красивые блюда 4. Про безупречный сервис 5. Про любовь к своему делу❣️.",
+    "host_name": "www.facebook.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://catering-muscat.ru/about",
+    "name": "О нас - кейтеринг",
+    "snippet": "Ежегодно наша компания обслуживает более 1000 полноценных мероприятий различного формата от свадебного кейтеринга до корпоративного и организует более 3500 ...",
+    "host_name": "catering-muscat.ru",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.moscowmap.ru/sprav2/showkont.asp?id=1023771",
+    "name": "Muscat Catering на Летниковской улице, как добраться",
+    "snippet": "Ежегодно наша компания обслуживает более 1000 полноценных мероприятий различного формата и организует более 2000 доставок фуршетных наборов. Основная задача ...",
+    "host_name": "www.moscowmap.ru",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.instagram.com/p/C_H8I6wsATE",
+    "name": "Организация мероприятий с Muscat Catering Компаниям часто",
+    "snippet": "Muscat Catering позаботится о доставке и сервировке, учитывая все ваши требования. Мы предлагаем организацию выездного фуршета в любой локации ...",
+    "host_name": "www.instagram.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]
+🎉 Function invocation completed!

@@ -1,0 +1,7 @@
+[web-server] Starting Next.js on port 3000...
+[next] ▲ Next.js 16.1.3
+[next] - Local:         http://localhost:3000
+- Network:       http://0.0.0.0:3000
+
+✓ Starting...
+[next] ✓ Ready in 66ms

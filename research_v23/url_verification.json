@@ -1,0 +1,268 @@
+{
+  "ok": [
+    [
+      "https://bash.today/posts/luchshie-kejteringovye-kompanii-v-spb",
+      200,
+      "nginx/1.24.0 (Ubuntu)"
+    ],
+    [
+      "https://data-sec.ru/personal-data/cross-border-countries",
+      200,
+      "nginx/1.30.2"
+    ],
+    [
+      "https://dev.to/jj/create-a-serverless-telegram-bot-using-go-and-vercel-4fdb",
+      200,
+      "Heroku"
+    ],
+    [
+      "https://foodphoto.ai/blog",
+      200,
+      "cloudflare"
+    ],
+    [
+      "https://github.com/shadcn-ui/ui/discussions/6714",
+      200,
+      "github.com"
+    ],
+    [
+      "https://glicine.it/en/glicine-bites/tips/catering-trends-2026",
+      200,
+      "cloudflare"
+    ],
+    [
+      "https://gsap.com",
+      200,
+      "cloudflare"
+    ],
+    [
+      "https://kontur.ru/market/spravka/31263",
+      307,
+      "redirect → https://kontur.ru/market/spravka/31263"
+    ],
+    [
+      "https://leadsuitenow.com/blog/catering-company-lead-generation-usa-2026",
+      200,
+      "cloudflare"
+    ],
+    [
+      "https://michellesilverdesign.com/wolfgang-puck-catering",
+      200,
+      "Squarespace"
+    ],
+    [
+      "https://monicastevenson.com/food-photography-in-2026-how-styling-and-lighting-shape-the-perfect-shot",
+      200,
+      "LiteSpeed"
+    ],
+    [
+      "https://pixxen.com/blog/website-trust-signals",
+      200,
+      "cloudflare"
+    ],
+    [
+      "https://pleasantdale.com/blog/corporate-catering-trends-2026",
+      200,
+      "nginx/1.28.2"
+    ],
+    [
+      "https://restaurant.org/research-and-media/research/research-reports/state-of-the-industry",
+      200,
+      ""
+    ],
+    [
+      "https://schema.org",
+      200,
+      "Google Frontend"
+    ],
+    [
+      "https://schema.org/FoodService",
+      200,
+      "Google Frontend"
+    ],
+    [
+      "https://schema.org/Menu",
+      200,
+      "Google Frontend"
+    ],
+    [
+      "https://schema.org/Review",
+      200,
+      "Google Frontend"
+    ],
+    [
+      "https://tailwindcss.com/blog/tailwindcss-v4",
+      200,
+      "cloudflare"
+    ],
+    [
+      "https://unbounce.com/conversion-rate-optimization/cro-case-studies",
+      200,
+      "cloudflare"
+    ],
+    [
+      "https://vercel.com/docs/functions/runtimes/edge/edge-functions.rsc",
+      200,
+      "Vercel"
+    ],
+    [
+      "https://vercel.com/docs/functions/runtimes/node-js",
+      200,
+      "Vercel"
+    ],
+    [
+      "https://www.alxeats.com/post/food-beverage-photography-trends-2025-2026",
+      200,
+      "Pepyaka"
+    ],
+    [
+      "https://www.awwwards.com/websites/food-drink",
+      200,
+      "nginx"
+    ],
+    [
+      "https://www.awwwards.com/websites/hotel-restaurant",
+      200,
+      "nginx"
+    ],
+    [
+      "https://www.awwwards.com/websites/luxury",
+      200,
+      "nginx"
+    ],
+    [
+      "https://www.consultant.ru/document/cons_doc_LAW_61801/e4ebbe1780de623c7cf32a59ca82a7bb523a25dd",
+      200,
+      "nginx"
+    ],
+    [
+      "https://www.corewebvitals.io/core-web-vitals",
+      200,
+      "cloudflare"
+    ],
+    [
+      "https://www.digitalapplied.com/blog/structured-data-seo-2026-rich-results-guide",
+      200,
+      "Vercel"
+    ],
+    [
+      "https://www.interactmarketing.com/why-core-web-vitals-still-matter-more-than-you-think-in-2026",
+      200,
+      "nginx"
+    ],
+    [
+      "https://www.luckyorange.com/blog/posts/conversion-rate-optimization-guide",
+      200,
+      "Framer/dd61c09"
+    ],
+    [
+      "https://www.schoolofmotion.com/blog/10-websites-with-great-animation-in-2026",
+      200,
+      "cloudflare"
+    ],
+    [
+      "https://www.webnixon.com/blog/motion-ui-interactive-web-design-2026",
+      202,
+      "nginx"
+    ]
+  ],
+  "warn": [
+    [
+      "https://emporionsoft.com/website-trust-signals-checklist",
+      "ERR: URLError: <urlopen error [Errno 101] Network is unreachable>",
+      ""
+    ],
+    [
+      "https://nilov-catering.ru",
+      "ERR: URLError: <urlopen error [Errno -2] Name or service not known>",
+      ""
+    ],
+    [
+      "https://nilov-catering.ru'",
+      "ERR: URLError: <urlopen error [Errno -2] Name or service not known>",
+      ""
+    ],
+    [
+      "https://nilov-catering.ru/og-image.jpg",
+      "ERR: URLError: <urlopen error [Errno -2] Name or service not known>",
+      ""
+    ],
+    [
+      "https://nilov-catering.ru`",
+      "ERR: URLError: <urlopen error [Errno -2] Name or service not known>",
+      ""
+    ],
+    [
+      "https://tastewise.io/blog/luxury-food-branding",
+      "403",
+      "forbidden (maybe still valid, bot-blocked)"
+    ],
+    [
+      "https://withus.com/top-5-trends-in-wedding-catering-for-2026",
+      "403",
+      "forbidden (maybe still valid, bot-blocked)"
+    ],
+    [
+      "https://www.adatitleiii.com/2023/12/w3c-adds-nine-new-requirements-in-wcag-2-2",
+      "403",
+      "forbidden (maybe still valid, bot-blocked)"
+    ],
+    [
+      "https://www.amraandelma.com/visual-branding-psychology-statistics",
+      "403",
+      "forbidden (maybe still valid, bot-blocked)"
+    ],
+    [
+      "https://www.custommarketinsights.com/report/luxury-food-market",
+      "403",
+      "forbidden (maybe still valid, bot-blocked)"
+    ],
+    [
+      "https://www.levelaccess.com/blog/wcag-2-2-aa-summary-and-checklist-for-website-owners",
+      "403",
+      "forbidden (maybe still valid, bot-blocked)"
+    ],
+    [
+      "https://www.mckinsey.com/industries/retail/our-insights/what-us-consumers-want-from-restaurants-in-2",
+      "ERR: TimeoutError: The read operation timed out",
+      ""
+    ],
+    [
+      "https://www.nilov-catering.ru']",
+      "ERR: ValueError: Invalid IPv6 URL",
+      ""
+    ],
+    [
+      "https://www.orbitmedia.com/blog/social-proof-web-design",
+      "403",
+      "forbidden (maybe still valid, bot-blocked)"
+    ],
+    [
+      "https://www.rivuletiq.com/core-web-vitals-2026-whats-changed-and-how-to-pass",
+      "403",
+      "forbidden (maybe still valid, bot-blocked)"
+    ],
+    [
+      "https://www.w3.org/TR/WCAG22",
+      "403",
+      "forbidden (maybe still valid, bot-blocked)"
+    ],
+    [
+      "https://www.yourbrandcafe.com/blog/psychology-of-colors-in-branding",
+      "403",
+      "forbidden (maybe still valid, bot-blocked)"
+    ]
+  ],
+  "bad": [
+    [
+      "https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`",
+      404,
+      "NOT FOUND"
+    ],
+    [
+      "https://www.nalog.gov.ru/rn70/news/tax_doc_news/16586873",
+      404,
+      "NOT FOUND"
+    ]
+  ]
+}
