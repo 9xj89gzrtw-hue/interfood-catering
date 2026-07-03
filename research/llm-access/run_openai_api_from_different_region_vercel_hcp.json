@@ -1,0 +1,38 @@
+[
+  {
+    "url": "https://vercel.com/docs/functions/configuring-functions/region",
+    "name": "Configuring regions for Vercel Functions",
+    "snippet": "Vercel allows you to specify the region in which your functions execute, ideally close to your data source (such as your database).",
+    "host_name": "vercel.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=_gzwwGkswXE",
+    "name": "OpenAI Assistant API Step by Step Guide With Vercel Deployment",
+    "snippet": "This is Part 2 of the OpenAI Assistant Project. What I have added is state management using Redux Toolkit, created components using ...",
+    "host_name": "www.youtube.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/vercel/ai/issues/9984",
+    "name": "OpenAI requests region-blocked for China users even when proxied",
+    "snippet": "Vercel uses regional egress IPs tied to the user's location, so OpenAI's Cloudflare edge might see a nearby IP. Cloudflare is somehow binding ...",
+    "host_name": "github.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://vercel.com/docs/agent-resources/integrations-for-models/openai",
+    "name": "Vercel & OpenAI Integration",
+    "snippet": "Vercel integrates with OpenAI to enable developers to build fast, scalable, and secure AI applications. You can integrate with any OpenAI ...",
+    "host_name": "vercel.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  }
+]

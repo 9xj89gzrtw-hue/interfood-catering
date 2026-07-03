@@ -62,7 +62,7 @@ server.log
 .zscripts/
 
 # Heavy research/image data
-/research/
+!/research/
 /research_v2/
 /research_v22/
 /research_2026/

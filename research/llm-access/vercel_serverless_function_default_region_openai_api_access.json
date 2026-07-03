@@ -1,0 +1,38 @@
+[
+  {
+    "url": "https://vercel.com/docs/functions/configuring-functions/region",
+    "name": "Configuring regions for Vercel Functions",
+    "snippet": "Setting your default region. The default Function region is Washington, D.C., USA ( iad1 ) for all new projects.",
+    "host_name": "vercel.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://vercel.com/docs/functions",
+    "name": "Vercel Functions",
+    "snippet": "They run in a single region by default, although you can configure them to run in multiple regions if you have globally replicated data. These functions let ...",
+    "host_name": "vercel.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://medium.com/timeless/getting-started-with-serverless-functions-using-vercel-i-868ab649fdce",
+    "name": "Getting started with Serverless Functions using Vercel — I - Medium",
+    "snippet": "Next.js supports serverless functions by default wherein you can add your exported functions into the /api directory of our project root, pages/ ...",
+    "host_name": "medium.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://vercel.com/kb/guide/hosting-backend-apis",
+    "name": "Hosting your API on Vercel",
+    "snippet": "Vercel is designed to help teams quickly build, deploy, and scale web applications. Whether you're running an API for ecommerce, AI workflows, mobile apps, ...",
+    "host_name": "vercel.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  }
+]

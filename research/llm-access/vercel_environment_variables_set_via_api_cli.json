@@ -1,0 +1,38 @@
+[
+  {
+    "url": "https://vercel.com/docs/cli/env",
+    "name": "vercel env",
+    "snippet": "Learn how to manage your environment variables in your Vercel Projects using the vercel env CLI command.",
+    "host_name": "vercel.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://vercel.com/docs/environment-variables",
+    "name": "Environment variables - Vercel",
+    "snippet": "Environment variables are key-value pairs configured outside your source code so that each value can change depending on the Environment.",
+    "host_name": "vercel.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://vercel.com/docs/cli",
+    "name": "Vercel CLI Overview",
+    "snippet": "Set the VERCEL_TOKEN environment variable; Pass the --token option to the command. Using the VERCEL_TOKEN environment variable is recommended ...",
+    "host_name": "vercel.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://community.vercel.com/t/pass-environment-variables-to-the-vercel-cli-build-command/10653",
+    "name": "Pass environment variables to the vercel CLI build command - Help",
+    "snippet": "The vercel CLI deploy command has the option to pass build environment variables, because the build is happening at Vercel.",
+    "host_name": "community.vercel.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  }
+]

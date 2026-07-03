@@ -1,0 +1,47 @@
+[
+  {
+    "url": "https://rebeccamdeprey.com/blog/scroll-driven-animations-css",
+    "name": "Scroll-Driven Animations in CSS: No JavaScript Required",
+    "snippet": "How to use the CSS scroll-driven animations API to create scroll-linked effects like progress bars, parallax, and reveal animations without ...\nThe CSS scroll-driven animations API lets you tie any CSS @keyframes animation directly to scroll progress, entirely in CSS. No JavaScript. No ...",
+    "host_name": "rebeccamdeprey.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Scroll-driven_animations",
+    "name": "CSS scroll-driven animations - MDN Web Docs",
+    "snippet": "The CSS scroll-driven animations module provides functionality that builds on the CSS animations module and Web Animations API.",
+    "host_name": "developer.mozilla.org",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=oXSFwix7eR8",
+    "name": "Modern CSS for sites: View transitions, scroll effects, and more!",
+    "snippet": "... view transitions, scroll driven animations, and much more! Follow Along! Workshop repository on Github → https://goo.gle/3ArULEJ Try IDX ...",
+    "host_name": "www.youtube.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.frontendhorizon.com/blog/view-transitions-api-and-css-scroll-driven-animations-the-browser-wins-of-2026",
+    "name": "View Transitions API and CSS Scroll-Driven Animations",
+    "snippet": "View Transitions let you animate between two states of the DOM. In single-page apps, the two states are two routes. The browser snapshots the ...",
+    "host_name": "www.frontendhorizon.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/css/comments/1fvaxm7/css_view_transitions_for_animating_dom_updates",
+    "name": "CSS View Transitions for animating DOM updates - Reddit",
+    "snippet": "... browser that does not support CSS scroll-driven animations by default. r/firefox - As of today, Mozilla Firefox is the only major browser that.",
+    "host_name": "www.reddit.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]

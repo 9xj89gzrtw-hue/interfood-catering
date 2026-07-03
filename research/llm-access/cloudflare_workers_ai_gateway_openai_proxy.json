@@ -1,0 +1,38 @@
+[
+  {
+    "url": "https://developers.cloudflare.com/ai-gateway/integrations/aig-workers-ai-binding",
+    "name": "Set up Workers AI with AI Gateway - Cloudflare Docs",
+    "snippet": "This guide will walk you through setting up and deploying a Workers AI project. You will use Workers, an AI Gateway binding, and a large language model (LLM),",
+    "host_name": "developers.cloudflare.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.cloudflare.com/products/ai-gateway",
+    "name": "Cloudflare AI Gateway - AI Application Control Plane",
+    "snippet": "Set up AI Gateway to proxy requests to AI providers with caching and observability. Compatible with OpenAI SDK and AI SDK. Caching AI Responses. Configure ...",
+    "host_name": "www.cloudflare.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/mrdear/cloudflare-ai-proxy",
+    "name": "proxy openai or claude style by cloudflare ai gateway - GitHub",
+    "snippet": "A Cloudflare Worker that provides OpenAI and Claude compatible API endpoints, powered by Cloudflare AI Gateway. Features. OpenAI API Compatibility: /chat/ ...",
+    "host_name": "github.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.promptfoo.dev/docs/providers/cloudflare-gateway",
+    "name": "Cloudflare AI Gateway - Promptfoo",
+    "snippet": "Cloudflare AI Gateway is a proxy service that routes requests to AI providers through Cloudflare's infrastructure. It provides: Caching - Reduce costs by ...",
+    "host_name": "www.promptfoo.dev",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  }
+]

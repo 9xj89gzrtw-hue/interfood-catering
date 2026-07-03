@@ -110,7 +110,7 @@ jobs:
             const res = await fetch('https://api.cerebras.ai/v1/chat/completions', {
               method: 'POST',
               headers: { 'Authorization': `Bearer ${process.env.CEREBRAS_API_KEY}`, 'Content-Type': 'application/json' },
-              body: JSON.stringify({ model: 'llama3.1-8b', messages: [{ role: 'user', content: PROMPT }], max_tokens: 1500 }),
+              body: JSON.stringify({ model: 'llama-4-scout-17b-16e-instruct-2503', messages: [{ role: 'user', content: PROMPT }], max_tokens: 1500 }),
             });
             if (!res.ok) throw new Error(`Cerebras ${res.status}: ${(await res.text()).slice(0,150)}`);
             return (await res.json()).choices[0].message.content;
@@ -157,6 +157,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add research/multi-llm-critique.md
+          git add -f research/multi-llm-critique.md
           git commit -m "chore: multi-LLM critique results from 6 models [skip ci]" || echo "nothing to commit"
           git push || echo "push skipped"

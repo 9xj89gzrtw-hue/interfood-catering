@@ -1,0 +1,47 @@
+[
+  {
+    "url": "https://devstudioit.com/en/blog/video-hero-lcp-strona-firmowa-2026",
+    "name": "Video Hero and LCP — When Autoplay Hurts Corporate Site",
+    "snippet": "Background autoplay requires muted , playsinline , loop — the browser still downloads the start of the file before the first frame is ready. A 5 ...",
+    "host_name": "devstudioit.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.mux.com/articles/add-background-video-website-hls-performance",
+    "name": "How to Add Background Video to Your Website: HLS, Performance",
+    "snippet": "Learn how to add background video using HLS adaptive streaming, autoplay best practices, and Mux Player — without killing your Core Web Vitals.",
+    "host_name": "www.mux.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/webflow/comments/1m8tnlo/best_practice_for_hero_background_video",
+    "name": "Best practice for hero background video integration without hurting",
+    "snippet": "I'm using a fullscreen autoplay background video (23 seconds, muted, looped) in the hero section of my Webflow site. The video is hosted via GitHub and weighs ...",
+    "host_name": "www.reddit.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://performance.shopify.com/blogs/blog/fast-video-banners",
+    "name": "Fast Video Banners that Work on Every Device",
+    "snippet": "When loading=\"lazy\" is specified, the browser would delay loading video data, poster images, and autoplay playback until the element is needed.\nSolve the responsive video poster problem with a simple picture + video technique that improves loading performance on all devices.",
+    "host_name": "performance.shopify.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://aarontgrogg.com/blog/2026/01/06/improving-lcp-for-video-hero-components",
+    "name": "Improving LCP for Video Hero Components - Aaron T. Grogg",
+    "snippet": "If a video should autoplay, but it appears below the fold, know that currently there is no native way for a video to be lazy loaded and autoplay ...\n... autoplay, lazy load (and maybe preload link) settings. If a video should autoplay, but it appears below the fold, know that currently there ...",
+    "host_name": "aarontgrogg.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "url": "https://github.com/enricoros/big-AGI/issues/595",
+    "name": "How OpenAI determines the client's IP and geographic location",
+    "snippet": "We know that OpenAI has disabled API requests in certain regions. What puzzles me is how OpenAI determines the client's IP and geographic ...",
+    "host_name": "github.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://community.openai.com/t/action-test-to-free-public-github-api-fails/518956",
+    "name": "Action test to free public Github API fails",
+    "snippet": "Hi team, i was making a GPTs and wanted to create an action which simply read a README.md from public github repo.",
+    "host_name": "community.openai.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/marketplace/actions/openai-completions",
+    "name": "Actions · GitHub Marketplace - OpenAI Completions",
+    "snippet": "Go to the \"Settings\" tab and click on \"Secrets\". · Add a new secret named OPENAI_API_KEY with your OpenAI API key. · Use the following code to access the response ...",
+    "host_name": "github.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.wiz.io/blog/github-actions-security-ai-powered-actions-vulnerabilities",
+    "name": "GitHub Actions Security Pt 2: AI-Powered Actions Analysis | Wiz Blog",
+    "snippet": "AI-powered GitHub Actions from vendors like OpenAI, Anthropic, and Google are now running in thousands of public workflows.",
+    "host_name": "www.wiz.io",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  }
+]
