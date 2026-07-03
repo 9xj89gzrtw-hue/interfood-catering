@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://medium.com/data-science-collective/the-complete-guide-to-ai-agent-memory-files-claude-md-agents-md-and-beyond-49ea0df5c5a9",
+    "name": "Complete Guide to CLAUDE.md and AGENTS.md 2026 - Medium",
+    "snippet": "Learn how CLAUDE.md, AGENTS.md, and AI memory files work. Covers file hierarchy, auto-memory, @imports, and which files you actually need ...",
+    "host_name": "medium.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=W_RXEmy4N18",
+    "name": "The Complete Guide to AI Agent Memory Files (CLAUDE  - YouTube",
+    "snippet": "https://medium.com/data-science-collective/the-complete-guide-to-ai-agent-memory-files-claude-md-agents-md-and-beyond-49ea0df5c5a9.",
+    "host_name": "www.youtube.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.mindstudio.ai/blog/what-is-claude-md-file-ai-agents",
+    "name": "What Is the Claude.md File and Why Does It Matter for AI Agents?",
+    "snippet": "The claude.md file is a persistent instruction file that Claude Code loads at the start of every session, functioning as a standing system ...",
+    "host_name": "www.mindstudio.ai",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/html/2604.14228v1",
+    "name": "Dive into Claude Code: The Design Space of Today's and Future AI",
+    "snippet": "Claude Code is an agentic coding tool that can run shell commands, edit files, and call external services on behalf of the user. memory system manages three ...",
+    "host_name": "arxiv.org",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://dev.to/jan_lucasandmann_bb9257c/claude-code-to-ai-os-blueprint-skills-hooks-agents-mcp-setup-in-2026-46gg",
+    "name": "Claude Code to AI OS Blueprint: Skills, Hooks, Agents & MCP Setup",
+    "snippet": "You can turn Claude Code into a real aiOS in under 30 minutes with four layers (CLAUDE.md → Skills → Hooks → Agents + MCP). I'll show every ...",
+    "host_name": "dev.to",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=RzLV8sfFdMM",
+    "name": "How to Build Effective Claude Code Agents in 2026 - YouTube",
+    "snippet": "Code NATEHERKB2 for 15% for Biz+ for 1 month or year (exp Jul 18): https://clickup.com/ My FREE AI OS Course: ...",
+    "host_name": "www.youtube.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.augmentcode.com/guides/how-to-build-agents-md",
+    "name": "How to Build Your AGENTS.md (2026): The Context File That Makes",
+    "snippet": "AGENTS.md is a Markdown file placed at the root of a repository that provides AI coding agents with persistent, project-specific operational ...",
+    "host_name": "www.augmentcode.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.infoq.com/news/2026/03/agents-context-file-value-review",
+    "name": "New Research Reassesses the Value of AGENTS.md Files for AI",
+    "snippet": "Despite widespread industry recommendations, a new ETH Zurich paper concludes that AGENTS.md files may often hinder AI coding agents.",
+    "host_name": "www.infoq.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.facebook.com/61573080077101/posts/claude-code-in-2026-isnt-just-a-toolits-an-entire-development-workflow-most-peop/122174260040769335",
+    "name": "Claude Code in 2026 isn't just a tool. It's an entire development",
+    "snippet": "Claude Code in 2026 isn't just a tool. It's an entire development workflow. ⚡ Most people are still using Claude like a chatbot…",
+    "host_name": "www.facebook.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://aimaker.substack.com/p/how-i-turned-claude-code-into-personal-ai-agent-operating-system-for-writing-research-complete-guide",
+    "name": "How I Turned Claude Code Into My Personal AI Agent Operating",
+    "snippet": "The secret is claude.md—a special file that acts as your project's persistent memory system. claude.md is Claude Code's brain for your specific ...",
+    "host_name": "aimaker.substack.com",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

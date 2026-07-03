@@ -1,0 +1,47 @@
+[
+  {
+    "url": "https://joseparreogarcia.substack.com/p/claude-code-memory-explained",
+    "name": "Claude Code Memory Explained: How It Really Works",
+    "snippet": "Learn how to structure global and project-level CLAUDE.md files so Claude behaves predictably without bloating context.",
+    "host_name": "joseparreogarcia.substack.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://code.claude.com/docs/en/memory",
+    "name": "How Claude remembers your project - Claude Code Docs",
+    "snippet": "Give Claude persistent instructions with CLAUDE.md files, and let Claude accumulate learnings automatically with auto memory.",
+    "host_name": "code.claude.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/luongnv89/claude-howto/blob/main/02-memory/README.md",
+    "name": "claude-howto/02-memory/README.md at main - GitHub",
+    "snippet": "Memory Architecture. Memory in Claude Code follows a hierarchical system where different scopes serve different purposes: Loading. Unable to ...",
+    "host_name": "github.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/html/2604.14228v1",
+    "name": "Dive into Claude Code: The Design Space of Today's and Future AI",
+    "snippet": "The CLAUDE.md + memory subsystem provides a four-level instruction hierarchy (claudemd.ts) from managed settings to directory-specific files, plus auto-memory ...",
+    "host_name": "arxiv.org",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://serenitiesai.com/articles/claude-md-complete-guide-2026",
+    "name": "The Complete Guide to CLAUDE.md Files for AI Development 2026",
+    "snippet": "The CLAUDE.md Memory Hierarchy. Claude Code doesn't just read one CLAUDE.md file — it supports a full hierarchy of 6 different memory types.",
+    "host_name": "serenitiesai.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]

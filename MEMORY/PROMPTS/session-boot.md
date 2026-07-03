@@ -1,35 +1,60 @@
-# PROMPT — Шаблон для начала каждой сессии
+# PROMPTS — Task-Specific Boot Templates
 
-> **Назначение:** Вставлять в начало каждого сообщения новому AI-агенту
-> **Обновлён:** 2026-07-03
-
----
-
-## Промпт для копирования
-
-```
-Canonical repository: https://github.com/9xj89gzrtw-hue/interfood-catering
-
-Синхронизируйся с GitHub.
-Выполни Boot Protocol из AGENT_BOOT.md.
-1. git pull origin main
-2. Прочитай AGENT_BOOT.md → выполняй boot sequence
-3. Прочитай MEMORY/INDEX.md → найди релевантную память
-4. Прочитай MEMORY/STATE.md → текущее состояние проекта
-5. Прочитай MEMORY/DECISIONS.md → предыдущие решения по теме задачи
-6. Прочитай MEMORY/LEARNINGS.md → правила и паттерны
-
-Не начинай работу, пока контекст полностью не восстановлен.
-После задачи: обнови STATE.md, LEARNINGS.md, INDEX.md → git commit + push.
-```
+> **Schema Version:** v2.0
+> **Обновлён:** 2026-07-04
 
 ---
 
-## Альтернативный короткий вариант
+## Universal Boot (для любой задачи)
 
 ```
 Репозиторий: https://github.com/9xj89gzrtw-hue/interfood-catering
-Boot: AGENT_BOOT.md → MEMORY/INDEX.md → STATE.md → DECISIONS.md → LEARNINGS.md
-Версия: смотри VERSION.md
-Не начинай без полного восстановления контекста.
+1. git pull origin main
+2. cat MEMORY/CORE.md + MEMORY/INDEX.md  (Fast Boot)
+3. По типу задачи загрузить RECALL из Routing Table
+4. git diff HEAD~1 MEMORY/  → что изменилось в памяти
+5. cat MEMORY/SESSION.md     → что делали в прошлый раз
+Не начинай без восстановления контекста.
+После: bash scripts/agent-os-writeback.sh "задача" "сделано" "ошибки" "далее"
+```
+
+---
+
+## Bug Fix Boot
+
+```
+Репозиторий: https://github.com/9xj89gzrtw-hue/interfood-catering
+1. git pull origin main
+2. Fast Boot: CORE.md + INDEX.md
+3. RECALL: STATE.md + LEARNINGS.md
+4. ARCHIVAL: QUALITY/bug-registry.md
+5. next build → проверить что текущий билд проходит
+Не чини больше одного бага за раз. Один баг = один коммит.
+```
+
+---
+
+## New Feature Boot
+
+```
+Репозиторий: https://github.com/9xj89gzrtw-hue/interfood-catering
+1. git pull origin main
+2. Fast Boot: CORE.md + INDEX.md
+3. RECALL: STATE.md + DECISIONS.md
+4. ARCHIVAL: RESEARCH/catering-design-2026.md (если дизайн)
+Каждый файл < 250 строк. Только CSS transitions + FadeIn.
+```
+
+---
+
+## Agent OS Boot (изменение самой памяти)
+
+```
+Репозиторий: https://github.com/9xj89gzrtw-hue/interfood-catering
+1. git pull origin main
+2. Full Boot: CORE + INDEX + STATE + SESSION + DECISIONS + LEARNINGS
+3. ARCHIVAL: RESEARCH/ai-agent-memory.md
+4. bash scripts/agent-os-validate.sh → проверить целостность
+5. bash scripts/agent-os-gc.sh → проверить чистоту
+После: запустить критиков → итерировать до ≥9/10
 ```

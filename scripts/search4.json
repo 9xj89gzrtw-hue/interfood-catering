@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://arxiv.org/html/2603.20432v1",
+    "name": "Coding Agents are Effective Long-Context Processors - arXiv",
+    "snippet": "These findings suggest that delegating long-context processing to coding agents offers an effective alternative to semantic search or context ...",
+    "host_name": "arxiv.org",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://medium.com/predict/context-management-for-ai-agents-the-definitive-guie-ad2c859fa5e9",
+    "name": "Context Management for AI Agents: The Definitive Guide - Medium",
+    "snippet": "This guide synthesises the current state of context management across every major provider — Anthropic's Claude Code, OpenAI's Agents SDK, ...",
+    "host_name": "medium.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/html/2603.05344v1",
+    "name": "Building AI Coding Agents for the Terminal: Scaffolding, Harness",
+    "snippet": "The Agentic Context Engineering memory pipeline enables the agent to learn from tool outcomes within and across sessions without hardcoding ...",
+    "host_name": "arxiv.org",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/Rag/comments/1n9680y/breaking_the_context_window_building_infinite",
+    "name": "Breaking the Context Window: Building Infinite Memory for AI Agents",
+    "snippet": "The core idea is simple but powerful: Persistent memory across sessions - Your AI remembers your previous conversations, preferences, and ...",
+    "host_name": "www.reddit.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://atlan.com/know/ai-agent/ai-agent-context/context-management-vs-memory-management-ai-agents",
+    "name": "Context Management vs Memory Management in AI Agents [2026]",
+    "snippet": "Context management governs what enters the LLM window per inference; memory management persists knowledge across sessions.",
+    "host_name": "atlan.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
+    "name": "Effective context engineering for AI agents - Anthropic",
+    "snippet": "Agents can assemble understanding layer by layer, maintaining only what's necessary in working memory and leveraging note-taking strategies for ...",
+    "host_name": "www.anthropic.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.linkedin.com/posts/bijit-ghosh-48281a78_optimizing-any-ai-agent-framework-with-context-activity-7357760656386760705-KI8a",
+    "name": "How to Optimize AI Agents with Context Engineering - LinkedIn",
+    "snippet": "1️⃣ Write Craft or reformulate context pieces . 2️⃣ Select From memory, documents, tool outputs, or history — pick only the most relevant. Use ...",
+    "host_name": "www.linkedin.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://mem0.ai/blog/context-window-is-ram-not-storage-why-most-agent-failures-happen-how-to-fix-them-in-2026",
+    "name": "Memory vs Context Window for LLM and AI Agents | Mem0",
+    "snippet": "Learn the real difference between memory vs context window for LLM agents. Why most AI agents fail and how to use long-term memory to build ...",
+    "host_name": "mem0.ai",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://towardsdatascience.com/a-practical-guide-to-memory-for-autonomous-llm-agents",
+    "name": "A Practical Guide to Memory for Autonomous LLM Agents",
+    "snippet": "The paper characterizes agent memory as a write-manage-read loop, not just “store and retrieve.” ... Most implementations I see nail “write” and “ ...",
+    "host_name": "towardsdatascience.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/html/2601.07190v1",
+    "name": "Active Context Compression: Autonomous Memory Management in",
+    "snippet": "The “Context Window” remains the fundamental bottleneck for autonomous AI agents. While recent models offer massive context capacities (e.g. ...",
+    "host_name": "arxiv.org",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

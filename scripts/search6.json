@@ -1,0 +1,47 @@
+[
+  {
+    "url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
+    "name": "Effective context engineering for AI agents - Anthropic",
+    "snippet": "Context is a critical but finite resource for AI agents. In this post, we explore strategies for effectively curating and managing the context ...",
+    "host_name": "www.anthropic.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://medium.com/data-science-collective/context-engineering-for-ai-agents-complete-course-fd509e276a9e",
+    "name": "Context Engineering for AI Agents: Complete Course | by Marina Wyss",
+    "snippet": "Claude Code is Anthropic's CLI-based coding agent (obviously), and it's one of the best-documented examples of context engineering in practice.",
+    "host_name": "medium.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.linkedin.com/posts/richmondalake_effective-context-engineering-for-ai-agents-activity-7386881837643603968-R-6K",
+    "name": "Anthropic's Effective Context Engineering: A Deep Dive",
+    "snippet": "Step-by-step agent architecture, use cases, and deployment strategies. Agent architecture | Use cases | Best practices Guide → https ...",
+    "host_name": "www.linkedin.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.anthropic.com/research/building-effective-agents",
+    "name": "Building Effective AI Agents - Anthropic",
+    "snippet": "When building applications with LLMs, we recommend finding the simplest solution possible, and only increasing complexity when needed. This ...",
+    "host_name": "www.anthropic.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://sourcegraph.com/blog/context-engineering",
+    "name": "Context Engineering: A Practical Guide for AI Agents (2026)",
+    "snippet": "A practical guide to context engineering for AI agents: the four pillars, how it differs from prompt engineering, and how to build context ...",
+    "host_name": "sourcegraph.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]

@@ -1,41 +1,57 @@
-# MEMORY INDEX — Каталог файлов памяти
+# MEMORY INDEX — Каталог + Маршрутизация
 
-> **Обновлён:** 2026-07-03
-> **Версия:** 1.0
-
----
-
-## Структура памяти
-
-| Файл | Назначение | Обновлён | Статус |
-|------|-----------|----------|--------|
-| `INDEX.md` | Этот файл — каталог всех файлов памяти | 2026-07-03 | ACTIVE |
-| `STATE.md` | Текущее состояние проекта, версия, TODO | 2026-07-03 | ACTIVE |
-| `DECISIONS.md` | Лог решений: что/почему/альтернативы/пересмотр | 2026-07-03 | ACTIVE |
-| `LEARNINGS.md` | Правила, паттерны, техники, NEVER-список | 2026-07-03 | ACTIVE |
-| `RESEARCH/catering-design-2026.md` | Тренды дизайна кейтеринга 2026 | 2026-07-03 | ACTIVE |
-| `RESEARCH/ai-agent-memory.md` | Архитектуры памяти AI-агентов | 2026-07-03 | ACTIVE |
-| `RESEARCH/competitors-spb.md` | Конкуренты Interfood в СПб | 2026-07-03 | ACTIVE |
-| `BENCHMARKS/quality-scores.md` | Метрики качества по версиям | 2026-07-03 | ACTIVE |
-| `PROMPTS/session-boot.md` | Промпт для начала каждой сессии | 2026-07-03 | ACTIVE |
-| `PROMPTS/context-recovery.md` | Промпт для восстановления контекста | 2026-07-03 | ACTIVE |
-| `QUALITY/pipeline.md` | Quality pipeline: проверки и стандарты | 2026-07-03 | ACTIVE |
-| `QUALITY/bug-registry.md` | Реестр багов (никогда не удалять) | 2026-07-03 | ACTIVE |
-| `ARCHIVE/old-memory-v84.md` | Старый MEMORY.md до Agent OS | 2026-07-03 | ARCHIVED |
+> **Schema Version:** 2.0
+> **Обновлён:** 2026-07-04
 
 ---
 
-## Как пользоваться индексом
+## TIER 1: CORE (всегда загружать) — ~400 токенов
 
-1. **Boot:** Прочитать INDEX → найти нужные файлы по теме
-2. **Поиск:** По теме задачи искать в DECISIONS + LEARNINGS + RESEARCH
-3. **Обновление:** После изменений обновить дату в этой таблице
-4. **Архивация:** Перенести устаревшие записи в ARCHIVE/, обновить INDEX
+| Файл | Токены | Строк | Назначение |
+|------|--------|-------|-----------|
+| `CORE.md` | ~300 | 55 | SSOT: стек, дизайн, контакты, правила |
+| `INDEX.md` | ~150 | Этот | Каталог + маршрутизация |
+
+## TIER 2: RECALL (по задаче) — ~1500 токенов
+
+| Файл | Токены | Назначение | Когда загружать |
+|------|--------|-----------|----------------|
+| `STATE.md` | ~300 | Статус + TODO | Любая задача |
+| `SESSION.md` | ~150 | Последняя сессия | Новая сессия |
+| `DECISIONS.md` | ~500 | Лог решений | Дизайн, архитектура |
+| `LEARNINGS.md` | ~500 | Правила/паттерны | Баг, новый функционал |
+
+## TIER 3: ARCHIVAL (редко) — ~2000+ токенов
+
+| Файл | Токены | Назначение | Когда загружать |
+|------|--------|-----------|----------------|
+| `RESEARCH/catering-design-2026.md` | ~250 | Тренды дизайна | Изменение дизайна |
+| `RESEARCH/ai-agent-memory.md` | ~200 | Память агентов | Изменение Agent OS |
+| `RESEARCH/competitors-spb.md` | ~200 | Конкуренты | Стратегия, цены |
+| `BENCHMARKS/quality-scores.md` | ~200 | Метрики | Quality check |
+| `PROMPTS/session-boot.md` | ~100 | Промпт boot | Новая сессия |
+| `PROMPTS/context-recovery.md` | ~100 | Recovery | Потеря контекста |
+| `QUALITY/pipeline.md` | ~150 | Проверки | Pre-commit |
+| `QUALITY/bug-registry.md` | ~200 | Баги | Исправление бага |
+| `ARCHIVE/old-memory-v84.md` | ~2000 | Старая память | ❌ Не загружать |
+
+---
+
+## Routing Table
+
+| Тип задачи | TIER 2 файлы | TIER 3 файлы |
+|-----------|-------------|-------------|
+| Багфикс | STATE + LEARNINGS | bug-registry |
+| Новая страница | STATE + DECISIONS | catering-design |
+| Дизайн | DECISIONS | catering-design + benchmarks |
+| Контакты | Только CORE | — |
+| Деплой | STATE | pipeline |
+| Agent OS | DECISIONS + LEARNINGS | ai-agent-memory |
 
 ## Свежесть исследований
 
 | Файл | Проверен | Перепроверить до |
 |------|---------|-----------------|
 | `RESEARCH/catering-design-2026.md` | 2026-07-03 | 2026-08-02 |
-| `RESEARCH/ai-agent-memory.md` | 2026-07-03 | 2026-08-02 |
+| `RESEARCH/ai-agent-memory.md` | 2026-07-04 | 2026-08-03 |
 | `RESEARCH/competitors-spb.md` | 2026-07-03 | 2026-08-02 |

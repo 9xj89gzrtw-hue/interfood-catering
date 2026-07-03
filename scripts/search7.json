@@ -1,0 +1,47 @@
+[
+  {
+    "url": "https://arxiv.org/abs/2606.15828",
+    "name": "[2606.15828] Configuration Smells in AGENTS.md Files - arXiv",
+    "snippet": "In this paper, we present the first catalog of smells for coding-agent configuration files. To identify such smells, we first conducted a grey ...",
+    "host_name": "arxiv.org",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.digitalapplied.com/blog/ai-agent-config-smells-claude-md-best-practices-2026",
+    "name": "Configuration Smells: Fix Your AI Agent Config Files - Digital Applied",
+    "snippet": "A June 2026 study of 100 popular open-source AGENTS.md and CLAUDE.md files found that 91 carried at least one configuration smell. The files ...",
+    "host_name": "www.digitalapplied.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/html/2606.15828v2",
+    "name": "Configuration Smells in AGENTS.md Files - arXiv",
+    "snippet": "In this paper, we present the first catalog of smells for coding-agent configuration files. To identify such smells, we first conducted a grey ...",
+    "host_name": "arxiv.org",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://x.com/ComputerPapers/status/2066838783807340724",
+    "name": "Configuration Smells in AGENTS.md Files: Common Mistakes in",
+    "snippet": "Coding agents are increasingly used to automate software engineering tasks. To guide their behavior, these agents commonly rely on configuration ...",
+    "host_name": "x.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/ClaudeAI/comments/1r7mvja/new_research_agentsmd_files_reduce_coding_agent",
+    "name": "New research: AGENTS.md files reduce coding agent success rates",
+    "snippet": "Just saw this paper (arxiv.org/abs/2602.11988) evaluating whether AGENTS.md and similar repo context files actually help coding agents.",
+    "host_name": "www.reddit.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]

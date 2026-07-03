@@ -1,0 +1,47 @@
+[
+  {
+    "url": "https://www.letta.com/blog/context-repositories",
+    "name": "Introducing Context Repositories: Git-based Memory for Coding",
+    "snippet": "We're introducing Context Repositories, a rebuild of how memory works in Letta Code based on programmatic context management and git-based versioning.",
+    "host_name": "www.letta.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.letta.com",
+    "name": "Letta | Machines that learn",
+    "snippet": "Context Repositories: Git-based Memory FEB 2026. A rebuild of how agent memory works, using programmatic context management and git-based versioning.",
+    "host_name": "www.letta.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/letta-ai/letta",
+    "name": "Letta (formerly MemGPT) - GitHub",
+    "snippet": "Letta Code supports skills and subagents, and bundles pre-built skills/subagents for advanced memory and continual learning. Letta is fully model-agnostic, ...",
+    "host_name": "github.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/AI_Agents/comments/1glzob6/tutorial_on_building_agent_with_memory_using_letta",
+    "name": "Tutorial on building agent with memory using Letta - Reddit",
+    "snippet": "The course covers both the memory management research (e.g. MemGPT) behind Letta, as well as an introduction to using the OSS agents framework.",
+    "host_name": "www.reddit.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://vectorize.io/articles/hindsight-vs-letta",
+    "name": "Hindsight vs Letta (MemGPT): Agent Memory Compared (2026)",
+    "snippet": "Letta started as the MemGPT research project — a paper that proposed treating LLM context like an operating system manages virtual memory. The ...",
+    "host_name": "vectorize.io",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]

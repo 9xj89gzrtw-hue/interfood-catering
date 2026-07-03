@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://www.tigerdata.com/learn/building-ai-agents-with-persistent-memory-a-unified-database-approach",
+    "name": "Building AI Agents with Persistent Memory - Tiger Data",
+    "snippet": "AI agent persistent memory architecture is a unified database system that stores episodic events, semantic knowledge, and procedural state ...",
+    "host_name": "www.tigerdata.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://vectorize.io/articles/best-ai-agent-memory-systems",
+    "name": "Best AI Agent Memory Systems in 2026: 8 Frameworks Compared",
+    "snippet": "This guide ranks the 8 best agent memory systems available in 2026, with architecture breakdowns, code examples, and a decision guide to ...",
+    "host_name": "vectorize.io",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.instagram.com/reel/DYkafrhK_NC",
+    "name": "Top 5 Agent Memory Architectures You Must Know in 2026 Your",
+    "snippet": "Top 5 Agent Memory Architectures You Must Know in 2026 Your agent isn't dumb. It's amnesiac. 01. Working Memory → Whatever fits in the ...",
+    "host_name": "www.instagram.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/AIMemory/comments/1s62050/what_an_ai_memory_systems_should_look_like_in_2026",
+    "name": "What an AI Memory Systems Should Look Like in 2026 - Reddit",
+    "snippet": "The primary use case is persistent agent memory with a knowledge graph, not document Q&A. Not a conversation logger. Structured, typed ...",
+    "host_name": "www.reddit.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.cognee.ai/blog/guides/building-an-ai-agent-best-persistent-memory-layer",
+    "name": "Persistent Memory Layer for AI Agents 2026 - Cognee",
+    "snippet": "Cognee is a graph-native persistent memory layer for AI agents. Compare Mem0, Zep, and vector stores to find the best agent memory layer in ...",
+    "host_name": "www.cognee.ai",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://mem0.ai/blog/state-of-ai-agent-memory-2026",
+    "name": "AI Agent Memory 2026: Progress Benchmark Report Evaluations",
+    "snippet": "Explore AI agent memory trends shaping intelligent systems in 2026. This guide covers agentic AI memory and agent memory using the latest AI ...",
+    "host_name": "mem0.ai",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://machinelearningmastery.com/the-6-best-ai-agent-memory-frameworks-you-should-try-in-2026",
+    "name": "The 6 Best AI Agent Memory Frameworks You Should Try in 2026",
+    "snippet": "In this article, you will learn six practical frameworks you can use to give AI agents persistent memory for better context, recall, and ...",
+    "host_name": "machinelearningmastery.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://discuss.huggingface.co/t/how-do-you-design-memory-systems-for-long-running-ai-agents/175584",
+    "name": "How do you design memory systems for long-running AI agents?",
+    "snippet": "For long running AI agents, the simplest rule is: Do not make the prompt the memory system. Store memory outside the model, then only give ...",
+    "host_name": "discuss.huggingface.co",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://redis.io/blog/ai-agent-architecture",
+    "name": "AI Agent Architecture: Build Systems That Work in 2026 - Redis",
+    "snippet": "Learn how production AI agent architecture works, from memory systems and reasoning engines to multi-agent orchestration.",
+    "host_name": "redis.io",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://medium.com/h7w/i-built-persistent-memory-architectures-for-ai-agents-that-could-remember-conversations-for-months-a75aa0687b44",
+    "name": "I Built Persistent Memory Architectures for AI Agents That Could",
+    "snippet": "How I designed long-running AI memory systems with vector databases, episodic memory, semantic retrieval, and context persistence so autonomous ...",
+    "host_name": "medium.com",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]

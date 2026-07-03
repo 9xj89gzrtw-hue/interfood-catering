@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://www.letta.com",
+    "name": "Letta | Machines that learn",
+    "snippet": "Context Repositories: Git-based Memory FEB 2026. A rebuild of how agent memory works, using programmatic context management and git-based versioning.",
+    "host_name": "www.letta.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://vectorize.io/articles/hindsight-vs-letta",
+    "name": "Hindsight vs Letta (MemGPT): Agent Memory Compared (2026)",
+    "snippet": "Letta is a full agent runtime. Your agents don't just use Letta for memory — they run inside Letta. The framework handles the agent loop, tool ...",
+    "host_name": "vectorize.io",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.letta.com/blog/benchmarking-ai-agent-memory",
+    "name": "Benchmarking AI Agent Memory: Is a Filesystem All You Need? - Letta",
+    "snippet": "MemGPT introduced memory management for agents by creating a memory hierarchy inspired by a traditional operating system (OS). Agents ...",
+    "host_name": "www.letta.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/AI_Agents/comments/1glzob6/tutorial_on_building_agent_with_memory_using_letta",
+    "name": "Tutorial on building agent with memory using Letta - Reddit",
+    "snippet": "The course covers both the memory management research (e.g. MemGPT) behind Letta, as well as an introduction to using the OSS agents framework.",
+    "host_name": "www.reddit.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://evermind.ai/blogs/letta-alternative",
+    "name": "Best Letta Alternatives for AI Agent Memory in 2026 - EverMind",
+    "snippet": "Mem0 is the polar opposite of Letta's complex OS architecture. It is a lightweight, pluggable memory layer designed for extreme ease of use.",
+    "host_name": "evermind.ai",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.letta.com/blog/agent-memory",
+    "name": "Agent Memory: How to Build Agents That Learn and Remember - Letta",
+    "snippet": "Agents can update their own memory blocks based on new information, using tools to rewrite specific blocks. Other agents specialized in memory ...",
+    "host_name": "www.letta.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.linkedin.com/posts/wooders_at-letta-we-treat-agent-memory-as-a-context-activity-7348065548393463809-pdUE",
+    "name": "Sarah Wooders, PhD's Post - LinkedIn",
+    "snippet": "At Letta we treat agent memory as a context engineer problem - see our latest blog post on agent memory to learn about how we approach ...",
+    "host_name": "www.linkedin.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.deeplearning.ai/courses/llms-as-operating-systems-agent-memory",
+    "name": "LLMs as Operating Systems: Agent Memory - DeepLearning.AI",
+    "snippet": "Build agents with long-term, persistent memory using Letta to manage and edit context efficiently. Learn how an LLM agent can act as an operating system to ...",
+    "host_name": "www.deeplearning.ai",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=E0k9Ppq6yXY",
+    "name": "Full Workshop with Charles Packer of Letta and MemGPT - YouTube",
+    "snippet": "Learn the principles behind context and memory management from the lead author of the MemGPT paper · Learn about stateful agents in practice and ...",
+    "host_name": "www.youtube.com",
+    "rank": 8,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://vectorize.io/articles/mem0-vs-letta",
+    "name": "Mem0 vs Letta (MemGPT): AI Agent Memory Compared (2026)",
+    "snippet": "Letta is an agent runtime. It manages memory as part of a full operating-system-inspired platform where your agents live and execute. That ...",
+    "host_name": "vectorize.io",
+    "rank": 9,
+    "date": "",
+    "favicon": ""
+  }
+]
