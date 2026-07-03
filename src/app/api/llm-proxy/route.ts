@@ -1,5 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+export const maxDuration = 60;
+
 /**
  * Multi-LLM proxy API route.
  * Runs on Vercel from Washington DC (iad1) — bypasses sandbox geo-blocks.
