@@ -1262,12 +1262,12 @@ export default function SiteNav() {
           .nav-desktop-links {
             display: none !important;
           }
-          .burger-btn {
+          .burger {
             display: flex !important;
           }
         }
         @media (min-width: 901px) {
-          .burger-btn {
+          .burger {
             display: none !important;
           }
           .nav-desktop-links {
