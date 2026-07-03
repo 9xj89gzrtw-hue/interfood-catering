@@ -74,3 +74,8 @@ server.log
 .pipeline/screenshots/
 .pipeline/snapshots/
 tool-results/
+
+# Sandbox-only (never commit)
+/worklog.md
+/research-infra/
+/z-ai-config/
