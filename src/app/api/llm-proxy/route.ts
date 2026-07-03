@@ -97,17 +97,36 @@ async function callGoogle(prompt: string, imageBase64?: string): Promise<string>
   if (imageBase64) {
     parts.push({ inline_data: { mime_type: "image/png", data: imageBase64 } });
   }
+  // gemini-1.5-flash deprecated; use gemini-2.0-flash (free tier)
+  const model = imageBase64 ? "gemini-2.0-flash" : "gemini-2.0-flash";
   const res = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${key}`,
+    `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key}`,
     {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ contents: [{ parts }] }),
     }
   );
-  if (!res.ok) throw new Error(`Google ${res.status}: ${await res.text()}`);
+  if (!res.ok) throw new Error(`Google ${res.status}: ${(await res.text()).slice(0, 200)}`);
   const d = await res.json();
-  return d.candidates[0].content.parts[0].text;
+  return d.candidates?.[0]?.content?.parts?.[0]?.text || "Google: no content";
+}
+
+async function callCerebras(prompt: string): Promise<string> {
+  const key = process.env.CEREBRAS_API_KEY;
+  if (!key) throw new Error("CEREBRAS_API_KEY not set");
+  const res = await fetch("https://api.cerebras.ai/v1/chat/completions", {
+    method: "POST",
+    headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
+    body: JSON.stringify({
+      model: "llama3.1-8b",
+      messages: [{ role: "user", content: prompt }],
+      max_tokens: 800,
+    }),
+  });
+  if (!res.ok) throw new Error(`Cerebras ${res.status}: ${(await res.text()).slice(0, 200)}`);
+  const d = await res.json();
+  return d.choices[0].message.content;
 }
 
 const MODELS: Record<string, (p: string, img?: string) => Promise<string>> = {
@@ -116,6 +135,7 @@ const MODELS: Record<string, (p: string, img?: string) => Promise<string>> = {
   deepseek: callDeepSeek,
   openrouter: callOpenRouter,
   google: callGoogle,
+  cerebras: callCerebras,
 };
 
 export async function POST(req: NextRequest) {
