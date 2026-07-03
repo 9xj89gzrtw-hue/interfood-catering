@@ -71,34 +71,6 @@ const INJECTED_STYLES = `
   opacity: 1;
 }
 
-/* Odometer digit styles */
-.odom-digit-col {
-  position: relative;
-  overflow: hidden;
-  height: 1.15em;
-  width: 0.65em;
-  display: inline-flex;
-  align-items: flex-start;
-  font-family: var(--font-serif);
-  font-weight: 700;
-  color: #B8860B;
-  font-variant-numeric: tabular-nums;
-}
-
-.odom-digit-strip {
-  display: flex;
-  flex-direction: column;
-  transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.odom-digit-strip span {
-  height: 1.15em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
-}
-
 @media (max-width: 767px) {
   .stats-glass-card::before { animation: none; background-size: 100% 100%; }
   .stats-glare { display: none; }
@@ -125,7 +97,7 @@ function useIsMobile(): boolean {
   return useMediaQuery("(max-width: 767px)");
 }
 
-/* ─── Spring Counter Hook (for mobile fallback) ─── */
+/* ─── Spring Counter Hook ─── */
 function useSpringCounter(target: number, active: boolean) {
   const mv = useMotionValue(0);
   const spring = useSpring(mv, { stiffness: 50, damping: 18, mass: 1.2 });
@@ -143,60 +115,6 @@ function useSpringCounter(target: number, active: boolean) {
   }, [spring]);
 
   return display;
-}
-
-/* ─── Odometer Digit Component ─── */
-function OdometerDigit({ digit, active, delay }: { digit: number; active: boolean; delay: number }) {
-  // Each digit column shows 0-9, and we scroll to the right digit
-  const [offset, setOffset] = useState(0);
-
-  useEffect(() => {
-    if (active) {
-      const timer = setTimeout(() => {
-        setOffset(digit);
-      }, delay * 1000);
-      return () => clearTimeout(timer);
-    }
-  }, [active, digit, delay]);
-
-  return (
-    <div className="odom-digit-col">
-      <div
-        className="odom-digit-strip"
-        style={{
-          transform: `translateY(-${offset * 1.15}em)`,
-        }}
-      >
-        {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((d) => (
-          <span key={d}>{d}</span>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-/* ─── Full Odometer Number ─── */
-function OdometerNumber({ value, active, mobile }: { value: number; active: boolean; mobile: boolean }) {
-  // Mobile fallback: spring count-up
-  const springCount = useSpringCounter(value, active);
-
-  if (mobile) {
-    return <>{springCount.toLocaleString("ru-RU")}</>;
-  }
-
-  const digits = value.toString().split("").map(Number);
-  return (
-    <>
-      {digits.map((d, i) => (
-        <OdometerDigit
-          key={i}
-          digit={d}
-          active={active}
-          delay={0.3 + i * 0.2}
-        />
-      ))}
-    </>
-  );
 }
 
 /* ─── Floating Gold Orbs ─── */
@@ -347,7 +265,7 @@ function StatCard({
         />
       )}
 
-      {/* Number — Odometer on desktop, spring on mobile */}
+      {/* Number — Spring counter (always shows real value) */}
       <span
         style={{
           fontFamily: "var(--font-serif)",
@@ -363,21 +281,12 @@ function StatCard({
           justifyContent: "center",
         }}
       >
-        {mobile ? (
-          <>
-            {isInView ? springCount.toLocaleString("ru-RU") : "0"}
-            <span style={{ fontSize: "0.5em", fontWeight: 400, opacity: 0.7, marginLeft: 2 }}>
-              {stat.suffix}
-            </span>
-          </>
-        ) : (
-          <>
-            {isInView && <OdometerNumber value={stat.value} active={isInView} mobile={mobile} />}
-            <span style={{ fontSize: "0.5em", fontWeight: 400, opacity: 0.7, marginLeft: 2 }}>
-              {stat.suffix}
-            </span>
-          </>
-        )}
+        {isInView
+          ? springCount.toLocaleString("ru-RU")
+          : stat.value.toLocaleString("ru-RU")}
+        <span style={{ fontSize: "0.5em", fontWeight: 400, opacity: 0.7, marginLeft: 2 }}>
+          {stat.suffix}
+        </span>
       </span>
 
       {/* Label */}

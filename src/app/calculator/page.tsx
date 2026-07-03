@@ -1382,17 +1382,15 @@ export default function CalculatorPage() {
                 flexWrap: "wrap",
               }}
             >
-              <ConfettiButton
+              <a
                 className="btn-gold"
-                style={{ background: "var(--color-warm-white)", color: "var(--color-brand-dark)", padding: "1rem 2.5rem", borderRadius: "100px", fontSize: "0.85rem", fontWeight: 600, letterSpacing: "0.05em", border: "none", cursor: "pointer" }}
-                onClick={() => {
-                  const eventType = selectedType?.label || "кейтеринг";
-                  const msg = `Здравствуйте! Рассчитал(а) стоимость на сайте: ${eventType}, ${guests} гостей — ~${priceData.total.toLocaleString("ru-RU")} ₽. Хочу получить точный расчёт!`;
-                  window.open(`https://wa.me/79119417205?text=${encodeURIComponent(msg)}`, "_blank");
-                }}
+                href={`https://wa.me/79119417205?text=${encodeURIComponent(`Здравствуйте! Рассчитал(а) стоимость на сайте: ${selectedType?.label || "кейтеринг"}, ${guests} гостей — ~${priceData.total.toLocaleString("ru-RU")} ₽. Хочу получить точный расчёт!`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ background: "var(--color-warm-white)", color: "var(--color-brand-dark)", padding: "1rem 2.5rem", borderRadius: "100px", fontSize: "0.85rem", fontWeight: 600, letterSpacing: "0.05em", border: "none", cursor: "pointer", display: "inline-block", textDecoration: "none" }}
               >
                 Получить точный расчёт
-              </ConfettiButton>
+              </a>
               <MagneticButton as="a" href="tel:+78129195911" strength={0.2}>
                 <span className="btn-outline" style={{ borderColor: "rgba(255,255,255,0.4)", color: "#fff" }}>
                   +7 (812) 919-59-11

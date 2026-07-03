@@ -626,13 +626,13 @@ export default function CinematicHero() {
   // ─── Light sweep state ───
   const [sweepKey, setSweepKey] = useState(0);
 
-  // ─── Random initial positions for split-text chars (pre-computed) ───
+  // ─── Deterministic initial positions for split-text chars (no Math.random for SSR) ───
   const charInitialPositions = useMemo(
     () =>
-      "Интерфуд".split("").map(() => ({
-        x: (Math.random() - 0.5) * 200,
-        y: (Math.random() - 0.5) * 200,
-        rotate: (Math.random() - 0.5) * 60,
+      "Интерфуд".split("").map((_, i) => ({
+        x: ((i * 37 + 13) % 200) - 100,
+        y: ((i * 53 + 7) % 200) - 100,
+        rotate: ((i * 29 + 11) % 60) - 30,
       })),
     []
   );
@@ -1077,7 +1077,7 @@ export default function CinematicHero() {
             maxWidth: isMobile ? 360 : "none",
           }}
         >
-          <MagneticButton href="/calculator" variant="primary" isMobile={isMobile} prefersReduced={prefersReduced}>
+          <MagneticButton href="https://wa.me/79119417205?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%80%D0%B0%D1%81%D1%81%D1%87%D0%B8%D1%82%D0%B0%D1%82%D1%8C%20%D0%BC%D0%B5%D1%80%D0%BE%D0%BF%D1%80%D0%B8%D1%8F%D1%82%D0%B8%D0%B5." variant="primary" isMobile={isMobile} prefersReduced={prefersReduced}>
             Рассчитать мероприятие
           </MagneticButton>
           <MagneticButton href="/menu" variant="secondary" isMobile={isMobile} prefersReduced={prefersReduced}>
