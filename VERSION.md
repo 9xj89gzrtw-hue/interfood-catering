@@ -5,6 +5,16 @@
 
 ---
 
+## v82.2 — 2026-07-03 — Fix All 6 Bugs: ignoreBuildErrors, z-index, duplicate SiteNav, mobile menu
+- **BUG-005 FIXED**: Удалён `ignoreBuildErrors: true` из next.config.ts. TS exclude: backups, examples, skills, scripts
+- **BUG-001 FIXED**: PDF кнопка на мобильном — burger CSS fix (burger-btn→burger), убран inline display:none, z-index sticky header z-40
+- **BUG-002 FIXED**: Кнопка "Закрыть меню" — мобильное меню z-10002, close button z-10003, выше навигации z-9999
+- **BUG-003 VERIFIED**: PDF кнопка работает корректно после добавления блюда (agent-browser confirmed)
+- **BUG-004 CLOSED**: MorphingText слова корректные — MORPH_WORDS = ["Кейтеринг", "Свадьбы", "Банкеты", "Фуршеты", "Кофе-брейк"]
+- **BUG-006 FIXED**: Убран SiteNav из 16 подстраниц — навигация только в layout.tsx
+- **CSS**: globals.css mobile-menu z-index 9998→10002, nav-desktop-links hidden on mobile
+- **Build**: `next build` clean, 0 TS errors in src/
+
 ## v81 — 2026-07-03 — Ultra WOW: 2026 Motion Design + MenuBuilder Nav Fix + Interactive Effects
 - **Тема**: Light Premium Ultra WOW (продолжение v80)
 - **MenuBuilder критический фикс**:
