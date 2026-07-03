@@ -12,18 +12,18 @@
    ═══════════════════════════════════════════════════════════════ */
 
 const CLIENTS = [
-  "Газпром",
   "Сбербанк",
-  "ВТБ",
-  "Яндекс",
-  "VK",
-  "Тинькофф",
+  "Газпром",
   "Росатом",
   "Лукойл",
-  "МТС",
   "РЖД",
+  "ВТБ",
+  "Яндекс",
+  "МТС",
+  "Тинькофф",
   "МегаФон",
   "Ростелеком",
+  "VK",
 ];
 
 /* Build a row: name · name · name ... with gold dot separator */
@@ -115,13 +115,13 @@ export default function ClientMarquee() {
           font-family: var(--font-serif);
           font-size: clamp(1rem, 2vw, 1.4rem);
           font-weight: 300;
-          color: rgba(201,169,106,0.3);
+          color: rgba(201,169,106,0.45);
           white-space: nowrap;
           padding: 0 0.75rem;
           transition: color 0.4s cubic-bezier(0.16,1,0.3,1);
         }
         .cm-row:hover .cm-name {
-          color: rgba(201,169,106,0.5);
+          color: rgba(201,169,106,0.65);
         }
 
         /* ─── Gold dot separator ─── */
@@ -152,7 +152,7 @@ export default function ClientMarquee() {
             display: "inline-block",
           }}
         />
-        Нам доверяют
+        Нам доверяют обслуживание
         <span
           style={{
             width: 24,

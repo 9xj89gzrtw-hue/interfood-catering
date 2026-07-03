@@ -317,6 +317,10 @@ export default function ContactsPage() {
       setSubmitted(true);
       setForm(INITIAL_FORM);
       setErrors({});
+
+      // Always send to WhatsApp as backup notification
+      const waText = `Новая заявка с сайта!\n👤 ${form.name.trim()}\n📞 ${form.phone.trim()}${form.date ? `\n📅 ${form.date}` : ""}${form.guests ? `\n👥 ${form.guests} чел` : ""}${form.venue ? `\n📍 ${form.venue.trim()}` : ""}`;
+      window.open(`https://wa.me/79119417205?text=${encodeURIComponent(waText)}`, "_blank");
     } catch {
       setErrors({ name: "Не удалось подключиться к серверу. Проверьте интернет и попробуйте снова." });
     } finally {
@@ -890,7 +894,8 @@ export default function ContactsPage() {
                         <input
                           id="date"
                           name="date"
-                          type="date"
+                          type="text"
+                          placeholder="ДД.ММ.ГГГГ"
                           value={form.date}
                           onChange={handleChange}
                           style={{
