@@ -16,12 +16,20 @@ export default function Hero() {
           priority
           sizes="100vw"
         />
-        {/* Gradient overlay */}
+        {/* Text-aware scrim: strongest behind text column (left), fades right.
+            Bottom gradient ensures mobile readability (text spans full width). */}
         <div
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(135deg, rgba(26,26,26,0.7) 0%, rgba(26,26,26,0.4) 50%, rgba(26,26,26,0.5) 100%)",
+              "linear-gradient(90deg, rgba(26,26,26,0.88) 0%, rgba(26,26,26,0.62) 45%, rgba(26,26,26,0.35) 100%)",
+          }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(0deg, rgba(26,26,26,0.72) 0%, rgba(26,26,26,0) 45%)",
           }}
         />
       </div>
@@ -47,7 +55,7 @@ export default function Hero() {
           >
             Интерфуд
             <br />
-            <span style={{ color: "#D4A843" }}>Кейтеринг</span>
+            <span style={{ color: "#F5F1EA" }}>Кейтеринг</span>
           </h1>
           </FadeIn>
 
@@ -55,7 +63,7 @@ export default function Hero() {
           <FadeIn delay={600}>
           <p
             className="font-sans text-base sm:text-lg leading-relaxed mb-8 max-w-lg"
-            style={{ color: "rgba(245,241,234,0.85)" }}
+            style={{ color: "#F5F1EA" }}
           >
             Ресторан выездного обслуживания в Санкт-Петербурге.
             Свадьбы, банкеты, фуршеты и кофе-брейки — от 950 ₽/чел
