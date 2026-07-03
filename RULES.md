@@ -103,13 +103,16 @@ Do NOT delete speculatively. Each deletion records the criterion met.
 - "Best" is grounded in current 2026 research (10 categories: catering, restaurant, luxury, event, wedding, Michelin, award-winning, motion-design studios, mobile UX, trends), not opinion.
 - A module is NOT done if it looks dated for the current month. Compare against best-in-class before claiming done.
 
-## 11. Contacts & design (SSOT — do not duplicate)
+## 11. Contacts & design (SSOT — from old site, RULES.md §12)
 
-- Phone: +7 (812) 919-59-11 | WhatsApp: wa.me/79119417205 | Telegram: t.me/nilov_catering
-- Email: info@interfood-catering.ru | Address: Новолитовская ул., 15, СПб
-- Founder: Дмитрий Нилов
+- Phone: +7 (812) 919-59-11 | Mobile/WhatsApp/Telegram: +7 (911) 941-72-05
+- WhatsApp: wa.me/79119417205 | Telegram: t.me/nilov_catering
+- Email: **interfood-catering@yandex.ru** (from old site, NOT info@interfood-catering.ru)
+- VK: vk.com/nilovcatering | Instagram: instagram.com/nilov_catering
+- Address: Новолитовская ул., 15, СПб | Founder: Дмитрий Нилов (since 2007)
 - Palette: #F5F1EA (cream bg) / #1A1A1A (dark) / #D4A843 (gold accent) / #8B6F47 (caramel) / #5C564D (body text)
 - Fonts: Cormorant Garamond (headings) + Inter (body)
+- Use `src/lib/content.ts` as canonical source for all menu/prices/services/contacts.
 
 ## 12. Content source priority (added 2026-07-04)
 

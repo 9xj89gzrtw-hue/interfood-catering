@@ -1,115 +1,96 @@
-"use client";
-import Image from "next/image";
-import Link from "next/link";
-import SubpageLayout from "@/components/home/SubpageLayout";
+import type { Metadata } from "next";
+import Navbar from "@/components/home/Navbar";
+import Footer from "@/components/home/Footer";
+import WhatsAppFloat from "@/components/home/WhatsAppFloat";
 import FadeIn from "@/components/home/FadeIn";
+import Stats from "@/components/home/Stats";
+import { CONTACTS } from "@/lib/content";
 
-const STATS = [
-  { value: "18", label: "лет опыта" },
-  { value: "3 500+", label: "мероприятий" },
-  { value: "50+", label: "блюд в меню" },
-  { value: "98%", label: "довольных клиентов" },
-];
+export const metadata: Metadata = {
+  title: "О компании",
+  description: "Интерфуд Кейтеринг — ресторан выездного обслуживания в СПб с 2007 года. Авторская кухня шеф-повара Дмитрия Нилова. 3500+ мероприятий.",
+};
 
 export default function AboutPage() {
   return (
-    <SubpageLayout activePage="/about">
-      {/* Hero */}
-      <section className="relative h-[50vh] min-h-[360px] flex items-end overflow-hidden">
-        <Image src="/images/real/chef_about.jpg" alt="О компании Интерфуд" fill className="object-cover" priority />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 w-full">
-          <FadeIn>
-            <p className="font-sans text-sm mb-3" style={{ color: "rgba(245,241,234,0.7)" }}>
-              <Link href="/" className="hover:text-[#D4A843] transition-colors">Главная</Link> / О компании
-            </p>
-            <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-semibold" style={{ color: "#F5F1EA" }}>
-              О компании
-            </h1>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* Story */}
-      <section className="py-20" style={{ background: "#F5F1EA" }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeIn>
-            <h2 className="font-serif text-3xl sm:text-4xl text-center mb-4" style={{ color: "#1A1A1A" }}>
-              Наша история
-            </h2>
-          </FadeIn>
-          <FadeIn delay={100}>
-            <div className="max-w-2xl mx-auto space-y-5 font-sans text-base leading-relaxed" style={{ color: "#5C564D" }}>
-              <p>
-                Интерфуд основан шеф-поваром Дмитрием Ниловым в 2007 году. Начав с небольших частных мероприятий, за 18 лет компания выросла в один из ведущих кейтеринговых сервисов Санкт-Петербурга. За это время мы провели более 3 500 мероприятий — от камерных ужинов на 20 персон до масштабных корпоративов на 2 000 гостей.
-              </p>
-              <p>
-                Авторская кухня и безупречный сервис — два столпа, на которых строится наша репутация. Каждое блюдо создаётся шеф-поваром с учётом сезона, формата мероприятия и ваших предпочтений. Профессиональная команда официантов обучена по стандартам fine dining и обеспечивает подачу, которая впечатляет гостей.
-              </p>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* Stats */}
-      <section className="py-16" style={{ background: "#1A1A1A" }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {STATS.map((s, i) => (
-              <FadeIn key={i} delay={i * 100}>
-                <div className="text-center">
-                  <p className="font-serif text-3xl sm:text-4xl font-semibold mb-1" style={{ color: "#D4A843" }}>{s.value}</p>
-                  <p className="font-sans text-sm" style={{ color: "rgba(245,241,234,0.6)" }}>{s.label}</p>
-                </div>
-              </FadeIn>
-            ))}
+    <>
+      <Navbar />
+      <main style={{ background: "#F5F1EA", minHeight: "100vh" }}>
+        <section className="relative pt-32 pb-16 sm:pt-40 sm:pb-20" style={{ background: "#1A1A1A" }}>
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <FadeIn>
+              <p className="font-sans text-xs tracking-[0.3em] uppercase mb-4" style={{ color: "#D4A843" }}>С {CONTACTS.sinceYear} года</p>
+              <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl font-light mb-6" style={{ color: "#F5F1EA" }}>
+                О компании
+              </h1>
+            </FadeIn>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Philosophy */}
-      <section className="py-20" style={{ background: "#EDE8DD" }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeIn>
-            <h2 className="font-serif text-3xl sm:text-4xl text-center mb-4" style={{ color: "#1A1A1A" }}>
-              Наш подход
-            </h2>
-          </FadeIn>
-          <FadeIn delay={100}>
-            <div className="max-w-2xl mx-auto space-y-5 font-sans text-base leading-relaxed" style={{ color: "#5C564D" }}>
-              <p>
-                Мы убеждены, что кейтеринг — это не просто еда. Это создание атмосферы, в которой каждый гость чувствует себя особенным. Поэтому мы берём на себя всё — от разработки меню и подбора посуды до координации мероприятия и уборки. Вы наслаждаетесь событием, а мы заботимся обо всём остальном.
-              </p>
-              <p>
-                Качество начинается с ингредиентов. Мы работаем с проверенными поставщиками, выбираем сезонные продукты и готовим каждое блюдо в день мероприятия. Никаких полуфабрикатов, никаких компромиссов — только свежая, авторская кухня, которая отражает вкус и стиль вашего события.
-              </p>
+        <Stats />
+
+        <section className="py-16 sm:py-24">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <FadeIn>
+              <div className="prose prose-lg max-w-none">
+                <p className="font-serif text-2xl sm:text-3xl leading-relaxed font-light mb-8" style={{ color: "#1A1A1A" }}>
+                  «Для нас организация кейтеринга — не просто работа, а увлечение, которое стало стилем жизни.»
+                </p>
+                <p className="font-sans text-base sm:text-lg leading-relaxed mb-6" style={{ color: "#5C564D" }}>
+                  С {CONTACTS.sinceYear} года мы виртуозно подбираем меню для любого события, завоевывая сердца даже самых искушённых гурманов.
+                </p>
+                <p className="font-sans text-base sm:text-lg leading-relaxed mb-6" style={{ color: "#5C564D" }}>
+                  Профессионализм команды, использование только качественных продуктов, оперативное обслуживание, сотрудничество с лучшими площадками и безупречная подача блюд — философия, которая отражается в каждом моменте нашей работы.
+                </p>
+                <p className="font-serif text-xl italic mt-8" style={{ color: "#8B6F47" }}>
+                  — {CONTACTS.founder}
+                </p>
+              </div>
+            </FadeIn>
+          </div>
+        </section>
+
+        <section className="py-16 sm:py-20" style={{ background: "#EDE8DD" }}>
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <FadeIn>
+              <h2 className="font-serif text-3xl sm:text-4xl font-light text-center mb-12" style={{ color: "#1A1A1A" }}>
+                Почему выбирают нас
+              </h2>
+            </FadeIn>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {[
+                { icon: "👨‍🍳", title: "Авторская кухня", desc: "Шеф-повар Дмитрий Нилов лично составляет каждое меню" },
+                { icon: "🌿", title: "Качественные продукты", desc: "Только свежие ингредиенты от проверенных поставщиков" },
+                { icon: "⚡", title: "Оперативность", desc: "Ответим за 30 минут, организуем мероприятие за 1 день" },
+                { icon: "🤝", title: "Лучшие площадки", desc: "Сотрудничаем с топ-площадками Санкт-Петербурга" },
+                { icon: "🍽️", title: "Безупречная подача", desc: "Профессиональные официанты и стильный сервировка" },
+                { icon: "💐", title: "Флористика в подарок", desc: "При заказе свадебного банкета — оформление в подарок" },
+              ].map((f, i) => (
+                <FadeIn key={i} delay={i * 80}>
+                  <div className="bg-white rounded-2xl p-6 border border-[#D4A843]/10">
+                    <div className="text-3xl mb-3">{f.icon}</div>
+                    <h3 className="font-serif text-xl font-medium mb-2" style={{ color: "#1A1A1A" }}>{f.title}</h3>
+                    <p className="font-sans text-sm" style={{ color: "#5C564D" }}>{f.desc}</p>
+                  </div>
+                </FadeIn>
+              ))}
             </div>
-          </FadeIn>
-        </div>
-      </section>
+          </div>
+        </section>
 
-      {/* CTA */}
-      <section className="py-20" style={{ background: "#F5F1EA" }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <FadeIn>
-            <h2 className="font-serif text-3xl sm:text-4xl mb-4" style={{ color: "#1A1A1A" }}>
-              Готовы обсудить ваше мероприятие?
-            </h2>
-            <p className="font-sans text-base mb-8 max-w-lg mx-auto" style={{ color: "#5C564D" }}>
-              Свяжитесь с нами — и мы подберём идеальное меню и формат для вашего события
-            </p>
-            <a
-              href="https://wa.me/79119417205"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block font-sans text-sm px-8 py-3.5 rounded-full transition-colors"
-              style={{ background: "#D4A843", color: "#fff" }}
-            >
-              Написать в WhatsApp
-            </a>
-          </FadeIn>
-        </div>
-      </section>
-    </SubpageLayout>
+        <section className="py-16 sm:py-20 text-center" style={{ background: "#1A1A1A" }}>
+          <div className="max-w-3xl mx-auto px-4">
+            <FadeIn>
+              <h2 className="font-serif text-3xl sm:text-4xl font-light mb-6" style={{ color: "#F5F1EA" }}>Доверьте нам ваше событие</h2>
+              <a href={CONTACTS.whatsappText} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 font-sans text-base px-8 py-4 rounded-full transition-all duration-300 hover:scale-[1.03]" style={{ background: "#D4A843", color: "#fff" }}>
+                Обсудить мероприятие →
+              </a>
+            </FadeIn>
+          </div>
+        </section>
+      </main>
+      <Footer />
+      <WhatsAppFloat />
+    </>
   );
 }

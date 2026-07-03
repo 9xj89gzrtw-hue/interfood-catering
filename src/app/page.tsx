@@ -1,11 +1,13 @@
-import TrustBar from "@/components/home/TrustBar";
-import HowItWorks from "@/components/home/HowItWorks";
+import Navbar from "@/components/home/Navbar";
+import Hero from "@/components/home/Hero";
+import Stats from "@/components/home/Stats";
 import Services from "@/components/home/Services";
+import MenuPreview from "@/components/home/MenuPreview";
+import HowItWorks from "@/components/home/HowItWorks";
 import Gallery from "@/components/home/Gallery";
 import Testimonials from "@/components/home/Testimonials";
+import News from "@/components/home/News";
 import CTA from "@/components/home/CTA";
-import Hero from "@/components/home/Hero";
-import Navbar from "@/components/home/Navbar";
 import Footer from "@/components/home/Footer";
 import WhatsAppFloat from "@/components/home/WhatsAppFloat";
 
@@ -15,11 +17,13 @@ export default function Home() {
       <Navbar />
       <main style={{ background: "#F5F1EA", minHeight: "100vh" }}>
         <Hero />
-        <TrustBar />
+        <Stats />
         <Services />
+        <MenuPreview />
         <HowItWorks />
         <Gallery />
         <Testimonials />
+        <News />
         <CTA />
       </main>
       <Footer />

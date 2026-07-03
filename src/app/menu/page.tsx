@@ -1,260 +1,135 @@
-"use client";
+import type { Metadata } from "next";
+import Navbar from "@/components/home/Navbar";
+import Footer from "@/components/home/Footer";
+import WhatsAppFloat from "@/components/home/WhatsAppFloat";
+import FadeIn from "@/components/home/FadeIn";
+import { MENU_TYPES, CONTACTS } from "@/lib/content";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
-import MenuBuilder from "@/components/MenuBuilder";
-import BackToTop from "@/components/BackToTop";
-
-/* ═══════════════════════════════════════════════════════════════
-   ИНТЕРФУД КЕЙТЕРИНГ — Меню / Menu Page
-   Light Premium design with interactive MenuBuilder
-   ═══════════════════════════════════════════════════════════════ */
+export const metadata: Metadata = {
+  title: "Меню кейтеринга с ценами",
+  description: "Фуршет от 2450 ₽, банкет от 4470 ₽, кофе-брейк от 390 ₽ на человека. Реальные блюда и цены. Авторская кухня шеф-повара Дмитрия Нилова.",
+};
 
 export default function MenuPage() {
-  const builderRef = useRef<HTMLDivElement>(null);
-  const heroRef = useRef<HTMLDivElement>(null);
-  const heroInView = useInView(heroRef, { once: true, margin: "-100px" });
-
   return (
     <>
-      {/* ─── HERO ─── */}
-      <section
-        ref={heroRef}
-        className="relative overflow-hidden"
-        style={{
-          background: "linear-gradient(135deg, #FAFAF7 0%, #F5F3EE 50%, #EDE9E1 100%)",
-          minHeight: "50vh",
-        }}
-      >
-        {/* Decorative elements */}
-        <div
-          className="absolute top-0 right-0 w-96 h-96 rounded-full opacity-20 blur-3xl"
-          style={{
-            background: "radial-gradient(circle, #E5BF65 0%, transparent 70%)",
-            transform: "translate(30%, -30%)",
-          }}
-        />
-        <div
-          className="absolute bottom-0 left-0 w-72 h-72 rounded-full opacity-10 blur-3xl"
-          style={{
-            background: "radial-gradient(circle, #B8860B 0%, transparent 70%)",
-            transform: "translate(-20%, 20%)",
-          }}
-        />
-
-        <div className="relative z-10 max-w-6xl mx-auto px-4 pt-32 pb-16 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={heroInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
-            {/* Eyebrow */}
-            <motion.span
-              initial={{ opacity: 0, y: 10 }}
-              animate={heroInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 text-sm font-medium tracking-widest uppercase mb-6"
-              style={{ color: "#B8860B" }}
-            >
-              <span className="w-8 h-px" style={{ background: "#B8860B" }} />
-              Авторская кухня
-              <span className="w-8 h-px" style={{ background: "#B8860B" }} />
-            </motion.span>
-
-            {/* Title */}
-            <h1
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6"
-              style={{
-                fontFamily: "var(--font-serif)",
-                color: "#1A1714",
-                lineHeight: 1.1,
-              }}
-            >
-              Составьте
-              <br />
-              <span style={{ color: "#B8860B" }}>ваше меню</span>
-            </h1>
-
-            {/* Subtitle */}
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              animate={heroInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.4 }}
-              className="text-lg sm:text-xl max-w-2xl mx-auto mb-8"
-              style={{ color: "#7D5A0D", lineHeight: 1.6 }}
-            >
-              Выберите блюда из наших коллекций, настройте количество гостей
-              и получите расчёт — с скидками для больших компаний
-            </motion.p>
-
-            {/* CTA to scroll down */}
-            <motion.button
-              initial={{ opacity: 0, y: 10 }}
-              animate={heroInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.6 }}
-              onClick={() =>
-                builderRef.current?.scrollIntoView({ behavior: "smooth" })
-              }
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl text-sm font-semibold transition-all hover:shadow-lg"
-              style={{
-                background: "#B8860B",
-                color: "#fff",
-              }}
-            >
-              Начать подбор
-              <motion.span
-                animate={{ y: [0, 3, 0] }}
-                transition={{ repeat: Infinity, duration: 1.5 }}
-              >
-                ↓
-              </motion.span>
-            </motion.button>
-          </motion.div>
-
-          {/* Quick stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={heroInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.8 }}
-            className="flex flex-wrap justify-center gap-8 mt-12"
-          >
-            {[
-              { value: "4", label: "Формата" },
-              { value: "18+", label: "Блюд" },
-              { value: "950₽", label: "От / чел" },
-              { value: "15%", label: "Макс. скидка" },
-            ].map((stat, i) => (
-              <div key={i} className="text-center">
-                <div
-                  className="text-2xl font-bold"
-                  style={{ fontFamily: "var(--font-serif)", color: "#B8860B" }}
-                >
-                  {stat.value}
-                </div>
-                <div className="text-xs mt-1" style={{ color: "#7D5A0D" }}>
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ─── MENU BUILDER ─── */}
-      <section ref={builderRef} className="relative">
-        <div className="max-w-7xl mx-auto">
-          {/* Section header */}
-          <div className="text-center pt-12 pb-2 px-4">
-            <h2
-              className="text-2xl sm:text-3xl font-bold mb-2"
-              style={{ fontFamily: "var(--font-serif)", color: "#1A1714" }}
-            >
-              Конструктор меню
-            </h2>
-            <p className="text-sm" style={{ color: "#7D5A0D" }}>
-              Добавляйте блюда в корзину — стоимость рассчитается автоматически
-            </p>
+      <Navbar />
+      <main style={{ background: "#F5F1EA", minHeight: "100vh" }}>
+        {/* Hero header */}
+        <section className="relative pt-32 pb-16 sm:pt-40 sm:pb-20" style={{ background: "#1A1A1A" }}>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <FadeIn>
+              <p className="font-sans text-xs tracking-[0.3em] uppercase mb-4" style={{ color: "#D4A843" }}>Меню от шеф-повара</p>
+              <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl font-light mb-6" style={{ color: "#F5F1EA" }}>
+                Авторская кухня
+              </h1>
+              <p className="font-sans text-base sm:text-lg max-w-2xl mx-auto" style={{ color: "rgba(245,241,234,0.8)" }}>
+                Реальные меню с блюдами и ценами. Авторская кухня шеф-повара {CONTACTS.founder} с {CONTACTS.sinceYear} года.
+              </p>
+            </FadeIn>
           </div>
+        </section>
 
-          <MenuBuilder />
-        </div>
-      </section>
+        {/* Menu cards */}
+        {MENU_TYPES.map((m) => (
+          <section key={m.id} id={m.id} className="py-16 sm:py-20" style={{ background: m.id === "banket" ? "#EDE8DD" : "#F5F1EA" }}>
+            <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+              <FadeIn>
+                <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
+                  <div>
+                    <p className="font-sans text-xs tracking-[0.3em] uppercase mb-2" style={{ color: "#8B6F47" }}>{m.desc}</p>
+                    <h2 className="font-serif text-4xl sm:text-5xl font-light" style={{ color: "#1A1A1A" }}>{m.title}</h2>
+                  </div>
+                  <div className="text-right">
+                    <p className="font-sans text-xs uppercase tracking-wider" style={{ color: "#8B6F47" }}>от</p>
+                    <p className="font-serif text-3xl font-medium" style={{ color: "#D4A843" }}>{m.fromPrice.toLocaleString("ru")} ₽</p>
+                    <p className="font-sans text-xs" style={{ color: "#8B6F47" }}>на человека</p>
+                  </div>
+                </div>
+              </FadeIn>
 
-      {/* ─── INFO SECTION ─── */}
-      <section className="py-16 px-4" style={{ background: "#FAFAF7" }}>
-        <div className="max-w-5xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              {
-                icon: "🎯",
-                title: "Персональный подход",
-                desc: "Шеф-повар адаптирует меню под ваш формат мероприятия и предпочтения гостей",
-              },
-              {
-                icon: "💰",
-                title: "Прозрачные цены",
-                desc: "Стоимость на сайте — окончательная. Без скрытых наценок и доплат",
-              },
-              {
-                icon: "🎉",
-                title: "Скидки от объёма",
-                desc: "10% при 100+ гостей и 15% при 200+ гостей — экономия для больших мероприятий",
-              },
-            ].map((item, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.15 }}
-                className="text-center p-6 rounded-2xl"
-                style={{
-                  background: "#FFFFFF",
-                  boxShadow: "0 2px 16px rgba(0,0,0,0.05)",
-                }}
-              >
-                <span className="text-3xl mb-3 block">{item.icon}</span>
-                <h3
-                  className="text-lg font-semibold mb-2"
-                  style={{
-                    fontFamily: "var(--font-serif)",
-                    color: "#1A1714",
-                  }}
-                >
-                  {item.title}
-                </h3>
-                <p className="text-sm" style={{ color: "#7D5A0D", lineHeight: 1.6 }}>
-                  {item.desc}
-                </p>
-              </motion.div>
-            ))}
+              <FadeIn delay={200}>
+                <div className="bg-white rounded-2xl p-6 sm:p-8 border border-[#D4A843]/10">
+                  {m.items.map((cat) => (
+                    <div key={cat.cat} className="mb-8 last:mb-0">
+                      <h3 className="font-serif text-xl font-medium mb-4 pb-2 border-b" style={{ color: "#1A1A1A", borderColor: "rgba(212,168,67,0.2)" }}>
+                        {cat.cat}
+                      </h3>
+                      <div className="space-y-3">
+                        {cat.dishes.map((d, j) => (
+                          <div key={j} className="flex justify-between items-baseline gap-4">
+                            <span className="font-sans text-sm sm:text-base" style={{ color: "#5C564D" }}>{d.n}</span>
+                            <span className="font-sans text-xs sm:text-sm shrink-0 whitespace-nowrap" style={{ color: "#8B6F47" }}>{d.w}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+
+                  {m.totalWeight && (
+                    <div className="mt-6 pt-4 border-t" style={{ borderColor: "rgba(212,168,67,0.15)" }}>
+                      <p className="font-sans text-sm" style={{ color: "#8B6F47" }}>📊 Общий вес меню: <strong style={{ color: "#1A1A1A" }}>{m.totalWeight}</strong></p>
+                    </div>
+                  )}
+
+                  <div className="mt-6 pt-4 border-t" style={{ borderColor: "rgba(212,168,67,0.15)" }}>
+                    <p className="font-sans text-xs uppercase tracking-wider mb-3" style={{ color: "#8B6F47" }}>В стоимость входит:</p>
+                    <div className="flex flex-wrap gap-2">
+                      {m.included.map((inc) => (
+                        <span key={inc} className="font-sans text-xs px-3 py-1.5 rounded-full" style={{ background: "rgba(212,168,67,0.1)", color: "#5C564D" }}>✓ {inc}</span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </FadeIn>
+
+              <FadeIn delay={300}>
+                <div className="mt-8 flex flex-wrap gap-2 items-center">
+                  <span className="font-sans text-sm mr-2" style={{ color: "#5C564D" }}>Доступные пакеты:</span>
+                  {m.prices.map((p) => (
+                    <span key={p} className="font-sans text-sm px-3 py-1.5 rounded-full font-medium" style={{ background: p === m.fromPrice ? "#D4A843" : "rgba(212,168,67,0.12)", color: p === m.fromPrice ? "#fff" : "#8B6F47" }}>
+                      {p.toLocaleString("ru")} ₽
+                    </span>
+                  ))}
+                </div>
+              </FadeIn>
+
+              <FadeIn delay={400}>
+                <div className="mt-8 text-center">
+                  <a
+                    href={`${CONTACTS.whatsappText}%20(${m.title})`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 font-sans text-base px-8 py-4 rounded-full transition-all duration-300 hover:scale-[1.03]"
+                    style={{ background: "#1A1A1A", color: "#F5F1EA" }}
+                  >
+                    Заказать {m.title.toLowerCase()} →
+                  </a>
+                </div>
+              </FadeIn>
+            </div>
+          </section>
+        ))}
+
+        {/* CTA */}
+        <section className="py-16 sm:py-20 text-center" style={{ background: "#1A1A1A" }}>
+          <div className="max-w-3xl mx-auto px-4">
+            <FadeIn>
+              <h2 className="font-serif text-3xl sm:text-4xl font-light mb-6" style={{ color: "#F5F1EA" }}>
+                Не нашли подходящий формат?
+              </h2>
+              <p className="font-sans text-base mb-8" style={{ color: "rgba(245,241,234,0.7)" }}>
+                Шеф-повар составит индивидуальное меню под ваш бюджет и предпочтения
+              </p>
+              <a href={CONTACTS.whatsappText} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 font-sans text-base px-8 py-4 rounded-full transition-all duration-300 hover:scale-[1.03]" style={{ background: "#D4A843", color: "#fff" }}>
+                Обсудить меню →
+              </a>
+            </FadeIn>
           </div>
-        </div>
-      </section>
-
-      {/* ─── CTA SECTION ─── */}
-      <section
-        className="py-20 px-4 text-center"
-        style={{
-          background: "linear-gradient(135deg, #1A1714 0%, #2C261E 100%)",
-        }}
-      >
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="max-w-2xl mx-auto"
-        >
-          <h2
-            className="text-3xl sm:text-4xl font-bold mb-4"
-            style={{
-              fontFamily: "var(--font-serif)",
-              color: "#E5BF65",
-            }}
-          >
-            Нужна помощь с меню?
-          </h2>
-          <p
-            className="text-lg mb-8"
-            style={{ color: "rgba(255,255,255,0.7)", lineHeight: 1.6 }}
-          >
-            Наш шеф-повар поможет составить идеальное меню
-            <br />
-            для вашего мероприятия — бесплатно
-          </p>
-          <a
-            href="https://wa.me/79119417205?text=Здравствуйте! Хочу обсудить меню для мероприятия."
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl text-sm font-semibold transition-all hover:shadow-lg"
-            style={{ background: "#B8860B", color: "#fff" }}
-          >
-            📞 Обсудить с шеф-поваром
-          </a>
-        </motion.div>
-      </section>
-
-      <BackToTop />
+        </section>
+      </main>
+      <Footer />
+      <WhatsAppFloat />
     </>
   );
 }
