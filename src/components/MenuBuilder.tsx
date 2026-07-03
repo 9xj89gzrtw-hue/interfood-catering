@@ -1354,7 +1354,7 @@ export default function MenuBuilder() {
 
       {/* ─── STICKY HEADER: Category pills + PDF + Cart summary ─── */}
       <div
-        className="sticky top-16 z-30"
+        className="sticky top-16 z-40"
         style={{ background: COLORS.bg }}
       >
         {/* Top row: Guest count + PDF button + Cart summary */}

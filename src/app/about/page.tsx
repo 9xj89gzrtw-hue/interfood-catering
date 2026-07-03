@@ -4,7 +4,6 @@ import { useRef } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import Link from "next/link";
-import SiteNav from "@/components/SiteNav";
 import ParallaxImage from "@/components/ParallaxImage";
 import VideoBreak from "@/components/VideoBreak";
 import TextReveal from "@/components/TextReveal";
@@ -186,8 +185,6 @@ export default function AboutPage() {
 
   return (
     <main>
-      <SiteNav />
-
       {/* ────────────────────────────────────────────
           1. HERO — Video background + ParticleField + KineticText
           ──────────────────────────────────────────── */}

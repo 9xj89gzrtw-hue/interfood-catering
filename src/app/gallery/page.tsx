@@ -9,7 +9,6 @@ import {
   useTransform,
   useInView,
 } from "framer-motion";
-import SiteNav from "@/components/SiteNav";
 import ConversionCTA from "@/components/ConversionCTA";
 import TextReveal from "@/components/TextReveal";
 import MagneticButton from "@/components/MagneticButton";
@@ -470,8 +469,6 @@ export default function GalleryPage() {
 
   return (
     <main>
-      <SiteNav />
-
       {/* ═══ 1. VIDEO HERO ═══ */}
       <section ref={heroRef} className="hero" aria-label="Галерея проектов" style={{ minHeight: "85vh" }}>
         <motion.div style={{ position: "absolute", inset: 0, y: heroY }}>

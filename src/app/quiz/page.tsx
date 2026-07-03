@@ -4,7 +4,6 @@ import dynamic from "next/dynamic";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import SiteNav from "@/components/SiteNav";
 import MagneticButton from "@/components/MagneticButton";
 import CountUp from "@/components/CountUp";
 const FluidBackground = dynamic(() => import("@/components/FluidBackground"), { ssr: false });
@@ -382,8 +381,6 @@ export default function QuizPage() {
   /* ─── Render ─── */
   return (
     <>
-      <SiteNav />
-
       <main
         style={{
           minHeight: "100vh",

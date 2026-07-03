@@ -9,7 +9,6 @@ import {
   useTransform,
 } from "framer-motion";
 import Link from "next/link";
-import SiteNav from "@/components/SiteNav";
 import ConversionCTA from "@/components/ConversionCTA";
 import ParallaxImage from "@/components/ParallaxImage";
 import TextReveal from "@/components/TextReveal";
@@ -240,7 +239,6 @@ export default function ReviewsPage() {
 
   return (
     <>
-      <SiteNav />
       <main id="main-content">
 
       {/* ═══════════════════════════════════════════════════════════

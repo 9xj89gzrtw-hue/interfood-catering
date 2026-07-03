@@ -538,7 +538,7 @@ body {
   );
   backdrop-filter: blur(40px);
   -webkit-backdrop-filter: blur(40px);
-  z-index: 9998;
+  z-index: 10002;
   padding: 5rem 2rem 2rem;
   display: flex;
   flex-direction: column;

@@ -9,7 +9,6 @@ import {
   useTransform,
 } from "framer-motion";
 import Link from "next/link";
-import SiteNav from "@/components/SiteNav";
 import TextReveal from "@/components/TextReveal";
 import MagneticButton from "@/components/MagneticButton";
 import TiltCard from "@/components/TiltCard";
@@ -340,8 +339,6 @@ export default function ContactsPage() {
 
   return (
     <>
-      <SiteNav />
-
       {/* ═══════════════ Hero ═══════════════ */}
       <section className="hero" ref={heroRef} aria-label="Контакты">
         <motion.div

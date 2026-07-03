@@ -3,7 +3,6 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useInView, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
-import SiteNav from "@/components/SiteNav";
 import ParallaxImage from "@/components/ParallaxImage";
 import VideoBreak from "@/components/VideoBreak";
 import VideoCarousel from "@/components/VideoCarousel";
@@ -195,7 +194,6 @@ export default function WeddingPage() {
 
   return (
     <>
-      <SiteNav />
       <main id="main-content">
 
       {/* ═══════════════════════════════════════════

@@ -3,7 +3,6 @@
 import { useRef, useState, useCallback } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import Link from "next/link";
-import SiteNav from "@/components/SiteNav";
 import ConversionCTA from "@/components/ConversionCTA";
 import TiltCard from "@/components/TiltCard";
 import FlipCard3D from "@/components/FlipCard3D";
@@ -568,8 +567,6 @@ export default function TeamPage() {
 
   return (
     <main>
-      <SiteNav />
-
       {/* ═══ HERO with ParticleField + MorphingBlob + AnimatedTypewriter ═══ */}
       <section
         ref={heroRef}

@@ -4,7 +4,6 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
 import { ChevronRight, Home } from "lucide-react";
-import SiteNav from "@/components/SiteNav";
 
 /* ═══════════════════════════════════════════════════════════════
    ИНТЕРФУД КЕЙТЕРИНГ — Политика конфиденциальности
@@ -183,8 +182,6 @@ const jsonLdWebPage = {
 export default function PrivacyPage() {
   return (
     <>
-      <SiteNav />
-
       {/* JSON-LD Structured Data */}
       <script
         type="application/ld+json"

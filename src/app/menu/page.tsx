@@ -3,7 +3,6 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import MenuBuilder from "@/components/MenuBuilder";
-import SiteNav from "@/components/SiteNav";
 import BackToTop from "@/components/BackToTop";
 
 /* ═══════════════════════════════════════════════════════════════
@@ -18,8 +17,6 @@ export default function MenuPage() {
 
   return (
     <>
-      <SiteNav />
-
       {/* ─── HERO ─── */}
       <section
         ref={heroRef}

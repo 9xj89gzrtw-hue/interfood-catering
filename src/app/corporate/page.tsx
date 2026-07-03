@@ -3,7 +3,6 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import Link from "next/link";
-import SiteNav from "@/components/SiteNav";
 import ClientMarquee from "@/components/ClientMarquee";
 import ParallaxImage from "@/components/ParallaxImage";
 import VideoCarousel from "@/components/VideoCarousel";
@@ -159,8 +158,6 @@ export default function CorporatePage() {
 
   return (
     <>
-      <SiteNav />
-
       {/* ═══════════════════════════════════════════════════════
           1. HERO — Video background with ParticleField + FloatingElements + KineticText
           ═══════════════════════════════════════════════════════ */}

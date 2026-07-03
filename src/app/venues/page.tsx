@@ -9,7 +9,6 @@ import {
   useTransform,
   useInView,
 } from "framer-motion";
-import SiteNav from "@/components/SiteNav";
 import TextReveal from "@/components/TextReveal";
 import MorphingText from "@/components/MorphingText";
 import MagneticButton from "@/components/MagneticButton";
@@ -578,9 +577,6 @@ export default function VenuesPage() {
 
   return (
     <main style={{ background: "var(--color-warm-white)", overflow: "hidden" }}>
-      {/* ═══ NAVIGATION ═══ */}
-      <SiteNav />
-
       {/* ═══ 1. HERO SECTION — Video + ParticleField + KineticText wave ═══ */}
       <section ref={heroRef} style={{ minHeight: "100vh", position: "relative", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }} aria-label="Площадки для мероприятий">
         {/* Video BG */}

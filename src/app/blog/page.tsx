@@ -3,7 +3,6 @@
 import { useRef, useState } from "react";
 import { motion, useScroll, useTransform, useInView, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import SiteNav from "@/components/SiteNav";
 import ConversionCTA from "@/components/ConversionCTA";
 import TextReveal from "@/components/TextReveal";
 import MorphingText from "@/components/MorphingText";
@@ -357,8 +356,6 @@ export default function BlogPage() {
 
   return (
     <>
-      <SiteNav />
-
       {/* ────────────────────────────────────────────
           1. HERO — Video background + MorphingText
           ──────────────────────────────────────────── */}

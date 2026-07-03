@@ -9,7 +9,6 @@ import {
   useTransform,
 } from "framer-motion";
 import Link from "next/link";
-import SiteNav from "@/components/SiteNav";
 import ConversionCTA from "@/components/ConversionCTA";
 
 /* ═══════════════════════════════════════════════════════════════
@@ -285,8 +284,6 @@ export default function FAQPage() {
 
   return (
     <>
-      <SiteNav />
-
       {/* ═══════════════ Hero with Video ═══════════════ */}
       <section className="hero" ref={heroRef} style={{ minHeight: "70vh" }}>
         <motion.div className="hero-video" style={{ y: heroY }}>

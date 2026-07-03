@@ -9,7 +9,6 @@ import {
   useTransform,
 } from "framer-motion";
 import Link from "next/link";
-import SiteNav from "@/components/SiteNav";
 import ParallaxImage from "@/components/ParallaxImage";
 import VideoBreak from "@/components/VideoBreak";
 import TextReveal from "@/components/TextReveal";
@@ -317,8 +316,6 @@ export default function ServicesPage() {
 
   return (
     <>
-      <SiteNav />
-
       {/* ═══════════════════════════════════════════════════
          1. PARALLAX HERO — Video background + FluidBackground
          ═══════════════════════════════════════════════════ */}

@@ -879,7 +879,7 @@ export default function SiteNav() {
             style={{
               position: "fixed",
               inset: 0,
-              zIndex: 9998,
+              zIndex: 10002,
               background: "linear-gradient(170deg, #1A1714 0%, #2C261E 50%, #3D3529 100%)",
               overflowY: "auto",
               WebkitOverflowScrolling: "touch",
@@ -928,7 +928,7 @@ export default function SiteNav() {
                 cursor: "pointer",
                 color: "#FAFAF7",
                 transition: "background 0.2s",
-                zIndex: 10,
+                zIndex: 10003,
               }}
               onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.15)"; }}
               onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.08)"; }}
