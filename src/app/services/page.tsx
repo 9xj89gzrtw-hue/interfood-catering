@@ -437,6 +437,7 @@ export default function ServicesPage() {
                 border: "none",
                 cursor: "pointer",
               }}
+              onClick={() => window.open('https://wa.me/79119417205?text=' + encodeURIComponent('Здравствуйте! Хочу заказать кейтеринг — расчёт за 30 мин'), '_blank')}
             >
               Заказать кейтеринг — расчёт за 30 мин
             </ConfettiButton>
@@ -764,6 +765,7 @@ export default function ServicesPage() {
                           border: "none",
                           cursor: "pointer",
                         }}
+                        onClick={() => window.open('https://wa.me/79119417205?text=' + encodeURIComponent('Здравствуйте! Хочу заказать ' + service.title.toLowerCase() + ' — расчёт за 30 мин'), '_blank')}
                       >
                         Заказать {service.title.toLowerCase()}
                       </ConfettiButton>
@@ -964,6 +966,7 @@ export default function ServicesPage() {
                         cursor: "pointer",
                         transition: "all 0.3s",
                       }}
+                      onClick={() => window.open('https://wa.me/79119417205?text=' + encodeURIComponent('Здравствуйте! Хочу заказать кейтеринг — помогите подобрать формат'), '_blank')}
                     >
                       Заказать
                     </ConfettiButton>
@@ -1208,6 +1211,7 @@ export default function ServicesPage() {
                   border: "none",
                   cursor: "pointer",
                 }}
+                onClick={() => window.open('https://wa.me/79119417205?text=' + encodeURIComponent('Здравствуйте! Хочу заказать кейтеринг — расчёт за 30 мин'), '_blank')}
               >
                 Заказать — расчёт за 30 мин
               </ConfettiButton>
@@ -1367,14 +1371,14 @@ export default function ServicesPage() {
                 +7 (812) 919-59-11
               </a>
               <a
-                href="mailto:interfood-catering@yandex.ru"
+                href="mailto:info@interfood-catering.ru"
                 style={{
                   fontSize: "0.85rem",
                   display: "block",
                   marginBottom: "0.5rem",
                 }}
               >
-                interfood-catering@yandex.ru
+                info@interfood-catering.ru
               </a>
               <p
                 style={{
@@ -1417,7 +1421,7 @@ export default function ServicesPage() {
 
       {/* ═══ WhatsApp Float ═══ */}
       <a
-        href="https://wa.me/78129195911?text=Здравствуйте!%20Хочу%20заказать%20кейтеринг"
+        href="https://wa.me/79119417205?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%20%D0%BA%D0%B5%D0%B9%D1%82%D0%B5%D1%80%D0%B8%D0%BD%D0%B3"
         target="_blank"
         rel="noopener noreferrer"
         className="wa-float"

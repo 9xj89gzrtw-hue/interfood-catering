@@ -691,7 +691,7 @@ export default function AboutPage() {
               <MagneticButton as="a" href="https://wa.me/79119417205?text=Здравствуйте! Хочу узнать подробнее о кейтеринге." className="btn-outline btn-outline-light" target="_blank" rel="noopener noreferrer">WhatsApp</MagneticButton>
             </div>
             <div style={{ display: "flex", gap: "2rem", justifyContent: "center", flexWrap: "wrap", marginTop: "1.5rem", color: "var(--color-text-muted)", fontSize: "0.85rem" }}>
-              <a href="mailto:interfood-catering@yandex.ru" style={{ color: "var(--color-text-muted)", textDecoration: "none", transition: "color 0.3s" }} onMouseEnter={(e) => { e.currentTarget.style.color = "#D4B87C"; }} onMouseLeave={(e) => { e.currentTarget.style.color = "var(--color-text-muted)"; }}>interfood-catering@yandex.ru</a>
+              <a href="mailto:info@interfood-catering.ru" style={{ color: "var(--color-text-muted)", textDecoration: "none", transition: "color 0.3s" }} onMouseEnter={(e) => { e.currentTarget.style.color = "#D4B87C"; }} onMouseLeave={(e) => { e.currentTarget.style.color = "var(--color-text-muted)"; }}>info@interfood-catering.ru</a>
               <span>Новолитовская ул., 15</span>
             </div>
           </Reveal>
@@ -717,7 +717,7 @@ export default function AboutPage() {
             </div>
             <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "0.25rem", color: "var(--color-text-muted)", fontSize: "0.8rem" }}>
               <span>&copy; 2007–2026 Интерфуд Кейтеринг</span>
-              <span>Новолитовская ул., 15 · <a href="mailto:interfood-catering@yandex.ru" style={{ color: "var(--color-text-muted)", textDecoration: "none" }}>interfood-catering@yandex.ru</a></span>
+              <span>Новолитовская ул., 15 · <a href="mailto:info@interfood-catering.ru" style={{ color: "var(--color-text-muted)", textDecoration: "none" }}>info@interfood-catering.ru</a></span>
               <span>WhatsApp: +7 (911) 941-72-05</span>
             </div>
           </div>

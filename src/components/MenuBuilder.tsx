@@ -774,58 +774,14 @@ export default function MenuBuilder() {
     [costPerPerson, guests, discountAmount]
   );
 
-  /* ─── PDF generation using jspdf ─── */
+  /* ─── PDF generation using html2pdf.js (Cyrillic support) ─── */
   const generatePDF = useCallback(async () => {
     if (cart.length === 0) return;
     setPdfGenerating(true);
     try {
-      const { jsPDF } = await import("jspdf");
-      const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
+      const html2pdf = (await import("html2pdf.js")).default;
 
-      const pageWidth = doc.internal.pageSize.getWidth();
-      const pageHeight = doc.internal.pageSize.getHeight();
-      const margin = 20;
-      let y = margin;
-
-      /** Check if we need a new page */
-      const checkPage = (needed: number) => {
-        if (y + needed > pageHeight - 25) {
-          doc.addPage();
-          y = margin;
-        }
-      };
-
-      // ─── Header: Company name ───
-      doc.setFont("helvetica", "bold");
-      doc.setFontSize(24);
-      doc.setTextColor(184, 134, 11);
-      doc.text("INTERFOOD CATERING", pageWidth / 2, y, { align: "center" });
-      y += 8;
-
-      doc.setFont("helvetica", "normal");
-      doc.setFontSize(11);
-      doc.setTextColor(92, 86, 77); // #5C564D
-      doc.text("Ваше персональное меню", pageWidth / 2, y, { align: "center" });
-      y += 5;
-
-      // Gold divider
-      doc.setDrawColor(184, 134, 11);
-      doc.setLineWidth(0.8);
-      doc.line(margin, y, pageWidth - margin, y);
-      y += 10;
-
-      // ─── Timestamp ───
-      doc.setFont("helvetica", "normal");
-      doc.setFontSize(8);
-      doc.setTextColor(160, 155, 145);
-      doc.text(
-        `Дата формирования: ${new Date().toLocaleDateString("ru-RU")} ${new Date().toLocaleTimeString("ru-RU", { hour: "2-digit", minute: "2-digit" })}`,
-        margin,
-        y
-      );
-      y += 8;
-
-      // ─── Group cart items by category ───
+      // Group cart items by category
       const categoryMap: Record<string, string> = {};
       MENU_CATEGORIES.forEach((cat) => {
         cat.items.forEach((item) => {
@@ -840,146 +796,95 @@ export default function MenuBuilder() {
         groupedByCategory[catName].push(item);
       });
 
+      // Build HTML content for PDF
+      const now = new Date();
+      const dateStr = now.toLocaleDateString("ru-RU") + " " + now.toLocaleTimeString("ru-RU", { hour: "2-digit", minute: "2-digit" });
+
+      let categoryHtml = "";
       Object.entries(groupedByCategory).forEach(([catName, items]) => {
-        checkPage(25);
-
-        // Category title
-        doc.setFont("helvetica", "bold");
-        doc.setFontSize(14);
-        doc.setTextColor(184, 134, 11);
-        doc.text(catName, margin, y);
-        y += 2;
-
-        // Gold underline
-        doc.setDrawColor(229, 191, 101);
-        doc.setLineWidth(0.4);
-        doc.line(margin, y, margin + 50, y);
-        y += 7;
-
-        items.forEach((item) => {
-          checkPage(16);
-
-          // Dish name
-          doc.setFont("helvetica", "bold");
-          doc.setFontSize(10);
-          doc.setTextColor(26, 23, 20);
-          doc.text(item.dish.name, margin, y);
-
-          // Weight after name
-          doc.setFont("helvetica", "normal");
-          doc.setFontSize(9);
-          doc.setTextColor(92, 86, 77);
-          const nameWidth = doc.getTextWidth(item.dish.name);
-          doc.text(`  ${item.dish.weight}`, margin + nameWidth, y);
-          y += 5;
-
-          // Description (truncated if too long)
-          doc.setFontSize(8);
-          doc.setTextColor(140, 135, 125);
-          const descLines = doc.splitTextToSize(item.dish.desc, pageWidth - margin * 2 - 30);
-          doc.text(descLines.slice(0, 2), margin + 3, y);
-          y += descLines.length > 1 ? 8 : 5;
-
-          // Quantity
-          doc.setTextColor(154, 111, 10);
-          doc.setFontSize(9);
-          doc.text(`×${item.quantity}`, margin + 3, y);
-
-          // Price right-aligned
-          doc.setFont("helvetica", "bold");
-          doc.setFontSize(10);
-          doc.setTextColor(26, 23, 20);
-          const priceText = formatPrice(item.dish.pricePerPerson * item.quantity) + "/чел";
-          doc.text(priceText, pageWidth - margin, y, { align: "right" });
-
-          // Dotted separator
-          doc.setDrawColor(229, 191, 101);
-          doc.setLineDashPattern([0.5, 1.5], 0);
-          doc.setLineWidth(0.15);
-          doc.line(margin + 5, y + 2.5, pageWidth - margin - 5, y + 2.5);
-          doc.setLineDashPattern([], 0);
-
-          y += 10;
-        });
-
-        y += 4;
+        categoryHtml += `
+          <div style="margin-top:18px;">
+            <div style="font-size:16px;font-weight:bold;color:#B8860B;border-bottom:1px solid #E5BF65;padding-bottom:4px;margin-bottom:10px;">${catName}</div>
+            ${items.map(item => `
+              <div style="margin-bottom:10px;padding-bottom:8px;border-bottom:1px dotted #E5BF65;">
+                <div style="display:flex;justify-content:space-between;align-items:baseline;">
+                  <span style="font-size:11px;font-weight:bold;color:#1A1714;">${item.dish.name} <span style="font-weight:normal;color:#5C564D;font-size:10px;">${item.dish.weight}</span></span>
+                  <span style="font-size:11px;font-weight:bold;color:#1A1714;">${formatPrice(item.dish.pricePerPerson * item.quantity)}/чел</span>
+                </div>
+                <div style="font-size:9px;color:#8A8578;margin-top:2px;">${item.dish.desc}</div>
+                <div style="font-size:9px;color:#9A6F0A;margin-top:2px;">×${item.quantity}</div>
+              </div>
+            `).join("")}
+          </div>
+        `;
       });
 
-      // ─── Totals section ───
-      checkPage(55);
-      doc.setDrawColor(184, 134, 11);
-      doc.setLineWidth(0.8);
-      doc.line(margin, y, pageWidth - margin, y);
-      y += 10;
+      const discountHtml = discountPercent > 0 ? `
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:#2E7D32;margin-top:4px;">
+          <span>Скидка ${discountPercent}%:</span>
+          <span style="font-weight:bold;">-${formatPrice(discountAmount)}</span>
+        </div>
+      ` : "";
 
-      // Cost per person
-      doc.setFont("helvetica", "normal");
-      doc.setFontSize(10);
-      doc.setTextColor(92, 86, 77);
-      doc.text("Стоимость на человека:", margin, y);
-      doc.setFont("helvetica", "bold");
-      doc.setTextColor(26, 23, 20);
-      doc.text(formatPrice(costPerPerson), pageWidth - margin, y, { align: "right" });
-      y += 7;
+      const htmlContent = `
+        <div style="font-family:Inter,sans-serif;padding:30px 40px;max-width:595px;color:#1A1714;">
+          <!-- Header -->
+          <div style="text-align:center;margin-bottom:20px;">
+            <div style="font-size:28px;font-weight:bold;color:#B8860B;letter-spacing:0.1em;">INTERFOOD CATERING</div>
+            <div style="font-size:13px;color:#5C564D;margin-top:4px;">Ваше персональное меню</div>
+            <div style="border-top:2px solid #B8860B;margin-top:12px;"></div>
+          </div>
 
-      // Guest count
-      doc.setFont("helvetica", "normal");
-      doc.setTextColor(92, 86, 77);
-      doc.text("Количество гостей:", margin, y);
-      doc.setFont("helvetica", "bold");
-      doc.setTextColor(26, 23, 20);
-      doc.text(String(guests), pageWidth - margin, y, { align: "right" });
-      y += 7;
+          <!-- Timestamp -->
+          <div style="font-size:9px;color:#A09B91;margin-bottom:14px;">Дата формирования: ${dateStr}</div>
 
-      // Discount
-      if (discountPercent > 0) {
-        doc.setFont("helvetica", "normal");
-        doc.setTextColor(46, 125, 50);
-        doc.text(`Скидка ${discountPercent}%:`, margin, y);
-        doc.setFont("helvetica", "bold");
-        doc.text("-" + formatPrice(discountAmount), pageWidth - margin, y, { align: "right" });
-        y += 7;
-      }
+          <!-- Categories & Items -->
+          ${categoryHtml}
 
-      // Grand total
-      doc.setDrawColor(229, 191, 101);
-      doc.setLineWidth(0.4);
-      doc.line(margin, y, pageWidth - margin, y);
-      y += 9;
+          <!-- Totals -->
+          <div style="border-top:2px solid #B8860B;margin-top:20px;padding-top:14px;">
+            <div style="display:flex;justify-content:space-between;font-size:11px;color:#5C564D;">
+              <span>Стоимость на человека:</span>
+              <span style="font-weight:bold;color:#1A1714;">${formatPrice(costPerPerson)}</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:11px;color:#5C564D;margin-top:4px;">
+              <span>Количество гостей:</span>
+              <span style="font-weight:bold;color:#1A1714;">${guests}</span>
+            </div>
+            ${discountHtml}
+            <div style="border-top:1px solid #E5BF65;margin-top:10px;padding-top:10px;display:flex;justify-content:space-between;font-size:18px;">
+              <span style="font-weight:bold;color:#B8860B;">Итого:</span>
+              <span style="font-weight:bold;color:#B8860B;">${formatPrice(totalCost)}</span>
+            </div>
+          </div>
 
-      doc.setFont("helvetica", "bold");
-      doc.setFontSize(16);
-      doc.setTextColor(184, 134, 11);
-      doc.text("Итого:", margin, y);
-      doc.text(formatPrice(totalCost), pageWidth - margin, y, { align: "right" });
-      y += 14;
+          <!-- Footer -->
+          <div style="border-top:1px solid #E5BF65;margin-top:24px;padding-top:12px;text-align:center;font-size:9px;color:#5C564D;">
+            <div>Интерфуд Кейтеринг · Санкт-Петербург</div>
+            <div style="margin-top:2px;">+7 (812) 919-59-11 · info@interfood-catering.ru</div>
+            <div style="margin-top:2px;">interfood-catering.ru</div>
+            <div style="margin-top:6px;font-size:7px;color:#B8B0A0;">Цены указаны на ${now.toLocaleDateString("ru-RU")}. Окончательная стоимость рассчитывается после согласования меню с шеф-поваром.</div>
+          </div>
+        </div>
+      `;
 
-      // ─── Footer ───
-      checkPage(30);
-      doc.setDrawColor(229, 191, 101);
-      doc.setLineWidth(0.3);
-      doc.line(margin, y, pageWidth - margin, y);
-      y += 8;
+      // Create temporary element
+      const tempDiv = document.createElement("div");
+      tempDiv.innerHTML = htmlContent;
+      tempDiv.style.position = "absolute";
+      tempDiv.style.left = "-9999px";
+      document.body.appendChild(tempDiv);
 
-      doc.setFont("helvetica", "normal");
-      doc.setFontSize(9);
-      doc.setTextColor(92, 86, 77);
-      doc.text("Интерфуд Кейтеринг · Санкт-Петербург", pageWidth / 2, y, { align: "center" });
-      y += 5;
-      doc.text("+7 (812) 919-59-11 · interfood-catering@yandex.ru", pageWidth / 2, y, { align: "center" });
-      y += 5;
-      doc.text("interfood-catering.ru", pageWidth / 2, y, { align: "center" });
-      y += 5;
-      doc.setFontSize(7);
-      doc.setTextColor(184, 176, 160);
-      doc.text(
-        `Цены указаны на ${new Date().toLocaleDateString("ru-RU")}. Окончательная стоимость рассчитывается после согласования меню с шеф-поваром.`,
-        pageWidth / 2,
-        y,
-        { align: "center" }
-      );
+      const opt = {
+        margin: [10, 10, 10, 10] as [number, number, number, number],
+        filename: "interfood-menu.pdf",
+        image: { type: "jpeg" as const, quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true },
+        jsPDF: { unit: "mm", format: "a4", orientation: "portrait" as const },
+      };
 
-      doc.save("interfood-menu.pdf");
+      await html2pdf().set(opt).from(tempDiv).save();
+      document.body.removeChild(tempDiv);
     } catch (err) {
       console.error("PDF generation failed:", err);
     } finally {
@@ -1230,6 +1135,28 @@ export default function MenuBuilder() {
           )}
           Скачать PDF меню
         </Button>
+
+        {/* WhatsApp CTA — discuss menu with chef */}
+        {cart.length > 0 && (
+          <a
+            href={`https://wa.me/79119417205?text=${encodeURIComponent(
+              `Здравствуйте! Собрал(а) меню на сайте:\n${cart.map(i => `• ${i.dish.name} ×${i.quantity}`).join('\n')}\nГостей: ${guests}\nИтого: ~${totalCost.toLocaleString('ru-RU')} ₽\nХочу обсудить меню с шеф-поваром!`
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full mt-3 h-12 text-sm font-semibold gap-2 flex items-center justify-center rounded-xl transition-all"
+            style={{
+              background: '#25D366',
+              color: '#fff',
+              fontFamily: 'var(--font-sans)',
+              boxShadow: '0 4px 16px rgba(37,211,102,0.3)',
+              textDecoration: 'none',
+            }}
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Обсудить с шеф-поваром
+          </a>
+        )}
       </div>
     </div>
   );
@@ -1583,9 +1510,9 @@ export default function MenuBuilder() {
       {/* ─── MOBILE: Floating cart button + Bottom sheet ─── */}
       {isMobile && (
         <>
-          {/* Floating cart button */}
+          {/* Floating cart button — always visible when scrolled past hero */}
           <AnimatePresence>
-            {totalItems > 0 && !cartOpen && (
+            {!cartOpen && (
               <motion.div
                 initial={{ y: 100, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
@@ -1601,39 +1528,47 @@ export default function MenuBuilder() {
                     <button
                       className="w-full flex items-center justify-between px-5 py-4 rounded-2xl shadow-xl"
                       style={{
-                        background: COLORS.gold,
-                        color: "#fff",
+                        background: totalItems > 0 ? COLORS.gold : COLORS.goldFaint,
+                        color: totalItems > 0 ? "#fff" : COLORS.gold,
                         minHeight: "56px",
                         fontFamily: "var(--font-sans)",
-                        boxShadow: "0 8px 32px rgba(184,134,11,0.4)",
+                        boxShadow: totalItems > 0 ? "0 8px 32px rgba(184,134,11,0.4)" : "0 4px 16px rgba(0,0,0,0.08)",
                       }}
                     >
                       <div className="flex items-center gap-3">
                         <div className="relative">
                           <ShoppingCart size={22} />
-                          <motion.span
-                            key={totalItems}
-                            initial={{ scale: 0 }}
-                            animate={{ scale: 1 }}
-                            transition={{
-                              type: "spring",
-                              stiffness: 500,
-                              damping: 12,
-                            }}
-                            className="absolute -top-2 -right-2.5 w-5 h-5 rounded-full text-[10px] font-bold flex items-center justify-center"
-                            style={{ background: "#fff", color: COLORS.gold }}
-                          >
-                            {totalItems}
-                          </motion.span>
+                          {totalItems > 0 && (
+                            <motion.span
+                              key={totalItems}
+                              initial={{ scale: 0 }}
+                              animate={{ scale: 1 }}
+                              transition={{
+                                type: "spring",
+                                stiffness: 500,
+                                damping: 12,
+                              }}
+                              className="absolute -top-2 -right-2.5 w-5 h-5 rounded-full text-[10px] font-bold flex items-center justify-center"
+                              style={{ background: "#fff", color: COLORS.gold }}
+                            >
+                              {totalItems}
+                            </motion.span>
+                          )}
                         </div>
-                        <span className="font-semibold text-sm">Моё меню</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <span className="font-bold text-sm">
-                          {formatPrice(costPerPerson)}/чел
+                        <span className="font-semibold text-sm">
+                          {totalItems > 0 ? "Моё меню" : "Ваше меню"}
                         </span>
-                        <ChevronUp size={18} />
                       </div>
+                      {totalItems > 0 ? (
+                        <div className="flex items-center gap-2">
+                          <span className="font-bold text-sm">
+                            {formatPrice(costPerPerson)}/чел
+                          </span>
+                          <ChevronUp size={18} />
+                        </div>
+                      ) : (
+                        <span className="text-xs">Добавьте блюда</span>
+                      )}
                     </button>
                   </SheetTrigger>
                   <SheetContent

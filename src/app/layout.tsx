@@ -106,7 +106,7 @@ export default function RootLayout({
       "Кейтеринг в Санкт-Петербурге. Ресторан выездного обслуживания. Авторская кухня Дмитрия Нилова. Более 3500 мероприятий с 2007 года.",
     url: "https://interfood-catering.ru",
     telephone: "+7 (812) 919-59-11",
-    email: "interfood-catering@yandex.ru",
+    email: "info@interfood-catering.ru",
     address: {
       "@type": "PostalAddress",
       streetAddress: "Новолитовская ул., д. 15",

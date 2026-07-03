@@ -70,7 +70,7 @@ export async function POST(request: NextRequest) {
         };
 
         const { data, error } = await resend.emails.send({
-          from: "Интерфуд Кейтеринг <onboarding@resend.dev>",
+          from: "Интерфуд Кейтеринг <noreply@interfood-catering.ru>",
           to: ["info@interfood-catering.ru"],
           subject: `Новая заявка с сайта — ${submissionData.name}`,
           html: `

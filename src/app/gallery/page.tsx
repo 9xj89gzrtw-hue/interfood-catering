@@ -652,6 +652,7 @@ export default function GalleryPage() {
                   cursor: "pointer",
                   transition: "all 0.3s",
                 }}
+                onClick={() => window.open('https://wa.me/79119417205?text=' + encodeURIComponent('Здравствуйте! Хочу заказать кейтеринг — видел(а) вашу галерею'), '_blank')}
               >
                 Заказать кейтеринг
               </ConfettiButton>
@@ -703,7 +704,7 @@ export default function GalleryPage() {
             <div>
               <div style={{ fontSize: "0.7rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--color-brand-light)", marginBottom: "1rem" }}>Контакты</div>
               <a href="tel:+78129195911" style={{ fontSize: "0.95rem", fontWeight: 500, display: "block", marginBottom: "0.5rem" }}>+7 (812) 919-59-11</a>
-              <a href="mailto:interfood-catering@yandex.ru" style={{ fontSize: "0.85rem", display: "block", marginBottom: "0.5rem" }}>interfood-catering@yandex.ru</a>
+              <a href="mailto:info@interfood-catering.ru" style={{ fontSize: "0.85rem", display: "block", marginBottom: "0.5rem" }}>info@interfood-catering.ru</a>
               <p style={{ fontSize: "0.85rem", color: "rgba(255,255,255,0.5)" }}>Санкт-Петербург<br />Новолитовская ул., 15</p>
             </div>
           </div>

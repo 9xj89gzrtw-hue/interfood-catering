@@ -468,7 +468,7 @@ export default function CalculatorPage() {
           <Reveal>
             <span className="section-label">Настройте мероприятие</span>
             <h2 className="section-title">
-            text="Найдите <em>формат</em>, который покорит ваших гостей"
+              Найдите <em>формат</em>, который покорит ваших гостей
             </h2>
           </Reveal>
 
@@ -1104,7 +1104,7 @@ export default function CalculatorPage() {
           <Reveal>
             <span className="section-label">Сравнение форматов</span>
             <h2 className="section-title">
-            text="Сравните форматы и цены — выберите лучший для вашего мероприятия"
+              Сравните форматы и цены — выберите лучший для вашего мероприятия
             </h2>
             <p className="section-subtitle">
               Каждый формат имеет свои преимущества. Сравните цены и возможности,
@@ -1312,7 +1312,7 @@ export default function CalculatorPage() {
           <Reveal>
             <span className="section-label">Вопросы и ответы</span>
             <h2 className="section-title">
-            text="Часто задаваемые <em>вопросы</em> о стоимости и гарантиях"
+              Часто задаваемые <em>вопросы</em> о стоимости и гарантиях
             </h2>
             <p className="section-subtitle">
               Узнайте больше о формировании стоимости, гарантиях и условиях работы.
@@ -1359,7 +1359,7 @@ export default function CalculatorPage() {
                 marginBottom: "1.5rem",
               }}
             >
-            text="Получите <em>точный</em> расчёт — с гарантией по договору"
+              Получите <em>точный</em> расчёт — с гарантией по договору
             </h2>
             <p
               style={{

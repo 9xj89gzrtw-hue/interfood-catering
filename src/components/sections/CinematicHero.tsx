@@ -971,7 +971,7 @@ export default function CinematicHero() {
           ))}
         </motion.div>
 
-        {/* ── Main Heading with Split-Text Character Animation ── */}
+        {/* ── Main Heading — fixed brand name + morphing tagline ── */}
         <h1
           style={{
             fontFamily: "var(--font-serif)",
@@ -983,15 +983,15 @@ export default function CinematicHero() {
             letterSpacing: "-0.01em",
           }}
         >
-          {/* Split-Text Character Animation — each character flies in from random position */}
-          {"Интерфуд".split("").map((char, i) => (
+          {/* Brand name — fixed, never morphs */}
+          {"Интерфуд Кейтеринг".split("").map((char, i) => (
             <motion.span
               key={`prefix-${i}`}
               initial={{
                 opacity: 0,
-                x: charInitialPositions[i].x,
-                y: charInitialPositions[i].y,
-                rotate: charInitialPositions[i].rotate,
+                x: i < charInitialPositions.length ? charInitialPositions[i % charInitialPositions.length].x : 0,
+                y: i < charInitialPositions.length ? charInitialPositions[i % charInitialPositions.length].y : 0,
+                rotate: i < charInitialPositions.length ? charInitialPositions[i % charInitialPositions.length].rotate : 0,
                 filter: "blur(12px)",
                 scale: 0.3,
               }}
@@ -1008,31 +1008,43 @@ export default function CinematicHero() {
                   : {}
               }
               transition={{
-                delay: 0.6 + i * 0.06,
+                delay: 0.6 + i * 0.04,
                 ...SPRING_CHAR,
               }}
-              style={{ display: "inline-block" }}
+              style={{ display: "inline-block", whiteSpace: char === " " ? "pre" : undefined }}
             >
-              {char}
+              {char === " " ? "\u00A0" : char}
             </motion.span>
           ))}
-          <br />
-          {/* Morphing word — clean blur/scale transition, no RGB glitch */}
-          <motion.span
-            key={wordIndex}
-            initial={{ opacity: 0, filter: "blur(8px)", scale: 0.95 }}
-            animate={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
-            exit={{ opacity: 0, filter: "blur(8px)", scale: 1.05 }}
-            transition={{ duration: 0.5, ease: EASE_PREMIUM }}
-            style={{
-              display: "inline-block",
-              minWidth: `${LONGEST_WORD.length}ch`,
-              color: "#D4A63E",
-            }}
-          >
-            {MORPH_WORDS[wordIndex]}
-          </motion.span>
         </h1>
+
+        {/* ── Morphing tagline below H1 ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 1.0, duration: 0.6 }}
+          style={{
+            fontFamily: "var(--font-serif)",
+            fontSize: isMobile ? "clamp(1.2rem, 4vw, 1.8rem)" : "clamp(1.5rem, 2.5vw, 2.5rem)",
+            fontWeight: 300,
+            color: "#D4A63E",
+            marginBottom: isMobile ? "1.5rem" : "2rem",
+            minHeight: "1.5em",
+          }}
+        >
+          <AnimatePresence mode="wait">
+            <motion.span
+              key={wordIndex}
+              initial={{ opacity: 0, filter: "blur(8px)", scale: 0.95, y: 8 }}
+              animate={{ opacity: 1, filter: "blur(0px)", scale: 1, y: 0 }}
+              exit={{ opacity: 0, filter: "blur(8px)", scale: 1.05, y: -8 }}
+              transition={{ duration: 0.5, ease: EASE_PREMIUM }}
+              style={{ display: "inline-block" }}
+            >
+              {MORPH_WORDS[wordIndex]}
+            </motion.span>
+          </AnimatePresence>
+        </motion.div>
 
         {/* ── Subtitle with blur-in ── */}
         <motion.p

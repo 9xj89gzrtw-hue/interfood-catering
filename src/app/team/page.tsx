@@ -1130,7 +1130,7 @@ export default function TeamPage() {
             viewport={{ once: true }}
             transition={{ delay: 0.6 }}
           >
-            Или напишите нам на interfood-catering@yandex.ru
+            Или напишите нам на info@interfood-catering.ru
           </motion.p>
         </div>
       </section>
@@ -1221,7 +1221,7 @@ export default function TeamPage() {
               </h4>
               <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
                 <a href="tel:+78129195911" style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.9rem", textDecoration: "none" }}>+7 (812) 919-59-11</a>
-                <a href="mailto:interfood-catering@yandex.ru" style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.9rem", textDecoration: "none" }}>interfood-catering@yandex.ru</a>
+                <a href="mailto:info@interfood-catering.ru" style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.9rem", textDecoration: "none" }}>info@interfood-catering.ru</a>
                 <span style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.9rem" }}>Новолитовская ул., 15</span>
                 <span style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.9rem" }}>Санкт-Петербург</span>
               </div>
@@ -1251,7 +1251,7 @@ export default function TeamPage() {
 
       {/* WhatsApp */}
       <a
-        href="https://wa.me/78129195911"
+        href="https://wa.me/79119417205"
         style={{
           position: "fixed",
           bottom: 24,

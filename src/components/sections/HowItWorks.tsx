@@ -55,7 +55,11 @@ function AnimatedNumber({ value, active }: { value: number; active: boolean }) {
 
   useEffect(() => {
     if (!spanRef.current) return;
-    if (!active) { spanRef.current.textContent = "00"; return; }
+    if (!active) {
+      // Show the correct number even when not active (not "00")
+      spanRef.current.textContent = String(value).padStart(2, "0");
+      return;
+    }
     if (runningRef.current) return;
     runningRef.current = true;
     let current = 0;
@@ -68,7 +72,7 @@ function AnimatedNumber({ value, active }: { value: number; active: boolean }) {
     requestAnimationFrame(step);
   }, [active, value]);
 
-  return <span ref={spanRef}>00</span>;
+  return <span ref={spanRef}>{String(value).padStart(2, "0")}</span>;
 }
 
 /* ─── Desktop Step Card with clip-path circle reveal ─── */

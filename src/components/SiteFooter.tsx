@@ -192,7 +192,7 @@ export default function SiteFooter() {
             +7 (812) 919-59-11
           </a>
           <a
-            href="mailto:interfood-catering@yandex.ru"
+            href="mailto:info@interfood-catering.ru"
             style={{
               display: "flex",
               color: "rgba(255,255,255,0.45)",
@@ -202,7 +202,7 @@ export default function SiteFooter() {
               alignItems: "center",
             }}
           >
-            interfood-catering@yandex.ru
+            info@interfood-catering.ru
           </a>
 
           {/* Social links — SVG icons with 44×44 touch targets */}

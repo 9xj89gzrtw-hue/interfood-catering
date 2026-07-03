@@ -23,7 +23,7 @@ const FAQ_CATEGORIES = [
     questions: [
       {
         q: "Как оформить заказ на кейтеринг?",
-        a: "Позвоните по телефону +7 (812) 919-59-11 или мобильному +7 (911) 941-72-05 (WhatsApp/Telegram). Напишите на interfood-catering@yandex.ru. Просим Вас предварительно позвонить, чтобы договориться о встрече.",
+        a: "Позвоните по телефону +7 (812) 919-59-11 или мобильному +7 (911) 941-72-05 (WhatsApp/Telegram). Напишите на info@interfood-catering.ru. Просим Вас предварительно позвонить, чтобы договориться о встрече.",
       },
       {
         q: "За сколько времени нужно бронировать кейтеринг?",
@@ -869,7 +869,7 @@ export default function FAQPage() {
                 +7 (812) 919-59-11
               </a>
               <a
-                href="mailto:interfood-catering@yandex.ru"
+                href="mailto:info@interfood-catering.ru"
                 style={{
                   display: "block",
                   fontSize: "0.85rem",
@@ -879,7 +879,7 @@ export default function FAQPage() {
                   transition: "color 0.3s",
                 }}
               >
-                interfood-catering@yandex.ru
+                info@interfood-catering.ru
               </a>
               <p
                 style={{

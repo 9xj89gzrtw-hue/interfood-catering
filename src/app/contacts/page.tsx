@@ -48,8 +48,8 @@ const CONTACT_CARDS = [
   {
     icon: "✉",
     title: "Email",
-    value: "interfood-catering@yandex.ru",
-    href: "mailto:interfood-catering@yandex.ru",
+    value: "info@interfood-catering.ru",
+    href: "mailto:info@interfood-catering.ru",
     desc: "Просим Вас предварительно позвонить, чтобы договориться о встрече",
   },
   {
@@ -741,6 +741,9 @@ export default function ContactsPage() {
                           id="name"
                           name="name"
                           type="text"
+                          required
+                          aria-required="true"
+                          aria-invalid={!!errors.name}
                           value={form.name}
                           onChange={handleChange}
                           placeholder="Ваше имя"
@@ -776,6 +779,8 @@ export default function ContactsPage() {
                         />
                         {errors.name && (
                           <motion.span
+                            role="alert"
+                            id="name-error"
                             initial={{ opacity: 0, y: -4 }}
                             animate={{ opacity: 1, y: 0 }}
                             style={{
@@ -810,6 +815,9 @@ export default function ContactsPage() {
                           id="phone"
                           name="phone"
                           type="tel"
+                          required
+                          aria-required="true"
+                          aria-invalid={!!errors.phone}
                           value={form.phone}
                           onChange={handlePhoneChange}
                           placeholder="+7 (___) ___-__-__"
@@ -845,6 +853,8 @@ export default function ContactsPage() {
                         />
                         {errors.phone && (
                           <motion.span
+                            role="alert"
+                            id="phone-error"
                             initial={{ opacity: 0, y: -4 }}
                             animate={{ opacity: 1, y: 0 }}
                             style={{
