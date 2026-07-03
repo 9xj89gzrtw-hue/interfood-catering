@@ -85,17 +85,25 @@ A file/script/doc is deleted when it meets ANY:
 
 Do NOT delete speculatively. Each deletion records the criterion met.
 
-## 9. Hard technical constraints (unchanged, from prior rules)
+## 9. Hard technical constraints (updated 2026-07-04 — motion policy relaxed)
 
-1. File < 250 lines (AI breaks files > 400).
-2. No canvas / 3D / spring physics / morphing text.
-3. Only CSS transitions + FadeIn (IntersectionObserver). SSR-safe.
-4. No `Math.random` / `Date.now()` / `window` in render.
+1. File < 250 lines (AI breaks files > 400). Split into components if needed.
+2. **No canvas particles / 3D tilt / spring physics / morphing text** (still forbidden — caused 40+ bugs, BUG-010).
+3. **Motion ALLOWED (2026 policy)**: CSS animations + CSS transitions + FadeIn (IntersectionObserver) + video backgrounds (muted/playsinline/loop/poster) + CSS scroll-driven animations (@scroll-timeline) + View Transitions API. **NO JS scroll libraries** (GSAP ScrollTrigger, Locomotive, etc. — they break mobile Safari).
+4. SSR-safe: no `Math.random` / `Date.now()` / `window` in render. `useEffect` only for browser-only APIs.
 5. `ring-[#color]` not `ringColor`.
 6. `ignoreBuildErrors: true` is FORBIDDEN.
 7. One bug = one commit.
+8. **Video heroes MUST**: `muted` + `playsinline` + `loop` + `poster` image + `preload="metadata"` + mobile-optimized `<source media>` for LCP.
 
-## 10. Contacts & design (SSOT — do not duplicate)
+## 10. "Best version first" principle (added 2026-07-04)
+
+- For each module: design and build the **best possible version** first (premium, modern, motion-rich per §9), not a conservative minimum.
+- Then refine individual sections iteratively if needed.
+- "Best" is grounded in current 2026 research (10 categories: catering, restaurant, luxury, event, wedding, Michelin, award-winning, motion-design studios, mobile UX, trends), not opinion.
+- A module is NOT done if it looks dated for the current month. Compare against best-in-class before claiming done.
+
+## 11. Contacts & design (SSOT — do not duplicate)
 
 - Phone: +7 (812) 919-59-11 | WhatsApp: wa.me/79119417205 | Telegram: t.me/nilov_catering
 - Email: info@interfood-catering.ru | Address: Новолитовская ул., 15, СПб

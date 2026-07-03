@@ -69,3 +69,47 @@ img {
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(212, 168, 67, 0.5);
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   MOTION SYSTEM (2026) — CSS-only, SSR-safe
+   No JS scroll libraries. All animations run on load or via CSS.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Slow ken-burns zoom for hero video container */
+@keyframes ken-burns {
+  0% { transform: scale(1) translate3d(0, 0, 0); }
+  50% { transform: scale(1.08) translate3d(-1%, -1%, 0); }
+  100% { transform: scale(1) translate3d(0, 0, 0); }
+}
+
+/* Gold shimmer sweep for tagline accent */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Scroll cue bounce */
+@keyframes scroll-cue {
+  0%, 100% { transform: translateY(0); opacity: 0.6; }
+  50% { transform: translateY(8px); opacity: 1; }
+}
+
+/* Headline letter-spacing breathing on load */
+@keyframes headline-in {
+  0% { letter-spacing: 0.04em; opacity: 0; }
+  100% { letter-spacing: 0.01em; opacity: 1; }
+}
+
+/* CTA glow pulse (subtle) */
+@keyframes cta-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(212, 168, 67, 0.4); }
+  50% { box-shadow: 0 0 24px 4px rgba(212, 168, 67, 0.15); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
