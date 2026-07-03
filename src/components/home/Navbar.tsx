@@ -7,12 +7,11 @@ import { CONTACTS } from "@/lib/content";
 
 const NAV_LINKS = [
   { href: "/#services", label: "Услуги" },
-  { href: "/#menu", label: "Меню" },
+  { href: "/menu", label: "Меню" },
+  { href: "/menu-builder", label: "Конструктор меню" },
   { href: "/#how", label: "Как это работает" },
   { href: "/gallery", label: "Галерея" },
   { href: "/reviews", label: "Отзывы" },
-  { href: "/calculator", label: "Калькулятор" },
-  { href: "/about", label: "О нас" },
   { href: "/contacts", label: "Контакты" },
 ];
 

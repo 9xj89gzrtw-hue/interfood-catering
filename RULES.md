@@ -125,3 +125,35 @@ Do NOT delete speculatively. Each deletion records the criterion met.
 - **Only if** the old site does not have the needed info → create original content.
 - When using old-site content: adapt copy/structure to the new design system; do not copy WordPress HTML/markup verbatim.
 - Record in `research/` which old-site pages were consulted for each module.
+
+## 13. Always provide site link at end (added 2026-07-04)
+
+- At the end of EVERY response, include the production site URL: `https://interfood-catering.vercel.app`
+- Also include GitHub repo link: `https://github.com/9xj89gzrtw-hue/interfood-catering`
+- This is mandatory regardless of task type.
+
+## 14. Always work with other models (added 2026-07-04)
+
+- For any non-trivial task, involve external LLMs via:
+  - GitHub Action workflow (`.github/workflows/llm-critic.yml`) — runs from US, calls Groq/OpenAI/Google/DeepSeek/Cerebras/OpenRouter in parallel
+  - z-ai SDK (built-in, sandbox) — GLM-4.6 / GLM-4.6V
+- Use them for: critique, code review, design feedback, content generation
+- Never work alone on complex tasks — always collaborate with ≥1 external model.
+
+## 15. Use maximum agent roles (added 2026-07-04)
+
+- For complex tasks, activate the FULL agent team (from prompts/agents.md):
+  - **Research Agent** (web benchmarks, competitor analysis)
+  - **Architect Agent** (system design, plan)
+  - **Builder Agent** (implementation)
+  - **Critic Agent** (verification, QA)
+  - **Optimizer Agent** (performance, simplification)
+  - **External LLM Agents** (Groq, GLM-4.6, etc. — via §14)
+- One task = whole team, not one agent.
+
+## 16. Team execution model (added 2026-07-04)
+
+- Tasks are executed by a TEAM of agents, not by one agent.
+- Main Agent (me) = orchestrator: assigns roles, aggregates results, applies fixes.
+- Each agent has a measurable job (per prompts/agents.md).
+- Sequential pipeline: Research → Architect → Builder → Critic → (Optimizer if needed) → External LLM review → aggregate → apply → verify.

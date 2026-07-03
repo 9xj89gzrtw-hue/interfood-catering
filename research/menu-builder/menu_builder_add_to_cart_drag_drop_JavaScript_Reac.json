@@ -1,0 +1,38 @@
+[
+  {
+    "url": "https://www.youtube.com/watch?v=XlXT9lhy-4M",
+    "name": "This React Drag and Drop Component Is Magic - YouTube",
+    "snippet": "Join Brilliant using the link bellow for 30-day free trial + 20% off the premium subscription https://brilliant.org/developedbyed/ ## Check ...",
+    "host_name": "www.youtube.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://stackoverflow.com/questions/5512541/drag-and-drop-add-to-cart-function",
+    "name": "Drag and drop add to cart function - javascript - Stack Overflow",
+    "snippet": "If your application is going to be JS heavy, I recommend using a javascript library. They provide interfaces and API layers that reduce the ...",
+    "host_name": "stackoverflow.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/K-H-Rayhan/react-dnd-menu-builder",
+    "name": "K-H-Rayhan/react-dnd-menu-builder - GitHub",
+    "snippet": "React DND Menu Builder is a user-friendly drag-and-drop menu builder for React, inspired by the simplicity and flexibility of the WordPress menu builder.",
+    "host_name": "github.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=se2Kyi6SG2s&vl=en",
+    "name": "The Ultimate Guide to Drag & Drop in React (2026) - YouTube",
+    "snippet": "Learn how to build drag and drop in React the right way. In this complete React drag and drop tutorial, you'll learn how to implement smooth ...",
+    "host_name": "www.youtube.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  }
+]
