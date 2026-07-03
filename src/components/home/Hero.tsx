@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import FadeIn from "@/components/home/FadeIn";
 
 export default function Hero() {
   return (
@@ -27,14 +30,17 @@ export default function Hero() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 sm:py-40">
         <div className="max-w-2xl">
           {/* Tag */}
+          <FadeIn delay={200}>
           <p
             className="font-sans text-xs sm:text-sm tracking-[0.2em] uppercase mb-6"
             style={{ color: "#D4A843" }}
           >
             Авторская кухня с 2007 года
           </p>
+          </FadeIn>
 
           {/* Headline */}
+          <FadeIn delay={400}>
           <h1
             className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light leading-[1.1] mb-6"
             style={{ color: "#F5F1EA" }}
@@ -43,8 +49,10 @@ export default function Hero() {
             <br />
             <span style={{ color: "#D4A843" }}>Кейтеринг</span>
           </h1>
+          </FadeIn>
 
           {/* Description */}
+          <FadeIn delay={600}>
           <p
             className="font-sans text-base sm:text-lg leading-relaxed mb-8 max-w-lg"
             style={{ color: "rgba(245,241,234,0.85)" }}
@@ -52,8 +60,10 @@ export default function Hero() {
             Ресторан выездного обслуживания в Санкт-Петербурге.
             Свадьбы, банкеты, фуршеты и кофе-брейки — от 950 ₽/чел
           </p>
+          </FadeIn>
 
           {/* CTA Buttons */}
+          <FadeIn delay={800}>
           <div className="flex flex-col sm:flex-row gap-3">
             <a
               href="https://wa.me/79119417205?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%20%D1%81%D1%82%D0%BE%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D1%8C%20%D0%BA%D0%B5%D0%B9%D1%82%D0%B5%D1%80%D0%B8%D0%BD%D0%B3%D0%B0"
@@ -72,8 +82,10 @@ export default function Hero() {
               Смотреть меню
             </a>
           </div>
+          </FadeIn>
 
           {/* Trust line */}
+          <FadeIn delay={1000}>
           <div
             className="flex flex-wrap gap-6 mt-10 font-sans text-xs sm:text-sm"
             style={{ color: "rgba(245,241,234,0.7)" }}
@@ -82,6 +94,7 @@ export default function Hero() {
             <span>18 лет на рынке</span>
             <span>Ответим за 30 минут</span>
           </div>
+          </FadeIn>
         </div>
       </div>
     </section>
