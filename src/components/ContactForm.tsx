@@ -449,6 +449,7 @@ export default function ContactForm({
                   onChange={handleChange}
                   placeholder="Ваше имя"
                   autoComplete="name"
+                  required
                   aria-required="true"
                   aria-invalid={!!errors.name}
                   aria-describedby={errors.name ? "cf-name-error" : undefined}
@@ -474,6 +475,7 @@ export default function ContactForm({
                   onChange={handleChange}
                   placeholder="+7 (___) ___-__-__"
                   autoComplete="tel"
+                  required
                   aria-required="true"
                   aria-invalid={!!errors.phone}
                   aria-describedby={errors.phone ? "cf-phone-error" : undefined}
