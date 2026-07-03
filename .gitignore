@@ -73,3 +73,4 @@ server.log
 .env
 .pipeline/screenshots/
 .pipeline/snapshots/
+tool-results/
