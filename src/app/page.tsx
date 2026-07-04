@@ -1,12 +1,13 @@
 import Navbar from "@/components/home/Navbar";
 import Hero from "@/components/home/Hero";
 import Stats from "@/components/home/Stats";
+import TrustSection from "@/components/home/TrustSection";
 import Services from "@/components/home/Services";
 import MenuPreview from "@/components/home/MenuPreview";
+import StorySection from "@/components/home/StorySection";
 import HowItWorks from "@/components/home/HowItWorks";
 import Gallery from "@/components/home/Gallery";
 import Testimonials from "@/components/home/Testimonials";
-import TrustSection from "@/components/home/TrustSection";
 import News from "@/components/home/News";
 import CTA from "@/components/home/CTA";
 import Footer from "@/components/home/Footer";
@@ -22,6 +23,7 @@ export default function Home() {
         <TrustSection />
         <Services />
         <MenuPreview />
+        <StorySection />
         <HowItWorks />
         <Gallery />
         <Testimonials />
