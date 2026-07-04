@@ -25,7 +25,7 @@ export default function Services() {
             <FadeIn key={s.id} delay={i * 60}>
               <Link
                 href="/services"
-                className="group block h-full bg-white rounded-2xl p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border border-[#D4A843]/10"
+                className="premium-card group block h-full bg-white rounded-2xl p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border border-[#D4A843]/10"
               >
                 <div className="flex items-start justify-between mb-4">
                   <span className="text-4xl" style={{ filter: "grayscale(0.2)" }}>{s.icon}</span>
