@@ -5,7 +5,7 @@ import { CONTACTS } from "@/lib/content";
 
 export default function StorySection() {
   return (
-    <section className="py-20 sm:py-28" style={{ background: "#1A1A1A" }}>
+    <section className="py-16 sm:py-28" style={{ background: "#1A1A1A" }}>
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 items-center">
           <FadeIn>

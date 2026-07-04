@@ -30,7 +30,7 @@ export default function Gallery() {
           </div>
         </FadeIn>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-2 sm:gap-4">
           {PHOTOS.map((p, i) => (
             <FadeIn key={i} delay={i * 80}>
               <div className="group relative aspect-square overflow-hidden rounded-xl sm:rounded-2xl">

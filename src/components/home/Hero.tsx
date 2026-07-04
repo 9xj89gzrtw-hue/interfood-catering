@@ -44,7 +44,7 @@ export default function Hero() {
           </FadeIn>
 
           <FadeIn delay={400}>
-            <h1 id="hero-heading" className="font-serif font-light leading-[1.05] mb-4 text-5xl sm:text-6xl md:text-7xl lg:text-8xl" style={{ color: "#F5F1EA" }}>
+            <h1 id="hero-heading" className="font-serif font-light leading-[1.05] mb-4 text-4xl sm:text-6xl md:text-7xl lg:text-8xl" style={{ color: "#F5F1EA" }}>
               Интерфуд<br /><span style={{ color: "#F5F1EA" }}>Кейтеринг</span>
             </h1>
           </FadeIn>
