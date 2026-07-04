@@ -56,16 +56,16 @@ export default function Hero() {
           </FadeIn>
 
           <FadeIn delay={700}>
-            <p className="font-sans text-base sm:text-lg leading-relaxed mb-4 max-w-lg" style={{ color: "rgba(245,241,234,0.85)" }}>
-              Ресторан выездного обслуживания в Санкт-Петербурге. Авторская кухня шеф-повара {CONTACTS.founder}.
+            <p className="font-sans text-base sm:text-lg leading-relaxed mb-3 max-w-lg" style={{ color: "rgba(245,241,234,0.9)" }}>
+              Премиум-кейтеринг для свадеб, банкетов и корпоративов. Авторская кухня шеф-повара {CONTACTS.founder}. Безупречный сервис с {CONTACTS.sinceYear} года.
             </p>
-            <div className="flex flex-wrap gap-x-4 gap-y-1 mb-6 font-sans text-sm" style={{ color: "rgba(245,241,234,0.7)" }}>
+            <div className="flex flex-wrap gap-x-4 gap-y-1 mb-6 font-sans text-sm" style={{ color: "rgba(245,241,234,0.75)" }}>
               <span>Кофе-брейк <strong style={{ color: "#D4A843" }}>от 390 ₽</strong></span>
               <span>·</span>
               <span>Фуршет <strong style={{ color: "#D4A843" }}>от 2 450 ₽</strong></span>
               <span>·</span>
               <span>Банкет <strong style={{ color: "#D4A843" }}>от 4 470 ₽</strong></span>
-              <span className="block w-full text-xs mt-1" style={{ color: "rgba(245,241,234,0.5)" }}>на человека</span>
+              <span className="block w-full text-xs mt-1" style={{ color: "rgba(245,241,234,0.55)" }}>на человека · обслуживание и доставка включены</span>
             </div>
           </FadeIn>
 

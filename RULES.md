@@ -157,3 +157,27 @@ Do NOT delete speculatively. Each deletion records the criterion met.
 - Main Agent (me) = orchestrator: assigns roles, aggregates results, applies fixes.
 - Each agent has a measurable job (per prompts/agents.md).
 - Sequential pipeline: Research → Architect → Builder → Critic → (Optimizer if needed) → External LLM review → aggregate → apply → verify.
+
+## 17. Parallel execution (added 2026-07-04)
+
+- Multiple agents AND external models MUST work in PARALLEL during the same session.
+- Run N specialist critiques in parallel batches (Promise.all, batches of 5-8 to avoid rate limits).
+- Run stress tests + commission + Groq critique concurrently where possible.
+- NEVER run independent tasks sequentially when they can run in parallel.
+- Shell resilience: if a tool call fails, search web for solution, fix, continue — do NOT stop the session.
+
+## 18. Single-session completion (added 2026-07-04)
+
+- Complete the FULL quality loop in ONE session: research → build → test → critique → fix → re-test → repeat.
+- Do NOT stop mid-way and tell the user "half done". Keep iterating until target met.
+- Target: ≥9/10 from independent commission with REAL criteria (not inflated).
+- If a fix creates new issues → fix those too, don't declare success.
+- Honest scoring: 10/10 = "practically impossible to improve". If any improvement exists → below 10.
+
+## 19. 100+ specialists (added 2026-07-04)
+
+- Independent commission = MINIMUM 100 specialists (not 26).
+- Each specialist has unique role + focus area.
+- Run in parallel batches.
+- Specialists MUST NOT auto-agree. Each critiques independently and may disagree with others.
+- If 100 isn't enough to cover all aspects → add more (200, 300) until coverage is complete.

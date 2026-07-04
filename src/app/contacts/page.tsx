@@ -96,6 +96,25 @@ export default function ContactsPage() {
                 </a>
               </div>
             </FadeIn>
+
+            <FadeIn delay={500}>
+              <div className="mt-8 bg-white rounded-2xl p-2 border border-[#D4A843]/10 overflow-hidden">
+                <iframe
+                  src="https://yandex.ru/map-widget/v1/?text=Санкт-Петербург%20Новолитовская%20улица%2015&z=16"
+                  width="100%"
+                  height="400"
+                  frameBorder="0"
+                  style={{ border: 0, borderRadius: "12px" }}
+                  allowFullScreen
+                  title="Карта — Интерфуд Кейтеринг, Новолитовская ул., 15, СПб"
+                  loading="lazy"
+                />
+                <div className="p-4 text-center">
+                  <p className="font-serif text-lg font-medium" style={{ color: "#1A1A1A" }}>{CONTACTS.address}</p>
+                  <p className="font-sans text-sm" style={{ color: "#8B6F47" }}>Пн–Вс: 09:00–22:00 · Предварительно позвоните</p>
+                </div>
+              </div>
+            </FadeIn>
           </div>
         </section>
       </main>
