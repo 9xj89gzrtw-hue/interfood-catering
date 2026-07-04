@@ -56,10 +56,10 @@ export default function Hero() {
           </FadeIn>
 
           <FadeIn delay={700}>
-            <p className="font-sans text-base sm:text-lg leading-relaxed mb-3 max-w-lg" style={{ color: "rgba(245,241,234,0.9)" }}>
+            <p className="font-sans text-base sm:text-lg leading-relaxed mb-3 max-w-lg" style={{ color: "#F5F1EA" }}>
               Премиум-кейтеринг для свадеб, банкетов и корпоративов. Авторская кухня шеф-повара {CONTACTS.founder}. Безупречный сервис с {CONTACTS.sinceYear} года.
             </p>
-            <div className="flex flex-wrap gap-x-4 gap-y-1 mb-6 font-sans text-sm" style={{ color: "rgba(245,241,234,0.75)" }}>
+            <div className="flex flex-wrap gap-x-4 gap-y-1 mb-6 font-sans text-sm" style={{ color: "#F5F1EA" }}>
               <span>Кофе-брейк <strong style={{ color: "#D4A843" }}>от 390 ₽</strong></span>
               <span>·</span>
               <span>Фуршет <strong style={{ color: "#D4A843" }}>от 2 450 ₽</strong></span>
@@ -88,6 +88,14 @@ export default function Hero() {
               <Badge icon="events" label={`${CONTACTS.eventsCount} мероприятий`} />
               <Badge icon="years" label={`${CONTACTS.yearsOnMarket} лет на рынке`} />
               <Badge icon="clock" label="Ответим за 30 минут" />
+              <span className="flex items-center gap-1.5" style={{ color: "rgba(245,241,234,0.95)" }}>
+                <div className="flex">
+                  {[...Array(5)].map((_, i) => (
+                    <svg key={i} width="14" height="14" viewBox="0 0 24 24" fill="#D4A843"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  ))}
+                </div>
+                <strong style={{ color: "#D4A843" }}>4.9/5</strong> · 30+ отзывов
+              </span>
             </div>
           </FadeIn>
         </div>
