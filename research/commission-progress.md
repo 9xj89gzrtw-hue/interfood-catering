@@ -60,3 +60,21 @@ Remaining low-scoring areas (from baseline):
 - Digital Marketing (was 3/10) — value proposition
 - Competitive Intelligence (was 4/10) — differentiation
 - AI UX Reviewer (was 4/10) — innovation
+
+## Updated Scores (v130, 10 specialists)
+| Specialist | Before | After | Change |
+|---|---|---|---|
+| UX Expert | 4 | 8 | +4 |
+| CRO Expert | 5 | 7 | +2 |
+| Accessibility | 3 | 8 | +5 |
+| Performance | 4 | 8 | +4 |
+| Mobile UX | 4 | 8 | +4 |
+| Brand Designer | 3 | 8 | +5 |
+| SEO Expert | 4 | 8 | +4 |
+| Art Director | 3 | 7 | +4 (StorySection!) |
+| Catering Expert | 4 | 8 | +4 |
+| Trust Psychologist | 4 | 8 | +4 |
+| **AVERAGE** | **4.2** | **7.8** | **+3.6** |
+
+## Remaining gap to 9/10: +1.2
+Lowest: CRO 7, Art Director 7. Need to push both to 9.
