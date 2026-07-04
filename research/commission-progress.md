@@ -183,3 +183,9 @@ From 4.2/10 (26 specialists) to 8.5/10 (17 specialists, 8 at 9/10).
 
 ## JOURNEY: 4.2 → 8.0 → 8.6 (10 at 9/10)
 From 4.2/10 to 8.6/10. 10/17 specialists at 9/10.
+
+## TWELVE SPECIALISTS AT 9/10 (v140)
+71% of all scored specialists now at 9/10.
+Remaining ~5 at 8/10 (AI UX, Digital Marketing, Human Factors, + others).
+
+## JOURNEY: 4.2 → 8.0 → 8.7 (12 at 9/10)
