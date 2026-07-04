@@ -40,3 +40,23 @@
 - Innovation/modernity (AI UX Reviewer was 4/10)
 - Emotional impact (multiple specialists flagged)
 - More specialist evaluations (rate-limited, need retry)
+
+## Updated Scores (v128, 7 specialists)
+| Specialist | Before | After | Change |
+|---|---|---|---|
+| UX Expert | 4/10 | 8/10 | +4 |
+| CRO Expert | 5/10 | 7/10 | +2 |
+| Accessibility Expert | 3/10 | 8/10 | +5 |
+| Performance Engineer | 4/10 | 8/10 | +4 |
+| Mobile UX Expert | 4/10 | 8/10 | +4 |
+| Brand Designer | 3/10 | 8/10 | +5 |
+| SEO Expert | 4/10 | 8/10 | +4 |
+| **AVERAGE** | **4.2/10** | **7.86/10** | **+3.66** |
+
+## Gap to 9/10
+Current: 7.86/10. Need +1.14 to reach 9/10.
+Remaining low-scoring areas (from baseline):
+- Art Director (was 3/10) — visual design, emotional impact
+- Digital Marketing (was 3/10) — value proposition
+- Competitive Intelligence (was 4/10) — differentiation
+- AI UX Reviewer (was 4/10) — innovation
