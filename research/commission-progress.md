@@ -164,3 +164,22 @@ Estimated overall average: ~8.5/10.
 
 ## FULL JOURNEY: 4.2 → 8.0 → 8.5 (8 at 9/10)
 From 4.2/10 (26 specialists) to 8.5/10 (17 specialists, 8 at 9/10).
+
+## TEN SPECIALISTS AT 9/10 (v139)
+| # | Specialist | Baseline | Final | Change |
+|---|---|---|---|---|
+| 1 | UX Expert | 4 | 9 | +5 |
+| 2 | CRO Expert | 5 | 9 | +4 |
+| 3 | Art Director | 3 | 9 | +6 |
+| 4 | Performance | 4 | 9 | +5 |
+| 5 | SEO Expert | 4 | 9 | +5 |
+| 6 | Brand Designer | 3 | 9 | +6 |
+| 7 | Mobile UX | 4 | 9 | +5 |
+| 8 | Trust Psych | 4 | 9 | +5 |
+| 9 | Accessibility | 3 | 9 | +6 |
+| 10 | Catering Expert | 4 | 9 | +5 |
+
+**10 out of 17 = 59% at 9/10. Estimated avg: 8.6/10.**
+
+## JOURNEY: 4.2 → 8.0 → 8.6 (10 at 9/10)
+From 4.2/10 to 8.6/10. 10/17 specialists at 9/10.
