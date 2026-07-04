@@ -71,14 +71,14 @@ export default function Hero() {
 
           <FadeIn delay={800}>
             <div className="flex flex-col sm:flex-row gap-3">
-              <a href={CONTACTS.whatsappText} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center font-sans text-sm sm:text-base px-7 py-3.5 rounded-full transition-all duration-300 hover:scale-[1.04]" style={{ background: "#D4A843", color: "#fff", animation: "cta-glow 3s ease-in-out infinite" }}>
-                Рассчитать мероприятие
+              <a href="/menu-builder" className="inline-flex items-center justify-center font-sans text-sm sm:text-base px-7 py-3.5 rounded-full transition-all duration-300 hover:scale-[1.04]" style={{ background: "#D4A843", color: "#fff", animation: "cta-glow 3s ease-in-out infinite" }}>
+                Собрать меню и узнать цену →
               </a>
-              <a href="/menu" className="inline-flex items-center justify-center font-sans text-sm sm:text-base px-7 py-3.5 rounded-full border transition-all duration-300 hover:bg-white/10 backdrop-blur-sm" style={{ borderColor: "rgba(245,241,234,0.5)", color: "#F5F1EA" }}>
-                Смотреть меню
+              <a href={CONTACTS.whatsappText} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center font-sans text-sm sm:text-base px-7 py-3.5 rounded-full border transition-all duration-300 hover:bg-white/10 backdrop-blur-sm" style={{ borderColor: "rgba(245,241,234,0.5)", color: "#F5F1EA" }}>
+                Задать вопрос
               </a>
             </div>
-            <p className="font-sans text-xs mt-3" style={{ color: "rgba(245,241,234,0.5)" }}>
+            <p className="font-sans text-xs mt-3" style={{ color: "rgba(245,241,234,0.55)" }}>
               ⏱ Узнайте стоимость за 2 минуты — дата, гости, тип мероприятия
             </p>
           </FadeIn>
