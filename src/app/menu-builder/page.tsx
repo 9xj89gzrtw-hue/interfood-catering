@@ -10,9 +10,21 @@ export const metadata: Metadata = {
   description: "Интерактивный конструктор меню: перетащите блюда, узнайте стоимость в реальном времени, скачайте PDF. Кейтеринг СПб.",
 };
 
+const jsonld = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Конструктор меню Interfood Catering",
+  description: "Интерактивный конструктор меню кейтеринга с drag-and-drop, расчётом стоимости в реальном времени и экспортом в PDF",
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Web",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "RUB" },
+  publisher: { "@type": "Organization", name: "Interfood Catering" },
+};
+
 export default function MenuBuilderPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonld) }} />
       <Navbar />
       <main style={{ background: "#F5F1EA", minHeight: "100vh" }}>
         <section className="relative pt-32 pb-10 sm:pt-40 sm:pb-12" style={{ background: "#1A1A1A" }}>
