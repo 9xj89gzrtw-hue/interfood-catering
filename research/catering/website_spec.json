@@ -1,0 +1,133 @@
+{
+  "sitemap": {
+    "pages": [
+      {"path": "/", "title": "Главная", "priority": 1.0, "changefreq": "weekly"},
+      {"path": "/menu", "title": "Меню", "priority": 0.9, "changefreq": "weekly"},
+      {"path": "/menu/canape", "title": "Канапе и закуски", "priority": 0.8},
+      {"path": "/menu/salads", "title": "Салаты", "priority": 0.8},
+      {"path": "/menu/hot", "title": "Горячие блюда", "priority": 0.8},
+      {"path": "/menu/desserts", "title": "Десерты", "priority": 0.8},
+      {"path": "/menu/drinks", "title": "Напитки", "priority": 0.7},
+      {"path": "/packages", "title": "Пакеты и цены", "priority": 0.9},
+      {"path": "/services/wedding", "title": "Свадебный банкет", "priority": 0.8},
+      {"path": "/services/corporate", "title": "Корпоративный кейтеринг", "priority": 0.8},
+      {"path": "/services/furshet", "title": "Фуршет", "priority": 0.8},
+      {"path": "/services/coffee-break", "title": "Кофе-брейк", "priority": 0.7},
+      {"path": "/services/barbecue", "title": "BBQ на природе", "priority": 0.7},
+      {"path": "/gallery", "title": "Галерея", "priority": 0.7},
+      {"path": "/about", "title": "О компании", "priority": 0.6},
+      {"path": "/reviews", "title": "Отзывы", "priority": 0.7},
+      {"path": "/blog", "title": "Блог", "priority": 0.6},
+      {"path": "/contact", "title": "Контакты", "priority": 0.9},
+      {"path": "/booking", "title": "Заявка на мероприятие", "priority": 1.0},
+      {"path": "/faq", "title": "Частые вопросы", "priority": 0.5}
+    ]
+  },
+  "color_palette": {
+    "name": "Warm Luxury Catering",
+    "rationale": "Тёплые цвета стимулируют аппетит. Золото = премиум. Тёмный фон = элегантность.",
+    "colors": {
+      "primary": "#1A1A1A",
+      "primary_text": "#1A1A1A",
+      "background": "#FAF7F2",
+      "accent": "#C9A961",
+      "accent_dark": "#A88B47",
+      "cta": "#C9A961",
+      "cta_hover": "#A88B47",
+      "text_light": "#F5F5F5",
+      "text_muted": "#8B8B8B",
+      "border": "#E5E0D8",
+      "success": "#5A8F5A",
+      "error": "#D44A4A",
+      "warm_overlay": "rgba(201, 169, 97, 0.15)"
+    }
+  },
+  "typography": {
+    "headings": {
+      "family": "'Playfair Display', serif",
+      "weights": [400, 600, 700],
+      "sizes": {"h1": "3rem", "h2": "2.25rem", "h3": "1.75rem", "h4": "1.5rem"},
+      "line_height": 1.2,
+      "rationale": "Serif для premium feel, элегантность, fine dining"
+    },
+    "body": {
+      "family": "'Montserrat', sans-serif",
+      "weights": [300, 400, 500, 600],
+      "sizes": {"base": "1rem", "small": "0.875rem", "large": "1.125rem"},
+      "line_height": 1.6,
+      "rationale": "Современный, читаемый, профессиональный"
+    },
+    "accent": {
+      "family": "'Dancing Script', cursive",
+      "weights": [400, 700],
+      "use": "Menu item names, decorative accents",
+      "rationale": "Ручной стиль для меню = тепло, персонализация"
+    },
+    "google_fonts_import": "@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600&family=Dancing+Script:wght@400;700&display=swap');"
+  },
+  "components": [
+    {"name": "Hero", "desc": "Full-screen image/video, headline, CTA", "props": ["image", "title", "subtitle", "ctaText", "ctaLink"]},
+    {"name": "MenuGrid", "desc": "Filterable grid of dishes with photos", "props": ["category", "items", "filterable"]},
+    {"name": "MenuCard", "desc": "Single dish card: photo, name, desc, price, tags", "props": ["image", "name", "desc", "price", "weight", "tags"]},
+    {"name": "PackageCard", "desc": "Pricing package: name, price, includes list, CTA", "props": ["name", "price", "includes", "minGuests"]},
+    {"name": "BookingForm", "desc": "3-step wizard: event details → menu → contact", "props": ["onSubmit"]},
+    {"name": "Gallery", "desc": "Masonry grid of event photos with lightbox", "props": ["images", "columns"]},
+    {"name": "TestimonialCard", "desc": "Client review: text, author, event type, rating", "props": ["text", "author", "event", "rating"]},
+    {"name": "ServiceCard", "desc": "Service type: icon, title, desc, link", "props": ["icon", "title", "desc", "link"]},
+    {"name": "StickyHeader", "desc": "Header with logo, nav, sticky CTA button", "props": ["navItems", "ctaText"]},
+    {"name": "Footer", "desc": "Contacts, social links, copyright", "props": ["phone", "email", "address", "socials"]},
+    {"name": "FAQAccordion", "desc": "Expandable FAQ items", "props": ["items"]},
+    {"name": "CTASection", "desc": "Call-to-action banner with background", "props": ["title", "subtitle", "ctaText", "bgImage"]},
+    {"name": "StatsBar", "desc": "Stats: events count, years, clients", "props": ["stats"]},
+    {"name": "VideoBackground", "desc": "Hero with video background", "props": ["videoSrc", "overlay", "title"]}
+  ],
+  "seo": {
+    "primary_keywords": ["кейтеринг Санкт-Петербург", "кейтеринг СПб", "выездной ресторан"],
+    "secondary_keywords": ["свадебный банкет", "корпоративный кейтеринг", "фуршет", "кофе-брейк"],
+    "long_tail": ["кейтеринг на свадьбу СПб цены", "корпоративное питание офис", "фуршетное меню на 50 человек"],
+    "schema_types": ["Restaurant", "Menu", "FAQPage", "Event", "BreadcrumbList"],
+    "google_business": true,
+    "sitemap_xml": true
+  },
+  "booking_form": {
+    "type": "3-step wizard",
+    "step1": {"title": "О мероприятии", "fields": ["event_type", "date", "guests", "budget"]},
+    "step2": {"title": "Меню", "fields": ["package", "custom_dishes", "dietary"]},
+    "step3": {"title": "Контакты", "fields": ["name", "phone", "email", "comment"]},
+    "backend": "Formspree (free tier) or custom API",
+    "auto_quote": true
+  },
+  "performance_budget": {
+    "lcp": "2.5s",
+    "cls": "0.1",
+    "fid": "100ms",
+    "lighthouse": 90,
+    "max_image_size": "200KB",
+    "max_js_bundle": "150KB",
+    "max_css": "30KB",
+    "images_format": "WebP",
+    "lazy_load": true,
+    "cdn": "Vercel Edge"
+  },
+  "analytics": {
+    "provider": "Google Analytics 4",
+    "events": ["page_view", "menu_filter", "booking_step", "phone_click", "whatsapp_click"],
+    "hotjar": true,
+    "google_search_console": true
+  },
+  "hosting": {
+    "platform": "Vercel (free tier)",
+    "domain": "custom (user provides)",
+    "ssl": "automatic (Vercel)",
+    "cdn": "Vercel Edge Network",
+    "deploy": "git push → auto deploy"
+  },
+  "responsive_breakpoints": {
+    "mobile": "max-width: 640px",
+    "tablet": "max-width: 1024px",
+    "desktop": "min-width: 1025px",
+    "mobile_first": true,
+    "touch_targets": "44px min",
+    "hamburger_menu": true
+  }
+}
